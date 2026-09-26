@@ -1,0 +1,60 @@
+/* Shared member surfaces: parchment for reading, charcoal for orientation, saffron for action. */
+.alpha.calm-shell { --a-bg: #f6f1e7; --a-paper: #fffaf0; --a-ink: #18392f; --a-muted: #4d6257; --a-line: #d8d3c5; --a-green: #254a3a; --a-sage: #e9e8db; --a-gold: #966029; background: var(--a-bg); }
+.alpha.calm-shell .alpha-demo-banner { display: none; }
+.alpha.calm-shell .alpha-header { max-width: 1090px; padding: 16px 25px; border-bottom-color: var(--a-line); }
+.alpha.calm-shell .alpha-header .brand { font-family: Fraunces, Georgia, serif; font-size: 24px; letter-spacing: -.045em; }
+.alpha.calm-shell .alpha-profile { min-height: 44px; display: inline-flex; align-items: center; gap: 7px; font-size: 13px; }
+.alpha.calm-shell:not([data-story=true]):not([data-welcome=true]) .alpha-main { max-width: 1090px; padding-top: 26px; }
+.alpha.calm-shell .alpha-nav { width: min(100%, 520px); max-width: none; bottom: 0; gap: 0; padding: 6px max(7px, env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(7px, env(safe-area-inset-left)); border: 0; border-top: 1px solid #344438; border-radius: 0; background: #1b2722; box-shadow: 0 -8px 26px #1a251923; backdrop-filter: none; }
+.alpha.calm-shell .alpha-nav a { min-height: 54px; color: #c9d0c4; font-size: 11px; }
+.alpha.calm-shell .alpha-nav a.active { color: #f2c180; }
+.alpha.calm-shell .alpha-nav-active { inset: auto 24% 0; height: 2px; border-radius: 2px; background: #eeb86d; box-shadow: none; }
+.alpha.calm-shell .alpha-nav a:focus-visible { outline: 2px solid #eeb86d; outline-offset: -2px; }
+.alpha.calm-shell :focus-visible { outline-color: #b27636; }
+.alpha.calm-shell .life-wisdom { --life-gold: #8b5d25; }
+.alpha.calm-shell .life-intro { padding-top: 19px; }
+.alpha.calm-shell .life-intro h1 { max-width: 17ch; margin-top: 8px; font-size: clamp(34px, 6vw, 55px); }
+.alpha.calm-shell .life-intro>p:last-child { max-width: 48ch; line-height: 1.55; }
+.alpha.calm-shell .life-question { border-radius: 6px; background: var(--a-paper); padding: clamp(18px, 3vw, 28px); }
+.alpha.calm-shell .life-question textarea { border-radius: 5px; background: #fffcf5; }
+.alpha.calm-shell .life-question-foot button { border-radius: 5px; background: #e9b16b; color: #261b11; }
+.alpha.calm-shell .life-examples button { border-radius: 5px; background: transparent; }
+.alpha.calm-shell .life-practice { border-radius: 0; background: #ede9dc; border-left-color: #aa7135; }
+.alpha.calm-shell .life-source blockquote { border-left-color: #b67935; }
+.alpha.calm-shell .before-story-hero { border-radius: 4px; }
+.alpha.calm-shell .before-story-section { border-color: var(--a-line); }
+.alpha.calm-shell .before-story-reflection { background: #eee8d8; border-left-color: #a66e34; }
+.alpha.calm-shell .before-story-ending a { border-radius: 5px; background: #e9b16b; color: #241b13; }
+.alpha.calm-shell .story-series-cover { border-radius: 5px; }
+.alpha.calm-shell .story-series-progress,.alpha.calm-shell .story-episode { border-radius: 5px; box-shadow: none; }
+.alpha.calm-shell .story-episode-thumb { border-radius: 3px; }
+.alpha.calm-shell .story-series .story-gold-button { border-radius: 5px; }
+.alpha.calm-shell .story-player { --story-amber: #a76e33; background: #f6f1e7; }
+.alpha.calm-shell .story-player-head,.alpha.calm-shell .story-player-controls { background: #f6f1e7; border-color: #d8d3c5; }
+.alpha.calm-shell .story-progress-fill { background: #af7133; }
+.alpha.calm-shell .story-paper-scene blockquote { font-family: 'Tiro Devanagari Sanskrit', Georgia, serif; color: #1e4333; }
+.alpha.calm-shell .story-player h1[tabindex="-1"]:focus-visible { outline: none; }
+.alpha.calm-shell .story-verse-tools a,.alpha.calm-shell .story-verse-tools button,.alpha.calm-shell .story-meaning-scene summary { color: #7d4f1c; }
+.alpha.calm-shell .story-action-card { background: #eee7d8; border-left-color: #a87136; border-radius: 0; }
+.alpha.calm-shell .story-player .story-gold-button { border-radius: 5px; background: #e9b16b; color: #231a11 !important; }
+.alpha.calm-shell .story-reading-choice button { border-radius: 5px; }
+.alpha.calm-shell .calm-saved .wisdom-kept { border-radius: 5px; }
+.alpha.calm-shell .calm-saved-section { border-color: var(--a-line); }
+.alpha.calm-shell .practice-panel,.alpha.calm-shell .practice-pause { border-radius: 6px; }
+@media (max-width: 700px) {
+  .alpha.calm-shell .alpha-nav { left: 0; right: 0; transform: none; }
+  .alpha.calm-shell:not([data-story=true]):not([data-welcome=true]) .alpha-main { padding: 18px 19px calc(118px + env(safe-area-inset-bottom)); }
+  .alpha.calm-shell .alpha-header { padding: 10px 19px; }
+  .alpha.calm-shell .before-story-hero { margin-inline: -19px; border-radius: 0; }
+}
+@media (min-width: 701px) and (max-width: 1199px) { .alpha.calm-shell .alpha-nav { left: 50%; transform: translateX(-50%); } }
+@media (min-width: 1200px) { .alpha.calm-shell .alpha-nav { left: max(22px, calc((100vw - 1190px) / 2)); right: auto; bottom: 24px; width: 92px; border: 1px solid #344438; border-radius: 5px; transform: none; } }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) { background: var(--m-deep); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha-nav { background: #1b2722; border-color: #344438; box-shadow: 0 -8px 26px #080e0b35; }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha-nav a { color: #c9d0c4; }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha-nav a.active { color: #f2c180; }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha-nav-active { background: #eeb86d; box-shadow: none; }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.life-question,.life-question textarea,.life-practice,.before-story-reflection,.story-player,.story-player-head,.story-player-controls,.story-action-card) { background: var(--m-panel); color: var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .story-player .story-gold-button { background: #eeb86d; color: #241b11 !important; }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.before-story-hero h1,.story-scene-copy h1) { color: #fff8e9 !important; }
+@media (prefers-reduced-motion: reduce) { .alpha.calm-shell .alpha-nav a { transition: none; } }

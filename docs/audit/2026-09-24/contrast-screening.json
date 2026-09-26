@@ -1,0 +1,41 @@
+{
+  "method": "Rendered text leaves over opaque solid backgrounds. Skips image backgrounds, transparency and opacity. Not a complete WCAG audit.",
+  "results": [
+    {
+      "name": "reader-paper",
+      "findings": []
+    },
+    {
+      "name": "welcome",
+      "findings": []
+    },
+    {
+      "name": "today",
+      "findings": []
+    },
+    {
+      "name": "explore",
+      "findings": []
+    },
+    {
+      "name": "journey",
+      "findings": []
+    },
+    {
+      "name": "my-practice",
+      "findings": []
+    },
+    {
+      "name": "settings",
+      "findings": []
+    },
+    {
+      "name": "moment/purpose",
+      "findings": []
+    },
+    {
+      "name": "reader-evening",
+      "findings": []
+    }
+  ]
+}

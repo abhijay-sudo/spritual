@@ -1,0 +1,89 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main:
+  - link "Today":
+    - /url: /today
+    - text: Today
+  - generic: Bhagavad Gita 2.47
+  - button "Save lesson":
+  - button "Reading settings" [expanded]:
+    - generic: Aa
+  - dialog "Make reading yours":
+    - heading "Make reading yours" [level=2]
+    - button "Close reading settings":
+    - paragraph: Changes take effect right away. The reading theme changes reading screens only. Your timer stays paused.
+    - group "Reading theme":
+      - generic: Reading theme
+      - radio "Paper" [checked] [active]
+      - generic: Aa
+      - generic: Paper
+      - radio "Evening"
+      - generic: Aa
+      - generic: Evening
+    - group "Text size":
+      - generic: Text size
+      - radio "Standard"
+      - generic: Aa
+      - generic: Standard
+      - radio "Large" [checked]
+      - generic: Aa
+      - generic: Large
+    - checkbox "Show Sanskrit pronunciation Roman letters (IAST) alongside the verse." [checked]
+    - strong: Show Sanskrit pronunciation
+    - generic: Roman letters (IAST) alongside the verse.
+    - button "Done"
+  - generic: SILENT READING · DEMO
+  - heading "One thing you can do" [level=1]
+  - navigation "Lesson steps":
+    - 'button "Step 1 of 4: Settle"':
+      - generic: "01"
+      - text: Settle
+    - 'button "Step 2 of 4: Read"':
+      - generic: "02"
+      - text: Read
+    - 'button "Step 3 of 4: Understand"':
+      - generic: "03"
+      - text: Understand
+    - 'button "Step 4 of 4: Apply"':
+      - generic: "04"
+      - text: Apply
+  - article:
+    - heading "Choose your next step" [level=2]
+    - paragraph: "Return to the task you chose. Name one action within your reach: write the first sentence, read one paragraph, or put one thing in its place. After this session, do that one action with care."
+    - paragraph: Take one small, useful step on a task you have been postponing.
+  - button "Previous":
+    - text: Previous
+  - button "Finish lesson":
+    - text: Finish lesson
+  - paragraph:
+    - text: Your place is remembered in this browser.
+  - complementary:
+    - heading "Make a little time" [level=2]
+    - paragraph: An optional timer for quiet reading.
+    - group "Reading pace in minutes":
+      - button "3 min" [pressed]:
+        - text: "3"
+        - generic: min
+      - button "5 min":
+        - text: "5"
+        - generic: min
+      - button "10 min":
+        - text: "10"
+        - generic: min
+    - generic: 0:45
+    - button "Start reading timer":
+    - progressbar "Reading timer progress"
+    - status: Timer paused · read at your own pace
+    - paragraph: The same lesson at any pace. The timer advances steps and pauses when you leave this tab. The step buttons always work.
+    - strong: Silent reading
+    - paragraph: Human recordings are not available in this demo.
+    - generic "Source & interpretation"
+    - button "How this works"
+- status

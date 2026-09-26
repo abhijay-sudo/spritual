@@ -1,0 +1,52 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main:
+  - paragraph: A SPACE OF YOUR OWN
+  - heading "Your practice, your pace." [level=1]
+  - paragraph: Keep what speaks to you. Return whenever you like.
+  - group "Your collection":
+    - button "Saved lessons 1":
+      - text: Saved lessons
+      - generic: "1"
+    - button "Reflections 1":
+      - text: Reflections
+      - generic: "1"
+    - button "Reading history 1" [active] [pressed]:
+      - text: Reading history
+      - generic: "1"
+  - region "Reading history":
+    - heading "Reading history" [level=2]
+    - link "One thing you can do 24/9/2026 · Lesson completed":
+      - /url: /practice/gita-2-47
+      - strong: One thing you can do
+      - generic: 24/9/2026 · Lesson completed
+  - generic "A rhythm that fits your life Your week & personal intention":
+    - strong: A rhythm that fits your life
+    - generic: Your week & personal intention
+  - option "Whenever it fits" [selected]
+  - option "After morning tea"
+  - option "As the day winds down"
+  - option "2 days a week"
+  - option "3 days a week" [selected]
+  - option "5 days a week"
+- navigation "Mobile navigation":
+  - link "Today":
+    - /url: /today
+    - generic: Today
+  - link "Explore":
+    - /url: /explore
+    - generic: Explore
+  - link "My Practice":
+    - /url: /my-practice
+    - generic: My Practice
+  - link "You":
+    - /url: /settings
+    - generic: You
+- status

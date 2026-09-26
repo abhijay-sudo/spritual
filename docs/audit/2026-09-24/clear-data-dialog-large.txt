@@ -1,0 +1,72 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main:
+  - paragraph: MAKE YOURSELF AT HOME
+  - heading "A little more your way." [level=1]
+  - paragraph: Your preferences. Your space.
+  - heading "Reading comfort" [level=2]
+  - strong: Explanation language
+  - generic: Original Sanskrit stays unchanged.
+  - combobox "Explanation language Original Sanskrit stays unchanged.":
+    - option "English" [selected]
+    - option "हिन्दी"
+  - strong: Text size
+  - generic: For comfortable reading
+  - combobox "Text size For comfortable reading":
+    - option "Standard"
+    - option "Large" [selected]
+  - strong: Motion
+  - generic: Always respects your device’s reduced-motion setting.
+  - combobox "Motion Always respects your device’s reduced-motion setting.":
+    - option "Follow device"
+    - option "Reduce motion" [selected]
+  - strong: Pronunciation guide
+  - generic: Sanskrit in Roman letters
+  - checkbox "Pronunciation guide Sanskrit in Roman letters" [checked]
+  - heading "Your data, in your hands" [level=2]
+  - paragraph: Progress and preferences are saved in this browser. Reflections are saved only when you choose. Nothing is uploaded. Other people using this browser may see saved entries; they are not encrypted.
+  - button "Check offline readiness":
+    - text: Check offline readiness
+  - paragraph: Offline caching is available in the production preview. Audio and cloud sync are not connected.
+  - button "Clear my data from this browser"
+  - heading "Help shape this little space." [level=2]
+  - paragraph: How did your first lesson feel? Your answer stays here. You can export feedback to share it yourself.
+  - group "Your experience":
+    - generic: Your experience
+    - radio "Helpful"
+    - text: Helpful
+    - radio "Okay"
+    - text: Okay
+    - radio "Confusing"
+    - text: Confusing
+  - text: What would make this easier? (optional)
+  - textbox "What would make this easier? (optional)"
+  - paragraph: Choose a rating before saving your feedback.
+  - button "Save feedback here" [disabled]
+  - paragraph: Spritual · local working demo. No payments, accounts or notifications. Human review and recordings are required before launch.
+  - dialog "Clear this browser’s data?":
+    - heading "Clear this browser’s data?" [level=2]
+    - paragraph: This removes saved lessons, reading progress, reflections, your kept practice and feedback. This cannot be undone.
+    - button "Keep my data" [active]
+    - button "Clear my data"
+- navigation "Mobile navigation":
+  - link "Today":
+    - /url: /today
+    - generic: Today
+  - link "Explore":
+    - /url: /explore
+    - generic: Explore
+  - link "My Practice":
+    - /url: /my-practice
+    - generic: My Practice
+  - link "You":
+    - /url: /settings
+    - generic: You
+- status

@@ -1,0 +1,28 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - heading "A different path" [level=1]
+  - paragraph: That page is not here. Your saved lessons are safe.
+  - link "Go to Today":
+    - /url: /today
+- navigation "Mobile navigation":
+  - link "Today":
+    - /url: /today
+    - generic: Today
+  - link "Explore":
+    - /url: /explore
+    - generic: Explore
+  - link "My Practice":
+    - /url: /my-practice
+    - generic: My Practice
+  - link "You":
+    - /url: /settings
+    - generic: You
+- status

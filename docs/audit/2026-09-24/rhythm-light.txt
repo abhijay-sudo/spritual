@@ -1,0 +1,86 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main:
+  - paragraph: A SPACE OF YOUR OWN
+  - heading "Your practice, your pace." [level=1]
+  - paragraph: Keep what speaks to you. Return whenever you like.
+  - group "Your collection":
+    - button "Saved lessons 1" [pressed]:
+      - text: Saved lessons
+      - generic: "1"
+    - button "Reflections 1":
+      - text: Reflections
+      - generic: "1"
+    - button "Reading history 1":
+      - text: Reading history
+      - generic: "1"
+  - region "Saved lessons":
+    - heading "Saved lessons" [level=2]
+    - article:
+      - generic: GĪTĀ
+      - generic: "2.47"
+      - generic: Purpose
+      - button "Remove saved lesson" [pressed]:
+      - heading "One thing you can do" [level=3]:
+        - link "One thing you can do":
+          - /url: /practice/gita-2-47
+      - paragraph: Bring your care to the next step, even when the outcome is uncertain.
+      - generic: Bhagavad Gita 2.47
+      - generic: Silent reading
+      - link "Continue reading":
+        - /url: /practice/gita-2-47
+        - text: Continue reading
+  - generic "A rhythm that fits your life Your week & personal intention" [active]:
+    - strong: A rhythm that fits your life
+    - generic: Your week & personal intention
+  - heading "A rhythm of your own" [level=2]
+  - paragraph: 1 practice day this week · your intention is 3
+  - list "Practice days this week":
+    - generic: Mon
+    - generic: Monday, 21 September — open day
+    - generic: Tue
+    - generic: Tuesday, 22 September — open day
+    - generic: Wed
+    - generic: Wednesday, 23 September — open day
+    - generic: Thu
+    - generic: Thursday, 24 September — practised
+    - generic: Fri
+    - generic: Friday, 25 September — open day
+    - generic: Sat
+    - generic: Saturday, 26 September — open day
+    - generic: Sun
+    - generic: Sunday, 27 September — open day
+  - paragraph: Every return is a fresh beginning.
+  - heading "Make room for a little quiet." [level=2]
+  - generic: A moment that suits you
+  - combobox "A moment that suits you":
+    - option "Whenever it fits" [selected]
+    - option "After morning tea"
+    - option "As the day winds down"
+  - generic: My weekly intention
+  - combobox "My weekly intention":
+    - option "2 days a week"
+    - option "3 days a week" [selected]
+    - option "5 days a week"
+  - paragraph: A personal intention. No notifications are sent.
+- navigation "Mobile navigation":
+  - link "Today":
+    - /url: /today
+    - generic: Today
+  - link "Explore":
+    - /url: /explore
+    - generic: Explore
+  - link "My Practice":
+    - /url: /my-practice
+    - generic: My Practice
+  - link "You":
+    - /url: /settings
+    - generic: You
+- status

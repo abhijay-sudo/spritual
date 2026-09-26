@@ -1,0 +1,32 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - generic: A LITTLE WISDOM, TAKEN WITH YOU
+  - heading "You made room for yourself." [level=1]
+  - paragraph: One thing you can do · Bhagavad Gita 2.47
+  - generic: ONE THING TO CARRY INTO YOUR DAY
+  - paragraph: Take one small, useful step on a task you have been postponing.
+  - link "Choose a small way to try this":
+    - /url: /moment/purpose
+    - text: Choose a small way to try this
+  - link "Take this into my day":
+    - /url: /today
+    - text: Take this into my day
+  - paragraph: That is enough for today, if you want it to be.
+  - generic "A thought to keep? Write a line, or simply leave it here Optional":
+    - strong: A thought to keep?
+    - generic: Write a line, or simply leave it here
+    - generic: Optional
+  - 'link "If you’d like, next: Meet the day steadily"':
+    - /url: /practice/gita-2-48
+    - text: "If you’d like, next: Meet the day steadily"
+  - link "View learning path":
+    - /url: /journey
+- status

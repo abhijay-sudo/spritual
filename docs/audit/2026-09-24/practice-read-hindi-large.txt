@@ -1,0 +1,68 @@
+- link "मुख्य विषय पर जाएं":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "समझने की भाषा":
+    - button "EN"
+    - button "हिन्दी" [pressed]
+- main:
+  - link "आज":
+    - /url: /today
+    - text: आज
+  - generic: Bhagavad Gita 2.47
+  - button "पाठ सहेजें":
+  - button "पढ़ने की सेटिंग":
+    - generic: Aa
+  - generic: शांत पठन · डेमो
+  - heading "एक काम, पूरे मन से" [level=1]
+  - navigation "पाठ के चरण":
+    - 'button "चरण 1 / 4: ठहरें"':
+      - generic: "01"
+      - text: ठहरें
+    - 'button "चरण 2 / 4: पढ़ें"':
+      - generic: "02"
+      - text: पढ़ें
+    - 'button "चरण 3 / 4: समझें"':
+      - generic: "03"
+      - text: समझें
+    - 'button "चरण 4 / 4: अपनाएँ"':
+      - generic: "04"
+      - text: अपनाएँ
+  - article:
+    - heading "श्लोक पढ़ें" [active] [level=2]
+    - paragraph: कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥२.४७॥
+    - generic: उच्चारण · IAST
+    - paragraph: karmaṇy evādhikāras te mā phaleṣu kadācana | mā karmaphalahetur bhūr mā te saṅgo ’stv akarmaṇi || 2.47 ||
+    - button "उच्चारण छिपाएं" [pressed]
+    - paragraph: अपनी गति से पढ़ें। रोमन लिपि संस्कृत पढ़ने में मदद करती है; सही उच्चारण सीखने के लिए शिक्षक का मार्गदर्शन उपयोगी है।
+  - button "पिछला":
+    - text: पिछला
+  - 'button "अगला: समझें"':
+    - text: "अगला: समझें"
+  - paragraph:
+    - text: आपकी जगह इस ब्राउज़र में याद रहती है।
+  - complementary:
+    - heading "थोड़ा समय निकालें" [level=2]
+    - paragraph: शांत पठन के लिए वैकल्पिक टाइमर।
+    - group "पठन का समय, मिनटों में":
+      - button "3 मिनट" [pressed]:
+        - text: "3"
+        - generic: मिनट
+      - button "5 मिनट":
+        - text: "5"
+        - generic: मिनट
+      - button "10 मिनट":
+        - text: "10"
+        - generic: मिनट
+    - generic: 2:15
+    - button "पठन टाइमर शुरू करें":
+    - progressbar "पठन टाइमर की प्रगति"
+    - status: टाइमर रुका है · अपनी गति से पढ़ें
+    - paragraph: हर गति पर वही पाठ। टाइमर चरण आगे बढ़ाता है और टैब छोड़ने पर रुक जाता है। चरणों के बटन हमेशा उपलब्ध हैं।
+    - strong: शांत पठन
+    - paragraph: इस डेमो में मानवीय रिकॉर्डिंग उपलब्ध नहीं है।
+    - generic "स्रोत और व्याख्या"
+    - button "यह कैसे काम करता है"
+- status

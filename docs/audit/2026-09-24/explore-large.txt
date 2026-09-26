@@ -1,0 +1,94 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - paragraph: THE READING ROOM
+  - heading "The reading room." [level=1]
+  - paragraph: Three ideas from the Gita. Yours to explore.
+  - link "The Bhagavad Gita Three verses. One small beginning.":
+    - /url: /journey
+    - strong: The Bhagavad Gita
+    - generic: Three verses. One small beginning.
+  - generic: Search lessons
+  - searchbox "Search lessons"
+  - group "Lesson topics":
+    - button "All lessons" [pressed]
+    - button "Action"
+    - button "Balance"
+    - button "Focus"
+  - heading "From the Bhagavad Gita" [level=2]
+  - status: 3 sample lessons
+  - article:
+    - generic: GĪTĀ
+    - generic: "2.47"
+    - generic: Purpose
+    - button "Save lesson":
+    - heading "One thing you can do" [level=3]:
+      - link "One thing you can do":
+        - /url: /practice/gita-2-47
+    - paragraph: Bring your care to the next step, even when the outcome is uncertain.
+    - generic: Bhagavad Gita 2.47
+    - generic: Silent reading
+    - link "Read this lesson":
+      - /url: /practice/gita-2-47
+      - text: Read this lesson
+  - article:
+    - generic: GĪTĀ
+    - generic: "2.48"
+    - generic: Balance
+    - button "Save lesson":
+    - heading "Meet the day steadily" [level=3]:
+      - link "Meet the day steadily":
+        - /url: /practice/gita-2-48
+    - paragraph: Make room for your feelings, then choose a considered response.
+    - generic: Bhagavad Gita 2.48
+    - generic: Silent reading
+    - link "Read this lesson":
+      - /url: /practice/gita-2-48
+      - text: Read this lesson
+  - article:
+    - generic: GĪTĀ
+    - generic: "6.26"
+    - generic: Attention
+    - button "Save lesson":
+    - heading "Begin again, gently" [level=3]:
+      - link "Begin again, gently":
+        - /url: /practice/gita-6-26
+    - paragraph: Practise returning your attention, one small moment at a time.
+    - generic: Bhagavad Gita 6.26
+    - generic: Silent reading
+    - link "Read this lesson":
+      - /url: /practice/gita-6-26
+      - text: Read this lesson
+  - generic: OUR LIBRARY WILL GROW, WITH CARE
+  - heading "More traditions. The same care." [level=2]
+  - paragraph: Ramayana, prayers, Upanishads and Vedic introductions are planned. They will appear when their content is ready and reviewed.
+  - text: Ramayana
+  - generic: Planned
+  - text: Prayers & stotras
+  - generic: Planned
+  - text: Upanishads
+  - generic: Planned
+  - text: Vedas · introductions
+  - generic: Planned
+  - paragraph: Scriptures, epics and prayers have different literary traditions. They are not all Vedas.
+- navigation "Mobile navigation":
+  - link "Today":
+    - /url: /today
+    - generic: Today
+  - link "Explore":
+    - /url: /explore
+    - generic: Explore
+  - link "My Practice":
+    - /url: /my-practice
+    - generic: My Practice
+  - link "You":
+    - /url: /settings
+    - generic: You
+- status

@@ -1,0 +1,63 @@
+.alpha.calm-shell[data-story=true] { background: #f7f3e9; }
+.story-player { --story-amber: #2b5841; min-height: 100dvh; background: #f7f3e9; color: #244735; }
+.story-player-head { background: #f9f6ed; border-bottom: 1px solid #d5ddcf; backdrop-filter: none; }
+.story-close { background: #e7ede1; color: #244b38 !important; }
+.story-progress>span { height: 4px; background: #d3dccc; }
+.story-progress-fill { background: #2f6347; }
+.story-progress-label { color: #3b6049; }
+.story-player .story-language { border-color: #c4d2bd; background: #edf1e8; }
+.story-player .story-language button { color: #405c4b; }
+.story-player .story-language button[aria-pressed=true] { background: #fffdf8; color: #224d37; }
+.story-player .story-language button { min-width:44px; }
+.story-player-scene { min-height: calc(100dvh - 151px); overflow: visible; animation: none; }
+.story-player-scene--0 { overflow: hidden; }
+.story-paper-scene,.story-meaning-scene,.story-action-scene,.story-end-scene { width: min(100%, 720px); align-content: start; padding: clamp(35px, 7vh, 80px) 28px 65px; gap: 21px; color: #244735; background: transparent; }
+.story-paper-scene { width: min(100%, 760px); }
+.story-player .story-eyebrow { color: #7b5d30; }
+.story-player .story-player-scene--0 .story-eyebrow { width: fit-content; max-width: 100%; padding: 6px 9px; border-radius: 5px; background: #15221bd9; color: #f6e4bd; font-size: 10px; letter-spacing: .1em; }
+.alpha .story-paper-scene h1,.alpha .story-meaning-scene h1,.alpha .story-action-scene h1,.alpha .story-end-scene h1 { color: #214432; font-size: clamp(37px, 6vw, 57px); line-height: 1.12; }
+.story-paper-scene blockquote { width: 100%; margin: 5px 0 2px; padding: 24px 0; border-top: 1px solid #d0d9c9; border-bottom: 1px solid #d0d9c9; color: #264a36; font-family: Georgia, 'Noto Serif Devanagari', serif; line-height: 1.85; }
+.story-paper-scene>p,.story-meaning-scene>p,.story-action-scene>p,.story-end-scene>p { color: #435d4b; font-size: 18px; line-height: 1.75; }
+.story-text-button { border-color: #cbd6c5; color: #25543b; }
+.story-pronunciation { color: #4d6550 !important; }
+.story-verse-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; width: 100%; }
+.story-verse-tools a,.story-reflect-link { display: inline-flex; align-items: center; min-height: 44px; color: #28573e; font-size: 14px; font-weight: 700; text-underline-offset: 3px; }
+.story-verse-tools button,.story-end-actions button:not(.story-undo-read) { min-height: 44px; padding: 8px 0; border: 0; background: none; color: #28573e; font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.story-verse-tools button:disabled,.story-end-actions button:disabled { color: #526657; text-decoration: none; }
+.story-save-notice { min-height: 1em; margin: 0 !important; color: #47634f !important; font-size: 13px !important; }
+.story-meaning-scene details { border-color: #cad5c6; }
+.story-meaning-scene summary { color: #24543b; }
+.story-meaning-scene details p { color: #465d4c; }
+.story-meaning-scene details a { color: #24543b; }
+.story-action-card { border: 1px solid #cad8c7; border-left: 3px solid #4e7b5e; border-radius: 4px 12px 12px 4px; background: #e9f0e4; }
+.story-action-card small { color: #49694b; }
+.story-action-card strong { color: #254834; }
+.story-scene-footnote { color: #5b6e5f !important; }
+.story-player-controls { border-top: 1px solid #d0dbcc; background: #f9f6ed; backdrop-filter: none; }
+/* Keyboard focus must settle above the sticky controls, including on short phones. */
+.story-player-scene :is(a, button, summary) { scroll-margin-bottom: calc(96px + env(safe-area-inset-bottom)); }
+.story-player-controls>span { color: #53695a; }
+.story-back { color: #2a5039; }
+.story-back:disabled { color: #879487; }
+.story-player .story-gold-button { background: #28543e; color: #fffdf6 !important; border-radius: 9px; transition: background .15s ease, transform .15s ease; }
+.story-player .story-gold-button:hover { background: #1d412f; transform: none; }
+.story-player .story-gold-button:active { transform: scale(.985); }
+.story-end-actions { display: grid; justify-items: start; gap: 5px; }
+.story-end-actions>a { color: #28573e; }
+.story-reading-choice { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; width: min(100%, 640px); margin: 24px 0 18px; }
+.story-reading-choice button { display: grid; align-content: center; gap: 7px; min-height: 116px; padding: 18px 19px; border: 1px solid var(--a-line, #cbd7c7); border-radius: 12px; background: var(--a-paper, #fffdf8); color: var(--a-ink, #214a35); text-align: left; cursor: pointer; }
+.story-reading-choice button:hover { border-color: var(--a-green, #28543e); }
+.story-reading-choice button:focus-visible { outline: 3px solid var(--a-gold, #a06a29); outline-offset: 2px; }
+.story-reading-choice button:active { transform: scale(.99); }
+.story-reading-choice strong { font-size: 16px; line-height: 1.3; }
+.story-reading-choice span { color: var(--a-muted, #526b59); font-size: 13px; line-height: 1.45; }
+.story-end-actions .story-undo-read { color: #5f715e; }
+.story-end-scene [role=status] { color: #42624b; }
+.story-next-chapter { border-color: #cbd7c7; color: #214a35 !important; }
+.story-series-cover>img { animation: none; }
+.story-series-cover,.story-episode,.story-series-progress { border-radius: 13px; }
+.story-episode:hover { transform: none; }
+@media (max-width: 680px) { .story-paper-scene,.story-meaning-scene,.story-action-scene,.story-end-scene { padding: 37px 23px 62px; } .story-paper-scene blockquote { font-size: clamp(23px, 6.5vw, 32px); } }
+@media (max-width: 540px) { .story-reading-choice { grid-template-columns: 1fr; } .story-reading-choice button { min-height: 88px; } }
+@media (max-width: 350px) { .story-paper-scene,.story-meaning-scene,.story-action-scene,.story-end-scene { padding-left: 18px; padding-right: 18px; } .story-player .story-language button { padding: 5px; font-size: 12px; } .story-player-controls { padding-left: 12px; padding-right: 12px; } }
+@media (prefers-reduced-motion: reduce) { .story-player .story-gold-button { transition: none; } }

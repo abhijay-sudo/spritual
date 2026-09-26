@@ -1,0 +1,92 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main:
+  - link "Today":
+    - /url: /today
+    - text: Today
+  - generic: Bhagavad Gita 2.47
+  - button "Save lesson":
+  - button "Reading settings" [expanded]:
+    - generic: Aa
+  - dialog "Make reading yours":
+    - heading "Make reading yours" [level=2]
+    - button "Close reading settings" [active]:
+    - paragraph: Changes take effect right away. The reading theme changes reading screens only. Your timer stays paused.
+    - group "Reading theme":
+      - generic: Reading theme
+      - radio "Paper" [checked]
+      - generic: Aa
+      - generic: Paper
+      - radio "Evening"
+      - generic: Aa
+      - generic: Evening
+    - group "Text size":
+      - generic: Text size
+      - radio "Standard" [checked]
+      - generic: Aa
+      - generic: Standard
+      - radio "Large"
+      - generic: Aa
+      - generic: Large
+    - checkbox "Show Sanskrit pronunciation Roman letters (IAST) alongside the verse." [checked]
+    - strong: Show Sanskrit pronunciation
+    - generic: Roman letters (IAST) alongside the verse.
+    - button "Done"
+  - generic: SILENT READING · DEMO
+  - heading "One thing you can do" [level=1]
+  - navigation "Lesson steps":
+    - 'button "Step 1 of 4: Settle"':
+      - generic: "01"
+      - text: Settle
+    - 'button "Step 2 of 4: Read"':
+      - generic: "02"
+      - text: Read
+    - 'button "Step 3 of 4: Understand"':
+      - generic: "03"
+      - text: Understand
+    - 'button "Step 4 of 4: Apply"':
+      - generic: "04"
+      - text: Apply
+  - article:
+    - heading "Read the verse" [level=2]
+    - paragraph: कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥२.४७॥
+    - generic: PRONUNCIATION · IAST
+    - paragraph: karmaṇy evādhikāras te mā phaleṣu kadācana | mā karmaphalahetur bhūr mā te saṅgo ’stv akarmaṇi || 2.47 ||
+    - button "Hide pronunciation" [pressed]
+    - paragraph: Read at your own pace. The Roman text helps you follow the Sanskrit; it is not a substitute for pronunciation guidance from a teacher.
+  - button "Previous":
+    - text: Previous
+  - 'button "Next: Understand"':
+    - text: "Next: Understand"
+  - paragraph:
+    - text: Your place is remembered in this browser.
+  - complementary:
+    - heading "Make a little time" [level=2]
+    - paragraph: An optional timer for quiet reading.
+    - group "Reading pace in minutes":
+      - button "3 min" [pressed]:
+        - text: "3"
+        - generic: min
+      - button "5 min":
+        - text: "5"
+        - generic: min
+      - button "10 min":
+        - text: "10"
+        - generic: min
+    - generic: 2:15
+    - button "Start reading timer":
+    - progressbar "Reading timer progress"
+    - status: Timer paused · read at your own pace
+    - paragraph: The same lesson at any pace. The timer advances steps and pauses when you leave this tab. The step buttons always work.
+    - strong: Silent reading
+    - paragraph: Human recordings are not available in this demo.
+    - generic "Source & interpretation"
+    - button "How this works"
+- status

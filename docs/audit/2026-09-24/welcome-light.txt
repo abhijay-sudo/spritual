@@ -1,0 +1,23 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /welcome
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - generic: A moment to begin.
+  - generic: A LITTLE WISDOM, LIVED
+  - heading "Ancient wisdom. Everyday life." [level=1]:
+    - text: Ancient wisdom.
+    - emphasis: Everyday life.
+  - paragraph: Read a verse. Find its meaning. Take one small step.
+  - button "Start with the Gita":
+    - text: Start with the Gita
+  - button "Explore the lessons"
+  - paragraph:
+    - text: 3 sample lessons · No account needed
+  - paragraph: Local demo. Explanations await human review. Human recordings are not available yet.
+- status

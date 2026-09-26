@@ -1,0 +1,140 @@
+/* The preference belongs to reading screens; the rest of the app stays on paper. */
+@layer responsive {
+  html[data-reading-theme="evening"] .reading-layout {
+    --bg: #132421;
+    --paper: #1d312d;
+    --forest: #eee9d7;
+    --forest-hover: #e9eddd;
+    --muted: #b6c0b0;
+    --line: #4a6159;
+    --sage: #294039;
+    --ochre: #eed9a1;
+    --gold: #eed9a1;
+    min-height: 100dvh;
+    color: var(--forest);
+    background: var(--bg);
+    color-scheme: dark;
+  }
+  html[data-reading-theme="evening"]
+    .reading-layout
+    :is(.sidebar, .pace-card, .reader-actions, .language-picker) {
+    background: var(--paper);
+    border-color: var(--line);
+  }
+  html[data-reading-theme="evening"] .reading-layout .reading-card {
+    background: transparent;
+  }
+  html[data-reading-theme="evening"]
+    .reading-layout
+    :is(
+      .sidebar nav a,
+      .sidebar-foot,
+      .sidebar-foot > svg,
+      .pronunciation .eyebrow,
+      .pronunciation > p,
+      .audio-note,
+      .audio-note strong
+    ) {
+    color: var(--muted);
+  }
+  html[data-reading-theme="evening"]
+    .reading-layout
+    :is(
+      .primary,
+      .language-picker button[aria-pressed="true"],
+      .sidebar nav a.active,
+      .pace-options button.selected
+    ) {
+    color: #132421;
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+  html[data-reading-theme="evening"] .reading-layout .primary:hover {
+    background: #f4e5bd;
+  }
+  html[data-reading-theme="evening"] .reading-layout .toast {
+    color: #19271d;
+    background: #eee9d7;
+  }
+  html[data-reading-theme="evening"] .reading-layout .brand-mark {
+    color: var(--gold);
+    background: var(--sage);
+  }
+  html[data-reading-theme="evening"]
+    .reading-layout
+    :is(.secondary, .pace-options button:not(.selected)) {
+    color: var(--forest);
+    background: var(--bg);
+    border-color: #85967b;
+  }
+  html[data-reading-theme="evening"]
+    .reading-layout
+    :is(
+      .icon-button:hover,
+      .sidebar nav a:hover:not(.active),
+      .timer-button,
+      .pill.quiet
+    ) {
+    color: var(--forest);
+    background: var(--sage);
+  }
+  html[data-reading-theme="evening"]
+    .reading-layout
+    .step-navigation
+    button.active {
+    color: var(--forest);
+    background: transparent;
+    border-bottom-color: var(--ochre);
+  }
+  html[data-reading-theme="evening"]
+    .reading-layout
+    .step-navigation
+    button.active
+    > span {
+    color: var(--ochre);
+    background: transparent;
+  }
+  html[data-reading-theme="evening"] .reading-layout .step-body {
+    color: #d5dccb;
+  }
+  html[data-reading-theme="evening"] .reading-layout .action-note > svg {
+    color: var(--ochre);
+  }
+  html[data-reading-theme="evening"] .reading-layout .icon-button.is-saved {
+    color: var(--gold);
+    background: #453b2b;
+  }
+  html[data-reading-theme="evening"] .reading-layout .icon-button.is-saved svg {
+    fill: #77603b;
+  }
+  html[data-reading-theme="evening"]
+    .reading-layout
+    .pace-card.reader-timer-running {
+    background: var(--sage);
+    border-color: #8daea1;
+  }
+  html[data-reading-theme="evening"] .reading-layout .pace-card progress {
+    background: var(--line);
+  }
+  html[data-reading-theme="evening"]
+    .reading-layout
+    .pace-card
+    progress::-webkit-progress-bar {
+    background: var(--line);
+  }
+  html[data-reading-theme="evening"]
+    .reading-layout
+    .pace-card
+    progress::-webkit-progress-value {
+    background: var(--gold);
+  }
+  html[data-reading-theme="evening"]
+    .reading-layout
+    .pace-card
+    progress::-moz-progress-bar {
+    background: var(--gold);
+  }
+  html[data-reading-theme="evening"] .reading-layout :focus-visible {
+    outline-color: var(--gold);
+  }
+}

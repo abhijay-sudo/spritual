@@ -1,0 +1,42 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - link "Today":
+    - /url: /today
+    - text: Today
+  - generic: FROM A VERSE TO YOUR DAY
+  - heading "I’m putting something off" [level=1]
+  - paragraph: Read one teaching. Choose one small thing to try away from the screen.
+  - region "Care for the work":
+    - generic: Bhagavad Gita 2.47
+    - generic: Unreviewed demo
+    - heading "Care for the work" [level=2]
+    - paragraph: Bring your care to the next step, even when the outcome is uncertain.
+    - generic "Context & explanation"
+    - generic "Original verse & Roman transliteration"
+    - link "Read the source verse":
+      - /url: https://www.gitasupersite.iitk.ac.in/srimad?language=dv&field_chapter_value=2&field_nsutra_value=47
+      - text: Read the source verse
+    - link "Read the full lesson":
+      - /url: /practice/gita-2-47
+      - text: Read the full lesson
+  - group "What could you try?":
+    - generic: What could you try?
+    - paragraph: These are suggested everyday exercises. Choose what fits, or leave without saving.
+    - radio "Give one postponed task five minutes of attention."
+    - generic: Give one postponed task five minutes of attention.
+    - radio "Write the first sentence of a message or task I’ve been avoiding."
+    - generic: Write the first sentence of a message or task I’ve been avoiding.
+  - paragraph: Saving keeps this one practice only in this browser. Anyone using this browser may see it. Nothing is shared automatically.
+  - button "Keep this small practice" [disabled]:
+    - text: Keep this small practice
+  - link "Return without saving":
+    - /url: /today
+- status

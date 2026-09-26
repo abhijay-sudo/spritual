@@ -1,0 +1,20 @@
+.teacher-real { max-width: 860px; margin: 0 auto; }
+.teacher-real .alpha-panel { min-width: 0; }
+.teacher-real-form { margin-top: 18px; }
+.teacher-real-dates,.teacher-real-filters { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+.teacher-real-choices { display: grid; gap: 11px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.teacher-real-choices legend { margin-bottom: 12px; font-weight: 700; }
+.teacher-real-choice { display: flex; align-items: flex-start; gap: 12px; padding: 14px; border: 1px solid var(--a-line,#c7cdbd); border-radius: 12px; background: var(--a-paper,#fffdf8); cursor: pointer; }
+.teacher-real-choice:has(input:checked) { border-color: var(--a-green,#28543e); box-shadow: 0 0 0 1px var(--a-green,#28543e); }
+.teacher-real-choice:has(input:focus-visible) { outline: 3px solid #a06a29; outline-offset: 2px; }
+.teacher-real-choice input { flex: 0 0 auto; margin-top: 5px; }
+.teacher-real-choice>span { display: grid; gap: 5px; min-width: 0; }
+.teacher-real-choice small { color: var(--a-muted,#526657); }
+.teacher-real-excerpt { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 4; white-space: pre-wrap; overflow-wrap: anywhere; }
+.teacher-real-queue { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.teacher-real-queue li { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 14px; border: 1px solid var(--a-line,#c7cdbd); border-radius: 11px; }
+.teacher-real-queue li>div:first-child { display: grid; gap: 4px; }
+.teacher-real-queue li span { color: var(--a-muted,#526657); font-size: 13px; }
+.teacher-real-queue button,.teacher-real-confirm button { min-height: 44px; padding: 8px 12px; border: 1px solid var(--a-line,#c7cdbd); border-radius: 9px; background: var(--a-paper,#fffdf8); color: var(--a-ink,#244a39); font-weight: 700; }
+.teacher-real-confirm { display: grid; gap: 5px; }
+@media(max-width:520px) { .teacher-real-dates,.teacher-real-filters { grid-template-columns: 1fr; } .teacher-real-queue li { flex-direction: column; } }

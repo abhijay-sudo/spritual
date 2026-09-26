@@ -1,0 +1,198 @@
+/* Optional reading light for the local member preview. Daylight remains the default. */
+.alpha.calm-shell[data-appearance="dusk"] {
+  --a-bg: #211c20;
+  --a-paper: #30272a;
+  --a-ink: #f5e9d8;
+  --a-muted: #d3c0ae;
+  --a-line: #675256;
+  --a-green: #e4ad72;
+  --a-sage: #3c2f32;
+  --a-gold: #e9b878;
+  --m-deep: #201a1d;
+  --m-panel: #30272a;
+  --m-panel-alt: #3c2e30;
+  --m-soft: #d3c0ae;
+  --m-subtle: #bbab9e;
+  --m-accent: #e9b878;
+  --m-action: #e4ad72;
+  --m-on-action: #281d1a;
+  --m-line: #675256;
+  --m-highlight: #413132;
+  --m-shadow: #09060945;
+}
+.alpha.calm-shell[data-appearance="night"] {
+  --a-bg: #111a1d;
+  --a-paper: #1d2b2d;
+  --a-ink: #edf2eb;
+  --a-muted: #bdd0c7;
+  --a-line: #465c5b;
+  --a-green: #a7d3bb;
+  --a-sage: #24393a;
+  --a-gold: #b9d8bd;
+  --m-deep: #10191c;
+  --m-panel: #1d2b2d;
+  --m-panel-alt: #26393a;
+  --m-soft: #bdd0c7;
+  --m-subtle: #a9beb6;
+  --m-accent: #b9d8bd;
+  --m-action: #a7d3bb;
+  --m-on-action: #122520;
+  --m-line: #465c5b;
+  --m-highlight: #2c4342;
+  --m-shadow: #050b0d60;
+}
+.alpha.calm-shell[data-appearance="dusk"],
+.alpha.calm-shell[data-appearance="night"] {
+  color-scheme: dark;
+  color: var(--a-ink);
+  background: radial-gradient(ellipse 95% 38% at 53% -9%, var(--m-highlight), transparent 80%), var(--m-deep);
+}
+.alpha.calm-shell[data-appearance="dusk"]:has(.before-story),
+.alpha.calm-shell[data-appearance="night"]:has(.before-story),
+.alpha.calm-shell[data-appearance="dusk"][data-story=true],
+.alpha.calm-shell[data-appearance="night"][data-story=true] {
+  background: var(--m-deep);
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :focus-visible {
+  outline-color: var(--m-accent);
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(h1,h2,h3,h1 em),
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha-header .brand,
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha-profile {
+  color: var(--a-ink) !important;
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha-demo-banner {
+  background: var(--m-panel-alt);
+  color: var(--m-soft);
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.alpha-header,.alpha-footer) {
+  border-color: var(--m-line);
+  color: var(--m-soft);
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha-nav {
+  border-color: var(--m-line);
+  background: color-mix(in srgb, var(--m-panel) 94%, transparent);
+  box-shadow: 0 12px 40px var(--m-shadow);
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha-nav a { color: var(--m-soft); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha-nav a.active { color: var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha-nav-active {
+  background: var(--m-highlight);
+  box-shadow: inset 0 1px 0 var(--m-line);
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.alpha-panel,.alpha-inclusion,.alpha-privacy,.alpha-offline,.alpha-error,.wisdom-remove-confirm) {
+  border-color: var(--m-line);
+  background: var(--m-panel);
+  color: var(--a-ink);
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.alpha-lead,.alpha-muted,.alpha-kicker,.alpha-notice,.alpha-footer,.alpha-badge) {
+  color: var(--m-soft);
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.alpha-field input,.alpha-field select,.alpha-field textarea,.calm-saved .practice-cue select) {
+  border-color: var(--m-line);
+  background: var(--m-panel);
+  color: var(--a-ink);
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha .alpha-button,
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .alpha-button {
+  background: var(--m-action);
+  color: var(--m-on-action) !important;
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.alpha-secondary,.alpha-badge) { border-color: var(--m-line); color: var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.alpha-privacy,.alpha-offline) { color: var(--m-soft); }
+
+/* Preference controls use native radio semantics and large touch targets. */
+.alpha-appearance { min-width: 0; margin: 0; padding: 0; border: 0; }
+.alpha-appearance legend { padding: 0; font-size: 17px; font-weight: 700; }
+.alpha-appearance>p { margin: 5px 0 13px !important; color: var(--a-muted); font-size: 13px; line-height: 1.5; }
+.alpha-appearance-options { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 8px; }
+.alpha-appearance-choice { position: relative; display: grid; place-items: center; min-height: 52px; padding: 8px; border: 1px solid var(--a-line); border-radius: 11px; background: var(--a-paper); color: var(--a-ink); cursor: pointer; text-align: center; font-size: 13px; font-weight: 650; line-height: 1.3; }
+.alpha-appearance-choice:has(input:checked) { border-color: var(--a-green); background: var(--a-sage); box-shadow: inset 0 0 0 1px var(--a-green); }
+.alpha-appearance-choice:has(input:focus-visible) { outline: 3px solid var(--a-gold); outline-offset: 3px; }
+.alpha-appearance-choice input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+@media (max-width: 430px) { .alpha-appearance-options { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+
+/* Calm Today and Explore. Images remain full color; the reading surface adapts. */
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-eyebrow,.calm-status,.calm-return small,.calm-next-item small,.calm-question-link small,.calm-reading-index) { color: var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-page-head p,.calm-feature-meta,.calm-feature-body>p,.calm-disclosure,.calm-explore-story p,.calm-reading-list small,.calm-reading-list em,.calm-no-results p,.calm-next-item em,.calm-question-link em) { color: var(--m-soft); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-feature,.calm-explore-story) {
+  border-color: var(--m-line);
+  background: var(--m-panel);
+  box-shadow: 0 14px 38px var(--m-shadow);
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .calm-feature-body { background: radial-gradient(circle at 92% 8%, var(--m-highlight), transparent 50%), var(--m-panel); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .calm-feature-body::before { border-color: var(--m-line); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-language,.calm-search>span,.calm-next-item,.calm-question-link) {
+  border-color: var(--m-line);
+  background: var(--m-panel);
+  color: var(--a-ink);
+}
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .calm-language span { color: var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-next-story,.calm-question-link) { background: var(--m-panel-alt); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-next-symbol,.calm-next-story .calm-next-symbol) { background: var(--m-highlight); color: var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-primary,.calm-filters button[aria-pressed=true]) { background: var(--m-action); color: var(--m-on-action) !important; box-shadow: none; }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-return,.calm-reading-list>a,.calm-next-item) { border-color: var(--m-line); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-return>span:last-child,.calm-next-item>svg,.calm-question-link>svg,.calm-all-readings,.calm-explore-story a,.calm-section-heading>a,.calm-reading-list svg,.calm-no-results button) { color: var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-question-link strong,.calm-next-item strong,.calm-reading-list strong) { color: var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-filters button,.calm-search input) { color: var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .calm-filters button { border-color: var(--m-line); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .calm-search input::placeholder { color: var(--m-subtle); opacity: 1; }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .calm-search { color: var(--m-soft); }
+
+/* Practices retain the warm/cool distinction without bright reading panels. */
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.practice-panel,.practice-pause) { border-color: var(--m-line); background: radial-gradient(circle at 85% 0%,var(--m-highlight),transparent 48%),var(--m-panel); box-shadow: 0 10px 30px var(--m-shadow); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.practice-panel-symbol,.practice-pause .practice-panel-symbol) { background: var(--m-highlight); color: var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.practice-panel-intro,.practice-panel-foot p,.practice-counter-button>span,.practice-timer-note,.practice-panel-disclosure) { color: var(--m-soft); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.practice-counter-ring,.practice-breath) { border-color: var(--m-line); background: radial-gradient(circle,var(--m-panel) 0%,var(--m-highlight) 100%); box-shadow: inset 0 0 0 1px var(--m-line),0 8px 24px var(--m-shadow); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .practice-counter-ring circle { fill: var(--m-line); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .practice-counter-ring circle.counted { fill: var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .practice-counter-button { border-color: var(--m-line); background: var(--m-panel); color: var(--a-ink); box-shadow: 0 5px 15px var(--m-shadow); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.practice-counter-button small,.practice-reset,.practice-breath>div,.practice-breath span) { color: var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.practice-panel-foot,.practice-durations button,.practice-confirm) { border-color: var(--m-line); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.practice-durations button,.practice-confirm button,.practice-warning,.practice-complete,.practice-confirm) { background: var(--m-panel-alt); color: var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.practice-warning,.practice-complete,.practice-confirm p) { color: var(--m-soft); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.practice-durations button[aria-pressed=true],.practice-confirm button:last-child,.practice-start) { border-color: var(--m-action); background: var(--m-action); color: var(--m-on-action); }
+
+/* Saved notes and the compact Gita lesson. */
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-saved>p,.calm-saved-empty p,.calm-saved-note-empty,.calm-saved .wisdom-kept p,.wisdom-lesson-intro p,.wisdom-verse-body>p,.wisdom-meaning>p,.wisdom-apply>p,.wisdom-fine) { color: var(--m-soft) !important; }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-saved-section,.calm-saved .wisdom-kept,.calm-note-list>a) { border-color: var(--m-line); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.calm-saved-empty a,.calm-note-new,.calm-saved .wisdom-kept-links a,.calm-note-list>a,.calm-saved .practice-undo) { color: var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .calm-saved .wisdom-kept-actions .alpha-secondary { background: var(--m-highlight); color: var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.wisdom-lesson,.wisdom-my-day) { --w-ink: var(--a-ink); --w-muted: var(--m-soft); color: var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.wisdom-stepper,.wisdom-stage,.wisdom-kept,.wisdom-language,.wisdom-meaning details,.wisdom-reveal) { border-color: var(--m-line); background: var(--m-panel); color: var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.wisdom-stepper button,.wisdom-language button) { color: var(--m-soft); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.wisdom-stepper button.active,.wisdom-language button[aria-pressed=true],.wisdom-action-note) { background: var(--m-highlight); color: var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .wisdom-stepper button.active { background:transparent; }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .wisdom-stepper-indicator { background:var(--m-highlight); box-shadow:inset 0 0 0 1px var(--m-line); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.wisdom-verse-body h2,.wisdom-reveal,.wisdom-meaning details p,.wisdom-kept small,.wisdom-kept-actions span,.wisdom-kept-links button) { color: var(--m-soft); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .wisdom-overline { color: var(--m-accent); }
+
+/* Source-grounded life path, narrative, and the full-screen story reader. */
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .life-wisdom { --life-line:var(--m-line); --life-soft:var(--m-soft); --life-gold:var(--m-accent); color:var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.life-question,.life-question textarea,.life-examples button,.life-practice,.before-story-reflection) { border-color:var(--m-line); background:var(--m-panel); color:var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.life-question label,.life-source blockquote,.life-source details,.life-interpretation p,.life-practice p,.life-question-foot>span,.life-examples>p,.before-story,.before-story-narrative,.before-story-reflection p) { color:var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.life-question textarea::placeholder,.life-source-index,.life-disclosure,.life-endnote,.before-story-intro,.before-story-ending p,.before-story-disclosure) { color:var(--m-soft); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.life-question-foot button,.before-story-ending a) { background:var(--m-action); color:var(--m-on-action); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.before-story-language,.before-story-section,.before-story-reflection) { border-color:var(--m-line); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .before-story-language { background:var(--m-panel); color:var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.before-story-top>a,.before-story-source a,.before-story-count,.before-story-reflection span,.before-story-source>span) { color:var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .story-series { color:var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .story-series-top>a { color:var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.story-series-progress,.story-episode,.story-series .story-language) { border-color:var(--m-line); background:var(--m-panel); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.story-series-progress strong,.story-episode-text strong) { color:var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.story-series-progress span,.story-series-progress p,.story-episode-text small,.story-episode-text>span,.story-disclosure,.story-series .story-language button) { color:var(--m-soft); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.story-episode-number,.story-episode-end,.story-finished) { color:var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .story-series .story-language button[aria-pressed=true] { background:var(--m-highlight); color:var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .story-player { --story-amber:var(--m-accent); background:var(--m-deep); color:var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.story-player-head,.story-player-controls) { border-color:var(--m-line); background:var(--m-panel); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.story-paper-scene,.story-meaning-scene,.story-action-scene,.story-end-scene) { color:var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.story-paper-scene blockquote,.story-meaning-scene>p,.story-action-scene>p,.story-end-scene>p,.story-paper-scene>p,.story-action-card strong) { border-color:var(--m-line); color:var(--a-ink); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.story-eyebrow,.story-language button[aria-pressed=true],.story-meaning-scene summary,.story-meaning-scene details a,.story-verse-tools a,.story-reflect-link,.story-verse-tools button,.story-end-actions button:not(.story-undo-read),.story-end-actions>a) { color:var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .story-text-button { border-color:var(--m-line); color:var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.story-close,.story-language,.story-language button[aria-pressed=true],.story-action-card,.story-next-chapter) { border-color:var(--m-line); background:var(--m-panel-alt); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.story-close,.story-language button,.story-back,.story-next-chapter) { color:var(--a-ink) !important; }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) :is(.story-player-controls>span,.story-pronunciation,.story-scene-footnote,.story-save-notice,.story-action-card small,.story-end-actions .story-undo-read,.story-meaning-scene details p) { color:var(--m-soft) !important; }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .story-player .story-gold-button { background:var(--m-action); color:var(--m-on-action) !important; }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .story-progress>span { background:var(--m-line); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .story-progress-fill { background:var(--m-accent); }
+.alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .story-progress-label { color:var(--m-soft); }

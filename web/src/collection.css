@@ -1,0 +1,132 @@
+@layer components {
+  .my-practice-page .collection-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+    padding: 5px;
+    margin-bottom: 24px;
+    background: #eeeee5;
+    border: 1px solid var(--line);
+    border-radius: 17px;
+  }
+  .my-practice-page .collection-tabs > button {
+    min-width: 0;
+    min-height: 60px;
+    padding: 11px 8px;
+    border: 0;
+    border-radius: 12px;
+    white-space: normal;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-size: 0.8rem;
+  }
+  .collection-count {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    min-width: 22px;
+    height: 22px;
+    padding-inline: 4px;
+    border: 1px solid currentColor;
+    border-radius: 7px;
+    font-size: 0.67rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .collection-content {
+    min-width: 0;
+  }
+  .practice-support {
+    display: grid;
+    gap: 24px;
+    margin-top: 36px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line);
+  }
+  .practice-support > .intention-card {
+    margin: 0;
+  }
+  .practice-rhythm {
+    border: 1px solid var(--line);
+    border-radius: 19px;
+    background: var(--paper);
+  }
+  .practice-rhythm > summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px;
+    min-height: 76px;
+    cursor: pointer;
+    border-radius: inherit;
+  }
+  .practice-rhythm > summary::-webkit-details-marker {
+    display: none;
+  }
+  .practice-rhythm > summary > span {
+    display: grid;
+    gap: 4px;
+  }
+  .practice-rhythm > summary strong {
+    font: 1.2rem/1.5 var(--serif);
+    font-weight: 400;
+  }
+  .practice-rhythm > summary small {
+    color: var(--muted);
+    font-size: 0.76rem;
+  }
+  .practice-rhythm > summary > svg {
+    transition: transform 180ms ease;
+  }
+  .practice-rhythm[open] > summary > svg {
+    transform: rotate(90deg);
+  }
+  .practice-rhythm .practice-summary {
+    margin: 0;
+    padding: 0 20px 20px;
+    gap: 18px;
+  }
+  .reflection-confirm {
+    margin-top: 15px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .reflection-confirm > p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .reflection-confirm .danger {
+    color: #8b3c2f;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .practice-rhythm[open] > .practice-summary,
+    .reflection-confirm {
+      animation: page-arrive 180ms ease-out;
+    }
+  }
+}
+@layer responsive {
+  @media (max-width: 700px) {
+    .my-practice-page .collection-tabs > button {
+      flex-direction: column;
+      gap: 5px;
+      padding: 10px 4px;
+      font-size: 0.7rem;
+    }
+    .practice-rhythm > summary {
+      padding: 19px;
+    }
+    .practice-rhythm .practice-summary {
+      padding: 0 12px 12px;
+    }
+    .practice-support {
+      margin-top: 28px;
+      padding-top: 24px;
+    }
+  }
+}

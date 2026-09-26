@@ -1,0 +1,1222 @@
+[
+  {
+    "name": "welcome-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/welcome",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "Ancient wisdom.Everyday life.",
+    "width": 390
+  },
+  {
+    "name": "today-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/today",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "Make room for yourself.",
+    "width": 390
+  },
+  {
+    "name": "explore-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/explore",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "The reading room.",
+    "width": 390
+  },
+  {
+    "name": "journey-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/journey",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "A beginning with the Gita",
+    "width": 390
+  },
+  {
+    "name": "my-practice-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/my-practice",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "Your practice, your pace.",
+    "width": 390
+  },
+  {
+    "name": "settings-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/settings",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      },
+      {
+        "height": 26,
+        "label": "",
+        "width": 46
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      }
+    ],
+    "title": "A little more your way.",
+    "width": 390
+  },
+  {
+    "name": "practice-settle-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 390
+  },
+  {
+    "name": "practice-read-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 390
+  },
+  {
+    "name": "reader-settings-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 390
+  },
+  {
+    "name": "reader-settings-evening",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 390
+  },
+  {
+    "name": "practice-read-evening",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 390
+  },
+  {
+    "name": "practice-understand-evening",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 390
+  },
+  {
+    "name": "practice-apply-evening",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 390
+  },
+  {
+    "name": "complete-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/complete/gita-2-47?session=8261e732-a975-46b4-b85c-758e4b607ebb",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      },
+      {
+        "height": 22,
+        "label": "",
+        "width": 22
+      }
+    ],
+    "title": "You made room for yourself.",
+    "width": 390
+  },
+  {
+    "name": "reflection-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/complete/gita-2-47?session=8261e732-a975-46b4-b85c-758e4b607ebb",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      },
+      {
+        "height": 22,
+        "label": "",
+        "width": 22
+      }
+    ],
+    "title": "You made room for yourself.",
+    "width": 390
+  },
+  {
+    "name": "moment-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/moment/purpose",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      },
+      {
+        "height": 48,
+        "label": "",
+        "width": 22
+      },
+      {
+        "height": 48,
+        "label": "",
+        "width": 22
+      }
+    ],
+    "title": "I’m putting something off",
+    "width": 390
+  },
+  {
+    "name": "clear-data-dialog-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/settings",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      },
+      {
+        "height": 26,
+        "label": "",
+        "width": 46
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      }
+    ],
+    "title": "A little more your way.",
+    "width": 390
+  },
+  {
+    "name": "welcome-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/welcome",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "Ancient wisdom.Everyday life.",
+    "width": 320
+  },
+  {
+    "name": "today-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/today",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "Make room for yourself.",
+    "width": 320
+  },
+  {
+    "name": "explore-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/explore",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "The reading room.",
+    "width": 320
+  },
+  {
+    "name": "journey-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/journey",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "A beginning with the Gita",
+    "width": 320
+  },
+  {
+    "name": "my-practice-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/my-practice",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "Your practice, your pace.",
+    "width": 320
+  },
+  {
+    "name": "settings-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/settings",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      },
+      {
+        "height": 26,
+        "label": "",
+        "width": 46
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      }
+    ],
+    "title": "A little more your way.",
+    "width": 320
+  },
+  {
+    "name": "moment-purpose-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/moment/purpose",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      },
+      {
+        "height": 48,
+        "label": "",
+        "width": 22
+      },
+      {
+        "height": 48,
+        "label": "",
+        "width": 22
+      }
+    ],
+    "title": "I’m putting something off",
+    "width": 320
+  },
+  {
+    "name": "complete-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/complete/gita-2-47?session=8261e732-a975-46b4-b85c-758e4b607ebb",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      },
+      {
+        "height": 22,
+        "label": "",
+        "width": 22
+      }
+    ],
+    "title": "You made room for yourself.",
+    "width": 320
+  },
+  {
+    "name": "practice-settle-evening-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 320
+  },
+  {
+    "name": "practice-read-evening-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 320
+  },
+  {
+    "name": "practice-understand-evening-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 320
+  },
+  {
+    "name": "practice-apply-evening-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 320
+  },
+  {
+    "name": "reader-settings-evening-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 320
+  },
+  {
+    "name": "reader-settings-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      },
+      {
+        "height": 20,
+        "label": "",
+        "width": 20
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 320
+  },
+  {
+    "name": "practice-settle-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 320
+  },
+  {
+    "name": "practice-read-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 320
+  },
+  {
+    "name": "practice-understand-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 320
+  },
+  {
+    "name": "practice-apply-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 320
+  },
+  {
+    "name": "practice-read-hindi-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.8984375,
+        "label": "Spritualथोड़ा, हर दिन",
+        "width": 129.5234375
+      }
+    ],
+    "title": "एक काम, पूरे मन से",
+    "width": 320
+  },
+  {
+    "name": "settings-hindi-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/settings",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.8984375,
+        "label": "Spritualथोड़ा, हर दिन",
+        "width": 129.5234375
+      },
+      {
+        "height": 26,
+        "label": "",
+        "width": 46
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      }
+    ],
+    "title": "थोड़ा अपने तरीके से।",
+    "width": 320
+  },
+  {
+    "name": "today-hindi-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/today",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.8984375,
+        "label": "Spritualथोड़ा, हर दिन",
+        "width": 129.5234375
+      }
+    ],
+    "title": "आपका फिर स्वागत है।",
+    "width": 320
+  },
+  {
+    "name": "search-reference-found",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/explore?q=2.47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "The reading room.",
+    "width": 320
+  },
+  {
+    "name": "search-reference-miss",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/explore?q=bg+2+47",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "The reading room.",
+    "width": 320
+  },
+  {
+    "name": "reflection-saved-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/complete/gita-2-47?session=8261e732-a975-46b4-b85c-758e4b607ebb",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      },
+      {
+        "height": 22,
+        "label": "",
+        "width": 22
+      }
+    ],
+    "title": "You made room for yourself.",
+    "width": 320
+  },
+  {
+    "name": "collection-reflections-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/my-practice?tab=reflections",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "Your practice, your pace.",
+    "width": 320
+  },
+  {
+    "name": "reflection-delete-confirm-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/my-practice?tab=reflections",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "Your practice, your pace.",
+    "width": 320
+  },
+  {
+    "name": "collection-history-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/my-practice?tab=history",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "Your practice, your pace.",
+    "width": 320
+  },
+  {
+    "name": "rhythm-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/my-practice?tab=history",
+    "scrollWidth": 363,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "Your practice, your pace.",
+    "width": 320
+  },
+  {
+    "name": "practice-understand-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 390
+  },
+  {
+    "name": "practice-apply-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 390
+  },
+  {
+    "name": "source-disclosure-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 390
+  },
+  {
+    "name": "reader-help-toast",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 390
+  },
+  {
+    "name": "practice-settle-evening",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/gita-2-47",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "One thing you can do",
+    "width": 390
+  },
+  {
+    "name": "today-evening-preference-no-dark-mode",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/today",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "Good to have you here.",
+    "width": 390
+  },
+  {
+    "name": "rhythm-overflow-reproduced",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/my-practice",
+    "scrollWidth": 363,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      }
+    ],
+    "title": "Your practice, your pace.",
+    "width": 320
+  },
+  {
+    "name": "clear-data-dialog-large",
+    "height": 568,
+    "href": "http://127.0.0.1:4175/settings",
+    "scrollWidth": 320,
+    "smallControls": [
+      {
+        "height": 38.3984375,
+        "label": "SpritualA little, every day",
+        "width": 118.125
+      },
+      {
+        "height": 26,
+        "label": "",
+        "width": 46
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      },
+      {
+        "height": 16,
+        "label": "",
+        "width": 16
+      }
+    ],
+    "title": "A little more your way.",
+    "width": 320
+  },
+  {
+    "name": "collection-reflections-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/my-practice?tab=reflections",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "Your practice, your pace.",
+    "width": 390
+  },
+  {
+    "name": "reflection-delete-confirm-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/my-practice?tab=reflections",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "Your practice, your pace.",
+    "width": 390
+  },
+  {
+    "name": "collection-history-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/my-practice?tab=history",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "Your practice, your pace.",
+    "width": 390
+  },
+  {
+    "name": "collection-saved-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/my-practice?tab=saved",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "Your practice, your pace.",
+    "width": 390
+  },
+  {
+    "name": "rhythm-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/my-practice?tab=saved",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "Your practice, your pace.",
+    "width": 390
+  },
+  {
+    "name": "moment-balance-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/moment/balance",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      },
+      {
+        "height": 48,
+        "label": "",
+        "width": 22
+      },
+      {
+        "height": 48,
+        "label": "",
+        "width": 22
+      }
+    ],
+    "title": "I’m about to reply",
+    "width": 390
+  },
+  {
+    "name": "moment-attention-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/moment/attention",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      },
+      {
+        "height": 48,
+        "label": "",
+        "width": 22
+      },
+      {
+        "height": 48,
+        "label": "",
+        "width": 22
+      }
+    ],
+    "title": "My mind keeps wandering",
+    "width": 390
+  },
+  {
+    "name": "audit-missing-page-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/audit-missing-page",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "A different path",
+    "width": 390
+  },
+  {
+    "name": "practice-audit-missing-lesson-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/practice/audit-missing-lesson",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "This lesson isn’t available.",
+    "width": 390
+  },
+  {
+    "name": "moment-audit-missing-moment-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/moment/audit-missing-moment",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "This practice isn’t available.",
+    "width": 390
+  },
+  {
+    "name": "complete-gita-2-48-light",
+    "height": 844,
+    "href": "http://127.0.0.1:4175/complete/gita-2-48",
+    "scrollWidth": 390,
+    "smallControls": [
+      {
+        "height": 39.09375,
+        "label": "SpritualA little, every day",
+        "width": 124.3984375
+      }
+    ],
+    "title": "A small step is waiting.",
+    "width": 390
+  }
+]

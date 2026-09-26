@@ -1,0 +1,15 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - heading "A small step is waiting." [level=1]
+  - paragraph: Read the lesson before saving a completion.
+  - link "Read the lesson":
+    - /url: /practice/gita-2-48
+- status

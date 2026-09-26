@@ -1,0 +1,53 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /welcome
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - paragraph: A SPACE OF YOUR OWN
+  - heading "Your practice, your pace." [level=1]
+  - paragraph: Keep what speaks to you. Return whenever you like.
+  - group "Your collection":
+    - button "Saved lessons 0" [pressed]:
+      - text: Saved lessons
+      - generic: "0"
+    - button "Reflections 0":
+      - text: Reflections
+      - generic: "0"
+    - button "Reading history 0":
+      - text: Reading history
+      - generic: "0"
+  - region "Saved lessons":
+    - heading "Saved lessons" [level=2]
+    - heading "Keep a little wisdom here." [level=2]
+    - paragraph: Tap the bookmark on any lesson to find it here.
+    - link "Find a lesson":
+      - /url: /explore
+      - text: Find a lesson
+  - generic "A rhythm that fits your life Your week & personal intention":
+    - strong: A rhythm that fits your life
+    - generic: Your week & personal intention
+  - option "Whenever it fits" [selected]
+  - option "After morning tea"
+  - option "As the day winds down"
+  - option "2 days a week"
+  - option "3 days a week" [selected]
+  - option "5 days a week"
+- navigation "Mobile navigation":
+  - link "Today":
+    - /url: /today
+    - generic: Today
+  - link "Explore":
+    - /url: /explore
+    - generic: Explore
+  - link "My Practice":
+    - /url: /my-practice
+    - generic: My Practice
+  - link "You":
+    - /url: /settings
+    - generic: You
+- status

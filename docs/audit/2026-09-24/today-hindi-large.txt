@@ -1,0 +1,63 @@
+- link "मुख्य विषय पर जाएं":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "समझने की भाषा":
+    - button "EN"
+    - button "हिन्दी" [pressed]
+- main [active]:
+  - paragraph: गुरुवार, 24 सितंबर
+  - heading "आपका फिर स्वागत है।" [level=1]
+  - region "एक काम, पूरे मन से":
+    - generic: पढ़ना जारी रखें
+    - heading "एक काम, पूरे मन से" [level=2]
+    - paragraph: Bhagavad Gita 2.47 · पढ़ें और मनन करें
+    - generic: चरण 2 / 4 · पढ़ें
+    - link "पढ़ना जारी रखें":
+      - /url: /practice/gita-2-47
+      - text: पढ़ना जारी रखें
+  - region "इस पल के लिए।":
+    - heading "इस पल के लिए।" [level=2]
+    - generic: दिन में एक छोटा बदलाव
+    - link "अगला कदम लें 2.47":
+      - /url: /moment/purpose
+      - generic: अगला कदम लें
+      - text: "2.47"
+    - link "जवाब से पहले ठहरें 2.48":
+      - /url: /moment/balance
+      - generic: जवाब से पहले ठहरें
+      - text: "2.48"
+    - link "ध्यान वापस लाएं 6.26":
+      - /url: /moment/attention
+      - generic: ध्यान वापस लाएं
+      - text: "6.26"
+  - region "आपके गीता पाठ":
+    - heading "आपके गीता पाठ" [level=2]
+    - progressbar "पूरे किए गए पाठ"
+    - generic: 3 में से 1 पाठ पूरे
+    - link "तीनों पाठ देखें":
+      - /url: /journey
+      - text: तीनों पाठ देखें
+  - complementary:
+    - generic: अपने दिन में अपनाएं
+    - paragraph: जिस काम को टाल रहे हैं, उसमें एक छोटा और उपयोगी कदम उठाएँ।
+    - link "फिर पढ़ें · Bhagavad Gita 2.47":
+      - /url: /practice/gita-2-47
+      - text: फिर पढ़ें · Bhagavad Gita 2.47
+  - paragraph: गीता के तीन नमूना पाठ · व्याख्याओं की मानवीय समीक्षा बाकी
+- navigation "मोबाइल नेविगेशन":
+  - link "आज":
+    - /url: /today
+    - generic: आज
+  - link "खोजें":
+    - /url: /explore
+    - generic: खोजें
+  - link "मेरा अभ्यास":
+    - /url: /my-practice
+    - generic: मेरा अभ्यास
+  - link "आप":
+    - /url: /settings
+    - generic: आप
+- status

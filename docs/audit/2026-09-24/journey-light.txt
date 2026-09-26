@@ -1,0 +1,61 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /welcome
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - paragraph: A SIMPLE PLACE TO BEGIN
+  - heading "A beginning with the Gita" [level=1]
+  - paragraph: Begin with one useful step, explore a steadier response, then practise returning your attention. Three demo lessons, at your own pace.
+  - region "Your reading progress":
+    - text: Self-paced · silent reading
+    - progressbar "Lessons completed"
+    - generic: 0 of 3 lessons completed
+    - paragraph: Start anywhere. Every lesson is open, and there is no daily schedule to keep up with.
+  - list "Three Gita lessons":
+    - generic: "01"
+    - generic: Bhagavad Gita 2.47
+    - heading "One thing you can do" [level=2]
+    - paragraph: Bring your care to the next step, even when the outcome is uncertain.
+    - generic: Ready when you are
+    - 'link "Read lesson : One thing you can do"':
+      - /url: /practice/gita-2-47
+      - text: Read lesson
+      - generic: ": One thing you can do"
+    - generic: "02"
+    - generic: Bhagavad Gita 2.48
+    - heading "Meet the day steadily" [level=2]
+    - paragraph: Make room for your feelings, then choose a considered response.
+    - generic: Ready when you are
+    - 'link "Read lesson : Meet the day steadily"':
+      - /url: /practice/gita-2-48
+      - text: Read lesson
+      - generic: ": Meet the day steadily"
+    - generic: "03"
+    - generic: Bhagavad Gita 6.26
+    - heading "Begin again, gently" [level=2]
+    - paragraph: Practise returning your attention, one small moment at a time.
+    - generic: Ready when you are
+    - 'link "Read lesson : Begin again, gently"':
+      - /url: /practice/gita-6-26
+      - text: Read lesson
+      - generic: ": Begin again, gently"
+  - paragraph: Demo explanations await human review. No recordings yet. Progress stays in this browser.
+- navigation "Mobile navigation":
+  - link "Today":
+    - /url: /today
+    - generic: Today
+  - link "Explore":
+    - /url: /explore
+    - generic: Explore
+  - link "My Practice":
+    - /url: /my-practice
+    - generic: My Practice
+  - link "You":
+    - /url: /settings
+    - generic: You
+- status

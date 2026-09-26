@@ -1,0 +1,89 @@
+.life-wisdom {
+  --life-line: rgba(206, 220, 198, .22);
+  --life-soft: #c9d0c3;
+  --life-gold: #e8bd76;
+  width: min(100%, 840px);
+  margin: 0 auto;
+  padding: 0 0 100px;
+  color: #f4f0e5;
+}
+.life-wisdom * { box-sizing: border-box; }
+.life-topline { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 48px; }
+.life-topline a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--life-soft); text-decoration: none; font-size: 14px; }
+.life-topline button { min-width: 52px; min-height: 44px; border: 1px solid var(--life-line); background: transparent; color: var(--life-gold); border-radius: 30px; }
+.life-intro { padding: clamp(24px, 5vw, 65px) 0 22px; }
+.life-overline { color: var(--life-gold); font-size: 11px; font-weight: 700; letter-spacing: .16em; line-height: 1.6; }
+.alpha .life-intro h1 { max-width: 13ch; margin: 15px 0 18px; color: #f8f2e7; font: 450 clamp(38px, 7vw, 68px)/1.11 Fraunces, Georgia, serif; letter-spacing: -.035em; text-wrap: balance; }
+.life-intro>p:last-child { max-width: 58ch; color: var(--life-soft); font-size: 17px; line-height: 1.7; }
+.life-question { display: grid; gap: 15px; border: 1px solid var(--life-line); background: #26352e; padding: clamp(19px, 4vw, 32px); border-radius: 22px; box-shadow: inset 0 1px #fff2d510; }
+.life-question label { font-size: 15px; font-weight: 650; color: #f4e8d2; }
+.life-question textarea { display: block; width: 100%; min-height: 118px; padding: 16px; resize: vertical; color: #f8f2e8; background: #13221e; border: 1px solid #60776b; border-radius: 12px; font: inherit; font-size: 17px; line-height: 1.55; }
+.life-question textarea::placeholder { color: #adbfb1; }
+.life-question-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.life-question-foot>span { color: #b9c7b8; font-size: 12px; line-height: 1.5; }
+.life-question-foot button { display: inline-flex; align-items: center; justify-content: center; gap: 13px; min-height: 48px; padding: 10px 17px; border: 0; border-radius: 40px; background: var(--life-gold); color: #1c291f; font-size: 14px; font-weight: 700; white-space: nowrap; }
+.life-question-foot button:disabled { opacity: .5; cursor: not-allowed; }
+.life-examples { margin: 28px 0 38px; }
+.life-examples>p { color: #c4d0c0; font-size: 13px; }
+.life-examples>div { display: flex; flex-wrap: wrap; gap: 9px; }
+.life-examples button { display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 46px; padding: 9px 13px; border: 1px solid var(--life-line); border-radius: 100px; color: #e3e7d9; background: #233329; font-size: 13px; text-align: left; }
+.life-examples button:hover { border-color: #dcb983; color: #fff; }
+.life-answer { border-top: 1px solid var(--life-line); padding-top: 30px; scroll-margin-top: 22px; }
+.life-answer-head { margin-bottom: 24px; }
+.alpha .life-answer-head h2 { color: #f2ebda; font: 450 clamp(29px, 5vw, 43px)/1.17 Fraunces, Georgia, serif; margin: 10px 0; }
+.life-answer-head>p { color: var(--life-soft); line-height: 1.6; font-size: 15px; }
+.alpha .life-support-link { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; margin: 0 0 24px; padding: 11px 17px; border-radius: 9px; background: #28543e; color: #fffdf7; font-size: 15px; font-weight: 700; text-decoration: none; }
+.alpha .life-support-link:hover { background: #1d4532; }
+.life-source { display: grid; grid-template-columns: 75px minmax(0, 1fr); gap: 20px; padding: 26px 0 31px; border-top: 1px solid var(--life-line); }
+.life-source-index { display: grid; align-content: start; gap: 12px; color: #afc3ae; font-size: 10px; letter-spacing: .08em; }
+.life-source-index>span:first-child { font: 450 31px/1 Fraunces, Georgia, serif; color: var(--life-gold); }
+.life-source-work { margin: 0; color: var(--life-gold); font-size: 11px; text-transform: uppercase; letter-spacing: .13em; }
+.alpha .life-source h3 { color: #f7f0de; font: 450 clamp(27px, 4.5vw, 37px)/1.22 Fraunces, Georgia, serif; margin: 10px 0 22px; }
+.life-source blockquote { margin: 0; padding: 0 0 0 20px; border-left: 2px solid var(--life-gold); color: #f5f0e6; font: 400 clamp(20px, 3.5vw, 28px)/1.75 Georgia, serif; white-space: pre-line; overflow-wrap: anywhere; }
+.life-source details { margin-top: 20px; color: #d9dfcf; font-size: 13px; }
+.life-source summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--life-gold); }
+.life-source details p { margin: 0 0 12px; white-space: pre-line; overflow-wrap: anywhere; }
+.life-interpretation { margin-top: 24px; padding-top: 19px; border-top: 1px solid var(--life-line); }
+.life-interpretation>span,.life-practice>span { color: var(--life-gold); font-size: 10px; font-weight: 700; letter-spacing: .12em; line-height: 1.6; }
+.life-interpretation p,.life-practice p { color: #d7dfd3; font-size: 15px; line-height: 1.72; }
+.life-practice { padding: 17px 20px; background: #27382f; border-left: 2px solid #a4c5a8; border-radius: 0 12px 12px 0; }
+.life-practice p { margin-bottom: 0; }
+.life-source-links { display: flex; flex-wrap: wrap; align-items: center; gap: 13px 24px; margin-top: 23px; }
+.life-source-links a,.life-browse { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; color: var(--life-gold); font-size: 14px; font-weight: 650; text-decoration: none; }
+.life-before-story { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; margin-top: 5px; color: #c4d9ba; font-size: 13px; font-weight: 650; text-decoration: underline; text-underline-offset: 3px; }
+.life-disclosure,.life-endnote { max-width: 62ch; color: #afbfad; font-size: 12px; line-height: 1.65; }
+.life-endnote { display: flex; align-items: start; gap: 15px; padding-top: 15px; border-top: 1px solid var(--life-line); }
+.life-endnote svg { flex: none; color: var(--life-gold); margin-top: 4px; }
+@media (max-width: 600px) {
+  .life-wisdom { padding-bottom: 70px; }
+  .life-intro { padding-top: 30px; }
+  .alpha .life-intro h1 { font-size: clamp(35px, 10vw, 46px); }
+  .life-intro>p:last-child { font-size: 15px; }
+  .life-question-foot { align-items: stretch; flex-direction: column; }
+  .life-question-foot button { width: 100%; }
+  .life-examples>div { display: grid; }
+  .life-examples button { border-radius: 11px; }
+  .life-source { grid-template-columns: 1fr; gap: 9px; }
+  .life-source-index { display: flex; align-items: baseline; }
+  .life-source-index>span:first-child { font-size: 24px; }
+  .life-source blockquote { font-size: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { .life-wisdom *, .life-wisdom *::before, .life-wisdom *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; } }
+/* Calm reading palette shared with Today and Explore. */
+.alpha.calm-shell .life-wisdom { --life-line:#cbd7c9; --life-soft:#4e6855; --life-gold:#785b2d; color:#244735; }
+.alpha.calm-shell .life-intro h1,.alpha.calm-shell .life-answer-head h2,.alpha.calm-shell .life-source h3 { color:#214432; }
+.alpha.calm-shell .life-question { border-radius:12px; background:#fffdf7; box-shadow:none; }
+.alpha.calm-shell .life-question label { color:#284b37; }
+.alpha.calm-shell .life-question textarea { border-color:#abbfae; background:#faf9f2; color:#1c3e2d; }
+.alpha.calm-shell .life-question textarea::placeholder { color:#617564; }
+.alpha.calm-shell .life-question-foot>span,.alpha.calm-shell .life-examples>p { color:#536b58; }
+.alpha.calm-shell .life-question-foot button { border-radius:9px; background:#28543e; color:#fffdf7; }
+.alpha.calm-shell .life-examples button { border-color:#c4d2c2; background:#e9efe4; color:#27513b; }
+.alpha.calm-shell .life-examples button:hover { border-color:#6c9b75; color:#194630; }
+.alpha.calm-shell .life-source-index { color:#526d57; }
+.alpha.calm-shell .life-source blockquote { color:#2a5038; }
+.alpha.calm-shell .life-source details,.alpha.calm-shell .life-interpretation p,.alpha.calm-shell .life-practice p { color:#465f4e; }
+.alpha.calm-shell .life-practice { background:#e9f0e4; }
+.alpha.calm-shell .life-before-story { color:#285a3f; }
+.alpha.calm-shell .life-disclosure,.alpha.calm-shell .life-endnote { color:#5c705f; }
+.alpha[data-large=true] .life-wisdom :is(.life-intro>p,.life-question textarea,.life-interpretation p,.life-practice p) { font-size:20px; }

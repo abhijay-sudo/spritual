@@ -1,0 +1,42 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - link "Today":
+    - /url: /today
+    - text: Today
+  - generic: FROM A VERSE TO YOUR DAY
+  - heading "My mind keeps wandering" [level=1]
+  - paragraph: Read one teaching. Choose one small thing to try away from the screen.
+  - region "Returning is part of practice":
+    - generic: Bhagavad Gita 6.26
+    - generic: Unreviewed demo
+    - heading "Returning is part of practice" [level=2]
+    - paragraph: Practise returning your attention, one small moment at a time.
+    - generic "Context & explanation"
+    - generic "Original verse & Roman transliteration"
+    - link "Read the source verse":
+      - /url: https://www.gitasupersite.iitk.ac.in/srimad?language=dv&field_chapter_value=6&field_nsutra_value=26
+      - text: Read the source verse
+    - link "Read the full lesson":
+      - /url: /practice/gita-6-26
+      - text: Read the full lesson
+  - group "What could you try?":
+    - generic: What could you try?
+    - paragraph: These are suggested everyday exercises. Choose what fits, or leave without saving.
+    - radio "Read one paragraph; when my attention wanders, return to the next word."
+    - generic: Read one paragraph; when my attention wanders, return to the next word.
+    - radio "Put one distraction aside and return to listening in a conversation."
+    - generic: Put one distraction aside and return to listening in a conversation.
+  - paragraph: Saving keeps this one practice only in this browser. Anyone using this browser may see it. Nothing is shared automatically.
+  - button "Keep this small practice" [disabled]:
+    - text: Keep this small practice
+  - link "Return without saving":
+    - /url: /today
+- status

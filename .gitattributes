@@ -1,0 +1,12 @@
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webm binary
+*.jar binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.ico binary
+*.bat text eol=crlf

@@ -1,0 +1,42 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - link "Today":
+    - /url: /today
+    - text: Today
+  - generic: FROM A VERSE TO YOUR DAY
+  - heading "I’m about to reply" [level=1]
+  - paragraph: Read one teaching. Choose one small thing to try away from the screen.
+  - region "Steadiness while acting":
+    - generic: Bhagavad Gita 2.48
+    - generic: Unreviewed demo
+    - heading "Steadiness while acting" [level=2]
+    - paragraph: Make room for your feelings, then choose a considered response.
+    - generic "Context & explanation"
+    - generic "Original verse & Roman transliteration"
+    - link "Read the source verse":
+      - /url: https://www.gitasupersite.iitk.ac.in/srimad?language=dv&field_chapter_value=2&field_nsutra_value=48
+      - text: Read the source verse
+    - link "Read the full lesson":
+      - /url: /practice/gita-2-48
+      - text: Read the full lesson
+  - group "What could you try?":
+    - generic: What could you try?
+    - paragraph: These are suggested everyday exercises. Choose what fits, or leave without saving.
+    - radio "Before one reply, separate what happened from what I assumed."
+    - generic: Before one reply, separate what happened from what I assumed.
+    - radio "Ask one clear, respectful question before drawing a conclusion."
+    - generic: Ask one clear, respectful question before drawing a conclusion.
+  - paragraph: Saving keeps this one practice only in this browser. Anyone using this browser may see it. Nothing is shared automatically.
+  - button "Keep this small practice" [disabled]:
+    - text: Keep this small practice
+  - link "Return without saving":
+    - /url: /today
+- status

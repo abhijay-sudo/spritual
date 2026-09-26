@@ -1,0 +1,53 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - paragraph: A SPACE OF YOUR OWN
+  - heading "Your practice, your pace." [level=1]
+  - paragraph: Keep what speaks to you. Return whenever you like.
+  - group "Your collection":
+    - button "Saved lessons 1":
+      - text: Saved lessons
+      - generic: "1"
+    - button "Reflections 1" [pressed]:
+      - text: Reflections
+      - generic: "1"
+    - button "Reading history 1":
+      - text: Reading history
+      - generic: "1"
+  - region "Reflections":
+    - heading "Reflections" [level=2]
+    - article:
+      - generic: Bhagavad Gita 2.47
+      - paragraph: "Audit test: give one small task my attention."
+      - time: 24/9/2026
+      - button "Delete reflection"
+  - generic "A rhythm that fits your life Your week & personal intention":
+    - strong: A rhythm that fits your life
+    - generic: Your week & personal intention
+  - option "Whenever it fits" [selected]
+  - option "After morning tea"
+  - option "As the day winds down"
+  - option "2 days a week"
+  - option "3 days a week" [selected]
+  - option "5 days a week"
+- navigation "Mobile navigation":
+  - link "Today":
+    - /url: /today
+    - generic: Today
+  - link "Explore":
+    - /url: /explore
+    - generic: Explore
+  - link "My Practice":
+    - /url: /my-practice
+    - generic: My Practice
+  - link "You":
+    - /url: /settings
+    - generic: You
+- status

@@ -1,0 +1,80 @@
+{
+  "cssSource": "https://fonts.googleapis.com/css2?family=Anek%20Devanagari%3Awght%40400..600&family=Anek%20Tamil%3Awght%40400..600&family=Anek%20Bangla%3Awght%40400..600&family=Rozha%20One&family=Tiro%20Devanagari%20Sanskrit&display=swap",
+  "assets": [
+    {
+      "source": "https://fonts.gstatic.com/l/font?kit=_gPF1R38qTExHg-17BhM6n66QhabMYB0fBKONtHhRSIUIre5mq3Ofm9ZQIwCF3QuHdtn4EhbaH_Gp061dEHt&skey=e2d8171407401889&v=v16",
+      "file": "2ed5e20d43143e.woff2",
+      "bytes": 197188
+    },
+    {
+      "source": "https://fonts.gstatic.com/l/font?kit=_gPF1R38qTExHg-17BhM6n66QhabMYB0fBKONtHhRSIUIre5mq3Ofm9ZQIwCF3QuHdtn4EhbaH_ap061dEHt&skey=e2d8171407401889&v=v16",
+      "file": "7c047821246b4d.woff2",
+      "bytes": 41900
+    },
+    {
+      "source": "https://fonts.gstatic.com/l/font?kit=_gPF1R38qTExHg-17BhM6n66QhabMYB0fBKONtHhRSIUIre5mq3Ofm9ZQIwCF3QuHdtn4EhbaH_Up061dEHt&skey=e2d8171407401889&v=v16",
+      "file": "e8363305e060d7.woff2",
+      "bytes": 42032
+    },
+    {
+      "source": "https://fonts.gstatic.com/l/font?kit=jVy77nP0CGrUsxB-QiRgw0NlLaVt_QUAkYxLRoCL23mlh20ZVHOMAWbgHLDtko1sNL3TET3CLrW10dDFFl97luri0Q&skey=9455048a98a27cad&v=v17",
+      "file": "0213dd4390c966.woff2",
+      "bytes": 279384
+    },
+    {
+      "source": "https://fonts.gstatic.com/l/font?kit=jVy77nP0CGrUsxB-QiRgw0NlLaVt_QUAkYxLRoCL23mlh20ZVHOMAWbgHLDtko1sNL3TET3CLrW10dDFGV97luri0Q&skey=9455048a98a27cad&v=v17",
+      "file": "97eed23c0fd6a2.woff2",
+      "bytes": 43796
+    },
+    {
+      "source": "https://fonts.gstatic.com/l/font?kit=jVy77nP0CGrUsxB-QiRgw0NlLaVt_QUAkYxLRoCL23mlh20ZVHOMAWbgHLDtko1sNL3TET3CLrW10dDFF197luri0Q&skey=9455048a98a27cad&v=v17",
+      "file": "e982042859c3c5.woff2",
+      "bytes": 43764
+    },
+    {
+      "source": "https://fonts.gstatic.com/l/font?kit=XLYcIZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW0WZez6TjtkDu3uNQicYoKkIeXSAP8rVb7XLupoEE2rwLXM&skey=c01ab91394e15da0&v=v18",
+      "file": "76edbc7b8e27f1.woff2",
+      "bytes": 88068
+    },
+    {
+      "source": "https://fonts.gstatic.com/l/font?kit=XLYcIZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW0WZez6TjtkDu3uNQicYoKkIeXSAP8rVb7XLuoIEE2rwLXM&skey=c01ab91394e15da0&v=v18",
+      "file": "0d41ce8b9fcf60.woff2",
+      "bytes": 41456
+    },
+    {
+      "source": "https://fonts.gstatic.com/l/font?kit=XLYcIZH2bYJHGYtPGSbUB8JKTp-_9n55SsLHW0WZez6TjtkDu3uNQicYoKkIeXSAP8rVb7XLuowEE2rwLXM&skey=c01ab91394e15da0&v=v18",
+      "file": "3a804ffa96bbdb.woff2",
+      "bytes": 41060
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/rozhaone/v17/AlZy_zVFtYP12Zncg2kRc335fh4DolH3.woff2",
+      "file": "60cef1c6bd13e7.woff2",
+      "bytes": 38208
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/rozhaone/v17/AlZy_zVFtYP12Zncg2kRfH35fh4DolH3.woff2",
+      "file": "992e7dfc736f00.woff2",
+      "bytes": 6464
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/rozhaone/v17/AlZy_zVFtYP12Zncg2kRcn35fh4Dog.woff2",
+      "file": "34bee9547f0804.woff2",
+      "bytes": 10136
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v7/MCoAzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZFIsroNCx0oMM.woff2",
+      "file": "71db21efa3e6bd.woff2",
+      "bytes": 119756
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v7/MCoAzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZG4sroNCx0oMM.woff2",
+      "file": "4f82b3c84c1a7d.woff2",
+      "bytes": 8960
+    },
+    {
+      "source": "https://fonts.gstatic.com/s/tirodevanagarisanskrit/v7/MCoAzBbr09vVUgVBM8FWu_yZdZkhkg-I0nUlb59ZFYsroNCx0g.woff2",
+      "file": "185588347e6b85.woff2",
+      "bytes": 19768
+    }
+  ]
+}

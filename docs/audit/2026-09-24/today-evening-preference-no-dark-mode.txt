@@ -1,0 +1,63 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - paragraph: Thursday, 24 September
+  - heading "Good to have you here." [level=1]
+  - region "One thing you can do":
+    - generic: CONTINUE YOUR READING
+    - heading "One thing you can do" [level=2]
+    - paragraph: Bhagavad Gita 2.47 · Read & reflect
+    - generic: Step 1 of 4 · Settle
+    - link "Continue reading":
+      - /url: /practice/gita-2-47
+      - text: Continue reading
+  - region "Meet the moment.":
+    - heading "Meet the moment." [level=2]
+    - generic: A small shift in your day
+    - link "Take the next step 2.47":
+      - /url: /moment/purpose
+      - generic: Take the next step
+      - text: "2.47"
+    - link "Pause before replying 2.48":
+      - /url: /moment/balance
+      - generic: Pause before replying
+      - text: "2.48"
+    - link "Find your focus 6.26":
+      - /url: /moment/attention
+      - generic: Find your focus
+      - text: "6.26"
+  - region "Your Gita collection":
+    - heading "Your Gita collection" [level=2]
+    - progressbar "Lessons completed"
+    - generic: 1 of 3 completed
+    - link "View all three lessons":
+      - /url: /journey
+      - text: View all three lessons
+  - complementary:
+    - generic: TAKE IT INTO YOUR DAY
+    - paragraph: Take one small, useful step on a task you have been postponing.
+    - link "Revisit · Bhagavad Gita 2.47":
+      - /url: /practice/gita-2-47
+      - text: Revisit · Bhagavad Gita 2.47
+  - paragraph: Three Gita sample lessons · explanations awaiting human review
+- navigation "Mobile navigation":
+  - link "Today":
+    - /url: /today
+    - generic: Today
+  - link "Explore":
+    - /url: /explore
+    - generic: Explore
+  - link "My Practice":
+    - /url: /my-practice
+    - generic: My Practice
+  - link "You":
+    - /url: /settings
+    - generic: You
+- status

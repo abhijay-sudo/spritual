@@ -1,0 +1,14 @@
+- link "Skip to content":
+  - /url: "#main"
+- banner:
+  - link "Spritual":
+    - /url: /today
+    - generic: Spritual
+  - group "Explanation language":
+    - button "EN" [pressed]
+    - button "हिन्दी"
+- main [active]:
+  - heading "This lesson isn’t available." [level=1]
+  - link "Explore available lessons":
+    - /url: /explore
+- status
