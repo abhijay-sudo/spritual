@@ -7,6 +7,7 @@
 import { pathToFileURL } from 'node:url';
 import { listDemoCorpus, canPublishContent } from '../packages/content/src/index.ts';
 import { arjunaBowStory } from '../packages/content/src/story.ts';
+import { graphSources, graphStories, validateKnowledgeGraph } from '../packages/content/src/knowledgeGraph.ts';
 import { lessons } from '../web/src/data/lessons.ts';
 
 function sourceReference(url) {
@@ -164,10 +165,15 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     passages: listDemoCorpus(), stories: [arjunaBowStory], readerLessons: lessons,
     mode: release ? 'release' : 'demo',
   });
+  errors.push(...validateKnowledgeGraph());
+  if ([...graphSources.values()].some(source => source.rights !== 'unknown' || source.review !== 'unreviewed') || graphStories.some(story => story.state !== 'unreviewed_demo')) {
+    errors.push('The bundled graph may not claim rights clearance or editorial approval.');
+  }
+  if (release) releaseBlockers.push('Knowledge graph entries and retellings require exact source/version rights and named human review.');
   if (errors.length) console.error(`Bundled-content audit failed:\n- ${errors.join('\n- ')}`);
   if (release && releaseBlockers.length) {
     console.error(`Public-content preflight blocked:\n- ${releaseBlockers.join('\n- ')}`);
   }
   if (errors.length || (release && releaseBlockers.length)) process.exitCode = 1;
-  else console.log(`Checked ${listDemoCorpus().length} source-linked demo readings and 1 story. ${release ? 'Metadata preflight only; server-side authorization and human review still required.' : 'All remain local demo content; no publication or AI-use approval is implied.'}`);
+  else console.log(`Checked ${listDemoCorpus().length} source-linked demo readings and ${graphStories.length} graph retellings, including the existing Arjuna story. ${release ? 'Metadata preflight only; server-side authorization and human review still required.' : 'All remain local demo content; no publication or AI-use approval is implied.'}`);
 }

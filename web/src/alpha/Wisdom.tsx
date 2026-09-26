@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { lessons, type Language } from "../data/lessons";
 import { useAlpha } from "./context";
 import { glideSpring, useMotionSettings } from "./MotionSystem";
+import { GraphSavedSection } from "./GraphSavedSection";
 import "./wisdom.css";
 import "./calm-saved.css";
 
@@ -181,6 +182,7 @@ export function WisdomMyDay() {
         {removing === id && <div className="wisdom-remove-confirm"><p>{t("Remove this item from Saved on this device? The reading itself remains available.", "इसे इस डिवाइस पर सहेजे हुए से हटाएँ? पाठ उपलब्ध रहेगा।")}</p><div><button type="button" className="alpha-secondary" onClick={() => setRemoving(null)}>{t("Keep it", "रहने दें")}</button><button type="button" className="alpha-danger" onClick={() => remove(id)}>{t("Remove", "हटाएँ")}</button></div></div>}
       </article>;
     })}</div>}</section>
+    <GraphSavedSection language={language}/>
     <section className="calm-saved-section" aria-labelledby="saved-notes-title"><h2 id="saved-notes-title">{t("Private notes", "निजी नोट")}</h2>{noteIds.length ? <div className="calm-note-list">{noteIds.map(id => <Link key={id} to={`/alpha/reflection/${id}`}>{id === "general" ? t("A thought of your own", "आपका निजी विचार") : lessons.find(lesson => lesson.id === id)?.title[language]} <span aria-hidden="true">↗</span></Link>)}</div> : <p className="calm-saved-note-empty">{t("No notes saved. Writing is always optional.", "अभी कोई नोट नहीं है। लिखना हमेशा वैकल्पिक है।")}</p>}<Link className="calm-note-new" to="/alpha/reflection/general">{t("Write a private note", "निजी नोट लिखें")} →</Link></section>
     <p className="wisdom-footnote">{t("This record stays in this browser profile and is unencrypted. It is not shared with a community or teacher.", "यह जानकारी इसी ब्राउज़र में बिना एन्क्रिप्शन रहती है। यह समुदाय या शिक्षक से साझा नहीं होती।")}</p>
   </div>;

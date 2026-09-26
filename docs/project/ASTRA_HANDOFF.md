@@ -1,5 +1,9 @@
 # Astra takeover: Spiritual.co.in
 
+## Phase II local increment — 27 September 2026
+
+The default `/alpha` now connects Explore → Divine (Krishna/Hanuman/Shiva) → source-linked reading/retelling → Saved and deterministic local search. Life can offer the Hanuman story as a separate editorial companion for a narrow courage/failure query. Shiva remains a source pointer; there are no approved wider scriptures or deity personas. The typed local graph is in `packages/content/src/knowledgeGraph.ts`; `supabase/migrations/0012_spiritual_graph_drafts.sql` is a private draft schema with no client read or CMS UI. Content audit blocks false rights/review claims and public release. See the newest `docs/BUILD_STATUS.md` and `docs/VERIFICATION.md` entries for scoped proof and blockers. Do not infer deployed graph content, live auth or production migration.
+
 ## Devotional first-use delivery — newest 26 September 2026
 
 The current default `/alpha` member UI now follows the owner’s latest devotional transformation directive. Fresh readers enter through an immersive but restrained chariot-art welcome, then a source-linked Gita demo; returning readers go straight to Today. Today and Explore are editorial, image-led experiences with honest three-reading inventory, while reader, Life, Story and Saved share calmer parchment/charcoal/saffron styling. Source/rights and unreviewed labels remain explicit. The established React/Vite routes, local privacy boundaries, English/Hindi preferences and opt-in connected teacher workflow remain intact. The local root `/` routes into `/alpha` on web and native. See `app/docs/BUILD_STATUS.md` for scope and `app/docs/VERIFICATION.md` for visual and automated evidence.

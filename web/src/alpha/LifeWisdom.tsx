@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { buildGroundedFallback, isImmediateSafetyQuery, retrieveWisdom } from "../../../packages/ai/src/index";
 import { getDemoCorpusPassage, listDemoPassages } from "../../../packages/content/src/index";
+import { graphStoryForQuestion } from "../../../packages/content/src/knowledgeGraph";
 import { Icon } from "../components/Icon";
 import { lessons } from "../data/lessons";
 import { useWisdom } from "./Wisdom";
@@ -36,6 +37,7 @@ export function LifeWisdom({ restoreQuestion = null, onOpenSource }: { restoreQu
     return retrieveWisdom(asked, passages, { language, maxResults: 1 });
   }, [asked, language, passages]);
   const answer = asked === null ? null : buildGroundedFallback(asked, hits, language);
+  const companionStory = answer?.kind !== "safety" && asked ? graphStoryForQuestion(asked) : undefined;
   const ask = (value: string) => {
     const question = value.trim().slice(0, 280);
     if (!question) return;
@@ -83,6 +85,7 @@ export function LifeWisdom({ restoreQuestion = null, onOpenSource }: { restoreQu
           </div>
         </article>;
       })}
+      {companionStory && <div className="life-story-companion"><span className="life-overline">{t("AN EDITORIAL PATH · NOT A VERSE MATCH", "संपादकीय राह · श्लोक का मेल नहीं")}</span><p>{t("A separate, unreviewed retelling about beginning a difficult task. It is linked for reflection, not presented as the answer to your question.", "कठिन काम शुरू करने पर एक अलग, समीक्षा-रहित पुनर्कथन। यह सोचने के लिए जुड़ा है, आपके सवाल का उत्तर बताकर नहीं।")}</p><Link className="life-before-story" to={companionStory.href} onClick={() => { if (asked) onOpenSource?.(asked); }}>{t("Read Hanuman’s crossing", "हनुमान का समुद्र-पार जाना पढ़ें")} <Icon name="arrow" size={17}/></Link></div>}
       {answer.kind === "unverified" && <Link className="life-browse" to="/alpha/library">{t("Browse the three available readings", "तीन उपलब्ध पाठ देखें")}<Icon name="arrow" size={18}/></Link>}
       <p className="life-disclosure">{answer.disclosure}</p>
     </section>}
