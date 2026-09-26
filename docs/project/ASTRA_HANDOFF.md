@@ -1,5 +1,9 @@
 # Astra takeover: Spiritual.co.in
 
+## Consumer target and source-context increment — 27 September 2026
+
+The new owner-supplied Ultra-Max directive makes a calm consumer, multi-source learning system the active **target**; the earlier institution-first brief is historical positioning, while the teacher workflow and trust boundaries remain. This increment moves the primary dock to Today / Explore / Ask / Saved while retaining optional Practice, and adds a scripture/work index, source-context round trip and narrowly scoped cross-source Life pointers to the existing `/alpha`, plus a Hindi normalizer correction. It does not complete the requested wider corpus, secure CMS, live AI or production app. `docs/BUILD_STATUS.md` records 152 Node tests, 20 default browser journeys, build and visual checks, with exact limits. Continue from the current graph, not a second app; obtain rights and named review before publishing or sending text to AI.
+
 ## Phase II local increment — 27 September 2026
 
 The default `/alpha` now connects Explore → Divine (Krishna/Hanuman/Shiva) → source-linked reading/retelling → Saved and deterministic local search. Life can offer the Hanuman story as a separate editorial companion for a narrow courage/failure query. Shiva remains a source pointer; there are no approved wider scriptures or deity personas. The typed local graph is in `packages/content/src/knowledgeGraph.ts`; `supabase/migrations/0012_spiritual_graph_drafts.sql` is a private draft schema with no client read or CMS UI. Content audit blocks false rights/review claims and public release. See the newest `docs/BUILD_STATUS.md` and `docs/VERIFICATION.md` entries for scoped proof and blockers. Do not infer deployed graph content, live auth or production migration.

@@ -47,6 +47,7 @@
 .dev-collection-copy strong { max-width: 18ch; color: #fff8e9; font: 450 clamp(34px, 5vw, 52px)/1.07 Fraunces, Georgia, serif; }
 .dev-collection-copy>span { max-width: 38ch; color: #f4e9da; font-size: 15px; line-height: 1.45; }
 .dev-collection-copy em { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-top: 5px; color: #f8c98e; font-size: 14px; font-style: normal; font-weight: 750; }
+.dev-source-library-link { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; margin: 4px 0 22px; color: var(--dev-ink); font-size: 13px; font-weight: 750; text-underline-offset: 4px; }
 .dev-reading-index { padding-top: 45px; }
 .dev-section-head { margin-bottom: 21px; }
 .dev-search { display: grid; gap: 7px; color: var(--dev-muted); font-size: 13px; font-weight: 700; }

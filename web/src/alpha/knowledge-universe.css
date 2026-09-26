@@ -49,6 +49,22 @@
 .ku-related-list a strong,.ku-source strong { color: var(--ku-ink); font: 450 21px/1.24 Fraunces,Georgia,serif; }
 .ku-related-list a span,.ku-source small { color: var(--ku-muted); font-size: 12px; line-height: 1.4; }
 .ku-caution { font-size: 13px !important; }
+.ku-source-context { max-width: 740px; }
+.ku-source-record { padding: 30px 0 36px; border-top: 1px solid var(--ku-line); border-bottom: 1px solid var(--ku-line); }
+.alpha .ku-source-record h2 { margin: 0 0 18px; color: var(--ku-ink); font: 450 clamp(26px,4vw,36px)/1.2 Fraunces,Georgia,serif; }
+.ku-source-record dl { margin: 0; border-top: 1px solid var(--ku-line); }
+.ku-source-record dl>div { display: grid; grid-template-columns: minmax(112px,35%) 1fr; gap: 15px; padding: 12px 0; border-bottom: 1px solid var(--ku-line); }
+.ku-source-record dt { color: var(--ku-muted); font-size: 13px; }
+.ku-source-record dd { margin: 0; color: var(--ku-ink); font-size: 14px; overflow-wrap: anywhere; }
+.ku-source-record p { max-width: 58ch; margin: 19px 0 3px; color: var(--ku-muted); font-size: 15px; line-height: 1.6; }
+.ku-source-context .ku-related-list>a { display: grid; justify-content: start; gap: 4px; }
+.ku-work-list { border-top: 1px solid var(--ku-line); }
+.ku-work-list>a { display: grid; gap: 7px; min-height: 160px; padding: 23px 0; border-bottom: 1px solid var(--ku-line); text-decoration: none; }
+.ku-work-list small { color: var(--ku-accent); font-size: 10px; font-weight: 750; letter-spacing: .12em; }
+.ku-work-list strong { color: var(--ku-ink); font: 450 clamp(26px,5vw,39px)/1.14 Fraunces,Georgia,serif; }
+.ku-work-list span { max-width: 55ch; color: var(--ku-muted); font-size: 14px; line-height: 1.5; }
+.ku-work-list em { color: var(--ku-ink); font-size: 12px; font-style: normal; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; }
+.ku-scripture .ku-related-list>a { display: grid; justify-content: start; gap: 5px; }
 .ku-theme-list { display: flex; flex-wrap: wrap; gap: 8px; }
 .ku-theme-list a { display: inline-flex; align-items: center; min-height: 44px; padding: 9px 13px; border: 1px solid var(--ku-line); border-radius: 5px; background: var(--ku-paper); font-size: 13px; font-weight: 700; text-decoration: none; }
 .ku-story-hero { position: relative; isolation: isolate; overflow: hidden; min-height: 355px; display: flex; flex-direction: column; justify-content: end; align-items: start; padding: clamp(25px,5vw,44px); border-radius: 6px; background: linear-gradient(180deg,#102c3350 3%,#102c33bf 76%,#102c33e8),url('/art/hanuman-crossing-dawn-v1.webp') 50% 50%/cover no-repeat; color: #f8f1e4; }

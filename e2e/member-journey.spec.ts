@@ -195,7 +195,7 @@ test("the four primary destinations remain usable at narrow phone widths", async
   const destinations = [
     { path: "/alpha/today", heading: "Begin here." },
     { path: "/alpha/library", heading: "Follow what matters." },
-    { path: "/alpha/practice", heading: "A little room to practise." },
+    { path: "/alpha/life", heading: "Begin with what’s on your mind." },
     { path: "/alpha/my-day", heading: "What you chose to keep." },
   ];
   for (const width of [320, 390]) {
@@ -207,6 +207,15 @@ test("the four primary destinations remain usable at narrow phone widths", async
     }
   }
   expect(errors).toEqual([]);
+});
+
+test("Ask is a primary entry while optional Practice remains reachable from Explore", async ({ page }) => {
+  await page.goto("/alpha/today");
+  await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Ask" }).click();
+  await expect(page.getByRole("heading", { name: "Begin with what’s on your mind." })).toBeVisible();
+  await page.getByRole("link", { name: "Explore" }).first().click();
+  await page.getByRole("link", { name: /Take an optional quiet pause/ }).click();
+  await expect(page.getByRole("heading", { name: "A little room to practise." })).toBeVisible();
 });
 
 test("Hindi, larger text, night appearance, and reduced motion survive the reading journey", async ({ page }) => {

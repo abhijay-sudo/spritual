@@ -8,7 +8,7 @@ import { arjunaBowStory } from "./story.ts";
 
 export type GraphLanguage = "en" | "hi";
 export type Localized = Readonly<Record<GraphLanguage, string>>;
-export type GraphNodeKind = "entity" | "story" | "passage" | "theme";
+export type GraphNodeKind = "entity" | "story" | "passage" | "theme" | "work";
 export type EditorialState = "unreviewed_demo" | "source_pointer" | "reviewed";
 export type EntityKind = "divine_form" | "scriptural_character";
 
@@ -66,6 +66,15 @@ export interface GraphStory {
 }
 
 export interface GraphTheme { id: string; name: Localized; aliases: readonly string[] }
+export interface GraphWork {
+  id: string;
+  slug: string;
+  title: Localized;
+  orientation: Localized;
+  sourceIds: readonly string[];
+  /** A selection is never a claim that a complete chapter or work is available. */
+  availability: "local_selection" | "external_pointer";
+}
 export interface GraphEdge {
   from: string;
   to: string;
@@ -106,6 +115,12 @@ const sourceList: readonly GraphSource[] = [
 ];
 
 export const graphSources: ReadonlyMap<string, GraphSource> = new Map(sourceList.map(source => [source.id, source]));
+
+export const graphWorks: readonly GraphWork[] = [
+  { id: "work:gita", slug: "gita", title: { en: "Bhagavad Gita", hi: "भगवद्गीता" }, orientation: { en: "Three selected verses and a narrative context pointer; not a complete chapter or translation.", hi: "तीन चुने हुए श्लोक और कथा-संदर्भ का संकेत; पूरा अध्याय या अनुवाद नहीं।" }, sourceIds: ["bg.1.24-1.47", "bg.2.47", "bg.2.48", "bg.6.26"], availability: "local_selection" },
+  { id: "work:ramayana", slug: "ramayana", title: { en: "Vālmīki Rāmāyaṇa", hi: "वाल्मीकि रामायण" }, orientation: { en: "A source pointer for Sundara Kāṇḍa 1 and one unreviewed original retelling; no local scripture text.", hi: "सुंदरकाण्ड १ का स्रोत-संकेत और एक समीक्षा-रहित मौलिक पुनर्कथन; स्थानीय मूल पाठ नहीं।" }, sourceIds: ["vr.5.1"], availability: "external_pointer" },
+  { id: "work:shvetashvatara", slug: "shvetashvatara", title: { en: "Śvetāśvatara Upaniṣad", hi: "श्वेताश्वतर उपनिषद्" }, orientation: { en: "A research pointer to 3.2; tradition-specific Rudra/Shiva interpretation is not reviewed here.", hi: "३.२ का शोध-संकेत; यहाँ रुद्र/शिव की परंपरा-विशेष व्याख्या की समीक्षा नहीं हुई है।" }, sourceIds: ["su.3.2"], availability: "external_pointer" },
+];
 
 export const graphThemes: readonly GraphTheme[] = [
   { id: "action", name: { en: "Action & uncertainty", hi: "कर्म और अनिश्चितता" }, aliases: ["work", "outcome", "कर्म", "फल"] },
@@ -150,10 +165,29 @@ export const graphEdges: readonly GraphEdge[] = [
   { from: "story:hanuman-crossing", to: "bg.2.47", kind: "editorial_companion", context: "Editorial comparison of purposeful action, not a scriptural equivalence", sourceId: null, state: "unreviewed_demo" },
 ];
 
+/** Reverse lookup keeps source navigation derived from the graph, not React card copy. */
+export function graphConnectionsForSource(sourceId: string) {
+  if (!graphSources.has(sourceId)) return { works: [], entities: [], stories: [], passages: [] };
+  const works = graphWorks.filter(work => work.sourceIds.includes(sourceId));
+  const entities = graphEntities.filter(entity => entity.sourceIds.includes(sourceId));
+  const stories = graphStories.filter(story => story.sourceIds.includes(sourceId) || story.scenes.some(scene => scene.sourceIds.includes(sourceId)));
+  const passages = listDemoCorpus().filter(passage => passage.id === sourceId);
+  return { works, entities, stories, passages };
+}
+
+/** A cautious discovery pointer, never a generated answer or verified interpretation. */
+export function graphSourcePointerForQuestion(question: string): GraphSource | undefined {
+  const q = normalizeGraphQuery(question);
+  if (/\b(shiva|siva|rudra)\b|शिव|रुद्र/.test(q)) return graphSources.get("su.3.2");
+  if (/\b(ramayana|ramayan|sundara kanda)\b|रामायण|सुंदरकांड|सुन्दरकाण्ड/.test(q)) return graphSources.get("vr.5.1");
+  return undefined;
+}
+
 export type GraphSearchResult = { id: string; kind: GraphNodeKind; title: Localized; subtitle: Localized; href: string; state: EditorialState; score: number };
 const digitMap = "०१२३४५६७८९";
 export function normalizeGraphQuery(value: string): string {
-  return value.toLocaleLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[०-९]/g, digit => String(digitMap.indexOf(digit))).replace(/[।॥:]/g, ".").replace(/[^\p{L}\p{N}.]+/gu, " ").replace(/\s+/g, " ").trim();
+  // Strip Latin accents for romanized lookup, but retain Indic vowel signs and other marks.
+  return value.toLocaleLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[०-९]/g, digit => String(digitMap.indexOf(digit))).replace(/[।॥:]/g, ".").replace(/[^\p{L}\p{M}\p{N}.]+/gu, " ").replace(/\s+/g, " ").trim();
 }
 
 function matches(query: string, values: readonly string[]): number {
@@ -174,6 +208,10 @@ export function searchKnowledgeGraph(query: string, language: GraphLanguage): Gr
   const q = normalizeGraphQuery(query);
   if (!q) return [];
   const results: GraphSearchResult[] = [];
+  for (const work of graphWorks) {
+    const score = matches(q, [work.title.en, work.title.hi, work.slug, ...work.sourceIds]);
+    if (score) results.push({ id: work.id, kind: "work", title: work.title, subtitle: work.orientation, href: `/alpha/scriptures/${work.slug}`, state: work.availability === "local_selection" ? "unreviewed_demo" : "source_pointer", score });
+  }
   for (const entity of graphEntities) {
     const score = matches(q, [entity.name.en, entity.name.hi, entity.iast, ...entity.aliases, ...entity.themeIds, `${entity.name.en} ${entity.themeIds.join(" ")} stories`]);
     if (score) results.push({ id: entity.id, kind: "entity", title: entity.name, subtitle: entity.invitation, href: `/alpha/divine/${entity.slug}`, state: entity.state, score });
@@ -203,7 +241,7 @@ export function graphStoryForQuestion(question: string): GraphStory | undefined 
 
 export function validateKnowledgeGraph(): string[] {
   const problems: string[] = [];
-  const allIds = [...graphEntities.map(node => node.id), ...graphStories.map(node => node.id), ...listDemoCorpus().map(node => node.id), ...graphThemes.map(node => `theme:${node.id}`)];
+  const allIds = [...graphWorks.map(node => node.id), ...graphEntities.map(node => node.id), ...graphStories.map(node => node.id), ...listDemoCorpus().map(node => node.id), ...graphThemes.map(node => `theme:${node.id}`)];
   const nodeIds = new Set([...allIds, ...graphSources.keys()]);
   const unique = new Set<string>();
   for (const id of allIds) { if (unique.has(id)) problems.push(`Duplicate node ${id}`); unique.add(id); }
@@ -211,6 +249,11 @@ export function validateKnowledgeGraph(): string[] {
     try { if (new URL(source.url).protocol !== "https:") problems.push(`Non-HTTPS source ${source.id}`); }
     catch { problems.push(`Invalid source URL ${source.id}`); }
     if (source.rights === "verified" && (!source.edition || !source.license)) problems.push(`Unsupported source rights claim ${source.id}`);
+  }
+  for (const work of graphWorks) {
+    if (!work.title.en?.trim() || !work.title.hi?.trim() || !work.orientation.en?.trim() || !work.orientation.hi?.trim() || !work.sourceIds.length) problems.push(`Incomplete work ${work.id}`);
+    for (const id of work.sourceIds) if (!graphSources.has(id)) problems.push(`Broken work source ${work.id} -> ${id}`);
+    if (work.availability === "local_selection" && !work.sourceIds.some(id => graphSources.get(id)?.use === "locally_displayed_demo")) problems.push(`Work has no local selection ${work.id}`);
   }
   for (const entity of graphEntities) {
     if (!entity.name.en?.trim() || !entity.name.hi?.trim() || !entity.iast?.trim() || !entity.invitation.en?.trim() || !entity.invitation.hi?.trim()) problems.push(`Incomplete entity ${entity.id}`);

@@ -91,7 +91,11 @@ export function GitaEpisode() {
   const verse = lesson.steps.find(item => item.kind === "verse")!;
   const setScene = (next: number) => {
     if (next < 4) update(latest => moveReading(latest, lesson.id, next, new Date().toISOString()));
-    setParams({ scene: String(next) }, { replace: true });
+    setParams(previous => {
+      const nextParams = new URLSearchParams({ scene: String(next) });
+      if (previous.get("origin") === "work") nextParams.set("origin", "work");
+      return nextParams;
+    }, { replace: true });
   };
   const changeLanguage = (nextLanguage: Language) => {
     if (update(latest => ({ ...latest, language: nextLanguage }))) window.dispatchEvent(new Event("spritual-alpha-language"));
@@ -121,7 +125,7 @@ export function GitaEpisode() {
   const progressLabel = scene === 4 ? t("Reading complete", "पाठ पूरा हुआ") : t(`Moment ${scene + 1} of 4: ${moment}`, `चरण ${scene + 1} / 4: ${moment}`);
 
   return <div className="story-player" lang={language}>
-    <header className="story-player-head"><Link to="/alpha/series/gita" className="story-close" aria-label={t("Close reading", "पाठ बंद करें")}>×</Link><div className="story-progress-wrap"><div className="story-progress" role="progressbar" aria-label={t("Reading progress", "पाठ की प्रगति")} aria-valuemin={1} aria-valuemax={4} aria-valuenow={Math.min(scene + 1, 4)} aria-valuetext={progressLabel}>{[0, 1, 2, 3].map(index => <span key={index}><motion.span className="story-progress-fill" initial={false} animate={{ scaleX: index <= scene ? 1 : 0 }} transition={reduced || !active ? { duration: 0 } : glideSpring} /></span>)}</div><span className="story-progress-label" aria-hidden="true">{scene === 4 ? t("Complete", "पूरा") : moment}</span></div><StoryLanguage language={language} onChange={changeLanguage}/></header>
+    <header className="story-player-head"><Link to={params.get("origin") === "work" ? "/alpha/scriptures/gita" : "/alpha/series/gita"} className="story-close" aria-label={t("Close reading", "पाठ बंद करें")}>×</Link><div className="story-progress-wrap"><div className="story-progress" role="progressbar" aria-label={t("Reading progress", "पाठ की प्रगति")} aria-valuemin={1} aria-valuemax={4} aria-valuenow={Math.min(scene + 1, 4)} aria-valuetext={progressLabel}>{[0, 1, 2, 3].map(index => <span key={index}><motion.span className="story-progress-fill" initial={false} animate={{ scaleX: index <= scene ? 1 : 0 }} transition={reduced || !active ? { duration: 0 } : glideSpring} /></span>)}</div><span className="story-progress-label" aria-hidden="true">{scene === 4 ? t("Complete", "पूरा") : moment}</span></div><StoryLanguage language={language} onChange={changeLanguage}/></header>
     {error && <p role="alert" className="story-error">{error}</p>}
     <motion.div
       className={`story-player-scene story-player-scene--${scene}`}

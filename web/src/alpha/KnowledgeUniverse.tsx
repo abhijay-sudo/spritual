@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { Link, useParams, useSearchParams } from "react-router-dom";
-import { graphEntities, graphSources, graphStories, graphThemes, searchKnowledgeGraph, type GraphEntity, type GraphStory } from "../../../packages/content/src/knowledgeGraph";
+import { Link, useLocation, useParams, useSearchParams } from "react-router-dom";
+import { graphConnectionsForSource, graphEntities, graphSources, graphStories, graphThemes, graphWorks, searchKnowledgeGraph, type GraphEntity, type GraphStory } from "../../../packages/content/src/knowledgeGraph";
 import { getDemoCorpusPassage } from "../../../packages/content/src/index";
 import { useWisdom } from "./Wisdom";
 import { useGraphSaves } from "./graphSaves";
@@ -27,8 +27,58 @@ function Back({ to = "/alpha/library", label }: { to?: string; label?: string })
 function SourceLink({ id, compact = false }: { id: string; compact?: boolean }) {
   const source = graphSources.get(id);
   const { t } = useLanguage();
+  const location = useLocation();
   if (!source) return null;
-  return <a className={compact ? "ku-source ku-source-compact" : "ku-source"} href={source.url} target="_blank" rel="noopener noreferrer"><span><strong>{source.work}</strong><small>{source.reference} · {t("External source · edition and reuse rights unconfirmed", "बाहरी स्रोत · संस्करण और उपयोग के अधिकार अपुष्ट")}</small></span><span aria-hidden="true">↗</span></a>;
+  return <Link className={compact ? "ku-source ku-source-compact" : "ku-source"} to={`/alpha/sources/${encodeURIComponent(id)}`} state={{ from: location.pathname }}><span><strong>{source.work}</strong><small>{source.reference} · {t("View source context and rights status", "स्रोत का संदर्भ और अधिकार स्थिति देखें")}</small></span><span aria-hidden="true">→</span></Link>;
+}
+
+export function SourceContext() {
+  const { id } = useParams();
+  const location = useLocation();
+  const { language, t } = useLanguage();
+  const source = id ? graphSources.get(id) : undefined;
+  const state = location.state as { from?: unknown } | null;
+  const returnTo = typeof state?.from === "string" && /^\/alpha\/(life|divine(?:\/[^/]+)?|scriptures(?:\/[^/]+)?|stories\/[^/]+|episode\/[^/]+)$/.test(state.from) ? state.from : "/alpha/library";
+  if (!source) return <div className="ku-page"><Back/><h1>{t("Source not found.", "स्रोत नहीं मिला।")}</h1><p>{t("No source text or personal data has changed.", "मूल पाठ या निजी डेटा नहीं बदला है।")}</p></div>;
+  const related = graphConnectionsForSource(source.id);
+  return <article className="ku-page ku-source-context" lang={language}>
+    <Back to={returnTo} label={t("Back to reading", "पाठ पर लौटें")}/>
+    <header className="ku-intro"><span className="ku-kicker">{t("SOURCE CONTEXT", "स्रोत का संदर्भ")}</span><h1>{source.work}</h1><p>{source.reference}</p></header>
+    <div className="ku-source-record"><h2>{t("What we know about this link", "इस कड़ी के बारे में क्या ज्ञात है")}</h2><dl>
+      <div><dt>{t("Edition", "संस्करण")}</dt><dd>{source.edition ?? t("Not established", "पुष्टि नहीं हुई")}</dd></div>
+      <div><dt>{t("Translator", "अनुवादक")}</dt><dd>{source.translator ?? t("Not established", "पुष्टि नहीं हुई")}</dd></div>
+      <div><dt>{t("Reuse rights", "पुनः उपयोग के अधिकार")}</dt><dd>{source.rights === "verified" ? t("Verified", "सत्यापित") : t("Not established", "पुष्टि नहीं हुई")}</dd></div>
+      <div><dt>{t("Human review", "मानवीय समीक्षा")}</dt><dd>{source.review === "reviewed" ? t("Reviewed", "समीक्षित") : t("Pending", "बाकी है")}</dd></div>
+    </dl><p>{source.use === "external_pointer" ? t("This is an external reading pointer. Spritual does not reproduce or approve that site's text.", "यह बाहरी पाठ का संकेत है। Spritual उस साइट के पाठ को पुनः प्रकाशित या स्वीकृत नहीं करता।") : t("A short local demo excerpt is available. Its edition, rights and explanation still need review.", "एक छोटा स्थानीय नमूना अंश उपलब्ध है। उसके संस्करण, अधिकार और व्याख्या की समीक्षा अभी बाकी है।")}</p>
+    <a className="ku-primary" href={source.url} target="_blank" rel="noopener noreferrer">{t("Open original source", "मूल स्रोत खोलें")} <span aria-hidden="true">↗</span></a></div>
+    {(related.works.length > 0 || related.passages.length > 0 || related.stories.length > 0 || related.entities.length > 0) && <section className="ku-related" aria-labelledby="ku-source-connections"><span className="ku-kicker">{t("IN THIS PREVIEW", "इस पूर्वावलोकन में")}</span><h2 id="ku-source-connections">{t("Continue exploring", "आगे पढ़ें")}</h2><div className="ku-related-list">
+      {related.passages.map(passage => <Link key={passage.id} to={`/alpha/episode/${passage.lessonId}`}><strong>{source.work} {passage.source.canonicalReference}</strong><span>{t("Original · unreviewed demo meaning", "मूल · समीक्षा-रहित नमूना अर्थ")} →</span></Link>)}
+      {related.stories.map(story => <Link key={story.id} to={story.href}><strong>{story.title[language]}</strong><span>{t("Original retelling · unreviewed", "मौलिक पुनर्कथन · समीक्षा बाकी")} →</span></Link>)}
+      {related.entities.map(entity => <Link key={entity.id} to={`/alpha/divine/${entity.slug}`}><strong>{entity.name[language]}</strong><span>{t("Editorial entry · not a doctrinal definition", "संपादकीय प्रविष्टि · धार्मिक परिभाषा नहीं")} →</span></Link>)}
+      {related.works.map(work => <Link key={work.id} to={`/alpha/scriptures/${work.slug}`}><strong>{work.title[language]}</strong><span>{t("Available material in this work", "इस ग्रंथ में उपलब्ध सामग्री")} →</span></Link>)}
+    </div></section>}
+    <p className="ku-disclosure">{t("An external link is not proof of a specific edition, a license, or an approved interpretation. Do not treat this preview as a complete text.", "बाहरी कड़ी किसी विशेष संस्करण, लाइसेंस या स्वीकृत व्याख्या का प्रमाण नहीं है। यह पूर्वावलोकन पूरा पाठ नहीं है।")}</p>
+  </article>;
+}
+
+export function ScriptureLibrary() {
+  const { language, t } = useLanguage();
+  return <div className="ku-page ku-scripture" lang={language}><Back/><header className="ku-intro"><span className="ku-kicker">{t("SCRIPTURES · AVAILABLE PATHS", "ग्रंथ · उपलब्ध रास्ते")}</span><h1>{t("Read what is here.", "जो उपलब्ध है, वही पढ़ें।")}</h1><p>{t("One work has three local verse selections. Two others have external source pointers and original editorial connections. None is a complete digital edition here.", "एक ग्रंथ के तीन स्थानीय चुने हुए श्लोक हैं। दो अन्य के बाहरी स्रोत-संकेत और मौलिक संपादकीय कड़ियाँ हैं। यहाँ किसी का पूरा डिजिटल संस्करण नहीं है।")}</p></header><div className="ku-work-list">{graphWorks.map(work => <Link key={work.id} to={`/alpha/scriptures/${work.slug}`}><small>{work.availability === "local_selection" ? t("LOCAL SELECTION · UNREVIEWED", "स्थानीय चयन · समीक्षा बाकी") : t("EXTERNAL SOURCE POINTER", "बाहरी स्रोत-संकेत")}</small><strong>{work.title[language]}</strong><span>{work.orientation[language]}</span><em>{t("Explore this work", "यह ग्रंथ देखें")} →</em></Link>)}</div><p className="ku-disclosure">{t("Links are navigation, not redistribution rights or a claim of complete scripture coverage.", "कड़ियाँ केवल मार्गदर्शन हैं, पुनर्प्रकाशन अधिकार या पूरे ग्रंथ की उपलब्धता का दावा नहीं।")}</p></div>;
+}
+
+export function ScriptureWork() {
+  const { slug } = useParams();
+  const { language, t } = useLanguage();
+  const work = graphWorks.find(item => item.slug === slug);
+  if (!work) return <div className="ku-page"><Back to="/alpha/scriptures"/><h1>{t("This work is not available.", "यह ग्रंथ उपलब्ध नहीं है।")}</h1></div>;
+  const passages = work.sourceIds.map(id => getDemoCorpusPassage(id)).filter((passage): passage is NonNullable<typeof passage> => !!passage);
+  const stories = graphStories.filter(story => story.sourceIds.some(id => work.sourceIds.includes(id)));
+  return <article className="ku-page ku-scripture" lang={language}><Back to="/alpha/scriptures" label={t("Scriptures", "ग्रंथ")}/><header className="ku-intro"><span className="ku-kicker">{work.availability === "local_selection" ? t("SELECTED LOCAL READINGS", "चुने हुए स्थानीय पाठ") : t("SOURCE POINTER", "स्रोत-संकेत")}</span><h1>{work.title[language]}</h1><p>{work.orientation[language]}</p></header>
+    {passages.length > 0 && <section className="ku-related" aria-labelledby="ku-work-readings"><span className="ku-kicker">{t("AVAILABLE TO READ HERE", "यहाँ पढ़ने को उपलब्ध")}</span><h2 id="ku-work-readings">{t("Selected passages", "चुने हुए श्लोक")}</h2><div className="ku-related-list">{passages.map(passage => <Link key={passage.id} to={`/alpha/episode/${passage.lessonId}?origin=work`}><strong>{work.title[language]} {passage.source.canonicalReference}</strong><span>{t("Original verse · unreviewed demo meaning", "मूल श्लोक · समीक्षा-रहित नमूना अर्थ")} →</span></Link>)}</div><p>{t("These selections do not make up a complete chapter. Continue in context through the source links below.", "इन चुने श्लोकों से पूरा अध्याय नहीं बनता। नीचे स्रोत-कड़ियों से संदर्भ में पढ़ें।")}</p></section>}
+    {stories.length > 0 && <section className="ku-related" aria-labelledby="ku-work-stories"><span className="ku-kicker">{t("EDITORIAL CONTEXT", "संपादकीय संदर्भ")}</span><h2 id="ku-work-stories">{t("A story to enter through", "कथा से प्रवेश करें")}</h2><div className="ku-related-list">{stories.map(story => <Link key={story.id} to={story.href}><strong>{story.title[language]}</strong><span>{t("Original retelling · not scripture", "मौलिक पुनर्कथन · मूल ग्रंथ नहीं")} →</span></Link>)}</div></section>}
+    <section className="ku-related" aria-labelledby="ku-work-sources"><span className="ku-kicker">{t("TRACE THE TEXT", "मूल पाठ देखें")}</span><h2 id="ku-work-sources">{t("Sources and status", "स्रोत और उनकी स्थिति")}</h2><div className="ku-related-list">{work.sourceIds.map(id => <SourceLink key={id} id={id}/>)}</div></section>
+    <p className="ku-disclosure">{t("No listed work has a cleared, complete local edition. External pointers require internet; local explanations and retellings await rights and named human review.", "किसी भी सूचीबद्ध ग्रंथ का पूरा स्वीकृत स्थानीय संस्करण नहीं है। बाहरी संकेत के लिए इंटरनेट चाहिए; स्थानीय व्याख्या और पुनर्कथन के अधिकार व नामित मानवीय समीक्षा बाकी हैं।")}</p>
+  </article>;
 }
 
 function EntityArt({ entity, hero = false }: { entity: GraphEntity; hero?: boolean }) {
@@ -93,7 +143,7 @@ export function UniversalSearch() {
   const results = useMemo(() => searchKnowledgeGraph(query, language), [query, language]);
   const submit = (event: FormEvent) => { event.preventDefault(); setQuery(draft.trim().slice(0, 120)); };
   return <div className="ku-page ku-search-page" lang={language}><Back/><header className="ku-intro"><span className="ku-kicker">{t("SEARCH THE AVAILABLE COLLECTION", "उपलब्ध संग्रह में खोजें")}</span><h1>{t("Follow a name, a story or a question.", "नाम, कथा या सवाल से आगे बढ़ें।")}</h1><p>{t("Search stays on this device during this visit. The collection is small; no model is asked and no result is invented.", "इस सत्र में खोज इसी डिवाइस पर रहती है। संग्रह छोटा है; किसी मॉडल से नहीं पूछा जाता और कोई परिणाम गढ़ा नहीं जाता।")}</p></header><form className="ku-search-form" onSubmit={submit}><label htmlFor="ku-search-input">{t("Search", "खोजें")}</label><div><input id="ku-search-input" type="search" value={draft} maxLength={120} onChange={event => { setDraft(event.target.value); setQuery(event.target.value); }} placeholder={t("Try Hanuman, Krishna, Gita 2.47", "हनुमान, कृष्ण, गीता २.४७ लिखें")}/><button type="submit">{t("Find", "ढूँढें")}</button></div></form>
-    {query.trim() ? <section className="ku-results" aria-live="polite"><h2>{results.length ? t("In this preview", "इस पूर्वावलोकन में") : t("No clear match here yet.", "यहाँ अभी स्पष्ट मेल नहीं मिला।")}</h2>{results.length ? <div className="ku-result-list">{results.map(result => <Link key={`${result.kind}-${result.id}`} to={result.href}><small>{result.kind === "entity" ? t("DIVINE / CHARACTER", "दिव्य / पात्र") : result.kind === "story" ? t("STORY · RETELLING", "कथा · पुनर्कथन") : result.kind === "passage" ? t("SCRIPTURE · DEMO", "ग्रंथ · नमूना") : t("THEME · EDITORIAL", "विषय · संपादकीय")}</small><strong>{result.title[language]}</strong><span>{result.subtitle[language]}</span><em>{result.state === "source_pointer" ? t("Source pointer only", "केवल स्रोत-संकेत") : t("Unreviewed preview", "समीक्षा-रहित पूर्वावलोकन")} ↗</em></Link>)}</div> : <p>{t("Try a different name or browse the available entries. We will not invent a scripture result for this question.", "कोई दूसरा नाम लिखें या उपलब्ध प्रविष्टियाँ देखें। हम इस सवाल के लिए शास्त्रीय परिणाम नहीं गढ़ेंगे।")}</p>}</section> : <div className="ku-search-starters"><span className="ku-kicker">{t("BEGIN SOMEWHERE", "कहीं से शुरू करें")}</span>{["Hanuman", "Shiva", "Gita 2.47"].map(value => <button type="button" key={value} onClick={() => { setDraft(value); setQuery(value); }}>{value} ↗</button>)}</div>}
+    {query.trim() ? <section className="ku-results" aria-live="polite"><h2>{results.length ? t("In this preview", "इस पूर्वावलोकन में") : t("No clear match here yet.", "यहाँ अभी स्पष्ट मेल नहीं मिला।")}</h2>{results.length ? <div className="ku-result-list">{results.map(result => <Link key={`${result.kind}-${result.id}`} to={result.href}><small>{result.kind === "entity" ? t("DIVINE / CHARACTER", "दिव्य / पात्र") : result.kind === "story" ? t("STORY · RETELLING", "कथा · पुनर्कथन") : result.kind === "passage" ? t("PASSAGE · DEMO", "श्लोक · नमूना") : result.kind === "work" ? t("SCRIPTURE · AVAILABLE PATH", "ग्रंथ · उपलब्ध रास्ता") : t("THEME · EDITORIAL", "विषय · संपादकीय")}</small><strong>{result.title[language]}</strong><span>{result.subtitle[language]}</span><em>{result.state === "source_pointer" ? t("Source pointer only", "केवल स्रोत-संकेत") : t("Unreviewed preview", "समीक्षा-रहित पूर्वावलोकन")} ↗</em></Link>)}</div> : <p>{t("Try a different name or browse the available entries. We will not invent a scripture result for this question.", "कोई दूसरा नाम लिखें या उपलब्ध प्रविष्टियाँ देखें। हम इस सवाल के लिए शास्त्रीय परिणाम नहीं गढ़ेंगे।")}</p>}</section> : <div className="ku-search-starters"><span className="ku-kicker">{t("BEGIN SOMEWHERE", "कहीं से शुरू करें")}</span>{["Hanuman", "Shiva", "Gita 2.47"].map(value => <button type="button" key={value} onClick={() => { setDraft(value); setQuery(value); }}>{value} ↗</button>)}</div>}
     <p className="ku-disclosure">{t("Only the currently available, labelled demo material is searched. External source links and unreviewed retellings are distinct from approved scripture translations.", "खोज केवल वर्तमान चिह्नित नमूना सामग्री में होती है। बाहरी स्रोत और समीक्षा-रहित पुनर्कथन स्वीकृत शास्त्रीय अनुवाद से अलग हैं।")}</p>
   </div>;
 }
