@@ -1,0 +1,74 @@
+{
+  "gitaChariot": {
+    "src": "/art/gita-chariot-cover-v1.webp",
+    "small": "/art/gita-chariot-cover-v1-480.webp",
+    "width": 941,
+    "height": 1672,
+    "focal": "50% 59%",
+    "fallback": "#273a3a",
+    "alt": { "en": "Krishna and Arjuna on a chariot at sunrise, facing the battlefield", "hi": "सूर्योदय में रणभूमि की ओर देखते रथ पर कृष्ण और अर्जुन" },
+    "origin": "Previously generated for Spritual; original prompt record unavailable",
+    "rights": "unverified",
+    "review": "pending"
+  },
+  "river": {
+    "src": "/art/river-sanctuary-v1.webp",
+    "small": "/art/river-sanctuary-v1-480.webp",
+    "width": 1536,
+    "height": 1024,
+    "focal": "50% 50%",
+    "fallback": "#284b48",
+    "alt": { "en": "Stone steps beside a quiet river at dusk", "hi": "संध्या में शांत नदी के पास पत्थर की सीढ़ियाँ" },
+    "origin": "Previously generated for Spritual; original prompt record unavailable",
+    "rights": "unverified",
+    "review": "pending"
+  },
+  "hanumanCoast": {
+    "src": "/art/hanuman-coast-v1.webp",
+    "small": "/art/hanuman-coast-v1-480.webp",
+    "width": 1122,
+    "height": 1402,
+    "focal": "50% 5%",
+    "fallback": "#334b51",
+    "alt": { "en": "Painterly Hanuman with his mace looking across the sea toward Lanka at dawn", "hi": "भोर में गदा के साथ समुद्र पार लंका की ओर देखते हनुमान का चित्र" },
+    "origin": "Generated for Spritual with OpenAI built-in image_gen, 27 September 2026; prompt in docs/ART_DIRECTION.md",
+    "rights": "unverified",
+    "review": "pending"
+  },
+  "hanumanSea": {
+    "src": "/art/hanuman-crossing-dawn-v1.webp",
+    "small": "/art/hanuman-crossing-dawn-v1-480.webp",
+    "width": 941,
+    "height": 1672,
+    "focal": "50% 50%",
+    "fallback": "#203c49",
+    "alt": { "en": "Dawn light reaching across a broad sea toward a distant shore", "hi": "भोर की रोशनी में समुद्र और दूर का तट" },
+    "origin": "Previously generated for Spritual; original prompt record unavailable",
+    "rights": "unverified",
+    "review": "pending"
+  },
+  "shivaHimalaya": {
+    "src": "/art/shiva-himalaya-v1.webp",
+    "small": "/art/shiva-himalaya-v1-480.webp",
+    "width": 1122,
+    "height": 1402,
+    "focal": "50% 0%",
+    "fallback": "#33424b",
+    "alt": { "en": "Painterly Shiva seated in meditation before Himalayan peaks, with trident nearby", "hi": "हिमालय के सामने ध्यान में बैठे शिव और पास रखा त्रिशूल" },
+    "origin": "Generated for Spritual with OpenAI built-in image_gen, 27 September 2026; prompt in docs/ART_DIRECTION.md",
+    "rights": "unverified",
+    "review": "pending"
+  },
+  "krishnaVrindavan": {
+    "src": "/art/krishna-vrindavan-v1.webp",
+    "small": "/art/krishna-vrindavan-v1-480.webp",
+    "width": 1122,
+    "height": 1402,
+    "focal": "50% 0%",
+    "fallback": "#2a4141",
+    "alt": { "en": "Painterly Krishna playing a flute in a Vrindavan grove at dawn", "hi": "भोर में वृन्दावन के कुंज में बाँसुरी बजाते कृष्ण का चित्र" },
+    "origin": "Generated for Spritual with OpenAI built-in image_gen, 27 September 2026; prompt in docs/ART_DIRECTION.md",
+    "rights": "unverified",
+    "review": "pending"
+  }
+}

@@ -16,17 +16,12 @@
 .ku-entity-row-copy strong { color: var(--ku-ink); font: 450 clamp(30px,5vw,49px)/1.05 Fraunces,Georgia,serif; }
 .ku-entity-row-copy em { max-width: 30ch; color: var(--ku-muted); font-size: 15px; font-style: normal; line-height: 1.48; }
 .ku-entity-row-copy>span { margin-top: 8px; color: var(--ku-ink); font-size: 13px; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; }
-.ku-art { position: relative; overflow: hidden; isolation: isolate; min-height: 180px; background: #263943; }
-.ku-art>img { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 50% 64%; }
-.ku-art-chariot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,#0000 35%,#0b1b22b8); }
-.ku-art-ocean { background: #203c49 url('/art/hanuman-crossing-dawn-v1.webp') 50% 56%/cover no-repeat; }
-.ku-art-ocean .ku-art-light,.ku-art-ocean .ku-art-horizon { display: none; }
-.ku-art-mountain { background: radial-gradient(circle at 68% 25%,#e5d7bc 0 7%,#c4b6a0 8% 15%,transparent 30%),linear-gradient(180deg,#506170,#8b8d87 46%,#454f54 100%); }
-.ku-art-mountain .ku-art-horizon { position: absolute; left: -10%; bottom: -14%; width: 122%; height: 75%; background: #263b43; clip-path: polygon(0 100%,0 72%,20% 54%,35% 70%,58% 14%,82% 68%,100% 47%,100% 100%); }
-.ku-art-mountain .ku-art-light { position: absolute; inset: 38% 0 0; background: linear-gradient(180deg,#f3ebd52b,transparent); }
+.ku-art { position: relative; display: block; overflow: hidden; isolation: isolate; min-height: 180px; background: #263943; }
+.ku-art .editorial-image { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ku-art-unavailable { position: absolute; inset: 0; background: #263943; }
 .ku-entry-hero { position: relative; display: grid; align-items: end; min-height: clamp(390px,63dvh,610px); overflow: hidden; isolation: isolate; border-radius: 7px; background: #1b302c; color: #fff6e7; }
 .ku-art-hero { position: absolute; inset: 0; height: 100%; }
-.ku-art-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,#0b182015 25%,#101c1dc7 73%,#101b1bf2); }
+.ku-art-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg,#0b182015 28%,#101c1d8a 60%,#101b1bf0); pointer-events: none; }
 .ku-entry-hero-copy { position: relative; z-index: 1; padding: clamp(23px,5vw,48px); }
 .ku-entry-hero-copy .ku-kicker { color: #f0c589; }
 .alpha .ku-entry-hero h1 { margin: 8px 0 0; color: #fff7e9 !important; font: 450 clamp(55px,11vw,99px)/.98 Fraunces,Georgia,serif; letter-spacing: -.05em; }
@@ -60,24 +55,47 @@
 .ku-source-context .ku-related-list>a { display: grid; justify-content: start; gap: 4px; }
 .ku-work-list { border-top: 1px solid var(--ku-line); }
 .ku-work-list>a { display: grid; gap: 7px; min-height: 160px; padding: 23px 0; border-bottom: 1px solid var(--ku-line); text-decoration: none; }
+.ku-work-list>a.ku-work-featured { grid-template-columns: minmax(110px,31%) 1fr; gap: clamp(18px,4vw,32px); align-items: center; min-height: 230px; }
+.ku-work-featured>.editorial-image { width: 100%; height: 210px; aspect-ratio: auto !important; }
+.ku-work-featured .ku-work-copy { display: grid; align-content: center; gap: 7px; }
 .ku-work-list small { color: var(--ku-accent); font-size: 10px; font-weight: 750; letter-spacing: .12em; }
 .ku-work-list strong { color: var(--ku-ink); font: 450 clamp(26px,5vw,39px)/1.14 Fraunces,Georgia,serif; }
 .ku-work-list span { max-width: 55ch; color: var(--ku-muted); font-size: 14px; line-height: 1.5; }
 .ku-work-list em { color: var(--ku-ink); font-size: 12px; font-style: normal; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; }
+.ku-work-hero { position: relative; isolation: isolate; height: clamp(250px,42vw,390px); overflow: hidden; background: #273a3a; }
+.ku-work-hero>.editorial-image { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ku-work-hero img { object-position: 50% 55% !important; }
+.ku-work-hero-shade { position: absolute; inset: 0; background: linear-gradient(180deg,transparent 50%,#111c1ce0); pointer-events: none; }
+.ku-work-hero>span:last-child { position: absolute; bottom: 18px; left: 22px; right: 22px; color: #fff2dc; font-size: 12px; }
 .ku-scripture .ku-related-list>a { display: grid; justify-content: start; gap: 5px; }
 .ku-theme-list { display: flex; flex-wrap: wrap; gap: 8px; }
 .ku-theme-list a { display: inline-flex; align-items: center; min-height: 44px; padding: 9px 13px; border: 1px solid var(--ku-line); border-radius: 5px; background: var(--ku-paper); font-size: 13px; font-weight: 700; text-decoration: none; }
-.ku-story-hero { position: relative; isolation: isolate; overflow: hidden; min-height: 355px; display: flex; flex-direction: column; justify-content: end; align-items: start; padding: clamp(25px,5vw,44px); border-radius: 6px; background: linear-gradient(180deg,#102c3350 3%,#102c33bf 76%,#102c33e8),url('/art/hanuman-crossing-dawn-v1.webp') 50% 50%/cover no-repeat; color: #f8f1e4; }
-.ku-story-glow { position: absolute; z-index: -1; width: 340px; height: 340px; top: -130px; right: -60px; border-radius: 50%; background: radial-gradient(circle,#e7c99b9e 0 5%,#af947340 25%,transparent 72%); }
+.ku-story-hero { position: relative; isolation: isolate; overflow: hidden; min-height: 420px; display: flex; flex-direction: column; justify-content: end; align-items: start; padding: clamp(25px,5vw,44px); border-radius: 6px; background: #203c49; color: #f8f1e4; }
+.ku-story-art { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; }
+.ku-story-art img { object-position: 44% 35% !important; }
+.ku-story-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg,#102c3326 5%,#102c33a1 54%,#102c33f0); }
 .ku-story-hero .ku-kicker { color: #f3cc94; }
 .alpha .ku-story-hero h1 { margin: 9px 0; color: #fff6e8 !important; font: 450 clamp(43px,8vw,70px)/1.02 Fraunces,Georgia,serif; letter-spacing: -.045em; }
 .ku-story-hero p { max-width: 33ch; color: #f7ecdc; font-size: 17px; line-height: 1.45; }
 .ku-story-hero small { color: #e6caa7; font-size: 12px; }
 .ku-story-body { max-width: 700px; margin: auto; }
+.ku-story-index-list { display: grid; gap: 18px; }
+.ku-story-index-item { position: relative; isolation: isolate; display: flex; align-items: end; min-height: 310px; overflow: hidden; padding: clamp(22px,5vw,36px); border-radius: 6px; color: #fff5e8 !important; text-decoration: none; }
+.ku-story-index-item>.editorial-image { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; }
+.ku-story-index-item::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg,#0e1b1b17 25%,#0e1b1bc4 65%,#0e1b1bf2); }
+.ku-story-index-item>span:last-child { display: grid; justify-items: start; gap: 7px; }
+.ku-story-index-item small { color: #f4cb95; font-size: 10px; font-weight: 750; letter-spacing: .13em; }
+.ku-story-index-item strong { font: 450 clamp(35px,7vw,55px)/1.07 Fraunces,Georgia,serif; }
+.ku-story-index-item em { max-width: 34ch; color: #f2e8da; font-size: 15px; font-style: normal; line-height: 1.45; }
+.ku-story-index-item b { min-height: 44px; display: inline-flex; align-items: center; color: #f3c78e; font-size: 13px; }
 .ku-story-lead { margin: 30px 0; color: var(--ku-muted); font-size: 14px; line-height: 1.6; }
 .ku-scene { padding: 36px 0 31px; border-top: 1px solid var(--ku-line); scroll-margin-top: 25px; }
 .alpha .ku-scene h2 { margin: 8px 0 17px; color: var(--ku-ink); font: 450 clamp(30px,5vw,43px)/1.12 Fraunces,Georgia,serif; }
 .ku-scene>p { max-width: 59ch; color: var(--ku-ink); font: 400 clamp(17px,2vw,20px)/1.73 Georgia,serif; }
+.ku-story-interlude { margin: 6px 0 26px; }
+.ku-story-interlude>.editorial-image { width: 100%; height: clamp(190px,46vw,310px); aspect-ratio: auto !important; }
+.ku-story-interlude img { object-position: 50% 55% !important; }
+.ku-story-interlude figcaption { padding-top: 9px; color: var(--ku-muted); font-size: 12px; }
 .ku-scene aside { margin: 25px 0; padding: 18px 22px; border-left: 2px solid #ab763b; background: color-mix(in srgb,var(--ku-paper) 80%,#d6bc8e); }
 .ku-scene aside span { color: var(--ku-accent); font-size: 11px; font-weight: 750; letter-spacing: .12em; }
 .ku-scene aside p { margin: 6px 0 0; font-size: 16px; line-height: 1.55; }
@@ -95,6 +113,9 @@
 .alpha .ku-results h2 { color: var(--ku-ink); font: 450 29px/1.2 Fraunces,Georgia,serif; }
 .ku-result-list { display: grid; border-top: 1px solid var(--ku-line); }
 .ku-result-list>a { display: grid; gap: 5px; min-height: 104px; padding: 16px 0; border-bottom: 1px solid var(--ku-line); text-decoration: none; }
+.ku-result-list>a.ku-result-with-image { grid-template-columns: 78px minmax(0,1fr); gap: 17px; align-items: center; }
+.ku-result-with-image>.editorial-image { width: 78px; height: 86px; aspect-ratio: auto !important; }
+.ku-result-copy { display: grid; gap: 5px; min-width: 0; }
 .ku-result-list small { color: var(--ku-accent); font-size: 10px; font-weight: 750; letter-spacing: .12em; }
 .ku-result-list strong { color: var(--ku-ink); font: 450 24px/1.18 Fraunces,Georgia,serif; }
 .ku-result-list span { color: var(--ku-muted); font-size: 13px; }
@@ -110,7 +131,9 @@
 .ku-saved p { color: var(--a-muted); font-size: 14px; line-height: 1.5; }
 .ku-saved-list { border-top: 1px solid var(--a-line); }
 .ku-saved-list>div { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 67px; border-bottom: 1px solid var(--a-line); }
-.ku-saved-list a { display: grid; gap: 3px; min-height: 50px; justify-content: center; color: var(--a-ink); text-decoration: none; }
+.ku-saved-list a { display: flex; align-items: center; gap: 13px; min-height: 64px; color: var(--a-ink); text-decoration: none; }
+.ku-saved-list a>.editorial-image { width: 54px; height: 58px; flex: none; aspect-ratio: auto !important; }
+.ku-saved-list a>span:last-child { display: grid; gap: 3px; }
 .ku-saved-list a small { color: var(--a-muted); font-size: 11px; }
 .ku-saved-list a strong { font: 450 20px/1.2 Fraunces,Georgia,serif; }
 .ku-saved-list button { min-height: 44px; padding: 8px; border: 0; background: transparent; color: var(--a-muted); text-decoration: underline; }
@@ -118,5 +141,5 @@
 .alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .ku-page { --ku-accent: var(--m-accent); }
 .alpha.calm-shell:is([data-appearance="dusk"],[data-appearance="night"]) .ku-primary { background: var(--m-action); color: var(--m-on-action) !important; }
 @media (max-width:600px) { .ku-entity-row { grid-template-columns: 38% 1fr; min-height: 190px; } .ku-entity-row .ku-art { min-height: 175px; } .ku-entity-row-copy { padding: 16px 18px; } .ku-entity-row-copy strong { font-size: clamp(29px,8vw,40px); } .ku-entity-row-copy em { font-size: 13px; } .ku-entry-hero { min-height: 470px; } .ku-story-hero { min-height: 325px; } }
-@media (max-width:370px) { .ku-entity-row { grid-template-columns: 35% 1fr; } .ku-entity-row-copy { padding: 12px; } .ku-entity-row-copy small { font-size: 9px; } .ku-entity-row-copy em { font-size: 12px; } .ku-entry-hero { min-height: 430px; } }
+@media (max-width:370px) { .ku-entity-row { grid-template-columns: 35% 1fr; } .ku-entity-row-copy { padding: 12px; } .ku-entity-row-copy small { font-size: 9px; } .ku-entity-row-copy em { font-size: 12px; } .ku-entry-hero { min-height: 430px; } .ku-work-list>a.ku-work-featured { grid-template-columns: 100px 1fr; gap: 14px; } .ku-work-featured>.editorial-image { height: 178px; } }
 @media (prefers-reduced-motion:reduce) { .ku-page *, .ku-page *::before, .ku-page *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

@@ -6,8 +6,9 @@
 .before-story-top>a { display: inline-flex; align-items: center; min-height: 44px; color: #2b5941; font-size: 14px; font-weight: 750; text-decoration: none; }
 .before-story-language { min-width: 54px; min-height: 44px; padding: 7px; border: 1px solid #b9c9b6; border-radius: 22px; background: #fffdf7; color: #29533e; font-weight: 700; }
 .before-story-hero { position: relative; display: flex; align-items: end; min-height: clamp(350px, 54vw, 570px); overflow: hidden; border-radius: 14px; isolation: isolate; background: #1b3028; }
-.before-story-hero>img { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 44%; }
-.before-story-hero::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(0deg,#101e1bd9 0%,#101e1b77 38%,transparent 85%); }
+.before-story-art { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; }
+.before-story-art img { object-position: 50% 44% !important; }
+.before-story-hero::after { content: ''; position: absolute; z-index: -1; inset: 0; pointer-events: none; background: linear-gradient(0deg,#101e1bd9 0%,#101e1b77 38%,transparent 85%); }
 .before-story-hero>div { padding: clamp(25px,6vw,55px); }
 .before-story-kicker { color: #f6d39e; font-size: 11px; font-weight: 750; letter-spacing: .14em; }
 .alpha .before-story-hero h1 { max-width: 14ch; margin: 10px 0; color: #fff9eb; font: 450 clamp(42px, 6vw, 69px)/1.08 Fraunces,Georgia,serif; }
@@ -29,4 +30,4 @@
 .before-story-ending a { display: inline-flex; align-items: center; gap: 20px; min-height: 50px; padding: 12px 18px; border-radius: 9px; background: #28543e; color: #fffdf6; font-weight: 750; text-decoration: none; }
 .before-story-disclosure { color: #5d705f; font-size: 12px; line-height: 1.65; }
 .alpha[data-large=true] .before-story :is(.before-story-intro,.before-story-narrative,.before-story-ending p) { font-size: 22px; }
-@media (max-width: 600px) { .before-story-hero { min-height: 430px; } .before-story-hero>img { object-position: 53% 45%; } .before-story-hero>div { padding: 27px; } .before-story-intro { padding-top: 28px; } .before-story-section { padding: 36px 0 43px; } }
+@media (max-width: 600px) { .before-story-hero { min-height: 430px; } .before-story-art img { object-position: 53% 45% !important; } .before-story-hero>div { padding: 27px; } .before-story-intro { padding-top: 28px; } .before-story-section { padding: 36px 0 43px; } }

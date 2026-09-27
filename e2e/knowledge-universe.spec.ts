@@ -1,5 +1,22 @@
 import { expect, test } from "@playwright/test";
 
+test("story discovery uses distinct editorial covers and a failed hero can be retried", async ({ page }) => {
+  await page.goto("/alpha/library");
+  await page.getByRole("link", { name: /Explore stories/ }).click();
+  await expect(page.getByRole("heading", { name: "Enter through a story." })).toBeVisible();
+  const covers = page.locator(".ku-story-index-item img");
+  await expect(covers).toHaveCount(2);
+  await expect(covers.nth(0)).toHaveAttribute("src", /gita-chariot-cover/);
+  await expect(covers.nth(1)).toHaveAttribute("src", /hanuman-coast/);
+  await page.getByRole("link", { name: /Across the water/ }).click();
+  await expect(page.locator(".ku-story-interlude img")).toHaveAttribute("src", /hanuman-crossing-dawn/);
+  await page.route(/\/art\/shiva-himalaya-v1(?:-480)?\.webp/, route => route.fulfill({ status: 404, body: "" }));
+  await page.goto("/alpha/divine/shiva");
+  await expect(page.getByRole("heading", { name: "Shiva", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Retry image" })).toBeVisible();
+  await expect(page.locator(".ku-entry-hero .editorial-image-fallback")).toHaveAttribute("aria-label", /Shiva seated in meditation/);
+});
+
 test("Explore connects Divine, a source-linked story, private Saved and search on a narrow phone", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));
@@ -47,7 +64,7 @@ test("Life gives an honest non-Gita source pointer and preserves the question on
 
 test("Scripture browsing distinguishes available Gita verses from external-only works", async ({ page }) => {
   await page.goto("/alpha/library");
-  await page.getByRole("link", { name: /See all source-linked works/ }).click();
+  await page.getByRole("link", { name: /All scriptures/ }).click();
   await expect(page.getByRole("heading", { name: "Read what is here." })).toBeVisible();
   await page.getByRole("link", { name: /Bhagavad Gita.*Explore this work/ }).click();
   await expect(page.getByRole("heading", { name: "Bhagavad Gita" })).toBeVisible();

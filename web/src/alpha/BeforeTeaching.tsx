@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { arjunaBowStory } from "../../../packages/content/src/story";
 import { useWisdom } from "./Wisdom";
 import { useGraphSaves } from "./graphSaves";
+import { EditorialImage } from "./EditorialImage";
 import "./before-teaching.css";
 import "./knowledge-universe.css";
 
@@ -31,7 +32,7 @@ export function BeforeTeaching() {
   return <article className="before-story" lang={language}>
     <div className="before-story-top"><Link to="/alpha/library" aria-label={t("Return to Explore", "खोज पर लौटें")}>← {t("Explore", "खोजें")}</Link><button className="before-story-language" type="button" onClick={changeLanguage} aria-label={hi ? "Switch to English" : "हिन्दी में पढ़ें"}>{hi ? "EN" : "हिं"} ⇄</button></div>
     {error && <p role="alert" className="alpha-error">{error}</p>}
-    <header className="before-story-hero"><img src="/art/gita-chariot-cover-v1.webp" width="941" height="1672" alt={t("Illustrated chariot at sunrise", "सूर्योदय में रथ का चित्र")}/><div><span className="before-story-kicker">SPRITUAL / {t("BEFORE THE TEACHING", "उपदेश से पहले")}</span><h1>{arjunaBowStory.title[language]}</h1><p>{arjunaBowStory.subtitle[language]}</p></div></header>
+    <header className="before-story-hero"><EditorialImage asset="gitaChariot" language={language} priority className="before-story-art"/><div><span className="before-story-kicker">SPRITUAL / {t("BEFORE THE TEACHING", "उपदेश से पहले")}</span><h1>{arjunaBowStory.title[language]}</h1><p>{arjunaBowStory.subtitle[language]}</p></div></header>
     <div className="before-story-body"><p className="before-story-intro">{t("Before any teaching, there was a human moment. Read this brief retelling at your own pace.", "किसी भी उपदेश से पहले एक मानवीय क्षण था। इस संक्षिप्त पुनर्कथन को अपनी गति से पढ़ें।")}</p>
       <div className="before-story-save"><button type="button" disabled={!!saved.error} aria-pressed={saved.ids.includes("story:arjuna-bow")} onClick={() => saved.toggle("story:arjuna-bow")}>{saved.ids.includes("story:arjuna-bow") ? t("Saved · remove", "सहेजा · हटाएँ") : t("Save this story", "यह कथा सहेजें")}</button><span>{t("Only on this device.", "केवल इस डिवाइस पर।")}</span>{saved.error && <p role="alert">{saved.error}</p>}</div>
       {scenes.map((scene, index) => <section className="before-story-section" id={`story-moment-${index}`} key={scene.id} aria-labelledby={`story-moment-heading-${index}`}>

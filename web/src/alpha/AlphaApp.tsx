@@ -36,6 +36,7 @@ const BeforeTeaching = lazy(() => import("./BeforeTeaching").then(module => ({ d
 const DivineDiscover = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.DivineDiscover })));
 const DivineEntry = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.DivineEntry })));
 const GraphStoryReader = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.GraphStoryReader })));
+const StoriesIndex = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.StoriesIndex })));
 const UniversalSearch = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.UniversalSearch })));
 const SourceContext = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.SourceContext })));
 const ScriptureLibrary = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.ScriptureLibrary })));
@@ -106,7 +107,7 @@ function Shell() {
   const storyReader = location.pathname.startsWith("/alpha/episode/") || location.pathname.startsWith("/alpha/stories/");
   const welcomePage = location.pathname === "/alpha/welcome";
   const reflectionPage = location.pathname.startsWith("/alpha/reflection/");
-  const wisdomSurface = ["/alpha", "/alpha/today", "/alpha/library", "/alpha/life", "/alpha/divine", "/alpha/search", "/alpha/stories/arjuna-bow", "/alpha/my-day", "/alpha/practice", "/alpha/series/gita", "/alpha/account", "/alpha/settings"].includes(location.pathname) || location.pathname.startsWith("/alpha/divine/") || location.pathname.startsWith("/alpha/sources/") || location.pathname.startsWith("/alpha/scriptures") || location.pathname.startsWith("/alpha/wisdom/") || location.pathname.startsWith("/alpha/reflection/") || storyReader;
+  const wisdomSurface = ["/alpha", "/alpha/today", "/alpha/library", "/alpha/life", "/alpha/divine", "/alpha/search", "/alpha/stories", "/alpha/stories/arjuna-bow", "/alpha/my-day", "/alpha/practice", "/alpha/series/gita", "/alpha/account", "/alpha/settings"].includes(location.pathname) || location.pathname.startsWith("/alpha/divine/") || location.pathname.startsWith("/alpha/sources/") || location.pathname.startsWith("/alpha/scriptures") || location.pathname.startsWith("/alpha/wisdom/") || location.pathname.startsWith("/alpha/reflection/") || storyReader;
   const [readingLanguage, setReadingLanguage] = useState<"en" | "hi">("en");
   const [systemDark, setSystemDark] = useState(() => window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false);
   useEffect(() => {
@@ -222,6 +223,7 @@ function Shell() {
           <Route path="/alpha/practice" element={<Suspense fallback={<p role="status">Opening practice…</p>}><PracticeHub /></Suspense>} />
           <Route path="/alpha/life" element={<Suspense fallback={<p role="status">Finding your place…</p>}><LifeWisdom key={actor.id} restoreQuestion={lifeReturnQuestion.current?.actorId === actor.id ? lifeReturnQuestion.current.question : null} onOpenSource={question => { lifeReturnQuestion.current = { actorId: actor.id, question }; }} /></Suspense>} />
           <Route path="/alpha/stories/arjuna-bow" element={<Suspense fallback={<p role="status">Opening the story…</p>}><BeforeTeaching /></Suspense>} />
+          <Route path="/alpha/stories" element={<Suspense fallback={<p role="status">Opening stories…</p>}><StoriesIndex /></Suspense>} />
           <Route path="/alpha/stories/:slug" element={<Suspense fallback={<p role="status">Opening the story…</p>}><GraphStoryReader /></Suspense>} />
           <Route path="/alpha/wisdom/:id" element={<WisdomLesson />} />
           <Route path="/alpha/series/gita" element={<Suspense fallback={<p role="status">Opening the journey…</p>}><GitaJourney /></Suspense>} />
