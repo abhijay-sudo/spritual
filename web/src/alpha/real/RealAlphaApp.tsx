@@ -11,6 +11,8 @@ import {
 import "./real-alpha.css";
 
 const RealTeacher = lazy(() => import("../teacher-real/TeacherReal"));
+const RealKnowledgeExperience = lazy(() => import("../knowledge/RealKnowledgeExperience"));
+const knowledgePath = /^\/alpha\/(library|divine(?:\/[^/]+)?|stories(?:\/[^/]+)?|scriptures(?:\/[^/]+)?|episode\/[^/]+|search|life|my-day)$/;
 type AuthState =
   | { kind: "checking" }
   | { kind: "signed-out" }
@@ -314,6 +316,7 @@ function RealHome({ client, language, onLanguageChange, canTeach }: { client: Su
     <p className="alpha-kicker">{tr(language, "Your community", "आपका समुदाय")}</p>
     <h1>{tr(language, "One reading at a time.", "एक समय में एक पाठ।")}</h1>
     <p className="alpha-lead">{tr(language, "Your circle’s released readings appear here after a teacher schedules them. Begin whenever you have a little room.", "शिक्षक जब आपके समूह के लिए पाठ जारी करेंगे, वे यहाँ दिखाई देंगे। जब थोड़ा समय मिले, तब शुरू करें।")}</p>
+    <Link className="real-teacher-entry" to="/alpha/library"><span><strong>{tr(language,"Explore published knowledge","प्रकाशित ज्ञान खोजें")}</strong><small>{tr(language,"Read sources and stories available to everyone","सभी के लिए उपलब्ध स्रोत और कथाएँ पढ़ें")}</small></span><span aria-hidden="true">↗</span></Link>
     {canTeach && <Link className="real-teacher-entry" to="/alpha/teacher"><span><strong>{tr(language, "Teacher workspace", "शिक्षक कार्यक्षेत्र")}</strong><small>{tr(language, "Create circles and schedule eligible readings", "समूह और पाठ जारी करें · कार्यस्थल अभी अंग्रेज़ी में है")}</small></span><span aria-hidden="true">↗</span></Link>}
     <LoadResult state={state} retry={retry} language={language}>{circles => circles.length ? <div className="real-circle-list">
       {circles.map(circle => <Link className="real-circle" to={`/alpha/circle/${circle.cohortId}`} key={circle.cohortId}>
@@ -502,6 +505,7 @@ export default function RealAlphaApp() {
 
 function RealConnected({ client, language, onLanguageChange }: { client: SupabaseClient; language: RealLanguage; onLanguageChange: (value: RealLanguage) => void }) {
   const online = useOnline();
+  const location = useLocation();
   const { state, verify } = useRealAuth(client);
   const wasOnline = useRef(online);
   useEffect(() => {
@@ -509,6 +513,9 @@ function RealConnected({ client, language, onLanguageChange }: { client: Supabas
     wasOnline.current = online;
   }, [online, verify]);
   if (!online) return <div className="alpha real-shell" lang={language}><main className="alpha-main alpha-stack real-intro"><LanguageSwitch language={language} onChange={onLanguageChange} /><p className="alpha-kicker">{tr(language, "Connected alpha", "जुड़ा हुआ अल्फा")}</p><h1>{tr(language, "Reconnect to read.", "पढ़ने के लिए फिर कनेक्ट करें।")}</h1><p>{tr(language, "Circle access and source rights must be checked live. No previously loaded reading is displayed while offline.", "समूह की पहुँच और स्रोत अधिकारों की जाँच ऑनलाइन करनी होती है। ऑफलाइन होने पर पहले से लोड किया गया पाठ नहीं दिखाया जाता।")}</p></main></div>;
+  // Public knowledge is served only by audited rights-filtered RPCs, including
+  // before sign-in. This lazy chunk imports no bundled preview graph records.
+  if (knowledgePath.test(location.pathname)) return <Suspense fallback={<div className="alpha real-shell"><main className="alpha-main" role="status">{tr(language,"Checking published knowledge…","प्रकाशित सामग्री जाँची जा रही है…")}</main></div>}><RealKnowledgeExperience client={client} language={language}/></Suspense>;
   if (state.kind === "checking") return <div className="alpha real-shell" lang={language}><main className="alpha-main real-intro"><p role="status">{tr(language, "Checking your account…", "आपका खाता जाँचा जा रहा है…")}</p></main></div>;
   if (state.kind === "error") return <div className="alpha real-shell" lang={language}><main className="alpha-main alpha-stack real-intro"><LanguageSwitch language={language} onChange={onLanguageChange} /><h1>{tr(language, "We couldn’t verify your account.", "आपका खाता सत्यापित नहीं हो सका।")}</h1><p role="alert">{tr(language, state.message, "अपना इंटरनेट जाँचें और फिर कोशिश करें।")}</p><button className="alpha-secondary" type="button" onClick={() => { void verify(); }}>{tr(language, "Try again", "फिर कोशिश करें")}</button></main></div>;
   if (state.kind === "signed-out") return <div className="alpha real-shell" lang={language}><main className="alpha-main"><RealSignIn client={client} onVerified={verify} language={language} onLanguageChange={onLanguageChange} /></main></div>;

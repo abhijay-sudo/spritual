@@ -1,0 +1,23 @@
+.rk-shell .alpha-main { max-width: 850px; padding: 25px 20px 70px; }
+.rk-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px max(20px,calc((100vw - 850px)/2)); border-bottom: 1px solid #d8d3c5; }
+.rk-brand { color: #19382f; font: 450 28px/1 Fraunces,Georgia,serif; text-decoration: none; }
+.rk-header nav { display: flex; flex-wrap: wrap; gap: 3px 17px; }
+.rk-header nav a { min-height: 40px; display: inline-flex; align-items: center; color: #254c3d; font-size: 13px; font-weight: 700; }
+.rk-status,.rk-empty { padding: 22px 0; color: #53685d; line-height: 1.55; }
+.rk-error { padding: 18px; border: 1px solid #aa735b; background: #f8eee5; color: #4b2b20; }
+.rk-error button { min-height: 44px; border: 1px solid currentColor; background: transparent; padding: 8px 15px; color: inherit; }
+.rk-entity-row { grid-template-columns: minmax(88px,24%) 1fr; }
+.rk-entity-art { margin: 10px 0; background: radial-gradient(circle at 50% 30%,#79694d,#274339 65%,#172d2d); }
+.rk-rendering { padding: 22px 0; border-top: 1px solid #d8d3c5; }
+.rk-rendering>small { color: #895923; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.rk-rendering>p { white-space: pre-wrap; font: 400 clamp(18px,3vw,22px)/1.7 Georgia,serif; }
+.rk-save-action { margin: 12px 0 28px; }
+.rk-save-action button,.rk-saved-row button { min-height: 44px; border: 1px solid #607568; border-radius: 999px; padding: 8px 18px; background: transparent; color: #19382f; font-weight: 700; cursor: pointer; }
+.rk-save-action button:disabled,.rk-saved-row button:disabled { opacity: .6; cursor: default; }
+.rk-save-action p { font-size: 14px; }
+.rk-saved-list { border-top: 1px solid #d8d3c5; }
+.rk-saved-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 17px 0; border-bottom: 1px solid #d8d3c5; }
+.rk-saved-row>div { min-width: 0; display: grid; gap: 6px; }
+.rk-saved-row small { color: #895923; text-transform: uppercase; letter-spacing: .08em; }
+.rk-saved-row a,.rk-saved-row strong { color: #19382f; font: 500 20px/1.3 Fraunces,Georgia,serif; }
+@media(max-width:650px){.rk-header { display: block; }.rk-header nav { margin-top: 13px; }.rk-header nav a { font-size: 12px; }.rk-entity-row { grid-template-columns: 94px 1fr; min-height: 160px; }.rk-entity-row .ku-entity-row-copy { padding: 15px; }.rk-entity-row .ku-entity-row-copy strong { font-size: 27px; }}
