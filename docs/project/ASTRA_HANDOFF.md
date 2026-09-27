@@ -1,5 +1,11 @@
 # Astra takeover: Spiritual.co.in
 
+## Canonical visual/media delivery — 27 September 2026
+
+The mounted `/alpha` preview now uses a shared bilingual editorial-media registry with responsive WebP files, intentional crops, missing-image recovery, and explicit rights/review states. Distinct local-preview Krishna, Hanuman and Shiva art appears across Divine, Explore, search and Saved; story and scripture covers share those assets, and the Hanuman reader has one paced sea illustration. Text-first scripture, source and privacy surfaces remain quiet. `npm run media:audit` runs during builds and `npm run media:release-preflight` blocks all six unreviewed/rights-unverified assets. See `docs/ART_DIRECTION.md` and `docs/VISUAL_COVERAGE.md`.
+
+Verification: 152/152 Node tests, TypeScript and audited build; 21/21 default Chromium journeys with three connected cases skipped; 320/390px Hindi/Night/larger-text/reduced-motion and selected 768px browser visual checks. The latest debug APK (`artifacts/Spritual-0.1.0-debug.apk`, SHA-256 `8ae37d503d0d94dc612e8992c5cb5df589ca68366f14286a4f46834a1e67029e`) compiled and showed Today, Explore and Divine on Android API 36. No production deployment, media/content approval, physical phone, participant study or iOS compilation occurred. The working local preview is on port 5174.
+
 ## Consumer target and source-context increment — 27 September 2026
 
 The new owner-supplied Ultra-Max directive makes a calm consumer, multi-source learning system the active **target**; the earlier institution-first brief is historical positioning, while the teacher workflow and trust boundaries remain. This increment moves the primary dock to Today / Explore / Ask / Saved while retaining optional Practice, and adds a scripture/work index, source-context round trip and narrowly scoped cross-source Life pointers to the existing `/alpha`, plus a Hindi normalizer correction. It does not complete the requested wider corpus, secure CMS, live AI or production app. `docs/BUILD_STATUS.md` records 152 Node tests, 20 default browser journeys, build and visual checks, with exact limits. Continue from the current graph, not a second app; obtain rights and named review before publishing or sending text to AI.
