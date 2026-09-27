@@ -33,6 +33,14 @@ const GitaJourney = lazy(() => import("./Story").then(module => ({ default: modu
 const GitaEpisode = lazy(() => import("./Story").then(module => ({ default: module.GitaEpisode })));
 const LifeWisdom = lazy(() => import("./LifeWisdom").then(module => ({ default: module.LifeWisdom })));
 const BeforeTeaching = lazy(() => import("./BeforeTeaching").then(module => ({ default: module.BeforeTeaching })));
+const DivineDiscover = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.DivineDiscover })));
+const DivineEntry = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.DivineEntry })));
+const GraphStoryReader = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.GraphStoryReader })));
+const StoriesIndex = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.StoriesIndex })));
+const UniversalSearch = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.UniversalSearch })));
+const SourceContext = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.SourceContext })));
+const ScriptureLibrary = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.ScriptureLibrary })));
+const ScriptureWork = lazy(() => import("./KnowledgeUniverse").then(module => ({ default: module.ScriptureWork })));
 const PracticeHub = lazy(() => import("./PracticeHub"));
 const sample = {
   ...createSeed().contents[0],
@@ -92,14 +100,14 @@ function Shell() {
   // Keep it only in memory; never put a private question in history or storage.
   const lifeReturnQuestion = useRef<{ actorId: string; question: string } | null>(null);
   useEffect(() => {
-    const isLifeSource = location.pathname.startsWith("/alpha/episode/") || location.pathname === "/alpha/stories/arjuna-bow";
+    const isLifeSource = location.pathname.startsWith("/alpha/episode/") || location.pathname.startsWith("/alpha/stories/") || location.pathname.startsWith("/alpha/sources/");
     if (location.pathname !== "/alpha/life" && !isLifeSource) lifeReturnQuestion.current = null;
   }, [location.pathname]);
   useEffect(() => { lifeReturnQuestion.current = null; }, [actor.id]);
   const storyReader = location.pathname.startsWith("/alpha/episode/") || location.pathname.startsWith("/alpha/stories/");
   const welcomePage = location.pathname === "/alpha/welcome";
   const reflectionPage = location.pathname.startsWith("/alpha/reflection/");
-  const wisdomSurface = ["/alpha", "/alpha/today", "/alpha/library", "/alpha/life", "/alpha/stories/arjuna-bow", "/alpha/my-day", "/alpha/practice", "/alpha/series/gita", "/alpha/account", "/alpha/settings"].includes(location.pathname) || location.pathname.startsWith("/alpha/wisdom/") || location.pathname.startsWith("/alpha/reflection/") || storyReader;
+  const wisdomSurface = ["/alpha", "/alpha/today", "/alpha/library", "/alpha/life", "/alpha/divine", "/alpha/search", "/alpha/stories", "/alpha/stories/arjuna-bow", "/alpha/my-day", "/alpha/practice", "/alpha/series/gita", "/alpha/account", "/alpha/settings"].includes(location.pathname) || location.pathname.startsWith("/alpha/divine/") || location.pathname.startsWith("/alpha/sources/") || location.pathname.startsWith("/alpha/scriptures") || location.pathname.startsWith("/alpha/wisdom/") || location.pathname.startsWith("/alpha/reflection/") || storyReader;
   const [readingLanguage, setReadingLanguage] = useState<"en" | "hi">("en");
   const [systemDark, setSystemDark] = useState(() => window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false);
   useEffect(() => {
@@ -206,9 +214,17 @@ function Shell() {
           <Route path="/alpha/join" element={<Join />} />
           <Route path="/alpha/today" element={<DevotionalToday />} />
           <Route path="/alpha/library" element={<DevotionalExplore />} />
+          <Route path="/alpha/divine" element={<Suspense fallback={<p role="status">Opening Divine…</p>}><DivineDiscover /></Suspense>} />
+          <Route path="/alpha/divine/:slug" element={<Suspense fallback={<p role="status">Opening this entry…</p>}><DivineEntry /></Suspense>} />
+          <Route path="/alpha/search" element={<Suspense fallback={<p role="status">Opening search…</p>}><UniversalSearch /></Suspense>} />
+          <Route path="/alpha/sources/:id" element={<Suspense fallback={<p role="status">Opening source context…</p>}><SourceContext /></Suspense>} />
+          <Route path="/alpha/scriptures" element={<Suspense fallback={<p role="status">Opening scriptures…</p>}><ScriptureLibrary /></Suspense>} />
+          <Route path="/alpha/scriptures/:slug" element={<Suspense fallback={<p role="status">Opening work…</p>}><ScriptureWork /></Suspense>} />
           <Route path="/alpha/practice" element={<Suspense fallback={<p role="status">Opening practice…</p>}><PracticeHub /></Suspense>} />
           <Route path="/alpha/life" element={<Suspense fallback={<p role="status">Finding your place…</p>}><LifeWisdom key={actor.id} restoreQuestion={lifeReturnQuestion.current?.actorId === actor.id ? lifeReturnQuestion.current.question : null} onOpenSource={question => { lifeReturnQuestion.current = { actorId: actor.id, question }; }} /></Suspense>} />
           <Route path="/alpha/stories/arjuna-bow" element={<Suspense fallback={<p role="status">Opening the story…</p>}><BeforeTeaching /></Suspense>} />
+          <Route path="/alpha/stories" element={<Suspense fallback={<p role="status">Opening stories…</p>}><StoriesIndex /></Suspense>} />
+          <Route path="/alpha/stories/:slug" element={<Suspense fallback={<p role="status">Opening the story…</p>}><GraphStoryReader /></Suspense>} />
           <Route path="/alpha/wisdom/:id" element={<WisdomLesson />} />
           <Route path="/alpha/series/gita" element={<Suspense fallback={<p role="status">Opening the journey…</p>}><GitaJourney /></Suspense>} />
           <Route path="/alpha/episode/:id" element={<Suspense fallback={<p className="story-loading" role="status">Opening the reading…</p>}><GitaEpisode /></Suspense>} />
@@ -278,8 +294,8 @@ function Shell() {
       {!reflectionPage && location.pathname !== "/alpha/life" && <nav className="alpha-nav" aria-label={label("Main navigation", "मुख्य नेविगेशन")}>
         {[
           { to: "/alpha/today", icon: "sun" as const, en: "Today", hi: "आज", active: location.pathname === "/alpha/today" || location.pathname === "/alpha" },
-          { to: "/alpha/library", icon: "book" as const, en: "Explore", hi: "खोजें", active: location.pathname === "/alpha/library" || location.pathname === "/alpha/life" || location.pathname.startsWith("/alpha/stories/") || location.pathname.startsWith("/alpha/series/") || location.pathname.startsWith("/alpha/wisdom/") },
-          { to: "/alpha/practice", icon: "leaf" as const, en: "Practice", hi: "अभ्यास", active: location.pathname === "/alpha/practice" },
+          { to: "/alpha/library", icon: "book" as const, en: "Explore", hi: "खोजें", active: location.pathname === "/alpha/library" || location.pathname === "/alpha/search" || location.pathname === "/alpha/practice" || location.pathname.startsWith("/alpha/divine") || location.pathname.startsWith("/alpha/scriptures") || location.pathname.startsWith("/alpha/sources/") || location.pathname.startsWith("/alpha/stories/") || location.pathname.startsWith("/alpha/series/") || location.pathname.startsWith("/alpha/wisdom/") },
+          { to: "/alpha/life", icon: "search" as const, en: "Ask", hi: "पूछें", active: location.pathname === "/alpha/life" },
           { to: "/alpha/my-day", icon: "bookmark" as const, en: "Saved", hi: "सहेजे हुए", active: location.pathname === "/alpha/my-day" || location.pathname.startsWith("/alpha/reflection/") },
         ].map(item => <Link key={item.to} to={item.to} className={item.active ? "active" : undefined} aria-current={item.active ? "location" : undefined}>
           {item.active && <motion.span className="alpha-nav-active" layoutId="alpha-calm-nav-active" transition={reduced ? { duration: 0 } : glideSpring} aria-hidden="true" />}
@@ -1014,7 +1030,7 @@ function Account() {
         <div className="alpha-panel">
           <h2>{t("Remove my local alpha data?", "मेरा स्थानीय अल्फ़ा डेटा हटाएँ?")}</h2>
           <p>
-            {t("This removes this demo identity’s notes, reading actions, japa count, playback, preferences, membership and completion records. It does not delete another identity or the legacy app’s data. Export first if you want a copy.", "इससे इस डेमो पहचान के नोट, पढ़ने के कदम, जप की गिनती, प्लेबैक, पसंद, सदस्यता और पूरे किए पाठ हटेंगे। दूसरी पहचान या पुराने ऐप का डेटा नहीं हटेगा। प्रति चाहिए तो पहले निर्यात करें।")}
+            {t("This removes this demo identity’s notes, saved stories and entries, reading actions, japa count, playback, preferences, membership and completion records. It does not delete another identity or the legacy app’s data. Export first if you want a copy.", "इससे इस डेमो पहचान के नोट, सहेजी कथाएँ और प्रविष्टियाँ, पढ़ने के कदम, जप की गिनती, प्लेबैक, पसंद, सदस्यता और पूरे किए पाठ हटेंगे। दूसरी पहचान या पुराने ऐप का डेटा नहीं हटेगा। प्रति चाहिए तो पहले निर्यात करें।")}
           </p>
           <button
             className="alpha-danger"

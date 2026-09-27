@@ -87,3 +87,5 @@
 .alpha.calm-shell .life-before-story { color:#285a3f; }
 .alpha.calm-shell .life-disclosure,.alpha.calm-shell .life-endnote { color:#5c705f; }
 .alpha[data-large=true] .life-wisdom :is(.life-intro>p,.life-question textarea,.life-interpretation p,.life-practice p) { font-size:20px; }
+.life-story-companion { margin: 25px 0; padding: 20px 0; border-top: 1px solid currentColor; }
+.life-story-companion p { max-width: 60ch; font-size: 14px; line-height: 1.6; }

@@ -55,7 +55,7 @@ test("a source visit returns to the in-memory question without retaining it afte
   expect(await page.evaluate(() => Object.values(sessionStorage).join(" "))).not.toContain(question);
 
   await page.getByRole("link", { name: "Explore", exact: true }).click();
-  await page.locator('a[href="/alpha/life"]').click();
+  await page.getByRole("navigation", { name: "Main navigation" }).getByRole("link", { name: "Ask" }).click();
   await expect(page.getByLabel("What is happening in your life?")).toHaveValue("");
   await expect(page.getByRole("heading", { name: "Start with the source." })).toHaveCount(0);
 

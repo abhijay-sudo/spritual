@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom"
 import { motion } from "motion/react";
 import { lessons, type Language } from "../data/lessons";
 import { localDay, useWisdom } from "./Wisdom";
+import { EditorialImage } from "./EditorialImage";
 import "./story.css";
 import "./calm-reader.css";
 import { chooseReadingAfter, finishReading, moveReading, readingHref } from "./wisdomState";
@@ -14,7 +15,6 @@ const chapters = [
   { id: "gita-6-26", en: "When the mind wanders", hi: "जब मन भटके", theme: "attention" },
 ] as const;
 
-const art = "/art/gita-chariot-cover-v1.webp";
 const labels = (language: Language) => (en: string, hi: string) => language === "hi" ? hi : en;
 
 function StoryLanguage({ language, onChange }: { language: Language; onChange: (language: Language) => void }) {
@@ -41,7 +41,7 @@ export function GitaJourney() {
     <div className="story-series-top"><Link to="/alpha/library">← {t("Explore", "खोजें")}</Link><StoryLanguage language={language} onChange={changeLanguage}/></div>
     {error && <p className="alpha-error" role="alert">{error}</p>}
     <section className="story-series-cover" aria-labelledby="story-series-heading">
-      <img src={art} width="941" height="1672" alt={t("An illustrated chariot at sunrise before a difficult conversation", "कठिन बातचीत से पहले सूर्योदय में एक रथ का चित्र")} />
+      <EditorialImage asset="gitaChariot" language={language} priority className="story-series-art"/>
       <div className="story-series-copy">
         <span className="story-eyebrow">SPRITUAL / {t("GUIDED READING", "साथ पढ़ें")}</span>
         <h1 id="story-series-heading">{t("The Gita,", "गीता,")}<br/><em>{t("in the middle of life.", "जीवन के बीच।")}</em></h1>
@@ -51,7 +51,7 @@ export function GitaJourney() {
     </section>
     <div className="story-series-progress"><div><strong>{completed.length} / {chapters.length}</strong><span>{t("read by you", "आपने पढ़े")}</span></div><p>{t("Read in any order. There are no locks or missed days.", "किसी भी क्रम में पढ़ें। यहाँ बंद पाठ या छूटे दिन नहीं हैं।")}</p></div>
     <section className="story-episodes" aria-labelledby="story-episodes-heading"><div className="story-section-head"><span className="story-eyebrow">{t("THREE AVAILABLE READINGS", "तीन उपलब्ध पाठ")}</span><h2 id="story-episodes-heading">{t("Choose a question.", "एक सवाल चुनें।")}</h2></div>
-      <div className="story-episode-list">{chapters.map((chapter, index) => { const lesson = lessons.find(item => item.id === chapter.id)!; const finished = Boolean(state.finished?.[chapter.id]); return <Link className="story-episode" to={readingHref(chapter.id, state.resume)} key={chapter.id}><div className={`story-episode-thumb story-episode-thumb--${chapter.theme}`}><img src={index === 2 ? "/art/river-sanctuary-v1.webp" : art} alt="" loading="lazy"/></div><span className="story-episode-number">{String(index + 1).padStart(2, "0")}</span><span className="story-episode-text"><small>{lesson.reference} · {t("4 moments", "4 चरण")}</small><strong>{language === "hi" ? chapter.hi : chapter.en}</strong><span>{lesson.title[language]}</span></span><span className="story-episode-end">{finished ? <span className="story-finished">✓ {t("Read", "पढ़ा")}</span> : <span aria-hidden="true">↗</span>}</span></Link>; })}</div>
+      <div className="story-episode-list">{chapters.map((chapter, index) => { const lesson = lessons.find(item => item.id === chapter.id)!; const finished = Boolean(state.finished?.[chapter.id]); return <Link className="story-episode" to={readingHref(chapter.id, state.resume)} key={chapter.id}><div className={`story-episode-thumb story-episode-thumb--${chapter.theme}`}><EditorialImage asset={index === 2 ? "river" : "gitaChariot"} language={language} decorative/></div><span className="story-episode-number">{String(index + 1).padStart(2, "0")}</span><span className="story-episode-text"><small>{lesson.reference} · {t("4 moments", "4 चरण")}</small><strong>{language === "hi" ? chapter.hi : chapter.en}</strong><span>{lesson.title[language]}</span></span><span className="story-episode-end">{finished ? <span className="story-finished">✓ {t("Read", "पढ़ा")}</span> : <span aria-hidden="true">↗</span>}</span></Link>; })}</div>
     </section>
     <p className="story-disclosure">{t("These are three Gita selections, not a complete scripture or a narrated/video series. The interpretations are original demonstrations awaiting human review. Sanskrit links appear in each reading.", "ये गीता के तीन चुने हुए पाठ हैं, पूरा ग्रंथ या ऑडियो/वीडियो श्रृंखला नहीं। व्याख्याएँ मौलिक नमूने हैं जिनकी मानवीय समीक्षा बाकी है। हर पाठ में संस्कृत स्रोत का लिंक है।")}</p>
   </div>;
@@ -91,7 +91,11 @@ export function GitaEpisode() {
   const verse = lesson.steps.find(item => item.kind === "verse")!;
   const setScene = (next: number) => {
     if (next < 4) update(latest => moveReading(latest, lesson.id, next, new Date().toISOString()));
-    setParams({ scene: String(next) }, { replace: true });
+    setParams(previous => {
+      const nextParams = new URLSearchParams({ scene: String(next) });
+      if (previous.get("origin") === "work") nextParams.set("origin", "work");
+      return nextParams;
+    }, { replace: true });
   };
   const changeLanguage = (nextLanguage: Language) => {
     if (update(latest => ({ ...latest, language: nextLanguage }))) window.dispatchEvent(new Event("spritual-alpha-language"));
@@ -121,7 +125,7 @@ export function GitaEpisode() {
   const progressLabel = scene === 4 ? t("Reading complete", "पाठ पूरा हुआ") : t(`Moment ${scene + 1} of 4: ${moment}`, `चरण ${scene + 1} / 4: ${moment}`);
 
   return <div className="story-player" lang={language}>
-    <header className="story-player-head"><Link to="/alpha/series/gita" className="story-close" aria-label={t("Close reading", "पाठ बंद करें")}>×</Link><div className="story-progress-wrap"><div className="story-progress" role="progressbar" aria-label={t("Reading progress", "पाठ की प्रगति")} aria-valuemin={1} aria-valuemax={4} aria-valuenow={Math.min(scene + 1, 4)} aria-valuetext={progressLabel}>{[0, 1, 2, 3].map(index => <span key={index}><motion.span className="story-progress-fill" initial={false} animate={{ scaleX: index <= scene ? 1 : 0 }} transition={reduced || !active ? { duration: 0 } : glideSpring} /></span>)}</div><span className="story-progress-label" aria-hidden="true">{scene === 4 ? t("Complete", "पूरा") : moment}</span></div><StoryLanguage language={language} onChange={changeLanguage}/></header>
+    <header className="story-player-head"><Link to={params.get("origin") === "work" ? "/alpha/scriptures/gita" : "/alpha/series/gita"} className="story-close" aria-label={t("Close reading", "पाठ बंद करें")}>×</Link><div className="story-progress-wrap"><div className="story-progress" role="progressbar" aria-label={t("Reading progress", "पाठ की प्रगति")} aria-valuemin={1} aria-valuemax={4} aria-valuenow={Math.min(scene + 1, 4)} aria-valuetext={progressLabel}>{[0, 1, 2, 3].map(index => <span key={index}><motion.span className="story-progress-fill" initial={false} animate={{ scaleX: index <= scene ? 1 : 0 }} transition={reduced || !active ? { duration: 0 } : glideSpring} /></span>)}</div><span className="story-progress-label" aria-hidden="true">{scene === 4 ? t("Complete", "पूरा") : moment}</span></div><StoryLanguage language={language} onChange={changeLanguage}/></header>
     {error && <p role="alert" className="story-error">{error}</p>}
     <motion.div
       className={`story-player-scene story-player-scene--${scene}`}
@@ -130,7 +134,7 @@ export function GitaEpisode() {
       animate={{ opacity: 1, y: 0 }}
       transition={reduced || !active ? { duration: 0 } : glideSpring}
     >
-      {scene === 0 && <><img className="story-player-art" src={art} width="941" height="1672" alt=""/><div className="story-scene-shade"/><div className="story-scene-copy"><span className="story-eyebrow">{lesson.reference.replace("Bhagavad Gita", t("Gita", "गीता"))} · {t("THE QUESTION", "सवाल")}</span><h1 ref={heading} tabIndex={-1}><BilingualText text={{en:chapter.en,hi:chapter.hi}} language={language}/></h1><p><BilingualText text={step.body} language={language}/></p></div></>}
+      {scene === 0 && <><EditorialImage className="story-player-art" asset="gitaChariot" language={language} decorative priority/><div className="story-scene-shade"/><div className="story-scene-copy"><span className="story-eyebrow">{lesson.reference.replace("Bhagavad Gita", t("Gita", "गीता"))} · {t("THE QUESTION", "सवाल")}</span><h1 ref={heading} tabIndex={-1}><BilingualText text={{en:chapter.en,hi:chapter.hi}} language={language}/></h1><p><BilingualText text={step.body} language={language}/></p></div></>}
       {scene === 1 && <div className="story-paper-scene"><span className="story-eyebrow">{t("THE ORIGINAL VERSE", "मूल श्लोक")} · {lesson.reference}</span><h1 ref={heading} tabIndex={-1}><BilingualText text={{en:"Read it slowly.",hi:"धीरे-धीरे पढ़ें।"}} language={language}/></h1><blockquote lang="sa-Deva">{verse.script}</blockquote><button className="story-text-button" type="button" aria-expanded={pronunciation} onClick={() => setPronunciation(!pronunciation)}>{pronunciation ? t("Hide reading guide", "उच्चारण सहायता छिपाएँ") : t("Show reading guide", "उच्चारण सहायता देखें")} <span aria-hidden="true">{pronunciation ? "−" : "+"}</span></button>{pronunciation && <p className="story-pronunciation" lang="sa-Latn">{verse.transliteration}</p>}<p><BilingualText text={verse.body} language={language}/></p><div className="story-verse-tools"><a href={lesson.sourceUrl} target="_blank" rel="noopener noreferrer">{t("Compare source text", "मूल पाठ देखें")} ↗</a><button type="button" onClick={keep} disabled={saved}>{saved ? t("In Saved", "सहेजा हुआ") : t("Save this reading", "यह पाठ सहेजें")}</button></div><p role="status" className="story-save-notice">{savedNotice}</p></div>}
       {scene === 2 && <div className="story-meaning-scene"><span className="story-eyebrow">{t("MEANING · UNREVIEWED DEMO", "अर्थ · समीक्षा-रहित नमूना")}</span><h1 ref={heading} tabIndex={-1}><BilingualText text={step.title} language={language}/></h1><p><BilingualText text={step.body} language={language}/></p><details><summary>{t("Read the source note", "स्रोत के बारे में पढ़ें")}</summary><p><BilingualText text={lesson.sourceNote} language={language}/></p><a href={lesson.sourceUrl} target="_blank" rel="noopener noreferrer">{t("Open source Sanskrit", "मूल संस्कृत देखें")} ↗</a></details></div>}
       {scene === 3 && <div className="story-action-scene"><span className="story-eyebrow">{t("BRING IT INTO TODAY", "आज के दिन में अपनाएँ")}</span><h1 ref={heading} tabIndex={-1}><BilingualText text={step.title} language={language}/></h1><p><BilingualText text={step.body} language={language}/></p><div className="story-action-card"><small>{t("ONE POSSIBLE STEP", "एक संभव कदम")}</small><strong><BilingualText text={lesson.action} language={language}/></strong></div><p className="story-scene-footnote">{t("A personal prompt, not a measure of spiritual progress. You can finish without writing anything.", "यह निजी अभ्यास है, आध्यात्मिक प्रगति का पैमाना नहीं। कुछ लिखे बिना भी पाठ पूरा कर सकते हैं।")}</p><Link className="story-reflect-link" to={`/alpha/reflection/${lesson.id}?from=reading`}>{t("Write a private thought (optional)", "निजी विचार लिखें (वैकल्पिक)")} ↗</Link></div>}

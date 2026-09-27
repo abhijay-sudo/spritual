@@ -4,6 +4,7 @@ export function isPrivateAlphaStorageKey(key: string, actorId: string): boolean 
  return key.startsWith(`spritual_alpha_private_${actorId}_`) ||
   key.startsWith(`spritual_alpha_playback_${actorId}_`) ||
   key === `spritual_alpha_preferences_${actorId}` ||
+  key === `spritual_alpha_graph_saved_v1_${actorId}` ||
   key === `spritual_alpha_wisdom_v1_${actorId}` ||
   key === `spritual_alpha_japa_v1_${actorId}`;
 }

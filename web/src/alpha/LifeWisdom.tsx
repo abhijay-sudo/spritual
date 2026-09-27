@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { buildGroundedFallback, isImmediateSafetyQuery, retrieveWisdom } from "../../../packages/ai/src/index";
 import { getDemoCorpusPassage, listDemoPassages } from "../../../packages/content/src/index";
+import { graphSourcePointerForQuestion, graphStoryForQuestion } from "../../../packages/content/src/knowledgeGraph";
 import { Icon } from "../components/Icon";
 import { lessons } from "../data/lessons";
 import { useWisdom } from "./Wisdom";
@@ -31,11 +32,14 @@ export function LifeWisdom({ restoreQuestion = null, onOpenSource }: { restoreQu
     resultRef.current?.scrollIntoView({ block: "start", behavior: reduced ? "auto" : "smooth" });
   }, [asked, reduced]);
   const passages = useMemo(() => listDemoPassages(language), [language]);
+  const sourcePointer = asked && !isImmediateSafetyQuery(asked) ? graphSourcePointerForQuestion(asked) : undefined;
   const hits = useMemo(() => {
-    if (!asked || isImmediateSafetyQuery(asked)) return [];
+    // An explicit request for another work should never be answered with an incidental Gita theme match.
+    if (!asked || isImmediateSafetyQuery(asked) || graphSourcePointerForQuestion(asked)) return [];
     return retrieveWisdom(asked, passages, { language, maxResults: 1 });
   }, [asked, language, passages]);
   const answer = asked === null ? null : buildGroundedFallback(asked, hits, language);
+  const companionStory = answer?.kind !== "safety" && asked ? graphStoryForQuestion(asked) : undefined;
   const ask = (value: string) => {
     const question = value.trim().slice(0, 280);
     if (!question) return;
@@ -64,7 +68,7 @@ export function LifeWisdom({ restoreQuestion = null, onOpenSource }: { restoreQu
     <div className="life-examples"><p>{t("Or begin with a familiar feeling", "या किसी परिचित स्थिति से शुरू करें")}</p><div>{examples.map(example => <button type="button" key={example.en} onClick={() => ask(example[language])}>{example[language]} <Icon name="arrow" size={16}/></button>)}</div></div>
 
     {answer && <section ref={resultRef} className={`life-answer life-answer-${answer.kind}`} aria-labelledby="life-answer-heading">
-      <div className="life-answer-head"><span className="life-overline">{answer.kind === "matched" ? t("A THREAD TO FOLLOW", "एक सूत्र") : t("WHAT WE COULD FIND", "जो मिल सका")}</span><h2 id="life-answer-heading" ref={resultHeadingRef} tabIndex={-1}>{answer.kind === "matched" ? t("Start with the source.", "मूल श्लोक से शुरू करें।") : answer.kind === "safety" ? t("Please seek immediate support.", "कृपया तुरंत सहायता लें।") : t("No clear source match yet.", "अभी स्पष्ट स्रोत नहीं मिला।")}</h2><p>{answer.message}</p></div>
+      <div className="life-answer-head"><span className="life-overline">{answer.kind === "matched" ? t("A THREAD TO FOLLOW", "एक सूत्र") : t("WHAT WE COULD FIND", "जो मिल सका")}</span><h2 id="life-answer-heading" ref={resultHeadingRef} tabIndex={-1}>{answer.kind === "matched" ? t("Start with the source.", "मूल श्लोक से शुरू करें।") : answer.kind === "safety" ? t("Please seek immediate support.", "कृपया तुरंत सहायता लें।") : sourcePointer ? t("A source to inspect.", "देखने के लिए एक स्रोत।") : t("No clear source match yet.", "अभी स्पष्ट स्रोत नहीं मिला।")}</h2><p>{sourcePointer ? t("We have not verified a passage or interpretation from this work. Start with the source record below.", "इस ग्रंथ से किसी अंश या अर्थ की समीक्षा अभी नहीं हुई है। नीचे दिए स्रोत के विवरण से शुरू करें।") : answer.message}</p></div>
       {answer.kind === "safety" && <a className="life-support-link" href="tel:14416">{t("Call Tele-MANAS 14416 (India)", "टेली मानस 14416 पर कॉल करें (भारत)")}</a>}
       {answer.kind === "matched" && answer.sources.map((source, index) => {
         const lessonId = getDemoCorpusPassage(source.id)?.lessonId;
@@ -83,7 +87,9 @@ export function LifeWisdom({ restoreQuestion = null, onOpenSource }: { restoreQu
           </div>
         </article>;
       })}
-      {answer.kind === "unverified" && <Link className="life-browse" to="/alpha/library">{t("Browse the three available readings", "तीन उपलब्ध पाठ देखें")}<Icon name="arrow" size={18}/></Link>}
+      {companionStory && <div className="life-story-companion"><span className="life-overline">{t("AN EDITORIAL PATH · NOT A VERSE MATCH", "संपादकीय राह · श्लोक का मेल नहीं")}</span><p>{t("A separate, unreviewed retelling about beginning a difficult task. It is linked for reflection, not presented as the answer to your question.", "कठिन काम शुरू करने पर एक अलग, समीक्षा-रहित पुनर्कथन। यह सोचने के लिए जुड़ा है, आपके सवाल का उत्तर बताकर नहीं।")}</p><Link className="life-before-story" to={companionStory.href} onClick={() => { if (asked) onOpenSource?.(asked); }}>{t("Read Hanuman’s crossing", "हनुमान का समुद्र-पार जाना पढ़ें")} <Icon name="arrow" size={17}/></Link></div>}
+      {sourcePointer && <div className="life-story-companion"><span className="life-overline">{t("SOURCE POINTER · NOT AN ANSWER", "स्रोत-संकेत · उत्तर नहीं")}</span><p>{t("This collection has a link to a relevant source, but no reviewed passage or interpretation to answer this question. You can inspect its context and open the original yourself.", "इस संग्रह में संबंधित स्रोत की कड़ी है, लेकिन इस सवाल का उत्तर देने वाला समीक्षित पाठ या अर्थ नहीं है। आप उसका संदर्भ देखकर स्वयं मूल स्रोत खोल सकते हैं।")}</p><Link className="life-before-story" to={`/alpha/sources/${encodeURIComponent(sourcePointer.id)}`} state={{ from: "/alpha/life" }} onClick={() => { if (asked) onOpenSource?.(asked); }}>{sourcePointer.work} · {sourcePointer.reference} <Icon name="arrow" size={17}/></Link></div>}
+      {answer.kind === "unverified" && !sourcePointer && <Link className="life-browse" to="/alpha/library">{t("Browse the three available readings", "तीन उपलब्ध पाठ देखें")}<Icon name="arrow" size={18}/></Link>}
       <p className="life-disclosure">{answer.disclosure}</p>
     </section>}
     {!answer && <div className="life-endnote"><Icon name="book" size={22}/><p>{t("The current collection has three Gita passages. A question about another text or tradition may have no verified match yet.", "अभी इस संग्रह में गीता के तीन श्लोक हैं। दूसरे ग्रंथ या परंपरा से जुड़े सवाल का प्रमाणित मेल अभी न मिले।")}</p></div>}

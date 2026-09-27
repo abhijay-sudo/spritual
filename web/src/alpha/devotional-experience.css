@@ -17,7 +17,7 @@
 .dev-language button[aria-pressed=true] { background: var(--dev-ink); color: var(--a-bg, #f7f2e8); }
 .dev-language button:focus-visible { outline-offset: 2px; }
 .dev-moment { position: relative; display: grid; align-items: end; overflow: hidden; min-height: clamp(475px, 69dvh, 630px); border-radius: 8px; isolation: isolate; background: #202b29; color: #fff9ed; }
-.dev-moment>img,.dev-collection>img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 59%; }
+.dev-moment-art,.dev-collection-art { position: absolute; inset: 0; width: 100%; height: 100%; }
 .dev-moment-shade,.dev-collection-shade { position: absolute; inset: 0; background: linear-gradient(180deg, #12191505 9%, #1117134d 46%, #101612f5 100%); pointer-events: none; }
 .dev-moment-copy { position: relative; z-index: 1; width: min(100%, 720px); padding: clamp(24px, 5vw, 43px); }
 .dev-moment-meta { display: flex; justify-content: space-between; gap: 16px; max-width: 530px; margin-bottom: 14px; color: #f1c991; font-size: 11px; font-weight: 750; letter-spacing: .14em; }
@@ -36,14 +36,20 @@
 .dev-discover a { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; color: var(--dev-ink); font-size: 14px; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; white-space: nowrap; }
 .dev-disclosure { max-width: 65ch; margin: 20px 0 0 !important; color: var(--dev-muted); font-size: 12px; line-height: 1.55; }
 .dev-explore-top { align-items: start; margin-bottom: 26px; }
+.dev-universe-search { display: flex; align-items: center; gap: 13px; min-height: 54px; margin-bottom: 18px; padding: 11px 14px; border: 1px solid var(--dev-line); border-radius: 6px; background: var(--a-paper); color: var(--dev-ink); font-size: 14px; font-weight: 700; text-decoration: none; }
+.dev-universe-search span { flex: 1; }
+.dev-universe-search svg:last-child { color: var(--dev-accent); }
 .dev-collection { position: relative; display: grid; align-items: end; overflow: hidden; min-height: 390px; border-radius: 8px; background: #1b2925; color: #fff8e9 !important; text-decoration: none; isolation: isolate; }
-.dev-collection>img { object-position: 50% 53%; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
-.dev-collection:hover>img { transform: scale(1.025); }
+.dev-collection-art img { transition: transform .24s cubic-bezier(.2,.7,.2,1); }
+.dev-collection:hover .dev-collection-art img { transform: scale(1.015); }
 .dev-collection-copy { position: relative; z-index: 1; display: grid; justify-items: start; gap: 8px; padding: clamp(23px, 4vw, 38px); }
 .dev-collection-copy small { color: #f3c58a; font-size: 11px; font-weight: 750; letter-spacing: .12em; }
 .dev-collection-copy strong { max-width: 18ch; color: #fff8e9; font: 450 clamp(34px, 5vw, 52px)/1.07 Fraunces, Georgia, serif; }
 .dev-collection-copy>span { max-width: 38ch; color: #f4e9da; font-size: 15px; line-height: 1.45; }
 .dev-collection-copy em { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-top: 5px; color: #f8c98e; font-size: 14px; font-style: normal; font-weight: 750; }
+.dev-source-library-link { display: inline-flex; align-items: center; gap: 9px; min-height: 48px; margin: 4px 0 22px; color: var(--dev-ink); font-size: 13px; font-weight: 750; text-underline-offset: 4px; }
+.dev-collection-links { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 7px 0 22px; }
+.dev-collection-links a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--dev-ink); font-size: 13px; font-weight: 750; text-underline-offset: 4px; }
 .dev-reading-index { padding-top: 45px; }
 .dev-section-head { margin-bottom: 21px; }
 .dev-search { display: grid; gap: 7px; color: var(--dev-muted); font-size: 13px; font-weight: 700; }
@@ -51,6 +57,22 @@
 .dev-search>span:focus-within { outline: 2px solid var(--dev-accent); outline-offset: 2px; }
 .dev-search input { flex: 1; min-height: 48px; border: 0; outline: 0; background: transparent; color: var(--dev-ink); font-size: 16px; }
 .dev-search input::placeholder { color: var(--dev-muted); }
+.dev-divine-feature { position: relative; display: grid; align-content: end; gap: 10px; min-height: 310px; margin: 18px 0 25px; padding: clamp(23px,4vw,34px); overflow: hidden; isolation: isolate; border-radius: 6px; background: #193a36; color: #f8f1e3; text-decoration: none; }
+.dev-divine-art { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
+.dev-divine-art img { object-position: 50% 40% !important; }
+.dev-divine-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg,#10201926 4%,#101714a8 53%,#0b1715f2 100%); }
+.dev-divine-copy { position: relative; z-index: 1; display: grid; justify-items: start; gap: 10px; }
+.dev-divine-feature .dev-kicker { color: #dfb885; }
+.dev-divine-feature strong { max-width: 21ch; color: #fff8e9; font: 450 clamp(29px,4.5vw,41px)/1.12 Fraunces,Georgia,serif; letter-spacing: -.03em; }
+.dev-divine-description { max-width: 57ch; color: #f2e7d7; font-size: 14px; line-height: 1.5; }
+.dev-divine-feature em { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; width: fit-content; color: #f2c486; font-size: 13px; font-style: normal; font-weight: 750; }
+@media (min-width: 650px) {
+  .dev-divine-feature { grid-template-columns: minmax(230px, 42%) 1fr; align-items: center; gap: 30px; min-height: 330px; padding: 0 35px 0 0; }
+  .dev-divine-art { position: relative; inset: auto; z-index: 0; grid-column: 1; grid-row: 1; width: 100%; height: 330px; aspect-ratio: auto !important; }
+  .dev-divine-art img { object-position: 50% 9% !important; }
+  .dev-divine-shade { display: none; }
+  .dev-divine-copy { grid-column: 2; grid-row: 1; align-content: center; gap: 13px; }
+}
 .dev-filters { display: flex; flex-wrap: wrap; gap: 7px; margin: 14px 0 7px; }
 .dev-filters button { min-height: 44px; min-width: 48px; padding: 8px 15px; border: 1px solid var(--dev-line); border-radius: 100px; background: transparent; color: var(--dev-ink); font-size: 13px; font-weight: 700; }
 .dev-filters button[aria-pressed=true] { background: var(--dev-ink); border-color: var(--dev-ink); color: var(--a-bg); }
@@ -73,7 +95,7 @@
   .alpha .dev-today-top h1 { font-size: 32px; }
   .dev-language button { min-width: 43px; padding: 6px 9px; }
   .dev-moment { min-height: clamp(455px, 67dvh, 590px); }
-  .dev-moment>img { object-position: 50% 61%; }
+  .dev-moment-art img { object-position: 50% 61% !important; }
   .dev-moment-copy { padding: 23px; }
   .alpha .dev-moment h2 { font-size: clamp(35px, 10vw, 48px); }
   .dev-moment-subtitle { font-size: 15px; }

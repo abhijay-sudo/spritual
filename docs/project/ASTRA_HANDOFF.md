@@ -1,5 +1,19 @@
 # Astra takeover: Spiritual.co.in
 
+## Canonical visual/media delivery — 27 September 2026
+
+The mounted `/alpha` preview now uses a shared bilingual editorial-media registry with responsive WebP files, intentional crops, missing-image recovery, and explicit rights/review states. Distinct local-preview Krishna, Hanuman and Shiva art appears across Divine, Explore, search and Saved; story and scripture covers share those assets, and the Hanuman reader has one paced sea illustration. Text-first scripture, source and privacy surfaces remain quiet. `npm run media:audit` runs during builds and `npm run media:release-preflight` blocks all six unreviewed/rights-unverified assets. See `docs/ART_DIRECTION.md` and `docs/VISUAL_COVERAGE.md`.
+
+Verification: 152/152 Node tests, TypeScript and audited build; 21/21 default Chromium journeys with three connected cases skipped; 320/390px Hindi/Night/larger-text/reduced-motion and selected 768px browser visual checks. The latest debug APK (`artifacts/Spritual-0.1.0-debug.apk`, SHA-256 `8ae37d503d0d94dc612e8992c5cb5df589ca68366f14286a4f46834a1e67029e`) compiled and showed Today, Explore and Divine on Android API 36. No production deployment, media/content approval, physical phone, participant study or iOS compilation occurred. The working local preview is on port 5174.
+
+## Consumer target and source-context increment — 27 September 2026
+
+The new owner-supplied Ultra-Max directive makes a calm consumer, multi-source learning system the active **target**; the earlier institution-first brief is historical positioning, while the teacher workflow and trust boundaries remain. This increment moves the primary dock to Today / Explore / Ask / Saved while retaining optional Practice, and adds a scripture/work index, source-context round trip and narrowly scoped cross-source Life pointers to the existing `/alpha`, plus a Hindi normalizer correction. It does not complete the requested wider corpus, secure CMS, live AI or production app. `docs/BUILD_STATUS.md` records 152 Node tests, 20 default browser journeys, build and visual checks, with exact limits. Continue from the current graph, not a second app; obtain rights and named review before publishing or sending text to AI.
+
+## Phase II local increment — 27 September 2026
+
+The default `/alpha` now connects Explore → Divine (Krishna/Hanuman/Shiva) → source-linked reading/retelling → Saved and deterministic local search. Life can offer the Hanuman story as a separate editorial companion for a narrow courage/failure query. Shiva remains a source pointer; there are no approved wider scriptures or deity personas. The typed local graph is in `packages/content/src/knowledgeGraph.ts`; `supabase/migrations/0012_spiritual_graph_drafts.sql` is a private draft schema with no client read or CMS UI. Content audit blocks false rights/review claims and public release. See the newest `docs/BUILD_STATUS.md` and `docs/VERIFICATION.md` entries for scoped proof and blockers. Do not infer deployed graph content, live auth or production migration.
+
 ## Devotional first-use delivery — newest 26 September 2026
 
 The current default `/alpha` member UI now follows the owner’s latest devotional transformation directive. Fresh readers enter through an immersive but restrained chariot-art welcome, then a source-linked Gita demo; returning readers go straight to Today. Today and Explore are editorial, image-led experiences with honest three-reading inventory, while reader, Life, Story and Saved share calmer parchment/charcoal/saffron styling. Source/rights and unreviewed labels remain explicit. The established React/Vite routes, local privacy boundaries, English/Hindi preferences and opt-in connected teacher workflow remain intact. The local root `/` routes into `/alpha` on web and native. See `app/docs/BUILD_STATUS.md` for scope and `app/docs/VERIFICATION.md` for visual and automated evidence.
