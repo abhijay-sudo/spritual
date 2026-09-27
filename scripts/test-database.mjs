@@ -21,7 +21,7 @@ if (preflight.error?.code === 'ENOENT') fail('Blocked: psql is not installed or 
 if (preflight.error || preflight.status !== 0) fail(`Blocked: cannot connect to the explicit local database or inspect prerequisites. Tests were not executed.\n${preflight.stderr || preflight.error?.message || ''}`);
 if (preflight.stdout.trim() !== 'true') fail('Blocked: require pgTAP, migrations 0001–0012, the enabled sealing trigger, and a local test superuser. This runner does not install extensions or apply migrations.');
 let total = 0;
-const suites = ['alpha_authorization.sql', 'knowledge_corpus.sql', 'circle_seats.sql', 'circle_delivery.sql', 'member_progress.sql', 'spiritual_graph.sql'];
+const suites = ['alpha_authorization.sql', 'knowledge_corpus.sql', 'circle_seats.sql', 'circle_delivery.sql', 'member_progress.sql', 'spiritual_graph.sql', 'spiritual_publication.sql'];
 for (const suite of suites) {
   const sql = readFileSync(new URL(`../supabase/tests/pgtap/${suite}`, import.meta.url), 'utf8');
   const result = psql(sql);
