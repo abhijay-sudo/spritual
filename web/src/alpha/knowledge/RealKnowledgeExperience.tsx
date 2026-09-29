@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState, type FormEvent, type ReactNo
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { Link, Route, Routes, useParams } from "react-router-dom";
 import { SupabaseKnowledgeRepository } from "./supabaseRepository";
+import { ConnectedStoryReader } from "./ConnectedStoryReader";
 import { KnowledgeServiceError, type KnowledgeEntity, type KnowledgeLanguage, type KnowledgePassage,
   type KnowledgeRepository, type KnowledgeSearchResult, type KnowledgeSource, type KnowledgeStory,
   type KnowledgeWork } from "./types";
@@ -101,10 +102,13 @@ function Stories({repository,language}:{repository:KnowledgeRepository;language:
   const load=useKnowledge(()=>repository.listStories(language),`stories:${language}`);
   return <div className="ku-page"><Link className="ku-back" to="/alpha/library">← {tr(language,"Explore","खोजें")}</Link><header className="ku-intro"><span className="ku-kicker">{tr(language,"PUBLISHED STORIES","प्रकाशित कथाएँ")}</span><h1>{tr(language,"Enter through a story.","कथा से प्रवेश करें।")}</h1></header><Result load={load} language={language} empty>{items=><div className="ku-related-list">{items.map((item:KnowledgeStory)=><Link key={item.id} to={`/alpha/stories/${item.slug}`}><strong>{item.title}</strong><span>{item.source.reference} →</span></Link>)}</div>}</Result></div>;
 }
-function StoryDetail({repository,language}:{repository:KnowledgeRepository;language:KnowledgeLanguage}) {
+function StoryDetail({repository,language,actorKey}:{repository:KnowledgeRepository;language:KnowledgeLanguage;actorKey:string}) {
   const {slug}=useParams();
   const load=useKnowledge(()=>repository.getStory(slug??"",language),`story:${slug}:${language}`);
-  return <article className="ku-page"><Link className="ku-back" to="/alpha/stories">← {tr(language,"Stories","कथाएँ")}</Link><Result load={load} language={language}>{item=>!item?<p className="rk-empty">{tr(language,"This story is unavailable or no longer published.","यह कथा उपलब्ध या प्रकाशित नहीं है।")}</p>:<><header className="ku-intro"><span className="ku-kicker">{tr(language,"PUBLISHED RETELLING","प्रकाशित पुनर्कथन")}</span><h1>{item.title}</h1><p>{item.source.reference}</p></header><SaveAction repository={repository} language={language} kind="story" id={item.id}/><div className="ku-story-body">{item.scenes.map(scene=><section className="ku-scene" key={scene.sequence}><span className="ku-kicker">{String(scene.sequence).padStart(2,"0")}</span><h2>{scene.reference}</h2><p>{scene.body}</p>{scene.reflection&&<aside><span>{tr(language,"PAUSE WITH THIS","इस पर ठहरें")}</span><p>{scene.reflection}</p></aside>}</section>)}</div><SourceCard source={item.source} language={language}/></>}</Result></article>;
+  return <Result load={load} language={language}>{item=>!item?<div className="ku-page"><Link className="ku-back" to="/alpha/stories">← {tr(language,"Stories","कथाएँ")}</Link><p className="rk-empty">{tr(language,"This story is unavailable or no longer published.","यह कथा उपलब्ध या प्रकाशित नहीं है।")}</p></div>
+    :<ConnectedStoryReader key={`${actorKey}:${item.id}`} item={item} language={language} actorKey={actorKey}
+      saveAction={<SaveAction repository={repository} language={language} kind="story" id={item.id}/>}
+      sourceCard={<SourceCard source={item.source} language={language}/>}/> }</Result>;
 }
 function Works({repository,language}:{repository:KnowledgeRepository;language:KnowledgeLanguage}) {
   const load=useKnowledge(()=>repository.listWorks(language),`works:${language}`);
@@ -128,14 +132,14 @@ function Search({repository,language,life=false}:{repository:KnowledgeRepository
   const submit=(event:FormEvent)=>{event.preventDefault();setQuery(draft.trim().slice(0,120));};
   return <div className="ku-page"><Link className="ku-back" to="/alpha/library">← {tr(language,"Explore","खोजें")}</Link><header className="ku-intro"><span className="ku-kicker">{life?tr(language,"LIFE → WISDOM","जीवन → ज्ञान"):tr(language,"SEARCH PUBLISHED KNOWLEDGE","प्रकाशित ज्ञान खोजें")}</span><h1>{life?tr(language,"Begin with a question.","एक सवाल से शुरू करें।"):tr(language,"Follow a name or source.","नाम या स्रोत से आगे बढ़ें।")}</h1><p>{tr(language,"Your words stay in this browser visit. Search checks published sources; it does not ask a model or invent a religious answer.","आपके शब्द इसी ब्राउज़र सत्र में रहते हैं। खोज प्रकाशित स्रोत जाँचती है; किसी मॉडल से नहीं पूछती या धार्मिक उत्तर नहीं गढ़ती।")}</p></header><form className="ku-search-form" onSubmit={submit}><label htmlFor="rk-query">{life?tr(language,"Your question","आपका सवाल"):tr(language,"Search","खोजें")}</label><div><input id="rk-query" value={draft} onChange={e=>setDraft(e.target.value)} maxLength={120} autoComplete="off"/><button type="submit">{tr(language,"Find","ढूँढें")}</button></div></form>{query&&<Result load={load} language={language}>{items=>items.length?<div className="ku-result-list">{items.map(item=><Link key={`${item.kind}:${item.id}`} to={href(item)}><small>{item.kind.toUpperCase()}</small><strong>{item.title}</strong><span>{item.reference??tr(language,"Published source path","प्रकाशित स्रोत-पथ")}</span></Link>)}</div>:<p className="rk-empty">{tr(language,"No verified match here. Try a name or exact reference; we will not force a Gita verse into this question.","यहाँ कोई सत्यापित मेल नहीं मिला। नाम या सटीक संदर्भ लिखें; इस सवाल पर गीता का श्लोक नहीं थोपेंगे।")}</p>}</Result>}</div>;
 }
-export default function RealKnowledgeExperience({client,language}:{client:SupabaseClient;language:KnowledgeLanguage}) {
+export default function RealKnowledgeExperience({client,language,actorKey}:{client:SupabaseClient;language:KnowledgeLanguage;actorKey:string}) {
   const repository=useMemo(()=>new SupabaseKnowledgeRepository(client),[client]);
   return <div className="alpha real-shell rk-shell" lang={language}><Header language={language}/><main className="alpha-main" id="real-main"><Routes>
     <Route path="/alpha/library" element={<Index repository={repository} language={language}/>}/>
     <Route path="/alpha/divine" element={<Entities repository={repository} language={language}/>}/>
     <Route path="/alpha/divine/:slug" element={<EntityDetail repository={repository} language={language}/>}/>
     <Route path="/alpha/stories" element={<Stories repository={repository} language={language}/>}/>
-    <Route path="/alpha/stories/:slug" element={<StoryDetail repository={repository} language={language}/>}/>
+    <Route path="/alpha/stories/:slug" element={<StoryDetail repository={repository} language={language} actorKey={actorKey}/>}/>
     <Route path="/alpha/scriptures" element={<Works repository={repository} language={language}/>}/>
     <Route path="/alpha/scriptures/:slug" element={<WorkDetail repository={repository} language={language}/>}/>
     <Route path="/alpha/episode/:id" element={<PassageDetail repository={repository} language={language}/>}/>
