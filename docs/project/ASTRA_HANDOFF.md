@@ -1,5 +1,9 @@
 # Astra takeover: Spiritual.co.in
 
+## Connected story return — 29 September 2026
+
+The new connected story reader supplies a complete one-scene-at-a-time path, source disclosure, explicit finish, device-only action/try/feedback, exact-scene resume and a private-data-free link preview. It uses the existing rights-gated `KnowledgeRepository` and checks the live story before showing local progress. Corrupt local state is never overwritten without an explicit reset. No religious prose was seeded. Unit 157/157, disposable pgTAP 257/257 plus races, demo Chromium 21/21, synthetic connected Chromium 8/8, typecheck and both builds passed. Release preflights still block unapproved text and six media assets. `docs/BUILD_STATUS.md` has a current capability table, screenshot paths and remaining gaps. This is not a public launch or validated retention result.
+
 ## Canonical visual/media delivery — 27 September 2026
 
 The mounted `/alpha` preview now uses a shared bilingual editorial-media registry with responsive WebP files, intentional crops, missing-image recovery, and explicit rights/review states. Distinct local-preview Krishna, Hanuman and Shiva art appears across Divine, Explore, search and Saved; story and scripture covers share those assets, and the Hanuman reader has one paced sea illustration. Text-first scripture, source and privacy surfaces remain quiet. `npm run media:audit` runs during builds and `npm run media:release-preflight` blocks all six unreviewed/rights-unverified assets. See `docs/ART_DIRECTION.md` and `docs/VISUAL_COVERAGE.md`.

@@ -1,4 +1,25 @@
-# Alpha delivery status — latest 28 September 2026
+# Alpha delivery status — latest 29 September 2026
+
+## Connected story session and private return — 29 September 2026
+
+The selected growth/product slice is a **complete eligible story → source → optional personal step → exact-scene return → previewed public link** journey in connected mode. The prior connected story page displayed every scene at once, with no reading position or explicit finish. It now shows one scene at a time, focuses the next scene heading, exposes source/review context before reading, records finish only on an explicit action, and restores the same published story ID and scene on reload. A user may save a self-written step after finishing, later mark it tried, optionally rate it, or delete it. These are separate actions; no timer or page view marks them done. The step and place are device-only, unencrypted and partitioned by signed-in account or guest. They are never included in the share preview. Storage failure keeps the unsaved draft visible and reports failure. A withdrawn story is refetched before any local position or step can appear. Public-link construction refuses a native localhost origin; local web links say they are test-only. No new religious prose or rights claim was seeded.
+
+| Capability | Entry and mode | Actual content / evidence | Remaining gap |
+| --- | --- | --- | --- |
+| Discovery | `/alpha/library`, Divine, Stories; demo and separate connected RPC adapter | Local graph preview; connected collection empty until rights-cleared publication | Editorially approved real catalogue and participant validation |
+| Story/reading | `/alpha/stories/:slug`, `/alpha/episode/:id` | Demo stories and three Gita samples; connected story session verified with **synthetic network fixture only** | Real approved story, full source-context API, native reading test |
+| Optional practice | Connected story after explicit finish; demo Practice remains separate | User-authored device-only step, explicit tried/feedback; browser and unit checks | Reviewed editorial suggestions, any consented cross-device sync |
+| Saves and return | Connected `/alpha/my-day` and per-story local position | Account Saved IDs behind RPC; story position/action device-only and actor-partitioned | Cross-device exact scene and signed-in live UI test |
+| Publication | Migrations 0013–0015, public RPCs | Local pgTAP 257/257 and prior isolated GoTrue/PostgREST 16 graph checks | Privileged editorial creation/review/publish tool and production application |
+| Audio | Existing player/sound-check | Synthetic tones only, explicitly not narration | Rights-cleared, reviewed recording and device playback QA |
+| Sharing | Connected story preview/copy/share sheet | Link excludes private step; a fresh fixture visitor opens the same story; localhost is labelled local | Eligible deployed public URL, HTML/SEO preview and recipient measurement |
+| Payments | Existing contract/fixture layer, no live entry | No real charge or entitlement granted | Validated paid value, server-enforced access and authorized provider rollout |
+
+Verification: 157/157 Node tests; typecheck; audited demo and real-mode builds; 257/257 disposable SQL authorization assertions plus both concurrency races; 21/21 default Chromium journeys (seven connected cases skipped in that run); 8/8 focused synthetic connected journeys across story, auth and knowledge flows. Story screenshots at 390, 768 and 1440 CSS px and a fresh Hindi visitor at 320 px were inspected; no horizontal overflow or page errors were observed. Reduced motion and scene focus were exercised; 200% root text-size emulation at 320 px did not overflow, but this is not a screen-reader or physical-device test. The content and media release preflights **correctly block** current unapproved demo assets. The unchanged isolated live GoTrue/PostgREST fixture was not rerun for this UI-only slice. No production migration, payment, content publication, public deployment or customer test occurred.
+
+Local visual evidence: `test-results/connected-story-opening-390.png`, `connected-story-390.png`, `connected-story-768.png` and `connected-story-1440.png`. These are ignored QA artifacts in this checkout, not published marketing images.
+
+Next highest-value slice: a role-correct editorial preparation and publication workflow tied to one genuinely cleared story. Without it, the working connected journey has only synthetic test content, and neither sharing nor monetization can be evaluated with real readers.
 
 ## Phase III real knowledge service — local implementation, 28 September 2026
 
