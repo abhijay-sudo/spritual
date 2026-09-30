@@ -4,7 +4,7 @@
 
 ## Scope and commands
 
-A dependency-free static website inside the existing app repository. Node renders six HTML pages plus a real 404. Small native JavaScript enhances reflection selection and the quiet-moment journey. No framework migration, app changes or remote database is needed.
+A dependency-free static website inside the existing app repository. Node renders 80 English/Hindi HTML pages plus a real 404. Small native JavaScript enhances library search, explicit saved places, reading controls, reflection selection and the quiet-moment journey. No framework migration, app changes or remote database is needed.
 
 From the repository root:
 
@@ -21,7 +21,7 @@ Vercel: intended **Spritual** team (`spritual1`), root directory **website**, pr
 
 Home → reflection choice → silent timed pause → explicit finish → optional preset intention save → reload → remove. English and Hindi. Timer pauses when document becomes hidden. No timer auto-completion record; no journaling or faith-profile collection. Save is deliberate, local, unencrypted and removable, with honest failure feedback. Corrupt records require explicit deletion. Shared links contain only language and a known public reflection ID.
 
-Public HTML includes canonical/hreflang, descriptions, social metadata, sitemap and privacy notice. The site stays readable without JavaScript. No analytics, third-party font requests, email collection, payment, account, AI provider, app-store availability claim or religious prose is shipped. Ordinary Vercel hosting logs remain. The scripture app is explicitly in development. App fixture assets and routes return 404.
+Public HTML includes canonical/hreflang, descriptions, social metadata, sitemap and privacy notice. The site stays readable without JavaScript. No analytics, third-party font requests, email collection, payment, account, AI provider, app-store availability claim or imported religious prose is shipped. Ordinary Vercel hosting logs remain. The scripture app is explicitly in development. App fixture assets and routes return 404.
 
 The original landscape is authored vector artwork, not a depiction of a named deity, licensed photograph, historical painting or sacred site. `brand.svg` is the unchanged project favicon. Fraunces is the existing OFL font; its license is included. The product illustration shows this working website pause, not a fabricated screenshot of a released mobile app.
 
@@ -61,3 +61,46 @@ After the registrar releases the hold, read current DNS before changing anything
 No app store release, full scripture publication, production app authentication, database migration, payment or AI provider was enabled by this website deployment.
 
 Post-KYC follow-up: all seven Node checks and all eleven live-preview Chromium journeys passed again. The remaining blocker is registrar processing followed by DNS and Vercel ownership verification, not a website build failure.
+
+
+## Library expansion — 30 September 2026
+
+**Implemented public journey:** Home → Library → collection → source guide → original external edition. Search across English/Hindi names, combine a collection filter, recover from no results, explicitly save a section, reload, switch language, resume and remove it. All 18 Mahabharata parvas, seven Ramayana kandas and seven Shiva Purana samhitas have stable bilingual guide routes. These 32 guides are bibliographic navigation, **not a released full-text scripture library**. The collection artwork is original abstract SVG; the liked ivory/forest/Fraunces theme is retained. Source text on external hosts is English; Hindi navigation does not imply a Hindi translation. Private shelf pages are noindex. Public contents remain navigable without JavaScript.
+
+Saved places contain only known section IDs on this device. Search, text size and focus state are not persisted. No reading history, time-spent profile or automatic completion is collected. Storage corruption and denied writes have visible recovery states; cross-tab edits refresh the shelf. No account, checkout, premium lock, fabricated price or entitlement is enabled.
+
+### Actual source reading, available only on this Mac
+
+- `node website/scripts/stage-epics.mjs` downloads/reuses eight original Gutenberg files, preserves their complete licenses, records SHA-256/size/edition URLs, and segments their text into ignored `artifacts/library-source/`. It is an explicit research step, never part of production build.
+- `node website/build.mjs --editorial-preview` builds ignored `artifacts/editorial-site/`. It refuses to run in CI or Vercel. The normal public build never loads the staged file and never emits `/read/` or `/sources/`.
+- `node website/serve.mjs --editorial-preview` serves this separate reader on **127.0.0.1:4191**, with clear local-only status, source/license links, preserved original prose, source introductions, text-size controls and previous/next navigation.
+- `node website/scripts/audit-staged-epics.mjs` verifies all eight file hashes/licenses, 25 books, every nonempty rendered section and every reader link. Run after staging and editorial build. Missing files are an explicit error.
+
+The current import contains **2,755 parsed source sections** across Ganguli's 18 Mahabharata books and Manmatha Nath Dutt's seven Ramayana kandas. This is parser coverage, not a canonical chapter count, scan collation or a critical edition. Original headings include numbering gaps/duplicates; do not silently renumber them as scripture references. Internal ordinal route IDs are importer positions, not canonical verse identifiers. Raw source files preserve the original material and license. The earlier Griffith candidate was rejected because its Uttara account was abridged; Dutt's separate seventh-volume source is included instead.
+
+Source editions: Mahabharata Gutenberg [15474](https://www.gutenberg.org/ebooks/15474), [15475](https://www.gutenberg.org/ebooks/15475), [15476](https://www.gutenberg.org/ebooks/15476), [15477](https://www.gutenberg.org/ebooks/15477); Ramayana [57265](https://www.gutenberg.org/ebooks/57265), [57826](https://www.gutenberg.org/ebooks/57826), [60188](https://www.gutenberg.org/ebooks/60188), [62496](https://www.gutenberg.org/ebooks/62496). Gutenberg's US public-domain designation is not worldwide commercial clearance; retain its [license](https://www.gutenberg.org/policy/license.html) and clear the exact edition, territory and use before release.
+
+**Shiva blocker:** the [Wisdom Library Shiva Purana](https://www.wisdomlib.org/hinduism/book/shiva-purana-english) provides a useful seven-samhita directory but its modern English translation does not provide verified permission for Spritual republication. Only short bibliographic names/links are used. No full Shiva prose was imported. Shiva traditions also span multiple works; one Purana cannot honestly be advertised as every Shiva story. A cleared translation or commissioned, source-grounded and human-reviewed story collection is required.
+
+### Competition and a defensible future paid layer
+
+Additional primary sources inspected 30 September; advertised features are not verified demand or customer research:
+
+| Product | Observed offer | Spritual decision |
+| --- | --- | --- |
+| [Gita Seva](https://apps.apple.com/in/app/gita-seva/id1418594830) | Advertises free scripture ebooks, audio and video, including the epics | Keep source discovery free; a text paywall alone is weak differentiation |
+| [Amar Chitra Katha](https://digital.amarchitrakatha.com/all/all) | Packaged illustrated narratives and digital purchase/subscription offers | Explore separately licensed, reviewed story seasons with consistent art and narration |
+| [Sadhguru app](https://isha.sadhguru.org/global/en/sadhguru-app) and [Exclusive terms](https://isha.sadhguru.org/in/en/sadhguru-exclusive/terms-conditions) | Guided practice and paid exclusive content | Paid value needs a credible teacher/editor and a coherent learning journey; do not invent authority |
+| [Sri Mandir](https://www.srimandir.com/) | Temple-linked puja/chadhava services | Remain a reading/learning product here; fulfilment commerce requires separate operations |
+
+Proposed commercial structure, **not an approved price or live integration**: free source directory and samples; a one-time purchase per finished narrated story season; optionally a membership for a regularly delivered reviewed catalogue. Do not promise an ongoing membership until editorial/narration capacity can sustain it. Start with one complete licensed season, not a huge unreviewed paywall. Validate willingness to pay before committing to a subscription schedule.
+
+For each prospective paid edition retain collection/section ID, revision, language, translator/adaptor/narrator, source citations, territory/use-specific rights evidence, approval actor/time/version, media rights and delivered asset checksums. Publication must use the existing app's reviewed publication system; `catalog.mjs` has a fail-closed policy contract only, not a deployed entitlement service. Before charging, implement authenticated server-side entitlements, verified idempotent payment webhooks, refund/revocation handling, restore access, invoices and support. Never unlock from a client boolean or payment redirect alone. Those integrations are deliberately absent.
+
+Track contribution per order as collected price less taxes, payment/store fees, royalties, refunds and variable delivery/support. Track editorial, translation, narration and artwork costs per season separately; break-even paid orders = fixed season cost / positive contribution per order. Actual costs, customer willingness to pay and prices are unknown. No invented ARR, conversion or subscriber targets are used as evidence.
+
+### Verification and remaining release gates
+
+Local evidence: **14 Node tests and 21 Chromium journeys passed**. Coverage includes the new search/filter/empty state, explicit shelf/save/reload/remove, Hindi switching, corrupt/denied storage, font/focus controls, external-source safety, no-JavaScript navigation and 320/390/768/1440px layouts. The original pause journeys still pass. Desktop library, Hindi phone source guide and actual local imported reader were visually inspected. The separate local import audit passed for all 2,755 sections. This does not establish factual textual accuracy, customer preference, screen-reader or native-device performance.
+
+Full-text public release remains blocked by exact-edition worldwide/commercial rights evidence, named human editorial review and scan/source collation; Hindi content needs its own translated edition and review. Shiva requires a cleared source or commissioned adaptation. Audio, paid access, identity and app-store launch remain unavailable. Do not claim that full texts or subscriptions are public because the directory is live. Hosting/custom-domain status above remains separate from content readiness.

@@ -1,7 +1,9 @@
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { resolve, extname, sep } from 'node:path';
-const root = resolve(import.meta.dirname, 'dist');
+const editorial=process.argv.includes('--editorial-preview');
+const port=editorial?4191:4190;
+const root = resolve(import.meta.dirname, editorial?'../artifacts/editorial-site':'dist');
 const types = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.woff2':'font/woff2','.txt':'text/plain','.xml':'application/xml','.png':'image/png'};
 createServer(async (req,res) => {
  try {
@@ -12,4 +14,4 @@ createServer(async (req,res) => {
   res.setHeader('Content-Type',types[extname(path)] || 'application/octet-stream');
   res.setHeader('Cache-Control','no-store'); res.end(body);
  } catch { res.writeHead(400); res.end('Bad request'); }
-}).listen(4190,'127.0.0.1',()=>console.log('Spritual website: http://127.0.0.1:4190'));
+}).listen(port,'127.0.0.1',()=>console.log(`Spritual website: http://127.0.0.1:${port}`));
