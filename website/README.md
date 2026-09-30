@@ -1,5 +1,7 @@
 # Spritual public website
 
+**Current: live at https://spritual.co.in/ and https://spritual.co.in/library/.** GoDaddy KYC/hold and Vercel ownership blockers below are historical and were resolved on 30 September. The full-text scripture publication gates remain unresolved.
+
 30 September 2026: the owner explicitly authorized building and publishing a website on **spritual.co.in** using the Spritual Vercel account open in Chrome. This authorization covers this website; it does not supply religious-content rights, human approvals, payments or a production app backend.
 
 ## Scope and commands
@@ -50,7 +52,7 @@ Seven Node/build-output checks and 11 Chromium browser tests passed. Browser cov
 
 Vercel project `spritual-website`, ID `prj_xkulmp32dAg96BHwHFL5SW0L4XbR`, in the existing `spritual1` Hobby team. Git is connected to `abhijay-sudo/spritual`; production tracks `codex/public-website`; root is `website` and outside-root build files are disabled. Default Other preset with `vercel.json` build settings. No environment secrets or paid upgrade. Optional project model-training sharing was turned off. Hosted GitHub CI run [36741362410](https://github.com/abhijay-sudo/spritual/actions/runs/36741362410) passed all website checks on `6f7e557`.
 
-## Live delivery and domain blocker — 30 September 2026
+## Historical initial delivery and domain blocker — 30 September 2026
 
 The production website is public at **https://spritual-co-in.vercel.app/**. The initial `project-11b20.vercel.app` address redirects to it. The custom domain is not live yet. Vercel deploys this branch automatically; code revision `65e3320` was served publicly and passed all **11 Chromium journey tests against the live HTTPS site**. The separate seven Node checks and GitHub CI [36742919401](https://github.com/abhijay-sudo/spritual/actions/runs/36742919401) passed. CSP, security headers and anonymous HTTP 200 were verified. Default deployment protection remains intact; unique deployment URLs may require Vercel authentication while the production alias is public.
 
@@ -104,3 +106,12 @@ Track contribution per order as collected price less taxes, payment/store fees, 
 Local evidence: **14 Node tests and 21 Chromium journeys passed**. Coverage includes the new search/filter/empty state, explicit shelf/save/reload/remove, Hindi switching, corrupt/denied storage, font/focus controls, external-source safety, no-JavaScript navigation and 320/390/768/1440px layouts. The original pause journeys still pass. Desktop library, Hindi phone source guide and actual local imported reader were visually inspected. The separate local import audit passed for all 2,755 sections. This does not establish factual textual accuracy, customer preference, screen-reader or native-device performance.
 
 Full-text public release remains blocked by exact-edition worldwide/commercial rights evidence, named human editorial review and scan/source collation; Hindi content needs its own translated edition and review. Shiva requires a cleared source or commissioned adaptation. Audio, paid access, identity and app-store launch remain unavailable. Do not claim that full texts or subscriptions are public because the directory is live. Hosting/custom-domain status above remains separate from content readiness.
+
+
+## Custom-domain connection completed — 30 September, 23:50 IST
+
+GoDaddy released the registrar hold after the owner's KYC. Read and preserved the existing seven-record zone, then changed only parked apex A to Vercel's displayed `216.198.79.1`, changed `www` CNAME to `516fb657af903685.vercel-dns-017.com.`, and added the two ownership TXT records Vercel requested at `_vercel`. NS, SOA, Domain Connect and DMARC remained unchanged; no registrant details, paid service, nameservers or security settings changed. Public Cloudflare DNS returned all new A/CNAME/TXT values. Vercel ownership validation succeeded.
+
+Redeployed tested source `854c1c8` as `dpl_ASDWDF8Pt8Wg8Y6cHzNbhfheSKj6` to assign the now-verified domains. Anonymous HTTPS `https://spritual.co.in/library/` returned 200 with the new catalogue; `https://www.spritual.co.in/library/` returned 308 to the matching apex path. TLS validation was not bypassed. The custom-domain page was opened and visually inspected in Chrome. GitHub [Public website](https://github.com/abhijay-sudo/spritual/actions/runs/36757211179) and [Verify alpha](https://github.com/abhijay-sudo/spritual/actions/runs/36757210850) passed for the implementation revision. All 21 browser tests also passed against the Vercel public alias.
+
+Final custom-domain verification: **all 21 Chromium journeys passed against https://spritual.co.in**, including source-guide availability, private-reader 404s, bilingual layouts and the entire pause/saved-place flows.
