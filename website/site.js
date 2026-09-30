@@ -1,4 +1,4 @@
-import { readIntention, saveIntention, KEY, selectMoment, timerRemaining } from './session.js';
+import { readIntention, saveIntention, KEY, selectMoment, timerRemaining, shareOrigin } from './session.js';
 document.documentElement.classList.add('enhanced');
 const c=JSON.parse(document.querySelector('#page-copy').textContent);
 const $=id=>document.getElementById(id);
@@ -32,5 +32,5 @@ if($('timer-view')) {
   }catch{$('save-status').textContent=c.storageError;}
  });
  $('remove-step').addEventListener('click',()=>{try{localStorage.removeItem(KEY);stored={kind:'empty'};renderSaved();$('save-status').textContent=c.removed;$('timer-status').textContent=c.removed;(finished?$('save-step'):$('timer-toggle')).focus();}catch{$('remove-status').textContent=c.removeError;}});
- $('share-link').addEventListener('click',async()=>{const link=`https://spritual.co.in${base}pause/?moment=${moment}`;try{await navigator.clipboard.writeText(link);$('share-status').textContent=c.copied;$('copy-fallback').hidden=true;}catch{$('copy-fallback').hidden=false;$('copy-url').value=link;$('copy-url').focus();$('copy-url').select();$('share-status').textContent='';}});
+ $('share-link').addEventListener('click',async()=>{const link=`${shareOrigin(location.origin)}${base}pause/?moment=${moment}`;try{await navigator.clipboard.writeText(link);$('share-status').textContent=c.copied;$('copy-fallback').hidden=true;}catch{$('copy-fallback').hidden=false;$('copy-url').value=link;$('copy-url').focus();$('copy-url').select();$('share-status').textContent='';}});
 }

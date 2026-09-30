@@ -13,5 +13,10 @@ export function saveIntention(storage,intention) {
 export function selectMoment(search) {
  const id=new URLSearchParams(search).get('moment');return ['stillness','focus','presence'].includes(id)?id:'stillness';
 }
+// Keep public preview links usable while the registrar verifies the custom domain.
+// Never carry arbitrary hosts, query parameters or saved intentions into a share.
+export function shareOrigin(origin) {
+ return origin==='https://spritual-co-in.vercel.app'?origin:'https://spritual.co.in';
+}
 // Only visible, explicitly running time counts. Timing uses monotonic timestamps.
 export function timerRemaining(remaining,startedAt,now) {return Math.max(0,remaining-Math.max(0,now-startedAt));}
