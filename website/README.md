@@ -45,3 +45,7 @@ The real approved scripture catalogue, editorial operators, app-store launch dat
 ## Local verification, 30 September
 
 Six Node/build-output checks and 11 Chromium browser tests passed. Browser coverage includes all public page types at 320/390/768/1440px, English/Hindi, reduced motion, enlarged text, keyboard/FAQ, JavaScript disabled, complete pause/save/reload/delete, hidden-page timer pause, invalid storage, denied writes and clipboard fallback. Desktop home, phone home, Hindi pause and browser screenshots were visually inspected. No customer research, native device or screen-reader validation is implied. Hosted verification and DNS status are recorded after deployment below.
+
+## Hosting setup
+
+Vercel project `spritual-website`, ID `prj_xkulmp32dAg96BHwHFL5SW0L4XbR`, in the existing `spritual1` Hobby team. Git is connected to `abhijay-sudo/spritual`; production tracks `codex/public-website`; root is `website` and outside-root build files are disabled. Default Other preset with `vercel.json` build settings. No environment secrets or paid upgrade. Optional project model-training sharing was turned off. Hosted GitHub CI run [36741362410](https://github.com/abhijay-sudo/spritual/actions/runs/36741362410) passed all website checks on `6f7e557`.
