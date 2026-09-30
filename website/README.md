@@ -4,6 +4,14 @@
 
 30 September 2026: the owner explicitly authorized building and publishing a website on **spritual.co.in** using the Spritual Vercel account open in Chrome. This authorization covers this website; it does not supply religious-content rights, human approvals, payments or a production app backend.
 
+## Hush craft update — 1 October 2026
+
+Implemented a six-section homepage, two balanced hero entry points, a keyboard-contained mobile menu, context-only library navigation, original collection marks, search-first controls, a narrower reading measure, focus-mode exit, and a smooth animation-frame pause timer. Motion is restrained and respects reduced motion. Hindi typography, 44px controls, enlarged-text reflow, consent-based saving and failure recovery remain supported. Completion is deliberately explicit; reaching zero does not save or declare completion. Cross-document view transitions were removed after a Chromium reload error; ordinary page/reveal motion remains.
+
+Verified locally: 14 Node/output tests and 31 Chromium journeys passed, including screenshots/reflow at 390/768/1024/1440/1680 and existing 320px checks, EN/HI, keyboard, reduced motion, storage failures and no-JavaScript reading. Hindi phone home/menu, desktop home, tablet library, guide and pause/completion screenshots were visually inspected. Five Lighthouse accessibility audits (home, library, Adi guide, pause, Hindi home) scored 100; these are automated checks, not a WCAG certification or screen-reader/device study. Reports remain local under `artifacts/hush-lighthouse-*.json` and screenshots under `test-results/hush-*`.
+
+The local-only editorial reader still passed its eight-source integrity audit across 25 books and 2,755 sections after the shared-template changes. This does not establish publication rights or editorial approval. No imported prose, payment, analytics, account service or app/native change is included.
+
 ## Scope and commands
 
 A dependency-free static website inside the existing app repository. Node renders 80 English/Hindi HTML pages plus a real 404. Small native JavaScript enhances library search, explicit saved places, reading controls, reflection selection and the quiet-moment journey. No framework migration, app changes or remote database is needed.
