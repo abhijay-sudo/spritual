@@ -10,6 +10,8 @@ Implemented a six-section homepage, two balanced hero entry points, a keyboard-c
 
 Verified locally: 14 Node/output tests and 31 Chromium journeys passed, including screenshots/reflow at 390/768/1024/1440/1680 and existing 320px checks, EN/HI, keyboard, reduced motion, storage failures and no-JavaScript reading. Hindi phone home/menu, desktop home, tablet library, guide and pause/completion screenshots were visually inspected. Five Lighthouse accessibility audits (home, library, Adi guide, pause, Hindi home) scored 100; these are automated checks, not a WCAG certification or screen-reader/device study. Reports remain local under `artifacts/hush-lighthouse-*.json` and screenshots under `test-results/hush-*`.
 
+Live verification: Vercel successfully deployed source revision `aa0841b`; all 31 Chromium journeys then passed against **https://spritual.co.in**. The published desktop homepage was visually inspected in Chrome.
+
 The local-only editorial reader still passed its eight-source integrity audit across 25 books and 2,755 sections after the shared-template changes. This does not establish publication rights or editorial approval. No imported prose, payment, analytics, account service or app/native change is included.
 
 ## Scope and commands
