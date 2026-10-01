@@ -4,7 +4,7 @@ import { resolve, extname, sep } from 'node:path';
 const editorial=process.argv.includes('--editorial-preview');
 const port=editorial?4191:4190;
 const root = resolve(import.meta.dirname, editorial?'../artifacts/editorial-site':'dist');
-const types = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.woff2':'font/woff2','.txt':'text/plain','.xml':'application/xml','.png':'image/png'};
+const types = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.woff2':'font/woff2','.txt':'text/plain','.xml':'application/xml','.png':'image/png'};
 createServer(async (req,res) => {
  try {
   let path = resolve(root, '.' + decodeURIComponent(new URL(req.url, 'http://localhost').pathname));

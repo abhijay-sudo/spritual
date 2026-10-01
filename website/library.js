@@ -12,14 +12,19 @@ renderShelf();window.addEventListener('storage',e=>{if(e.key===SHELF_KEY||e.key=
 for(const button of document.querySelectorAll('[data-save]'))button.addEventListener('click',()=>{try{const prior=readShelf(localStorage,data.keys);if(prior.kind==='invalid')throw Error();const saving=!prior.items.includes(button.dataset.save);changeShelf(localStorage,data.keys,button.dataset.save,saving);renderShelf();$('shelf-status').textContent=saving?say('Saved on this device only.','केवल इस डिवाइस पर सहेजा गया।'):say('Saved place removed.','सहेजा स्थान हटा दिया गया।');}catch{renderShelf();showError();}});
 $('clear-shelf')?.addEventListener('click',()=>{try{localStorage.removeItem(SHELF_KEY);renderShelf();$('shelf-status').textContent=say('Unreadable saved places removed. You can save again.','अपठनीय सहेजे स्थान हटा दिए गए। अब फिर सहेज सकते हैं।');}catch{showError();}});
 const search=$('library-search');const filter=$('library-filter');
-function searchResults(){const q=normalizeSearch(search.value);let count=0;for(const row of document.querySelectorAll('[data-library-row]')){const visible=(!filter.value||row.dataset.collection===filter.value)&&normalizeSearch(row.dataset.search).includes(q);row.hidden=!visible;if(visible)count++;} $('search-count').textContent=hi?`${count} परिणाम`:`${count} ${count===1?'result':'results'}`;$('search-empty').hidden=count>0;}
-search?.addEventListener('input',searchResults);filter?.addEventListener('change',searchResults);$('search-reset')?.addEventListener('click',()=>{search.value='';filter.value='';searchResults();search.focus();});
-if(search)searchResults();
+function syncDiscoveryUrl(){
+ const url=new URL(location.href);if(search.value)url.searchParams.set('q',search.value);else url.searchParams.delete('q');if(filter.value)url.searchParams.set('collection',filter.value);else url.searchParams.delete('collection');history.replaceState(history.state,'',`${url.pathname}${url.search}${url.hash}`);
+ const language=document.querySelector('.language');if(language){const other=new URL(language.href,location.href);for(const key of ['q','collection','world']){const value=url.searchParams.get(key);if(value)other.searchParams.set(key,value);else other.searchParams.delete(key);}language.href=`${other.pathname}${other.search}${other.hash}`;}
+}
+function searchResults(updateUrl=false){const q=normalizeSearch(search.value);let count=0;for(const row of document.querySelectorAll('[data-library-row]')){const visible=(!filter.value||row.dataset.collection===filter.value)&&normalizeSearch(row.dataset.search).includes(q);row.hidden=!visible;if(visible)count++;}for(const group of document.querySelectorAll('[data-library-group]')){const visible=Boolean(group.querySelector('[data-library-row]:not([hidden])'));group.hidden=!visible;if(visible&&(q||filter.value))group.open=true;else if(!q&&!filter.value)group.open=false;}$('search-count').textContent=hi?`${count} परिणाम`:`${count} ${count===1?'result':'results'}`;$('search-empty').hidden=count>0;if(updateUrl)syncDiscoveryUrl();}
+search?.addEventListener('input',()=>searchResults(true));filter?.addEventListener('change',()=>searchResults(true));$('search-reset')?.addEventListener('click',()=>{search.value='';filter.value='';searchResults(true);search.focus();});
+if(search){const params=new URLSearchParams(location.search),collection=params.get('collection');search.value=(params.get('q')||'').slice(0,120);if([...filter.options].some(option=>option.value===collection))filter.value=collection;searchResults();syncDiscoveryUrl();}
+for(const jump of document.querySelectorAll('.directory-jumps a'))jump.addEventListener('click',()=>{const group=document.querySelector(jump.hash);if(group)group.open=true;});
 let size=1;for(const b of document.querySelectorAll('[data-reading-size]'))b.addEventListener('click',()=>{size=Math.max(.9,Math.min(1.4,size+Number(b.dataset.readingSize)));$('reading-body').style.fontSize=`${size*20}px`;$('reading-size-status').textContent=`${Math.round(size*100)}%`;});
 function setFocus(active){
  document.body.classList.toggle('reading-focus',active);$('focus-reading')?.setAttribute('aria-pressed',String(active));
  if($('exit-focus'))$('exit-focus').hidden=!active;
- for(const el of document.querySelectorAll('.header,.library-subnav,.footer'))el.inert=active;
+ for(const el of document.querySelectorAll('.header,.world-bar,.library-subnav,.footer'))el.inert=active;
  (active?$('exit-focus'):$('focus-reading'))?.focus({preventScroll:true});
 }
 $('focus-reading')?.addEventListener('click',()=>setFocus(!document.body.classList.contains('reading-focus')));

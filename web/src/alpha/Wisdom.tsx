@@ -159,6 +159,7 @@ export function WisdomMyDay() {
     try { return Boolean(localStorage.getItem(`spritual_alpha_private_${actor.id}_${id}`)?.trim()); }
     catch { return false; }
   });
+  const completedCount = Object.keys(state.finished || {}).length;
   const remove = (id: string) => {
     if (update(latest => {
       const next = { ...latest.kept };
@@ -170,6 +171,7 @@ export function WisdomMyDay() {
     <span className="wisdom-overline">{t("SAVED · ON THIS DEVICE", "सहेजा हुआ · इस डिवाइस पर")}</span>
     <h1>{t("What you chose", "जो आपने चुना,")}<br/><em>{t("to keep.", "वह यहाँ है।")}</em></h1>
     <p>{t("Your readings, small steps and private notes live here. Return when useful; there is no streak or missed-day debt.", "आपके पाठ, छोटे कदम और निजी नोट यहाँ हैं। जब ठीक लगे लौटें; लगातार दिनों का कोई दबाव नहीं।")}</p>
+    <section className="calm-saved-overview" aria-label={t("Private activity on this device", "इस डिवाइस पर निजी गतिविधि")}><div><strong>{kept.length}</strong><span>{t("saved readings or steps", "सहेजे पाठ या कदम")}</span></div><div><strong>{noteIds.length}</strong><span>{t("private notes", "निजी नोट")}</span></div><div><strong>{completedCount}</strong><span>{t("readings completed", "पूरे किए पाठ")}</span></div><p>{t("Only on this device · no streak, score or public profile", "केवल इस डिवाइस पर · कोई स्ट्रीक, अंक या सार्वजनिक प्रोफ़ाइल नहीं")}</p></section>
     <Disclose error={error}/><p className="practice-feedback" role="status">{cueNotice}</p>
     <section className="calm-saved-section" aria-labelledby="saved-readings-title"><h2 id="saved-readings-title">{t("Saved readings", "सहेजे हुए पाठ")}</h2>
     {kept.length === 0 ? <div className="calm-saved-empty"><p>{t("Nothing saved yet. Read a passage and save it if you wish.", "अभी कुछ सहेजा नहीं है। चाहें तो एक श्लोक पढ़कर सहेजें।")}</p><Link to="/alpha/today">{t("Begin with Today", "आज से शुरू करें")} →</Link></div> : <div className="wisdom-kept-list">{kept.map(([id, entry]) => {

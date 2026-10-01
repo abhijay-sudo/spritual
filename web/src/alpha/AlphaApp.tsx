@@ -58,6 +58,14 @@ export function downloadText(name: string, text: string) {
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
+function RouteLoading({ language, en, hi }: { language: "en" | "hi"; en: string; hi: string }) {
+  return (
+    <div className="alpha-route-loading" role="status" aria-live="polite">
+      <span className="alpha-route-loading-mark" aria-hidden="true"><Icon name="sun" size={25} /></span>
+      <span>{language === "hi" ? hi : en}</span>
+    </div>
+  );
+}
 export default function AlphaApp() {
   const mode = import.meta.env.VITE_ALPHA_MODE || "demo";
   if (mode === "real") return <Suspense fallback={<div className="alpha"><main className="alpha-main" role="status">Opening connected alpha…</main></div>}><RealAlphaApp /></Suspense>;
@@ -107,6 +115,8 @@ function Shell() {
   const storyReader = location.pathname.startsWith("/alpha/episode/") || location.pathname.startsWith("/alpha/stories/");
   const welcomePage = location.pathname === "/alpha/welcome";
   const reflectionPage = location.pathname.startsWith("/alpha/reflection/");
+  const legacyWorkspace = location.pathname === "/alpha/circle" || location.pathname === "/alpha/program" || location.pathname.startsWith("/alpha/practice/") || location.pathname.startsWith("/alpha/complete/") || location.pathname === "/alpha/institutions" || location.pathname === "/alpha/teacher";
+  const showDemoControls = legacyWorkspace || location.pathname === "/alpha/settings" || location.pathname === "/alpha/join" || location.pathname === "/alpha/sample" || location.pathname === "/alpha/sample-complete";
   const wisdomSurface = ["/alpha", "/alpha/today", "/alpha/library", "/alpha/life", "/alpha/divine", "/alpha/search", "/alpha/stories", "/alpha/stories/arjuna-bow", "/alpha/my-day", "/alpha/practice", "/alpha/series/gita", "/alpha/account", "/alpha/settings"].includes(location.pathname) || location.pathname.startsWith("/alpha/divine/") || location.pathname.startsWith("/alpha/sources/") || location.pathname.startsWith("/alpha/scriptures") || location.pathname.startsWith("/alpha/wisdom/") || location.pathname.startsWith("/alpha/reflection/") || storyReader;
   const [readingLanguage, setReadingLanguage] = useState<"en" | "hi">("en");
   const [systemDark, setSystemDark] = useState(() => window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false);
@@ -203,6 +213,11 @@ function Shell() {
         <div role="status" className="alpha-notice">
           {notice}
         </div>
+        {legacyWorkspace && <aside className="alpha-legacy-notice" aria-label={label("Local community preview", "स्थानीय समुदाय पूर्वावलोकन")}>
+          <strong>{label("Local community simulation", "स्थानीय समुदाय का नमूना")}</strong>
+          <span>{label("This optional historical workspace uses test identities and some English-only fixture text. It is not a real account, payment or teacher service.", "यह वैकल्पिक पुराना कार्यस्थान परीक्षण पहचान और कुछ केवल-अंग्रेज़ी नमूना पाठ इस्तेमाल करता है। यह वास्तविक खाता, भुगतान या शिक्षक सेवा नहीं है।")}</span>
+          <Link to="/alpha/today">{label("Return to the wisdom companion", "ज्ञान साथी पर लौटें")}</Link>
+        </aside>}
         <Routes>
           <Route path="/alpha" element={<FirstEntry />} />
           <Route path="/alpha/welcome" element={<DevotionalWelcome />} />
@@ -214,20 +229,20 @@ function Shell() {
           <Route path="/alpha/join" element={<Join />} />
           <Route path="/alpha/today" element={<DevotionalToday />} />
           <Route path="/alpha/library" element={<DevotionalExplore />} />
-          <Route path="/alpha/divine" element={<Suspense fallback={<p role="status">Opening Divine…</p>}><DivineDiscover /></Suspense>} />
-          <Route path="/alpha/divine/:slug" element={<Suspense fallback={<p role="status">Opening this entry…</p>}><DivineEntry /></Suspense>} />
-          <Route path="/alpha/search" element={<Suspense fallback={<p role="status">Opening search…</p>}><UniversalSearch /></Suspense>} />
-          <Route path="/alpha/sources/:id" element={<Suspense fallback={<p role="status">Opening source context…</p>}><SourceContext /></Suspense>} />
-          <Route path="/alpha/scriptures" element={<Suspense fallback={<p role="status">Opening scriptures…</p>}><ScriptureLibrary /></Suspense>} />
-          <Route path="/alpha/scriptures/:slug" element={<Suspense fallback={<p role="status">Opening work…</p>}><ScriptureWork /></Suspense>} />
-          <Route path="/alpha/practice" element={<Suspense fallback={<p role="status">Opening practice…</p>}><PracticeHub /></Suspense>} />
-          <Route path="/alpha/life" element={<Suspense fallback={<p role="status">Finding your place…</p>}><LifeWisdom key={actor.id} restoreQuestion={lifeReturnQuestion.current?.actorId === actor.id ? lifeReturnQuestion.current.question : null} onOpenSource={question => { lifeReturnQuestion.current = { actorId: actor.id, question }; }} /></Suspense>} />
-          <Route path="/alpha/stories/arjuna-bow" element={<Suspense fallback={<p role="status">Opening the story…</p>}><BeforeTeaching /></Suspense>} />
-          <Route path="/alpha/stories" element={<Suspense fallback={<p role="status">Opening stories…</p>}><StoriesIndex /></Suspense>} />
-          <Route path="/alpha/stories/:slug" element={<Suspense fallback={<p role="status">Opening the story…</p>}><GraphStoryReader /></Suspense>} />
+          <Route path="/alpha/divine" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Opening Divine…" hi="दिव्य कथाएँ खुल रही हैं…"/>}><DivineDiscover /></Suspense>} />
+          <Route path="/alpha/divine/:slug" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Opening this entry…" hi="यह परिचय खुल रहा है…"/>}><DivineEntry /></Suspense>} />
+          <Route path="/alpha/search" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Opening search…" hi="खोज खुल रही है…"/>}><UniversalSearch /></Suspense>} />
+          <Route path="/alpha/sources/:id" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Opening source context…" hi="स्रोत का संदर्भ खुल रहा है…"/>}><SourceContext /></Suspense>} />
+          <Route path="/alpha/scriptures" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Opening scriptures…" hi="ग्रंथ-संग्रह खुल रहा है…"/>}><ScriptureLibrary /></Suspense>} />
+          <Route path="/alpha/scriptures/:slug" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Opening this work…" hi="यह ग्रंथ खुल रहा है…"/>}><ScriptureWork /></Suspense>} />
+          <Route path="/alpha/practice" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Opening a quiet pause…" hi="शांत विराम खुल रहा है…"/>}><PracticeHub /></Suspense>} />
+          <Route path="/alpha/life" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Finding your place…" hi="आपके लिए स्थान खोज रहे हैं…"/>}><LifeWisdom key={actor.id} restoreQuestion={lifeReturnQuestion.current?.actorId === actor.id ? lifeReturnQuestion.current.question : null} onOpenSource={question => { lifeReturnQuestion.current = { actorId: actor.id, question }; }} /></Suspense>} />
+          <Route path="/alpha/stories/arjuna-bow" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Opening the story…" hi="कथा खुल रही है…"/>}><BeforeTeaching /></Suspense>} />
+          <Route path="/alpha/stories" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Opening stories…" hi="कथाएँ खुल रही हैं…"/>}><StoriesIndex /></Suspense>} />
+          <Route path="/alpha/stories/:slug" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Opening the story…" hi="कथा खुल रही है…"/>}><GraphStoryReader /></Suspense>} />
           <Route path="/alpha/wisdom/:id" element={<WisdomLesson />} />
-          <Route path="/alpha/series/gita" element={<Suspense fallback={<p role="status">Opening the journey…</p>}><GitaJourney /></Suspense>} />
-          <Route path="/alpha/episode/:id" element={<Suspense fallback={<p className="story-loading" role="status">Opening the reading…</p>}><GitaEpisode /></Suspense>} />
+          <Route path="/alpha/series/gita" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Opening the journey…" hi="यात्रा खुल रही है…"/>}><GitaJourney /></Suspense>} />
+          <Route path="/alpha/episode/:id" element={<Suspense fallback={<RouteLoading language={readingLanguage} en="Opening the reading…" hi="पाठ खुल रहा है…"/>}><GitaEpisode /></Suspense>} />
           <Route path="/alpha/my-day" element={<WisdomMyDay />} />
           <Route path="/alpha/circle" element={<Today />} />
           <Route path="/alpha/program" element={<Program />} />
@@ -246,7 +261,7 @@ function Shell() {
           <Route
             path="/alpha/teacher"
             element={
-              <Suspense fallback={<p>Opening delivery workspace…</p>}>
+              <Suspense fallback={<RouteLoading language={readingLanguage} en="Opening the local delivery workspace…" hi="स्थानीय वितरण कार्यस्थान खुल रहा है…"/>}>
                 <Teacher />
               </Suspense>
             }
@@ -255,19 +270,19 @@ function Shell() {
             path="*"
             element={
               <div className="alpha-stack">
-                <h1>Let’s find your place.</h1>
-                <p>
-                  This page is not available. Your saved notes haven’t changed.
-                </p>
+                <p className="alpha-kicker">{label("A QUIET DETOUR", "एक छोटा-सा मोड़")}</p>
+                <h1>{label("Let’s find your place.", "अपनी जगह फिर से खोजें।")}</h1>
+                <p>{label("This page is not available. Nothing saved on this device was changed.", "यह पेज उपलब्ध नहीं है। इस डिवाइस पर सहेजी कोई चीज़ बदली नहीं गई।")}</p>
                 <Link className="alpha-button" to="/alpha/today">
-                  Go to today
+                  {label("Go to Today", "आज पर जाएँ")}
                 </Link>
+                <Link className="alpha-text-link" to="/alpha/library">{label("Explore available readings", "उपलब्ध पाठ खोजें")}</Link>
               </div>
             }
           />
         </Routes>
       </main>
-      <footer className="alpha-footer">
+      {showDemoControls && <footer className="alpha-footer">
         <details>
           <summary>{label("Demo workspace controls", "डेमो कार्यस्थान के नियंत्रण")}</summary>
           <p>
@@ -290,7 +305,7 @@ function Shell() {
           <Link to="/alpha/teacher">Open teacher workspace</Link>
           <Link to="/today">Earlier reading demo</Link>
         </details>
-      </footer>
+      </footer>}
       {!reflectionPage && location.pathname !== "/alpha/life" && <nav className="alpha-nav" aria-label={label("Main navigation", "मुख्य नेविगेशन")}>
         {[
           { to: "/alpha/today", icon: "sun" as const, en: "Today", hi: "आज", active: location.pathname === "/alpha/today" || location.pathname === "/alpha" },
@@ -970,14 +985,17 @@ function Account() {
         />
         <span>{t("Reduce motion", "एनिमेशन कम करें")}</span>
       </label>
-      <section className="alpha-panel">
-        <h2>{actor.name}</h2>
-        <p>{t("Local demo identity · not a verified account", "स्थानीय डेमो पहचान · सत्यापित खाता नहीं")}</p>
-        <p>{cohort ? `${cohort.name} · ${result.allowed ? t("included access", "शामिल पहुँच") : t("access unavailable", "पहुँच उपलब्ध नहीं")}` : t("No community joined yet", "अभी किसी समुदाय से नहीं जुड़े")}</p>
-        <p>{result.allowed ? t("Circle access is active.", "समुदाय की पहुँच सक्रिय है।") : result.reason}</p>
-        {result.endsAt && <p>{t("Access ends", "पहुँच समाप्त होगी")} {new Date(result.endsAt).toLocaleString(wisdom.language === "hi" ? "hi-IN" : "en-IN")}.</p>}
-        <p>{t("No subscription or charge exists in this alpha.", "इस अल्फ़ा में कोई सदस्यता या शुल्क नहीं है।")}</p>
-      </section>
+      <details className="alpha-demo-identity">
+        <summary>{t("Local preview identity", "स्थानीय पूर्वावलोकन पहचान")}</summary>
+        <section className="alpha-panel">
+          <h2>{actor.name}</h2>
+          <p>{t("Test identity for the optional community simulation · not a verified account", "वैकल्पिक समुदाय नमूने की परीक्षण पहचान · सत्यापित खाता नहीं")}</p>
+          <p>{cohort ? `${cohort.name} · ${result.allowed ? t("included access", "शामिल पहुँच") : t("access unavailable", "पहुँच उपलब्ध नहीं")}` : t("No community joined yet", "अभी किसी समुदाय से नहीं जुड़े")}</p>
+          <p>{result.allowed ? t("Circle access is active in this local simulation.", "इस स्थानीय नमूने में समुदाय की पहुँच सक्रिय है।") : result.reason}</p>
+          {result.endsAt && <p>{t("Simulated access ends", "नमूना पहुँच समाप्त होगी")} {new Date(result.endsAt).toLocaleString(wisdom.language === "hi" ? "hi-IN" : "en-IN")}.</p>}
+          <p>{t("No subscription or charge exists in this alpha.", "इस अल्फ़ा में कोई सदस्यता या शुल्क नहीं है।")}</p>
+        </section>
+      </details>
       <section className="alpha-panel">
         <h2>{t("Reminders are off", "याद दिलाने वाली सूचनाएँ बंद हैं")}</h2>
         <p>

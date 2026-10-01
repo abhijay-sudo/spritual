@@ -4,6 +4,8 @@
 
 30 September 2026: the owner explicitly authorized building and publishing a website on **spritual.co.in** using the Spritual Vercel account open in Chrome. This authorization covers this website; it does not supply religious-content rights, human approvals, payments or a production app backend.
 
+1 October 2026 release attestation: after being asked whether they had reviewed and approved all 32 original bilingual guide orientations and seven generated art families for publication, including their source and usage rights, the owner replied, “Yeah. Do it.” This records owner publication approval for the current website release. It is not represented as a separate scholarly, theological or tradition-institution review, does not change source facts, and does not authorize imported full scripture prose. The exact scope and rollback reference are recorded in `docs/project/OWNER_RELEASE_APPROVAL_2026-10-01.md`.
+
 ## Hush craft update — 1 October 2026
 
 Implemented a six-section homepage, two balanced hero entry points, a keyboard-contained mobile menu, context-only library navigation, original collection marks, search-first controls, a narrower reading measure, focus-mode exit, and a smooth animation-frame pause timer. Motion is restrained and respects reduced motion. Hindi typography, 44px controls, enlarged-text reflow, consent-based saving and failure recovery remain supported. Completion is deliberately explicit; reaching zero does not save or declare completion. Cross-document view transitions were removed after a Chromium reload error; ordinary page/reveal motion remains.
