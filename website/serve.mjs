@@ -2,8 +2,10 @@ import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { resolve, extname, sep } from 'node:path';
 const editorial=process.argv.includes('--editorial-preview');
-const port=editorial?4191:4190;
-const root = resolve(import.meta.dirname, editorial?'../artifacts/editorial-site':'dist');
+const sanatan=process.argv.includes('--sanatan-preview');
+if(editorial&&sanatan)throw Error('Choose one preview mode.');
+const port=editorial?4191:sanatan?4192:4190;
+const root = resolve(import.meta.dirname, editorial?'../artifacts/editorial-site':sanatan?'../artifacts/sanatan-site':'dist');
 const types = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.woff2':'font/woff2','.txt':'text/plain','.xml':'application/xml','.png':'image/png'};
 createServer(async (req,res) => {
  try {

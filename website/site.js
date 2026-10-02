@@ -4,6 +4,7 @@ const c=JSON.parse(document.querySelector('#page-copy').textContent);
 const $=id=>document.getElementById(id);
 const base=document.documentElement.lang==='hi'?'/hi/':'/';
 const motion=matchMedia('(prefers-reduced-motion: reduce)');
+document.querySelector('.skip')?.addEventListener('click',()=>requestAnimationFrame(()=>{const main=$('main');if(main){main.tabIndex=-1;main.focus({preventScroll:true});}}));
 const WORLD_KEY='spritual_world_v1';
 const WORLDS=new Set(['neutral','epic','rama','krishna','hanuman','shiva']);
 const WORLD_META={
