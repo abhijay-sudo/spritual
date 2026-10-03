@@ -2,6 +2,11 @@
 .alpha .calm-saved h1 { margin:5px 0 0; color:#214432; font:450 clamp(39px,6vw,59px)/1.1 Fraunces,Georgia,serif; }
 .alpha .calm-saved h1 em { color:#567961; }
 .calm-saved>p { margin:0 0 18px; color:#4d6755; }
+.calm-saved-overview { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; margin:4px 0 28px; overflow:hidden; border:1px solid #c7d5c6; border-radius:7px; background:#c7d5c6; }
+.calm-saved-overview>div { display:grid; align-content:start; gap:3px; min-height:106px; padding:17px; background:#edf0e6; }
+.calm-saved-overview strong { color:#244d37; font:450 31px/1 Fraunces,Georgia,serif; }
+.calm-saved-overview span { color:#4f6856; font-size:12px; line-height:1.35; }
+.calm-saved-overview>p { grid-column:1/-1; margin:0; padding:10px 16px; background:#fffaf0; color:#536b5a; font-size:11px; line-height:1.45; }
 .calm-saved-section { padding:27px 0 32px; border-top:1px solid #c7d5c6; }
 .alpha .calm-saved-section>h2 { margin:0 0 18px; color:#244d37; font:450 30px/1.15 Fraunces,Georgia,serif; }
 .calm-saved-empty { display:grid;justify-items:start;gap:13px;padding:20px 0; }
@@ -21,3 +26,4 @@
 .calm-note-list>a { display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:58px;border-bottom:1px solid #d0dbc9;color:#24513a;font-weight:650;text-decoration:none; }
 .calm-note-new { margin-top:13px; }
 .alpha[data-large=true] .calm-saved :is(p,.wisdom-kept p) { font-size:19px; }
+@media (max-width:420px) { .calm-saved-overview { grid-template-columns:1fr; } .calm-saved-overview>div { grid-template-columns:44px 1fr; align-items:center; min-height:0; padding:13px 16px; } }
