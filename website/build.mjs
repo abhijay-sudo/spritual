@@ -76,7 +76,8 @@ function iconizeLibrary(body){return body.replaceAll('>↗</span>',`>${arrowOut}
 async function writeLibrary(lang,route,body,title,description=null){const dir=`${out}/${lang==='hi'?'hi/':''}${route}`;await mkdir(dir,{recursive:true});await writeFile(`${dir}index.html`,page(copy[lang],lang,route,iconizeLibrary(body),route==='library/saved/',title+' — Spritual',description));libraryRoutes.push(`${lang==='hi'?'hi/':''}${route}`);}
 for(const lang of ['en','hi']){
  await writeLibrary(lang,'library/',sanatan?storyLibrary(lang):libraryHome(lang),lang==='hi'?'पुस्तकालय':'Library',sanatan?(lang==='hi'?'आयु-सुझाव, मूल्य और पठन-समय के अनुसार दस निःशुल्क रामायण कथाएँ खोजें।':'Search ten free Ramayana stories by age guidance, value and reading time.'):null);
- await writeLibrary(lang,'library/saved/',sanatan?myReadingPage(lang):savedPage(lang),lang==='hi'?'सहेजे स्थान':'Saved places',sanatan?(lang==='hi'?'केवल इस डिवाइस पर सहेजी गई पठन-प्रगति और बुकमार्क देखें।':'Open reading progress and bookmarks saved only on this device.'):null);
+ if(sanatan)await writeLibrary(lang,'library/sources/',libraryHome(lang),lang==='hi'?'स्रोत-मार्गदर्शिकाएँ':'Source guides');
+ await writeLibrary(lang,'library/saved/',savedPage(lang),lang==='hi'?'सहेजे स्थान':'Saved places');
  for(const c of collections){await writeLibrary(lang,`library/${c.id}/`,collectionPage(c,lang,staged),c.title[lang]);for(const u of c.units)await writeLibrary(lang,`library/${c.id}/${u.id}/`,richUnitPage(c,u,lang,staged),u.title[lang]);}
 }
 if(sanatan)for(const lang of ['en','hi']){

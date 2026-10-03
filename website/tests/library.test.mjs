@@ -19,7 +19,7 @@ test('every library page has a unique title, working internal links and matching
  const root=new URL('../dist/',import.meta.url);
  const files=await readdir(root,{recursive:true});
  const pages=files.filter(f=>f.endsWith('index.html')&&(f.startsWith('library/')||f.startsWith('hi/library/')));
- assert.equal(pages.length,74);
+ assert.equal(pages.length,76);
  const titles=new Set();
  for(const file of pages){
   const html=await readFile(new URL(file,root),'utf8');

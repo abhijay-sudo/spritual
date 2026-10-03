@@ -44,10 +44,7 @@ test('world choice follows language and neutral routes without losing the select
   await active(page,'hanuman');
 });
 
-test('saved reading becomes a quiet homepage continuation and pause can return to its guide',async({page})=>{
-  await page.addInitScript(()=>localStorage.setItem('spritual_website_shelf_v1',JSON.stringify({version:1,items:['ramayana/sundara']})));
-  await page.goto('/');
-  await expect(page.getByRole('link',{name:'Continue your saved guide',exact:false})).toHaveAttribute('href','/library/ramayana/sundara/');
+test('quiet pause can return to the exact source guide and retain language',async({page})=>{
   await page.goto('/pause/?from=%2Flibrary%2Framayana%2Fsundara%2F&world=hanuman');
   await page.locator('#timer-toggle').click();
   await page.locator('#finish').click();

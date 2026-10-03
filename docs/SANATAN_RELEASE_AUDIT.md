@@ -16,7 +16,7 @@ This record covers the new free reading experience only. It does not extend any 
 - Ten story-detail routes and ten scroll-reader routes per language: 40 generated story pages.
 - Twelve character/deity context pages per language: 24 generated context pages.
 - Daily story and My reading per language: four generated utility pages.
-- 68 new bilingual route variants in total. The preview build contains 148 pages because it deliberately retains the existing public guides and support routes alongside them.
+- 68 new bilingual story/utility route variants in total. The production build contains 152 pages because it deliberately retains the existing public guides, their searchable source-directory route and support routes alongside them.
 - Device-only progress, bookmarks, language, text size, theme and optional broad interests under `spritual_reading_v2`.
 - No account, commerce, checkout, price, analytics, streak, missed-day count, reminder, audio or synchronization feature.
 

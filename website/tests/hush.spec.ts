@@ -2,20 +2,20 @@ import {test,expect} from '@playwright/test';
 
 test('mobile menu exposes every destination, traps focus, closes on Escape and restores focus',async({page})=>{
  await page.goto('/');const toggle=page.locator('#menu-toggle');await toggle.click();await expect(page.locator('#mobile-menu')).toBeVisible();await expect(toggle).toHaveAttribute('aria-expanded','true');
- for(const name of ['Library','Quiet moment','Approach','Questions','Saved places'])await expect(page.locator('#mobile-menu').getByRole('link',{name,exact:true})).toBeVisible();
+ for(const name of ['Stories','Today','Quiet moment','My reading'])await expect(page.locator('#mobile-menu').getByRole('link',{name,exact:true})).toBeVisible();
  for(let i=0;i<10;i++){await page.keyboard.press('Tab');expect(await page.evaluate(()=>!!document.activeElement?.closest('#mobile-menu'))).toBe(true);}
  await page.keyboard.press('Escape');await expect(toggle).toBeFocused();await expect(toggle).toHaveAttribute('aria-expanded','false');await expect(page.locator('body')).not.toHaveClass(/menu-open/);
- await toggle.click();await page.locator('#mobile-menu').getByRole('link',{name:'Approach',exact:true}).click();await expect(page).toHaveURL(/#approach$/);await expect(page.locator('#mobile-menu')).not.toBeVisible();
+ await toggle.click();await page.locator('#mobile-menu').getByRole('link',{name:'Today',exact:true}).click();await expect(page).toHaveURL(/\/daily\/$/);await expect(page.locator('#mobile-menu')).not.toBeVisible();
 });
 
 test('mobile menu backdrop closes and desktop resize restores ordinary navigation',async({page})=>{
  await page.goto('/hi/');await page.locator('#menu-toggle').click();await page.mouse.click(10,840);await expect(page.locator('#mobile-menu')).not.toBeVisible();await page.locator('#menu-toggle').click();await page.setViewportSize({width:1024,height:900});await expect(page.locator('#mobile-menu')).not.toBeVisible();await expect(page.locator('.desktop-nav')).toBeVisible();await expect(page.locator('body')).not.toHaveClass(/menu-open/);
 });
 
-test('one header, equal hero choices, six blocks, tools-first library and keyboard moment selection',async({page})=>{
- await page.goto('/');await expect(page.locator('.library-subnav')).toHaveCount(0);await expect(page.locator('.hero-actions a')).toHaveCount(2);await expect(page.locator('.art-play')).toHaveCount(0);await expect(page.locator('main > section')).toHaveCount(6);
- await page.locator('[data-moment="0"]').focus();await page.keyboard.press('ArrowDown');await expect(page.locator('[data-moment="1"]')).toBeFocused();await expect(page.locator('[data-moment="1"]')).toHaveAttribute('aria-pressed','true');await expect(page.locator('.reflection-card')).toHaveAttribute('data-mood','focus');await page.locator('.reflection-card').scrollIntoViewIfNeeded();await expect.poll(()=>page.locator('.reflection-card').evaluate(el=>new DOMMatrixReadOnly(getComputedStyle(el).transform).isIdentity)).toBe(true);
- await page.goto('/library/');const search=await page.locator('#library-search').boundingBox(),art=await page.locator('.book-grid').boundingBox();expect(search!.y).toBeLessThan(art!.y);
+test('one header, equal hero choices, complete reading sections and keyboard preferences',async({page})=>{
+ await page.goto('/');await expect(page.locator('.library-subnav')).toHaveCount(0);await expect(page.locator('.hero-actions a')).toHaveCount(2);await expect(page.locator('.art-play')).toHaveCount(0);await expect(page.locator('main > section')).toHaveCount(7);
+ const preferences=page.getByRole('button',{name:'Choose reading preferences'});await preferences.focus();await page.keyboard.press('Enter');await expect(page.getByRole('heading',{name:'How would you like to read?'})).toBeVisible();await page.keyboard.press('Escape');await expect(preferences).toBeFocused();
+ await page.goto('/library/');const search=await page.locator('#story-search').boundingBox(),cards=await page.locator('.story-results').boundingBox();expect(search!.y).toBeLessThan(cards!.y);await expect(page.locator('[data-story-card]')).toHaveCount(10);
 });
 
 test('focus mode removes chrome from keyboard navigation and Escape returns focus',async({page})=>{
