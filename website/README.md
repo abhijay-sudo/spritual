@@ -2,9 +2,9 @@
 
 ## Local Sanatan reading redesign — 2 October 2026
 
-A substantial free, reading-first redesign now lives behind the local-only `--sanatan-preview` build. It adds ten original bilingual Ramayana story drafts, real detail and scroll-reader routes, source/context disclosures, library filters, Daily story, character pages, glossary sheets, reader appearance/type controls, and robust device-only progress/bookmarks. Build and release boundaries are documented in [`docs/SANATAN_READING_PREVIEW.md`](../docs/SANATAN_READING_PREVIEW.md).
+A substantial free, reading-first redesign is now the normal production website build. It adds ten original bilingual Ramayana retellings, real detail and scroll-reader routes, source/context disclosures, library filters, Daily story, character pages, glossary sheets, reader appearance/type controls, robust device-only progress/bookmarks and a public corrections route. Build and release boundaries are documented in [`docs/SANATAN_READING_PREVIEW.md`](../docs/SANATAN_READING_PREVIEW.md).
 
-Run `node website/build.mjs --sanatan-preview` and `node website/serve.mjs --sanatan-preview`, then open `http://127.0.0.1:4192/`. The normal production build remains unchanged and cannot include the draft stories. Production remains blocked until the religious editorial and rights gates in the release audit are satisfied for this exact revision.
+Run `node website/build.mjs` for the production output in `website/dist/`. For a local noindex inspection build, run `node website/build.mjs --sanatan-preview` and `node website/serve.mjs --sanatan-preview`, then open `http://127.0.0.1:4192/`. The owner-attested review/rights record for this exact revision is in [`docs/SANATAN_RELEASE_RECORD_2026-10-03.md`](../docs/SANATAN_RELEASE_RECORD_2026-10-03.md); it names Puja Bhagat without inventing credentials or independent legal clearance.
 
 **Current: live at https://spritual.co.in/ and https://spritual.co.in/library/.** GoDaddy KYC/hold and Vercel ownership blockers below are historical and were resolved on 30 September. The full-text scripture publication gates remain unresolved.
 

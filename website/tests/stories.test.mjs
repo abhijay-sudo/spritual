@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {CONTENT_REVISION,stories,characters,glossary} from '../stories.mjs';
+import {CONTENT_REVISION,RELEASE_REVIEW,stories,characters,glossary} from '../stories.mjs';
 
 test('Ramayana MVP contains ten complete bilingual original retellings',()=>{
  assert.equal(stories.length,10);assert.equal(new Set(stories.map(story=>story.id)).size,10);
  for(const [index,story] of stories.entries()){
-  assert.equal(story.order,index+1);assert.equal(story.epic,'ramayana');assert.equal(story.editorial.state,'draft');
+  assert.equal(story.order,index+1);assert.equal(story.epic,'ramayana');assert.equal(story.editorial.state,'reviewed');assert.equal(story.editorial.reviewerName,'Puja Bhagat');
   assert.match(story.source.work,/Valmiki Ramayana/);assert.match(story.source.locator,/Kanda/);assert.match(story.source.url,/^https:\/\//);assert.match(story.source.rightsStatus,/No permission/);
   assert.ok(story.title.en.length>5&&story.title.hi.length>5);assert.ok(story.description.en.length>30&&story.description.hi.length>30);assert.ok(story.reflection.en.length>20&&story.reflection.hi.length>20);
   assert.equal(story.scenes.length,3);
@@ -13,7 +13,8 @@ test('Ramayana MVP contains ten complete bilingual original retellings',()=>{
   for(const id of story.characters)assert.ok(characters[id],`${story.id} character ${id}`);
   for(const id of story.glossary)assert.ok(glossary[id],`${story.id} glossary ${id}`);
  }
- assert.match(CONTENT_REVISION,/^ramayana-draft-/);
+ assert.match(CONTENT_REVISION,/^ramayana-reviewed-/);
+ assert.deepEqual(RELEASE_REVIEW,{status:'owner-attested-review-complete',reviewerName:'Puja Bhagat',reviewedAt:'2026-10-03',credentials:null,scopes:['source-and-retelling','english-and-hindi','family-and-sensitivity'],rights:'owner-attested',correctionsUrl:'https://github.com/abhijay-sudo/spritual/issues/new'});
 });
 
 test('checked episode locators and sensitive adaptation notes remain explicit',()=>{
@@ -25,7 +26,7 @@ test('checked episode locators and sensitive adaptation notes remain explicit',(
  assert.match(stories.find(story=>story.id==='returning-responsibility').editorial.note.en,/edition-specific/i);
 });
 
-test('draft corpus makes no invented review or commercial claim',()=>{
+test('released corpus makes no invented credential, legal or commercial claim',()=>{
  const text=JSON.stringify(stories);
- for(const claim of ['scholar verified','scholar-reviewed','approved for publication','licensed translation','public domain worldwide','buy now','add to cart'])assert.equal(text.toLocaleLowerCase().includes(claim),false,claim);
+ for(const claim of ['scholar verified','scholar-reviewed','licensed translation','public domain worldwide','legal clearance','buy now','add to cart'])assert.equal(text.toLocaleLowerCase().includes(claim),false,claim);
 });
