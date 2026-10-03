@@ -70,6 +70,54 @@ test('reader contents, character context and return path preserve the reading pl
  await expect(page).toHaveURL(/\/read\/hanumans-first-conversation\/.*#block-/);
 });
 
+test('reader contents stays fully inside narrow viewports',async({page})=>{
+ for(const width of [320,390]){
+  await page.setViewportSize({width,height:844});
+  await page.goto('/read/hanumans-first-conversation/');
+  const contents=page.locator('.reader-contents');
+  await contents.locator('summary').click();
+  const panel=contents.locator('nav');
+  await expect(panel).toBeVisible();
+  const panelBox=await panel.boundingBox();
+  expect(panelBox!.x).toBeGreaterThanOrEqual(12);
+  expect(panelBox!.x+panelBox!.width).toBeLessThanOrEqual(width-12);
+  for(const link of await panel.getByRole('link').all()){
+   const box=await link.boundingBox();
+   expect(box!.x).toBeGreaterThanOrEqual(panelBox!.x);
+   expect(box!.x+box!.width).toBeLessThanOrEqual(panelBox!.x+panelBox!.width);
+  }
+  await expect(panel.getByRole('link',{name:/01/})).toBeVisible();
+  await expect(panel.getByRole('link',{name:'Reflection'})).toBeVisible();
+  await expect(panel.getByRole('link',{name:'Source context'})).toBeVisible();
+ }
+});
+
+test('explicit reader sections outrank saved progress and survive language changes',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/read/a-ring-brings-hope/');
+ const revision=await page.locator('#reading-data').evaluate(node=>JSON.parse(node.textContent!).revision);
+ await page.evaluate(({revision})=>localStorage.setItem('spritual_reading_v2',JSON.stringify({version:2,preferences:{language:'en',theme:'light',textSize:20,interests:[]},progress:{'a-ring-brings-hope':{storyId:'a-ring-brings-hope',contentRevision:revision,language:'en',sceneId:'careful-approach',blockId:'approach-2',blockOffsetRatio:.65,updatedAt:100}},bookmarks:[],onboarding:null})),{revision});
+
+ await page.goto('/read/a-ring-brings-hope/');
+ await expect(page).toHaveURL(/#block-approach-2$/);
+ await page.locator('.reader-contents summary').click();
+ await page.locator('.reader-contents').getByRole('link',{name:'Reflection'}).click();
+ await expect(page).toHaveURL(/#story-reflection$/);
+ await page.locator('.reader-language a[lang="hi"]').click();
+ await expect(page).toHaveURL(/\/hi\/read\/a-ring-brings-hope\/#story-reflection$/);
+ await expect(page.locator('html')).toHaveAttribute('lang','hi');
+ await expect.poll(async()=>Math.round((await page.locator('#story-reflection').boundingBox())!.y)).toBeLessThan(420);
+
+ await page.goto('/read/a-ring-brings-hope/#story-source');
+ await expect(page).toHaveURL(/#story-source$/);
+ await expect.poll(async()=>Math.round((await page.locator('#story-source').boundingBox())!.y)).toBeLessThan(650);
+ await expect(page.locator('.reader-language a[lang="hi"]')).toHaveAttribute('href','/hi/read/a-ring-brings-hope/#story-source');
+ await page.waitForTimeout(600);
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('spritual_reading_v2')!).progress['a-ring-brings-hope']);
+ expect(saved.blockId).toBe('approach-2');
+ expect(saved.updatedAt).toBe(100);
+});
+
 test('Hindi keeps the same navigation model and direct daily context',async({page})=>{
  await page.goto('/hi/');
  await expect(page.getByRole('link',{name:'आज की कथा पढ़ें'})).toHaveAttribute('href','/hi/daily/');
