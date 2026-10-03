@@ -2,7 +2,9 @@ import {test,expect} from '@playwright/test';
 
 test('mobile menu exposes every destination, traps focus, closes on Escape and restores focus',async({page})=>{
  await page.goto('/');const toggle=page.locator('#menu-toggle');await toggle.click();await expect(page.locator('#mobile-menu')).toBeVisible();await expect(toggle).toHaveAttribute('aria-expanded','true');
- for(const name of ['Stories','Today','Quiet moment','My reading'])await expect(page.locator('#mobile-menu').getByRole('link',{name,exact:true})).toBeVisible();
+ for(const name of ['Stories','Today','Quiet moment','Saved'])await expect(page.locator('#mobile-menu').getByRole('link',{name,exact:true})).toBeVisible();
+ for(const name of ['Source guides','Corrections','Privacy'])await expect(page.locator('#mobile-menu').getByRole('link',{name,exact:true})).toBeVisible();
+ await expect(page.getByText('This changes colours and artwork only—it does not filter stories.')).toBeVisible();
  for(let i=0;i<10;i++){await page.keyboard.press('Tab');expect(await page.evaluate(()=>!!document.activeElement?.closest('#mobile-menu'))).toBe(true);}
  await page.keyboard.press('Escape');await expect(toggle).toBeFocused();await expect(toggle).toHaveAttribute('aria-expanded','false');await expect(page.locator('body')).not.toHaveClass(/menu-open/);
  await toggle.click();await page.locator('#mobile-menu').getByRole('link',{name:'Today',exact:true}).click();await expect(page).toHaveURL(/\/daily\/$/);await expect(page.locator('#mobile-menu')).not.toBeVisible();
