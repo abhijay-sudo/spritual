@@ -57,6 +57,20 @@ test('quiet pause can return to the exact source guide and retain language',asyn
   await expect(page).toHaveURL(/from=%2Fhi%2Flibrary%2Framayana%2Fsundara%2F/);
 });
 
+test('source-guide pause invitation preserves its real return route',async({page})=>{
+  for(const [prefix,label,returnLabel] of [['','Take a quiet moment after reading','Return to your guide'],['/hi','पढ़ने के बाद एक शांत पल लें','अपनी मार्गदर्शिका पर लौटें']] as const){
+    const guide=`${prefix}/library/ramayana/sundara/`;
+    await page.goto(guide);
+    const pause=page.getByRole('link',{name:label,exact:false});
+    await expect(pause).toHaveAttribute('href',`${prefix}/pause/?from=${encodeURIComponent(guide)}`);
+    await pause.click();
+    expect(new URL(page.url()).searchParams.get('from')).toBe(guide);
+    await page.locator('#timer-toggle').click();
+    await page.locator('#finish').click();
+    await expect(page.getByRole('link',{name:returnLabel,exact:false})).toHaveAttribute('href',guide);
+  }
+});
+
 test('pause controls remain compact and return keeps explicit or neutral world context',async({page})=>{
   for(const width of [390,1440]){
     await page.setViewportSize({width,height:900});
