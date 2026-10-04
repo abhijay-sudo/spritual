@@ -119,6 +119,7 @@ function Shell() {
   const showDemoControls = legacyWorkspace || location.pathname === "/alpha/settings" || location.pathname === "/alpha/join" || location.pathname === "/alpha/sample" || location.pathname === "/alpha/sample-complete";
   const wisdomSurface = ["/alpha", "/alpha/today", "/alpha/library", "/alpha/life", "/alpha/divine", "/alpha/search", "/alpha/stories", "/alpha/stories/arjuna-bow", "/alpha/my-day", "/alpha/practice", "/alpha/series/gita", "/alpha/account", "/alpha/settings"].includes(location.pathname) || location.pathname.startsWith("/alpha/divine/") || location.pathname.startsWith("/alpha/sources/") || location.pathname.startsWith("/alpha/scriptures") || location.pathname.startsWith("/alpha/wisdom/") || location.pathname.startsWith("/alpha/reflection/") || storyReader;
   const [readingLanguage, setReadingLanguage] = useState<"en" | "hi">("en");
+  const previousDocumentLanguage = useRef(document.documentElement.lang || "en");
   const [systemDark, setSystemDark] = useState(() => window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false);
   useEffect(() => {
     const media = window.matchMedia?.("(prefers-color-scheme: dark)");
@@ -143,6 +144,12 @@ function Shell() {
     window.addEventListener("storage", sync);
     return () => { window.removeEventListener("spritual-alpha-language", sync); window.removeEventListener("storage", sync); };
   }, [actor.id]);
+  useEffect(() => {
+    document.documentElement.lang = wisdomSurface ? readingLanguage : "en";
+  }, [readingLanguage, wisdomSurface]);
+  useEffect(() => () => {
+    document.documentElement.lang = previousDocumentLanguage.current;
+  }, []);
   const label = (en: string, hi: string) => readingLanguage === "hi" ? hi : en;
   const main = useRef<HTMLElement>(null);
   useEffect(() => {

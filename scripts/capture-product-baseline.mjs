@@ -10,6 +10,7 @@ const surfaces = [
   { id: 'explore-library', url: 'http://127.0.0.1:4190/library/' },
   { id: 'deity-hanuman', url: 'http://127.0.0.1:4190/characters/hanuman/' },
   { id: 'source-guide-sundara', url: 'http://127.0.0.1:4190/library/ramayana/sundara/' },
+  { id: 'source-guide-sundara-saved', url: 'http://127.0.0.1:4190/library/ramayana/sundara/', prepare: page => page.locator('[data-save]').click() },
   { id: 'saved-empty', url: 'http://127.0.0.1:4190/my-reading/' },
   { id: 'alpha-today', url: 'http://127.0.0.1:5173/alpha/today' },
 ];
@@ -29,6 +30,7 @@ try {
       page.on('console', message => { if (message.type() === 'error') consoleErrors.push(message.text()); });
       page.on('pageerror', error => consoleErrors.push(error.message));
       const response = await page.goto(surface.url, { waitUntil: 'networkidle' });
+      if (surface.prepare) await surface.prepare(page);
       const h1 = await page.locator('h1').first().textContent().catch(() => null);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
       const file = resolve(output, `${surface.id}-${viewport.id}.png`);

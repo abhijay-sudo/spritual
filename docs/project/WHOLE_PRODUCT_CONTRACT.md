@@ -106,8 +106,9 @@ Observed verification:
 
 - Website static build: 152 public pages plus 404.
 - Website Node suite: 29/29.
-- Website Chromium suite: 71/73 initially exposed a stale Hindi CTA expectation and a re-enabled reduced-motion fade; both were corrected and the two focused regressions passed. All other 71 cases passed, including 320/390/768/1440, English/Hindi, no-JavaScript, keyboard, 200% text, storage failure, exact resume and source-return flows.
+- Website Chromium suite: 76/76 passed, including new computed-contrast coverage for the saved source-guide action at 320/390/1440. The final saved state remains readable after touch/hover as well as at rest.
 - Root unit suite: 160/160 when run with loopback permission (the sandbox-only run blocked two temporary HTTP listeners; it did not expose a product failure).
 - Root build: content/media audits, TypeScript, Vite and PWA generation passed. Preview-only art remains explicitly unreviewed.
-- Alpha default Chromium suite: 24/24 passed; ten opt-in connected-mode cases were skipped by their documented gate.
-- Twelve final responsive captures returned HTTP 200 with no console errors and no horizontal overflow.
+- Alpha default Chromium suite: 34/34 passed. The local Hindi switch now updates the document language immediately and after reload; the connected shell uses the same document-language boundary. Ten opt-in connected-mode cases remain behind their documented gate.
+- Fourteen final responsive captures returned HTTP 200 with no console errors and no horizontal overflow, including the corrected source-guide saved state on mobile and desktop.
+- The mobile epic shelf now changes from a short forest introduction to a parchment card field, Explore gives the Rama and Hanuman entry stories distinct feature rows, and source guides use the shared manuscript reading desk without adding content or changing source claims.
