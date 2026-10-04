@@ -1,5 +1,13 @@
 # Spritual public website
 
+## Editorial reading room and durable return — 4 October 2026
+
+The public story reader now opens as a responsive reading room: existing approved artwork and real story position sit beside a live turning-point rail on desktop, then become a compact art-first journey map on mobile. Story overview turning points link directly to the same bilingual sections. This is a presentation and wayfinding upgrade to the ten existing Ramayana retellings; it adds no story, scripture quotation, audio, review or paid capability.
+
+Local reading state now caps bookmarks at 100 before writing, tolerates retired catalogue IDs without losing current data, distinguishes a saved story from a place at its first paragraph, and restores only the removed item on Undo so later preferences/progress remain intact. Legacy untyped bookmarks remain readable. The browser never rewrites a valid record merely because the catalogue changed; normalized data is persisted on the next explicit reading-state change.
+
+Local verification: production build passed with 152 public pages plus 404; all 29 Node tests and all 68 final Chromium journeys passed. Responsive/browser coverage includes English/Hindi, 320/390/768/1440px, keyboard, changed-reader 200% text, reduced motion, dark reader appearance, exact resume and storage failure. Before/after captures are in ignored `website/test-results/reading-room/`. No deployment or live-domain claim is part of this local increment.
+
 ## Local Sanatan reading redesign — 2 October 2026
 
 A substantial free, reading-first redesign is now the normal production website build. It adds ten original bilingual Ramayana retellings, real detail and scroll-reader routes, source/context disclosures, library filters, Daily story, character pages, glossary sheets, reader appearance/type controls, robust device-only progress/bookmarks and a public corrections route. Build and release boundaries are documented in [`docs/SANATAN_READING_PREVIEW.md`](../docs/SANATAN_READING_PREVIEW.md).
