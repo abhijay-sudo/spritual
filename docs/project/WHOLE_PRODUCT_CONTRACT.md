@@ -90,3 +90,24 @@ Highest-impact gaps observed:
 6. Alpha has a stronger immersive Today entry, but desktop navigation behaves like a floating mobile rail and the local-preview boundary is visually detached from the public product.
 7. Existing visual-world controls change theme only; the redesign must not let them look like content filters.
 8. The source-guide quiet-pause link previously dropped its return path. The implementation now carries the exact bilingual guide route into the pause flow.
+
+## Living Manuscript implementation evidence
+
+Implemented locally on 4 October 2026; not deployed by this change.
+
+- Public Home now opens with one direct complete-reading action, a secondary library action, a single illustrated folio, and an exact-resume band when local progress exists. Quiet practice remains secondary.
+- Explore now provides real doorway routes for Rama, Hanuman and the bibliographic source archive before the filterable ten-story index. It does not imply unavailable deity biographies or additional story inventory.
+- Character pages, source guides, Saved, Today, detail and reader retain their existing content/state boundaries while sharing the forest navigation, parchment surfaces, editorial type rhythm and restrained copper/gold accents.
+- The alpha Today/Explore shell uses the same semantic visual vocabulary and an actual desktop archive rail while retaining its `LOCAL PREVIEW` disclosure, four consumer destinations and local/connected separation.
+- Control motion is 200 ms and artwork motion is 320 ms. Public reduced-motion mode disables the new transitions; alpha continues to honor both OS and stored reduced-motion settings through its existing motion system.
+- The capture script accepts `PRODUCT_CAPTURE_DIR` so a review pass does not overwrite its baseline. The post-change images are in `docs/qa/living-manuscript-2026-10-04/` alongside the original baseline directory.
+
+Observed verification:
+
+- Website static build: 152 public pages plus 404.
+- Website Node suite: 29/29.
+- Website Chromium suite: 71/73 initially exposed a stale Hindi CTA expectation and a re-enabled reduced-motion fade; both were corrected and the two focused regressions passed. All other 71 cases passed, including 320/390/768/1440, English/Hindi, no-JavaScript, keyboard, 200% text, storage failure, exact resume and source-return flows.
+- Root unit suite: 160/160 when run with loopback permission (the sandbox-only run blocked two temporary HTTP listeners; it did not expose a product failure).
+- Root build: content/media audits, TypeScript, Vite and PWA generation passed. Preview-only art remains explicitly unreviewed.
+- Alpha default Chromium suite: 24/24 passed; ten opt-in connected-mode cases were skipped by their documented gate.
+- Twelve final responsive captures returned HTTP 200 with no console errors and no horizontal overflow.

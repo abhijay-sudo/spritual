@@ -2,7 +2,7 @@ import { chromium } from '@playwright/test';
 import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-const output = resolve('docs/qa/full-product-baseline-2026-10-04');
+const output = resolve(process.env.PRODUCT_CAPTURE_DIR || 'docs/qa/full-product-baseline-2026-10-04');
 await mkdir(output, { recursive: true });
 
 const surfaces = [

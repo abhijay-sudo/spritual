@@ -34,8 +34,8 @@ test('Stories remains the active parent across details, characters and source gu
 
 test('story discovery and source guides are distinct but connected journeys',async({page})=>{
  await page.goto('/library/');
- await expect(page.getByRole('heading',{level:1,name:'Find a story for this moment.'})).toBeVisible();
- const sourceLink=page.locator('.library-intro').getByRole('link',{name:/Looking for source guides/});
+ await expect(page.getByRole('heading',{level:1,name:'Find your way into the story.'})).toBeVisible();
+ const sourceLink=page.locator('.library-intro').getByRole('link',{name:/Open the source archive/});
  await expect(sourceLink).toHaveAttribute('href','/library/sources/');
  await sourceLink.click();
  await expect(page.getByRole('heading',{level:1,name:'Source guides'})).toBeVisible();
@@ -120,7 +120,7 @@ test('explicit reader sections outrank saved progress and survive language chang
 
 test('Hindi keeps the same navigation model and direct daily context',async({page})=>{
  await page.goto('/hi/');
- await expect(page.getByRole('link',{name:'आज की कथा पढ़ें'})).toHaveAttribute('href','/hi/daily/');
+ await expect(page.getByRole('link',{name:'आज की कथा शुरू करें'})).toHaveAttribute('href',/^\/hi\/read\//);
  await page.getByRole('button',{name:'और'}).click();
  const menu=page.locator('#mobile-menu');
  for(const name of ['कथाएँ','आज','शांत पल','सहेजा','स्रोत-मार्गदर्शिकाएँ'])await expect(menu.getByRole('link',{name,exact:true})).toBeVisible();
