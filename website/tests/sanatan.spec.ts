@@ -10,6 +10,92 @@ test('detail exposes review, adaptation, source, content note and a working read
 
 test('reading-room journey uses approved local art and deep-links to real turning points',async({page})=>{await page.goto('/story/across-the-ocean/');const turningPoints=page.locator('.scene-map a');await expect(turningPoints).toHaveCount(3);await expect(turningPoints.nth(1)).toHaveAttribute('href','/read/across-the-ocean/#scene-mainakas-offer');await turningPoints.nth(1).click();await expect(page).toHaveURL(/\/read\/across-the-ocean\/#scene-mainakas-offer$/);await expect(page.locator('.reader-volume-art img')).toHaveAttribute('src',/^\/assets\/(?:world-hanuman\.webp|landscape\.svg)$/);await expect(page.locator('.reader-journey a')).toHaveCount(4);await expect(page.locator('#scene-mainakas-offer')).toBeInViewport();await expect(page.locator('[data-reader-scene="mainakas-offer"]')).toHaveAttribute('aria-current','step');});
 
+test('folio controls perform an animated, keyboard-accessible page turn with a reduced-motion fallback',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/read/a-ring-brings-hope/');
+ const firstTurn=page.locator('.reader-scene').first().getByRole('button',{name:'Turn the page'});
+ await firstTurn.focus();
+ await page.keyboard.press('Enter');
+ await expect(page).toHaveURL(/#scene-the-ring$/);
+ await expect(page.locator('.reader-page-turn-veil')).toBeVisible();
+ await page.waitForTimeout(90);
+ await page.screenshot({path:'test-results/illuminated-page-turn-390.png'});
+ await expect(page.locator('#scene-the-ring')).toBeInViewport();
+ await expect(page.locator('#scene-the-ring h2')).toBeFocused();
+ await expect(page.locator('.reader-page-turn-veil')).toHaveCount(0,{timeout:1000});
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.locator('#scene-the-ring').getByRole('button',{name:'Turn the page'}).click();
+ await expect(page).toHaveURL(/#scene-message-returning$/);
+ await expect(page.locator('.reader-page-turn-veil')).toHaveCount(0);
+ await expect(page.locator('#scene-message-returning h2')).toBeFocused();
+});
+
+test('illuminated reader preserves readable folios across tablet widths and loads the reference fonts',async({page})=>{
+ for(const width of [768,820,900,1023]){
+  await page.setViewportSize({width,height:1024});
+  await page.goto('/read/a-ring-brings-hope/');
+  await page.evaluate(()=>document.fonts.ready);
+  const metrics=await page.evaluate(()=>{
+   const box=(selector:string)=>document.querySelector(selector)!.getBoundingClientRect();
+   const volume=document.querySelector('.reader-volume')!;
+   const labels=[...document.querySelectorAll('.reader-journey strong')].map(label=>{const style=getComputedStyle(label),rect=label.getBoundingClientRect();return {width:rect.width,lines:Math.round(rect.height/parseFloat(style.lineHeight))};});
+   return {
+    volumeDisplay:getComputedStyle(volume).display,
+    volumeWidth:box('.reader-volume').width,
+    copyWidth:box('.reader-volume-copy').width,
+    journeyWidth:box('.reader-journey').width,
+    journeyColumns:getComputedStyle(document.querySelector('.reader-journey')!).gridTemplateColumns.split(' ').length,
+    columnWidth:box('.reader-column').width,
+    labels,
+    serif:getComputedStyle(document.querySelector('.reader-title h1')!).fontFamily,
+    sans:getComputedStyle(document.querySelector('.reader-chrome')!).fontFamily,
+    cormorantReady:document.fonts.check('16px "Cormorant Garamond"','Enter'),
+    manropeReady:document.fonts.check('16px Manrope','Settings')
+   };
+  });
+  expect(metrics.volumeDisplay,`${width}px volume`).toBe('block');
+  expect(metrics.volumeWidth,`${width}px volume width`).toBeGreaterThan(240);
+  expect(metrics.copyWidth,`${width}px copy width`).toBeGreaterThan(200);
+  expect(metrics.journeyWidth,`${width}px journey width`).toBeGreaterThan(200);
+  expect(metrics.journeyColumns,`${width}px journey columns`).toBe(1);
+  expect(Math.min(...metrics.labels.map(label=>label.width)),`${width}px label width`).toBeGreaterThan(120);
+  expect(Math.max(...metrics.labels.map(label=>label.lines)),`${width}px label wrapping`).toBeLessThanOrEqual(2);
+  expect(metrics.columnWidth,`${width}px reading leaf`).toBeGreaterThan(300);
+  expect(metrics.serif).toContain('Cormorant Garamond');
+  expect(metrics.sans).toContain('Manrope');
+  expect(metrics.cormorantReady).toBe(true);
+  expect(metrics.manropeReady).toBe(true);
+  if(width===768)await page.screenshot({path:'test-results/illuminated-reader-tablet-768.png',fullPage:true});
+ }
+});
+
+test('reader reflection and folio controls meet text contrast in every supported theme',async({page})=>{
+ const parse=(value:string)=>value.match(/[\d.]+/g)!.slice(0,3).map(Number);
+ const luminance=(rgb:number[])=>rgb.map(channel=>channel/255).map(channel=>channel<=.04045?channel/12.92:((channel+.055)/1.055)**2.4).reduce((sum,channel,index)=>sum+channel*[.2126,.7152,.0722][index],0);
+ const ratio=(foreground:string,background:string)=>{const values=[luminance(parse(foreground)),luminance(parse(background))].sort((a,b)=>b-a);return (values[0]+.05)/(values[1]+.05);};
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/read/a-ring-brings-hope/');
+ for(const theme of ['light','sepia','dark']){
+  await page.getByRole('button',{name:'Reading settings'}).click();
+  await page.getByRole('button',{name:theme[0].toUpperCase()+theme.slice(1)}).click();
+  await page.getByRole('button',{name:'Close settings'}).click();
+  const colors=await page.evaluate(()=>{
+   const reader=document.querySelector('.story-reader')!;
+   const probe=document.createElement('span');
+   probe.style.cssText='position:fixed;background:var(--reader-surface)';
+   reader.append(probe);
+   const reflection=getComputedStyle(document.querySelector('.reader-reflection p')!);
+   const turn=getComputedStyle(document.querySelector('.leaf-turn')!);
+   const result={reflectionText:reflection.color,reflectionSurface:getComputedStyle(probe).backgroundColor,turnText:turn.color,turnSurface:turn.backgroundColor};
+   probe.remove();
+   return result;
+  });
+  expect(ratio(colors.reflectionText,colors.reflectionSurface),`${theme} reflection`).toBeGreaterThanOrEqual(4.5);
+  expect(ratio(colors.turnText,colors.turnSurface),`${theme} folio control`).toBeGreaterThanOrEqual(4.5);
+  await page.screenshot({path:`test-results/illuminated-reader-contrast-${theme}-390.png`,fullPage:true});
+ }
+});
+
 for(const [language,prefix,saveLabel] of [['en','','Save place'],['hi','/hi','स्थान सहेजें']] as const)for(const delay of [0,2200])test(`journey jump saves and reopens the requested ${language} passage after ${delay}ms`,async({page})=>{await page.setViewportSize({width:390,height:844});await page.goto(`${prefix}/read/across-the-ocean/`);await page.locator('[data-reader-scene="changing-shape"]').click();await expect(page).toHaveURL(new RegExp(`${prefix}/read/across-the-ocean/#scene-changing-shape$`));await expect(page.locator('#scene-changing-shape')).toBeInViewport();if(delay)await page.waitForTimeout(delay);await page.getByRole('button',{name:saveLabel}).click();const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('spritual_reading_v2')!).bookmarks[0]);expect(saved).toMatchObject({storyId:'across-the-ocean',sceneId:'changing-shape',blockId:'shape-1',language,kind:'place'});await page.goto(`${prefix}/my-reading/`);const row=page.locator('#bookmark-list .reading-row').filter({hasText:language==='hi'?'रूप बदलती शक्ति':'Strength that can change shape'});await expect(row).toContainText(language==='hi'?'अनुच्छेद 1 · हिन्दी':'Passage 1 · English');await row.getByRole('link').click();await expect(page).toHaveURL(new RegExp(`${prefix}/read/across-the-ocean/\\?from=bookmark#block-shape-1$`));await expect(page.locator('[data-block-id="shape-1"]')).toBeInViewport();});
 
 test('reader settings, context sheets, bookmark and resume are local and real',async({page})=>{await page.goto('/read/hanumans-first-conversation/');await page.getByRole('button',{name:'Reading settings'}).click();await page.getByRole('button',{name:'Dark'}).click();await page.getByRole('button',{name:'24'}).click();await expect(page.locator('.story-reader')).toHaveAttribute('data-reader-theme','dark');await page.getByRole('button',{name:'Close settings'}).click();await page.getByRole('button',{name:'Hanuman',exact:true}).first().click();await expect(page.locator('#context-title')).toHaveText('Hanuman');await expect(page.getByRole('link',{name:'Open full page'})).toHaveAttribute('href',/\/characters\/hanuman\/\?from=/);await page.getByRole('button',{name:'Close information'}).click();await page.locator('[data-glossary="vanara"]').first().click();await expect(page.locator('#context-kind')).toHaveText('Glossary');await page.getByRole('button',{name:'Close information'}).click();await page.getByRole('button',{name:'Save place'}).click();await page.locator('[data-block-id="alliance-2"]').scrollIntoViewIfNeeded();await page.waitForTimeout(500);await page.goto('/my-reading/');await expect(page.getByRole('heading',{name:'Return to your place.'})).toBeVisible();await expect(page.getByRole('heading',{name:'Stories and places you marked.'})).toBeVisible();});
