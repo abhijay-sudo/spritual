@@ -9,7 +9,7 @@
 .dev-welcome-brand { display: inline-flex; align-items: center; gap: 11px; color: #fff9eb; font: 450 26px/1 Fraunces, Georgia, serif; }
 .dev-welcome-brand svg { color: #e9b86c; }
 .dev-welcome-top>div { display: flex; gap: 4px; padding: 3px; border: 1px solid #fff9ed80; border-radius: 100px; background: #101a16a6; }
-.dev-welcome-top button { min-width: 44px; min-height: 43px; border: 0; border-radius: 100px; background: transparent; color: #f7eddf; font-size: 13px; font-weight: 750; }
+.dev-welcome-top button { min-width: 44px; min-height: 44px; border: 0; border-radius: 100px; background: transparent; color: #f7eddf; font-size: 13px; font-weight: 750; }
 .dev-welcome-top button[aria-pressed=true] { background: #efba70; color: #241b13; }
 .dev-welcome-content { position: relative; z-index: 1; width: min(100%, 650px); padding: 32px max(24px, env(safe-area-inset-left)) calc(24px + env(safe-area-inset-bottom)); }
 .dev-welcome-kicker { color: #ecc185; font-size: 11px; font-weight: 750; letter-spacing: .17em; }

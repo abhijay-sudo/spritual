@@ -28,7 +28,6 @@ export function EditorialImage({ asset, language = "en", decorative = false, pri
       height={item.height}
       alt={decorative ? "" : item.alt[language]}
       loading={priority ? "eager" : "lazy"}
-      fetchPriority={priority ? "high" : "auto"}
       decoding="async"
       style={{ objectPosition: item.focal }}
       onError={() => { console.error(`Spritual media failed: ${asset}`); setFailed(true); }}

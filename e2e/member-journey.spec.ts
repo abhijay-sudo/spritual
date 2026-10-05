@@ -229,6 +229,7 @@ test("Hindi, larger text, night appearance, and reduced motion survive the readi
   await page.getByRole("link", { name: "Today", exact: true }).click();
   await page.locator('.dev-language button[lang="hi"]').click();
   await expect(page.getByRole("heading", { name: "यहीं से शुरू करें।" })).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("lang", "hi");
   await expect(page.locator(".alpha")).toHaveAttribute("data-appearance", "night");
   await expect(page.locator(".alpha")).toHaveAttribute("data-large", "true");
   await expect(page.locator(".alpha")).toHaveAttribute("data-reduced", "true");
@@ -240,6 +241,7 @@ test("Hindi, larger text, night appearance, and reduced motion survive the readi
   await expect(page.locator("blockquote[lang='sa-Deva']")).toBeVisible();
   await expectNoHorizontalOverflow(page);
   await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("lang", "hi");
   await expect(page.locator(".alpha")).toHaveAttribute("data-appearance", "night");
   await expect(page.locator(".alpha")).toHaveAttribute("data-large", "true");
   await expect(page.locator(".alpha")).toHaveAttribute("data-reduced", "true");

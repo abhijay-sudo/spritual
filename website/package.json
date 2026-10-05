@@ -1,0 +1,13 @@
+{
+  "name": "spritual-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:sanatan-preview": "node build.mjs --sanatan-preview",
+    "dev": "node serve.mjs",
+    "dev:sanatan-preview": "node serve.mjs --sanatan-preview",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": { "node": ">=22" }
+}
