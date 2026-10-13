@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {readFile,readdir} from 'node:fs/promises';
+import {resolve} from 'node:path';
+
+const root=resolve(import.meta.dirname,'../dist');
+const files=await readdir(root,{recursive:true});
+assert(files.some(file=>file.startsWith('assets/illustrated/')&&file.endsWith('-1280.jpg')),'release must include responsive illustrated assets');
+for(const route of ['journeys/ramayana/index.html','story/promise-of-exile/index.html','read/sita-speaks-after-victory/index.html','hi/read/northward-home/index.html'])assert(files.includes(route),route);
+const home=await readFile(resolve(root,'index.html'),'utf8');
+assert(home.includes('Twenty-two chapters. One continuous path to Rama’s return.'));
+assert(home.includes('/journeys/ramayana/'));
+assert(!home.includes('LOCAL SANATAN RELEASE PREVIEW'));
+assert(!home.includes('local review only'));
+assert.match(home,/name="robots" content="index, follow"/);
+const reader=await readFile(resolve(root,'read/sita-speaks-after-victory/index.html'),'utf8');
+assert(reader.includes('Original abridged chapter · source-mapped'));
+assert(reader.includes('owner approved this exact illustrated website release on 13 October 2026'));
+assert(!reader.includes('New chapter · local review only'));
+const sitemap=await readFile(resolve(root,'sitemap.xml'),'utf8');
+assert(sitemap.includes('https://spritual.co.in/journeys/ramayana/'));
+assert(sitemap.includes('https://spritual.co.in/story/promise-of-exile/'));
+console.log('Illustrated public release boundary verified.');

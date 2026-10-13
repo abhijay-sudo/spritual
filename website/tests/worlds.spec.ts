@@ -13,7 +13,7 @@ test('all six reading worlds are real navigation with durable URL and browser hi
   await page.getByRole('link',{name:'Krishna',exact:true}).click();
   await expect(page).toHaveURL(/\?world=krishna$/);
   await active(page,'krishna');
-  await expect(page.locator('[data-context-art]')).toHaveAttribute('src','/assets/world-krishna.webp');
+  await expect(page.locator('[data-context-art]').first()).toHaveAttribute('src','/assets/world-krishna.webp');
   await expect.poll(()=>page.evaluate(()=>localStorage.getItem('spritual_world_v1'))).toBe('krishna');
   await page.locator('#menu-toggle').click();
   await page.getByRole('link',{name:'Shiva',exact:true}).click();
@@ -121,6 +121,6 @@ test('every public surface exposes the chooser and storage failure keeps a usabl
 test('reduced motion keeps complete themed content without transitions',async({page})=>{
   await page.emulateMedia({reducedMotion:'reduce'});
   await page.goto('/?world=hanuman');await active(page,'hanuman');
-  await expect(page.locator('[data-context-art]')).toHaveCSS('transition-duration','0s');
+  await expect(page.locator('[data-context-art]').first()).toHaveCSS('transition-duration','0s');
   await expect(page.locator('h1')).toBeVisible();
 });
