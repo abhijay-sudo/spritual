@@ -26,7 +26,7 @@ Baseline screenshots and machine report: `artifacts/illustrated-recovery/evidenc
 
 Preserve unrelated dirty alpha/backend/editorial files. Use the existing Git-connected route only; no force push, credentials/project settings, migrations or additional service. All new paintings and connecting prose are still excluded from public output. Full 22 unique event paintings in production remains blocked on exact-version editorial/rights approval.
 
-## Verification in progress
+## Earlier verification checkpoint
 
 `node website/build.mjs`: 206 pages plus 404. `node --test website/tests/*.test.mjs`: 49/49 pass, including independent bridge intentions without modifying original anchor records, publication exclusion and retained unavailable Saved IDs. Initial focused browser pass: 7/9; failures were two test assumptions (Hindi button wording and requesting a journey that does not contain the story), corrected before the full run. Three additional regression assertions still refer to the superseded homepage structure/copy and are being reconciled, not disabled.
 
@@ -72,4 +72,22 @@ The later parent request names `spritual-site-builder`, `spritual-content-archit
 
 Supplemental results: **24/24** 360/1280 × six themes × EN/HI checks passed, zero page errors (`evidence/studio-qa.json`). The 360px Krishna/Hanuman and 1280px Still captures were opened at native size. The three reconciled public practice fixtures also pass (4.515 seconds; `evidence/public-practice-fixtures.json`). Runtime remains unchanged from the 114-case final public suite.
 
-Next: commit only `website/` and this handoff, then use the existing authorized normal fast-forward Git route. Verify exact SHA, CI/deployment and live bytes before claiming publication.
+## Release verification
+
+Committed and normally fast-forward pushed `87cd44154cd49d29a3a6feccc90ae58bc98d779b` to the existing GitHub `abhijay-sudo/spritual` branch `codex/public-website`. Starting production revision was `b46b63dd0583e1ef9ddf0ff0070561421e99ede3`. The local branch remains `codex/sanatan-reading`; the existing local `origin` was not changed. Only `website/` and this new handoff were committed. No force push, deployment configuration, project connection, credentials, backend or production data changes.
+
+Vercel's exact-commit status reports **success / Deployment has completed**: [deployment](https://vercel.com/spritual1/spritual-website/42mCTFYcAtF6LcJhbK5bCzcmoFiY). At 19:06 UTC, `TESTED_REVISION=87cd44154cd49d29a3a6feccc90ae58bc98d779b node artifacts/illustrated-recovery/verify-live.mjs` confirmed HTTP 200 and exact SHA-256 matches for all twelve checked live runtime files. The live homepage has ten story nodes, the new inline arrival, and no pending illustrated-art URLs. Evidence: `artifacts/illustrated-recovery/evidence/live-byte-verification.json`.
+
+Committed source groups: `recovery-views.mjs`, `recovery.js`, `recovery.css`; `practice-cards.js`, `practice.js`, `practice-data.mjs`, `practice-views.mjs`; `story-views.mjs`, `illustrated-views.mjs`, `manuscript.js`, `manuscript.css`; `sanctuary-views.mjs`, `sanctuary.css`; `site.js`, `site.css`, `build.mjs`, `README.md`; ten website test files; and this handoff. `git show --stat 87cd441` gives the complete 28-file list. Post-release evidence updates in this handoff remain local so they do not trigger a second deployment.
+
+### Live-discovered loading race and corrective follow-up
+
+The initial full live run on `87cd441` passed **111/114**. Three real early-interaction failures shared one cause: the sanctuary's visible server-rendered controls could be clicked before the deferred module graph loaded. An early Begin did nothing; an early Return still pointed home. Trace/network timestamps confirm these clicks preceded the last module response; there was no production redirect or lost stored bookmark. Preserve the initial report `evidence/live-initial-87cd441.json` and three traces under `evidence/live-initial-failures/`; do not relabel that run as passing. All exact-SHA GitHub jobs for the initial release passed ([Public website](https://github.com/abhijay-sudo/spritual/actions/runs/38620728656), [Verify alpha](https://github.com/abhijay-sudo/spritual/actions/runs/38620728752)).
+
+The corrective follow-up disables timer/rhythm/sound/share controls until their handlers are ready, gives a brief truthful loading state, and ships a **2,293-byte raw / 908-byte gzip** self-hosted critical navigation guard before the deferred modules. Pointer, keyboard and click navigation preserve the sanitized exact reading/source-guide return and language even if the interaction module is delayed or fails. The sanitizer is reused from the existing pure helper. No inline executable script, CSP relaxation, dependency or deployment-config change.
+
+Changed follow-up files: `website/build.mjs`, `website/sanctuary-views.mjs`, `website/sanctuary.js`, `website/tests/manuscript.spec.ts`, `website/tests/sanctuary-state.test.mjs`. Two deterministic browser cases cover delayed and failed modules; a unit/output check protects critical script order, disabled first-render state and the existing CSP.
+
+Final follow-up runtime fingerprint: `513e6b7a15c86cf73bf180046dc8b8f98026ff25a2cd09822538d2941400a1a7`. Public build still has 206 pages plus 404, all 11 image URLs resolve, and zero pending paintings ship. Unit/output tests: **50/50**. Final focused reader/sanctuary tests: **24/24**, 57.9 seconds, zero skips/retries/flakes (`evidence/entry-local-final.json`). The earlier 114-case local and 41-case preview runs predate this bounded follow-up and remain accurately identified above.
+
+Next: commit the five scoped website files plus this handoff and normally fast-forward the existing production branch. Then verify all thirteen live runtime hashes, run the complete 116-case live suite, capture the live flow and check exact-SHA CI. Remove only the temporary dependency symlink after testing. One task-owned loopback server is running at port 4190; unrelated processes and user work are untouched.

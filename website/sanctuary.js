@@ -157,4 +157,7 @@ export function initSanctuary(c) {
   }
   motion.addEventListener('change', () => { if (motion.matches && ctx) ctx.clearRect(0,0,canvas.width,canvas.height); if (frame) cancelAnimationFrame(frame); draw(); });
   draw(); syncLanguage(); if (remaining === 0) showArrival(); else if (remaining < MINUTE_MS) { label(c.resume); $('timer-reset').hidden = false; $('finish').hidden = false; $('timer-status').textContent = c.paused; }
+  else $('timer-status').textContent = c.ready;
+  root.querySelectorAll('[data-sanctuary-pending]').forEach(control => { control.disabled = false; control.removeAttribute('data-sanctuary-pending'); });
+  root.dataset.ready = 'true';
 }

@@ -1,5 +1,29 @@
 import {stories} from './stories.mjs';
+import {safeQuietReturn} from './sanctuary-state.mjs';
 const esc = value => String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+// A small self-hosted, parser-blocking entry guard respects the existing CSP.
+// It preserves navigation before the deferred interaction graph is ready.
+function prepareQuietEntry(readReturn) {
+  function syncEarlyLinks() {
+    if (document.querySelector('.sanctuary')?.dataset.ready === 'true') return;
+    const lang = document.documentElement.lang, params = new URLSearchParams(location.search);
+    let from = readReturn(params.get('from'), lang, location.origin);
+    if (from && ['neutral','epic','rama','hanuman','shiva','krishna'].includes(params.get('world'))) {
+      const target = new URL(from, location.origin); target.searchParams.set('world', params.get('world'));
+      from = target.pathname + target.search + target.hash;
+    }
+    if (from) for (const link of document.querySelectorAll('.ritual-close,[data-quiet-return]')) link.href = from;
+    for (const link of document.querySelectorAll('.language')) {
+      const target = new URL(link.href, location.origin);
+      for (const key of ['moment','elapsed','breath','world']) if (params.has(key)) target.searchParams.set(key, params.get(key));
+      const translated = readReturn(from, link.lang, location.origin);
+      if (translated) target.searchParams.set('from', translated);
+      link.href = target.pathname + target.search;
+    }
+  }
+  for (const event of ['pointerdown','focusin','click']) document.addEventListener(event, syncEarlyLinks, true);
+}
+export const quietEntryScript = `(${prepareQuietEntry.toString()})(${safeQuietReturn.toString()});`;
 export function quietMinutePage(c, lang) {
   const hi = lang === 'hi', t = (en, hindi) => hi ? hindi : en, base = hi ? '/hi/' : '/';
   const reflection = stories.find(story => story.id === 'knowing-how-to-stop');
@@ -15,19 +39,19 @@ export function quietMinutePage(c, lang) {
         <div class="orb-center"><span id="time" role="timer" aria-label="${c.remaining}">1:00</span></div>
       </div>
       <div class="breath-cue" aria-live="polite" aria-atomic="true"><h2 id="breath-phase">${t('At your own pace','अपनी गति से')}</h2><p id="breath-invitation">${t('Follow only what feels comfortable.','जितना सहज लगे, उतना ही करें।')}</p></div>
-      <div class="timer-controls"><button id="timer-toggle" class="button">${c.start}</button><button id="finish" class="text-button finish-button" hidden>${c.finish}</button><button id="timer-reset" class="text-button" hidden>${c.reset}</button></div>
-      <fieldset class="breath-options"><legend class="sr-only">${t('Breathing rhythm','श्वास की गति')}</legend>
+      <div class="timer-controls"><button id="timer-toggle" class="button" disabled data-sanctuary-pending>${c.start}</button><button id="finish" class="text-button finish-button" hidden>${c.finish}</button><button id="timer-reset" class="text-button" hidden>${c.reset}</button></div>
+      <fieldset class="breath-options" disabled data-sanctuary-pending><legend class="sr-only">${t('Breathing rhythm','श्वास की गति')}</legend>
         <label><input type="radio" name="breath-mode" value="guided" checked/><span>4 · 4 · 6</span></label>
         <label><input type="radio" name="breath-mode" value="skip"/><span>${t('Skip hold','बिना रोकें')}</span></label>
         <label><input type="radio" name="breath-mode" value="natural"/><span>${t('Natural breathing','स्वाभाविक श्वास')}</span></label>
       </fieldset>
-      <p class="timer-status" id="timer-status" role="status">${c.ready}</p>
+      <p class="timer-status" id="timer-status" role="status">${t('Preparing your minute…','आपका शांत मिनट तैयार हो रहा है…')}</p>
       <p class="sanctuary-help">${t('The last four seconds are unpaced. Your minute pauses when you leave this tab.','अंतिम चार सेकंड स्वाभाविक श्वास के लिए हैं। टैब छोड़ने पर मिनट रुक जाता है।')}</p>
       <section id="sanctuary-arrival" hidden aria-labelledby="arrival-label"><p id="arrival-label" class="eyebrow">${t('An editorial reflection','एक संपादकीय मनन')}</p><p class="arrival-wisdom">${esc(reflection.reflection[lang])}</p><a class="wisdom-source" href="${base}story/${reflection.id}/">${t('From “Knowing how to stop” · Bala Kanda 28','“रोकना भी जानना” से · बालकाण्ड 28')}</a><div class="arrival-actions"><a class="button" href="${base}daily/">${t('Enter Today’s Story','आज की कथा पढ़ें')}</a><a class="text-link" data-quiet-return href="${base}">${t('Return Quietly','शांति से लौटें')}</a></div></section>
     </section>
     <section id="finish-view" hidden><h1 tabindex="-1" id="finish-heading">${c.finishTitle}</h1><p>${c.finishText}</p><fieldset><legend>${c.stepLabel}</legend>${c.steps.map((s,i)=>`<label class="step-option"><input type="radio" name="intention" value="${i}"/><span>${s}</span></label>`).join('')}</fieldset><button class="button" id="save-step">${c.save}</button><p class="fine">${c.savingNote}</p><p id="save-status" role="status"></p><a id="return-reading" class="text-link" hidden>${t('Return to your guide','अपनी मार्गदर्शिका पर लौटें')}</a><div class="arrival-actions"><a class="button outline" href="${base}daily/">${t('Enter Today’s Story','आज की कथा पढ़ें')}</a><a class="text-link" data-quiet-return href="${base}">${t('Return Quietly','शांति से लौटें')}</a></div></section>
     <section id="saved-panel" class="saved-panel" hidden><p class="eyebrow">${c.savedHeading}</p><p id="saved-text"></p><button class="text-button" id="remove-step">${c.remove}</button><p id="remove-status" role="status"></p></section>
-    <div class="sanctuary-secondary"><button id="sanctuary-sound" type="button" aria-pressed="false">${t('Sound off','ध्वनि बंद')}</button><span id="sound-status" class="sr-only" role="status"></span><button class="text-button" id="share-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 12v8h14v-8"/></svg>${c.share}</button><p id="share-status" role="status"></p><label id="copy-fallback" hidden>${c.copyError}<input id="copy-url" readonly type="url"/></label></div>
+    <div class="sanctuary-secondary"><button id="sanctuary-sound" type="button" aria-pressed="false" disabled data-sanctuary-pending>${t('Sound off','ध्वनि बंद')}</button><span id="sound-status" class="sr-only" role="status"></span><button class="text-button" id="share-link" disabled data-sanctuary-pending><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 12v8h14v-8"/></svg>${c.share}</button><p id="share-status" role="status"></p><label id="copy-fallback" hidden>${c.copyError}<input id="copy-url" readonly type="url"/></label></div>
     <noscript><p class="notice">${c.noJS}</p></noscript></div>
   </main>`;
 }

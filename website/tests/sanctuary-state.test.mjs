@@ -2,6 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {breathingFrame, safeQuietReturn} from '../sanctuary-state.mjs';
 import {readingMetadata} from '../reading-metadata.mjs';
+import {readFile} from 'node:fs/promises';
+test('public sanctuary prepares safe navigation before modules without relaxing its CSP',async()=>{
+  const html=await readFile(new URL('../dist/pause/index.html',import.meta.url),'utf8');
+  const guard=html.indexOf('<script src="/sanctuary-entry.js"></script>');
+  assert(guard>0&&guard<html.indexOf('<script type="module" src="/site.js">'));
+  assert.match(html,/id="timer-toggle"[^>]*disabled data-sanctuary-pending/);
+  const config=JSON.parse(await readFile(new URL('../vercel.json',import.meta.url),'utf8'));
+  const csp=config.headers.flatMap(rule=>rule.headers).find(header=>header.key==='Content-Security-Policy').value;
+  assert.match(csp,/(?:^|;)\s*script-src 'self';/);
+  assert(!html.includes('<script>'));
+});
 test('reading estimates derive from actual bilingual paragraphs, not a supplied duration',()=>{
   const story={duration:8,scenes:[{blocks:[{text:{en:'one '.repeat(181),hi:'एक '.repeat(151)}}]}]};
   assert.deepEqual(readingMetadata(story),{wordCounts:{en:181,hi:151},durationByLanguage:{en:2,hi:2},duration:2});

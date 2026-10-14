@@ -4,6 +4,27 @@ const evidence=resolve(process.cwd(),'artifacts/manuscript-sanctuary/evidence');
 const readingKey='spritual_reading_v2';
 const story='what-makes-a-person-admirable';
 
+test('sanctuary early return and language links survive a delayed module graph',async({page})=>{
+  let release!:()=>void;const blocked=new Promise<void>(resolve=>{release=resolve;});
+  await page.route('**/site.js',async route=>{await blocked;await route.continue();});
+  const from=`/read/${story}/?from=resume&journey=ramayana#block-question-2`;
+  await page.goto(`/pause/?from=${encodeURIComponent(from)}&world=shiva&elapsed=9000`,{waitUntil:'commit'});
+  await expect(page.locator('#timer-toggle')).toBeDisabled();
+  await page.locator('.language').click();await expect(page).toHaveURL(/\/hi\/pause\/.*elapsed=9000/);
+  expect(new URL(page.url()).searchParams.get('from')).toContain(`/hi/read/${story}/?from=resume&journey=ramayana&world=shiva#block-question-2`);
+  await expect(page.locator('#timer-toggle')).toBeDisabled();
+  release();await expect(page.locator('#timer-toggle')).toBeEnabled();await expect(page.locator('#time')).toHaveText('0:51');
+  await page.locator('.ritual-close').click();await expect(page).toHaveURL(new RegExp(`/hi/read/${story}/.*#block-question-2$`));
+});
+
+test('sanctuary can return immediately while its interaction module is unavailable',async({page})=>{
+  await page.route('**/site.js',route=>route.abort());
+  const from=`/read/${story}/?from=resume&journey=ramayana#block-question-2`;
+  await page.goto(`/pause/?from=${encodeURIComponent(from)}`);
+  await expect(page.locator('#timer-toggle')).toBeDisabled();
+  await page.locator('.ritual-close').click();await expect(page).toHaveURL(new RegExp(`/read/${story}/.*#block-question-2$`));
+});
+
 test('reader context is keyboard operable, exclusive, interruptible and returns focus',async({page})=>{
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(`/read/${story}/`);
