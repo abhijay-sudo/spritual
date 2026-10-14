@@ -2,26 +2,26 @@ import {test,expect} from '@playwright/test';
 
 const active=async(page:any,name:string)=>{
   await expect(page.locator('html')).toHaveAttribute('data-world',name);
-  await expect(page.locator(`[data-world-option="${name}"]`)).toHaveAttribute('aria-current','true');
+  await expect(page.locator(`.theme-picker [data-world-option="${name}"]`)).toHaveAttribute('aria-current','true');
 };
 
 test('all six reading worlds are real navigation with durable URL and browser history',async({page})=>{
   await page.goto('/');
-  await expect(page.locator('[data-world-option]')).toHaveCount(6);
+  await expect(page.locator('.theme-picker [data-world-option]')).toHaveCount(6);
   await active(page,'neutral');
   await page.locator('.theme-picker summary').click();
-  await page.getByRole('link',{name:'Krishna',exact:true}).click();
+  await page.locator('.theme-picker').getByRole('link',{name:'Krishna',exact:true}).click();
   await expect(page).toHaveURL(/\?world=krishna$/);
   await active(page,'krishna');
   await expect(page.locator('[data-context-art]').first()).toHaveAttribute('src','/assets/world-krishna.webp');
   await expect.poll(()=>page.evaluate(()=>localStorage.getItem('spritual_world_v1'))).toBe('krishna');
   await page.locator('.theme-picker summary').click();
-  await page.getByRole('link',{name:'Shiva',exact:true}).click();
+  await page.locator('.theme-picker').getByRole('link',{name:'Shiva',exact:true}).click();
   await active(page,'shiva');
   await page.goBack();
   await active(page,'krishna');
   await page.locator('.theme-picker summary').click();
-  await page.getByRole('link',{name:'Still',exact:true}).click();
+  await page.locator('.theme-picker').getByRole('link',{name:'Still',exact:true}).click();
   await active(page,'neutral');
 });
 
@@ -89,9 +89,9 @@ test('active world chip is visible on narrow deep links and history changes',asy
   await page.setViewportSize({width:320,height:760});await page.emulateMedia({reducedMotion:'reduce'});
   await page.goto('/hi/library/shiva/vidyeshvara/?world=shiva');
   await page.locator('.theme-picker summary').click();
-  const visible=async(name:string)=>page.locator(`[data-world-option="${name}"]`).evaluate((item)=>{const chip=item.getBoundingClientRect(),rail=item.parentElement!.getBoundingClientRect();return chip.left>=rail.left-1&&chip.right<=rail.right+1;});
+  const visible=async(name:string)=>page.locator(`.theme-picker [data-world-option="${name}"]`).evaluate((item)=>{const chip=item.getBoundingClientRect(),rail=item.parentElement!.getBoundingClientRect();return chip.left>=rail.left-1&&chip.right<=rail.right+1;});
   await expect.poll(()=>visible('shiva')).toBe(true);
-  await page.getByRole('link',{name:'राम',exact:true}).click();await active(page,'rama');
+  await page.locator('.theme-picker').getByRole('link',{name:'राम',exact:true}).click();await active(page,'rama');
   await page.goBack();await active(page,'shiva');
 });
 
@@ -102,19 +102,19 @@ test('capture final must-fix evidence from current code',async({page})=>{
     [390,844,'pause-hanuman-390','/pause/?world=hanuman'],
     [390,844,'guide-shiva-hi-390','/hi/library/shiva/vidyeshvara/?world=shiva'],
     [320,760,'guide-shiva-hi-320','/hi/library/shiva/vidyeshvara/?world=shiva']
-  ] as const){await page.setViewportSize({width,height});await page.goto(path);await expect(page.locator('html')).toHaveAttribute('data-world',path.includes('shiva')?'shiva':'hanuman');await page.screenshot({path:`docs/qa/contextual-worlds/final-${name}.png`,fullPage:true});}
-  await page.setViewportSize({width:390,height:844});await page.goto('/pause/?from=%2Flibrary%2Framayana%2Fsundara%2F&world=shiva');await page.locator('#timer-toggle').click();await page.locator('#finish').click();await expect(page.locator('#return-reading')).toHaveAttribute('href','/library/ramayana/sundara/?world=shiva');await page.screenshot({path:'docs/qa/contextual-worlds/final-pause-return-shiva-390.png',fullPage:true});
+  ] as const){await page.setViewportSize({width,height});await page.goto(path);await expect(page.locator('html')).toHaveAttribute('data-world',path.includes('shiva')?'shiva':'hanuman');await page.screenshot({path:`artifacts/illustrated-recovery/evidence/supporting-${name}.png`,fullPage:true});}
+  await page.setViewportSize({width:390,height:844});await page.goto('/pause/?from=%2Flibrary%2Framayana%2Fsundara%2F&world=shiva');await page.locator('#timer-toggle').click();await page.locator('#finish').click();await expect(page.locator('#return-reading')).toHaveAttribute('href','/library/ramayana/sundara/?world=shiva');await page.screenshot({path:'artifacts/illustrated-recovery/evidence/supporting-pause-return-shiva-390.png',fullPage:true});
 });
 
 test('every public surface exposes the chooser and storage failure keeps a usable neutral fallback',async({page})=>{
   for(const path of ['/','/library/','/library/saved/','/privacy/','/missing-page/']){
-    await page.goto(path);await expect(page.locator('[data-world-option]')).toHaveCount(6);
+    await page.goto(path);await expect(page.locator('.theme-picker [data-world-option]')).toHaveCount(6);
   }
-  await page.goto('/pause/');await expect(page.locator('[data-world-option]')).toHaveCount(6);
+  await page.goto('/pause/');await expect(page.locator('.theme-picker [data-world-option]')).toHaveCount(6);
   await page.addInitScript(()=>{Storage.prototype.getItem=()=>{throw Error('blocked')};Storage.prototype.setItem=()=>{throw Error('blocked')};});
   await page.goto('/');await active(page,'neutral');
   await page.locator('.theme-picker summary').click();
-  await page.getByRole('link',{name:'Rama',exact:true}).click();await active(page,'rama');
+  await page.locator('.theme-picker').getByRole('link',{name:'Rama',exact:true}).click();await active(page,'rama');
 });
 
 test('reduced motion keeps complete themed content without transitions',async({page})=>{

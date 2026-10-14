@@ -15,12 +15,12 @@ export function quietMinutePage(c, lang) {
         <div class="orb-center"><span id="time" role="timer" aria-label="${c.remaining}">1:00</span></div>
       </div>
       <div class="breath-cue" aria-live="polite" aria-atomic="true"><h2 id="breath-phase">${t('At your own pace','अपनी गति से')}</h2><p id="breath-invitation">${t('Follow only what feels comfortable.','जितना सहज लगे, उतना ही करें।')}</p></div>
+      <div class="timer-controls"><button id="timer-toggle" class="button">${c.start}</button><button id="finish" class="text-button finish-button" hidden>${c.finish}</button><button id="timer-reset" class="text-button" hidden>${c.reset}</button></div>
       <fieldset class="breath-options"><legend class="sr-only">${t('Breathing rhythm','श्वास की गति')}</legend>
         <label><input type="radio" name="breath-mode" value="guided" checked/><span>4 · 4 · 6</span></label>
         <label><input type="radio" name="breath-mode" value="skip"/><span>${t('Skip hold','बिना रोकें')}</span></label>
         <label><input type="radio" name="breath-mode" value="natural"/><span>${t('Natural breathing','स्वाभाविक श्वास')}</span></label>
       </fieldset>
-      <div class="timer-controls"><button id="timer-toggle" class="button">${c.start}</button><button id="finish" class="text-button finish-button" hidden>${c.finish}</button><button id="timer-reset" class="text-button" hidden>${c.reset}</button></div>
       <p class="timer-status" id="timer-status" role="status">${c.ready}</p>
       <p class="sanctuary-help">${t('The last four seconds are unpaced. Your minute pauses when you leave this tab.','अंतिम चार सेकंड स्वाभाविक श्वास के लिए हैं। टैब छोड़ने पर मिनट रुक जाता है।')}</p>
       <section id="sanctuary-arrival" hidden aria-labelledby="arrival-label"><p id="arrival-label" class="eyebrow">${t('An editorial reflection','एक संपादकीय मनन')}</p><p class="arrival-wisdom">${esc(reflection.reflection[lang])}</p><a class="wisdom-source" href="${base}story/${reflection.id}/">${t('From “Knowing how to stop” · Bala Kanda 28','“रोकना भी जानना” से · बालकाण्ड 28')}</a><div class="arrival-actions"><a class="button" href="${base}daily/">${t('Enter Today’s Story','आज की कथा पढ़ें')}</a><a class="text-link" data-quiet-return href="${base}">${t('Return Quietly','शांति से लौटें')}</a></div></section>

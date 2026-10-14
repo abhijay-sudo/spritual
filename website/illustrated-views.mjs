@@ -17,7 +17,7 @@ import {
   searchText,
 } from './illustrated-edition.mjs';
 
-import {sankalpaCard,lotusNav} from './practice-views.mjs';
+import {sankalpaCard,lotusNav} from './practice-views.mjs'; import {readerBanner} from './recovery-views.mjs';
 
 const t = (lang, en, hi) => (lang === 'hi' ? hi : en);
 const esc = value => String(value)
@@ -155,7 +155,7 @@ function pairedBlock(block, lang) {
 function readerJourneyRail(story, lang) {
   const options = Object.values(journeys).filter(journey => journey.storyIds.includes(story.id));
   return `<aside class="reader-volume illustrated-volume" aria-label="${t(lang, 'Reading journey', 'पठन यात्रा')}">
-    <div class="reader-volume-art">${picture(story, lang, {decorative: true})}<div><span>${String(story.order).padStart(2, '0')} / ${stories.length}</span><strong>${esc(pick(story.book, lang))}</strong></div></div>
+
     <div class="reader-volume-copy"><p class="eyebrow">${t(lang, 'ILLUSTRATED READING ROOM', 'चित्रित पठन कक्ष')}</p><p>${t(lang, 'The journey context controls what follows this story. It never changes the source order.', 'पठन-पथ यह तय करता है कि इस कथा के बाद क्या आएगा। यह स्रोत-क्रम नहीं बदलता।')}</p>
       <nav class="reader-journey-picker" aria-label="${t(lang, 'Choose journey', 'पठन-पथ चुनें')}">${options.map(journey => `<a data-journey-choice="${journey.id}" href="${journeyLink(story.id, lang, journey.id)}"><strong>${esc(pick(journey.shortTitle, lang))}</strong><span>${journey.storyIds.indexOf(story.id) + 1}/${journey.storyIds.length}</span></a>`).join('')}</nav>
       <nav class="reader-journey" aria-label="${t(lang, 'Story turning points', 'कथा के मोड़')}">${story.scenes.map((scene, index) => `<a href="#scene-${scene.id}" data-reader-scene="${scene.id}" ${index === 0 ? 'aria-current="step"' : ''}><span>${String(index + 1).padStart(2, '0')}</span><strong>${esc(pick(scene.title, lang))}</strong></a>`).join('')}<a href="#story-reflection"><span>✦</span><strong>${t(lang, 'Reflection', 'मनन')}</strong></a><a href="#story-source"><span>§</span><strong>${t(lang, 'Source map', 'स्रोत मानचित्र')}</strong></a></nav>
@@ -184,7 +184,7 @@ export function illustratedReader(story, lang) {
     ${editionRibbon(lang)}<div class="reader-progress" aria-hidden="true"><span id="reader-progress-bar"></span></div>
     <header class="reader-chrome"><a class="reader-back" href="${href(lang, `/story/${story.id}/`)}" aria-label="${t(lang, 'Back to story overview', 'कथा परिचय पर लौटें')}">← <span>${t(lang, 'Back', 'वापस')}</span></a><div class="reader-location"><span>${esc(pick(story.book, lang))}</span><strong>${esc(pick(story.title, lang))}</strong></div>${language}${contents}${lotusNav(lang)}<button id="bookmark-place" type="button" aria-pressed="false">${bookmark}<span>${t(lang, 'Save place', 'स्थान सहेजें')}</span></button><button id="reader-settings-open" type="button">${settings}<span>${t(lang, 'Reading settings', 'पठन सेटिंग')}</span></button></header>
     <div class="reader-stage">${readerJourneyRail(story, lang)}<article class="reader-column">
-      <header class="reader-title illustrated-reader-title">${picture(story, lang, {priority: true})}<div><span class="draft-badge">${illustratedRelease?(story.editionOnly?t(lang,'Original abridged chapter · source-mapped','मौलिक संक्षिप्त अध्याय · स्रोत-मानचित्रित'):t(lang,'Original retelling · source-mapped','मौलिक पुनर्कथन · स्रोत-मानचित्रित')):(story.editionOnly?t(lang,'New chapter · local review only','नया अध्याय · केवल स्थानीय समीक्षा'):t(lang,'Existing retelling · new art local review only','मौजूदा पुनर्कथन · नया चित्र केवल स्थानीय समीक्षा'))}</span><p class="eyebrow">${esc(pick(story.book, lang))} · ${t(lang, 'Sarga', 'सर्ग')} ${story.sarga}</p><h1>${esc(pick(story.title, lang))}</h1><p>${esc(pick(story.dek, lang))}</p><div><span>${t(lang,'About','लगभग')} ${story.durationByLanguage?.[lang]??story.duration} ${t(lang, 'min', 'मिनट')}</span><span>${story.scenes.length} ${t(lang, 'scenes', 'दृश्य')}</span></div></div></header>
+      ${readerBanner(story,lang,picture,{edition:true})}<header class="reader-title illustrated-reader-title"><div><span class="draft-badge">${illustratedRelease?(story.editionOnly?t(lang,'Original abridged chapter · source-mapped','मौलिक संक्षिप्त अध्याय · स्रोत-मानचित्रित'):t(lang,'Original retelling · source-mapped','मौलिक पुनर्कथन · स्रोत-मानचित्रित')):(story.editionOnly?t(lang,'New chapter · local review only','नया अध्याय · केवल स्थानीय समीक्षा'):t(lang,'Existing retelling · new art local review only','मौजूदा पुनर्कथन · नया चित्र केवल स्थानीय समीक्षा'))}</span><p class="eyebrow">${esc(pick(story.book, lang))} · ${t(lang, 'Sarga', 'सर्ग')} ${story.sarga}</p><h1>${esc(pick(story.title, lang))}</h1><p>${esc(pick(story.dek, lang))}</p><div><span>${t(lang,'About','लगभग')} ${story.durationByLanguage?.[lang]??story.duration} ${t(lang, 'min', 'मिनट')}</span><span>${story.scenes.length} ${t(lang, 'scenes', 'दृश्य')}</span></div></div></header>
       ${scenes}
       <aside class="reader-reflection" id="story-reflection"><span>${t(lang, 'REFLECTION · NOT SOURCE TEXT', 'मनन · स्रोत-पाठ नहीं')}</span><p>${esc(pick(story.reflection, lang))}</p></aside>
       ${sankalpaCard(story,lang)}

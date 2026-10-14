@@ -11,7 +11,7 @@ test('global navigation has one clear hierarchy at mobile and desktop sizes',asy
    await expect(page.locator('.desktop-nav').getByRole('link',{name,exact:true})).toHaveAttribute('href',href);
   }
   await page.locator('.theme-picker summary').click();
-  await expect(page.locator('[data-world-option]')).toHaveCount(6);
+  await expect(page.locator('.theme-picker [data-world-option]')).toHaveCount(6);
   await expect(page.locator('body')).not.toContainText('This changes colours and artwork only—it does not filter stories.');
  }
 });
@@ -119,7 +119,7 @@ test('explicit reader sections outrank saved progress and survive language chang
 
 test('Hindi keeps the same navigation model and direct daily context',async({page})=>{
  await page.goto('/hi/');
- await expect(page.getByRole('link',{name:'रामायण यात्रा आरंभ करें'})).toHaveAttribute('href','#dharma-yatra');
+ await expect(page.getByRole('link',{name:'सभी 10 कथाएँ देखें'})).toHaveAttribute('href','#dharma-yatra');
  for(const name of ['यात्रा','आज','शांत पल','सहेजा'])await expect(page.locator('.desktop-nav').getByRole('link',{name,exact:true})).toBeVisible();
  await page.locator('.desktop-nav').getByRole('link',{name:'आज',exact:true}).click();
  await expect(page.getByRole('link',{name:/सभी कथाएँ/})).toHaveAttribute('href','/hi/library/');

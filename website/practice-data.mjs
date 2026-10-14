@@ -15,8 +15,8 @@ export const sankalpas = [
 ];
 export const ANCHOR_IDS = sankalpas.map(item => item.id);
 export const practiceById = Object.fromEntries(sankalpas.map(item => [item.id, item]));
-// Connecting chapters share the next anchor's invitation; they do not create
-// extra petals or change the identity of existing reading/bookmark records.
+// Connecting chapters reuse the next anchor's invitation, but own their explicit
+// practice choices. Existing anchor records and the ten navbar petals stay intact.
 export const bridgePractice = {
   'princes-and-teacher':'knowing-how-to-stop', 'road-to-mithila':'the-bow-at-mithila',
   'promise-of-exile':'a-friend-beside-the-ganga', 'forest-torn-apart':'shabaris-welcome',
@@ -25,4 +25,4 @@ export const bridgePractice = {
   'refuge-and-crossing':'returning-responsibility', 'war-and-its-cost':'returning-responsibility',
   'sita-speaks-after-victory':'returning-responsibility', 'northward-home':'returning-responsibility',
 };
-export const practiceForStory = id => practiceById[id] || practiceById[bridgePractice[id]];
+export const practiceForStory = id => practiceById[id] || (bridgePractice[id] ? {...practiceById[bridgePractice[id]],id,sharedAnchor:bridgePractice[id]} : null);

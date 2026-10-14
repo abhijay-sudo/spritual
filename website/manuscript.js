@@ -23,13 +23,7 @@ export function enhanceManuscript({story, lang, beforeLayout, afterLayout, befor
       choices.append(...picker.childNodes); picker.replaceWith(choices); contents.prepend(choices);
     }
   }
-  const openingArt = title.querySelector('picture');
-  if (openingArt) {
-    const details = document.createElement('details'); details.className = 'opening-illustration';
-    const summary = document.createElement('summary'); summary.textContent = say('View opening illustration', 'आरंभिक चित्र देखें');
-    details.append(summary, openingArt); title.after(details);
-    details.addEventListener('toggle', () => details.open && openingArt.scrollIntoView({block: 'nearest', behavior: 'auto'}));
-  }
+  // The opening painting is server-rendered in a stable frame, never hidden in a disclosure.
   const wrap = document.createElement('section'); wrap.className = 'manuscript-context';
   wrap.setAttribute('aria-label', say('Story context', 'कथा का प्रसंग'));
   const buttons = document.createElement('div'); buttons.className = 'editorial-pills';

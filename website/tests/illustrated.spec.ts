@@ -7,7 +7,7 @@ test.beforeAll(async () => mkdir(evidence, { recursive: true }));
 
 test('complete illustrated journey reaches the correct story, source map and finite ending', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Enter one story');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Before the stories');
   await page.getByRole('link', { name: 'Hanuman’s path', exact: false }).click();
   await expect(page).toHaveURL(/\/journeys\/hanuman\/$/);
   await expect(page.locator('.journey-chapter')).toHaveCount(3);
@@ -30,12 +30,12 @@ test('living manuscript hero, single navigation and theme controls remain truthf
   await page.goto('/');
   await expect(page.locator('header nav[aria-label="Main navigation"]')).toHaveCount(1);
   for (const name of ['Yatra','Today','Quiet moment','Saved']) await expect(page.locator('.desktop-nav').getByRole('link',{name,exact:true})).toBeVisible();
-  await expect(page.getByRole('link',{name:'Begin the Ramayana Yatra'})).toHaveAttribute('href','#dharma-yatra');
+  await expect(page.getByRole('link',{name:'Explore all 22 chapters'})).toHaveAttribute('href','#dharma-yatra');
   await expect(page.locator('.illuminated-today')).toContainText("TODAY'S ILLUMINATED STORY");
   await expect(page.locator('.illuminated-meta span')).toHaveCount(3);
   for (const removed of ['reviewer credentials are not supplied','This changes colours and artwork only—it does not filter stories','No audio, completion badge or reminder']) await expect(page.locator('body')).not.toContainText(removed);
   await page.locator('.theme-picker summary').click();
-  await page.getByRole('link',{name:'Shiva',exact:true}).click();
+  await page.locator('.theme-picker').getByRole('link',{name:'Shiva',exact:true}).click();
   await expect(page.locator('html')).toHaveAttribute('data-world','shiva');
   expect(await page.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--paper').trim())).toBe('#0F172A');
   await page.getByRole('button',{name:'Change text size'}).click();
@@ -57,7 +57,7 @@ test('the full abridged storyline continues through all twenty-two chapters and 
   for (let index = 0; index < ids.length; index += 1) {
     await expect(page).toHaveURL(new RegExp(`/read/${ids[index]}/\\?journey=ramayana$`));
     await expect(page.locator('[data-journey-progress] small')).toHaveText(`${index + 1} / ${ids.length}`);
-    await expect(page.locator('.opening-illustration img')).toHaveJSProperty('complete', true);
+    await expect(page.locator('.reader-opening-art img')).toHaveJSProperty('complete', true);
     if (index < ids.length - 1) {
       await expect(page.locator('[data-journey-next]')).toHaveAttribute('href', `/read/${ids[index + 1]}/?journey=ramayana`);
       await page.locator('[data-journey-next]').click();
@@ -163,7 +163,7 @@ test('all requested widths, themes, enlarged text and parallel reading remain bo
   }
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/');
-  await expect(page.locator('.hero-word').last()).toHaveCSS('opacity','1');
+  await expect(page.locator('#arrival-title')).toHaveCSS('opacity','1');
   await page.screenshot({ path: resolve(evidence, 'home-1440.png'), fullPage: true });
 });
 

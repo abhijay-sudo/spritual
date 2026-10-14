@@ -46,7 +46,22 @@ function applyWorld(world,{announce=false}={}){
  document.documentElement.dataset.world=world;document.body.dataset.world=world;
  const info=WORLD_META[world],hi=document.documentElement.lang==='hi',copy=hi?info.hi:info.en;
  document.querySelector('meta[name="theme-color"]')?.setAttribute('content',info.color);
- for(const image of document.querySelectorAll('[data-context-art]')){if(image.getAttribute('src')!==info.art){image.classList.add('art-changing');image.src=info.art;image.addEventListener('load',()=>image.classList.remove('art-changing'),{once:true});}}
+ for(const image of document.querySelectorAll('[data-context-art]')){
+  const showcase=image.hasAttribute('data-theme-showcase');
+  const source=showcase&&world==='neutral'?'/assets/collection-ramayana.webp':info.art;
+  const responsive=showcase&&['neutral','epic'].includes(world)?`${source.replace('.webp','-sm.webp')} 560w, ${source} 1120w`:'';
+  const sizes='(max-width:979px) calc(100vw - 40px), (max-width:1280px) 57vw, 682px';
+  // Keep the last complete painting visible until its replacement is ready.
+  // A late response from a previous theme must never replace the newest choice.
+  image.dataset.requestedArt=source;
+  const alt=showcase?(hi?`${info.name[1]} वातावरण का चित्र; किसी विशिष्ट घटना का चित्रण नहीं।`:`Atmospheric artwork for ${info.name[0]}; not a depiction of a specific event.`):image.alt;
+  if(image.getAttribute('src')===source){image.alt=alt;continue;}
+  const candidate=new Image();
+  candidate.onload=()=>{if(image.dataset.requestedArt!==source)return;image.srcset=responsive;image.sizes=sizes;image.src=source;image.alt=alt;delete image.dataset.artUnavailable;};
+  candidate.onerror=()=>{if(image.dataset.requestedArt===source)image.dataset.artUnavailable='true';};
+  candidate.sizes=sizes;candidate.srcset=responsive;
+  candidate.src=source;
+ }
  document.querySelectorAll('[data-context-kicker]').forEach(el=>el.textContent=copy[0]);
  document.querySelectorAll('[data-context-caption]').forEach(el=>el.textContent=copy[1]);
  document.querySelectorAll('[data-context-seal]').forEach(el=>el.innerHTML=copy[2].replace(' ','<br>'));

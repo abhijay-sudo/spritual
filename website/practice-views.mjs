@@ -19,7 +19,7 @@ export function sankalpaCard(story,lang) {
     <h2 id="sankalpa-title">${esc(pick(practice.title,lang))}</h2>
     <p class="sankalpa-action">${esc(pick(practice.action,lang))}</p>
     <p class="sankalpa-time">${t(lang,'A two-minute practice, whenever it fits.','दो मिनट का अभ्यास, जब आपके लिए सहज हो।')}</p>
-    ${practice.id !== story.id ? `<p class="sankalpa-shared">${t(lang,'An invitation shared with the next Yatra milestone.','अगले यात्रा-पड़ाव के साथ साझा अभ्यास का निमंत्रण।')}</p>` : ''}
+    ${practice.sharedAnchor ? `<p class="sankalpa-shared">${t(lang,'An invitation shared with a Yatra milestone; your choice here is kept separately.','यात्रा-पड़ाव के साथ साझा निमंत्रण; यहाँ आपका चयन अलग सहेजा जाता है।')}</p>` : ''}
     <div data-seal-controls class="sankalpa-seal-controls" hidden>
       <button type="button" class="sankalpa-hold" data-sankalpa-hold aria-label="${t(lang,'Press and hold for 2 seconds to seal your Sankalpa','अपना संकल्प सहेजने के लिए दो सेकंड दबाए रखें')}" aria-describedby="sankalpa-hold-help">
         <svg class="seal-ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="45"/><circle class="seal-ring-fill" cx="50" cy="50" r="45" pathLength="1"/></svg>${lotusSvg()}

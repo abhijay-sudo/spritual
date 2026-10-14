@@ -6,9 +6,16 @@ import {editionStories} from '../illustrated-chapters.mjs';
 const memory = () => {const data = new Map();return {getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v),removeItem:k=>data.delete(k)};};
 const [first,second] = ANCHOR_IDS;
 
-test('all twenty-two chapters have a bilingual invitation tied to one of ten stable milestones',()=>{
+test('all twenty-two chapters have bilingual invitations and independent choices; ten original petal IDs stay stable',()=>{
   assert.equal(ANCHOR_IDS.length,10);
-  for(const story of editionStories){const practice=practiceForStory(story.id);assert(practice);assert(ANCHOR_IDS.includes(practice.id));assert(practice.action.en);assert(practice.action.hi);}
+  for(const story of editionStories){const practice=practiceForStory(story.id);assert(practice);assert.equal(practice.id,story.id);assert(ANCHOR_IDS.includes(practice.sharedAnchor||practice.id));assert(practice.action.en);assert(practice.action.hi);}
+  const store=memory(),bridge=practiceForStory('princes-and-teacher');
+  updatePractice(store,bridge.sharedAnchor,'seal',PRACTICE_REVISION,100);
+  const previous=store.getItem(PRACTICE_PREFIX+bridge.sharedAnchor);
+  assert.equal(readPractice(store,bridge.id).kind,'empty');
+  updatePractice(store,bridge.id,'seal',PRACTICE_REVISION,200);
+  updatePractice(store,bridge.id,'try',PRACTICE_REVISION,300);
+  assert.equal(store.getItem(PRACTICE_PREFIX+bridge.sharedAnchor),previous);
 });
 test('a sealed intention is distinct from practice; repeat actions do not inflate or expire petals',()=>{
   const store=memory();updatePractice(store,first,'seal',PRACTICE_REVISION,100);

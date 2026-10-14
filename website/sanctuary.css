@@ -56,3 +56,12 @@ body:has(.sanctuary) .ritual-close{font:500 13px/1.5 var(--ui-sans);min-height:4
 @media(max-width:767px){body:has(.sanctuary) .ritual-header{padding:8px 16px;gap:8px}.ritual-header .brand span{font-size:23px}.ritual-header .header-actions{gap:5px}body:has(.sanctuary) .ritual-close{font-size:12px}.sanctuary{padding:28px 18px 18px}.sanctuary h1{font-size:42px}.sanctuary-intro{font-size:15px}.sanctuary .prana-orb{width:min(260px,68vw);margin-top:20px}.breath-cue{margin:12px 0;min-height:74px}.breath-cue h2{font-size:32px}.breath-options{gap:6px}.breath-options label{min-width:min-content;max-width:100%;flex:1 1 auto;font-size:11px}.breath-options label span{padding:10px 9px}.sanctuary .timer-controls .button{min-width:160px}.sanctuary .arrival-wisdom{font-size:28px}html[lang=hi] .sanctuary h1{font-size:34px;line-height:1.5}html[lang=hi] .breath-cue h2{font-size:27px}html[lang=hi] .breath-options label{font-size:12px}.sanctuary-secondary{margin-top:15px}}
 @media(max-width:390px){.ritual-header .theme-picker{display:none}.sanctuary .timer-controls{gap:6px 14px}.sanctuary h1{font-size:38px}}
 @media(prefers-reduced-motion:reduce){#sanctuary-arrival{animation:none}.sanctuary .orb-petals{will-change:auto}.sanctuary-dust{display:none}}
+/* Keep the essential Start/Pause action visible on short phones, without
+   pinning an overlay above content or preventing enlarged-text scrolling. */
+@media(max-height:740px) and (max-width:767px){
+ .sanctuary{padding-top:16px}.sanctuary h1{font-size:34px}.sanctuary-intro{margin-bottom:8px;line-height:1.5}
+ .sanctuary .prana-orb{width:clamp(136px,28dvh,194px);margin:10px auto 8px}
+ .breath-cue{min-height:64px;margin:6px 0}.breath-cue h2{font-size:28px}
+ .sanctuary .timer-controls{margin-top:8px}.breath-options{margin:14px auto 10px}
+ html[lang=hi] .sanctuary h1{font-size:30px;line-height:1.4}
+}

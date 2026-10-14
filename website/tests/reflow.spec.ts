@@ -8,7 +8,7 @@ test('critical surfaces reflow at 200% before web fonts are available', async ({
     {
       path: '/',
       zoom: 'body{font-size:200%} p,li,button,a{font-size:1em!important}',
-      probes: ['#main', 'h1', '.hero-actions'],
+      probes: ['#main', 'h1', '.arrival-card'],
     },
     {
       path: '/read/across-the-ocean/',

@@ -11,8 +11,8 @@ test('single navigation reflows without a duplicate menu',async({page})=>{
  for(const width of [320,390,1024]){await page.setViewportSize({width,height:900});await page.goto('/hi/');await expect(page.locator('header nav')).toHaveCount(1);await expect(page.locator('.desktop-nav')).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}
 });
 
-test('one header, equal hero choices, complete reading sections and keyboard preferences',async({page})=>{
- await page.goto('/');await expect(page.locator('.library-subnav')).toHaveCount(0);await expect(page.locator('.hero-actions a')).toHaveCount(2);await expect(page.locator('.art-play')).toHaveCount(0);await expect(page.locator('main > section')).toHaveCount(6);
+test('one header, immediate reading, optional breath and keyboard preferences',async({page})=>{
+ await page.goto('/');await expect(page.locator('.library-subnav')).toHaveCount(0);await expect(page.locator('[data-settled-enter]')).toHaveAttribute('href','/read/what-makes-a-person-admirable/?journey=ramayana');await expect(page.locator('[data-breath-start]')).toBeEnabled();await expect(page.locator('.art-play')).toHaveCount(0);await expect(page.locator('.arrival-section, #dharma-yatra, .recovery-today, .journey-section')).toHaveCount(4);
  const preferences=page.getByRole('button',{name:'Choose reading preferences'});await preferences.focus();await page.keyboard.press('Enter');await expect(page.getByRole('heading',{name:'How would you like to read?'})).toBeVisible();await page.keyboard.press('Escape');await expect(preferences).toBeFocused();
  await page.goto('/library/');const search=await page.locator('#story-search').boundingBox(),cards=await page.locator('.story-results').boundingBox();expect(search!.y).toBeLessThan(cards!.y);await expect(page.locator('[data-story-card]')).toHaveCount(10);
 });

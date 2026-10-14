@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {ANCHOR_IDS,PRACTICE_REVISION} from '../practice-data.mjs';
+import {editionStoryKeys} from '../illustrated-chapters.mjs';
 
 const evidence=resolve(process.cwd(),'artifacts/dharma-yatra/evidence');
 const key=(id:string)=>`spritual_sankalpa_v1:${id}`;
@@ -15,12 +16,12 @@ const openPractice=async(page:any,id=second,lang='en')=>{
 };
 test.beforeAll(async()=>mkdir(evidence,{recursive:true}));
 
-test('ten chronological milestones, scroll-only sutra and all connecting chapter links remain usable',async({page})=>{
+test('chronological illustrated milestones, scroll-only sutra and all chapter links remain usable',async({page})=>{
   await page.goto('/#dharma-yatra');
   await page.locator('.yatra-heading').scrollIntoViewIfNeeded();
-  expect(await page.locator('[data-yatra-id]').evaluateAll(nodes=>nodes.map(node=>(node as HTMLElement).dataset.yatraId))).toEqual(ANCHOR_IDS);
-  await expect(page.locator('[data-yatra-id]').last()).toContainText('The Return of Light');
-  await expect(page.locator('[data-state=current]')).toHaveAttribute('data-yatra-id',first);
+  expect(await page.locator('[data-yatra-id]').evaluateAll(nodes=>nodes.map(node=>(node as HTMLElement).dataset.yatraId))).toEqual(process.env.WEBSITE_RELEASE?editionStoryKeys:ANCHOR_IDS);
+  await expect(page.locator('[data-yatra-id]').last()).toContainText('Returning responsibility');
+  await expect(page.locator('[data-yatra-id][data-state=current]')).toHaveAttribute('data-yatra-id',first);
   const thread=page.locator('.yatra-thread');
   expect((await thread.boundingBox())!.height).toBeGreaterThan(1000);
   const offset=parseFloat(await page.locator('.yatra-thread-fill').evaluate(node=>getComputedStyle(node).strokeDashoffset));
@@ -28,11 +29,10 @@ test('ten chronological milestones, scroll-only sutra and all connecting chapter
   await expect.poll(async()=>parseFloat(await page.locator('.yatra-thread-fill').evaluate(node=>getComputedStyle(node).strokeDashoffset))).toBeLessThan(offset);
   expect(await read(page,first)).toBeNull();
   if(process.env.WEBSITE_RELEASE){
-    await expect(page.locator('.yatra-bridges li a')).toHaveCount(12);
-    await page.locator('.yatra-bridges summary').first().click();
-    await page.locator('.yatra-bridges li a').first().click();
+    await expect(page.locator('.chapter-card')).toHaveCount(22);
+    await page.locator('#yatra-princes-and-teacher .chapter-read').click();
     await expect(page).toHaveURL(/\/read\/princes-and-teacher\/\?journey=ramayana/);
-    await expect(page.locator('[data-sankalpa]')).toHaveAttribute('data-sankalpa',second);
+    await expect(page.locator('[data-sankalpa]')).toHaveAttribute('data-sankalpa','princes-and-teacher');
   }
 });
 
@@ -138,11 +138,12 @@ test('Hindi switching preserves the Sankalpa anchor and the existing semantic re
   await expect(page.locator(`[data-yatra-id="${second}"]`)).toHaveAttribute('data-state','completed');
 });
 
-test('petals survive long breaks and all-ten practice has a quiet finite ending',async({page})=>{
+test('petals survive long breaks and the available path has a quiet finite ending',async({page})=>{
   await page.goto('/');
-  await page.evaluate(({ids,revision})=>{for(const id of ids)localStorage.setItem(`spritual_sankalpa_v1:${id}`,JSON.stringify({version:1,revision,sealedAt:1,triedAt:2}));},{ids:ANCHOR_IDS,revision:PRACTICE_REVISION});
+  const ids=process.env.WEBSITE_RELEASE?editionStoryKeys:ANCHOR_IDS;
+  await page.evaluate(({ids,revision})=>{for(const id of ids)localStorage.setItem(`spritual_sankalpa_v1:${id}`,JSON.stringify({version:1,revision,sealedAt:1,triedAt:2}));},{ids,revision:PRACTICE_REVISION});
   await page.reload();
-  await expect(page.locator('[data-yatra-id][data-state=completed]')).toHaveCount(10);
+  await expect(page.locator('[data-yatra-id][data-state=completed]')).toHaveCount(ids.length);
   await expect(page.locator('[data-yatra-id][data-state=current]')).toHaveCount(0);
   await expect(page.locator('.header [data-practice-petal].is-tried')).toHaveCount(10);
   await expect(page.locator('[data-yatra-finished]')).toBeVisible();
@@ -185,7 +186,7 @@ test('responsive timeline and Sankalpa, theme contrast, enlarged Hindi and reduc
   await expect(page.locator('.sankalpa-ripple')).toHaveCSS('display','none');
   await page.goto('/?world=shiva#dharma-yatra');
   await page.locator('.yatra-heading').evaluate(node=>node.scrollIntoView({block:'start',behavior:'instant'}));
-  expect(await page.locator('[data-state=current] .yatra-marker').evaluate(node=>getComputedStyle(node,'::after').animationName)).toBe('none');
+  expect(await page.locator('[data-yatra-id][data-state=current]').evaluate(node=>getComputedStyle(node).animationName)).toBe('none');
   await page.screenshot({path:resolve(evidence,'timeline-shiva-390.png')});
   expect(errors).toEqual([]);
 });
@@ -198,7 +199,7 @@ test('practice stays legible in all six worlds, all reader appearances and enlar
   for(const world of ['neutral','epic','rama','hanuman','shiva','krishna']){
     await page.goto(`/?world=${world}#dharma-yatra`);
     await page.locator('.yatra-heading').evaluate(node=>node.scrollIntoView({block:'start',behavior:'instant'}));
-    const colors=await page.locator('[data-state=current] .yatra-card').evaluate(node=>({background:getComputedStyle(node).backgroundColor,text:getComputedStyle(node.querySelector('h3')!).color}));
+    const colors=await page.locator('[data-yatra-id][data-state=current]').evaluate(node=>({background:getComputedStyle(node).backgroundColor,text:getComputedStyle(node.querySelector('.chapter-copy h4')!).color}));
     expect(contrast(colors.text,colors.background),`${world} heading`).toBeGreaterThanOrEqual(4.5);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),world).toBe(true);
     await page.screenshot({path:resolve(evidence,`timeline-world-${world}.png`)});
@@ -235,7 +236,7 @@ test('design evidence shows completed, current and upcoming nodes and the hold r
   await page.evaluate(({id,revision})=>localStorage.setItem(`spritual_sankalpa_v1:${id}`,JSON.stringify({version:1,revision,sealedAt:100,triedAt:200})),{id:first,revision:PRACTICE_REVISION});
   await page.goto('/#dharma-yatra');await page.reload();await page.evaluate(()=>document.fonts.ready);
   await page.locator('.yatra-heading').evaluate(node=>node.scrollIntoView({block:'start',behavior:'instant'}));
-  await expect(page.locator(`[data-yatra-id="${second}"]`)).toHaveAttribute('data-state','current');
+  await expect(page.locator(`[data-yatra-id="${process.env.WEBSITE_RELEASE?editionStoryKeys[1]:second}"]`)).toHaveAttribute('data-state','current');
   await page.screenshot({path:resolve(evidence,'timeline-three-states.png')});
   await page.setViewportSize({width:1469,height:1071});
   await openPractice(page);await page.locator('[data-sankalpa-hold]').scrollIntoViewIfNeeded();
@@ -252,7 +253,7 @@ test('design evidence shows completed, current and upcoming nodes and the hold r
 test('without JavaScript the timeline and practice invitation remain readable',async({browser})=>{
   const context=await browser.newContext({javaScriptEnabled:false,baseURL:process.env.WEBSITE_URL||'http://127.0.0.1:4190'});
   const page=await context.newPage();await page.goto('/#dharma-yatra');
-  await expect(page.locator('[data-yatra-id]')).toHaveCount(10);
+  await expect(page.locator('[data-yatra-id]')).toHaveCount(process.env.WEBSITE_RELEASE?editionStoryKeys.length:10);
   await page.locator(`[data-yatra-id="${second}"] a.yatra-card`).focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('#sankalpa-title')).toBeVisible();

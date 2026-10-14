@@ -1,5 +1,11 @@
 # Spritual public website
 
+## Illustrated recovery — 14 October 2026
+
+The homepage now uses an inline, optional eight-second breath and immediate reading—not an entry overlay. Returning readers get an exact-resume spotlight. All available stories have visible illustrated Kanda cards, filters and a diya ribbon, with intention, acknowledged practice and reading position stored separately. Six atmosphere bindings affect the hero, not individual story artwork. The reader's opening image is visible by default; Hindi resume labels, next-story spacing and 400×609 sanctuary controls are corrected.
+
+The normal public build still contains ten reviewed stories and prior eligible atmospheric art. The 22-chapter/35-painting local-review edition is preserved separately; this UI work does not extend earlier content or artwork approvals. See [ILLUSTRATED_RECOVERY_HANDOFF.md](../docs/project/ILLUSTRATED_RECOVERY_HANDOFF.md) for the current tested fingerprint, before/after captures, interaction trace, measurements and exact deployment state. Final local public checks: 49 unit/output tests and 114 Chromium cases, no skips or retries. Native JavaScript is retained; no frontend dependency, model, backend or deployment configuration changed.
+
 ## Current release candidate — 14 October 2026
 
 The Living Manuscript reader, 60-second sanctuary, homepage, Dharma Yatra and Daily Sankalpa are implemented and locally verified. The authorized release uses the existing Git-connected `codex/public-website` branch in `abhijay-sudo/spritual`, whose successful Production deployment maps to `spritual1` / `spritual-website`. Direct Vercel connector access is unavailable but is not required to trigger that existing Git integration. Confirm the exact deployment SHA and live checks before treating a local build as published.
