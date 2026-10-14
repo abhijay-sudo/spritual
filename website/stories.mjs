@@ -2,6 +2,7 @@
 // The owner records the exact bilingual corpus and artwork as rights-cleared and reviewed
 // by Puja Bhagat on 3 October 2026. Reviewer credentials and independent legal clearance
 // are not claimed.
+import {readingMetadata} from './reading-metadata.mjs';
 export const CONTENT_REVISION='ramayana-reviewed-2026-10-03.1';
 export const RELEASE_REVIEW=Object.freeze({
  status:'owner-attested-review-complete',reviewerName:'Puja Bhagat',reviewedAt:'2026-10-03',credentials:null,
@@ -107,7 +108,7 @@ const storyRecords=[
  }
 ];
 
-export const stories=storyRecords.map(story=>({...story,editorial:{...story.editorial,state:'reviewed',reviewerName:RELEASE_REVIEW.reviewerName,reviewedAt:RELEASE_REVIEW.reviewedAt,reviewBasis:RELEASE_REVIEW.status}}));
+export const stories=storyRecords.map(story=>({...story,...readingMetadata(story),editorial:{...story.editorial,state:'reviewed',reviewerName:RELEASE_REVIEW.reviewerName,reviewedAt:RELEASE_REVIEW.reviewedAt,reviewBasis:RELEASE_REVIEW.status}}));
 export const storyById=Object.fromEntries(stories.map(story=>[story.id,story]));
 export const storyKeys=stories.map(story=>story.id);
 export const pick=(value,lang)=>value?.[lang]??value?.en??value;

@@ -86,7 +86,8 @@ const records=[
 
 const sequence=['what-makes-a-person-admirable','princes-and-teacher','knowing-how-to-stop','road-to-mithila','the-bow-at-mithila','promise-of-exile','a-friend-beside-the-ganga','bharata-and-the-sandals','forest-torn-apart','shabaris-welcome','hanumans-first-conversation','alliance-and-vali','search-to-southern-sea','across-the-ocean','through-lanka-at-night','a-ring-brings-hope','witness-returns','refuge-and-crossing','war-and-its-cost','sita-speaks-after-victory','northward-home','returning-responsibility'];
 const rawById=Object.fromEntries([...publicStories,...records].map(story=>[story.id,story]));
-export const editionStories=sequence.map((id,index)=>({...rawById[id],order:index+1,editionOnly:records.some(story=>story.id===id)}));
+import {readingMetadata} from './reading-metadata.mjs';
+export const editionStories=sequence.map((id,index)=>({...rawById[id],...readingMetadata(rawById[id]),order:index+1,editionOnly:records.some(story=>story.id===id)}));
 export const editionStoryById=Object.fromEntries(editionStories.map(story=>[story.id,story]));
 export const editionStoryKeys=editionStories.map(story=>story.id);
 

@@ -6,24 +6,21 @@ test('global navigation has one clear hierarchy at mobile and desktop sizes',asy
   await page.goto('/');
   await expect(page.locator('.world-bar')).toHaveCount(0);
   await expect(page.locator('a[href*="undefined"]')).toHaveCount(0);
-  const more=page.getByRole('button',{name:'More'});
-  await expect(more).toBeVisible();
-  await more.click();
-  const menu=page.locator('#mobile-menu');
-  for(const [name,href] of [['Stories','/library/'],['Today','/daily/'],['Quiet moment','/pause/'],['Saved','/my-reading/'],['Source guides','/library/sources/'],['Corrections','/corrections/'],['Privacy','/privacy/']] as const){
-   await expect(menu.getByRole('link',{name,exact:true})).toHaveAttribute('href',href);
+  await expect(page.locator('header nav[aria-label="Main navigation"]')).toHaveCount(1);
+  for(const [name,href] of [['Yatra','/#dharma-yatra'],['Today','/daily/'],['Quiet moment','/pause/'],['Saved','/my-reading/']] as const){
+   await expect(page.locator('.desktop-nav').getByRole('link',{name,exact:true})).toHaveAttribute('href',href);
   }
-  await expect(menu.getByRole('heading',{name:'Choose the page’s look'})).toBeVisible();
-  await expect(menu.getByText(/does not filter stories/)).toBeVisible();
-  await page.getByRole('button',{name:/Close/}).click();
+  await page.locator('.theme-picker summary').click();
+  await expect(page.locator('[data-world-option]')).toHaveCount(6);
+  await expect(page.locator('body')).not.toContainText('This changes colours and artwork only—it does not filter stories.');
  }
 });
 
-test('Stories remains the active parent across details, characters and source guides',async({page})=>{
+test('Yatra remains the active parent across details, characters and source guides',async({page})=>{
  await page.setViewportSize({width:1440,height:900});
  for(const path of ['/library/','/story/a-ring-brings-hope/','/characters/hanuman/','/library/sources/','/library/ramayana/sundara/']){
   await page.goto(path);
-  await expect(page.locator('.desktop-nav').getByRole('link',{name:'Stories',exact:true})).toHaveAttribute('aria-current','page');
+  await expect(page.locator('.desktop-nav').getByRole('link',{name:'Yatra',exact:true})).toHaveAttribute('aria-current','page');
   await expect(page.locator('a[href*="undefined"]')).toHaveCount(0);
  }
  await page.goto('/daily/');
@@ -52,7 +49,9 @@ test('reader contents, character context and return path preserve the reading pl
  await expect(page.getByRole('link',{name:'Back to story overview'})).toHaveAttribute('href','/story/hanumans-first-conversation/');
  const contents=page.locator('.reader-contents');
  await contents.locator('summary').click();
- await expect(contents.getByRole('link')).toHaveCount(5);
+ await expect(contents.getByRole('link')).toHaveCount(7);
+ await expect(contents.getByRole('link',{name:'Take one quiet minute'})).toBeVisible();
+ await expect(contents.getByRole('link',{name:'Today’s Sankalpa'})).toHaveAttribute('href','#story-sankalpa');
  const secondScene=contents.getByRole('link').nth(1);
  const target=await secondScene.getAttribute('href');
  await secondScene.click();
@@ -120,11 +119,9 @@ test('explicit reader sections outrank saved progress and survive language chang
 
 test('Hindi keeps the same navigation model and direct daily context',async({page})=>{
  await page.goto('/hi/');
- await expect(page.getByRole('link',{name:'आज की कथा शुरू करें'})).toHaveAttribute('href',/^\/hi\/read\//);
- await page.getByRole('button',{name:'और'}).click();
- const menu=page.locator('#mobile-menu');
- for(const name of ['कथाएँ','आज','शांत पल','सहेजा','स्रोत-मार्गदर्शिकाएँ'])await expect(menu.getByRole('link',{name,exact:true})).toBeVisible();
- await menu.getByRole('link',{name:'आज',exact:true}).click();
+ await expect(page.getByRole('link',{name:'रामायण यात्रा आरंभ करें'})).toHaveAttribute('href','#dharma-yatra');
+ for(const name of ['यात्रा','आज','शांत पल','सहेजा'])await expect(page.locator('.desktop-nav').getByRole('link',{name,exact:true})).toBeVisible();
+ await page.locator('.desktop-nav').getByRole('link',{name:'आज',exact:true}).click();
  await expect(page.getByRole('link',{name:/सभी कथाएँ/})).toHaveAttribute('href','/hi/library/');
 });
 

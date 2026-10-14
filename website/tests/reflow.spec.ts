@@ -13,7 +13,7 @@ test('critical surfaces reflow at 200% before web fonts are available', async ({
     {
       path: '/read/across-the-ocean/',
       zoom: '.reader-stage{font-size:200%}.reader-stage p,.reader-stage a,.reader-stage strong,.reader-stage span,.reader-stage summary{font-size:1em!important;line-height:1.55!important}',
-      probes: ['.reader-stage', '.reader-column', '[data-reader-scene="the-edge"]'],
+      probes: ['.reader-stage', '.reader-column', '[data-scene-id="the-edge"]'],
     },
   ];
 

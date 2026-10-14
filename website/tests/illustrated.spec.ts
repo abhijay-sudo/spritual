@@ -7,7 +7,7 @@ test.beforeAll(async () => mkdir(evidence, { recursive: true }));
 
 test('complete illustrated journey reaches the correct story, source map and finite ending', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Twenty-two chapters');
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Enter one story');
   await page.getByRole('link', { name: 'Hanuman’s path', exact: false }).click();
   await expect(page).toHaveURL(/\/journeys\/hanuman\/$/);
   await expect(page.locator('.journey-chapter')).toHaveCount(3);
@@ -26,6 +26,24 @@ test('complete illustrated journey reaches the correct story, source map and fin
   await expect(page.locator('[data-journey-end]')).toContainText('does not loop');
 });
 
+test('living manuscript hero, single navigation and theme controls remain truthful and usable', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('header nav[aria-label="Main navigation"]')).toHaveCount(1);
+  for (const name of ['Yatra','Today','Quiet moment','Saved']) await expect(page.locator('.desktop-nav').getByRole('link',{name,exact:true})).toBeVisible();
+  await expect(page.getByRole('link',{name:'Begin the Ramayana Yatra'})).toHaveAttribute('href','#dharma-yatra');
+  await expect(page.locator('.illuminated-today')).toContainText("TODAY'S ILLUMINATED STORY");
+  await expect(page.locator('.illuminated-meta span')).toHaveCount(3);
+  for (const removed of ['reviewer credentials are not supplied','This changes colours and artwork only—it does not filter stories','No audio, completion badge or reminder']) await expect(page.locator('body')).not.toContainText(removed);
+  await page.locator('.theme-picker summary').click();
+  await page.getByRole('link',{name:'Shiva',exact:true}).click();
+  await expect(page.locator('html')).toHaveAttribute('data-world','shiva');
+  expect(await page.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--paper').trim())).toBe('#0F172A');
+  await page.getByRole('button',{name:'Change text size'}).click();
+  await expect(page.locator('html')).toHaveAttribute('data-text-scale','large');
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('data-text-scale','large');
+});
+
 test('the full abridged storyline continues through all twenty-two chapters and stops after the return', async ({ page }) => {
   const ids = [
     'what-makes-a-person-admirable','princes-and-teacher','knowing-how-to-stop','road-to-mithila','the-bow-at-mithila','promise-of-exile',
@@ -39,7 +57,7 @@ test('the full abridged storyline continues through all twenty-two chapters and 
   for (let index = 0; index < ids.length; index += 1) {
     await expect(page).toHaveURL(new RegExp(`/read/${ids[index]}/\\?journey=ramayana$`));
     await expect(page.locator('[data-journey-progress] small')).toHaveText(`${index + 1} / ${ids.length}`);
-    await expect(page.locator('.illustrated-reader-title img')).toHaveJSProperty('complete', true);
+    await expect(page.locator('.opening-illustration img')).toHaveJSProperty('complete', true);
     if (index < ids.length - 1) {
       await expect(page.locator('[data-journey-next]')).toHaveAttribute('href', `/read/${ids[index + 1]}/?journey=ramayana`);
       await page.locator('[data-journey-next]').click();
@@ -84,7 +102,7 @@ test('rapid folio navigation is interruptible and reduced motion creates no veil
 });
 
 test('denied and corrupt storage fail closed while Undo and multi-tab updates recover', async ({ browser }) => {
-  const editionUrl=process.env.WEBSITE_URL||(process.env.WEBSITE_RELEASE?'http://127.0.0.1:4190':'http://127.0.0.1:4192');
+  const editionUrl=process.env.WEBSITE_URL||'http://127.0.0.1:4192';
   const context = await browser.newContext({ baseURL: editionUrl });
   const first = await context.newPage();
   const second = await context.newPage();
@@ -134,17 +152,18 @@ test('all requested widths, themes, enlarged text and parallel reading remain bo
     await page.screenshot({ path: resolve(evidence, `reader-${width}.png`), fullPage: true });
     if (width === 390) {
       await page.goto('/hi/read/promise-of-exile/?journey=ramayana');
-      await expect(page.getByText(process.env.WEBSITE_RELEASE?'मौलिक संक्षिप्त अध्याय · स्रोत-मानचित्रित':'नया अध्याय · केवल स्थानीय समीक्षा')).toBeVisible();
+      await expect(page.getByText('नया अध्याय · केवल स्थानीय समीक्षा')).toBeVisible();
       await page.screenshot({ path: resolve(evidence, 'reader-hi-exile-390.png'), fullPage: true });
     }
     if (width === 1440) {
       await page.goto('/read/sita-speaks-after-victory/?journey=ramayana');
-      await expect(page.getByText(process.env.WEBSITE_RELEASE?'Original abridged chapter · source-mapped':'New chapter · local review only')).toBeVisible();
+      await expect(page.getByText('New chapter · local review only')).toBeVisible();
       await page.screenshot({ path: resolve(evidence, 'reader-sita-1440.png'), fullPage: true });
     }
   }
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/');
+  await expect(page.locator('.hero-word').last()).toHaveCSS('opacity','1');
   await page.screenshot({ path: resolve(evidence, 'home-1440.png'), fullPage: true });
 });
 

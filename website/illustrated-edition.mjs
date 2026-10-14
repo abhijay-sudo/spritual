@@ -1,8 +1,9 @@
 import {connectingSourceMaps,editionStoryKeys} from './illustrated-chapters.mjs';
 
-export const ILLUSTRATED_EDITION_REVISION='illustrated-public-2026-10-13.1';
-export const illustratedRelease=process.argv.includes('--sanatan-release');
-export const illustratedPreview=process.argv.includes('--sanatan-preview')||illustratedRelease;
+export const ILLUSTRATED_EDITION_REVISION='illustrated-local-review-2026-10-13.1';
+// Deployment permission does not grant exact-version editorial or artwork approval.
+export const illustratedRelease=false;
+export const illustratedPreview=process.argv.includes('--sanatan-preview');
 
 const pair=(en,hi)=>({en,hi});
 
@@ -54,8 +55,8 @@ export const sourceMaps={...reviewedSourceMaps,...connectingSourceMaps};
 const art=(file,altEn,altHi,scenes=[])=>({
  file,
  alt:pair(altEn,altHi),
- reviewState:illustratedRelease?'owner-release-approved':'local-review-only',
- provenance:illustratedRelease?'OpenAI image generation, directed and visually inspected 11–13 October 2026; owner approved this exact website release on 13 October 2026. No independent iconographic or scholarly certification is claimed.':'OpenAI image generation, directed and visually inspected 11–13 October 2026; no publication or rights approval claimed.',
+ reviewState:'local-review-only',
+ provenance:'OpenAI image generation, directed and visually inspected 11–13 October 2026; no publication or rights approval claimed.',
  scenes
 });
 

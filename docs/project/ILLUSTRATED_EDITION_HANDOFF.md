@@ -1,5 +1,11 @@
 # Illustrated Edition handoff
 
+## Current correction — 14 October 2026
+
+The historical release below did not establish exact-version editorial or art approval. The new controlled public projection excludes twelve pending chapters, expanded maps and 35 paintings while preserving their saved IDs. The full edition remains local-review-only at `illustrated-local-review-2026-10-13.1`; `--sanatan-release` now fails closed. See [MANUSCRIPT_SANCTUARY_HANDOFF.md](MANUSCRIPT_SANCTUARY_HANDOFF.md) for current tests and the Vercel access blocker. Historical test/release results below are not current production readiness.
+
+## Historical implementation record
+
 Last updated: 13 October 2026
 Branch: `codex/sanatan-reading`
 Starting HEAD: `a5bbbe49c167f99da784676f47c681bcc808fc33`
@@ -22,7 +28,7 @@ Tested release revision: `illustrated-public-2026-10-13.1`
 - [x] Browser-inspected English/Hindi desktop and 390 px reader slice.
 - [x] Automated widths 320, 390, 768, 1024 and 1440, themes, enlarged text and parallel reading.
 - [x] Final ordinary build, repository typecheck, audited app build, 36 website tests, 160 shared tests and eight recorded browser acceptance journeys passed.
-- [x] Owner approval to publish this exact bilingual website revision recorded on 13 October 2026.
+- [ ] Exact-version editorial/art approval: the general 13 October deployment request did not establish this.
 - [ ] Independent scholarly/editorial certification for the twelve connecting chapters.
 - [ ] Independent iconographic or legal rights opinion for the 35 generated paintings.
 - [x] No active painting is missing; each of the twelve new connecting chapters has its own scene-specific opener.
@@ -58,13 +64,13 @@ The active package contains 105 responsive local-review JPEG variants for 35 pai
 
 ## Editorial matrix summary
 
-All ten existing public retellings retain their prior owner-recorded review state. The twelve connecting chapters, every new illustration, all new journey bridges and expanded source maps do not inherit that named review; the owner separately approved this exact website release on 13 October 2026. The generated packet includes at least three substantive narrative scenes in both languages for every chapter, not only framing and locators. It explicitly keeps the Ahalya variant boundary, Vali's objection, Sita's agency during abduction, the cost of war and Sita's public ordeal open to ethical and traditional plurality. Linked renderings remain provenance witnesses only, not republished source text or an independent rights clearance.
+All ten existing public retellings retain their prior owner-recorded review state. The twelve connecting chapters, every new illustration, all new journey bridges and expanded source maps do not inherit that named review; the general deployment instruction did not supply their exact-version approval. The generated packet includes at least three substantive narrative scenes in both languages for every chapter, not only framing and locators. It explicitly keeps the Ahalya variant boundary, Vali's objection, Sita's agency during abduction, the cost of war and Sita's public ordeal open to ethical and traditional plurality. Linked renderings remain provenance witnesses only, not republished source text or an independent rights clearance.
 
 ## Next command
 
 ```sh
 cd /Users/abhijay/Documents/Codex/2026-10-11/task-2/spritual-sanatan-illustrated-20261011
-node website/build.mjs --sanatan-release
+node website/build.mjs --sanatan-preview
 ```
 
-Then run `node website/tests/illustrated-release-check.mjs` before any release action.
+The former release check intentionally fails closed. Use the current handoff for the ten-story public projection; no full-edition publication is cleared here.

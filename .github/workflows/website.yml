@@ -20,6 +20,4 @@ jobs:
       - run: node --test website/tests/*.test.mjs
       - run: npx playwright install --with-deps chromium --only-shell
       - run: npx playwright test --config website/playwright.config.ts
-      - run: node website/build.mjs --sanatan-release
-      - run: node website/tests/illustrated-release-check.mjs
-      - run: WEBSITE_RELEASE=1 npx playwright test --config website/playwright.config.ts website/tests/illustrated.spec.ts
+      - run: node --test website/tests/public-projection.test.mjs

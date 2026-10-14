@@ -67,11 +67,12 @@ test('search text is bilingual and includes aliases independent of the current i
   assert.match(text, /Maruti/i);
 });
 
-test('the ordinary public build excludes the guarded artwork and edition routes', async () => {
+test('the ordinary public build excludes guarded artwork and the expanded edition', async () => {
   const files = await readdir(resolve(root, 'dist'), { recursive: true });
   assert(!files.some(file => file.startsWith('assets/illustrated/')));
-  assert(!files.some(file => file.startsWith('journeys/')));
   const home = await readFile(resolve(root, 'dist/index.html'), 'utf8');
   assert(!home.includes('ILLUSTRATION & REVISED EDITION PREVIEW'));
-  assert(!home.includes('journeys/ramayana'));
+  assert(!home.includes('22 chapters'));
+  const journey=await readFile(resolve(root,'dist/journeys/ramayana/index.html'),'utf8');
+  assert.equal((journey.match(/class="journey-chapter"/g)||[]).length,10);
 });

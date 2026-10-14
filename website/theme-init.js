@@ -12,4 +12,8 @@
   const world = valid.has(requested) ? requested : route !== 'neutral' ? route : valid.has(saved) ? saved : 'neutral';
   document.documentElement.dataset.routeWorld = route;
   document.documentElement.dataset.world = world;
+  try {
+    const ui = JSON.parse(localStorage.getItem('spritual_ui_v1') || '{}');
+    document.documentElement.dataset.textScale = ui.textScale === 'large' ? 'large' : 'default';
+  } catch { document.documentElement.dataset.textScale = 'default'; }
 })();

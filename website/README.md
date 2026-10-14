@@ -1,10 +1,18 @@
 # Spritual public website
 
-## Illustrated Edition release — 13 October 2026
+## Current release candidate — 14 October 2026
 
-The Illustrated Edition connects discovery, three finite journeys, 22 Ramayana chapter overviews/readers, source maps, character pages, Today, Saved, bilingual alias search, parallel reading and exact semantic resume. The primary path is an explicitly abridged but continuous storyline from Valmiki's opening question through Rama's return: ten existing retellings plus twelve original bilingual connecting chapters. Its 35 active paintings produce 105 responsive variants; every chapter has a distinct opener, and the ten existing chapters retain purposeful in-reader narrative plates. Vercel builds the owner-approved exact release with `node website/build.mjs --sanatan-release`. `--sanatan-preview` remains a noindex local-review build, while the unflagged command remains the 10-story fallback.
+The Living Manuscript reader, 60-second sanctuary, homepage, Dharma Yatra and Daily Sankalpa are implemented and locally verified. The authorized release uses the existing Git-connected `codex/public-website` branch in `abhijay-sudo/spritual`, whose successful Production deployment maps to `spritual1` / `spritual-website`. Direct Vercel connector access is unavailable but is not required to trigger that existing Git integration. Confirm the exact deployment SHA and live checks before treating a local build as published.
 
-Implementation scope, evidence and remaining review gates are recorded in [`docs/ILLUSTRATED_EDITION.md`](../docs/ILLUSTRATED_EDITION.md), [`docs/project/ILLUSTRATED_EDITION_HANDOFF.md`](../docs/project/ILLUSTRATED_EDITION_HANDOFF.md) and [`docs/project/OWNER_RELEASE_APPROVAL_2026-10-13.md`](../docs/project/OWNER_RELEASE_APPROVAL_2026-10-13.md). The exact bilingual editorial packet is generated with `node website/export-illustrated-editorial.mjs` into ignored `artifacts/illustrated-edition/`. The owner approval is not represented as independent scholarly, theological, iconographic or legal certification.
+The production configuration now uses `node build.mjs`: ten previously reviewed bilingual stories, three finite selected-story journeys and the existing approved artwork. Twelve unavailable chapters have bilingual, noindex availability pages; their exact saved IDs and positions are retained, not pruned on the next preference/save operation. Pending narrative, expanded source maps and the 35 new paintings never enter this output. `--sanatan-release` fails closed. `--sanatan-preview` still builds the full local-review edition separately, without changing the public output.
+
+See [`MANUSCRIPT_SANCTUARY_HANDOFF.md`](../docs/project/MANUSCRIPT_SANCTUARY_HANDOFF.md) for tests, screenshots, traces, metrics, known limits and release verification. Read the newest status before using any historical release command below.
+
+## Historical Illustrated Edition release — 13 October 2026
+
+The Illustrated Edition connects discovery, three finite journeys, 22 Ramayana chapter overviews/readers, source maps, character pages, Today, Saved, bilingual alias search, parallel reading and exact semantic resume. The primary path is an explicitly abridged but continuous storyline from Valmiki's opening question through Rama's return: ten existing retellings plus twelve original bilingual connecting chapters. Its 35 active paintings produce 105 responsive variants. These additions remain available in the guarded local preview; the earlier broad publication instruction did not establish exact-version editorial or artwork approval. The old `--sanatan-release` command is now blocked.
+
+Historical scope and evidence are in [`docs/ILLUSTRATED_EDITION.md`](../docs/ILLUSTRATED_EDITION.md) and [`docs/project/ILLUSTRATED_EDITION_HANDOFF.md`](../docs/project/ILLUSTRATED_EDITION_HANDOFF.md). The approval gap is recorded in [`ILLUSTRATED_RELEASE_CONTAINMENT_2026-10-13.md`](../docs/project/ILLUSTRATED_RELEASE_CONTAINMENT_2026-10-13.md). The bilingual editorial packet remains in ignored `artifacts/illustrated-edition/`; it is not publication approval.
 
 ## Illuminated manuscript reference implementation — 5 October 2026
 

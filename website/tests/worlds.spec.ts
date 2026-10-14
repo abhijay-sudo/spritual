@@ -9,18 +9,18 @@ test('all six reading worlds are real navigation with durable URL and browser hi
   await page.goto('/');
   await expect(page.locator('[data-world-option]')).toHaveCount(6);
   await active(page,'neutral');
-  await page.locator('#menu-toggle').click();
+  await page.locator('.theme-picker summary').click();
   await page.getByRole('link',{name:'Krishna',exact:true}).click();
   await expect(page).toHaveURL(/\?world=krishna$/);
   await active(page,'krishna');
   await expect(page.locator('[data-context-art]').first()).toHaveAttribute('src','/assets/world-krishna.webp');
   await expect.poll(()=>page.evaluate(()=>localStorage.getItem('spritual_world_v1'))).toBe('krishna');
-  await page.locator('#menu-toggle').click();
+  await page.locator('.theme-picker summary').click();
   await page.getByRole('link',{name:'Shiva',exact:true}).click();
   await active(page,'shiva');
   await page.goBack();
   await active(page,'krishna');
-  await page.locator('#menu-toggle').click();
+  await page.locator('.theme-picker summary').click();
   await page.getByRole('link',{name:'Still',exact:true}).click();
   await active(page,'neutral');
 });
@@ -42,9 +42,8 @@ test('world choice follows language and neutral routes without losing the select
   await page.getByRole('link',{name:'हिन्दी',exact:true}).click();
   await expect(page).toHaveURL(/\/hi\/library\/ramayana\/sundara\/\?world=hanuman$/);
   await active(page,'hanuman');
-  await page.locator('#menu-toggle').click();
-  await page.locator('#mobile-menu').getByRole('link',{name:'कथाएँ',exact:true}).click();
-  await expect(page).toHaveURL(/\/hi\/library\/\?world=hanuman$/);
+  await page.locator('.desktop-nav').getByRole('link',{name:'यात्रा',exact:true}).click();
+  await expect(page).toHaveURL(/\/hi\/\?world=hanuman#dharma-yatra$/);
   await active(page,'hanuman');
 });
 
@@ -89,7 +88,7 @@ test('pause controls remain compact and return keeps explicit or neutral world c
 test('active world chip is visible on narrow deep links and history changes',async({page})=>{
   await page.setViewportSize({width:320,height:760});await page.emulateMedia({reducedMotion:'reduce'});
   await page.goto('/hi/library/shiva/vidyeshvara/?world=shiva');
-  await page.locator('#menu-toggle').click();
+  await page.locator('.theme-picker summary').click();
   const visible=async(name:string)=>page.locator(`[data-world-option="${name}"]`).evaluate((item)=>{const chip=item.getBoundingClientRect(),rail=item.parentElement!.getBoundingClientRect();return chip.left>=rail.left-1&&chip.right<=rail.right+1;});
   await expect.poll(()=>visible('shiva')).toBe(true);
   await page.getByRole('link',{name:'राम',exact:true}).click();await active(page,'rama');
@@ -111,10 +110,10 @@ test('every public surface exposes the chooser and storage failure keeps a usabl
   for(const path of ['/','/library/','/library/saved/','/privacy/','/missing-page/']){
     await page.goto(path);await expect(page.locator('[data-world-option]')).toHaveCount(6);
   }
-  await page.goto('/pause/');await expect(page.locator('[data-world-option]')).toHaveCount(0);
+  await page.goto('/pause/');await expect(page.locator('[data-world-option]')).toHaveCount(6);
   await page.addInitScript(()=>{Storage.prototype.getItem=()=>{throw Error('blocked')};Storage.prototype.setItem=()=>{throw Error('blocked')};});
   await page.goto('/');await active(page,'neutral');
-  await page.locator('#menu-toggle').click();
+  await page.locator('.theme-picker summary').click();
   await page.getByRole('link',{name:'Rama',exact:true}).click();await active(page,'rama');
 });
 

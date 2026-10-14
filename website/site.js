@@ -1,4 +1,4 @@
-import { readIntention, saveIntention, KEY, selectMoment, timerRemaining, shareOrigin } from './session.js';
+import { initSanctuary } from './sanctuary.js';
 document.documentElement.classList.add('enhanced');
 const c=JSON.parse(document.querySelector('#page-copy').textContent);
 const $=id=>document.getElementById(id);
@@ -8,12 +8,12 @@ document.querySelector('.skip')?.addEventListener('click',()=>requestAnimationFr
 const WORLD_KEY='spritual_world_v1';
 const WORLDS=new Set(['neutral','epic','rama','krishna','hanuman','shiva']);
 const WORLD_META={
- neutral:{color:'#f6f3eb',art:'/assets/landscape.svg',en:['A QUIET THRESHOLD','Stillness before the next step.','STILLNESS WITHIN'],hi:['शांत प्रवेश','अगले कदम से पहले ठहराव।','भीतर की शांति']},
- epic:{color:'#efe4d2',art:'/assets/collection-mahabharata.webp',en:['THE EPIC WORLD','Many voices. Consequences in view.','THE EPIC WORLD'],hi:['महाकाव्य संसार','अनेक स्वर। परिणाम सामने।','महाकाव्य संसार']},
- rama:{color:'#f4e5cf',art:'/assets/world-rama.webp',en:['THE RAMA WORLD','A path shaped by duty, care and return.','THE FOREST PATH'],hi:['राम संसार','कर्तव्य, करुणा और लौटने का मार्ग।','वन का पथ']},
- krishna:{color:'#e6e6df',art:'/assets/world-krishna.webp',en:['THE KRISHNA WORLD','Discernment with warmth and play.','RIVER OF INSIGHT'],hi:['कृष्ण संसार','स्नेह, लीला और विवेक।','बोध की धारा']},
- hanuman:{color:'#f2dfca',art:'/assets/world-hanuman.webp',en:['THE HANUMAN WORLD','Courage expressed through service.','WIND & SERVICE'],hi:['हनुमान संसार','सेवा में प्रकट साहस।','वायु और सेवा']},
- shiva:{color:'#e3e8e7',art:'/assets/world-shiva.webp',en:['THE SHIVA WORLD','Stillness spacious enough for change.','MOUNTAIN STILLNESS'],hi:['शिव संसार','परिवर्तन को स्थान देती स्थिरता।','पर्वत की शांति']}
+ neutral:{color:'#FBF8F3',art:'/assets/landscape.svg',name:['Still','शांत'],en:['A QUIET THRESHOLD','Stillness before the next step.','STILLNESS WITHIN'],hi:['शांत प्रवेश','अगले कदम से पहले ठहराव।','भीतर की शांति']},
+ epic:{color:'#F3ECE1',art:'/assets/collection-mahabharata.webp',name:['Epic','महाकाव्य'],en:['THE EPIC WORLD','Many voices. Consequences in view.','THE EPIC WORLD'],hi:['महाकाव्य संसार','अनेक स्वर। परिणाम सामने।','महाकाव्य संसार']},
+ rama:{color:'#FFFBEB',art:'/assets/world-rama.webp',name:['Rama','राम'],en:['THE RAMA WORLD','A path shaped by duty, care and return.','THE FOREST PATH'],hi:['राम संसार','कर्तव्य, करुणा और लौटने का मार्ग।','वन का पथ']},
+ krishna:{color:'#090D16',art:'/assets/world-krishna.webp',name:['Krishna','कृष्ण'],en:['THE KRISHNA WORLD','Discernment with warmth and play.','RIVER OF INSIGHT'],hi:['कृष्ण संसार','स्नेह, लीला और विवेक।','बोध की धारा']},
+ hanuman:{color:'#FFF7ED',art:'/assets/world-hanuman.webp',name:['Hanuman','हनुमान'],en:['THE HANUMAN WORLD','Courage expressed through service.','WIND & SERVICE'],hi:['हनुमान संसार','सेवा में प्रकट साहस।','वायु और सेवा']},
+ shiva:{color:'#0F172A',art:'/assets/world-shiva.webp',name:['Shiva','शिव'],en:['THE SHIVA WORLD','Stillness spacious enough for change.','MOUNTAIN STILLNESS'],hi:['शिव संसार','परिवर्तन को स्थान देती स्थिरता।','पर्वत की शांति']}
 };
 const routeWorld=()=>document.documentElement.dataset.routeWorld||'neutral';
 function selectedWorld(){
@@ -50,6 +50,7 @@ function applyWorld(world,{announce=false}={}){
  document.querySelectorAll('[data-context-kicker]').forEach(el=>el.textContent=copy[0]);
  document.querySelectorAll('[data-context-caption]').forEach(el=>el.textContent=copy[1]);
  document.querySelectorAll('[data-context-seal]').forEach(el=>el.innerHTML=copy[2].replace(' ','<br>'));
+ document.querySelectorAll('[data-theme-label]').forEach(el=>el.textContent=info.name[hi?1:0]);
  for(const option of document.querySelectorAll('[data-world-option]')){
   const active=option.dataset.worldOption===world;option.setAttribute('aria-current',active?'true':'false');
   if(active)requestAnimationFrame(()=>revealWorldOption(option,{animate:announce}));
@@ -62,6 +63,7 @@ for(const option of document.querySelectorAll('[data-world-option]'))option.addE
  event.preventDefault();const world=option.dataset.worldOption;const next=worldUrl(location.href,world);history.pushState({world},'',next);
  try{localStorage.setItem(WORLD_KEY,world);}catch{}
  applyWorld(world,{announce:true});
+ option.closest('details')?.removeAttribute('open');
 });
 window.addEventListener('popstate',()=>applyWorld(selectedWorld(),{announce:true}));
 function renderHomeContinue(){
@@ -72,6 +74,21 @@ function renderHomeContinue(){
 }
 renderHomeContinue();window.addEventListener('storage',event=>{if(event.key==='spritual_website_shelf_v1'||event.key===null){renderHomeContinue();applyWorld(selectedWorld());}});
 applyWorld(selectedWorld());
+const UI_KEY='spritual_ui_v1';
+const fontToggle=document.querySelector('[data-font-toggle]');
+function applyTextScale(scale,{announce=false}={}){
+ const large=scale==='large';document.documentElement.dataset.textScale=large?'large':'default';
+ if(!fontToggle)return;fontToggle.setAttribute('aria-pressed',String(large));
+ const status=fontToggle.querySelector('[data-font-status]'),hi=document.documentElement.lang==='hi';
+ if(status)status.textContent=large?(hi?'बड़े अक्षर':'Large text'):(hi?'सामान्य अक्षर':'Default text');
+ if(announce&&status)status.setAttribute('role','status');
+}
+let textScale='default';try{textScale=JSON.parse(localStorage.getItem(UI_KEY)||'{}').textScale||'default';}catch{}
+applyTextScale(textScale);
+fontToggle?.addEventListener('click',()=>{
+ textScale=document.documentElement.dataset.textScale==='large'?'default':'large';applyTextScale(textScale,{announce:true});
+ try{const state=JSON.parse(localStorage.getItem(UI_KEY)||'{}');localStorage.setItem(UI_KEY,JSON.stringify({...state,textScale}));}catch{}
+});
 if('IntersectionObserver' in window&&!motion.matches){
  const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){e.target.classList.remove('pending');e.target.classList.add('seen');observer.unobserve(e.target);}},{threshold:.12});
  document.querySelectorAll('.reveal').forEach(el=>{el.classList.add('pending');observer.observe(el);});
@@ -98,38 +115,4 @@ for(const button of moments){button.addEventListener('click',()=>{
  const card=box.closest('.reflection-card');card.dataset.mood=m[3];card.classList.remove('copy-change');requestAnimationFrame(()=>card.classList.add('copy-change'));placeIndicator();
  });button.addEventListener('keydown',e=>{let i=moments.indexOf(button);if(['ArrowDown','ArrowRight'].includes(e.key))i=(i+1)%moments.length;else if(['ArrowUp','ArrowLeft'].includes(e.key))i=(i+moments.length-1)%moments.length;else if(e.key==='Home')i=0;else if(e.key==='End')i=moments.length-1;else return;e.preventDefault();moments[i].focus();moments[i].click();});}
 if(moments.length){placeIndicator();new ResizeObserver(placeIndicator).observe(document.querySelector('.moment-tabs'));}
-if($('timer-view')) {
- let remaining=60_000,startedAt=0,running=false,frame=0,finished=false;
- const params=new URLSearchParams(location.search),moment=selectMoment(location.search),from=params.get('from');
- const safeFrom=from&&/^\/(hi\/)?library\/(mahabharata|ramayana|shiva)\/[a-z]+\/$/.test(from)?from:null;
- const explicitWorld=WORLDS.has(params.get('world'))?params.get('world'):null;
- const language=document.querySelector('.language'),languageUrl=new URL(language.href,location.href);languageUrl.searchParams.set('moment',moment);
- if(params.has('world'))languageUrl.searchParams.set('world',params.get('world'));
- if(safeFrom){const targetHi=document.documentElement.lang!=='hi';const translated=targetHi?(safeFrom.startsWith('/hi/')?safeFrom:`/hi${safeFrom}`):safeFrom.replace(/^\/hi\//,'/');languageUrl.searchParams.set('from',translated);}
- language.href=`${languageUrl.pathname}${languageUrl.search}`;$('pause-reflection').textContent=c.moments.find(m=>m[3]===moment)[1];
- if(safeFrom&&$('return-reading')){const returnUrl=new URL(safeFrom,location.origin);if(explicitWorld)returnUrl.searchParams.set('world',explicitWorld);$('return-reading').href=`${returnUrl.pathname}${returnUrl.search}`;$('return-reading').hidden=false;}
- const current=()=>running?timerRemaining(remaining,startedAt,performance.now()):remaining;
- function chrome(active){document.body.classList.toggle('ritual-running',active);document.querySelector('.ritual-header .brand').inert=active;document.querySelector('.ritual-header .language-pair').inert=active;}
- function label(text,active=false){$('timer-toggle').replaceChildren();const icon=document.createElement('span');icon.setAttribute('aria-hidden','true');icon.textContent=active?'Ⅱ':'▷';$('timer-toggle').append(icon,document.createTextNode(' '+text));}
- function draw(){const value=current(),seconds=Math.ceil(value/1000);const text=`${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;if($('time').textContent!==text)$('time').textContent=text;$('timer-progress').style.strokeDashoffset=String(60-value/1000);
-  if(running&&value<=0){remaining=0;running=false;chrome(false);$('timer-status').textContent=c.done;const transferFocus=document.activeElement===$('timer-toggle');$('timer-toggle').hidden=true;$('timer-reset').hidden=false;if(transferFocus)$('finish').focus({preventScroll:true});return;}
-  if(running)frame=requestAnimationFrame(draw);
- }
- function stop(message=c.paused){if(running){remaining=current();running=false;cancelAnimationFrame(frame);}chrome(false);draw();label(remaining===60_000?c.start:c.resume);$('timer-reset').hidden=remaining===60_000;$('timer-status').textContent=remaining===0?c.done:message;}
- $('timer-toggle').addEventListener('click',()=>{if(running){stop();return;}if(remaining<=0)return;startedAt=performance.now();running=true;chrome(true);label(c.pause,true);$('finish').hidden=false;$('timer-reset').hidden=true;$('timer-status').textContent=c.running;frame=requestAnimationFrame(draw);});
- $('timer-reset').addEventListener('click',()=>{stop();remaining=60_000;finished=false;$('timer-toggle').hidden=false;label(c.start);$('timer-reset').hidden=true;$('finish').hidden=true;$('timer-status').textContent=c.ready;draw();$('timer-toggle').focus();});
- document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)stop(c.hidden);});
- window.addEventListener('pagehide',()=>{if(running)stop(c.hidden);});
- $('finish').addEventListener('click',()=>{stop();finished=true;$('timer-view').hidden=true;$('finish-view').hidden=false;$('finish-heading').focus({preventScroll:true});$('finish-view').scrollIntoView({block:'nearest',behavior:motion.matches?'instant':'smooth'});});
- let stored;function load(){try{stored=readIntention(localStorage);}catch{stored={kind:'invalid'};}renderSaved();}
- function renderSaved(){const exists=stored.kind!=='empty';$('saved-panel').hidden=!exists;$('saved-text').textContent=stored.kind==='saved'?c.steps[stored.intention]:stored.kind==='invalid'?c.corrupt:'';$('save-step').disabled=stored.kind==='invalid';}
- load();window.addEventListener('storage',event=>{if(event.key===KEY||event.key===null)load();});
- $('save-step').addEventListener('click',()=>{if(!finished)return;const option=document.querySelector('input[name="intention"]:checked');if(!option){$('save-status').textContent=c.choose;document.querySelector('input[name="intention"]').focus();return;}
-  try { // Recheck before a write: another tab may have changed this record.
-   if(readIntention(localStorage).kind==='invalid'){load();$('save-status').textContent=c.corrupt;return;}
-   saveIntention(localStorage,Number(option.value));stored={kind:'saved',intention:Number(option.value)};renderSaved();$('save-status').textContent=c.saved;
-  }catch{$('save-status').textContent=c.storageError;}
- });
- $('remove-step').addEventListener('click',()=>{try{localStorage.removeItem(KEY);stored={kind:'empty'};renderSaved();$('save-status').textContent=c.removed;$('timer-status').textContent=c.removed;(finished?$('save-step'):$('timer-toggle')).focus();}catch{$('remove-status').textContent=c.removeError;}});
- $('share-link').addEventListener('click',async()=>{const link=`${shareOrigin(location.origin)}${base}pause/?moment=${moment}`;try{await navigator.clipboard.writeText(link);$('share-status').textContent=c.copied;$('copy-fallback').hidden=true;}catch{$('copy-fallback').hidden=false;$('copy-url').value=link;$('copy-url').focus();$('copy-url').select();$('share-status').textContent='';}});
-}
+if($('timer-view')) initSanctuary(c);
