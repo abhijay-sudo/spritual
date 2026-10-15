@@ -78,5 +78,5 @@ export function illustratedPath(stories,lang,{picture,edition=false}){
 }
 
 export function readerBanner(story,lang,picture,{edition=false}={}){
- return `<figure class="reader-opening-art"><div class="reader-art-frame">${picture(story,lang,{priority:true})}</div><figcaption><span>${esc(pick(story.book,lang))} · ${t(lang,'Sarga','सर्ग')} ${story.sarga}</span><span>${edition?t(lang,'Narrative painting · local review only','कथात्मक चित्र · केवल स्थानीय समीक्षा'):t(lang,'Atmospheric collection artwork','संग्रह का वातावरण-चित्र')}</span></figcaption></figure>`;
+ return `<figure class="reader-opening-art"><div class="reader-art-frame">${picture(story,lang,{priority:true,sizes:'(max-width:720px) calc(100vw - 54px), 638px'})}</div><figcaption><span>${esc(pick(story.book,lang))} · ${t(lang,'Sarga','सर्ग')} ${story.sarga}</span><span>${edition?t(lang,'Narrative painting · local review only','कथात्मक चित्र · केवल स्थानीय समीक्षा'):t(lang,'Atmospheric collection artwork','संग्रह का वातावरण-चित्र')}</span></figcaption></figure>`;
 }

@@ -1,5 +1,9 @@
 # Spritual public website
 
+## Mobile story delivery — 15 October 2026
+
+The performance correction from `f52d0d0` adds responsive delivery encodes of the same three reviewed story-art families, preserving original WebP fallbacks, all public prose/data and the existing design/motion. See [PERFORMANCE_CORRECTION_20261015.md](../docs/project/PERFORMANCE_CORRECTION_20261015.md) for diagnosis, exact comparison conditions, source hashes, verification and deferred sensory scope. Live scores and deployment confirmation must come from the external release evidence, not a local build.
+
 ## Public sensory port — 15 October 2026
 
 The bounded code-only port starts at public commit `24bd769`: print framing around existing artwork, a compact bilingual masthead, readable reflection treatment, interruptible motion and immediate semantic page-turn destinations. Public text, artwork, storage contracts and release gates are unchanged. See [PUBLIC_SENSORY_PORT_20261015.md](../docs/project/PUBLIC_SENSORY_PORT_20261015.md) for the exact verification stage, measured evidence and deferred approval items. A build or local test result is not a deployment confirmation.

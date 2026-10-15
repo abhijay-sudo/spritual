@@ -10,6 +10,7 @@ import {journeys} from './illustrated-edition.mjs';
 import {lotusNav} from './practice-views.mjs';
 import {quietMinutePage,quietEntryScript} from './sanctuary-views.mjs';
 import {publicJourneys,withheldStoryIds} from './public-projection.mjs';
+import {deliveryFiles} from './delivery-assets.mjs';
 import {publicJourneyPage,unavailableChapterPage} from './story-views.mjs';
 import {illustratedDetail,illustratedReader,journeyPage} from './illustrated-views.mjs';
 const editorial=process.argv.includes('--editorial-preview');
@@ -29,6 +30,7 @@ const staged=editorial?JSON.parse(await readFile(resolve(import.meta.dirname,'..
 await rm(out,{recursive:true,force:true}); await mkdir(out,{recursive:true}); await mkdir(`${out}/assets`);
 // Deliberate allowlist: the local app's content, artwork, auth and fixture bundle are never deployed here.
 for(const file of ['brand.svg','landscape.svg','fraunces-latin.woff2','anek-devanagari.woff2','tiro-devanagari-sanskrit.woff2','tiro-devanagari-hindi.woff2','cormorant-garamond-latin.woff2','cormorant-garamond-italic-latin.woff2','manrope-latin.woff2','plus-jakarta-sans-latin.woff2','OFL-Fraunces.txt','OFL-Anek-Devanagari.txt','OFL-Tiro-Devanagari-Sanskrit.txt','OFL-Cormorant-Garamond.txt','OFL-Manrope.txt','OFL-Plus-Jakarta-Sans.txt','collection-mahabharata.webp','collection-mahabharata-sm.webp','collection-ramayana.webp','collection-ramayana-sm.webp','collection-shiva.webp','collection-shiva-sm.webp','world-rama.webp','world-krishna.webp','world-hanuman.webp','world-shiva.webp']) await copyFile(resolve(import.meta.dirname,'assets',file),`${out}/assets/${file}`);
+for(const file of deliveryFiles)await copyFile(resolve(import.meta.dirname,'assets',file),`${out}/assets/${file}`);
 if(sanatanEdition)await cp(resolve(import.meta.dirname,'assets/illustrated'),`${out}/assets/illustrated`,{recursive:true});
 for(const file of ['site.css','site.js','theme-init.js','session.mjs','library.css','library.js','library-state.mjs','sanctuary.css','sanctuary.js','sanctuary-state.mjs','manuscript.css','manuscript.js','recovery.css','recovery.js']) await copyFile(resolve(import.meta.dirname,file),`${out}/${file.endsWith('.mjs') ? file.replace('.mjs','.js') : file}`);
 if(sanatan)for(const file of ['reading.css','reading.js','reading-state.mjs','practice.css','practice.js','practice-cards.js','practice-data.mjs','practice-state.mjs']) await copyFile(resolve(import.meta.dirname,file),`${out}/${file.endsWith('.mjs') ? file.replace('.mjs','.js') : file}`);
