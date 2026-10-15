@@ -97,14 +97,22 @@ if(data.page==='reader'){
  const pageTurnMotion=matchMedia('(prefers-reduced-motion: reduce)');
  const readerScenes=[...document.querySelectorAll('.reader-scene')];
  const reflectionTarget=$('story-reflection');
- let activeTurn=null;function turnLeaf(target,hash,direction,trigger){
-  if(activeTurn){clearTimeout(activeTurn.settleTimer);clearTimeout(activeTurn.removeTimer);activeTurn.veil.remove();activeTurn=null;}
+ let activeTurn=null,turnFocusFrame=0;
+ function cancelTurn(){
+  cancelAnimationFrame(turnFocusFrame);turnFocusFrame=0;
+  if(activeTurn){clearTimeout(activeTurn.removeTimer);activeTurn.veil.remove();activeTurn=null;}
+ }
+ function turnLeaf(target,hash,direction,trigger){
+  cancelTurn();
   chooseRequestedPlace(hash);
   history.pushState(history.state,'',`${location.pathname}${location.search}${hash}`);
   updateReaderLanguageLinks();
   const destination=target.querySelector('h2')||target;
-  const settle=()=>{target.scrollIntoView({block:'start',behavior:'auto'});requestAnimationFrame(()=>{identifyPlace();destination.tabIndex=-1;destination.focus({preventScroll:true});});};
-  if(pageTurnMotion.matches){settle();announce(say('Page turned.','पृष्ठ पलटा।'));return;}
+  // Commit the destination synchronously, independently of the decorative veil.
+  // Immediate Save / language / Contents actions must never race a delayed scroll.
+  target.scrollIntoView({block:'start',behavior:'instant'});
+  turnFocusFrame=requestAnimationFrame(()=>{turnFocusFrame=0;identifyPlace();destination.tabIndex=-1;destination.focus({preventScroll:true});});
+  if(pageTurnMotion.matches){announce(say('Page turned.','पृष्ठ पलटा।'));return;}
   const column=document.querySelector('.reader-column'),rect=column.getBoundingClientRect(),chrome=document.querySelector('.reader-chrome')?.getBoundingClientRect();
   const veil=document.createElement('div');veil.className=`reader-page-turn-veil ${direction==='back'?'is-back':''}`;veil.setAttribute('aria-hidden','true');
   veil.style.setProperty('--leaf-left',`${Math.max(0,rect.left)}px`);
@@ -112,8 +120,14 @@ if(data.page==='reader'){
   veil.style.setProperty('--leaf-width',`${Math.min(innerWidth-Math.max(0,rect.left),rect.width)}px`);
   veil.style.setProperty('--leaf-height',`${Math.max(180,innerHeight-Math.max(chrome?.bottom||0,0))}px`);
   document.body.append(veil);
-  const finish=()=>{if(activeTurn?.veil!==veil)return;veil.remove();activeTurn=null;announce(say('Page turned.','पृष्ठ पलटा।'));};const settleTimer=setTimeout(settle,220),removeTimer=setTimeout(finish,700);activeTurn={veil,settleTimer,removeTimer};veil.addEventListener('animationend',finish,{once:true});
+  const finish=()=>{if(activeTurn?.veil!==veil)return;veil.remove();activeTurn=null;announce(say('Page turned.','पृष्ठ पलटा।'));};const removeTimer=setTimeout(finish,450);activeTurn={veil,removeTimer};veil.addEventListener('animationend',finish,{once:true});
  }
+ for(const type of ['wheel','touchstart','pointerdown'])addEventListener(type,cancelTurn,{passive:true});
+ document.addEventListener('keydown',cancelTurn);
+ document.addEventListener('click',event=>{if(event.target.closest('a,button,summary'))cancelTurn();},true);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelTurn();});
+ pageTurnMotion.addEventListener('change',event=>{if(event.matches)cancelTurn();});
+ addEventListener('pagehide',cancelTurn);
  readerScenes.forEach((scene,index)=>{
   const nav=document.createElement('nav');nav.className='reader-page-nav';nav.setAttribute('aria-label',say('Turn the page','पृष्ठ पलटें'));
   if(index>0){const previous=document.createElement('button');previous.type='button';previous.className='leaf-turn leaf-turn-back';previous.innerHTML=`<span aria-hidden="true">←</span><span>${say('Previous folio','पिछला पृष्ठ')}</span>`;previous.addEventListener('click',()=>turnLeaf(readerScenes[index-1],`#scene-${readerScenes[index-1].dataset.sceneId}`,'back',previous));nav.append(previous);}

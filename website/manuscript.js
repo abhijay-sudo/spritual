@@ -92,6 +92,7 @@ export function enhanceManuscript({story, lang, beforeLayout, afterLayout, befor
   }
   const chrome = root.querySelector('.reader-chrome');
   function focusMode(value) {
+    finishReveals();
     beforeLayout(); root.classList.toggle('manuscript-focused', value); chrome.inert = value; exit.hidden = !value; focus.setAttribute('aria-pressed', String(value));
     (value ? exit : focus).focus({preventScroll: true}); afterLayout();
   }
@@ -112,21 +113,42 @@ export function enhanceManuscript({story, lang, beforeLayout, afterLayout, befor
     field.append(legend, toggle); document.querySelector('#reader-settings .sheet-body').append(field);
   }
   const first = root.querySelector('.reader-scene [data-block-id]'); first?.classList.add('manuscript-opening');
-  const reveals = new Set();
-  function finishReveals() { for (const animation of reveals) animation.cancel(); reveals.clear(); }
+  const reveals = new Set(), pendingReveals = new Set(root.querySelectorAll('[data-block-id],.reader-reflection'));
+  let interruptedUntil = 0;
+  function finishReveals() {
+    interruptedUntil = performance.now() + 500;
+    for (const animation of reveals) animation.cancel();
+    reveals.clear();
+  }
+  function reveal(element, {duration = 500, delay = 0, distance = 6, opacity = .82} = {}) {
+    if (motion.matches || document.hidden || performance.now() < interruptedUntil) return;
+    const effect = element.animate([{opacity, transform: `translateY(${distance}px)`}, {opacity: 1, transform: 'none'}], {duration, delay, easing: 'cubic-bezier(.22,.78,.2,1)'});
+    reveals.add(effect);
+    effect.finished.then(() => reveals.delete(effect)).catch(() => {});
+  }
+  // Native navigation and semantic IDs stay authoritative. These effects neither
+  // delay a link nor replace the document, and never leave content hidden.
+  if (!location.hash && !new URLSearchParams(location.search).has('from')) {
+    for (const element of root.querySelectorAll('.reader-opening-art,.reader-title')) reveal(element, {duration: 420, distance: 8, opacity: 1});
+  }
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
-      for (const entry of entries) if (entry.isIntersecting) {
+      let stagger = 0;
+      for (const entry of entries) if (entry.isIntersecting && !document.hidden) {
         observer.unobserve(entry.target);
-        if (!motion.matches && !document.hidden) {
-          const animation = entry.target.animate([{opacity: .45, transform: 'translateY(6px)'}, {opacity: 1, transform: 'none'}], {duration: 500, easing: 'ease-out'});
-          reveals.add(animation); animation.finished.then(() => reveals.delete(animation)).catch(() => {});
-        }
+        pendingReveals.delete(entry.target);
+        reveal(entry.target, {delay: Math.min(stagger++, 2) * 60, distance: entry.target.matches('.reader-reflection') ? 12 : 6});
       }
     }, {threshold: .08});
-    root.querySelectorAll('[data-block-id]').forEach(node => observer.observe(node));
+    const observePending = () => pendingReveals.forEach(node => observer.observe(node));
+    observePending();
     addEventListener('pagehide', () => { observer.disconnect(); finishReveals(); });
+    addEventListener('pageshow', event => { if (event.persisted) observePending(); });
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) observePending(); });
   }
+  for (const type of ['wheel', 'touchstart', 'pointerdown']) addEventListener(type, finishReveals, {passive: true});
+  document.addEventListener('keydown', finishReveals);
+  addEventListener('pagehide', () => { finishReveals(); animation?.cancel(); });
   motion.addEventListener('change', () => { if (motion.matches) { finishReveals(); animation?.cancel(); } });
   document.addEventListener('visibilitychange', () => { if (document.hidden) { finishReveals(); animation?.cancel(); } });
 }

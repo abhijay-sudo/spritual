@@ -1,5 +1,9 @@
 # Spritual public website
 
+## Public sensory port — 15 October 2026
+
+The bounded code-only port starts at public commit `24bd769`: print framing around existing artwork, a compact bilingual masthead, readable reflection treatment, interruptible motion and immediate semantic page-turn destinations. Public text, artwork, storage contracts and release gates are unchanged. See [PUBLIC_SENSORY_PORT_20261015.md](../docs/project/PUBLIC_SENSORY_PORT_20261015.md) for the exact verification stage, measured evidence and deferred approval items. A build or local test result is not a deployment confirmation.
+
 ## Illustrated recovery — 14 October 2026
 
 The homepage now uses an inline, optional eight-second breath and immediate reading—not an entry overlay. Returning readers get an exact-resume spotlight. All available stories have visible illustrated Kanda cards, filters and a diya ribbon, with intention, acknowledged practice and reading position stored separately. Six atmosphere bindings affect the hero, not individual story artwork. The reader's opening image is visible by default; Hindi resume labels, next-story spacing and 400×609 sanctuary controls are corrected.

@@ -71,3 +71,19 @@
 @media(max-width:979px){.parallel-setting{display:none}}
 @media(max-width:767px){.story-reader .reader-stage{width:calc(100% - 36px)}.story-reader .reader-column{padding-top:36px}.story-reader .reader-title h1{font-size:44px}.story-reader .reader-title p:not(.eyebrow){font-size:21px}.editorial-pills{gap:7px}.editorial-pills button{padding:10px 12px;gap:7px;font-size:11px}.editorial-drawer{padding:18px}.story-reader .scene-heading{grid-template-columns:24px 1fr;gap:8px}.story-reader .reader-source .source-map-list li{grid-template-columns:minmax(0,1fr)}html[lang=hi] .story-reader .reader-title h1{font-size:36px;line-height:1.35;letter-spacing:normal}}
 @media(prefers-reduced-motion:reduce){.editorial-pills svg,.reader-progress span{transition:none}}
+
+/* Static light, not another moving layer competing with the prose. Reader
+   preferences remain independent of the six discovery worlds. */
+.story-reader{background-image:radial-gradient(ellipse 800px 500px at 50% 0,color-mix(in srgb,var(--manuscript-gold) 7%,transparent),transparent 80%)}
+.story-reader .reader-reflection{border-radius:2px;padding:clamp(28px,5vw,54px) clamp(20px,4vw,44px);border-inline:0;background:radial-gradient(ellipse at 50% 0,color-mix(in srgb,var(--manuscript-gold) 8%,transparent),transparent 75%)}
+.story-reader .reader-reflection p{font-style:normal;line-height:1.55;text-wrap:balance}
+.story-reader .reader-reflection p:lang(hi),html[lang=hi] .story-reader .reader-reflection p{line-height:1.85}
+.manuscript-focused .reader-column{padding-top:88px}
+.manuscript-focused .reader-scene{border-color:color-mix(in srgb,var(--manuscript-gold) 20%,transparent)}
+.story-reader :is(button,a,summary):focus-visible{outline:2px solid var(--reader-text);outline-offset:4px}
+.reader-page-turn-veil{animation-duration:420ms}
+.story-reader .reader-page-nav{flex-wrap:wrap}
+.story-reader .leaf-turn{min-width:0;max-width:100%;white-space:normal}
+.story-reader .leaf-turn span{min-width:0;overflow-wrap:anywhere}
+@media(max-width:620px){.story-reader .reader-chrome{display:flex;flex-wrap:wrap;gap:4px 8px}.story-reader .reader-chrome>.reader-back{margin-right:auto}.story-reader .reader-chrome>.reader-location{display:none}}
+@media(prefers-reduced-motion:reduce){.reader-page-turn-veil{animation:none!important;display:none!important}}
