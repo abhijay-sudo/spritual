@@ -19,7 +19,9 @@ test('app demonstration supports Hindi, font bounds, scenes, context and visit-o
  await page.goto('/');await page.locator('[data-preview="read"]').first().click();await page.getByRole('button',{name:'Read in Hindi',exact:true}).click();
  await page.getByRole('button',{name:'Save this passage',exact:true}).click();await page.getByRole('tab',{name:'Notebook',exact:true}).click();await expect(page.locator('.notebook-quote')).toHaveAttribute('lang','hi');
  await page.getByRole('tab',{name:'Read',exact:true}).click();for(let i=0;i<3;i++)await page.getByRole('button',{name:'Increase text size'}).click();await expect(page.getByRole('button',{name:'Increase text size'})).toBeDisabled();
- await page.getByRole('tab',{name:'Scenes',exact:true}).click();await page.getByRole('button',{name:'Next scene',exact:true}).click();await expect(page.locator('.scene-caption')).toContainText('The sage who tells.');
+ await page.getByRole('tab',{name:'Scenes',exact:true}).click();await page.getByRole('button',{name:'Next scene',exact:true}).click();
+ // Assert the accessible current scene, excluding the inert outgoing fade layer.
+ await expect(page.locator('#feature-panel').getByRole('heading',{name:'The sage who tells.',exact:true})).toBeVisible();
  await page.getByRole('tab',{name:'People & Places',exact:true}).click();await page.locator('.person-item summary').nth(1).click();await expect(page.locator('.person-item').nth(1)).toHaveAttribute('open','');
  await page.reload();await page.getByRole('tab',{name:'Notebook',exact:true}).click();await expect(page.locator('.notebook-page')).toContainText('SAMPLE PASSAGE');
 });
