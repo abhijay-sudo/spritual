@@ -16,7 +16,7 @@ test('six source-linked stories work in both languages, with filters and focus r
  expect(errors).toEqual([]);
 });
 test('app demonstration supports Hindi, font bounds, scenes, context and visit-only notebook',async({page})=>{
- await page.goto('/');await page.locator('[data-preview="read"]').first().click();await page.getByRole('button',{name:'Read in Hindi',exact:true}).click();
+ await page.goto('/');await page.getByRole('link',{name:'Take a first look',exact:true}).click();await page.getByRole('button',{name:'Read in Hindi',exact:true}).click();
  await page.getByRole('button',{name:'Save this passage',exact:true}).click();await page.getByRole('tab',{name:'Notebook',exact:true}).click();await expect(page.locator('.notebook-quote')).toHaveAttribute('lang','hi');
  await page.getByRole('tab',{name:'Read',exact:true}).click();for(let i=0;i<3;i++)await page.getByRole('button',{name:'Increase text size'}).click();await expect(page.getByRole('button',{name:'Increase text size'})).toBeDisabled();
  await page.getByRole('tab',{name:'Scenes',exact:true}).click();await page.getByRole('button',{name:'Next scene',exact:true}).click();

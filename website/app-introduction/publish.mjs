@@ -32,5 +32,14 @@ export async function publishIntroduction(output){
   .replace(/((?:src|href)=")([a-z-]+\.(?:css|js))"/g,'$1/stories-app/$2"');
  html=html.replace('</head>','<link rel="stylesheet" href="/stories-app/motion.css">\n<script src="/stories-app/motion.js" defer></script>\n'+'<link rel="alternate" hreflang="en" href="https://spritual.co.in/">\n<link rel="alternate" hreflang="hi" href="https://spritual.co.in/hi/">\n<script src="/stories-app/legacy-links.js"></script>\n</head>');
  await writeFile(resolve(output,'stories-app/legacy-links.js'),`// Preserve bookmarks into the previous reading homepage.\nfunction preserveReadingLink(){if(['world','welcome'].some(key=>new URLSearchParams(location.search).has(key))||['#dharma-yatra','#approach','#questions','#app'].includes(location.hash)){location.replace('/reading-room/'+location.search+location.hash);}}preserveReadingLink();addEventListener('hashchange',preserveReadingLink);\n`);
+ // A complete reading journey now sits behind the existing invitation.
+ html=html.replace('href="#journey">The stories','href="/books/">The stories')
+  .replace('<button type="button" class="cover-enter" data-preview="read">Enter the story ', '<a class="cover-enter" href="/books/read/what-makes-a-person-admirable/">Enter the story ')
+  .replace('Enter the story <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>', 'Enter the story <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>')
+  .replace('<button type="button" class="text-button" data-preview="read">Read the opening ', '<a class="text-button" href="/books/read/what-makes-a-person-admirable/">Read the opening ')
+  .replace('Read the opening <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>', 'Read the opening <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>')
+  .replace('</p>\n        </div>\n        <div class="story-dialog-footer">','</p><a class="text-button" data-open-book href="/books/read/rama-bow/">Read in the book ↗</a>\n        </div>\n        <div class="story-dialog-footer">')
+  .replace('</body>','<script src="/stories-app/home-bridge.js" defer></script></body>');
+ await copyFile(resolve(root,'../books/home-bridge.js'),resolve(output,'stories-app/home-bridge.js'));
  await writeFile(resolve(output,'index.html'),html);
 }

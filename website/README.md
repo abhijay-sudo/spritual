@@ -1,5 +1,11 @@
 # Spritual public website
 
+## Book reader and source library — 20 October 2026
+
+`/books/` and `/hi/books/` connect 16 existing published bilingual retellings to a complete book reader: stable folios, contents, source notes, text size, paper/evening appearance and explicit exact-place bookmarks. The homepage’s existing invitations now lead into reading; its composition and source import remain intact. See `docs/project/BOOK_LIBRARY_20261020.md` for scope, primary sources, commands and editorial limits.
+
+The expanded 25-book, 2,755-section historical English corpus is **local-only**. Build with `node website/books/build-research.mjs` after staging and a public build; audit with `node website/books/audit-research.mjs`; serve with `node website/serve.mjs --books-preview` on loopback 4193. This output is separate from production and refuses CI/Vercel. No permission, reviewer approval, Hindi translation or global completeness is implied by import integrity.
+
 ## Motion polish — 20 October 2026
 
 The owner requested fade-in/fade-out refinement of the published reference. An additive, dependency-free CSS/Web Animations layer introduces staged opening copy, finite painting reveals, text fade-throughs, artwork dissolves, preview transitions, native dialog exits and CTA feedback. Original source files, artwork, content, URLs and availability remain unchanged. See root `DESIGN.md` for triggers/timing/reduced-motion behavior and `docs/qa/motion-polish-2026-10-20/` for actual verification.

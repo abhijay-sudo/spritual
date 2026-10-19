@@ -116,3 +116,16 @@ Three local SVG landscapes share sage hills, an ochre sun and simple architectur
 Reading settings form one native modal sheet: Paper/Evening, Standard/Large, pronunciation. Opening pauses the optional timer; closing returns focus and leaves it paused. Theme choices persist but evening styling is confined to reading routes. Keep readable contrast on secondary text, selected controls and notices. Animate entry for 220ms; include the backdrop in reduced-motion handling. Short screens scroll inside the sheet; never obscure the final action.
 
 My Practice puts the selected collection before habit preferences. URL query selection survives a lesson visit and Back. Counts and empty states derive from the same known-content records. Rhythm settings use a closed native disclosure. Deleting a reflection requires an explicit inline choice; cancellation restores the original control without retaining a deleted-note archive.
+
+## Source-linked book experience — 20 October 2026
+
+The owner's new story-implementation request extends the exact-reference homepage into real reading. Keep the homepage composition, mark, artwork and coming-soon status. Its existing “The stories”, “Enter the story” and “Read the opening” invitations now lead to the bookshelf or reader; story dialogs gain a source-preserving “Read in the book” link. The old phone demonstration remains available through “Take a first look”.
+
+Chosen over enlarging the six-preview carousel: a small static bookshelf and a complete book reader, using the existing framework-free build. This supports sustained reading and future editorial growth without hiding content behind a JavaScript shell. Public `/books/` and `/hi/books/` reuse the exact ten reviewed retellings and six owner-selected published shorts. No source prose is rewritten, no new story or art approval is invented, and old routes/storage remain unchanged.
+
+- Warm paper, forest ink, original mark and paintings. Fraunces for headings; Georgia/Tiro Hindi for quieter sustained prose. No new font dependency.
+- Desktop: illustrated frontispiece and readable facing leaf. Tablet/phone: compact cover header before full-width prose. Page height grows naturally; text is never clipped to mimic paper.
+- Semantic scenes become stable folios, shared across English/Hindi. Historical-source folios are separately labelled reading pages, never canonical verse numbering.
+- Page controls and table of contents update content/history/focus immediately. A bounded 220ms opacity/8px transition adds continuity. Rapid input cancels earlier motion. Reduced motion is instant.
+- Appearance is visit-only. Exact-place bookmarks are explicit, browser-local, schema-validated and separate from legacy saved data; failures never claim success. All prose remains readable with JavaScript disabled.
+- Historical corpus output lives only in ignored `artifacts/book-research`, blocked in CI/Vercel. Scope and evidence live in `docs/project/BOOK_LIBRARY_20261020.md`; downloading or importing an edition is not publication approval.

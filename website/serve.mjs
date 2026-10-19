@@ -1,12 +1,13 @@
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { resolve, extname, sep } from 'node:path';
+const bookResearch=process.argv.includes('--books-preview');
 const editorial=process.argv.includes('--editorial-preview');
 const sanatan=process.argv.includes('--sanatan-preview');
 const release=process.argv.includes('--sanatan-release');
-if([editorial,sanatan,release].filter(Boolean).length>1)throw Error('Choose one website mode.');
-const port=editorial?4191:sanatan?4192:4190;
-const root = resolve(import.meta.dirname, editorial?'../artifacts/editorial-site':sanatan?'../artifacts/sanatan-site':'dist');
+if([bookResearch,editorial,sanatan,release].filter(Boolean).length>1)throw Error('Choose one website mode.');
+const port=bookResearch?4193:editorial?4191:sanatan?4192:4190;
+const root = resolve(import.meta.dirname, bookResearch?'../artifacts/book-research':editorial?'../artifacts/editorial-site':sanatan?'../artifacts/sanatan-site':'dist');
 const types = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.avif':'image/avif','.jpg':'image/jpeg','.jpeg':'image/jpeg','.woff2':'font/woff2','.txt':'text/plain','.xml':'application/xml','.png':'image/png'};
 createServer(async (req,res) => {
  try {

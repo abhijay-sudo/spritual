@@ -14,6 +14,7 @@ import {deliveryFiles} from './delivery-assets.mjs';
 import {publicJourneyPage,unavailableChapterPage} from './story-views.mjs';
 import {illustratedDetail,illustratedReader,journeyPage} from './illustrated-views.mjs';
 import {publishIntroduction} from './app-introduction/publish.mjs';
+import {buildBooks} from './books/build.mjs';
 const editorial=process.argv.includes('--editorial-preview');
 const sanatanPreview=process.argv.includes('--sanatan-preview');
 const sanatanRelease=process.argv.includes('--sanatan-release');
@@ -133,6 +134,6 @@ await writeFile(`${out}/robots.txt`,'User-agent: *\nAllow: /\nSitemap: https://s
 await writeFile(`${out}/sitemap.xml`,`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['','hi/','pause/','hi/pause/',...(sanatan?['corrections/','hi/corrections/']:[]),...libraryRoutes.filter(r=>!r.endsWith('saved/')),...(sanatan?storySitemapRoutes():[]),...(sanatanEdition?Object.keys(journeys).flatMap(id=>[`journeys/${id}/`,`hi/journeys/${id}/`]):[])].map(p=>`<url><loc>https://spritual.co.in/${p}</loc></url>`).join('')}</urlset>`);
 try { await copyFile(resolve(import.meta.dirname,'assets/social.png'),`${out}/assets/social.png`); } catch { console.warn('Social image not yet generated.'); }
 // Only the ordinary public homepage changes. Editorial and illustrated gates remain intact.
-if(!editorial&&!sanatanEdition)await publishIntroduction(out);
+if(!editorial&&!sanatanEdition){await publishIntroduction(out);await buildBooks(out);}
 const generatedPageCount=(await readdir(out,{recursive:true})).filter(file=>file==='index.html'||file.endsWith('/index.html')).length;
 console.log(`Built ${generatedPageCount} ${sanatanPreview?'local release preview':sanatanRelease?'illustrated public release':editorial?'local editorial preview':'public'} pages + 404${editorial?' and local-only imported reader pages':''}.`);
