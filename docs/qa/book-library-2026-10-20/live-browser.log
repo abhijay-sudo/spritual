@@ -1,0 +1,20 @@
+
+Running 13 tests using 1 worker
+
+(node:88901) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 website/tests/books.spec.ts:5:1 › homepage story invitation enters the book, source dialog links retain story and language (5.3s)
+  ✓   2 website/tests/books.spec.ts:6:1 › read, turn pages, switch languages, keep exact place, reload, return and remove (1.5s)
+  ✓   3 website/tests/books.spec.ts:7:1 › contents, keyboard pages, back, appearance and focus restoration work without animation delays (806ms)
+  ✓   4 website/tests/books.spec.ts:8:1 › search has no-result recovery and source notes remain one click away (1.0s)
+  ✓   5 website/tests/books.spec.ts:9:1 › blocked and corrupt storage do not claim a saved place or overwrite old data (378ms)
+  ✓   6 website/tests/books.spec.ts:10:1 › malformed saved state and malformed hash keep reading usable (404ms)
+  ✓   7 website/tests/books.spec.ts:11:1 › all stories retain English and Hindi text, functioning media and source links (6.0s)
+  ✓   8 website/tests/books.spec.ts:12:38 › book composition, Hindi and large text fit 320px (1.9s)
+  ✓   9 website/tests/books.spec.ts:12:38 › book composition, Hindi and large text fit 390px (1.9s)
+  ✓  10 website/tests/books.spec.ts:12:38 › book composition, Hindi and large text fit 768px (2.1s)
+  ✓  11 website/tests/books.spec.ts:12:38 › book composition, Hindi and large text fit 1440px (2.1s)
+  ✓  12 website/tests/books.spec.ts:13:1 › reduced motion, rapid inputs and JavaScript-free reading retain complete content (780ms)
+  ✓  13 website/tests/books.spec.ts:14:1 › touch reading and bookmarked place work at phone size (1.1s)
+
+  13 passed (26.0s)
