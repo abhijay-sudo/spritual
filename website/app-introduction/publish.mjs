@@ -23,13 +23,14 @@ export async function publishIntroduction(output){
   if(/\.(css|js)$/.test(file))await writeFile(destination,bytes.toString().replaceAll('assets/','/stories-app/assets/'));
   else await copyFile(input,destination);
  }
+ for(const file of ['motion.css','motion.js'])await copyFile(resolve(root,file),resolve(output,'stories-app',file));
  let html=await readFile(resolve(root,'public/index.html'),'utf8');
  html=html.replaceAll('https://spritual-stories-app.abhijaypl.chatgpt.site/','https://spritual.co.in/')
   .replace('content="noindex, nofollow"','content="index, follow"')
   .replaceAll('https://spritual.co.in/assets/','https://spritual.co.in/stories-app/assets/')
   .replace(/((?:src|href)=")assets\//g,'$1/stories-app/assets/')
   .replace(/((?:src|href)=")([a-z-]+\.(?:css|js))"/g,'$1/stories-app/$2"');
- html=html.replace('</head>','<link rel="alternate" hreflang="en" href="https://spritual.co.in/">\n<link rel="alternate" hreflang="hi" href="https://spritual.co.in/hi/">\n<script src="/stories-app/legacy-links.js"></script>\n</head>');
+ html=html.replace('</head>','<link rel="stylesheet" href="/stories-app/motion.css">\n<script src="/stories-app/motion.js" defer></script>\n'+'<link rel="alternate" hreflang="en" href="https://spritual.co.in/">\n<link rel="alternate" hreflang="hi" href="https://spritual.co.in/hi/">\n<script src="/stories-app/legacy-links.js"></script>\n</head>');
  await writeFile(resolve(output,'stories-app/legacy-links.js'),`// Preserve bookmarks into the previous reading homepage.\nfunction preserveReadingLink(){if(['world','welcome'].some(key=>new URLSearchParams(location.search).has(key))||['#dharma-yatra','#approach','#questions','#app'].includes(location.hash)){location.replace('/reading-room/'+location.search+location.hash);}}preserveReadingLink();addEventListener('hashchange',preserveReadingLink);\n`);
  await writeFile(resolve(output,'index.html'),html);
 }

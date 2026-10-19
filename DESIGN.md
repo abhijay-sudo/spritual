@@ -8,6 +8,22 @@ Keep the reference's finite handset entrance, bounded desktop scroll presentatio
 
 The build relocates assets into `/stories-app/` so existing readers and storage remain independent. The original files are checksum-pinned; intended source changes require a manifest update and responsive comparison. Public canonical and indexability are deployment adaptations. Legacy reader designs below apply only to their existing routes. See `website/README.md` and the dated QA report for scope and actual evidence.
 
+## Motion refinement — 20 October 2026
+
+The owner requested fade-in/fade-out polish on the published reference. Keep the selected composition and original import intact; the additive `website/app-introduction/motion.css` and `motion.js` implement this newer direction without editing the checksum-pinned source. Native CSS transitions and Web Animations are sufficient; add no framework.
+
+| Trigger | Response and timing | Purpose | Reduced motion |
+| --- | --- | --- | --- |
+| First arrival | Eyebrow/title/description rise 12px and fade, 550–750ms; CTA settles in 400ms without a delayed action | Establish hierarchy alongside existing handset arrival | Static final state |
+| Painting enters viewport | One 520ms fade/rise, stagger capped at 130ms | Introduce the collection without repeated scroll effects | Immediate visibility |
+| Story filter | Immediate semantic filter; visible paintings settle over 380ms | Make the new result set legible | Immediate results |
+| Language/story change | Old text fades out in 70ms; new text fades in after 78ms, complete by 260ms. Artwork dissolves over 220–260ms | Avoid overlapping scripts; preserve reading position and focus | Instant content update |
+| Preview mode/scene | 260ms content fade through paper; controls remain visible. Accompanying editorial text settles over 320ms | Connect the feature tab with its preview | Instant state |
+| Dialog open/close | Native top-layer opacity 180ms and 10px settle 240ms, with backdrop fade | Give entry/exit continuity without delaying close or focus restoration | Instant native dialog |
+| CTA hover/focus/press | One 650ms light sweep; 90ms press response | Make the main action feel responsive | Color/focus feedback only |
+
+Transient outgoing layers are inert, aria-hidden, ID-free and pointer-transparent. Rapid input replaces earlier transitions. Escape, closing, resizing, reduced-motion changes and leaving/hiding the page clean up layers. Offscreen content does not animate. No cursor followers, perpetual effects, scroll interception, paragraph reveals, navigation delays, tracking or availability changes. Motion is progressive enhancement; text and controls remain in normal HTML. Validate dynamic behavior, not screenshots alone; preserve the four reduced-motion reference PNG comparisons.
+
 ---
 
 # Local design rules

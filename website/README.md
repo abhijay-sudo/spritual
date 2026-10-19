@@ -1,5 +1,9 @@
 # Spritual public website
 
+## Motion polish — 20 October 2026
+
+The owner requested fade-in/fade-out refinement of the published reference. An additive, dependency-free CSS/Web Animations layer introduces staged opening copy, finite painting reveals, text fade-throughs, artwork dissolves, preview transitions, native dialog exits and CTA feedback. Original source files, artwork, content, URLs and availability remain unchanged. See root `DESIGN.md` for triggers/timing/reduced-motion behavior and `docs/qa/motion-polish-2026-10-20/` for actual verification.
+
 ## Exact owner-selected homepage — 19 October 2026
 
 The owner explicitly requested publishing `https://spritual-stories-app.abhijaypl.chatgpt.site/` exactly on `spritual.co.in`. The normal public build imports the retrieved source through `app-introduction/publish.mjs`; its 27 original files, source commit, version and checksums are pinned in `app-introduction/source-manifest.json`. Read [DESIGN.md](../DESIGN.md) before frontend changes. Preserve the selected design rather than applying historical app or manuscript styling to it.
