@@ -10,7 +10,7 @@ test('illustrated home reflows at every target width and images remain visible i
  test.setTimeout(120000);
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));await page.emulateMedia({reducedMotion:'reduce'});
  for(const width of [320,390,768,979,980,1024,1440]){
-  await page.setViewportSize({width,height:900});await page.goto('/');await page.evaluate(()=>document.fonts.ready);
+  await page.setViewportSize({width,height:900});await page.goto('/reading-room/');await page.evaluate(()=>document.fonts.ready);
   await expect(page.locator('[data-yatra-id]')).toHaveCount(count);
   await expect.poll(()=>page.locator('.arrival-art img').evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
@@ -27,7 +27,7 @@ test('illustrated home reflows at every target width and images remain visible i
 });
 
 test('six atmosphere choices update only the hero; interrupted or failed images retain usable art',async({page})=>{
- await page.goto('/');const before=await page.locator('.chapter-art img').evaluateAll(images=>images.map(i=>i.getAttribute('src')));
+ await page.goto('/reading-room/');const before=await page.locator('.chapter-art img').evaluateAll(images=>images.map(i=>i.getAttribute('src')));
  const bindings={neutral:'collection-ramayana',epic:'collection-mahabharata',rama:'world-rama',krishna:'world-krishna',hanuman:'world-hanuman',shiva:'world-shiva'};
  for(const [world,file] of Object.entries(bindings)){
   await page.locator(`.arrival-themes [data-world-option=${world}]`).click();
@@ -45,7 +45,7 @@ test('six atmosphere choices update only the hero; interrupted or failed images 
 });
 
 test('inline breath is optional, finite, cancellable and never records practice or reading',async({page})=>{
- await page.goto('/');await page.clock.install();const start=page.locator('[data-breath-start]');
+ await page.goto('/reading-room/');await page.clock.install();const start=page.locator('[data-breath-start]');
  await expect(page.locator('[data-settled-enter]')).toHaveAttribute('href',`/read/${first}/?journey=ramayana`);
  await start.click();await page.clock.runFor(1500);await expect(page.locator('[data-breath-cue]')).toHaveText('Inhale gently');
  await page.locator('[data-breath-cancel]').click();await page.clock.runFor(9000);await expect(start).toBeEnabled();
@@ -86,10 +86,10 @@ test('Kanda filters, language and diya jump preserve URLs and never manufacture 
 });
 
 test('home cards have independent cancellable holds, explicit tried acknowledgement, Undo and multitab sync',async({page,context})=>{
- await page.goto('/');const card=page.locator(`#yatra-${second}`),hold=card.locator('[data-sankalpa-hold]');
+ await page.goto('/reading-room/');const card=page.locator(`#yatra-${second}`),hold=card.locator('[data-sankalpa-hold]');
  await hold.focus();await page.keyboard.down('Space');await page.waitForTimeout(200);await page.keyboard.press('Escape');await page.keyboard.up('Space');
  expect(await page.evaluate(k=>localStorage.getItem(k),key(second))).toBeNull();
- const other=await context.newPage();await other.goto('/');await page.bringToFront();await hold.focus();await page.keyboard.down('Space');
+ const other=await context.newPage();await other.goto('/reading-room/');await page.bringToFront();await hold.focus();await page.keyboard.down('Space');
  await expect.poll(()=>page.evaluate(k=>localStorage.getItem(k),key(second)),{timeout:3500}).not.toBeNull();await page.keyboard.up('Space');
  await expect(other.locator(`#yatra-${second} [data-sankalpa]`)).toHaveAttribute('data-practice-state','sealed');
  await expect(page.locator(`[data-diya-id=${second}]`)).not.toHaveClass(/is-tried/);
@@ -114,7 +114,7 @@ test('short-screen sanctuary controls and reader continuation labels are visibly
 
 test('public no-JavaScript artwork and reading links do not depend on animation or storage',async({browser})=>{
  const context=await browser.newContext({javaScriptEnabled:false,baseURL:process.env.WEBSITE_URL||'http://127.0.0.1:4190',viewport:{width:390,height:844}});
- const page=await context.newPage();await page.goto('/');await expect(page.locator('.arrival-art img')).toBeVisible();
+ const page=await context.newPage();await page.goto('/reading-room/');await expect(page.locator('.arrival-art img')).toBeVisible();
  await expect(page.locator('.chapter-art img')).toHaveCount(count);await page.locator('[data-art-enter]').click();
  await expect(page.locator('.reader-opening-art img')).toBeVisible();await expect(page.locator('.reader-title h1')).toBeVisible();
  await context.close();
@@ -122,10 +122,10 @@ test('public no-JavaScript artwork and reading links do not depend on animation 
 
 test('denied and corrupted home storage keep navigation open and preserve unreadable records',async({page})=>{
  await page.addInitScript(id=>{localStorage.setItem('spritual_sankalpa_v1:'+id,'{broken');localStorage.setItem('spritual_reading_v2','{broken');},first);
- await page.goto('/');await page.locator(`#yatra-${first} [data-sankalpa-seal]`).click();
+ await page.goto('/reading-room/');await page.locator(`#yatra-${first} [data-sankalpa-seal]`).click();
  await expect(page.locator(`#yatra-${first} [data-sankalpa-status]`)).toContainText('not saved');
  expect(await page.evaluate(id=>localStorage.getItem('spritual_sankalpa_v1:'+id),first)).toBe('{broken');
  await page.addInitScript(()=>{Storage.prototype.getItem=()=>{throw Error('Denied')};Storage.prototype.setItem=()=>{throw Error('Denied')};});
- await page.goto('/');await expect(page.locator('[data-arrival-threshold]')).toBeVisible();await expect(page.locator('[data-settled-enter]')).toBeVisible();
+ await page.goto('/reading-room/');await expect(page.locator('[data-arrival-threshold]')).toBeVisible();await expect(page.locator('[data-settled-enter]')).toBeVisible();
  await page.locator('[data-show-path]').click();await expect(page.locator('[data-arrival-active]')).toBeVisible();
 });

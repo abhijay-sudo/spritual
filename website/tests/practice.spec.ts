@@ -82,7 +82,7 @@ test('touch hold cancels on release and navigation, and only a full gesture seal
   const endTouch=()=>cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
   await startTouch();await page.waitForTimeout(250);await endTouch();
   expect(await read(page,second)).toBeNull();
-  await startTouch();await page.goto('/');await endTouch();await page.waitForTimeout(2100);
+  await startTouch();await page.goto('/reading-room/');await endTouch();await page.waitForTimeout(2100);
   expect(await read(page,second)).toBeNull();
   await openPractice(page);await startTouch();
   await expect.poll(()=>read(page,second),{timeout:4500}).not.toBeNull();await endTouch();
@@ -110,7 +110,7 @@ test('one-tap keyboard alternative, Undo, multi-tab sync and repeated choices st
 });
 
 test('corrupted and denied practice storage remain untouched with truthful recovery',async({page,context})=>{
-  await page.goto('/');
+  await page.goto('/reading-room/');
   await page.evaluate(k=>localStorage.setItem(k,'{broken'),key(second));
   await openPractice(page);await page.locator('[data-sankalpa-seal]').click();
   await expect(page.locator('[data-sankalpa-status]')).toContainText('not saved');
@@ -139,7 +139,7 @@ test('Hindi switching preserves the Sankalpa anchor and the existing semantic re
 });
 
 test('petals survive long breaks and the available path has a quiet finite ending',async({page})=>{
-  await page.goto('/');
+  await page.goto('/reading-room/');
   const ids=process.env.WEBSITE_RELEASE?editionStoryKeys:ANCHOR_IDS;
   await page.evaluate(({ids,revision})=>{for(const id of ids)localStorage.setItem(`spritual_sankalpa_v1:${id}`,JSON.stringify({version:1,revision,sealedAt:1,triedAt:2}));},{ids,revision:PRACTICE_REVISION});
   await page.reload();
@@ -230,7 +230,7 @@ test('practice stays legible in all six worlds, all reader appearances and enlar
 
 test('design evidence shows completed, current and upcoming nodes and the hold ripple',async({page})=>{
   await page.setViewportSize({width:1374,height:1145});
-  await page.goto('/');
+  await page.goto('/reading-room/');
   await page.evaluate(()=>document.fonts.ready);
   await page.screenshot({path:resolve(evidence,'after-home.png'),fullPage:true});
   await page.evaluate(({id,revision})=>localStorage.setItem(`spritual_sankalpa_v1:${id}`,JSON.stringify({version:1,revision,sealedAt:100,triedAt:200})),{id:first,revision:PRACTICE_REVISION});
@@ -252,7 +252,7 @@ test('design evidence shows completed, current and upcoming nodes and the hold r
 
 test('without JavaScript the timeline and practice invitation remain readable',async({browser})=>{
   const context=await browser.newContext({javaScriptEnabled:false,baseURL:process.env.WEBSITE_URL||'http://127.0.0.1:4190'});
-  const page=await context.newPage();await page.goto('/#dharma-yatra');
+  const page=await context.newPage();await page.goto('/reading-room/#dharma-yatra');
   await expect(page.locator('[data-yatra-id]')).toHaveCount(process.env.WEBSITE_RELEASE?editionStoryKeys.length:10);
   await page.locator(`[data-yatra-id="${second}"] a.yatra-card`).focus();
   await page.keyboard.press('Enter');

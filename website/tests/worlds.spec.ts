@@ -6,7 +6,7 @@ const active=async(page:any,name:string)=>{
 };
 
 test('all six reading worlds are real navigation with durable URL and browser history',async({page})=>{
-  await page.goto('/');
+  await page.goto('/reading-room/');
   await expect(page.locator('.theme-picker [data-world-option]')).toHaveCount(6);
   await active(page,'neutral');
   await page.locator('.theme-picker summary').click();
@@ -106,13 +106,13 @@ test('capture final must-fix evidence from current code',async({page})=>{
   await page.setViewportSize({width:390,height:844});await page.goto('/pause/?from=%2Flibrary%2Framayana%2Fsundara%2F&world=shiva');await page.locator('#timer-toggle').click();await page.locator('#finish').click();await expect(page.locator('#return-reading')).toHaveAttribute('href','/library/ramayana/sundara/?world=shiva');await page.screenshot({path:'artifacts/illustrated-recovery/evidence/supporting-pause-return-shiva-390.png',fullPage:true});
 });
 
-test('every public surface exposes the chooser and storage failure keeps a usable neutral fallback',async({page})=>{
-  for(const path of ['/','/library/','/library/saved/','/privacy/','/missing-page/']){
+test('every established reading surface exposes the chooser and storage failure keeps a usable neutral fallback',async({page})=>{
+  for(const path of ['/reading-room/','/library/','/library/saved/','/privacy/','/missing-page/']){
     await page.goto(path);await expect(page.locator('.theme-picker [data-world-option]')).toHaveCount(6);
   }
   await page.goto('/pause/');await expect(page.locator('.theme-picker [data-world-option]')).toHaveCount(6);
   await page.addInitScript(()=>{Storage.prototype.getItem=()=>{throw Error('blocked')};Storage.prototype.setItem=()=>{throw Error('blocked')};});
-  await page.goto('/');await active(page,'neutral');
+  await page.goto('/reading-room/');await active(page,'neutral');
   await page.locator('.theme-picker summary').click();
   await page.locator('.theme-picker').getByRole('link',{name:'Rama',exact:true}).click();await active(page,'rama');
 });

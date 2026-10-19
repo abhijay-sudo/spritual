@@ -1,0 +1,35 @@
+import {readFile,writeFile,mkdir,copyFile} from 'node:fs/promises';
+import {resolve,dirname} from 'node:path';
+import {createHash} from 'node:crypto';
+
+// Import the owner's exact selected Site; isolate its assets from existing readers.
+export async function publishIntroduction(output){
+ const root=import.meta.dirname;
+ const previous=await readFile(resolve(output,'index.html'),'utf8');
+ await mkdir(resolve(output,'reading-room'),{recursive:true});
+ await writeFile(resolve(output,'reading-room/index.html'),previous.replaceAll('href="https://spritual.co.in/"','href="https://spritual.co.in/reading-room/"').replace('content="index, follow"','content="noindex, follow"'));
+ // The existing language switch derives its destination from the pathname.
+ // Mirror the unchanged Hindi reading room so switching retains query and anchor state.
+ await mkdir(resolve(output,'hi/reading-room'),{recursive:true});
+ const hindi=await readFile(resolve(output,'hi/index.html'),'utf8');
+ await writeFile(resolve(output,'hi/reading-room/index.html'),hindi.replaceAll('href="https://spritual.co.in/hi/"','href="https://spritual.co.in/hi/reading-room/"').replace('content="index, follow"','content="noindex, follow"'));
+ const manifest=JSON.parse(await readFile(resolve(root,'source-manifest.json'),'utf8'));
+ for(const [file,expected] of Object.entries(manifest.files)){
+  const input=resolve(root,'public',file),bytes=await readFile(input);
+  if(createHash('sha256').update(bytes).digest('hex')!==expected)throw Error(`Reference source changed without a reviewed manifest update: ${file}`);
+  if(file==='index.html')continue;
+  const destination=resolve(output,'stories-app',file);
+  await mkdir(dirname(destination),{recursive:true});
+  if(/\.(css|js)$/.test(file))await writeFile(destination,bytes.toString().replaceAll('assets/','/stories-app/assets/'));
+  else await copyFile(input,destination);
+ }
+ let html=await readFile(resolve(root,'public/index.html'),'utf8');
+ html=html.replaceAll('https://spritual-stories-app.abhijaypl.chatgpt.site/','https://spritual.co.in/')
+  .replace('content="noindex, nofollow"','content="index, follow"')
+  .replaceAll('https://spritual.co.in/assets/','https://spritual.co.in/stories-app/assets/')
+  .replace(/((?:src|href)=")assets\//g,'$1/stories-app/assets/')
+  .replace(/((?:src|href)=")([a-z-]+\.(?:css|js))"/g,'$1/stories-app/$2"');
+ html=html.replace('</head>','<link rel="alternate" hreflang="en" href="https://spritual.co.in/">\n<link rel="alternate" hreflang="hi" href="https://spritual.co.in/hi/">\n<script src="/stories-app/legacy-links.js"></script>\n</head>');
+ await writeFile(resolve(output,'stories-app/legacy-links.js'),`// Preserve bookmarks into the previous reading homepage.\nfunction preserveReadingLink(){if(['world','welcome'].some(key=>new URLSearchParams(location.search).has(key))||['#dharma-yatra','#approach','#questions','#app'].includes(location.hash)){location.replace('/reading-room/'+location.search+location.hash);}}preserveReadingLink();addEventListener('hashchange',preserveReadingLink);\n`);
+ await writeFile(resolve(output,'index.html'),html);
+}

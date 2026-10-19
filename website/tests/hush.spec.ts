@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 
 test('one responsive navigation exposes every primary destination and compact controls',async({page})=>{
- await page.goto('/');await expect(page.locator('header nav[aria-label="Main navigation"]')).toHaveCount(1);await expect(page.locator('#mobile-menu')).toHaveCount(0);
+ await page.goto('/reading-room/');await expect(page.locator('header nav[aria-label="Main navigation"]')).toHaveCount(1);await expect(page.locator('#mobile-menu')).toHaveCount(0);
  for(const name of ['Yatra','Today','Quiet moment','Saved'])await expect(page.locator('.desktop-nav').getByRole('link',{name,exact:true})).toBeVisible();
  await expect(page.getByRole('button',{name:'Change text size'})).toBeVisible();await expect(page.locator('.theme-picker summary')).toBeVisible();
  await page.locator('.desktop-nav').getByRole('link',{name:'Today',exact:true}).click();await expect(page).toHaveURL(/\/daily\/$/);
@@ -12,7 +12,7 @@ test('single navigation reflows without a duplicate menu',async({page})=>{
 });
 
 test('one header, immediate reading, optional breath and keyboard preferences',async({page})=>{
- await page.goto('/');await expect(page.locator('.library-subnav')).toHaveCount(0);await expect(page.locator('[data-settled-enter]')).toHaveAttribute('href','/read/what-makes-a-person-admirable/?journey=ramayana');await expect(page.locator('[data-breath-start]')).toBeEnabled();await expect(page.locator('.art-play')).toHaveCount(0);await expect(page.locator('.arrival-section, #dharma-yatra, .recovery-today, .journey-section')).toHaveCount(4);
+ await page.goto('/reading-room/');await expect(page.locator('.library-subnav')).toHaveCount(0);await expect(page.locator('[data-settled-enter]')).toHaveAttribute('href','/read/what-makes-a-person-admirable/?journey=ramayana');await expect(page.locator('[data-breath-start]')).toBeEnabled();await expect(page.locator('.art-play')).toHaveCount(0);await expect(page.locator('.arrival-section, #dharma-yatra, .recovery-today, .journey-section')).toHaveCount(4);
  const preferences=page.getByRole('button',{name:'Choose reading preferences'});await preferences.focus();await page.keyboard.press('Enter');await expect(page.getByRole('heading',{name:'How would you like to read?'})).toBeVisible();await page.keyboard.press('Escape');await expect(preferences).toBeFocused();
  await page.goto('/library/');const search=await page.locator('#story-search').boundingBox(),cards=await page.locator('.story-results').boundingBox();expect(search!.y).toBeLessThan(cards!.y);await expect(page.locator('[data-story-card]')).toHaveCount(10);
 });

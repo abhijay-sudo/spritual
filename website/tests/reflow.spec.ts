@@ -6,7 +6,7 @@ test('critical surfaces reflow at 200% before web fonts are available', async ({
 
   const cases = [
     {
-      path: '/',
+      path: '/reading-room/',
       zoom: 'body{font-size:200%} p,li,button,a{font-size:1em!important}',
       probes: ['#main', 'h1', '.arrival-card'],
     },

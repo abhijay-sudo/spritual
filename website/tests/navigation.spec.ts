@@ -3,7 +3,7 @@ import {test,expect} from '@playwright/test';
 test('global navigation has one clear hierarchy at mobile and desktop sizes',async({page})=>{
  for(const width of [360,390,1440]){
   await page.setViewportSize({width,height:900});
-  await page.goto('/');
+  await page.goto('/reading-room/');
   await expect(page.locator('.world-bar')).toHaveCount(0);
   await expect(page.locator('a[href*="undefined"]')).toHaveCount(0);
   await expect(page.locator('header nav[aria-label="Main navigation"]')).toHaveCount(1);
@@ -142,7 +142,7 @@ test('returning readers see Continue immediately and reader language stays in th
  for(const item of await page.locator('.reader-language>*').all()){const box=await item.boundingBox();expect(box?.height).toBeGreaterThanOrEqual(44);}
  await page.locator('[data-block-id]').nth(3).scrollIntoViewIfNeeded();
  await page.waitForTimeout(500);
- await page.goto('/');
+ await page.goto('/reading-room/');
  const band=page.locator('#continue-reading');
  await expect(band).toBeVisible();
  const box=await band.boundingBox();

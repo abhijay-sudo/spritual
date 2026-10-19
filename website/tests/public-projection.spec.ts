@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 test.skip(Boolean(process.env.WEBSITE_RELEASE),'Public projection only; draft preview intentionally contains these chapters.');
 test('unavailable chapters remain visible in Saved without losing their exact original records',async({page})=>{
- await page.goto('/');
+ await page.goto('/reading-room/');
  const record={storyId:'princes-and-teacher',contentRevision:'prior-illustrated',language:'en',sceneId:'a-request-at-court',blockId:'saved-block-2',blockOffsetRatio:.43,updatedAt:100,journeyId:'ramayana'};
  await page.evaluate(record=>localStorage.setItem('spritual_reading_v2',JSON.stringify({version:2,preferences:{language:'en',theme:'light',textSize:20,interests:[]},progress:{[record.storyId]:record},bookmarks:[{storyId:record.storyId,sceneId:record.sceneId,blockId:record.blockId,kind:'place',language:'en',createdAt:50}],onboarding:null})),record);
  await page.goto('/my-reading/');await expect(page.locator('[data-unavailable-story]')).toHaveCount(2);await expect(page.locator('[data-unavailable-story]').first()).toContainText('Your saved place is kept');

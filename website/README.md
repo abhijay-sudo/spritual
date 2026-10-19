@@ -1,5 +1,15 @@
 # Spritual public website
 
+## Exact owner-selected homepage — 19 October 2026
+
+The owner explicitly requested publishing `https://spritual-stories-app.abhijaypl.chatgpt.site/` exactly on `spritual.co.in`. The normal public build imports the retrieved source through `app-introduction/publish.mjs`; its 27 original files, source commit, version and checksums are pinned in `app-introduction/source-manifest.json`. Read [DESIGN.md](../DESIGN.md) before frontend changes. Preserve the selected design rather than applying historical app or manuscript styling to it.
+
+Only deployment metadata and asset paths change. The six bilingual previews, twelve paintings, native story dialogs, responsive gallery, phone preview and motion come from the reference. Get Spritual truthfully says coming soon. This is a presentation website with a working demonstration, not a shipped native app or durable notebook service. Source provenance is retained separately; copied QA notes are historical source claims, not verification of this deployment.
+
+All existing non-root pages and assets are retained. The former English homepage is available at `/reading-room/`, with `/hi/reading-room/` for its pathname-based language switch. Old root Yatra/world/welcome links route there without resetting local data. The existing release gates remain unchanged; this import does not publish the gated illustrated manuscript edition. The source Site stays private and unchanged.
+
+Commands from repository root: `node website/build.mjs`, `node --test website/tests/*.test.mjs`, `npx playwright test --config website/playwright.config.ts`. Reuse `node website/serve.mjs` on loopback 4190; set `WEBSITE_URL` when inspecting an existing server or the public site. Test evidence is in `docs/qa/reference-release-2026-10-19/`. The deployment status must be verified against GitHub/Vercel and the real domain.
+
 ## Mobile story delivery — 15 October 2026
 
 The performance correction from `f52d0d0` adds responsive delivery encodes of the same three reviewed story-art families, preserving original WebP fallbacks, all public prose/data and the existing design/motion. See [PERFORMANCE_CORRECTION_20261015.md](../docs/project/PERFORMANCE_CORRECTION_20261015.md) for diagnosis, exact comparison conditions, source hashes, verification and deferred sensory scope. Live scores and deployment confirmation must come from the external release evidence, not a local build.

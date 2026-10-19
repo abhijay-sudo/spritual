@@ -2,7 +2,7 @@ import {test, expect} from '@playwright/test';
 
 test('360px masthead keeps all existing EN and Hindi tools on one row', async ({page}) => {
   await page.setViewportSize({width:360,height:844});
-  for(const path of ['/','/hi/']){
+  for(const path of ['/reading-room/','/hi/']){
     await page.goto(path);await page.evaluate(()=>document.fonts.ready);
     const bounds=await page.locator('.header-actions').evaluate(el=>[...el.children].filter(n=>n.getClientRects().length).map(n=>n.getBoundingClientRect().toJSON()));
     expect(Math.max(...bounds.map(r=>r.top))-Math.min(...bounds.map(r=>r.top))).toBeLessThan(8);
@@ -68,7 +68,7 @@ test('focus and context controls remain usable after interrupting entry and para
 test('actual doubled text reflows without a decorative overflow clip in both languages', async ({page}) => {
   test.setTimeout(60000);
   for(const lang of ['en','hi'])for(const width of [320,360,1440])for(const route of ['/','/story/knowing-how-to-stop/','/read/knowing-how-to-stop/','/pause/']){
-    await page.setViewportSize({width,height:1000});await page.goto(`${lang==='hi'?'/hi':''}${route}`);await page.evaluate(()=>document.fonts.ready);
+    await page.setViewportSize({width,height:1000});await page.goto(lang==='en'&&route==='/'?'/reading-room/':`${lang==='hi'?'/hi':''}${route}`);await page.evaluate(()=>document.fonts.ready);
     await page.addStyleTag({content:'html,body{overflow-x:visible!important}'});
     await page.evaluate(()=>{
       const nodes=[...document.querySelectorAll<HTMLElement>('body *')].filter(el=>el.getClientRects().length&&[...el.childNodes].some(n=>n.nodeType===3&&n.textContent?.trim())&&!['SCRIPT','STYLE'].includes(el.tagName));

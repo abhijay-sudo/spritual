@@ -1,3 +1,15 @@
+# Current public homepage — 19 October 2026
+
+For `website/` homepage tasks, the owner's exact selected reference is `https://spritual-stories-app.abhijaypl.chatgpt.site/`, version 4, source commit `16c0ba01def25b4c31516e9bb032706ea0328df5`. This supersedes older visual directions for `/` only. The original source and manifest live in `website/app-introduction/`.
+
+Preserve its sunrise mark, warm paper canvas, forest-green type and reading room, Fraunces headings, restrained gold and olive accents, twelve original miniature-inspired illustrations, responsive handset composition, six-story collection and clear Get Spritual invitation. Mobile uses a native horizontal story rail. Do not replace the artwork, add sections, invent app availability, or restyle it with the legacy manuscript theme.
+
+Keep the reference's finite handset entrance, bounded desktop scroll presentation, native rail navigation, tab feedback and modal transitions. Respect its reduced-motion alternatives, keyboard controls, focus restoration, English/Hindi story text, source links and visit-only notebook semantics. Copy is owner's selected source, not permission to fabricate app listings or production integrations.
+
+The build relocates assets into `/stories-app/` so existing readers and storage remain independent. The original files are checksum-pinned; intended source changes require a manifest update and responsive comparison. Public canonical and indexability are deployment adaptations. Legacy reader designs below apply only to their existing routes. See `website/README.md` and the dated QA report for scope and actual evidence.
+
+---
+
 # Local design rules
 
 > Current `/alpha` member design (26 September): one-reading Today, bounded Explore, Saved, and paper-like reader with quiet feedback. See `docs/BUILD_STATUS.md` and `docs/VERIFICATION.md`. The detailed rules below document the legacy/default product and older concepts; they do not override the current calm member direction.
