@@ -2,6 +2,7 @@
  'use strict';
  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
  if (!Element.prototype.animate) return;
+ document.documentElement.classList.add('motion-ready');
  const active = new Map();
  const generations = new WeakMap();
  let epoch = 0;

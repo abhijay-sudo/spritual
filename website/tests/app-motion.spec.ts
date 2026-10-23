@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
-const evidence='docs/qa/motion-polish-2026-10-20';
+const evidence='artifacts/premium-web-2026-10-23/motion';
 test.beforeEach(async({page})=>{await page.emulateMedia({reducedMotion:'no-preference'});});
 test('crossfades keep current meaning immediate and retire inert outgoing layers',async({page})=>{
  await page.goto('/');await page.locator('[data-open-story]').first().click();

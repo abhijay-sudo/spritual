@@ -1,13 +1,13 @@
-/* An additive motion layer; the pinned reference remains the visual baseline. */
+/* Shared finite interactions; the pinned reference remains untouched. */
 [data-motion-host]{position:relative}
 .motion-ghost{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;margin:0!important;overflow:hidden!important;pointer-events:none!important;z-index:4;contain:paint}
 .motion-ghost,.motion-ghost *{animation:none!important;transition:none!important}
 .will-reveal:focus-within{opacity:1;transform:none}
 @media(prefers-reduced-motion:no-preference){
- .hero-intro .hero-eyebrow{animation:invitation-enter .55s cubic-bezier(.22,1,.36,1) both}
- .hero-intro h1{animation:invitation-enter .75s .06s cubic-bezier(.22,1,.36,1) both}
- .hero-description{animation:invitation-enter .65s .14s cubic-bezier(.22,1,.36,1) both}
- .hero-actions{animation:action-enter .4s ease-out both}
+ .motion-ready .hero-intro .hero-eyebrow{animation:invitation-enter .55s cubic-bezier(.22,1,.36,1) both}
+ .motion-ready .hero-intro h1{animation:invitation-enter .75s .06s cubic-bezier(.22,1,.36,1) both}
+ .motion-ready .hero-description{animation:invitation-enter .65s .14s cubic-bezier(.22,1,.36,1) both}
+ .motion-ready .hero-actions{animation:action-enter .4s ease-out both}
  .hero-actions:focus-within{animation:none}
  .feature-panel.is-changing{animation:none}
  .button{position:relative;overflow:hidden;isolation:isolate}

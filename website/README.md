@@ -1,3 +1,9 @@
+# Website premium refinement — 23 October 2026
+
+The active homepage is the new editorial adaptation in `app-introduction/premium.mjs` / `premium.css` / `premium.js`. It preserves the immutable original import, artwork, six bilingual previews, app demonstration and existing reader routes. A real reading action leads; app availability remains coming soon. No dependencies, pricing, tracking, backend or production configuration changed. Root `DESIGN.md` is the current visual and motion contract; the exact-reference sections below are historical.
+
+Verification: **59 Node/output tests and 32 focused Chromium cases passed on the isolated public release** (development branch: 63/33), covering the bilingual story-to-book journey, storage failure recovery, touch/keyboard, reduced motion and JavaScript-free access. Baseline/final screenshots and limits: `docs/qa/premium-home-2026-10-23/README.md`. Deployment evidence is recorded separately; local passing tests alone are not a production confirmation.
+
 # Spritual public website
 
 ## Book reader and source library — 20 October 2026

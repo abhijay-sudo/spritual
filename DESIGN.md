@@ -1,4 +1,26 @@
-# Current public homepage — 19 October 2026
+# Spritual — active design directions
+
+## Current public website — 23 October 2026
+
+The owner requested a premium website revamp with scroll animation and a clearer path toward the app. This supersedes the 19 October pixel-equality requirement for `/`; the original retrieved Site remains checksum-pinned, unmodified provenance. The active publishing adaptation is `website/app-introduction/premium.mjs`, `premium.css` and `premium.js`, with the existing shared reader, collection and finite interaction modules. Keep the static Node/HTML/CSS/JavaScript architecture.
+
+Direction: **an illustrated editorial invitation**. A quieter typography-only refresh was considered; the selected approach makes the product tangible through a framed painting and floating page, a portrait story gallery, an interactive forest-toned reading room, and a riverfront closing invitation. Preserve the sunrise logo, Fraunces headings, Tiro Hindi, original artwork and prose. Load the already bundled OFL Manrope for UI rather than relying on a system substitute. Paper `#FAF7F2`, forest `#183D36`, olive `#6B7558`, restrained brass; 1296px content width, generous but bounded spacing, fine book edges rather than generic feature tiles.
+
+The first action is **Find your story**. The six bilingual previews connect to actual `/books/read/` routes; a direct bookshelf link works without JavaScript. The app remains coming soon: no store links, charges, signup collection or claimed conversion lift. The earlier planned free-chapter/edition-purchase promises are removed from this invitation; this does not change any live price. Notebook preview saves are explicitly visit-only. Existing book URLs, source notices, preferences and saved reading places remain intact.
+
+| Trigger | Response | Purpose / reduced-motion alternative |
+| --- | --- | --- |
+| Initial enhanced page arrival | 12px copy fade/rise, 400–750ms; no delayed CTA | Establish hierarchy; immediate static content without JS or with reduced motion |
+| Native scroll through hero | Bounded image scale, page lift up to 44px and 3.5° rotation range, fine-frame depth | Suggest an opening illustrated book; static painting/page in reduced motion |
+| Entering collection/reading room/closing | One 14px, 560ms editorial entrance; original painting arrivals 520ms | Connect sections, never hide content before enhancement; immediately visible alternative |
+| Native scroll through landscapes | At most 16px image movement, slight overscan | Connect illustration to reading; static alternate |
+| Story filter / language / scene / dialog / CTA | Existing finite 380ms filtering, 260ms crossfades, 180–240ms dialogs, 90ms press | Immediate semantics/focus; instant state with reduced motion |
+
+No scroll interception, automatic carousel, cursor follower, particles, new motion dependency or permanent render loop. Scroll frames run only when needed and for visible scenes; visibility changes, reduced motion and page exit cancel work. Transient language layers stay inert and ID-free. Reading itself stays calm. At 700px and below the invitation/reading room stack; the story collection retains its native phone rail through 600px and a two-column tablet layout above it. Essential HTML remains usable without scripts.
+
+Verification and concept/render comparison: `docs/qa/premium-home-2026-10-23/README.md`. Historical sections below record earlier versions, not current visual-equality requirements.
+
+## Historical exact-reference homepage — 19 October 2026
 
 For `website/` homepage tasks, the owner's exact selected reference is `https://spritual-stories-app.abhijaypl.chatgpt.site/`, version 4, source commit `16c0ba01def25b4c31516e9bb032706ea0328df5`. This supersedes older visual directions for `/` only. The original source and manifest live in `website/app-introduction/`.
 
@@ -22,7 +44,7 @@ The owner requested fade-in/fade-out polish on the published reference. Keep the
 | Dialog open/close | Native top-layer opacity 180ms and 10px settle 240ms, with backdrop fade | Give entry/exit continuity without delaying close or focus restoration | Instant native dialog |
 | CTA hover/focus/press | One 650ms light sweep; 90ms press response | Make the main action feel responsive | Color/focus feedback only |
 
-Transient outgoing layers are inert, aria-hidden, ID-free and pointer-transparent. Rapid input replaces earlier transitions. Escape, closing, resizing, reduced-motion changes and leaving/hiding the page clean up layers. Offscreen content does not animate. No cursor followers, perpetual effects, scroll interception, paragraph reveals, navigation delays, tracking or availability changes. Motion is progressive enhancement; text and controls remain in normal HTML. Validate dynamic behavior, not screenshots alone; preserve the four reduced-motion reference PNG comparisons.
+Transient outgoing layers are inert, aria-hidden, ID-free and pointer-transparent. Rapid input replaces earlier transitions. Escape, closing, resizing, reduced-motion changes and leaving/hiding the page clean up layers. Offscreen content does not animate. No cursor followers, perpetual effects, scroll interception, paragraph reveals, navigation delays, tracking or availability changes. Motion is progressive enhancement; text and controls remain in normal HTML. Validate dynamic behavior, not screenshots alone; the historical reference PNG comparisons were superseded by the 23 October responsive and journey checks.
 
 ---
 

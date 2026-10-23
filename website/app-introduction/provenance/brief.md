@@ -1,3 +1,9 @@
+# Current product invitation — 23 October 2026
+
+The owner authorized a new premium visual direction. The original source notes below remain provenance, not a requirement to reproduce the old homepage. The target visitor is an English/Hindi reader curious about Indian spiritual stories; the immediate journey is invitation → story preview → source-linked book → optional app availability. The website should feel like opening an illustrated book, keep reading approachable, and demonstrate the app before asking for a future download. App store distribution is unavailable; download conversion and willingness to pay remain unverified. No new corpus, pricing, account, tracking, payment or waitlist service is included. Accept when the primary route works with keyboard/touch and without scripts, existing bilingual content remains intact, responsive layouts fit, and reduced motion removes animated movement. See root `DESIGN.md` for decisions and dated QA evidence.
+
+---
+
 # Spritual app introduction
 
 ## Current user direction — 19 October 2026

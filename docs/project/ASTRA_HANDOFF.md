@@ -1,5 +1,9 @@
 # Astra takeover: Spiritual.co.in
 
+## Latest — 23 October 2026: premium public website
+
+The homepage now uses a warm editorial painting/page invitation, a story gallery, an interactive forest reading room and a riverfront closing. Source import and existing reader content remain intact; no app/backend changes. `DESIGN.md` records the selected direction. The isolated public build, 59 Node/output tests and 32 focused browser cases passed (development branch: 63/33) after contrast, intermediate-width and JavaScript-free entrance fixes. Evidence and exact release status: `docs/qa/premium-home-2026-10-23/README.md`. Preserve the unrelated Android wrapper change and older QA artifacts.
+
 ## Connected story return — 29 September 2026
 
 The new connected story reader supplies a complete one-scene-at-a-time path, source disclosure, explicit finish, device-only action/try/feedback, exact-scene resume and a private-data-free link preview. It uses the existing rights-gated `KnowledgeRepository` and checks the live story before showing local progress. Corrupt local state is never overwritten without an explicit reset. No religious prose was seeded. Unit 157/157, disposable pgTAP 257/257 plus races, demo Chromium 21/21, synthetic connected Chromium 8/8, typecheck and both builds passed. Release preflights still block unapproved text and six media assets. `docs/BUILD_STATUS.md` has a current capability table, screenshot paths and remaining gaps. This is not a public launch or validated retention result.

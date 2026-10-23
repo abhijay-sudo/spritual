@@ -1,6 +1,7 @@
 import {readFile,writeFile,mkdir,copyFile} from 'node:fs/promises';
 import {resolve,dirname} from 'node:path';
 import {createHash} from 'node:crypto';
+import {premiumIntroduction} from './premium.mjs';
 
 // Import the owner's exact selected Site; isolate its assets from existing readers.
 export async function publishIntroduction(output){
@@ -23,7 +24,7 @@ export async function publishIntroduction(output){
   if(/\.(css|js)$/.test(file))await writeFile(destination,bytes.toString().replaceAll('assets/','/stories-app/assets/'));
   else await copyFile(input,destination);
  }
- for(const file of ['motion.css','motion.js'])await copyFile(resolve(root,file),resolve(output,'stories-app',file));
+ for(const file of ['motion.css','motion.js','premium.css','premium.js'])await copyFile(resolve(root,file),resolve(output,'stories-app',file));
  let html=await readFile(resolve(root,'public/index.html'),'utf8');
  html=html.replaceAll('https://spritual-stories-app.abhijaypl.chatgpt.site/','https://spritual.co.in/')
   .replace('content="noindex, nofollow"','content="index, follow"')
@@ -41,5 +42,5 @@ export async function publishIntroduction(output){
   .replace('</p>\n        </div>\n        <div class="story-dialog-footer">','</p><a class="text-button" data-open-book href="/books/read/rama-bow/">Read in the book ↗</a>\n        </div>\n        <div class="story-dialog-footer">')
   .replace('</body>','<script src="/stories-app/home-bridge.js" defer></script></body>');
  await copyFile(resolve(root,'../books/home-bridge.js'),resolve(output,'stories-app/home-bridge.js'));
- await writeFile(resolve(output,'index.html'),html);
+ await writeFile(resolve(output,'index.html'),premiumIntroduction(html));
 }
