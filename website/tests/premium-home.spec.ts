@@ -40,30 +40,30 @@ test('keyboard discovery reaches a real book and preserves dialog focus recovery
   await expect(page.locator('h1')).not.toBeEmpty();
 });
 
-test('JavaScript-free visitors can use the invitation and enter the published bookshelf', async ({ browser }) => {
-  const context = await browser.newContext({
-    javaScriptEnabled: false,
-    viewport: { width: 390, height: 844 },
-    baseURL: process.env.WEBSITE_URL || 'http://127.0.0.1:4190',
+test.describe('progressive enhancement', () => {
+  test.use({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+
+  test('JavaScript-free visitors can use the invitation and enter the published bookshelf', async ({ page }) => {
+    await test.step('Follow the native story invitation', async () => {
+      await page.goto('/');
+      await expect(page.locator('h1')).toHaveText('A whole world. In your hands.');
+      await page.getByRole('link', { name: 'Find your story', exact: true }).click();
+      await expect(page).toHaveURL(/#journey$/);
+    });
+    await test.step('Enter the real bookshelf', async () => {
+      const bookshelf = page.locator('a[href="/books/"]:visible').first();
+      await expect(bookshelf).toBeVisible();
+      await bookshelf.click();
+      await expect(page).toHaveURL(/\/books\/$/);
+    });
+    await test.step('Open and read a published chapter', async () => {
+      const firstBook = page.locator('[data-book-entry] > a').first();
+      await expect(firstBook).toBeVisible();
+      await firstBook.click();
+      await expect(page.locator('[data-folio]:visible').first()).toBeVisible();
+      await expect(page.locator('h1')).not.toBeEmpty();
+    });
   });
-  try {
-    const page = await context.newPage();
-    await page.goto('/');
-    await expect(page.locator('h1')).toHaveText('A whole world. In your hands.');
-    await page.getByRole('link', { name: 'Find your story', exact: true }).click();
-    await expect(page).toHaveURL(/#journey$/);
-    const bookshelf = page.locator('a[href="/books/"]:visible').first();
-    await expect(bookshelf).toBeVisible();
-    await bookshelf.click();
-    await expect(page).toHaveURL(/\/books\/$/);
-    const firstBook = page.locator('[data-book-entry] > a').first();
-    await expect(firstBook).toBeVisible();
-    await firstBook.click();
-    await expect(page.locator('[data-folio]:visible').first()).toBeVisible();
-    await expect(page.locator('h1')).not.toBeEmpty();
-  } finally {
-    await context.close();
-  }
 });
 
 test('native desktop scrolling moves the painted scene without delaying navigation', async ({ page }) => {

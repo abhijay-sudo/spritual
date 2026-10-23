@@ -4,7 +4,8 @@
 @font-face{font-family:Tiro;src:url('/stories-app/assets/fonts/tiro-devanagari-sanskrit.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
 :root{--paper:#faf7f2;--ink:#183d36;--muted:#5d6d64;--olive:#6b7558;--line:#d8ded2;--soft:#edf0e7;--gold:#8b6234;--serif:Fraunces,Georgia,serif;--sans:Manrope,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--ease:cubic-bezier(.22,1,.36,1);--page-progress:0;--fan-spread:0px;--fan-lift:0px}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:105px}
+html{scroll-padding-top:105px}
+html.motion-ready{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
 body:has(dialog[open]){overflow:hidden}
 h1,h2,h3,p{margin:0}

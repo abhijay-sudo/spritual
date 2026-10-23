@@ -16,7 +16,7 @@ The first action is **Find your story**. The six bilingual previews connect to a
 | Native scroll through landscapes | At most 16px image movement, slight overscan | Connect illustration to reading; static alternate |
 | Story filter / language / scene / dialog / CTA | Existing finite 380ms filtering, 260ms crossfades, 180–240ms dialogs, 90ms press | Immediate semantics/focus; instant state with reduced motion |
 
-No scroll interception, automatic carousel, cursor follower, particles, new motion dependency or permanent render loop. Scroll frames run only when needed and for visible scenes; visibility changes, reduced motion and page exit cancel work. Transient language layers stay inert and ID-free. Reading itself stays calm. At 700px and below the invitation/reading room stack; the story collection retains its native phone rail through 600px and a two-column tablet layout above it. Essential HTML remains usable without scripts.
+No scroll interception, automatic carousel, cursor follower, particles, new motion dependency or permanent render loop. Scroll frames run only when needed and for visible scenes; visibility changes, reduced motion and page exit cancel work. Transient language layers stay inert and ID-free. Reading itself stays calm. At 700px and below the invitation/reading room stack; the story collection retains its native phone rail through 600px and a two-column tablet layout above it. Essential HTML remains usable without scripts; smooth anchor scrolling activates only with the motion enhancement, leaving the plain HTML journey immediate.
 
 Verification and concept/render comparison: `docs/qa/premium-home-2026-10-23/README.md`. Historical sections below record earlier versions, not current visual-equality requirements.
 
