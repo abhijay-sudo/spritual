@@ -39,6 +39,7 @@ for (const language of ['en', 'hi'] as const) {
     await expect(saved).toHaveCount(1);
     await expect(saved).toHaveAttribute('href', `${prefix}/books/read/a-ring-brings-hope/#${folio}`);
     await saved.click();
+    await expect(page.locator('html')).toHaveClass(/book-enhanced/);
     await expect(page.locator('[data-folio]:visible')).toHaveAttribute('id', folio!);
   });
 }
@@ -70,4 +71,25 @@ test('homepage exposes reading provenance, privacy and public correction guidanc
   await page.locator('.site-footer').getByRole('link', { name: 'Suggest a correction', exact: true }).click();
   await expect(page).toHaveURL(/\/corrections\/$/);
   await expect(page.locator('main')).toContainText('your report will be public');
+});
+
+
+test('source access survives an early click before the reader module is ready', async ({page}) => {
+  let release!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  await page.route('**/books/book.js', async route => {
+    await gate;
+    await route.continue().catch(() => {});
+  });
+  try {
+    await page.goto('/books/read/krishna-mountain/', {waitUntil: 'commit'});
+    await page.locator('.source-trigger').click();
+    await expect(page).toHaveURL(/#edition-note$/);
+    await expect(page.locator('#edition-note')).toHaveAttribute('open', '');
+    await expect(page.locator('#edition-note a').first()).toBeVisible();
+    release();
+    await expect(page.locator('html')).toHaveClass(/book-enhanced/);
+    await expect(page.locator('#edition-note')).toHaveAttribute('open', '');
+    await expect(page.locator('[data-folio]:visible')).toHaveCount(1);
+  } finally { release(); }
 });

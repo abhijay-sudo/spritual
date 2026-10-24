@@ -38,6 +38,10 @@ document.querySelectorAll('[data-page-theme]').forEach(b=>b.addEventListener('cl
 const search=document.querySelector('#book-search'),entries=[...document.querySelectorAll('[data-book-entry]')];
 function filter(){const q=search.value.trim().normalize('NFKC').toLocaleLowerCase();let count=0;for(const entry of entries){entry.hidden=!entry.dataset.search.normalize('NFKC').toLocaleLowerCase().includes(q);if(!entry.hidden)count++;}document.querySelector('[data-results-count]').textContent=hi?`${count} कथाएँ`:`${count} ${document.body.dataset.sourceIndex?'sections':'stories'}`;document.querySelector('[data-search-empty]').hidden=count>0;}
 search?.addEventListener('input',filter);document.querySelector('[data-search-clear]')?.addEventListener('click',()=>{search.value='';filter();search.focus();});if(search)filter();
+// Native sources stay readable before this module loads. Preserve a source link
+// followed during loading; otherwise fold the notes once enhancement is ready.
+const editionNote=document.querySelector('#edition-note');
+if(editionNote)editionNote.open=location.hash==='#edition-note';
 for(const a of document.querySelectorAll('.source-trigger'))a.addEventListener('click',()=>{document.querySelector('#edition-note').open=true;});
 reduce.addEventListener('change',()=>animation?.cancel());document.addEventListener('visibilitychange',()=>{if(document.hidden)animation?.cancel();});
 addEventListener('storage',event=>{if(event.key===KEY||event.key===null){renderShelf();updateKept();}});

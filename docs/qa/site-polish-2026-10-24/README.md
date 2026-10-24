@@ -57,3 +57,10 @@ One cold local run before and after, installed Chrome, 390×844 at DPR2, 100ms a
 This constrained run bypassed the optional opening after its deadline and kept reading usable. Normal local visits played the complete opening. The measured painting time improved by about 75%; real visitor/device results remain unmeasured. Raw data: `before.json`, `after.json`, `motion-sample.json`.
 
 No user conversion study, physical-phone Safari test, accessibility certification or subscription-revenue result is claimed. App/store links and paid subscriptions remain unavailable; no fabricated checkout is shown.
+
+
+### Live-check correction
+
+The first public-site check found an early-click race: the native source link could be followed before the book module loaded, leaving its details collapsed. Source notes now render open without JavaScript; enhancement folds them only when the source fragment was not requested. A delayed-module regression verifies source links remain visible before and after initialization. The saved-page browser assertion now waits for `book-enhanced` before checking exactly one visible restored folio; native fallback intentionally displays every folio. The exact saved-folio check is retained.
+
+After correction: both public/preview builds and 80 Node/output tests passed; 27 focused local book/trust/image cases passed. One deadline-abandonment assertion in the first public welcome run was timing-sensitive (30/31 passed); a separate timed diagnostic observed all eight requests abandoned by 1.31s, with no late opening. Final live rerun and deployment evidence are recorded separately.
