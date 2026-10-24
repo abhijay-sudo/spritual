@@ -2,7 +2,7 @@
 .rk-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px max(20px,calc((100vw - 850px)/2)); border-bottom: 1px solid #d8d3c5; }
 .rk-brand { color: #19382f; font: 450 28px/1 Fraunces,Georgia,serif; text-decoration: none; }
 .rk-header nav { display: flex; flex-wrap: wrap; gap: 3px 17px; }
-.rk-header nav a { min-height: 40px; display: inline-flex; align-items: center; color: #254c3d; font-size: 13px; font-weight: 700; }
+.rk-header nav a { min-height: 44px; display: inline-flex; align-items: center; color: #254c3d; font-size: 13px; font-weight: 700; }
 .rk-status,.rk-empty { padding: 22px 0; color: #53685d; line-height: 1.55; }
 .rk-error { padding: 18px; border: 1px solid #aa735b; background: #f8eee5; color: #4b2b20; }
 .rk-error button { min-height: 44px; border: 1px solid currentColor; background: transparent; padding: 8px 15px; color: inherit; }

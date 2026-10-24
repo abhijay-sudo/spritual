@@ -1,0 +1,478 @@
+{
+  "cspApplied": true,
+  "errors": [],
+  "failed": [],
+  "externalRequests": [],
+  "scans": [
+    {
+      "name": "mobile-home",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".sample-notebook > .micro-label"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #798575, background color: #fbf9f1, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".section-heading > div > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #657d76, background color: #faf7f2, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".section-heading > div > .eyebrow > .section-number"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #b19575, background color: #faf7f2, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "#journey-title > em"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.46 (foreground color: #9ca28d, background color: #faf7f2, font size: 39.0pt (52px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": [
+                ".section-intro"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #939c95, background color: #faf7f2, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "button[data-story-filter=\"all\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.51 (foreground color: #6f8376, background color: #eef0e6, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "button[data-story-filter=\"ramayana\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #657d76, background color: #faf7f2, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "button[data-story-filter=\"bhagavata\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #657d76, background color: #faf7f2, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "#collection-count"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #959f8d, background color: #faf7f2, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "button[data-open-story=\"rama-bow\"] > .story-copy > .story-tradition"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.54 (foreground color: #96a08d, background color: #faf7f2, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "button[data-open-story=\"rama-bow\"] > .story-copy > .story-teaser"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.65 (foreground color: #909d8d, background color: #faf7f2, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "button[data-open-story=\"rama-bow\"] > .story-copy > .story-read-link"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.22 (foreground color: #7d8f7d, background color: #faf7f2, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".edition-name > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #8c9a86, background color: #faf7f2, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".edition-name > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.64 (foreground color: #939c95, background color: #faf7f2, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".edition-offer > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.68 (foreground color: #919c88, background color: #faf7f2, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".text-button"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #657d76, background color: #faf7f2, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "li:nth-child(1) > .chapter-number"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.38 (foreground color: #9fa58d, background color: #faf7f2, font size: 21.8pt (29px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": [
+                "li:nth-child(1) > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #657d76, background color: #faf7f2, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "li:nth-child(1) > .free-label"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.65 (foreground color: #8e9e89, background color: #faf7f2, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "li:nth-child(2) > .chapter-number"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.38 (foreground color: #9fa58d, background color: #faf7f2, font size: 21.8pt (29px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": [
+                "li:nth-child(2) > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #657d76, background color: #faf7f2, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "li:nth-child(2) > .free-label"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.65 (foreground color: #8e9e89, background color: #faf7f2, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "li:nth-child(3) > .chapter-number"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.38 (foreground color: #9fa58d, background color: #faf7f2, font size: 21.8pt (29px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": [
+                "li:nth-child(3) > span:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #657d76, background color: #faf7f2, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "li:nth-child(3) > .free-label"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.65 (foreground color: #8e9e89, background color: #faf7f2, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".experience-heading > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.01 (foreground color: #839a85, background color: #163c32, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".experience-heading > .eyebrow > .section-number"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.6 (foreground color: #938d63, background color: #163c32, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".experience-heading > p:nth-child(3)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.2 (foreground color: #899d8b, background color: #163c32, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "#tab-read > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.95 (foreground color: #496457, background color: #aab2a2, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".reader-text > p:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.61 (foreground color: #5c7166, background color: #afbab2, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".reader-text > p:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.61 (foreground color: #5c7166, background color: #afbab2, font size: 13.5pt (18px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".reader-source"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.68 (foreground color: #848f84, background color: #afbab2, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "p[data-release-closing=\"\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.55 (foreground color: #939e87, background color: #f8f4eb, font size: 5.3pt (7px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "#launch-title > em"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.43 (foreground color: #9ba18a, background color: #f8f4eb, font size: 57.8pt (77px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": [
+                ".launch-content > p:nth-child(4)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #939d89, background color: #f8f4eb, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".launch-content > .button.button-primary[data-launch=\"\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.87 (foreground color: #cad1c9, background color: #657c74, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".launch-availability"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.61 (foreground color: #919c86, background color: #f8f4eb, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    {
+      "name": "mobile-story-en",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                "#story-dialog-series"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.32 (foreground color: #d9dbd1, background color: #fbf8f3, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "button[data-story-language=\"en\"]"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.46 (foreground color: #cbd1cb, background color: #fbf8f3, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "#story-dialog-kicker"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.3 (foreground color: #dcdcd1, background color: #fbf8f3, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "#story-dialog-title"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.46 (foreground color: #cbd1cb, background color: #fbf8f3, font size: 26.3pt (35px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": [
+                "#story-prose > p:nth-child(1)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.41 (foreground color: #d0d4cc, background color: #fbf8f3, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "#story-prose > p:nth-child(2)"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.41 (foreground color: #d0d4cc, background color: #fbf8f3, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "#story-dialog-position"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.29 (foreground color: #dadbd2, background color: #f9f6f0, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".story-dialog-download"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.46 (foreground color: #fbf8f3, background color: #cbd1cb, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    {
+      "name": "mobile-story-hi",
+      "violations": [],
+      "incomplete": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    {
+      "name": "mobile-scenes",
+      "violations": [
+        {
+          "id": "aria-prohibited-attr",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".scene-dots"
+              ],
+              "summary": "Fix all of the following:\n  aria-label attribute cannot be used on a div with no valid role attribute."
+            }
+          ]
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".sample-notebook > .micro-label"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #798575, background color: #fbf9f1, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".scene-caption > h3"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.12 (foreground color: #698079, background color: #fffcf5, font size: 17.3pt (23px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".scene-caption > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.72 (foreground color: #939e90, background color: #fffcf5, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    {
+      "name": "mobile-notebook",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".sample-notebook > .micro-label"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #798575, background color: #fbf9f1, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".notebook-quote"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.82 (foreground color: #698079, background color: #f8f3e7, font size: 17.3pt (23px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".notebook-reflection"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.41 (foreground color: #9fa088, background color: #f8f3e7, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".notebook-foot"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.57 (foreground color: #9aa293, background color: #fffcf5, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    {
+      "name": "mobile-availability",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".sample-notebook > .micro-label"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.67 (foreground color: #798575, background color: #fbf9f1, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                "#tab-scenes > span"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #bac6b0, background color: #3e5c51, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".notebook-reflection"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6f7252, background color: #f4eee0, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    },
+    {
+      "name": "desktop-home",
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": [
+            {
+              "target": [
+                ".edition-name > .eyebrow"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.03 (foreground color: #a9b3a3, background color: #faf7f2, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".edition-name > h3"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.65 (foreground color: #8d9d97, background color: #faf7f2, font size: 28.5pt (38px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            {
+              "target": [
+                ".edition-name > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.96 (foreground color: #aeb5ae, background color: #faf7f2, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".edition-offer > p"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.99 (foreground color: #adb4a4, background color: #faf7f2, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": [
+                ".text-button"
+              ],
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 2.65 (foreground color: #8d9d97, background color: #faf7f2, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        "aria-prohibited-attr",
+        "color-contrast"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+[
+  {
+    "name": "settled-mobile-home",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              ".sample-notebook > .micro-label"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.77 (foreground color: #778372, background color: #fbf9f1, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".reader-source"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.48 (foreground color: #6e786c, background color: #fffcf5, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      "aria-prohibited-attr",
+      "color-contrast"
+    ]
+  },
+  {
+    "name": "settled-story-en",
+    "violations": [],
+    "incomplete": [
+      "aria-prohibited-attr",
+      "color-contrast"
+    ]
+  },
+  {
+    "name": "settled-story-hi",
+    "violations": [],
+    "incomplete": [
+      "aria-prohibited-attr",
+      "color-contrast"
+    ]
+  },
+  {
+    "name": "settled-notebook",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              ".sample-notebook > .micro-label"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.77 (foreground color: #778372, background color: #fbf9f1, font size: 6.0pt (8px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      "aria-prohibited-attr",
+      "color-contrast"
+    ]
+  },
+  {
+    "name": "settled-availability",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              ".platform:nth-child(1) > div > span"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.44 (foreground color: #62745c, background color: #eff2e8, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "target": [
+              ".platform:nth-child(2) > div > span"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.44 (foreground color: #62745c, background color: #eff2e8, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "name": "settled-desktop",
+    "violations": [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "nodes": [
+          {
+            "target": [
+              ".sample-note > .micro-label"
+            ],
+            "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.98 (foreground color: #6e7451, background color: #f0e7d3, font size: 4.5pt (6px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ],
+    "incomplete": [
+      "aria-prohibited-attr",
+      "color-contrast"
+    ]
+  }
+]
