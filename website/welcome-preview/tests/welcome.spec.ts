@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
 declare global { interface Window { welcomeStates: string[]; } }
-const evidence='docs/qa/welcome-portraits-2026-10-24';
+const evidence='docs/qa/welcome-every-visit-2026-10-24';
 test('complete opening visits all four figures, welcomes, reveals and reaches a real book',async({page})=>{
   await page.setViewportSize({width:1440,height:900});
   await mkdir(evidence,{recursive:true});
@@ -32,12 +32,13 @@ test('complete opening visits all four figures, welcomes, reveals and reaches a 
   await expect(page.locator('[data-folio]:visible')).toHaveCount(1);
   expect(errors).toEqual([]);
 });
-test('skip is immediate, keyboard safe, cancels work and does not replay on refresh',async({page})=>{
+test('skip is immediate and keyboard safe while every homepage refresh plays again',async({page})=>{
   await page.goto('/');await expect(page.locator('#welcome-intro')).toBeVisible();
   await page.keyboard.press('Enter');
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
   await expect(page.locator('.hero-actions a').first()).toBeFocused();
-  await page.reload();await expect(page.locator('#welcome-intro')).not.toBeVisible();
+  await page.reload();await expect(page.locator('#welcome-intro')).toBeVisible();
+  await page.keyboard.press('Enter');await expect(page.locator('#welcome-intro')).not.toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.classList.contains('welcome-playing'))).toBe(false);
   await page.getByRole('button',{name:'Replay welcome'}).click();
   await expect(page.locator('#welcome-intro')).toBeVisible();
@@ -64,12 +65,50 @@ test('scroll intent dismisses the opening and native scrolling remains available
   await page.waitForTimeout(1100);
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
-test('deep links and history return bypass the opening',async({page})=>{
+test('deep links and anchored history returns preserve immediate access',async({page})=>{
   await page.goto('/#journey');await expect(page.locator('#journey')).toBeInViewport();await expect(page.locator('#welcome-intro')).not.toBeVisible();
   await page.getByRole('link',{name:'Open the bookshelf',exact:true}).click();await page.goBack();
   await expect(page.locator('#welcome-intro')).not.toBeVisible();await expect(page).toHaveURL(/#journey$/);
   await page.goto('/?world=epic');await expect(page).toHaveURL(/\/reading-room\/\?world=epic/);
   await expect(page.locator('#welcome-intro')).toHaveCount(0);
+});
+test('every direct homepage visit plays even when a previous session marker exists',async({page})=>{
+  await page.addInitScript(()=>sessionStorage.setItem('spritual_welcome_seen_v1','1'));
+  for(let visit=0;visit<3;visit++){
+    await page.goto('/');await expect(page.locator('#welcome-intro')).toBeVisible();
+    await page.getByRole('button',{name:'Enter Spritual'}).click();
+    await expect(page.locator('#welcome-intro')).not.toBeVisible();
+    await page.goto('/books/');await expect(page.locator('#welcome-intro')).toHaveCount(0);
+  }
+});
+test('unanchored homepage visits through Back and Forward play again',async({page})=>{
+  await page.goto('/books/');
+  await page.goto('/');await expect(page.locator('#welcome-intro')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await page.goBack();await expect(page).toHaveURL(/\/books\/$/);
+  await page.goForward();await expect(page).toHaveURL(/\/$/);
+  await expect(page.locator('#welcome-intro')).toBeVisible();await page.keyboard.press('Escape');
+  await page.goto('/books/');await page.goBack();
+  await expect(page.locator('#welcome-intro')).toBeVisible();await page.keyboard.press('Enter');
+  await expect(page.locator('.hero-actions a').first()).toBeFocused();
+});
+test('persisted pageshow restarts an eligible restored homepage while keeping bypasses',async({page})=>{
+  await page.goto('/');await expect(page.locator('#welcome-intro')).toBeVisible();
+  await page.keyboard.press('Escape');
+  // Exercise the browser-cache restoration event explicitly; this does not claim actual BFCache eligibility.
+  await page.evaluate(()=>dispatchEvent(new PageTransitionEvent('pageshow',{persisted:false})));
+  await expect(page.locator('#welcome-intro')).not.toBeVisible();
+  for(let restore=0;restore<2;restore++){
+    await page.evaluate(()=>dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));
+    await expect(page.locator('#welcome-intro')).toBeVisible();
+    await page.keyboard.press('Escape');await expect(page.locator('#welcome-intro')).not.toBeVisible();
+  }
+  await page.goto('/#journey');
+  await page.evaluate(()=>dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));
+  await expect(page.locator('#welcome-intro')).not.toBeVisible();await expect(page.locator('#journey')).toBeInViewport();
+  await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');
+  await page.evaluate(()=>dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));
+  await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
 test('reduced motion bypasses automatically and explicit replay is static',async({page})=>{
   await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/?intro=replay');
@@ -87,9 +126,15 @@ test('changing motion preference and hiding the page terminate the cinematic seq
   await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'));});
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
-test('denied session storage fails open without changing book storage',async({page})=>{
-  await page.addInitScript(()=>{localStorage.setItem('spritual_book_places_v1','preserve-me');Storage.prototype.setItem=function(){throw Error('Denied');};});
-  await page.goto('/');await expect(page.locator('#welcome-intro')).not.toBeVisible();
+test('denied session storage does not prevent playback or change book storage',async({page})=>{
+  await page.addInitScript(()=>{
+    localStorage.setItem('spritual_book_places_v1','preserve-me');
+    Object.defineProperty(window,'sessionStorage',{configurable:true,get(){throw new Error('Denied');}});
+  });
+  await page.goto('/');await expect(page.locator('#welcome-intro')).toBeVisible();
+  await page.keyboard.press('Enter');await expect(page.locator('#welcome-intro')).not.toBeVisible();
+  expect(await page.evaluate(()=>localStorage.getItem('spritual_book_places_v1'))).toBe('preserve-me');
+  await page.reload();await expect(page.locator('#welcome-intro')).toBeVisible();await page.keyboard.press('Escape');
   expect(await page.evaluate(()=>localStorage.getItem('spritual_book_places_v1'))).toBe('preserve-me');
   await page.getByRole('link',{name:'Find your story',exact:true}).click();await expect(page).toHaveURL(/#journey$/);
 });
@@ -106,12 +151,13 @@ test('slow artwork cannot interrupt someone after they start using the page',asy
   await page.waitForTimeout(2000);
   await expect(page).toHaveURL(/#journey$/);await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
-test('missing intro script and unknown prior session markers bypass the opening',async({page})=>{
+test('missing script fails open but a stale seen marker cannot suppress restored playback',async({page})=>{
   await page.route('**/welcome/welcome.js',route=>route.abort());await page.goto('/');
   await expect(page.locator('#welcome-intro')).not.toBeVisible();await expect(page.locator('[data-replay-welcome]')).not.toBeVisible();
   await page.unroute('**/welcome/welcome.js');
   await page.evaluate(()=>sessionStorage.setItem('spritual_welcome_seen_v1','unrecognised-old-value'));
-  await page.reload();await expect(page.locator('#welcome-intro')).not.toBeVisible();
+  await page.reload();await expect(page.locator('#welcome-intro')).toBeVisible();
+  await page.keyboard.press('Escape');await expect(page.locator('#welcome-intro')).not.toBeVisible();
   await expect(page.locator('[data-replay-welcome]')).toBeVisible();
 });
 test('pending autoplay yields when a visitor opens another dialog before art is ready',async({page})=>{
@@ -120,13 +166,14 @@ test('pending autoplay yields when a visitor opens another dialog before art is 
   await page.locator('.header-cta').click();await expect(page.locator('#launch-dialog')).toBeVisible();
   await page.waitForTimeout(1000);await expect(page.locator('#welcome-intro')).not.toBeVisible();await expect(page.locator('#launch-dialog')).toBeVisible();
 });
-test('replay retries failed media and records the session after a deep-link visit',async({page})=>{
+test('replay retries failed media and a subsequent homepage visit still plays',async({page})=>{
   await page.route('**/welcome/portraits/*.webp',route=>route.abort());await page.goto('/#journey');
   await page.getByRole('button',{name:'Replay welcome'}).click();await page.waitForTimeout(200);
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
   await page.unroute('**/welcome/portraits/*.webp');await page.getByRole('button',{name:'Replay welcome'}).click();
   await expect(page.locator('#welcome-intro')).toBeVisible();await page.keyboard.press('Escape');
-  await page.goto('/');await expect(page.locator('#welcome-intro')).not.toBeVisible();
+  await page.goto('/');await expect(page.locator('#welcome-intro')).toBeVisible();
+  await page.keyboard.press('Escape');await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
 test.describe('plain HTML',()=>{
   test.use({javaScriptEnabled:false});
@@ -145,20 +192,21 @@ for(const width of [320,390,768,1440])test(`opening and welcome fit ${width}px w
   await expect(page.locator('#welcome-intro')).toHaveAttribute('data-state','rama');
   expect(await page.locator('#welcome-intro').boundingBox()).toEqual({x:0,y:0,width,height:width===1440?900:844});
   await page.clock.runFor(250);
-  // These are settled composition captures. The unpaused journey above exercises real timing.
-  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.finish();}));
+  // Sample the shared animation timeline without finishing future scenes or the final exit.
+  // The unpaused journey above exercises actual playback rather than these composition captures.
+  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=250;}));
   expect(await page.locator('#welcome-intro').evaluate(e=>e.scrollWidth<=innerWidth)).toBe(true);
   await page.screenshot({path:`${evidence}/rama-${width}.png`});
   await page.clock.runFor(2450);
   await expect(page.locator('#welcome-intro')).toHaveAttribute('data-state','welcome');
-  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.finish();}));
+  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=2700;}));
   await page.screenshot({path:`${evidence}/welcome-${width}.png`});
   await expect(page.getByRole('button',{name:'Enter Spritual'})).toBeInViewport();
   await page.getByRole('button',{name:'Enter Spritual'}).click();
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
 test('phone touch skip opens the Hindi story journey and supports short landscape',async({browser})=>{
-  const context=await browser.newContext({baseURL:process.env.WEBSITE_URL||`http://127.0.0.1:${process.env.WELCOME_PUBLIC?'4190':'4194'}`,viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'no-preference',recordVideo:{dir:'artifacts/welcome-portraits-2026-10-24/video',size:{width:390,height:844}}});
+  const context=await browser.newContext({baseURL:process.env.WEBSITE_URL||`http://127.0.0.1:${process.env.WELCOME_PUBLIC?'4190':'4194'}`,viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'no-preference',recordVideo:{dir:'artifacts/welcome-every-visit-2026-10-24/video',size:{width:390,height:844}}});
   const page=await context.newPage();
   await page.goto('/?intro=replay');await expect(page.locator('#welcome-intro')).toBeVisible();
   await expect(page.locator('#welcome-intro')).not.toBeVisible({timeout:8000});
@@ -210,8 +258,55 @@ test('4K desktop canvas keeps bounded full portraits without enlarging their sou
   const geometry=await page.locator('[data-welcome-art]').first().evaluate(image=>({natural:(image as HTMLImageElement).naturalHeight,rendered:image.getBoundingClientRect().height}));
   expect(geometry.natural).toBeGreaterThanOrEqual(geometry.rendered);
   await page.clock.runFor(320);
-  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>a.finish()));
+  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=320;}));
   await page.screenshot({path:`${evidence}/rama-3840.png`});
   await page.getByRole('button',{name:'Enter Spritual'}).click();
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
+});
+
+test('all motion shares a browser timeline and survives a stalled main thread without restarting',async({page})=>{
+  await page.goto('/');
+  await expect(page.locator('#welcome-intro')).toBeVisible();
+  const evidence=await page.locator('#welcome-intro').evaluate(async dialog=>{
+    await new Promise(requestAnimationFrame);
+    const effects=dialog.getAnimations({subtree:true});
+    const origins=effects.map(animation=>animation.startTime);
+    const before=effects.map(animation=>animation.currentTime as number);
+    const end=performance.now()+700;
+    while(performance.now()<end){ /* Deliberate test-only main-thread stall. */ }
+    await new Promise(requestAnimationFrame);
+    const after=effects.map(animation=>animation.currentTime as number);
+    const visible=Array.from(dialog.querySelectorAll('.welcome-figure')).filter(figure=>Number(getComputedStyle(figure).opacity)>.05).length;
+    const keys=effects.flatMap(animation=>(animation.effect as KeyframeEffect).getKeyframes().flatMap(frame=>Object.keys(frame))).filter(key=>!['offset','computedOffset','easing','composite'].includes(key));
+    const elapsed=(document.timeline.currentTime as number)-(origins[0] as number);
+    const ends=effects.map(animation=>Number(animation.effect!.getComputedTiming().endTime));
+    return {origins,before,after,elapsed,ends,visible,count:effects.length,sameEffects:effects.every(effect=>dialog.getAnimations({subtree:true}).includes(effect)),keys:[...new Set(keys)]};
+  });
+  expect(evidence.count).toBe(15);
+  expect(new Set(evidence.origins).size).toBe(1);
+  expect(evidence.origins[0]).not.toBeNull();
+  expect(evidence.sameEffects).toBe(true);
+  expect(evidence.visible).toBeLessThanOrEqual(1);
+  expect(evidence.keys.sort()).toEqual(['opacity','transform']);
+  expect(evidence.elapsed-evidence.before[0]).toBeGreaterThanOrEqual(650);
+  evidence.after.forEach((time,i)=>{
+    // Finished effects correctly clamp at their end time; future effects keep the shared clock.
+    expect(Math.abs(time-Math.min(evidence.elapsed,evidence.ends[i]))).toBeLessThan(2);
+  });
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#welcome-intro')).not.toBeVisible();
+});
+
+test('a queued old close event cannot cancel a newly restored welcome',async({page})=>{
+  await page.goto('/');await expect(page.locator('#welcome-intro')).toBeVisible();
+  await page.evaluate(()=>{
+    dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true}));
+    dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true}));
+  });
+  await page.waitForTimeout(100);
+  const intro=page.locator('#welcome-intro');
+  await expect(intro).toBeVisible();
+  expect(await intro.evaluate(dialog=>dialog.getAnimations({subtree:true}).length)).toBe(15);
+  await expect(intro).not.toBeVisible({timeout:4500});
+  await expect(page.locator('.hero-actions a').first()).toBeFocused();
 });

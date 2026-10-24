@@ -8,7 +8,7 @@ The old 2172×724 sheet allocated about 543×724 pixels to each figure. Each new
 
 Responsive WebP delivery uses heights 840, 1280 and 1672, encoded at quality 88 with full-quality alpha. Source masters remain outside deployed output. All four selected 840px assets total 457,930 bytes; 1280px total 933,800; 1672px total 1,420,744. Phones download one suitable variant per figure, not every variant. The rendered image is capped at 800 CSS pixels high on large displays; high-density phones select the full 1672px source. The actual artwork remains below native 4K regardless of the display resolution.
 
-A single 900ms readiness deadline covers all four selected assets. If any fails or arrives late, the site remains immediately usable. Replay retries; no later blank deity frame substitutes for a failed asset. Returning visits and reduced motion do not download portraits merely to play an automatic opening.
+A single 900ms readiness deadline covers all four selected assets. If any fails or arrives late, the site remains immediately usable. Replay retries; no later blank deity frame substitutes for a failed asset. Every eligible homepage visit now replays the opening using browser-cached assets when available. Reduced-motion visits do not load the portraits for automatic playback.
 
 ## Prompt set and tools
 

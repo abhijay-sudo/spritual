@@ -4,26 +4,27 @@
   const replay=document.querySelector('[data-replay-welcome]');
   if(!dialog||!replay)return;
   if(!dialog.showModal||!Element.prototype.animate)return;
-  const key='spritual_welcome_seen_v1';
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const figures=[...dialog.querySelectorAll('.welcome-figure')];
   const title=dialog.querySelector('.welcome-title');
   const light=dialog.querySelector('.welcome-light');
   const skip=dialog.querySelector('.welcome-skip');
   const timers=new Set(),animations=new Set();
-  let generation=0,returnFocus=null,assetReady=null,pendingAuto=null;
+  let generation=0,returnFocus=null,assetReady=null,pendingAuto=null,choreographyOrigin=null;
   const easing='cubic-bezier(.22,1,.36,1)';
   // A finite 3.4s signature. Each figure arrives, settles, then gives way cleanly.
   const timing={beat:560,leave:100,gap:20,arrive:220,welcome:2360,reveal:3100,exit:300,watchdog:4400};
   const animate=(element,frames,options={})=>{
-    const animation=element.animate(frames,{duration:400,easing,fill:'forwards',...options});
+    const animation=element.animate(frames,{duration:400,easing,fill:'both',...options});
+    // One compositor timeline: delayed stages do not depend on the next JS timer firing on time.
+    if(choreographyOrigin!==null)animation.startTime=choreographyOrigin;
     animations.add(animation);
     animation.finished.catch(()=>{}).finally(()=>animations.delete(animation));
     return animation;
   };
   function later(callback,ms){const id=setTimeout(()=>{timers.delete(id);callback();},ms);timers.add(id);}
   function cancelWork(){
-    generation++;
+    generation++;choreographyOrigin=null;
     pendingAuto?.abort();pendingAuto=null;
     timers.forEach(clearTimeout);timers.clear();
     dialog.getAnimations({subtree:true}).forEach(a=>a.cancel());
@@ -39,7 +40,11 @@
     cancelWork();
     if(dialog.open){dialog.dataset.state='complete';dialog.close(reason);restoreFocus();}
   }
-  dialog.addEventListener('close',()=>{cancelWork();dialog.dataset.state='complete';restoreFocus();});
+  dialog.addEventListener('close',()=>{
+    // Native close events are queued. A restored/reopened dialog belongs to a newer visit.
+    if(dialog.open)return;
+    cancelWork();dialog.dataset.state='complete';restoreFocus();
+  });
   dialog.addEventListener('cancel',event=>{event.preventDefault();finish();});
   // A deliberate scroll or swipe means the visitor is ready to explore.
   // Release the native modal without swallowing the gesture or simulating scrolling.
@@ -104,47 +109,43 @@
     if(!ready||ticket!==generation||document.hidden||document.querySelector('dialog[open]')||(!manual&&location.hash))return;
     resetVisuals();
     dialog.showModal();skip.focus({preventScroll:true});
-    try{sessionStorage.setItem(key,'1');}catch{/* Explicit replay still works when browser storage is denied. */}
     document.documentElement.classList.add('welcome-playing');
     if(reduced.matches){
       dialog.dataset.state='welcome';title.style.opacity='1';
       return;
     }
+    choreographyOrigin=document.timeline.currentTime;
     if(light)animate(light,[{opacity:0,transform:'translateX(-12%)'},{opacity:.85,offset:.35},{opacity:.35,transform:'translateX(12%)'}],{duration:timing.reveal,easing:'ease-in-out'});
-    function hideFigure(figure){
-      figure.getAnimations({subtree:true}).forEach(animation=>animation.cancel());
-      figure.style.opacity='0';
-    }
-    function enterFigure(figure,first=false){
-      // A busy main thread may deliver adjacent timers together. Never stack old depictions.
-      figures.filter(other=>other!==figure).forEach(hideFigure);
-      dialog.dataset.state=figure.dataset.deity;
-      animate(figure,[{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'translateY(0)'}],{duration:first?260:timing.arrive});
+    figures.forEach((figure,index)=>{
+      const at=index===0?0:index*timing.beat+timing.leave+timing.gap;
+      const leaveAt=(index+1)*timing.beat;
+      const duration=leaveAt+timing.leave-at;
+      const arrive=index===0?260:timing.arrive;
+      animate(figure,[
+        {opacity:0,transform:'translateY(14px)',offset:0,easing},
+        {opacity:1,transform:'translateY(0)',offset:arrive/duration,easing:'linear'},
+        {opacity:1,transform:'translateY(0)',offset:(leaveAt-at)/duration,easing:'ease-in-out'},
+        {opacity:0,transform:'translateY(-3px)',offset:1}
+      ],{delay:at,duration,easing:'linear'});
       const cutout=figure.querySelector('.welcome-cutout');
-      if(cutout)animate(cutout,[{transform:'translateY(4px) scale(1)'},{transform:'translateY(-3px) scale(1.025)'}],{duration:timing.beat+timing.leave,easing:'cubic-bezier(.2,.7,.3,1)'});
+      if(cutout)animate(cutout,[{transform:'translateY(4px) scale(1)'},{transform:'translateY(-3px) scale(1.025)'}],{delay:at,duration,easing:'cubic-bezier(.2,.7,.3,1)'});
       const caption=figure.querySelector('figcaption');
-      if(caption)animate(caption,[{opacity:0,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{delay:65,duration:220});
-    }
-    function leaveFigure(figure){
-      animate(figure,[{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-3px)'}],{duration:timing.leave,easing:'ease-in'});
-    }
-    enterFigure(figures[0],true);
-    figures.slice(1).forEach((figure,index)=>{
-      const at=(index+1)*timing.beat;
-      later(()=>leaveFigure(figures[index]),at);
-      later(()=>enterFigure(figure),at+timing.leave+timing.gap);
+      if(caption)animate(caption,[{opacity:0,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{delay:at+65,duration:220});
+      // State labels are observational; painting and movement use the shared animation clock.
+      if(index===0)dialog.dataset.state=figure.dataset.deity;
+      else later(()=>{dialog.dataset.state=figure.dataset.deity;},at);
     });
-    later(()=>leaveFigure(figures[3]),4*timing.beat);
-    later(()=>{
-      figures.forEach(hideFigure);
-      dialog.dataset.state='welcome';
-      animate(title,[{opacity:0,transform:'translateY(16px) scale(.96)'},{opacity:1,transform:'translateY(-1px) scale(1.005)',offset:.8},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:400});
-    },timing.welcome);
-    later(()=>{
-      dialog.dataset.state='revealing';
-      animate(dialog,[{opacity:1},{opacity:0}],{duration:timing.exit,easing:'ease-in-out'});
-      later(()=>finish('complete'),timing.exit);
-    },timing.reveal);
+    animate(title,[{opacity:0,transform:'translateY(16px) scale(.96)'},{opacity:1,transform:'translateY(-1px) scale(1.005)',offset:.8},{opacity:1,transform:'translateY(0) scale(1)'}],{delay:timing.welcome,duration:400});
+    const total=timing.reveal+timing.exit;
+    animate(dialog,[
+      {opacity:0,offset:0,easing:'ease-out'},
+      {opacity:1,offset:120/total,easing:'linear'},
+      {opacity:1,offset:timing.reveal/total,easing:'ease-in-out'},
+      {opacity:0,offset:1}
+    ],{duration:total,easing:'linear'});
+    later(()=>{dialog.dataset.state='welcome';},timing.welcome);
+    later(()=>{dialog.dataset.state='revealing';},timing.reveal);
+    later(()=>finish('complete'),timing.reveal+timing.exit);
     later(()=>finish('timeout'),timing.watchdog);
   }
   replay.hidden=false;
@@ -153,14 +154,12 @@
   document.addEventListener('visibilitychange',()=>{if(document.hidden)finish('hidden');});
   addEventListener('pagehide',()=>finish('navigation'));
   addEventListener('hashchange',()=>finish('navigation'));
-  const params=new URLSearchParams(location.search);
-  const isReplay=params.get('intro')==='replay';
-  const directLink=location.hash||[...params.keys()].some(k=>k!=='intro');
-  const isReturn=performance.getEntriesByType('navigation')[0]?.type==='back_forward';
-  if(directLink||isReturn||reduced.matches)return;
-  if(!isReplay){
-    try{if(sessionStorage.getItem(key)!==null)return;sessionStorage.setItem(key,'1');}
-    catch{return;}
+  function automaticVisit(){
+    // Every homepage navigation is eligible, including refresh and history restoration.
+    // A section link still takes the visitor directly to their intended destination.
+    if(location.hash||reduced.matches)return;
+    start().catch(()=>finish('error'));
   }
-  start().catch(()=>finish('error'));
+  addEventListener('pageshow',event=>{if(event.persisted)automaticVisit();});
+  automaticVisit();
 })();

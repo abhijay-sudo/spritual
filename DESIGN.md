@@ -1,6 +1,12 @@
 # Spritual — active design directions
 
-## Unframed portrait refinement — 24 October 2026 (current)
+## Every-visit welcome motion — 24 October 2026 (current)
+
+Play on every eligible homepage navigation, refresh and unanchored history return. Ignore old seen flags and make no welcome storage reads/writes. Section deep links, reduced motion, early interaction, hidden pages and media failure still leave the intended content accessible; ordinary tab refocus does not restart it. `pageshow.persisted` covers cache restoration, while fresh documents start once.
+
+The accepted portrait composition, logo, copy, fonts and 3.4-second sequence remain. All fifteen native WAAPI effects are scheduled at one document-timeline origin before playback. Figure opacity/position, image drift, captions, passing daylight, welcome and the final fade use transform/opacity only. The opening fades in over 120ms; the final fade remains 300ms. Later timers update observational state labels and close the native dialog; they do not construct or restart visual effects. This keeps scene timing coherent when the main thread is busy. Cancellation clears timers and all effects immediately. Evidence: `docs/qa/welcome-every-visit-2026-10-24/README.md`.
+
+## Unframed portrait refinement — 24 October 2026 (art direction retained)
 
 The owner rejected circular framing and soft art. Remove the arch and curved horizon entirely. Individual forest/gold portraits replace the four-up sprite; do not reintroduce circular crops or a halo. The selected source is a detailed engraved/miniature style with natural anatomy and transparent edges. Keep the original logo, fonts, palette, copy and routes.
 

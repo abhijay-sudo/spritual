@@ -46,13 +46,14 @@ async function harness(options={}) {
   dialog.dataset=new Proxy({}, {set(target,key,value){target[key]=value;if(key==='state')states.push({value,at:now});return true;}});
   dialog.open=false;
   dialog.showModal=()=>{dialog.open=true;};
-  dialog.close=()=>{dialog.open=false;dialog.dispatchEvent(new Event('close'));};
+  dialog.close=()=>{dialog.open=false;const dispatch=()=>dialog.dispatchEvent(new Event('close'));if(options.queuedClose)schedule(dispatch);else dispatch();};
   dialog.getAnimations=()=>allAnimations.filter(a=>!a.canceled);
   dialog.querySelectorAll=selector=>selector==='.welcome-figure'?figures:selector.includes('data-welcome-art')?artwork:[];
   dialog.querySelector=selector=>({'.welcome-title':title,'.welcome-light':light,'.welcome-skip':skip})[selector]??null;
   const rootClasses=new Set();
   const document=new EventTarget();
   document.hidden=false;
+  document.timeline={get currentTime(){return now;}};
   document.documentElement={classList:{add:c=>rootClasses.add(c),remove:c=>rootClasses.delete(c)}};
   document.getElementById=()=>dialog;
   document.querySelector=selector=>selector==='[data-replay-welcome]'?replay:selector==='dialog[open]'?(dialog.open||options.otherDialog?dialog:null):selector==='.hero-actions a'?hero:null;
@@ -60,7 +61,8 @@ async function harness(options={}) {
   const media=new EventTarget();media.matches=options.reduced??false;
   const window=new EventTarget();
   const values=new Map(options.seen?[['spritual_welcome_seen_v1','1']]:[]);
-  const sessionStorage={getItem:key=>values.get(key)??null,setItem(key,value){if(options.storageDenied)throw Error('denied');values.set(key,value);}};
+  const storageAccess=[];
+  const sessionStorage={getItem(key){storageAccess.push('read');if(options.storageDenied)throw Error('denied');return values.get(key)??null;},setItem(key,value){storageAccess.push('write');if(options.storageDenied)throw Error('denied');values.set(key,value);}};
   class Image {
     naturalWidth=720;naturalHeight=1280;src='';srcset='';sizes='';
     get currentSrc(){return this.srcset.split(',').map(candidate=>candidate.trim().split(/\s+/)[0]).filter(Boolean)[1]||this.src;}
@@ -84,7 +86,7 @@ async function harness(options={}) {
     now=end;await flush();
   };
   const stall=async(ms)=>{now+=ms;await advance(0);};
-  return {dialog,replay,title,skip,hero,figures,artwork,decodedImages,states,animations:allAnimations,rootClasses,values,tasks,media,document,window,advance,stall,flush,focused:()=>focused,
+  return {dialog,replay,title,skip,hero,figures,artwork,decodedImages,states,animations:allAnimations,rootClasses,values,storageAccess,tasks,media,document,window,advance,stall,flush,focused:()=>focused,
     resolveAsset:async(deity)=>{for(const [name,resolve] of pendingImages)if(!deity||name===deity){pendingImages.delete(name);resolve();}await flush();},
     enter:async()=>{skip.dispatchEvent(new Event('click'));dialog.close();await flush();},
     replayNow:async()=>{replay.dispatchEvent(new Event('click'));await flush();},
@@ -101,15 +103,23 @@ test('welcome completes in 3.4 seconds, visits four figures in order and restore
   assert(h.animations.every(a=>a.canceled));
 });
 
-test('each outgoing deity disappears before the next enters; welcome holds before reveal',async()=>{
-  const h=await harness();await h.advance(3400);
-  const entries=h.animations.filter(a=>['rama','shiva','krishna','hanuman'].includes(a.element.name)&&a.frames[0].opacity===0);
+test('all stages share one animation clock with separate figures and a settled welcome',async()=>{
+  const h=await harness();
+  const animationsAtStart=h.animations.length;
+  const entries=h.animations.filter(a=>['rama','shiva','krishna','hanuman'].includes(a.element.name));
+  assert.equal(entries.length,4);
   for(let i=1;i<entries.length;i++){
-    const exit=h.animations.find(a=>a.element===entries[i-1].element&&a.frames.at(-1).opacity===0);
-    assert(entries[i].start>=exit.start+exit.config.duration+20);
+    const previous=entries[i-1];
+    assert(entries[i].config.delay>=previous.config.delay+previous.config.duration+20);
   }
+  for(const entry of entries){
+    assert.equal(entry.frames[0].opacity,0);assert.equal(entry.frames.at(-1).opacity,0);
+    assert.equal(entry.config.fill,'both');assert.equal(entry.startTime,0);
+  }
+  assert(h.animations.every(a=>a.startTime===0),'All painting uses the same browser timeline origin');
   const title=h.animations.find(a=>a.element===h.title);
-  assert(3100-title.start-title.config.duration>=300,'The settled welcome must hold before its exit');
+  assert(3100-title.config.delay-title.config.duration>=300,'The settled welcome must hold before its exit');
+  await h.advance(3300);assert.equal(h.animations.length,animationsAtStart,'No late scene timer constructs or resets visual effects');
 });
 
 test('entry works at every phase and removes delayed work immediately',async()=>{
@@ -144,10 +154,31 @@ test('reduced motion bypasses automatically; replay is static and immediately di
   await h.enter();assert.equal(h.dialog.open,false);
 });
 
-test('return visits, deep links, denied storage and missing artwork all fail open',async()=>{
-  for(const options of [{seen:true},{hash:'#journey'},{search:'?world=epic'},{navigation:'back_forward'},{storageDenied:true},{assetFailure:true}]){
-    const h=await harness(options);await h.advance(6000);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
+test('each homepage visit plays regardless of previous session, storage denial or navigation type',async()=>{
+  for(const options of [{seen:true},{search:'?utm_source=invitation'},{navigation:'back_forward'},{storageDenied:true}]){
+    const h=await harness(options);assert.equal(h.dialog.open,true);
+    assert.deepEqual(h.storageAccess,[],'Welcome must neither read nor write browser storage');
+    await h.advance(3400);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
   }
+});
+
+test('section links and missing artwork still leave the intended content immediately usable',async()=>{
+  for(const options of [{hash:'#journey'},{assetFailure:true}]){
+    const h=await harness(options);assert.equal(h.dialog.open,false);
+    await h.advance(6000);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
+  }
+});
+
+test('a restored homepage gets a fresh timeline once, without replay on ordinary tab focus',async()=>{
+  const h=await harness();await h.advance(500);
+  h.window.dispatchEvent(new Event('pagehide'));await h.flush();assert.equal(h.dialog.open,false);
+  await h.advance(10);
+  const restore=new Event('pageshow');Object.assign(restore,{persisted:true});
+  h.window.dispatchEvent(restore);await h.flush();assert.equal(h.dialog.open,true);
+  assert(h.animations.filter(a=>!a.canceled).every(a=>a.startTime===510));
+  const count=h.animations.length;h.window.dispatchEvent(restore);await h.flush();assert.equal(h.animations.length,count);
+  await h.enter();h.document.dispatchEvent(new Event('visibilitychange'));await h.flush();assert.equal(h.dialog.open,false);
+  assert.deepEqual(h.storageAccess,[]);
 });
 
 test('all four responsive portraits decode before opening and their selected sources are displayed',async()=>{
@@ -200,12 +231,24 @@ test('artwork deadline preserves usable content and cannot reopen late',async()=
 });
 
 
-test('a stalled event loop cannot leave stale deity layers over the latest figure',async()=>{
-  const h=await harness();await h.stall(1900);
-  assert.equal(h.dialog.dataset.state,'hanuman');
-  const active=h.animations.filter(a=>!a.canceled&&['rama','shiva','krishna','hanuman'].includes(a.element.name));
+test('a stalled event loop cannot restart expired figures or construct late visual effects',async()=>{
+  const h=await harness();const count=h.animations.length;await h.stall(1900);
+  assert.equal(h.dialog.dataset.state,'hanuman');assert.equal(h.animations.length,count);
+  const figures=h.animations.filter(a=>['rama','shiva','krishna','hanuman'].includes(a.element.name));
+  const active=figures.filter(a=>1900>=a.config.delay&&1900<a.config.delay+a.config.duration);
   assert.equal(active.length,1);assert.equal(active[0].element.name,'hanuman');
   await h.stall(800);assert.equal(h.dialog.dataset.state,'welcome');
-  assert(h.animations.filter(a=>['rama','shiva','krishna','hanuman'].includes(a.element.name)).every(a=>a.canceled));
-  await h.enter();assert.equal(h.tasks.size,0);
+  assert(figures.every(a=>a.config.delay+a.config.duration<2700&&a.frames.at(-1).opacity===0));
+  assert.equal(h.animations.length,count);await h.enter();assert.equal(h.tasks.size,0);
+});
+
+test('a queued prior close cannot tear down a reopened history visit',async()=>{
+  const h=await harness({queuedClose:true});await h.advance(300);
+  h.window.dispatchEvent(new Event('pagehide'));
+  const restore=new Event('pageshow');Object.assign(restore,{persisted:true});
+  h.window.dispatchEvent(restore);await h.flush();assert.equal(h.dialog.open,true);
+  await h.advance(0);
+  assert.equal(h.dialog.dataset.state,'rama');
+  assert.equal(h.animations.filter(a=>!a.canceled).length,15);
+  await h.advance(3400);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
 });
