@@ -7,49 +7,70 @@ import vm from 'node:vm';
 const source=await readFile(new URL('../welcome-preview/welcome.js',import.meta.url),'utf8');
 async function harness(options={}) {
   let now=0,id=0,focused=null;
-  const tasks=new Map(),allAnimations=[],states=[];
+  const tasks=new Map(),allAnimations=[],states=[],decodedImages=[],pendingImages=new Map();
   const schedule=(fn,delay=0)=>{const key=++id;tasks.set(key,{at:now+delay,fn});return key;};
   const clear=key=>tasks.delete(key);
   const flush=async()=>{for(let i=0;i<12;i++)await Promise.resolve();};
   class Element extends EventTarget {
-    constructor(name){super();this.name=name;this.style={};this.dataset={};this.isConnected=true;this.hidden=true;}
+    constructor(name){super();this.name=name;this.style={};this.dataset={};this.isConnected=true;this.hidden=true;this.children=[];}
     focus(){focused=this;}
     querySelector(){return null;}
-    getAnimations(){return allAnimations.filter(a=>a.element===this&&!a.canceled);}
+    getAttribute(name){return name.startsWith('data-')?this.dataset[name.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]:this[name]??null;}
+    setAttribute(name,value){this[name]=value;}
+    removeAttribute(name){delete this[name];}
+    getAnimations(options={}){return allAnimations.filter(a=>(a.element===this||(options.subtree&&this.children.includes(a.element)))&&!a.canceled);}
     animate(frames,config){
       let resolve,reject;
       const animation={element:this,frames,config,start:now,canceled:false,
         finished:new Promise((yes,no)=>{resolve=yes;reject=no;}),
         cancel(){if(this.canceled)return;this.canceled=true;clear(this.timer);reject(new Error('canceled'));},
       };
-      animation.timer=schedule(()=>resolve(),config.duration);
+      animation.timer=schedule(()=>resolve(),config.duration+(config.delay||0));
       allAnimations.push(animation);return animation;
     }
   }
-  const figures=['rama','shiva','krishna','hanuman'].map(name=>{const f=new Element(name);f.dataset.deity=name;return f;});
-  const dialog=new Element('dialog'),replay=new Element('replay'),title=new Element('title'),arch=new Element('arch'),path=new Element('path'),skip=new Element('skip'),hero=new Element('hero');
+  const figures=['rama','shiva','krishna','hanuman'].map(name=>{
+    const f=new Element(name),image=new Element(`${name}-image`),caption=new Element(`${name}-caption`);
+    f.dataset.deity=name;
+    image.dataset.art=name;
+    image.src=`/stories-app/welcome/portraits/${name}-840.webp`;
+    image.srcset=`${image.src} 473w, /stories-app/welcome/portraits/${name}-1280.webp 720w, /stories-app/welcome/portraits/${name}-1672.webp 941w`;
+    image.sizes='(max-width: 600px) 70vw, 420px';
+    Object.assign(image.dataset,{src:image.src,srcset:image.srcset,sizes:image.sizes});
+    f.children=[image,caption];
+    f.querySelector=selector=>selector==='figcaption'?caption:selector.includes('data-welcome-art')||selector==='img'||selector==='.welcome-cutout'?image:null;
+    return f;
+  });
+  const artwork=figures.map(figure=>figure.children[0]);
+  const dialog=new Element('dialog'),replay=new Element('replay'),title=new Element('title'),light=new Element('light'),skip=new Element('skip'),hero=new Element('hero');
   dialog.dataset=new Proxy({}, {set(target,key,value){target[key]=value;if(key==='state')states.push({value,at:now});return true;}});
   dialog.open=false;
   dialog.showModal=()=>{dialog.open=true;};
   dialog.close=()=>{dialog.open=false;dialog.dispatchEvent(new Event('close'));};
   dialog.getAnimations=()=>allAnimations.filter(a=>!a.canceled);
-  dialog.querySelectorAll=selector=>selector==='.welcome-figure'?figures:[];
-  dialog.querySelector=selector=>({'.welcome-title':title,'.welcome-arch':arch,'.welcome-skip':skip})[selector];
-  arch.querySelector=()=>path;
+  dialog.querySelectorAll=selector=>selector==='.welcome-figure'?figures:selector.includes('data-welcome-art')?artwork:[];
+  dialog.querySelector=selector=>({'.welcome-title':title,'.welcome-light':light,'.welcome-skip':skip})[selector]??null;
   const rootClasses=new Set();
   const document=new EventTarget();
   document.hidden=false;
   document.documentElement={classList:{add:c=>rootClasses.add(c),remove:c=>rootClasses.delete(c)}};
   document.getElementById=()=>dialog;
   document.querySelector=selector=>selector==='[data-replay-welcome]'?replay:selector==='dialog[open]'?(dialog.open||options.otherDialog?dialog:null):selector==='.hero-actions a'?hero:null;
+  document.querySelectorAll=selector=>selector.includes('data-welcome-art')?artwork:[];
   const media=new EventTarget();media.matches=options.reduced??false;
   const window=new EventTarget();
   const values=new Map(options.seen?[['spritual_welcome_seen_v1','1']]:[]);
   const sessionStorage={getItem:key=>values.get(key)??null,setItem(key,value){if(options.storageDenied)throw Error('denied');values.set(key,value);}};
-  let resolveAsset;
   class Image {
-    naturalWidth=2172;
-    decode(){if(options.assetPending)return new Promise(resolve=>{resolveAsset=resolve;});return options.assetFailure?Promise.reject(Error('missing')):Promise.resolve();}
+    naturalWidth=720;naturalHeight=1280;src='';srcset='';sizes='';
+    get currentSrc(){return this.srcset.split(',').map(candidate=>candidate.trim().split(/\s+/)[0]).filter(Boolean)[1]||this.src;}
+    decode(){
+      const deity=this.currentSrc.match(/\/(rama|shiva|krishna|hanuman)[^/]*\.webp/)?.[1];
+      decodedImages.push(this);
+      if(options.assetFailure===true||(typeof options.assetFailure==='string'&&options.assetFailure===deity))return Promise.reject(Error(`missing ${deity}`));
+      if(options.assetPending===true||(typeof options.assetPending==='string'&&options.assetPending===deity))return new Promise(resolve=>pendingImages.set(deity,resolve));
+      return Promise.resolve();
+    }
   }
   vm.runInNewContext(source,{document,Element,Image,AbortController,URLSearchParams,sessionStorage,
     location:{hostname:'127.0.0.1',search:options.search??'',hash:options.hash??''},
@@ -63,36 +84,36 @@ async function harness(options={}) {
     now=end;await flush();
   };
   const stall=async(ms)=>{now+=ms;await advance(0);};
-  return {dialog,replay,title,skip,hero,states,animations:allAnimations,rootClasses,values,tasks,media,document,window,advance,stall,flush,focused:()=>focused,
-    resolveAsset:async()=>{resolveAsset?.();await flush();},
+  return {dialog,replay,title,skip,hero,figures,artwork,decodedImages,states,animations:allAnimations,rootClasses,values,tasks,media,document,window,advance,stall,flush,focused:()=>focused,
+    resolveAsset:async(deity)=>{for(const [name,resolve] of pendingImages)if(!deity||name===deity){pendingImages.delete(name);resolve();}await flush();},
     enter:async()=>{skip.dispatchEvent(new Event('click'));dialog.close();await flush();},
     replayNow:async()=>{replay.dispatchEvent(new Event('click'));await flush();},
   };
 }
 
-test('welcome completes in 2.94 seconds, visits four figures in order and restores the reading action',async()=>{
+test('welcome completes in 3.4 seconds, visits four figures in order and restores the reading action',async()=>{
   const h=await harness();assert.equal(h.dialog.open,true);assert.equal(h.focused(),h.skip);
-  await h.advance(2939);assert.equal(h.dialog.open,true);
+  await h.advance(3399);assert.equal(h.dialog.open,true);
   await h.advance(1);assert.equal(h.dialog.open,false);assert.equal(h.focused(),h.hero);
   const phases=h.states.filter(s=>s.value!=='complete');
-  assert.deepEqual(phases,[{value:'rama',at:0},{value:'shiva',at:570},{value:'krishna',at:1030},{value:'hanuman',at:1490},{value:'welcome',at:1940},{value:'revealing',at:2640}]);
+  assert.deepEqual(phases,[{value:'rama',at:0},{value:'shiva',at:680},{value:'krishna',at:1240},{value:'hanuman',at:1800},{value:'welcome',at:2360},{value:'revealing',at:3100}]);
   assert.equal(h.tasks.size,0);assert.equal(h.rootClasses.size,0);
   assert(h.animations.every(a=>a.canceled));
 });
 
 test('each outgoing deity disappears before the next enters; welcome holds before reveal',async()=>{
-  const h=await harness();await h.advance(3000);
+  const h=await harness();await h.advance(3400);
   const entries=h.animations.filter(a=>['rama','shiva','krishna','hanuman'].includes(a.element.name)&&a.frames[0].opacity===0);
   for(let i=1;i<entries.length;i++){
     const exit=h.animations.find(a=>a.element===entries[i-1].element&&a.frames.at(-1).opacity===0);
     assert(entries[i].start>=exit.start+exit.config.duration+20);
   }
   const title=h.animations.find(a=>a.element===h.title);
-  assert(2640-title.start-title.config.duration>=380);
+  assert(3100-title.start-title.config.duration>=300,'The settled welcome must hold before its exit');
 });
 
 test('entry works at every phase and removes delayed work immediately',async()=>{
-  for(const at of [0,500,1100,1550,2100,2750]){
+  for(const at of [0,700,1300,1900,2500,3250]){
     const h=await harness();await h.advance(at);await h.enter();
     assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
     await h.advance(6000);assert.equal(h.dialog.open,false);assert.equal(h.focused(),h.hero);
@@ -129,6 +150,32 @@ test('return visits, deep links, denied storage and missing artwork all fail ope
   }
 });
 
+test('all four responsive portraits decode before opening and their selected sources are displayed',async()=>{
+  const h=await harness({assetPending:'hanuman'});
+  assert.equal(h.decodedImages.length,4);
+  assert.equal(h.dialog.open,false,'Three ready images must not start an incomplete four-scene opening');
+  await h.advance(500);assert.equal(h.dialog.open,false);
+  await h.resolveAsset('hanuman');assert.equal(h.dialog.open,true);
+  for(let i=0;i<4;i++){
+    assert(h.decodedImages[i].srcset,'Decode must use responsive candidates');
+    assert(h.decodedImages[i].sizes,'Decode must use the displayed size contract');
+    assert.equal(h.artwork[i].src,h.decodedImages[i].currentSrc);
+  }
+  await h.enter();assert.equal(h.tasks.size,0);
+});
+
+test('a failed or late later portrait leaves the website usable without reopening',async()=>{
+  const failed=await harness({assetFailure:'krishna'});
+  assert.equal(failed.decodedImages.length,4);
+  assert.equal(failed.dialog.open,false);await failed.advance(5000);
+  assert.equal(failed.dialog.open,false);assert.equal(failed.tasks.size,0);
+  const delayed=await harness({assetPending:'hanuman'});
+  await delayed.advance(900);assert.equal(delayed.dialog.open,false);
+  assert.equal(delayed.tasks.size,0);
+  await delayed.resolveAsset('hanuman');await delayed.advance(5000);
+  assert.equal(delayed.dialog.open,false);assert.equal(delayed.tasks.size,0);
+});
+
 test('motion preference, hidden page and navigation cancel the complete sequence',async()=>{
   for(const reason of ['preference','hidden','pagehide','hashchange']){
     const h=await harness();await h.advance(580);
@@ -154,7 +201,7 @@ test('artwork deadline preserves usable content and cannot reopen late',async()=
 
 
 test('a stalled event loop cannot leave stale deity layers over the latest figure',async()=>{
-  const h=await harness();await h.stall(1600);
+  const h=await harness();await h.stall(1900);
   assert.equal(h.dialog.dataset.state,'hanuman');
   const active=h.animations.filter(a=>!a.canceled&&['rama','shiva','krishna','hanuman'].includes(a.element.name));
   assert.equal(active.length,1);assert.equal(active[0].element.name,'hanuman');

@@ -1,9 +1,133 @@
 {
   "authorizedOn": "2026-10-24",
-  "authorization": "Owner requested Chrome mobile/desktop QA of this existing deity welcome, fullscreen/lively refinement, then publication to the live website.",
-  "scope": "Existing generated Rama, Shiva, Krishna and Hanuman depictions in the website opening only. No wider corpus, app, subscription or provider release.",
-  "reviewStatus": "Owner release instruction; no independent scholarly or iconographic review claimed.",
-  "sourcePngSha256": "d357afbbc0117b5efca6973d0e6987497e6bb9b426d204d2ddfae04d4bf18043",
-  "publishedWebpSha256": "8757ac5b8c47f1c1fd34889223a1e4f9bcfc7570e9fb8a2d04e6fa13c678efaf",
-  "encoding": "2172x724 transparent WebP, quality 90; derived from unchanged generated PNG."
+  "authorization": "Owner requested replacement of the rejected circular framing and soft images, sharper artwork and more polished lively motion, continuing the authorized website release.",
+  "scope": "The existing four-subject website welcome only; no story, app, backend, payment or provider release.",
+  "reviewStatus": "Owner-directed visual refinement. Decorative generated depictions; no independent iconographic or scholarly approval claimed.",
+  "resolutionNote": "4K requested from built-in image generation, but actual generated masters are 941x1672. No upscaled/native-4K claim. Portrait rendering is bounded to 800 CSS-pixel height.",
+  "portraits": [
+    {
+      "id": "rama",
+      "generatorFile": "exec-270f2474-4ac3-4211-88e5-643bbc66a48b.png",
+      "source": "assets/portraits/rama-master.png",
+      "width": 941,
+      "height": 1672,
+      "sha256": "d69a76601d550d88bb749b2daa2de4015f1994c781f76838adf98c4f5626338e",
+      "variants": [
+        {
+          "file": "assets/portraits/rama-840.webp",
+          "width": 473,
+          "height": 840,
+          "bytes": 120686,
+          "sha256": "fbf330517f18e4a436206f94bc929a362eb6b6809416071cdd71997dcc771a1d"
+        },
+        {
+          "file": "assets/portraits/rama-1280.webp",
+          "width": 720,
+          "height": 1280,
+          "bytes": 245252,
+          "sha256": "73e66f04e5be6779d617c7188bd0fb7d5da344a96880c39a33e339a6d60ce2af"
+        },
+        {
+          "file": "assets/portraits/rama-1672.webp",
+          "width": 941,
+          "height": 1672,
+          "bytes": 375248,
+          "sha256": "87a8ab5e833fcae4bcd208d4314585da392b880fc2d66d3bd150ed5d3b7124b5"
+        }
+      ]
+    },
+    {
+      "id": "shiva",
+      "generatorFile": "exec-f7a61fb3-cb26-4853-90ef-62f2333bc8b6.png",
+      "source": "assets/portraits/shiva-master.png",
+      "width": 941,
+      "height": 1672,
+      "sha256": "8f22074b04caeb4b7ce40d784c42498903441384d1398852e131aefc6f436f93",
+      "variants": [
+        {
+          "file": "assets/portraits/shiva-840.webp",
+          "width": 473,
+          "height": 840,
+          "bytes": 119636,
+          "sha256": "66eaca1dcb005ffdddd8580b72a5ece99cccc6c71e8bbbc58a0463d85a047573"
+        },
+        {
+          "file": "assets/portraits/shiva-1280.webp",
+          "width": 720,
+          "height": 1280,
+          "bytes": 248636,
+          "sha256": "d73e07a8fa2f77cefccc1ee6a35a018e22eab9b81281a11ff0391edd4b7a357a"
+        },
+        {
+          "file": "assets/portraits/shiva-1672.webp",
+          "width": 941,
+          "height": 1672,
+          "bytes": 377220,
+          "sha256": "d77b0a4cccb46c2273225799a4989fb49a72dc52a6558c0a0ab5d96a117400f8"
+        }
+      ]
+    },
+    {
+      "id": "krishna",
+      "generatorFile": "exec-b6df482d-5076-454e-bb80-a264796874c0.png",
+      "source": "assets/portraits/krishna-master.png",
+      "width": 941,
+      "height": 1672,
+      "sha256": "ea1ed80233011e29037553f7cef119372648d283090712360813df63da0b7bc3",
+      "variants": [
+        {
+          "file": "assets/portraits/krishna-840.webp",
+          "width": 473,
+          "height": 840,
+          "bytes": 104150,
+          "sha256": "c75decdb35e4eefde94fa77caec0311c115050470110db5302d027ce1c806283"
+        },
+        {
+          "file": "assets/portraits/krishna-1280.webp",
+          "width": 720,
+          "height": 1280,
+          "bytes": 209792,
+          "sha256": "f91e8dc79b8f04b4e599d5873f9db681cf88e5d116bea916b461e8f8c142cf32"
+        },
+        {
+          "file": "assets/portraits/krishna-1672.webp",
+          "width": 941,
+          "height": 1672,
+          "bytes": 321478,
+          "sha256": "3191fbf0f63fbc38777503343e455f53dd9c218281f71fbbc64e05bccee0e83e"
+        }
+      ]
+    },
+    {
+      "id": "hanuman",
+      "generatorFile": "exec-cd081eee-def7-4dfd-bc72-ab3669249957.png",
+      "source": "assets/portraits/hanuman-master.png",
+      "width": 941,
+      "height": 1672,
+      "sha256": "6972cd11a6c1f0928e8509ee50acae17b838e669ec485041245acf396c53d7cd",
+      "variants": [
+        {
+          "file": "assets/portraits/hanuman-840.webp",
+          "width": 473,
+          "height": 840,
+          "bytes": 113458,
+          "sha256": "2d249cf90d3c6d591364600433a0c5bde179f10d57b06c6d2f324be065833186"
+        },
+        {
+          "file": "assets/portraits/hanuman-1280.webp",
+          "width": 720,
+          "height": 1280,
+          "bytes": 230120,
+          "sha256": "21dda94f0a6299d3ab88e1a289e96018b559ede18bdbb88321db3d74e66ee6bd"
+        },
+        {
+          "file": "assets/portraits/hanuman-1672.webp",
+          "width": 941,
+          "height": 1672,
+          "bytes": 346798,
+          "sha256": "92931ddaa1bbdfba0431663a7c194c8beac0a4ff3433c2d579c97f5aa43ad849"
+        }
+      ]
+    }
+  ]
 }

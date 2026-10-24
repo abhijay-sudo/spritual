@@ -1,6 +1,14 @@
 # Spritual — active design directions
 
-## Fullscreen welcome — 24 October 2026
+## Unframed portrait refinement — 24 October 2026 (current)
+
+The owner rejected circular framing and soft art. Remove the arch and curved horizon entirely. Individual forest/gold portraits replace the four-up sprite; do not reintroduce circular crops or a halo. The selected source is a detailed engraved/miniature style with natural anatomy and transparent edges. Keep the original logo, fonts, palette, copy and routes.
+
+The built-in generator returned 941×1672 masters despite a 4K request; never label these native 4K. `website/welcome-preview/release.json` records all four masters and twelve downscaled/full-resolution WebP variants. Source PNGs stay out of public output. The browser selects one size per figure and waits for all four within a shared 900ms deadline. Any failure leaves the homepage usable. Portraits cap at 800 CSS pixels high; inspect high-density and 3840px layouts without claiming new source detail.
+
+Motion: 560ms figure beats, 100ms exit, 20ms gap, 220ms arrival (first 260ms), finite portrait drift/1.025 scale and 65ms-delayed captions. Soft linear daylight passes once; no rings or ambient loops. Welcome enters at 2.36s with a 400ms gentle settle, then dissolves from 3.1s to 3.4s. All movement cancels on immediate exit, hidden page, navigation or changed motion preference. Reduced motion bypasses automatically; explicit replay remains static. Evidence and comparison ledger: `docs/qa/welcome-portraits-2026-10-24/README.md`.
+
+## Fullscreen welcome — 24 October 2026 (previous ring version, superseded above)
 
 The owner authorized Chrome mobile/desktop QA and publication of the finished existing deity opening. A small center-stage montage was visually inspected and rejected as too static. The selected refinement uses large Rama → Shiva → Krishna → Hanuman illustrations, oversized but decorative Devanagari names, a fine full-height arch and finite warm light movement. It resolves into the unchanged sunrise mark and “Welcome to Spritual”, then reveals the actual homepage. Paper/forest/brass and the existing Fraunces/Manrope/Tiro remain. No new artwork subject, provider, audio, framework or animation dependency.
 

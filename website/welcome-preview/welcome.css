@@ -30,18 +30,9 @@
 .welcome-skip:active { transform: scale(.97); }
 .welcome-skip:focus-visible { outline: 2px solid #8b6c38; outline-offset: 4px; }
 .welcome-stage { position: absolute; inset: 0; display: grid; place-items: center; isolation: isolate; overflow: clip; }
-.welcome-light { position: absolute; inset: -15%; z-index: -2; pointer-events: none;
-  background: radial-gradient(ellipse at 50% 57%, #f5dfab80 0%, #f6e7c43d 24%, #faf7f200 60%);
+.welcome-light { position: absolute; inset: 0 -30%; z-index: -1; pointer-events: none;
+  background: linear-gradient(115deg, transparent 20%, #f3dfb52b 42%, #fffdf7a6 50%, #f3dfb51a 58%, transparent 78%);
 }
-.welcome-horizon { position: absolute; inset: auto -15% -34%; height: 65%; z-index: -1;
-  border-radius: 50%; border-top: 1px solid #ab8a4a1a;
-  background: radial-gradient(ellipse at 50% 0%, #d8bf8826, #faf7f200 65%); pointer-events: none;
-}
-.welcome-arch {
-  position: absolute; width: min(890px, 105dvh); height: auto; aspect-ratio: 7 / 8;
-  stroke: #ad915c; stroke-width: 1.2; opacity: .52; overflow: visible;
-}
-.welcome-arch > path:first-child { stroke-dasharray: 1; stroke-dashoffset: 0; }
 .welcome-figures { position: relative; width: 100%; height: 100%; display: grid; place-items: center; }
 .welcome-figure {
   position: absolute; display: flex; flex-direction: column; align-items: center;
@@ -50,13 +41,12 @@
 .welcome-script {
   position: absolute; top: 50%; left: 50%; z-index: -1;
   transform: translate(-50%, -55%); white-space: nowrap; pointer-events: none;
-  font: clamp(240px, 31vw, 460px)/1.2 Tiro, serif; color: #183d3609;
+  font: clamp(240px, 31vw, 460px)/1.2 Tiro, serif; color: #183d3607;
 }
 .welcome-cutout {
-  height: min(58dvh, 560px, 105vw); aspect-ratio: 3 / 4;
-  background: url('./deity-silhouettes.webp') var(--figure-position) center / 400% 100% no-repeat;
+  display: block; height: min(64dvh, 800px, 128vw); width: auto;
+  aspect-ratio: 941 / 1672; object-fit: contain;
 }
-.welcome-figure[data-deity="rama"] .welcome-cutout { transform: translateX(10%); }
 .welcome-figure figcaption {
   font: 30px/1.25 var(--serif); letter-spacing: .5px; text-align: center; margin-top: 12px;
 }
@@ -80,8 +70,7 @@
   .welcome-skip { padding: 10px 14px; font-size: 12px; gap: 10px; }
   .welcome-stage { inset: 0; }
   .welcome-script { font-size: 76vw; }
-  .welcome-cutout { height: min(55dvh, 105vw); }
-  .welcome-arch { width: 122vw; }
+  .welcome-cutout { height: min(62dvh, 128vw); }
   .welcome-figure figcaption { font-size: 28px; margin-top: 12px; }
   .welcome-title > div { font-size: clamp(66px, 19vw, 104px); letter-spacing: -3px; }
   .welcome-title > img { width: 44px; height: 44px; margin-bottom: 20px; }
@@ -92,14 +81,13 @@
   .welcome-top { padding: 12px 20px; }
   .welcome-stage { inset: 56px 20px 16px; }
   .welcome-script { font-size: 50dvh; }
-  .welcome-cutout { height: 42dvh; }
+  .welcome-cutout { height: 48dvh; }
   .welcome-figure figcaption { font-size: 18px; margin-top: 4px; }
   .welcome-figure figcaption span { font-size: 13px; }
   .welcome-title > img { width: 30px; height: 30px; margin-bottom: 10px; }
   .welcome-title > div { font-size: 60px; }
   .welcome-title > small { margin-top: 10px; font-size: 13px; }
   .welcome-title > p { font-size: 10px; }
-  .welcome-arch { width: 92dvh; }
 }
 @media (prefers-reduced-motion: reduce) {
   #welcome-intro *, #welcome-intro { animation: none !important; transition: none !important; }

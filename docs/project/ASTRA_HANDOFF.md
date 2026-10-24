@@ -1,5 +1,11 @@
 # Astra takeover: Spiritual.co.in
 
+## Latest — 24 October 2026: unframed, detailed portrait refinement
+
+The owner rejected the circular framing and image softness. The arch and curved horizon are removed, and four separate forest/gold generated portraits replace the shared sprite. Actual masters are 941×1672 each, not native 4K: the generator returned this size despite the larger request. Responsive WebP delivery is capped at 1,420,744 bytes for all four largest variants; PNG masters do not enter public output. The fullscreen sequence settles in 3.4 seconds, with immediate Enter/Escape/scroll/swipe exit and existing reduced-motion/return/session behavior preserved.
+
+The isolated release starts from production `7c9cf12`, not the app branch. Both website builds, 75 Node checks, 22 installed-Chrome welcome tests and 13 homepage/introduction cases passed. Actual Chrome desktop/phone playback, screenshot comparisons, DPR3 asset selection, 3840px layout and late-portrait failure paths were checked. See `docs/qa/welcome-portraits-2026-10-24/README.md`; publication remains pending until a separate deployment record confirms it. No app, content, payment or backend change. Preserve unrelated Android and older QA edits.
+
 ## Latest — 24 October 2026: fullscreen welcome ready for authorized publication
 
 The owner requested Chrome mobile/desktop inspection, a full-viewport lively opening, QA and live publication. The larger artwork/Devanagari/arch composition keeps the existing identity, finishes its configured choreography in 2.94s, and supports immediate Enter/Escape/scroll/swipe exit. Reduced motion and failed-media paths remain usable. The same artwork is now 72% smaller as WebP, with an exact release hash. Chrome was actually used this turn; the earlier browser-access limitation below is historical.

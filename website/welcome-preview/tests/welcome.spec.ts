@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
 declare global { interface Window { welcomeStates: string[]; } }
-const evidence='docs/qa/welcome-2026-10-24';
+const evidence='docs/qa/welcome-portraits-2026-10-24';
 test('complete opening visits all four figures, welcomes, reveals and reaches a real book',async({page})=>{
   await page.setViewportSize({width:1440,height:900});
   await mkdir(evidence,{recursive:true});
@@ -94,13 +94,13 @@ test('denied session storage fails open without changing book storage',async({pa
   await page.getByRole('link',{name:'Find your story',exact:true}).click();await expect(page).toHaveURL(/#journey$/);
 });
 test('asset failure leaves immediate usable HTML',async({page})=>{
-  await page.route('**/welcome/deity-silhouettes.webp',route=>route.abort());await page.goto('/');
+  await page.route('**/welcome/portraits/*.webp',route=>route.abort());await page.goto('/');
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
   await page.waitForTimeout(1100);await expect(page.locator('#welcome-intro')).not.toBeVisible();
   await page.getByRole('link',{name:'Find your story',exact:true}).click();await expect(page).toHaveURL(/#journey$/);
 });
 test('slow artwork cannot interrupt someone after they start using the page',async({page})=>{
-  await page.route('**/welcome/deity-silhouettes.webp',async route=>{await new Promise(resolve=>setTimeout(resolve,1700));await route.continue();});
+  await page.route('**/welcome/portraits/*.webp',async route=>{await new Promise(resolve=>setTimeout(resolve,1700));await route.continue();});
   await page.goto('/',{waitUntil:'domcontentloaded'});
   await page.getByRole('link',{name:'Find your story',exact:true}).click();
   await page.waitForTimeout(2000);
@@ -115,16 +115,16 @@ test('missing intro script and unknown prior session markers bypass the opening'
   await expect(page.locator('[data-replay-welcome]')).toBeVisible();
 });
 test('pending autoplay yields when a visitor opens another dialog before art is ready',async({page})=>{
-  await page.route('**/welcome/deity-silhouettes.webp',async route=>{await new Promise(resolve=>setTimeout(resolve,650));await route.continue();});
+  await page.route('**/welcome/portraits/*.webp',async route=>{await new Promise(resolve=>setTimeout(resolve,650));await route.continue();});
   await page.goto('/',{waitUntil:'domcontentloaded'});
   await page.locator('.header-cta').click();await expect(page.locator('#launch-dialog')).toBeVisible();
   await page.waitForTimeout(1000);await expect(page.locator('#welcome-intro')).not.toBeVisible();await expect(page.locator('#launch-dialog')).toBeVisible();
 });
 test('replay retries failed media and records the session after a deep-link visit',async({page})=>{
-  await page.route('**/welcome/deity-silhouettes.webp',route=>route.abort());await page.goto('/#journey');
+  await page.route('**/welcome/portraits/*.webp',route=>route.abort());await page.goto('/#journey');
   await page.getByRole('button',{name:'Replay welcome'}).click();await page.waitForTimeout(200);
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
-  await page.unroute('**/welcome/deity-silhouettes.webp');await page.getByRole('button',{name:'Replay welcome'}).click();
+  await page.unroute('**/welcome/portraits/*.webp');await page.getByRole('button',{name:'Replay welcome'}).click();
   await expect(page.locator('#welcome-intro')).toBeVisible();await page.keyboard.press('Escape');
   await page.goto('/');await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
@@ -149,7 +149,7 @@ for(const width of [320,390,768,1440])test(`opening and welcome fit ${width}px w
   await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.finish();}));
   expect(await page.locator('#welcome-intro').evaluate(e=>e.scrollWidth<=innerWidth)).toBe(true);
   await page.screenshot({path:`${evidence}/rama-${width}.png`});
-  await page.clock.runFor(2050);
+  await page.clock.runFor(2450);
   await expect(page.locator('#welcome-intro')).toHaveAttribute('data-state','welcome');
   await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.finish();}));
   await page.screenshot({path:`${evidence}/welcome-${width}.png`});
@@ -158,7 +158,7 @@ for(const width of [320,390,768,1440])test(`opening and welcome fit ${width}px w
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
 test('phone touch skip opens the Hindi story journey and supports short landscape',async({browser})=>{
-  const context=await browser.newContext({baseURL:process.env.WEBSITE_URL||`http://127.0.0.1:${process.env.WELCOME_PUBLIC?'4190':'4194'}`,viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'no-preference',recordVideo:{dir:'artifacts/welcome-2026-10-24/video',size:{width:390,height:844}}});
+  const context=await browser.newContext({baseURL:process.env.WEBSITE_URL||`http://127.0.0.1:${process.env.WELCOME_PUBLIC?'4190':'4194'}`,viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'no-preference',recordVideo:{dir:'artifacts/welcome-portraits-2026-10-24/video',size:{width:390,height:844}}});
   const page=await context.newPage();
   await page.goto('/?intro=replay');await expect(page.locator('#welcome-intro')).toBeVisible();
   await expect(page.locator('#welcome-intro')).not.toBeVisible({timeout:8000});
@@ -176,4 +176,42 @@ test('phone touch skip opens the Hindi story journey and supports short landscap
   await expect(page.locator('#welcome-intro')).not.toBeVisible({timeout:500});
   await touch.detach();
   await context.close();
+});
+
+test('a failed later portrait fails open instead of presenting a blank deity phase',async({page})=>{
+  await page.route('**/welcome/portraits/krishna-*.webp',route=>route.abort());
+  await page.goto('/?intro=replay');
+  await page.waitForTimeout(1000);
+  await expect(page.locator('#welcome-intro')).not.toBeVisible();
+  await page.getByRole('link',{name:'Find your story',exact:true}).click();
+  await expect(page).toHaveURL(/#journey$/);
+});
+test('high-density phones receive separate sharp portraits and no framing or duplicate masters',async({browser})=>{
+  const context=await browser.newContext({baseURL:process.env.WEBSITE_URL||`http://127.0.0.1:${process.env.WELCOME_PUBLIC?'4190':'4194'}`,viewport:{width:390,height:844},deviceScaleFactor:3,isMobile:true,hasTouch:true});
+  try{
+    const page=await context.newPage();const requests:string[]=[];
+    page.on('request',r=>{if(r.url().includes('/welcome/portraits/'))requests.push(r.url());});
+    await page.goto('/?intro=replay');
+    await expect(page.locator('#welcome-intro')).toBeVisible();
+    await expect(page.locator('.welcome-arch,.welcome-horizon')).toHaveCount(0);
+    const assets=await page.locator('[data-welcome-art]').evaluateAll(images=>images.map(image=>({src:(image as HTMLImageElement).currentSrc,width:(image as HTMLImageElement).naturalWidth,height:(image as HTMLImageElement).naturalHeight})));
+    expect(assets).toHaveLength(4);
+    for(const asset of assets){expect(asset.src).toMatch(/-1672\.webp$/);expect(asset.width).toBe(941);expect(asset.height).toBe(1672);}
+    expect(new Set(requests).size).toBe(4);
+    await expect(page.locator('#welcome-intro')).not.toBeVisible({timeout:4500});
+  }finally{await context.close();}
+});
+test('4K desktop canvas keeps bounded full portraits without enlarging their source pixels',async({page})=>{
+  await page.setViewportSize({width:3840,height:2160});
+  await page.clock.install({time:new Date('2026-10-24T00:00:00Z')});
+  await page.clock.pauseAt(new Date('2026-10-24T00:00:01Z'));
+  await page.goto('/?intro=replay',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('#welcome-intro')).toHaveAttribute('data-state','rama');
+  const geometry=await page.locator('[data-welcome-art]').first().evaluate(image=>({natural:(image as HTMLImageElement).naturalHeight,rendered:image.getBoundingClientRect().height}));
+  expect(geometry.natural).toBeGreaterThanOrEqual(geometry.rendered);
+  await page.clock.runFor(320);
+  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>a.finish()));
+  await page.screenshot({path:`${evidence}/rama-3840.png`});
+  await page.getByRole('button',{name:'Enter Spritual'}).click();
+  await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
