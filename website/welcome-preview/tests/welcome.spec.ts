@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
 declare global { interface Window { welcomeStates: string[]; welcomeImageLoaders: HTMLImageElement[]; } }
 const evidence='docs/qa/site-polish-2026-10-24';
-test('complete opening visits eight figures in four paired spreads and reaches a real book',async({page})=>{
+test('complete opening visits eight figures in eight single portraits and reaches a real book',async({page})=>{
   await page.setViewportSize({width:1440,height:900});
   await mkdir(evidence,{recursive:true});
   const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
@@ -227,13 +227,13 @@ for(const width of [320,390,768,1440])test(`opening and welcome fit ${width}px w
   await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=250;}));
   expect(await page.locator('#welcome-intro').evaluate(e=>e.scrollWidth<=innerWidth)).toBe(true);
   const pair=await page.locator('.welcome-figure').evaluateAll(figures=>figures.filter(figure=>Number(getComputedStyle(figure).opacity)>.05).map(figure=>{const box=figure.getBoundingClientRect();return {id:(figure as HTMLElement).dataset.deity,left:box.left,right:box.right};}));
-  expect(pair.map(figure=>figure.id)).toEqual(['ganesha','lakshmi']);
-  expect(pair[0].right).toBeLessThanOrEqual(pair[1].left);
-  await page.screenshot({path:`${evidence}/paired-ganesha-lakshmi-${width}.png`});
-  await page.clock.runFor(2150);
+  expect(pair.map(figure=>figure.id)).toEqual(['ganesha']);
+  expect((pair[0].left+pair[0].right)/2).toBeCloseTo(width/2,0);
+  await page.screenshot({path:`${evidence}/single-ganesha-${width}.png`});
+  await page.clock.runFor(3500);
   await expect(page.locator('#welcome-intro')).toHaveAttribute('data-state','welcome');
-  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=2400;}));
-  await page.screenshot({path:`${evidence}/paired-welcome-${width}.png`});
+  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=3750;}));
+  await page.screenshot({path:`${evidence}/single-welcome-${width}.png`});
   await expect(page.getByRole('button',{name:'Enter Spritual'})).toBeInViewport();
   await page.getByRole('button',{name:'Enter Spritual'}).click();
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
@@ -277,7 +277,7 @@ test('high-density phones receive separate sharp portraits and no framing or dup
     await expect(page.locator('.welcome-arch,.welcome-horizon')).toHaveCount(0);
     const assets=await page.locator('[data-welcome-art]').evaluateAll(images=>images.map(image=>({src:(image as HTMLImageElement).currentSrc,width:(image as HTMLImageElement).naturalWidth,height:(image as HTMLImageElement).naturalHeight})));
     expect(assets).toHaveLength(8);
-    for(const asset of assets){expect(asset.src).toMatch(/-960\.webp$/);expect(asset.width).toBe(asset.src.includes('saraswati-')?541:540);expect(asset.height).toBe(960);}
+    for(const asset of assets){expect(asset.src).toMatch(/-1280\.webp$/);expect(asset.width).toBe(asset.src.includes('saraswati-')?721:720);expect(asset.height).toBe(1280);}
     expect(new Set(requests).size).toBe(8);
     await expect(page.locator('#welcome-intro')).not.toBeVisible({timeout:4500});
   }finally{await context.close();}
@@ -292,7 +292,7 @@ test('4K desktop canvas keeps bounded full portraits without enlarging their sou
   expect(geometry.natural).toBeGreaterThanOrEqual(geometry.rendered);
   await page.clock.runFor(320);
   await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=320;}));
-  await page.screenshot({path:`${evidence}/paired-ganesha-lakshmi-3840.png`});
+  await page.screenshot({path:`${evidence}/single-ganesha-3840.png`});
   await page.getByRole('button',{name:'Enter Spritual'}).click();
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });

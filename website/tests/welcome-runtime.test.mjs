@@ -106,38 +106,36 @@ async function harness(options={}) {
   };
 }
 
-test('welcome completes in 2.8 seconds, visits eight figures in order and restores the reading action',async()=>{
+test('welcome completes in 4.14 seconds, visits eight figures in order and restores the reading action',async()=>{
   const h=await harness();assert.equal(h.dialog.open,true);assert.equal(h.focused(),h.skip);
-  await h.advance(2799);assert.equal(h.dialog.open,true);
+  await h.advance(4139);assert.equal(h.dialog.open,true);
   await h.advance(1);assert.equal(h.dialog.open,false);assert.equal(h.focused(),h.hero);
   const phases=h.states.filter(s=>s.value!=='complete');
-  assert.deepEqual(phases,[...deityOrder.map((value,index)=>({value,at:Math.floor(index/2)*500+(index%2)*35})),{value:'welcome',at:2020},{value:'revealing',at:2580}]);
+  assert.deepEqual(phases,[...deityOrder.map((value,index)=>({value,at:index*420})),{value:'welcome',at:3360},{value:'revealing',at:3920}]);
   assert.equal(h.tasks.size,0);assert.equal(h.rootClasses.size,0);
   assert(h.animations.every(a=>a.canceled));
 });
 
-test('all 27 effects share one clock, four paired spreads and a settled welcome',async()=>{
+test('all 27 effects share one clock, eight single portraits and a settled welcome',async()=>{
   const h=await harness();
   const animationsAtStart=h.animations.length;
   assert.equal(animationsAtStart,27);
   const entries=h.animations.filter(a=>deityOrder.includes(a.element.name));
   assert.equal(entries.length,8);
-  for(let i=0;i<entries.length;i+=2){
-    const left=entries[i],right=entries[i+1];
-    assert.equal(left.config.delay,(i/2)*500);assert.equal(right.config.delay,left.config.delay+35);
-    assert.equal(left.config.delay+left.config.duration,right.config.delay+right.config.duration);
-    assert.match(left.frames[0].transform,/translate\(-18px,/);assert.match(right.frames[0].transform,/translate\(18px,/);
-    if(i>0)assert.equal(left.config.delay-entries[i-2].config.delay-entries[i-2].config.duration,20);
+  for(let i=0;i<entries.length;i++){
+    assert.equal(entries[i].config.delay,i*420);
+    assert.equal(entries[i].config.duration,420);
+    if(i>0)assert.equal(entries[i].config.delay,entries[i-1].config.delay+entries[i-1].config.duration);
   }
-  for(let at=0;at<2020;at+=5)assert(entries.filter(a=>at>=a.config.delay&&at<a.config.delay+a.config.duration).length<=2,'At most one spatial pair may be active');
+  for(let at=0;at<3360;at+=5)assert(entries.filter(a=>at>=a.config.delay&&at<a.config.delay+a.config.duration).length<=1,'Only one deity may be visible at a time');
   for(const entry of entries){
     assert.equal(entry.frames[0].opacity,0);assert.equal(entry.frames.at(-1).opacity,0);
     assert.equal(entry.config.fill,'both');assert.equal(entry.startTime,0);
   }
   assert(h.animations.every(a=>a.startTime===0),'All painting uses the same browser timeline origin');
   const title=h.animations.find(a=>a.element===h.title);
-  assert.equal(title.config.delay,2020);assert.equal(title.config.duration,300);
-  assert.equal(2580-title.config.delay-title.config.duration,260,'The settled welcome holds for 260ms before its exit');
+  assert.equal(title.config.delay,3360);assert.equal(title.config.duration,300);
+  assert.equal(3920-title.config.delay-title.config.duration,260,'The settled welcome holds for 260ms before its exit');
   await h.advance(2700);assert.equal(h.animations.length,animationsAtStart,'No late scene timer constructs or resets visual effects');
 });
 
@@ -177,7 +175,7 @@ test('each homepage visit plays regardless of previous session, storage denial o
   for(const options of [{seen:true},{search:'?utm_source=invitation'},{navigation:'back_forward'},{storageDenied:true}]){
     const h=await harness(options);assert.equal(h.dialog.open,true);
     assert.deepEqual(h.storageAccess,[],'Welcome must neither read nor write browser storage');
-    await h.advance(2800);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
+    await h.advance(4140);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
   }
 });
 
@@ -268,13 +266,13 @@ test('early input abandons pending art immediately and a later replay can load f
 
 
 test('a stalled event loop cannot restart expired figures or construct late visual effects',async()=>{
-  const h=await harness();const count=h.animations.length;await h.stall(1900);
+  const h=await harness();const count=h.animations.length;await h.stall(3100);
   assert.equal(h.dialog.dataset.state,'saraswati');assert.equal(h.animations.length,count);
   const figures=h.animations.filter(a=>deityOrder.includes(a.element.name));
-  const active=figures.filter(a=>1900>=a.config.delay&&1900<a.config.delay+a.config.duration);
-  assert.deepEqual(active.map(a=>a.element.name),['krishna','saraswati']);
+  const active=figures.filter(a=>3100>=a.config.delay&&3100<a.config.delay+a.config.duration);
+  assert.deepEqual(active.map(a=>a.element.name),['saraswati']);
   await h.stall(500);assert.equal(h.dialog.dataset.state,'welcome');
-  assert(figures.every(a=>a.config.delay+a.config.duration<2020&&a.frames.at(-1).opacity===0));
+  assert(figures.every(a=>a.config.delay+a.config.duration<=3360&&a.frames.at(-1).opacity===0));
   assert.equal(h.animations.length,count);await h.enter();assert.equal(h.tasks.size,0);
 });
 
@@ -286,7 +284,7 @@ test('a queued prior close cannot tear down a reopened history visit',async()=>{
   await h.advance(0);
   assert.equal(h.dialog.dataset.state,'ganesha');
   assert.equal(h.animations.filter(a=>!a.canceled).length,27);
-  await h.advance(2800);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
+  await h.advance(4140);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
 });
 
 

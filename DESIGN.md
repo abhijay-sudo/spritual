@@ -1,3 +1,13 @@
+## 25 October — one portrait, one moment
+
+The owner rejected the paired-deity design. The opening now uses eight centred, non-overlapping 420ms portrait windows, followed by a 560ms welcome and 220ms exit (4.14s total). Opacity and small vertical/scale movement share one browser timeline. No circular framing, paired silhouettes, particles or new dependencies. Keep the immediate Enter/Escape/touch-scroll exit, reduced-motion bypass, every-eligible-visit behaviour and cold-load failure recovery.
+
+Considered a minimal restoration and a larger cinematic procession. Selected the procession with the existing provenance-recorded portraits: it restores the owner's single-figure requirement without adding media weight. Source-size-aware selection and a 600px desktop cap prevent upscaling the smallest selected portrait. Portraits are generated illustrations, not native 4K or scholarly-approved iconography.
+
+Homepage direction: an illustrated volume. Preserve sunrise logo, paper/forest/brass and Fraunces/Manrope/Tiro. A wider panorama, binding crease, layered paper edges and balanced title replace the tall framed painting; book-like story covers align on one shelf. The first narrative invitation now enters the existing bow-at-Mithila story. All book prose, source notes, consented saved places and honest app availability survive. Typography stays readable at 320px; reading screens remain calm. The concept image was exploratory only; its invented catalogue labels and alternate logo were not imported.
+
+Commercial strategy and new story drafts live only in the development checkout under `docs/product/`; these are not public prices or content approvals. Website release does not enable payments or deploy the app.
+
 # Spritual — active design directions
 
 ## Faster illustrated welcome and honest reading journey — 24 October 2026 (current)

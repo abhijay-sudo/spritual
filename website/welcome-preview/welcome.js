@@ -13,8 +13,8 @@
   let generation=0,returnFocus=null,assetReady=null,pendingAuto=null,choreographyOrigin=null;
   const artLoaders=new Set();
   const easing='cubic-bezier(.22,1,.36,1)';
-  // Four paired editorial spreads reveal eight distinct figures in 2.8 seconds.
-  const timing={beat:500,leave:90,gap:20,arrive:190,welcome:2020,reveal:2580,exit:220,watchdog:3800};
+  // A single portrait occupies each beat. Non-overlapping windows avoid paired silhouettes.
+  const timing={beat:420,leave:75,gap:0,arrive:110,welcome:3360,reveal:3920,exit:220,watchdog:5200};
   const animate=(element,frames,options={})=>{
     const animation=element.animate(frames,{duration:400,easing,fill:'both',...options});
     // One compositor timeline: delayed stages do not depend on the next JS timer firing on time.
@@ -78,7 +78,7 @@
         const image=new Image();artLoaders.add(image);
         const base=`/stories-app/welcome/portraits/${portrait.dataset.art}`;
         image.fetchPriority='low';
-        image.sizes='(max-width: 600px) 43vw, (max-height: 480px) 22vh, min(31vh, 350px)';
+        image.sizes='(max-height: 480px) 28vh, (max-width: 600px) min(32vh, 68vw), min(35vh, 350px)';
         image.srcset=[640,960,1280].map(height=>`${base}-${height}.webp ${Math.round((portrait.width||941)*height/(portrait.height||1672))}w`).join(', ');
         image.src=`${base}-640.webp`;
         try{
@@ -138,17 +138,16 @@
     choreographyOrigin=document.timeline.currentTime;
     if(light)animate(light,[{opacity:0,transform:'translateX(-12%)'},{opacity:.85,offset:.35},{opacity:.35,transform:'translateX(12%)'}],{duration:timing.reveal,easing:'ease-in-out'});
     figures.forEach((figure,index)=>{
-      const spread=Math.floor(index/2),side=index%2;
-      const at=spread*timing.beat+side*35;
-      const duration=timing.beat-timing.gap-side*35;
+      const at=index*timing.beat;
+      const duration=timing.beat-timing.gap;
       const arrive=timing.arrive;
       const leaveAt=duration-timing.leave;
-      const direction=side===0?-1:1;
+
       animate(figure,[
-        {opacity:0,transform:`translate(${direction*18}px, 10px)`,offset:0,easing},
+        {opacity:0,transform:'translateY(8px) scale(.985)',offset:0,easing},
         {opacity:1,transform:'translateY(0)',offset:arrive/duration,easing:'linear'},
         {opacity:1,transform:'translateY(0)',offset:leaveAt/duration,easing:'ease-in-out'},
-        {opacity:0,transform:`translate(${direction*-6}px, -3px)`,offset:1}
+        {opacity:0,transform:'translateY(-4px) scale(1.015)',offset:1}
       ],{delay:at,duration,easing:'linear'});
       const cutout=figure.querySelector('.welcome-cutout');
       if(cutout)animate(cutout,[{transform:'translateY(4px) scale(1)'},{transform:'translateY(-3px) scale(1.025)'}],{delay:at,duration,easing:'cubic-bezier(.2,.7,.3,1)'});

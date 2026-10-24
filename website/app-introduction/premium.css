@@ -57,10 +57,10 @@ img{display:block;max-width:100%}
 .header-inner{max-width:1440px;min-height:88px;padding-inline:56px}
 .site-header{background:#faf7f2}
 .hero{position:relative;overflow:clip;padding-top:42px}
-.hero-layout{display:grid;grid-template-columns:46% 54%;align-items:center;min-height:590px;gap:0}
+.hero-layout{display:grid;grid-template-columns:40% 60%;align-items:center;min-height:550px;gap:0}
 .hero-intro{padding:0 28px 64px 0;position:relative;z-index:2}
 .hero-eyebrow{font-size:10px;letter-spacing:2px;color:var(--gold);gap:10px}
-.hero h1{font-size:clamp(58px,5.55vw,82px);line-height:1.06;letter-spacing:-3.8px;margin-top:26px}
+.hero h1{font-size:clamp(52px,4.7vw,72px);line-height:1.09;letter-spacing:-2.9px;margin-top:26px}
 .hero h1 em{color:var(--olive)}
 .hero-description{max-width:390px;font-size:16px;line-height:1.85;color:var(--muted);margin-top:27px}
 .hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px 27px;margin-top:28px}
@@ -68,13 +68,13 @@ img{display:block;max-width:100%}
 .quiet-link{font-size:12px;text-underline-offset:6px}
 .quiet-link:hover{text-decoration:underline}
 .availability{font-size:11px;color:#61705f;margin-top:15px}
-.hero-gallery{position:relative;min-width:0;height:580px;margin:0 0 0 14px;isolation:isolate;--scene-progress:0}
-.invitation-painting{position:absolute;inset:0 0 44px 24px;margin:0;padding:9px;border:1px solid #ad926459;background:#e9dfc8;box-shadow:0 22px 40px -28px #193c3660;overflow:hidden}
-.invitation-painting>img{width:100%;height:100%;object-fit:cover;object-position:66% 50%}
+.hero-gallery{position:relative;min-width:0;height:490px;margin:0 0 0 24px;isolation:isolate;--scene-progress:0}
+.invitation-painting{position:absolute;inset:0 0 44px 0;margin:0;padding:12px 10px 17px;border:1px solid #ad926459;border-radius:10px 5px 8px 12px;background:#e9dfc8;box-shadow:0 4px 0 #b5a17c,0 8px 0 #e5d6b7,0 11px 0 #b9a37b,0 24px 34px -20px #193c3670;overflow:hidden}
+.invitation-painting>img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 .invitation-painting figcaption{position:absolute;inset:auto 9px 9px;display:flex;justify-content:flex-end;gap:16px;padding:14px 20px;color:#fff7e7;background:#183d36e6;font-size:9px;letter-spacing:1.2px;line-height:1.6}
 .invitation-painting figcaption span{font-size:8px;color:#e4d3ad}
-.painting-frame{position:absolute;inset:-13px 17px 62px 41px;border:1px solid #b69d6d7a;z-index:-1}
-.invitation-page{position:absolute;left:-30px;bottom:0;width:245px;padding:28px 26px 18px;background:#fbf5e7;border:1px solid #d8ccaf;box-shadow:2px 18px 40px -10px #183d3640;transform-origin:50% 85%;isolation:isolate}
+.painting-frame{position:absolute;inset:-13px 17px 62px 17px;border:1px solid #b69d6d7a;z-index:-1}
+.invitation-page{position:absolute;left:28px;bottom:0;width:245px;padding:28px 26px 18px;background:#fbf5e7;border:1px solid #d8ccaf;box-shadow:2px 18px 40px -10px #183d3640;transform-origin:50% 85%;isolation:isolate}
 .invitation-page:after{content:'';position:absolute;inset:5px;z-index:-1;border:1px solid #cfbd954f;pointer-events:none}
 .invitation-page:before{content:'';position:absolute;right:22px;top:-1px;width:14px;height:35px;background:#8f7544;clip-path:polygon(0 0,100% 0,100% 100%,50% 79%,0 100%)}
 .invitation-page .micro-label{font-size:8px;letter-spacing:1.15px;padding-right:10px}
@@ -85,7 +85,7 @@ img{display:block;max-width:100%}
 .cover-enter:hover{color:#856235}
 .cover-enter .icon{width:17px;height:17px}
 .page-folio{display:block;font:italic 10px/1 var(--serif);color:#8c784f;text-align:center;padding-top:10px}
-.hero-colophon{display:flex;align-items:center;justify-content:space-between;gap:22px;border-bottom:1px solid var(--line);padding:43px 0 29px;margin-top:24px}
+.hero-colophon{display:flex;align-items:center;justify-content:space-between;gap:22px;border-bottom:1px solid var(--line);padding:25px 0 25px;margin-top:0}
 .hero-colophon p{font:22px/1.4 var(--serif)}
 .hero-colophon p em{color:var(--olive)}
 .hero-colophon>a{display:flex;align-items:center;gap:18px;min-height:44px;font-size:8px;letter-spacing:1.8px}
@@ -99,7 +99,7 @@ img{display:block;max-width:100%}
 .section-heading h2 em{color:var(--olive)}
 .section-intro{font-size:14px;line-height:1.9;color:var(--muted);max-width:340px}
 .story-grid{column-gap:32px;row-gap:48px}
-.story-art{border-radius:3px;box-shadow:0 14px 25px -19px #183d3670;aspect-ratio:4/5}
+.story-art{border-radius:4px 9px 9px 4px;border-left:5px solid #183d3659;box-shadow:3px 3px 0 #d8c9a9,6px 6px 0 #e9e0ce,0 14px 25px -19px #183d3670;aspect-ratio:4/5}
 .story-copy{padding-top:20px}
 .story-card-title{font-size:31px;line-height:1.2}
 .story-read-link{min-height:44px;margin-top:10px;font-size:12px}
@@ -189,7 +189,7 @@ dialog>p:not(.eyebrow){font-size:13px}
  .painting-frame{transform:translateY(calc(var(--scene-progress,0)*12px))}
  .experience-landscape img,.launch-landscape img{transform:scale(1.06) translateY(calc(var(--scene-progress,0)*-16px))}
 }
-@media(min-width:1100px){.story-card:nth-child(3n + 2){padding-top:32px}.story-card[hidden]{padding:0}}
+@media(min-width:1100px){.story-card[hidden]{padding:0}}
 @media(max-width:1100px){
  .section-shell{width:calc(100% - 72px)}.header-inner{padding-inline:36px}.hero-layout{grid-template-columns:47% 53%;min-height:530px}.hero h1{font-size:61px;letter-spacing:-2.9px}.hero-gallery{height:510px;margin-left:8px}.hero-intro{padding-right:16px}.hero-description{font-size:14px}.hero-actions{gap:8px 18px}.hero-actions .button{font-size:12px;padding-inline:20px;gap:20px}.invitation-page{width:215px;left:-15px;padding:24px 22px 16px}.invitation-page p{font-size:26px}.invitation-painting figcaption{font-size:8px;padding-inline:12px}.invitation-painting figcaption span{display:none}.experience-shell{gap:0 36px}.experience-heading h2{font-size:51px}.feature-phone{width:310px;height:670px}.feature-tab{font-size:11px;padding-inline:10px}.feature-story h3{font-size:30px}.story-grid{gap:32px 23px}.story-card-title{font-size:27px}.footer-sentence{display:none}
 }
@@ -220,3 +220,8 @@ dialog>p:not(.eyebrow){font-size:13px}
 .dialog-bookshelf{margin-top:22px;min-height:52px}
 .dialog-return.quiet-link{margin:8px auto 0;display:flex;justify-content:center}
 @media(max-width:600px){.footer-links{gap:8px 20px}.story-dialog-read{font-size:11px;padding-inline:15px;gap:8px}.footer-sentence{display:none}}
+
+/* A binding crease gives the existing painting the depth of an illustrated volume. */
+.invitation-painting:after{content:"";position:absolute;inset:12px auto 17px 50%;width:24px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,#10271f35, #fff7db30,transparent);pointer-events:none}
+@media(min-width:1101px){.hero-description{max-width:350px}.hero-intro{padding-bottom:35px}.hero-gallery{perspective:1200px}.invitation-painting{transform:rotateY(-5deg) rotateZ(1deg);transform-origin:left center}}
+@media(max-width:700px){.hero h1{font-size:clamp(43px,11vw,65px);letter-spacing:-2px}.hero-gallery{height:300px;margin:30px 0 0}.invitation-painting{inset:0 0 30px;padding:7px 6px 11px}.invitation-painting>img{object-position:center}.invitation-page{left:14px;width:158px;padding:15px 14px 8px}.invitation-page p{font-size:20px}.invitation-page .page-rule{margin:10px 0}.painting-frame{inset:-7px 10px 40px}.invitation-painting:after{inset-block:7px 11px}.hero-colophon p{font-size:16px}.hero-colophon{padding-top:17px}.hero-description{max-width:36ch}}

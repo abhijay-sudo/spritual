@@ -46,7 +46,7 @@ test.describe('progressive enhancement', () => {
   test('JavaScript-free visitors can use the invitation and enter the published bookshelf', async ({ page }) => {
     await test.step('Follow the native story invitation', async () => {
       await page.goto('/');
-      await expect(page.locator('h1')).toHaveText('A whole world. In your hands.');
+      await expect(page.locator('h1')).toHaveText('Stories worth slowing down.');
       await page.getByRole('link', { name: 'Find your story', exact: true }).click();
       await expect(page).toHaveURL(/#journey$/);
     });

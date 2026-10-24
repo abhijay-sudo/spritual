@@ -1,0 +1,22 @@
+[
+  {
+    "width": 1440,
+    "maximumVisible": 1,
+    "samples": 248,
+    "medianMs": 16.699999999999818,
+    "p95Ms": 16.799999999999727,
+    "maxMs": 16.800000000000182,
+    "gapsOver34Ms": 0,
+    "longTasks": []
+  },
+  {
+    "width": 390,
+    "maximumVisible": 1,
+    "samples": 248,
+    "medianMs": 16.699999999999818,
+    "p95Ms": 16.700000000000728,
+    "maxMs": 16.800000000000182,
+    "gapsOver34Ms": 0,
+    "longTasks": []
+  }
+]

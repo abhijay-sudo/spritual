@@ -36,10 +36,9 @@
 .welcome-figures { position: relative; width: min(900px, 100%); height: 100%; display: grid; place-items: center; }
 .welcome-figure {
   position: absolute; display: flex; flex-direction: column; align-items: center;
-  margin: 0; opacity: 0; width: 48%; height: 72%; top: 16%; isolation: isolate; justify-content: center;
+  margin: 0; opacity: 0; width: 100%; height: 76%; top: 12%; isolation: isolate; justify-content: center;
 }
-.welcome-figure:nth-child(odd) { left: 1%; }
-.welcome-figure:nth-child(even) { right: 1%; }
+.welcome-figure { left: 0; right: 0; }
 .welcome-edition { position: absolute; bottom: 7%; font: 10px/1.5 var(--sans); letter-spacing: 3px; color: #81744f; }
 .welcome-script {
   position: absolute; top: 50%; left: 50%; z-index: -1;
@@ -47,7 +46,7 @@
   font: clamp(130px, 18vw, 240px)/1.2 Tiro, serif; color: #183d3607;
 }
 .welcome-cutout {
-  display: block; height: min(60dvh, 620px, 77vw); width: auto; max-width: 100%;
+  display: block; height: min(61dvh, 600px, 130vw); width: auto; max-width: 100%;
   aspect-ratio: 941 / 1672; object-fit: contain;
 }
 .welcome-figure figcaption {
@@ -73,10 +72,9 @@
   .welcome-skip { padding: 10px 14px; font-size: 12px; gap: 10px; }
   .welcome-stage { inset: 0; }
   .welcome-script { font-size: 42vw; }
-  .welcome-figure { height: 66%; top: 18%; }
-  .welcome-figure:nth-child(even) { padding-top: 35px; }
+  .welcome-figure { height: 74%; top: 12%; }
   .welcome-edition { bottom: 14%; font-size: 9px; letter-spacing: 2.5px; }
-  .welcome-cutout { height: min(52dvh, 77vw); }
+  .welcome-cutout { height: min(56dvh, 120vw); }
   .welcome-figure figcaption { font-size: 23px; margin-top: 12px; }
   .welcome-title > div { font-size: clamp(66px, 19vw, 104px); letter-spacing: -3px; }
   .welcome-title > img { width: 44px; height: 44px; margin-bottom: 20px; }

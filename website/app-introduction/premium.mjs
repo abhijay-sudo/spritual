@@ -14,14 +14,14 @@ export function premiumIntroduction(html) {
       <div class="hero-layout section-shell">
         <div class="hero-intro">
           <p class="eyebrow hero-eyebrow"><span class="status-dot" aria-hidden="true"></span> STORIES TO RETURN TO</p>
-          <h1 id="hero-title">A whole world. <br><em>In your hands.</em></h1>
+          <h1 id="hero-title">Stories worth<br> <em>slowing down.</em></h1>
           <p class="hero-description">Illustrated stories from the Ramayana and Bhagavata Purana. A little wonder, in English or Hindi.</p>
           <div class="hero-actions"><a class="button button-primary" href="#journey">Find your story ${arrow}</a><a class="quiet-link" href="#experience">Take a first look <svg class="icon" aria-hidden="true"><use href="#i-up-right"/></svg></a></div>
           <p class="availability" data-release-short>App coming soon to iPhone &amp; Android</p>
         </div>
         <div class="hero-gallery" data-scroll-scene aria-label="An illustrated invitation into the Ramayana">
           <figure class="invitation-painting"><img src="/stories-app/assets/forest-journey.webp" alt="Rama and Lakshmana accompany Vishvamitra into a richly painted forest at dusk." width="1672" height="941" fetchpriority="high"><figcaption>THE RAMAYANA <span>AN ILLUSTRATED RETELLING</span></figcaption></figure>
-          <div class="invitation-page"><span class="micro-label">FROM THE FIRST JOURNEY</span><span class="page-rule" aria-hidden="true"></span><p>“The answer began<br>with a name:<br><em>Rama.</em>”</p><a class="cover-enter" href="/books/read/what-makes-a-person-admirable/">Enter the story ${arrow}</a><span class="page-folio" aria-hidden="true">01</span></div>
+          <div class="invitation-page"><span class="micro-label">BEGIN IN MITHILA</span><span class="page-rule" aria-hidden="true"></span><p>A guarded bow.<br>A quiet prince.<br><em>A turning point.</em></p><a class="cover-enter" href="/books/read/rama-bow/">Enter the story ${arrow}</a><span class="page-folio" aria-hidden="true">01</span></div>
           <span class="painting-frame" aria-hidden="true"></span>
         </div>
       </div>
