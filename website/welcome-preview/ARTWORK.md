@@ -1,0 +1,9 @@
+# Welcome artwork and publication record — 24 October 2026
+
+The owner explicitly requested Chrome desktop/mobile QA, fullscreen/lively refinement and publication of the completed existing deity welcome on 24 October. This authorizes this website opening with the existing Rama, Shiva, Krishna and Hanuman depictions. It does not authorize wider app/corpus releases, payments or providers. No independent scholarly, historical or iconographic review is claimed.
+
+`assets/deity-silhouettes.png` is the original 2172 × 724 transparent generated sprite sheet, in Rama/Shiva/Krishna/Hanuman order. Generated file: `exec-15b0a973-f497-4bec-ac66-50510f4b2035.png`. It is decorative illustration, not a historical depiction or scripture source. `assets/deity-silhouettes.webp` is the same composition encoded at quality 90 with full-quality transparency, 397,350 bytes instead of 1,400,086 bytes. It was visually inspected at rendered phone/desktop sizes. No new artwork subject was generated for the fullscreen revision.
+
+`release.json` records the owner's release instruction and both source/published hashes. The public build verifies the exact WebP hash; a changed illustration fails until its release record is deliberately reviewed. Only the WebP and two presentation files are copied to public output. The source PNG and approval record stay out of deployed output.
+
+The existing sunrise mark, paper/forest/brass palette and bundled Fraunces/Manrope/Tiro fonts are preserved. The 2.94s configured sequence uses distinct figures with no intentional silhouette overlap, finite portrait/light movement, natural-ratio full-viewport framing, and a brand reveal. Native Enter/Escape, once per tab session, deep-link and return bypass, immediate reduced-motion default and explicit static replay remain. Slow/failed assets fail open; no audio, tracking, perpetual particles or scroll hijacking. A deliberate scroll/swipe dismisses the opening immediately.

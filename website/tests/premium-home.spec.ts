@@ -72,6 +72,8 @@ test('native desktop scrolling moves the painted scene without delaying navigati
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
+  // This test measures the home scene after the first-visit welcome has handed over.
+  await expect(page.locator('#welcome-intro')).not.toBeVisible({ timeout: 4500 });
   const gallery = page.locator('.hero-gallery');
   const progress = () => gallery.evaluate(element => getComputedStyle(element).getPropertyValue('--scene-progress').trim());
   await expect.poll(progress).toMatch(/^\d*\.?\d+$/);

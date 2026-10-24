@@ -1,5 +1,11 @@
 # Astra takeover: Spiritual.co.in
 
+## Latest — 24 October 2026: fullscreen welcome ready for authorized publication
+
+The owner requested Chrome mobile/desktop inspection, a full-viewport lively opening, QA and live publication. The larger artwork/Devanagari/arch composition keeps the existing identity, finishes its configured choreography in 2.94s, and supports immediate Enter/Escape/scroll/swipe exit. Reduced motion and failed-media paths remain usable. The same artwork is now 72% smaller as WebP, with an exact release hash. Chrome was actually used this turn; the earlier browser-access limitation below is historical.
+
+The isolated public release is based on `a21ddfa` in `/tmp/spritual-welcome-release-20261024`, not the app development HEAD. Both website builds, 72 Node checks, 19 installed-Chrome cases and all 156 website regression cases passed; actual desktop/mobile motion and the Hindi book journey were inspected. Current evidence: `docs/qa/welcome-2026-10-24/README.md`. Verify the deployment record before calling this live. No app, backend, content, subscription or store release is included. Preserve the unrelated Android wrapper and older QA artifacts.
+
 ## Latest — 23 October 2026: premium public website
 
 The homepage now uses a warm editorial painting/page invitation, a story gallery, an interactive forest reading room and a riverfront closing. Source import and existing reader content remain intact; no app/backend changes. `DESIGN.md` records the selected direction. The isolated public build, 59 Node/output tests and 32 focused browser cases passed (development branch: 63/33) after contrast, intermediate-width and JavaScript-free entrance fixes. Evidence and exact release status: `docs/qa/premium-home-2026-10-23/README.md`. Preserve the unrelated Android wrapper change and older QA artifacts.

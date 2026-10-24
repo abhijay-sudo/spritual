@@ -1,5 +1,23 @@
 # Spritual — active design directions
 
+## Fullscreen welcome — 24 October 2026
+
+The owner authorized Chrome mobile/desktop QA and publication of the finished existing deity opening. A small center-stage montage was visually inspected and rejected as too static. The selected refinement uses large Rama → Shiva → Krishna → Hanuman illustrations, oversized but decorative Devanagari names, a fine full-height arch and finite warm light movement. It resolves into the unchanged sunrise mark and “Welcome to Spritual”, then reveals the actual homepage. Paper/forest/brass and the existing Fraunces/Manrope/Tiro remain. No new artwork subject, provider, audio, framework or animation dependency.
+
+`website/welcome-preview/` retains its original folder name but now supplies the ordinary public homepage too. `node website/build.mjs --welcome-preview` remains a loopback-only study output on port 4194; normal `node website/build.mjs` produces the authorized public opening. Editorial/Sanatan/app gates remain independent. `release.json` pins the exact 397kB WebP to the owner's current release instruction; no scholarly or iconographic review is claimed. See `website/welcome-preview/ARTWORK.md`.
+
+| Trigger | Motion | Purpose and alternative |
+| --- | --- | --- |
+| First eligible session visit | Four 460ms beats; 90ms exit, clear interval, 180ms arrival (first: 220ms); bounded portrait scale | Recognisable distinct figures without intentional overlap; Enter/Escape always immediate |
+| Opening | Background light settles once over 2.64s; arch draws in 650ms | Give the whole viewport depth; no perpetual loops |
+| 1.94s | Welcome enters in 320ms and holds; arch expands gently | Resolve into the actual brand |
+| 2.64s | 300ms unfiltered dissolve | Complete configured sequence in 2.94s |
+| Reduced motion, deep link, returning tab or early interaction | Automatic opening bypassed | Reading remains immediately available |
+| Explicit replay with reduced motion | Static welcome and same Enter control | No movement or automatic dismissal |
+
+A native dialog covers the viewport, without taking over the browser's fullscreen mode. Finite timers/animations cancel on exit, navigation, hidden tab and changed motion preference. Stale layers are hidden if timers arrive late. Keep the 900ms asset deadline, storage-denial bypass, focus restoration, truthful app availability and native no-JavaScript story journey. Deliberate wheel or vertical swipe input dismisses immediately without simulating scrolling; subsequent native scrolling remains untouched. Replay is available in the footer. No subscription conversion claim follows from this work. QA evidence: `docs/qa/welcome-2026-10-24/README.md`; initial study evidence is historical.
+
+
 ## Current public website — 23 October 2026
 
 The owner requested a premium website revamp with scroll animation and a clearer path toward the app. This supersedes the 19 October pixel-equality requirement for `/`; the original retrieved Site remains checksum-pinned, unmodified provenance. The active publishing adaptation is `website/app-introduction/premium.mjs`, `premium.css` and `premium.js`, with the existing shared reader, collection and finite interaction modules. Keep the static Node/HTML/CSS/JavaScript architecture.

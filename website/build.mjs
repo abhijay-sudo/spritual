@@ -16,6 +16,7 @@ import {illustratedDetail,illustratedReader,journeyPage} from './illustrated-vie
 import {publishIntroduction} from './app-introduction/publish.mjs';
 import {buildBooks} from './books/build.mjs';
 const editorial=process.argv.includes('--editorial-preview');
+const welcomePreview=process.argv.includes('--welcome-preview');
 const sanatanPreview=process.argv.includes('--sanatan-preview');
 const sanatanRelease=process.argv.includes('--sanatan-release');
 if(sanatanRelease)throw Error('Illustrated release is blocked: exact-version editorial and artwork approvals are unresolved. Use --sanatan-preview for local review, or the unflagged public projection.');
@@ -26,8 +27,9 @@ const renderedStoryById=sanatanEdition?editionStoryById:storyById;
 const renderedCharacters=sanatanEdition?editionCharacters:characters;
 if(editorial&&(process.env.VERCEL||process.env.CI))throw Error('Editorial source previews are local only.');
 if(sanatanPreview&&(process.env.VERCEL||process.env.CI))throw Error('Sanatan release previews are local only.');
-if([editorial,sanatanPreview,sanatanRelease].filter(Boolean).length>1)throw Error('Choose one website build mode.');
-const out=resolve(import.meta.dirname,editorial?'../artifacts/editorial-site':sanatanPreview?'../artifacts/sanatan-site':'dist');
+if(welcomePreview&&(process.env.VERCEL||process.env.CI))throw Error('Welcome artwork preview is local only.');
+if([editorial,sanatanPreview,sanatanRelease,welcomePreview].filter(Boolean).length>1)throw Error('Choose one website build mode.');
+const out=resolve(import.meta.dirname,editorial?'../artifacts/editorial-site':sanatanPreview?'../artifacts/sanatan-site':welcomePreview?'../artifacts/welcome-site':'dist');
 const staged=editorial?JSON.parse(await readFile(resolve(import.meta.dirname,'../artifacts/library-source/staged.json'),'utf8')):null;
 await rm(out,{recursive:true,force:true}); await mkdir(out,{recursive:true}); await mkdir(`${out}/assets`);
 // Deliberate allowlist: the local app's content, artwork, auth and fixture bundle are never deployed here.
@@ -134,6 +136,6 @@ await writeFile(`${out}/robots.txt`,'User-agent: *\nAllow: /\nSitemap: https://s
 await writeFile(`${out}/sitemap.xml`,`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['','hi/','pause/','hi/pause/',...(sanatan?['corrections/','hi/corrections/']:[]),...libraryRoutes.filter(r=>!r.endsWith('saved/')),...(sanatan?storySitemapRoutes():[]),...(sanatanEdition?Object.keys(journeys).flatMap(id=>[`journeys/${id}/`,`hi/journeys/${id}/`]):[])].map(p=>`<url><loc>https://spritual.co.in/${p}</loc></url>`).join('')}</urlset>`);
 try { await copyFile(resolve(import.meta.dirname,'assets/social.png'),`${out}/assets/social.png`); } catch { console.warn('Social image not yet generated.'); }
 // Only the ordinary public homepage changes. Editorial and illustrated gates remain intact.
-if(!editorial&&!sanatanEdition){await publishIntroduction(out);await buildBooks(out);}
+if(!editorial&&!sanatanEdition){await publishIntroduction(out);await buildBooks(out);const {addWelcomePreview}=await import('./welcome-preview/build.mjs');await addWelcomePreview(out);}
 const generatedPageCount=(await readdir(out,{recursive:true})).filter(file=>file==='index.html'||file.endsWith('/index.html')).length;
 console.log(`Built ${generatedPageCount} ${sanatanPreview?'local release preview':sanatanRelease?'illustrated public release':editorial?'local editorial preview':'public'} pages + 404${editorial?' and local-only imported reader pages':''}.`);
