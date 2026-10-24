@@ -23,12 +23,12 @@ test('public output contains only hash-pinned responsive portraits within the tr
   const html=await readFile(new URL('../dist/index.html',import.meta.url),'utf8');
   assert(html.includes('welcome-intro'));assert(html.includes('/stories-app/welcome/'));
   const approval=JSON.parse(await readFile(new URL('../welcome-preview/release.json',import.meta.url),'utf8'));
-  assert.deepEqual(approval.portraits.map(portrait=>portrait.id),['rama','shiva','krishna','hanuman']);
+  assert.deepEqual(approval.portraits.map(portrait=>portrait.id),['ganesha','lakshmi','rama','hanuman','shiva','durga','krishna','saraswati']);
   const expectedFiles=['welcome.css','welcome.js'];
   let largestSelectedBytes=0;
   for(const portrait of approval.portraits){
     assert.equal(portrait.width,941,'Source metadata must describe the actual generated width, not an upscale');
-    assert.equal(portrait.height,1672,'Sources must not be represented as native 4K portraits');
+    assert.equal(portrait.height,portrait.id==='saraswati'?1671:1672,'Record the actual generated source dimensions; never an upscale');
     assert.equal(portrait.source,`assets/portraits/${portrait.id}-master.png`);
     assert.match(portrait.sha256,/^[a-f0-9]{64}$/);
     const master=await readFile(new URL(`../welcome-preview/${portrait.source}`,import.meta.url));
@@ -36,7 +36,7 @@ test('public output contains only hash-pinned responsive portraits within the tr
     assert.equal(master.toString('ascii',12,16),'IHDR',portrait.source);
     assert.deepEqual({width:master.readUInt32BE(16),height:master.readUInt32BE(20)},{width:portrait.width,height:portrait.height},portrait.source);
     assert.equal(createHash('sha256').update(master).digest('hex'),portrait.sha256,portrait.source);
-    assert.deepEqual(portrait.variants.map(variant=>variant.height).sort((a,b)=>a-b),[840,1280,1672]);
+    assert.deepEqual(portrait.variants.map(variant=>variant.height).sort((a,b)=>a-b),[640,960,1280]);
     let largestPortraitBytes=0;
     for(const variant of portrait.variants){
       assert.equal(variant.file,`assets/portraits/${portrait.id}-${variant.height}.webp`);
@@ -52,7 +52,7 @@ test('public output contains only hash-pinned responsive portraits within the tr
     }
     largestSelectedBytes+=largestPortraitBytes;
   }
-  assert(largestSelectedBytes<=1500000,`All four largest selected portraits total ${largestSelectedBytes} bytes; budget is 1.5MB`);
+  assert(largestSelectedBytes<=1500000,`All eight largest selected portraits total ${largestSelectedBytes} bytes; budget is 1.5MB`);
   const files=await readdir(new URL('../dist/stories-app/welcome/',import.meta.url),{recursive:true,withFileTypes:true});
   const root=new URL('../dist/stories-app/welcome/',import.meta.url).pathname;
   const publishedFiles=files.filter(file=>file.isFile()).map(file=>`${file.parentPath.slice(root.length).replace(/^\//,'')}/${file.name}`.replace(/^\//,''));
@@ -61,11 +61,12 @@ test('public output contains only hash-pinned responsive portraits within the tr
   await assert.rejects(access(new URL('../dist/stories-app/welcome/deity-silhouettes.png',import.meta.url)));
   await assert.rejects(access(new URL('../dist/stories-app/welcome/release.json',import.meta.url)));
 });
-test('the welcome uses four individual image elements without circular or oval framing',async()=>{
+test('the welcome uses eight individual image elements without circular or oval framing',async()=>{
   const html=await readFile(new URL('../dist/index.html',import.meta.url),'utf8');
   const intro=html.match(/<dialog\b[^>]*id="welcome-intro"[\s\S]*?<\/dialog>/)?.[0];
   assert(intro,'Homepage must contain the native welcome dialog');
-  assert.equal([...intro.matchAll(/<img\b[^>]*\bdata-welcome-art(?:=|\s|>)/g)].length,4);
+  assert.equal([...intro.matchAll(/<img\b[^>]*\bdata-welcome-art(?:=|\s|>)/g)].length,8);
+  assert.deepEqual([...intro.matchAll(/data-deity="([a-z]+)"/g)].map(match=>match[1]),['ganesha','lakshmi','rama','hanuman','shiva','durga','krishna','saraswati']);
   assert(!/welcome-(?:arch|horizon)|<(?:circle|ellipse)\b/i.test(intro),'No oval arch or circular framing belongs in the opening');
   const css=await readFile(new URL('../dist/stories-app/welcome/welcome.css',import.meta.url),'utf8');
   assert(!/welcome-(?:arch|horizon)|clip-path\s*:\s*(?:circle|ellipse)\(|border-radius\s*:\s*50%/i.test(css));

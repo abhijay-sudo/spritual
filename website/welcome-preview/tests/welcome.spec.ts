@@ -1,8 +1,8 @@
 import {test,expect} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
-declare global { interface Window { welcomeStates: string[]; } }
-const evidence='docs/qa/welcome-every-visit-2026-10-24';
-test('complete opening visits all four figures, welcomes, reveals and reaches a real book',async({page})=>{
+declare global { interface Window { welcomeStates: string[]; welcomeImageLoaders: HTMLImageElement[]; } }
+const evidence='docs/qa/site-polish-2026-10-24';
+test('complete opening visits eight figures in four paired spreads and reaches a real book',async({page})=>{
   await page.setViewportSize({width:1440,height:900});
   await mkdir(evidence,{recursive:true});
   const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
@@ -10,11 +10,12 @@ test('complete opening visits all four figures, welcomes, reveals and reaches a 
     const state = window;
     state.welcomeStates = [];
     new MutationObserver(records => {
-      for (const record of records) {
-        const element = record.target as HTMLElement;
-        if (element.id === 'welcome-intro' && element.dataset.state) state.welcomeStates.push(element.dataset.state);
-      }
-    }).observe(document, { subtree: true, attributes: true, attributeFilter: ['data-state'] });
+      const changes=records.filter(record=>(record.target as HTMLElement).id==='welcome-intro');
+      // Preserve intermediate labels even if two 35ms-spaced mutations share one callback.
+      for(const record of changes)if(record.oldValue)state.welcomeStates.push(record.oldValue);
+      const current=(changes.at(-1)?.target as HTMLElement|undefined)?.dataset.state;
+      if(current)state.welcomeStates.push(current);
+    }).observe(document, { subtree: true, attributes: true, attributeFilter: ['data-state'], attributeOldValue: true });
   });
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   const intro=page.locator('#welcome-intro');
@@ -22,7 +23,7 @@ test('complete opening visits all four figures, welcomes, reveals and reaches a 
   await expect(page.getByRole('button',{name:'Enter Spritual'})).toBeFocused();
   await expect(intro).not.toBeVisible({timeout:4500});
   const states = await page.evaluate(() => [...new Set(window.welcomeStates)]);
-  expect(states).toEqual(['rama','shiva','krishna','hanuman','welcome','revealing','complete']);
+  expect(states).toEqual(['ganesha','lakshmi','rama','hanuman','shiva','durga','krishna','saraswati','welcome','revealing','complete']);
   await expect(page.locator('.hero-actions a').first()).toBeFocused();
   expect(await page.evaluate(()=>document.getAnimations().filter(a=>a.effect&&((a.effect as KeyframeEffect).target as Element)?.closest('#welcome-intro')).length)).toBe(0);
   await page.getByRole('link',{name:'Find your story',exact:true}).click();
@@ -151,6 +152,35 @@ test('slow artwork cannot interrupt someone after they start using the page',asy
   await page.waitForTimeout(2000);
   await expect(page).toHaveURL(/#journey$/);await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
+for(const reason of ['early input','deadline'] as const)test(`${reason} abandons pending responsive artwork and keeps reading usable`,async({page})=>{
+  await page.addInitScript(()=>{
+    window.welcomeImageLoaders=[];
+    window.Image=new Proxy(window.Image,{construct(Target,args){
+      const image=Reflect.construct(Target,args) as HTMLImageElement;
+      window.welcomeImageLoaders.push(image);return image;
+    }});
+  });
+  let release!:()=>void;
+  const gate=new Promise<void>(resolve=>{release=resolve;});
+  await page.route('**/welcome/portraits/*.webp',async route=>{
+    await gate;
+    // The browser may already have canceled the intercepted image request.
+    await route.continue().catch(()=>{});
+  });
+  try{
+    await page.goto('/',{waitUntil:'domcontentloaded'});
+    await expect.poll(()=>page.evaluate(()=>window.welcomeImageLoaders.filter(image=>image.src.includes('/welcome/portraits/')).length)).toBe(8);
+    if(reason==='early input')await page.getByRole('link',{name:'Find your story',exact:true}).click();
+    await expect.poll(()=>page.evaluate(()=>window.welcomeImageLoaders.filter(image=>!image.hasAttribute('src')&&!image.hasAttribute('srcset')).length),{timeout:1500}).toBe(8);
+    await expect(page.locator('#welcome-intro')).not.toBeVisible();
+    release();
+    await page.waitForTimeout(1000);
+    await expect(page.locator('#welcome-intro')).not.toBeVisible();
+    expect(await page.locator('[data-welcome-art]').evaluateAll(images=>images.every(image=>!image.hasAttribute('src')))).toBe(true);
+    if(reason==='deadline')await page.getByRole('link',{name:'Find your story',exact:true}).click();
+    await expect(page).toHaveURL(/#journey$/);
+  }finally{release();}
+});
 test('missing script fails open but a stale seen marker cannot suppress restored playback',async({page})=>{
   await page.route('**/welcome/welcome.js',route=>route.abort());await page.goto('/');
   await expect(page.locator('#welcome-intro')).not.toBeVisible();await expect(page.locator('[data-replay-welcome]')).not.toBeVisible();
@@ -189,24 +219,27 @@ for(const width of [320,390,768,1440])test(`opening and welcome fit ${width}px w
   await page.clock.install({time:new Date('2026-10-24T00:00:00Z')});
   await page.clock.pauseAt(new Date('2026-10-24T00:00:01Z'));
   await page.goto('/?intro=replay',{waitUntil:'domcontentloaded'});
-  await expect(page.locator('#welcome-intro')).toHaveAttribute('data-state','rama');
+  await expect(page.locator('#welcome-intro')).toHaveAttribute('data-state','ganesha');
   expect(await page.locator('#welcome-intro').boundingBox()).toEqual({x:0,y:0,width,height:width===1440?900:844});
   await page.clock.runFor(250);
   // Sample the shared animation timeline without finishing future scenes or the final exit.
   // The unpaused journey above exercises actual playback rather than these composition captures.
   await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=250;}));
   expect(await page.locator('#welcome-intro').evaluate(e=>e.scrollWidth<=innerWidth)).toBe(true);
-  await page.screenshot({path:`${evidence}/rama-${width}.png`});
-  await page.clock.runFor(2450);
+  const pair=await page.locator('.welcome-figure').evaluateAll(figures=>figures.filter(figure=>Number(getComputedStyle(figure).opacity)>.05).map(figure=>{const box=figure.getBoundingClientRect();return {id:(figure as HTMLElement).dataset.deity,left:box.left,right:box.right};}));
+  expect(pair.map(figure=>figure.id)).toEqual(['ganesha','lakshmi']);
+  expect(pair[0].right).toBeLessThanOrEqual(pair[1].left);
+  await page.screenshot({path:`${evidence}/paired-ganesha-lakshmi-${width}.png`});
+  await page.clock.runFor(2150);
   await expect(page.locator('#welcome-intro')).toHaveAttribute('data-state','welcome');
-  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=2700;}));
-  await page.screenshot({path:`${evidence}/welcome-${width}.png`});
+  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=2400;}));
+  await page.screenshot({path:`${evidence}/paired-welcome-${width}.png`});
   await expect(page.getByRole('button',{name:'Enter Spritual'})).toBeInViewport();
   await page.getByRole('button',{name:'Enter Spritual'}).click();
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
 test('phone touch skip opens the Hindi story journey and supports short landscape',async({browser})=>{
-  const context=await browser.newContext({baseURL:process.env.WEBSITE_URL||`http://127.0.0.1:${process.env.WELCOME_PUBLIC?'4190':'4194'}`,viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'no-preference',recordVideo:{dir:'artifacts/welcome-every-visit-2026-10-24/video',size:{width:390,height:844}}});
+  const context=await browser.newContext({baseURL:process.env.WEBSITE_URL||`http://127.0.0.1:${process.env.WELCOME_PUBLIC?'4190':'4194'}`,viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'no-preference',recordVideo:{dir:'artifacts/site-polish-2026-10-24/video',size:{width:390,height:844}}});
   const page=await context.newPage();
   await page.goto('/?intro=replay');await expect(page.locator('#welcome-intro')).toBeVisible();
   await expect(page.locator('#welcome-intro')).not.toBeVisible({timeout:8000});
@@ -243,9 +276,9 @@ test('high-density phones receive separate sharp portraits and no framing or dup
     await expect(page.locator('#welcome-intro')).toBeVisible();
     await expect(page.locator('.welcome-arch,.welcome-horizon')).toHaveCount(0);
     const assets=await page.locator('[data-welcome-art]').evaluateAll(images=>images.map(image=>({src:(image as HTMLImageElement).currentSrc,width:(image as HTMLImageElement).naturalWidth,height:(image as HTMLImageElement).naturalHeight})));
-    expect(assets).toHaveLength(4);
-    for(const asset of assets){expect(asset.src).toMatch(/-1672\.webp$/);expect(asset.width).toBe(941);expect(asset.height).toBe(1672);}
-    expect(new Set(requests).size).toBe(4);
+    expect(assets).toHaveLength(8);
+    for(const asset of assets){expect(asset.src).toMatch(/-960\.webp$/);expect(asset.width).toBe(asset.src.includes('saraswati-')?541:540);expect(asset.height).toBe(960);}
+    expect(new Set(requests).size).toBe(8);
     await expect(page.locator('#welcome-intro')).not.toBeVisible({timeout:4500});
   }finally{await context.close();}
 });
@@ -254,12 +287,12 @@ test('4K desktop canvas keeps bounded full portraits without enlarging their sou
   await page.clock.install({time:new Date('2026-10-24T00:00:00Z')});
   await page.clock.pauseAt(new Date('2026-10-24T00:00:01Z'));
   await page.goto('/?intro=replay',{waitUntil:'domcontentloaded'});
-  await expect(page.locator('#welcome-intro')).toHaveAttribute('data-state','rama');
+  await expect(page.locator('#welcome-intro')).toHaveAttribute('data-state','ganesha');
   const geometry=await page.locator('[data-welcome-art]').first().evaluate(image=>({natural:(image as HTMLImageElement).naturalHeight,rendered:image.getBoundingClientRect().height}));
   expect(geometry.natural).toBeGreaterThanOrEqual(geometry.rendered);
   await page.clock.runFor(320);
   await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=320;}));
-  await page.screenshot({path:`${evidence}/rama-3840.png`});
+  await page.screenshot({path:`${evidence}/paired-ganesha-lakshmi-3840.png`});
   await page.getByRole('button',{name:'Enter Spritual'}).click();
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
@@ -282,11 +315,11 @@ test('all motion shares a browser timeline and survives a stalled main thread wi
     const ends=effects.map(animation=>Number(animation.effect!.getComputedTiming().endTime));
     return {origins,before,after,elapsed,ends,visible,count:effects.length,sameEffects:effects.every(effect=>dialog.getAnimations({subtree:true}).includes(effect)),keys:[...new Set(keys)]};
   });
-  expect(evidence.count).toBe(15);
+  expect(evidence.count).toBe(27);
   expect(new Set(evidence.origins).size).toBe(1);
   expect(evidence.origins[0]).not.toBeNull();
   expect(evidence.sameEffects).toBe(true);
-  expect(evidence.visible).toBeLessThanOrEqual(1);
+  expect(evidence.visible).toBeLessThanOrEqual(2);
   expect(evidence.keys.sort()).toEqual(['opacity','transform']);
   expect(evidence.elapsed-evidence.before[0]).toBeGreaterThanOrEqual(650);
   evidence.after.forEach((time,i)=>{
@@ -306,7 +339,39 @@ test('a queued old close event cannot cancel a newly restored welcome',async({pa
   await page.waitForTimeout(100);
   const intro=page.locator('#welcome-intro');
   await expect(intro).toBeVisible();
-  expect(await intro.evaluate(dialog=>dialog.getAnimations({subtree:true}).length)).toBe(15);
+  expect(await intro.evaluate(dialog=>dialog.getAnimations({subtree:true}).length)).toBe(27);
   await expect(intro).not.toBeVisible({timeout:4500});
   await expect(page.locator('.hero-actions a').first()).toBeFocused();
+});
+
+
+test('a cold hero gets network priority and a late load cannot begin optional portrait downloads',async({page})=>{
+  const portraits:string[]=[];
+  page.on('request',r=>{if(r.url().includes('/welcome/portraits/'))portraits.push(r.url());});
+  await page.route('**/*forest-journey*.webp',async route=>{await new Promise(resolve=>setTimeout(resolve,1500));await route.continue();});
+  await page.goto('/',{waitUntil:'domcontentloaded'});
+  await expect(page.locator('#welcome-intro')).not.toBeVisible();
+  await expect.poll(()=>page.locator('.invitation-painting img').evaluate((i:HTMLImageElement)=>i.complete&&i.naturalWidth>0)).toBe(true);
+  await page.waitForTimeout(300);
+  expect(portraits).toHaveLength(0);
+  await page.getByRole('button',{name:'Replay welcome'}).click();
+  await expect(page.locator('#welcome-intro')).toBeVisible();
+  await page.keyboard.press('Escape');
+});
+
+test('production security policy permits playback and cancellation without violations',async({page})=>{
+  const violations:string[]=[];
+  await page.exposeFunction('reportPolicyViolation',(directive:string)=>violations.push(directive));
+  await page.addInitScript(()=>document.addEventListener('securitypolicyviolation',event=>{(window as unknown as {reportPolicyViolation:(v:string)=>void}).reportPolicyViolation(event.violatedDirective);}));
+  await page.route('**/',async route=>{
+    if(route.request().resourceType()!=='document')return route.continue();
+    const response=await route.fetch();
+    await route.fulfill({response,headers:{...response.headers(),'content-security-policy':"default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"}});
+  });
+  await page.goto('/');await expect(page.locator('#welcome-intro')).toBeVisible();
+  await page.keyboard.press('Escape');await expect(page.locator('#welcome-intro')).not.toBeVisible();
+  await page.route('**/welcome/portraits/*.webp',async route=>{await new Promise(resolve=>setTimeout(resolve,1400));await route.continue();});
+  await page.reload();await page.waitForTimeout(1600);
+  expect(violations).toEqual([]);
+  await expect(page.getByRole('link',{name:'Find your story',exact:true})).toBeVisible();
 });

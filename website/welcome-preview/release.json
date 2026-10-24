@@ -1,10 +1,72 @@
 {
   "authorizedOn": "2026-10-24",
-  "authorization": "Owner requested replacement of the rejected circular framing and soft images, sharper artwork and more polished lively motion, continuing the authorized website release.",
-  "scope": "The existing four-subject website welcome only; no story, app, backend, payment or provider release.",
+  "authorization": "Owner requested a broader famous-deity opening, lighter and livelier website, continuing the authorized public website refinement.",
+  "scope": "Eight decorative welcome depictions only. No new story corpus, app, backend, subscription, payment or provider release.",
   "reviewStatus": "Owner-directed visual refinement. Decorative generated depictions; no independent iconographic or scholarly approval claimed.",
-  "resolutionNote": "4K requested from built-in image generation, but actual generated masters are 941x1672. No upscaled/native-4K claim. Portrait rendering is bounded to 800 CSS-pixel height.",
+  "resolutionNote": "Actual generated masters are 941x1672 except Saraswati 941x1671. Responsive variants 640/960/1280px high are bounded to 620 CSS pixels. No native 4K claim.",
   "portraits": [
+    {
+      "id": "ganesha",
+      "generatorFile": "exec-21f5501e-cadb-442b-b5f4-598197b85c67.png",
+      "source": "assets/portraits/ganesha-master.png",
+      "width": 941,
+      "height": 1672,
+      "sha256": "00d0f68312ba428c473e43e52e2277540a8a13ab5c2d4d8f37c6af7ef1ed2efe",
+      "variants": [
+        {
+          "file": "assets/portraits/ganesha-640.webp",
+          "width": 360,
+          "height": 640,
+          "bytes": 64840,
+          "sha256": "cf417ec49a68d2dba53009004c396c87f53eed52539af32ece08e532d58d4f16"
+        },
+        {
+          "file": "assets/portraits/ganesha-960.webp",
+          "width": 540,
+          "height": 960,
+          "bytes": 131018,
+          "sha256": "a0d54af1a120e2fbcab77cfbf37bdadd6fa4d238774a284f257bdb1ac95d7787"
+        },
+        {
+          "file": "assets/portraits/ganesha-1280.webp",
+          "width": 720,
+          "height": 1280,
+          "bytes": 207422,
+          "sha256": "a3af970ab2bf1297587fa012865ed9cefcf486586b6ccb5ac4f2afee9120061b"
+        }
+      ]
+    },
+    {
+      "id": "lakshmi",
+      "generatorFile": "exec-50734d95-d295-4eb9-944d-ad4950c109a2.png",
+      "source": "assets/portraits/lakshmi-master.png",
+      "width": 941,
+      "height": 1672,
+      "sha256": "2219289019c29bc092fa693ab3ae8df9789abed8f2179a77c21d365355682bc0",
+      "variants": [
+        {
+          "file": "assets/portraits/lakshmi-640.webp",
+          "width": 360,
+          "height": 640,
+          "bytes": 50040,
+          "sha256": "675808e62a4f910d88164856ee099db56d2c9bc0dde7eb634e72cd8bc9787779"
+        },
+        {
+          "file": "assets/portraits/lakshmi-960.webp",
+          "width": 540,
+          "height": 960,
+          "bytes": 98926,
+          "sha256": "d2156be24d634065f88b24032046276efee2d388823f963011a6e8a4f2cd066c"
+        },
+        {
+          "file": "assets/portraits/lakshmi-1280.webp",
+          "width": 720,
+          "height": 1280,
+          "bytes": 158470,
+          "sha256": "1287e1275a7f0814d035b7affdb9004fbd7b9260607789cad4c33d938f54db19"
+        }
+      ]
+    },
     {
       "id": "rama",
       "generatorFile": "exec-270f2474-4ac3-4211-88e5-643bbc66a48b.png",
@@ -14,87 +76,25 @@
       "sha256": "d69a76601d550d88bb749b2daa2de4015f1994c781f76838adf98c4f5626338e",
       "variants": [
         {
-          "file": "assets/portraits/rama-840.webp",
-          "width": 473,
-          "height": 840,
-          "bytes": 120686,
-          "sha256": "fbf330517f18e4a436206f94bc929a362eb6b6809416071cdd71997dcc771a1d"
+          "file": "assets/portraits/rama-640.webp",
+          "width": 360,
+          "height": 640,
+          "bytes": 50960,
+          "sha256": "3780dcb3b2d2b9760f665686435e80e81c311774f83cd74da914c2c001c6741c"
+        },
+        {
+          "file": "assets/portraits/rama-960.webp",
+          "width": 540,
+          "height": 960,
+          "bytes": 97904,
+          "sha256": "07b52663d8e7a85ebaaf08dd8a048f1b3d6bd45e8c0e5e53d2c584d50eb586db"
         },
         {
           "file": "assets/portraits/rama-1280.webp",
           "width": 720,
           "height": 1280,
-          "bytes": 245252,
-          "sha256": "73e66f04e5be6779d617c7188bd0fb7d5da344a96880c39a33e339a6d60ce2af"
-        },
-        {
-          "file": "assets/portraits/rama-1672.webp",
-          "width": 941,
-          "height": 1672,
-          "bytes": 375248,
-          "sha256": "87a8ab5e833fcae4bcd208d4314585da392b880fc2d66d3bd150ed5d3b7124b5"
-        }
-      ]
-    },
-    {
-      "id": "shiva",
-      "generatorFile": "exec-f7a61fb3-cb26-4853-90ef-62f2333bc8b6.png",
-      "source": "assets/portraits/shiva-master.png",
-      "width": 941,
-      "height": 1672,
-      "sha256": "8f22074b04caeb4b7ce40d784c42498903441384d1398852e131aefc6f436f93",
-      "variants": [
-        {
-          "file": "assets/portraits/shiva-840.webp",
-          "width": 473,
-          "height": 840,
-          "bytes": 119636,
-          "sha256": "66eaca1dcb005ffdddd8580b72a5ece99cccc6c71e8bbbc58a0463d85a047573"
-        },
-        {
-          "file": "assets/portraits/shiva-1280.webp",
-          "width": 720,
-          "height": 1280,
-          "bytes": 248636,
-          "sha256": "d73e07a8fa2f77cefccc1ee6a35a018e22eab9b81281a11ff0391edd4b7a357a"
-        },
-        {
-          "file": "assets/portraits/shiva-1672.webp",
-          "width": 941,
-          "height": 1672,
-          "bytes": 377220,
-          "sha256": "d77b0a4cccb46c2273225799a4989fb49a72dc52a6558c0a0ab5d96a117400f8"
-        }
-      ]
-    },
-    {
-      "id": "krishna",
-      "generatorFile": "exec-b6df482d-5076-454e-bb80-a264796874c0.png",
-      "source": "assets/portraits/krishna-master.png",
-      "width": 941,
-      "height": 1672,
-      "sha256": "ea1ed80233011e29037553f7cef119372648d283090712360813df63da0b7bc3",
-      "variants": [
-        {
-          "file": "assets/portraits/krishna-840.webp",
-          "width": 473,
-          "height": 840,
-          "bytes": 104150,
-          "sha256": "c75decdb35e4eefde94fa77caec0311c115050470110db5302d027ce1c806283"
-        },
-        {
-          "file": "assets/portraits/krishna-1280.webp",
-          "width": 720,
-          "height": 1280,
-          "bytes": 209792,
-          "sha256": "f91e8dc79b8f04b4e599d5873f9db681cf88e5d116bea916b461e8f8c142cf32"
-        },
-        {
-          "file": "assets/portraits/krishna-1672.webp",
-          "width": 941,
-          "height": 1672,
-          "bytes": 321478,
-          "sha256": "3191fbf0f63fbc38777503343e455f53dd9c218281f71fbbc64e05bccee0e83e"
+          "bytes": 157940,
+          "sha256": "01708cf5314eff98c732e1f1d5b28c7866258b9772aebad02dd5f330634ae778"
         }
       ]
     },
@@ -107,25 +107,149 @@
       "sha256": "6972cd11a6c1f0928e8509ee50acae17b838e669ec485041245acf396c53d7cd",
       "variants": [
         {
-          "file": "assets/portraits/hanuman-840.webp",
-          "width": 473,
-          "height": 840,
-          "bytes": 113458,
-          "sha256": "2d249cf90d3c6d591364600433a0c5bde179f10d57b06c6d2f324be065833186"
+          "file": "assets/portraits/hanuman-640.webp",
+          "width": 360,
+          "height": 640,
+          "bytes": 47064,
+          "sha256": "a7f496600e972a5874f2c69a84369c2850c23ab991cd1ee1cec2cf25f4953224"
+        },
+        {
+          "file": "assets/portraits/hanuman-960.webp",
+          "width": 540,
+          "height": 960,
+          "bytes": 89830,
+          "sha256": "ef66e8abc094558a7b6dff0591082c76a99f884528174b51f4e0ad5b3a285000"
         },
         {
           "file": "assets/portraits/hanuman-1280.webp",
           "width": 720,
           "height": 1280,
-          "bytes": 230120,
-          "sha256": "21dda94f0a6299d3ab88e1a289e96018b559ede18bdbb88321db3d74e66ee6bd"
+          "bytes": 142308,
+          "sha256": "7cdb97ec6f1a89281540877ca845f6b58a03298271347838fe3e97cb7214a7ec"
+        }
+      ]
+    },
+    {
+      "id": "shiva",
+      "generatorFile": "exec-f7a61fb3-cb26-4853-90ef-62f2333bc8b6.png",
+      "source": "assets/portraits/shiva-master.png",
+      "width": 941,
+      "height": 1672,
+      "sha256": "8f22074b04caeb4b7ce40d784c42498903441384d1398852e131aefc6f436f93",
+      "variants": [
+        {
+          "file": "assets/portraits/shiva-640.webp",
+          "width": 360,
+          "height": 640,
+          "bytes": 48234,
+          "sha256": "f1bbb73f935814e7258d65608ffb824b535fdeb2f789285457a5f1cef573978e"
         },
         {
-          "file": "assets/portraits/hanuman-1672.webp",
-          "width": 941,
-          "height": 1672,
-          "bytes": 346798,
-          "sha256": "92931ddaa1bbdfba0431663a7c194c8beac0a4ff3433c2d579c97f5aa43ad849"
+          "file": "assets/portraits/shiva-960.webp",
+          "width": 540,
+          "height": 960,
+          "bytes": 94334,
+          "sha256": "e9fdfca88749eff21d21cc012070fa331d985846401e67e93acc4d309b694535"
+        },
+        {
+          "file": "assets/portraits/shiva-1280.webp",
+          "width": 720,
+          "height": 1280,
+          "bytes": 153126,
+          "sha256": "8626a8ed92d43120dead6e18d326129f4370c2637c5be588e52a90aa94b41442"
+        }
+      ]
+    },
+    {
+      "id": "durga",
+      "generatorFile": "exec-2a619d40-fded-4086-8ea7-a7dafd3ea7b1.png",
+      "source": "assets/portraits/durga-master.png",
+      "width": 941,
+      "height": 1672,
+      "sha256": "59a2f8826953c0d1b1ccff9f57c132f26ae3b5a28840f2b451aad30da2d15197",
+      "variants": [
+        {
+          "file": "assets/portraits/durga-640.webp",
+          "width": 360,
+          "height": 640,
+          "bytes": 67724,
+          "sha256": "01de3a61a4b8019ac031ae8e84880e1a589e8fbbd77842208189095f67024df6"
+        },
+        {
+          "file": "assets/portraits/durga-960.webp",
+          "width": 540,
+          "height": 960,
+          "bytes": 137104,
+          "sha256": "5e08567eef033dda99727da41a598a406a202fff61c3f4b5bb813f3c92e1ec60"
+        },
+        {
+          "file": "assets/portraits/durga-1280.webp",
+          "width": 720,
+          "height": 1280,
+          "bytes": 225738,
+          "sha256": "109ec97f28a073e51316a35149d535e2bd403272176c54251c7652657524ac6a"
+        }
+      ]
+    },
+    {
+      "id": "krishna",
+      "generatorFile": "exec-b6df482d-5076-454e-bb80-a264796874c0.png",
+      "source": "assets/portraits/krishna-master.png",
+      "width": 941,
+      "height": 1672,
+      "sha256": "ea1ed80233011e29037553f7cef119372648d283090712360813df63da0b7bc3",
+      "variants": [
+        {
+          "file": "assets/portraits/krishna-640.webp",
+          "width": 360,
+          "height": 640,
+          "bytes": 43788,
+          "sha256": "176f1d300cdb606a342d037cebdd1feaa62dd526b406472446279eb4422709d3"
+        },
+        {
+          "file": "assets/portraits/krishna-960.webp",
+          "width": 540,
+          "height": 960,
+          "bytes": 84552,
+          "sha256": "4878e9465f83cd705d70ccb905fe9c26691b197498e56f527d97ae95cf077bc4"
+        },
+        {
+          "file": "assets/portraits/krishna-1280.webp",
+          "width": 720,
+          "height": 1280,
+          "bytes": 135492,
+          "sha256": "4a45c7e6863036a6beb0edf588d4b4a955a0a55b45d07585bed098262bfa0c58"
+        }
+      ]
+    },
+    {
+      "id": "saraswati",
+      "generatorFile": "exec-c3498efd-4171-42b0-941c-65b80b7cc423.png",
+      "source": "assets/portraits/saraswati-master.png",
+      "width": 941,
+      "height": 1671,
+      "sha256": "9e8ded3cd037e77be330fdfb3f621d0994d99666d1e5d845b2caf0e8ba27ebc3",
+      "variants": [
+        {
+          "file": "assets/portraits/saraswati-640.webp",
+          "width": 360,
+          "height": 640,
+          "bytes": 54652,
+          "sha256": "c6c9b9fcd6e62543bd8799df38027b80d85b17f9ee81da67f43ec512c220ee95"
+        },
+        {
+          "file": "assets/portraits/saraswati-960.webp",
+          "width": 541,
+          "height": 960,
+          "bytes": 103568,
+          "sha256": "b04a3e09a29f2fdbdb335e2c2a988c43e40f1dbde95c6addaeb4789588c14ffa"
+        },
+        {
+          "file": "assets/portraits/saraswati-1280.webp",
+          "width": 721,
+          "height": 1280,
+          "bytes": 162442,
+          "sha256": "c4b61ef05f2f8597a3b37d3c1d57de5256c7263f9f304f0e50e23086b54d0afd"
         }
       ]
     }

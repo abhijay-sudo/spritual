@@ -1,3 +1,11 @@
+# Faster illustrated opening and reading journey — 24 October 2026
+
+The current homepage preserves the approved paper/forest design, logo and source stories. Eight decorative welcome portraits play in four paired compositions over 2.8 seconds. The useful hero loads first; optional art is cancelled on timeout or interaction. Responsive precomputed artwork, viewport loading and deferred phone-preview initialization reduce startup contention. Independent native-image recovery and no-JavaScript fallbacks preserve reading when enhancement fails. Production builds still need no dependencies.
+
+Story dialogs lead directly to their corresponding English/Hindi books. Availability offers the real bookshelf and remains explicit that the app is coming soon. Source notes, Privacy and Corrections remain accessible. Current design contract: root `DESIGN.md`. Measured local results, browser coverage and limitations: `docs/qa/site-polish-2026-10-24/README.md`. Deployment evidence is separate. No subscription, pricing, tracking, account or backend integration is introduced.
+
+---
+
 # Website premium refinement — 23 October 2026
 
 The active homepage is the new editorial adaptation in `app-introduction/premium.mjs` / `premium.css` / `premium.js`. It preserves the immutable original import, artwork, six bilingual previews, app demonstration and existing reader routes. A real reading action leads; app availability remains coming soon. No dependencies, pricing, tracking, backend or production configuration changed. Root `DESIGN.md` is the current visual and motion contract; the exact-reference sections below are historical.

@@ -1,6 +1,10 @@
 // Owner-authorized editorial redesign. The retrieved Site and its manifest remain intact.
 // Adapt presentation only: existing story prose, sources, dialogs and release config survive.
 const arrow = '<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>';
+function replaceRequired(html, before, after, contract) {
+  if (html.split(before).length !== 2) throw new Error(`Introduction ${contract} contract changed`);
+  return html.replace(before, after);
+}
 export function premiumIntroduction(html) {
   const start = html.indexOf('    <section id="home"');
   const end = html.indexOf('    <section id="journey"', start);
@@ -33,12 +37,38 @@ export function premiumIntroduction(html) {
   html = html.replace('<section id="get-app" class="launch-section"', '<section id="get-app" data-scroll-scene class="launch-section"');
   html = html.replace('<span class="launch-availability" data-release-short>Coming soon to iPhone &amp; Android</span>', '<span class="launch-availability" data-release-short>Coming soon to iPhone &amp; Android</span><a class="quiet-link launch-read" href="/books/">Read a story while you wait '+arrow+'</a>');
   html = html.replace('<p class="preview-caption"><span class="status-dot" aria-hidden="true"></span> Interactive first look</p>', '<p class="preview-caption"><span class="status-dot" aria-hidden="true"></span> Interactive app preview</p><p class="preview-limit">Notebook saves last for this visit.</p>');
-  html = html.replace('<div class="footer-links">', '<div class="footer-links"><a href="/books/">The bookshelf</a>');
+  html = html.replace('<div class="footer-links">', '<div class="footer-links"><a href="/books/">The bookshelf</a><a href="/privacy/">Privacy</a><a href="/corrections/">Suggest a correction</a>');
+  // Keep the reference runtime's availability controls, but let actual reading lead.
+  // home-bridge.js continues to update this single link for each story and language.
+  html = replaceRequired(html,
+    '<a class="text-button" data-open-book href="/books/read/rama-bow/">Read in the book ↗</a>',
+    '<button class="quiet-link story-app-availability" type="button" data-story-download aria-haspopup="dialog">About the mobile app <svg class="icon" aria-hidden="true"><use href="#i-up-right"/></svg></button>',
+    'story availability');
+  html = replaceRequired(html,
+    '<button class="button button-primary story-dialog-download" type="button" data-story-download aria-haspopup="dialog">Get Spritual <svg class="icon" aria-hidden="true"><use href="#i-up-right"/></svg></button>',
+    `<a class="button button-primary story-dialog-read" data-open-book href="/books/read/rama-bow/">Continue reading ${arrow}</a>`,
+    'story reading action');
+  html = replaceRequired(html,
+    '<button class="button button-primary dialog-return" type="button" data-return-preview>Explore the first look <svg class="icon"><use href="#i-arrow"/></svg></button>',
+    `<a class="button button-primary dialog-bookshelf" href="/books/">Explore the bookshelf ${arrow}</a><button class="quiet-link dialog-return" type="button" data-return-preview>Return to the app preview</button>`,
+    'availability reading action');
+  html = replaceRequired(html,
+    '<p id="dialog-description">The Spritual app is coming soon. <br>Download links will appear here when it launches.</p>',
+    '<p id="dialog-description">The Spritual app is coming soon. <br>Until then, the illustrated collection is here to read in English or Hindi.</p>',
+    'availability description');
+  html = replaceRequired(html,
+    '<p>Spritual is an illustrated story app in the making. Our first journey draws on the Valmiki Ramayana, with connected chapters in English and Hindi.</p>',
+    '<p>Read illustrated retellings in English or Hindi. Follow each story’s sources, and keep a page to return to in this browser.</p>',
+    'about reading');
+  html = replaceRequired(html,
+    '<p>The stories on this page pair original illustrations with short English and Hindi retellings from the Valmiki Ramayana and Bhagavata Purana. Each story carries its source. The app’s opening follows Valmiki’s question to Narada in Bala Kanda, Sarga 1.</p>',
+    '<p>The collection draws on the Valmiki Ramayana and Bhagavata Purana. Each telling keeps its source close, with notes on its context. The reading preview begins with Valmiki’s question to Narada in Bala Kanda, Sarga 1.</p>',
+    'about sources');
   html = html.replace('<link rel="stylesheet" href="/stories-app/styles.css">', '');
   html = html.replace('<link rel="stylesheet" href="/stories-app/collection.css">', '<link rel="stylesheet" href="/stories-app/collection.css">\n<link rel="stylesheet" href="/stories-app/premium.css">');
   html = html.replace('</head>', '<script src="/stories-app/premium.js" defer></script>\n</head>');
   // A future imported version must not silently lose the reading path or honest release UI.
-  for (const required of ['class="invitation-painting"', 'class="edition-name"', 'Open the bookshelf', 'class="experience-landscape"', 'class="launch-landscape"', 'Notebook saves last for this visit.', '/stories-app/premium.css', '/stories-app/premium.js', 'id="launch-dialog"', 'data-open-book']) {
+  for (const required of ['class="invitation-painting"', 'class="edition-name"', 'Open the bookshelf', 'class="experience-landscape"', 'class="launch-landscape"', 'Notebook saves last for this visit.', '/stories-app/premium.css', '/stories-app/premium.js', 'id="launch-dialog"', 'data-open-book', 'data-story-download', 'data-return-preview', 'Explore the bookshelf', 'href="/privacy/"', 'href="/corrections/"']) {
     if (!html.includes(required)) throw new Error(`Premium introduction contract missing: ${required}`);
   }
   if (html.includes('class="chapter-contents') || html.includes('one edition purchase')) throw new Error('Unapproved edition terms remain in homepage');

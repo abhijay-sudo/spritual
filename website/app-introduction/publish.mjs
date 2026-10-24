@@ -2,6 +2,7 @@ import {readFile,writeFile,mkdir,copyFile} from 'node:fs/promises';
 import {resolve,dirname} from 'node:path';
 import {createHash} from 'node:crypto';
 import {premiumIntroduction} from './premium.mjs';
+import {prepareResponsiveImages,responsiveImageHtml,responsiveIntroductionScript} from './responsive-images.mjs';
 
 // Import the owner's exact selected Site; isolate its assets from existing readers.
 export async function publishIntroduction(output){
@@ -15,16 +16,23 @@ export async function publishIntroduction(output){
  const hindi=await readFile(resolve(output,'hi/index.html'),'utf8');
  await writeFile(resolve(output,'hi/reading-room/index.html'),hindi.replaceAll('href="https://spritual.co.in/hi/"','href="https://spritual.co.in/hi/reading-room/"').replace('content="index, follow"','content="noindex, follow"'));
  const manifest=JSON.parse(await readFile(resolve(root,'source-manifest.json'),'utf8'));
+ // Both journeys already ship exactly the same Fraunces font. Reuse one URL so
+ // a move from the invitation into a book does not download it a second time.
+ const importedFont=await readFile(resolve(root,'public/assets/fonts/fraunces-latin.woff2'));
+ const sharedFont=await readFile(resolve(output,'assets/fraunces-latin.woff2'));
+ if(!importedFont.equals(sharedFont))throw Error('Shared Fraunces font differs from the pinned introduction');
+ const sharedFonts=text=>text.replaceAll('/stories-app/assets/fonts/fraunces-latin.woff2','/assets/fraunces-latin.woff2');
+ const images=await prepareResponsiveImages(output);
  for(const [file,expected] of Object.entries(manifest.files)){
   const input=resolve(root,'public',file),bytes=await readFile(input);
   if(createHash('sha256').update(bytes).digest('hex')!==expected)throw Error(`Reference source changed without a reviewed manifest update: ${file}`);
   if(file==='index.html')continue;
   const destination=resolve(output,'stories-app',file);
   await mkdir(dirname(destination),{recursive:true});
-  if(/\.(css|js)$/.test(file))await writeFile(destination,bytes.toString().replaceAll('assets/','/stories-app/assets/'));
+  if(/\.(css|js)$/.test(file))await writeFile(destination,sharedFonts(responsiveIntroductionScript(file,bytes.toString().replaceAll('assets/','/stories-app/assets/'),images)));
   else await copyFile(input,destination);
  }
- for(const file of ['motion.css','motion.js','premium.css','premium.js'])await copyFile(resolve(root,file),resolve(output,'stories-app',file));
+ for(const file of ['motion.css','motion.js','premium.css','premium.js','responsive-loading.js'])await writeFile(resolve(output,'stories-app',file),sharedFonts(await readFile(resolve(root,file),'utf8')));
  let html=await readFile(resolve(root,'public/index.html'),'utf8');
  html=html.replaceAll('https://spritual-stories-app.abhijaypl.chatgpt.site/','https://spritual.co.in/')
   .replace('content="noindex, nofollow"','content="index, follow"')
@@ -42,5 +50,5 @@ export async function publishIntroduction(output){
   .replace('</p>\n        </div>\n        <div class="story-dialog-footer">','</p><a class="text-button" data-open-book href="/books/read/rama-bow/">Read in the book ↗</a>\n        </div>\n        <div class="story-dialog-footer">')
   .replace('</body>','<script src="/stories-app/home-bridge.js" defer></script></body>');
  await copyFile(resolve(root,'../books/home-bridge.js'),resolve(output,'stories-app/home-bridge.js'));
- await writeFile(resolve(output,'index.html'),premiumIntroduction(html));
+ await writeFile(resolve(output,'index.html'),sharedFonts(responsiveImageHtml(premiumIntroduction(html),images)));
 }

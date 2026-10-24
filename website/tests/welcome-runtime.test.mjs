@@ -5,6 +5,7 @@ import vm from 'node:vm';
 
 // A deterministic state-machine harness, not a browser/layout or smoothness test.
 const source=await readFile(new URL('../welcome-preview/welcome.js',import.meta.url),'utf8');
+const deityOrder=['ganesha','lakshmi','rama','hanuman','shiva','durga','krishna','saraswati'];
 async function harness(options={}) {
   let now=0,id=0,focused=null;
   const tasks=new Map(),allAnimations=[],states=[],decodedImages=[],pendingImages=new Map();
@@ -29,14 +30,10 @@ async function harness(options={}) {
       allAnimations.push(animation);return animation;
     }
   }
-  const figures=['rama','shiva','krishna','hanuman'].map(name=>{
+  const figures=deityOrder.map(name=>{
     const f=new Element(name),image=new Element(`${name}-image`),caption=new Element(`${name}-caption`);
     f.dataset.deity=name;
     image.dataset.art=name;
-    image.src=`/stories-app/welcome/portraits/${name}-840.webp`;
-    image.srcset=`${image.src} 473w, /stories-app/welcome/portraits/${name}-1280.webp 720w, /stories-app/welcome/portraits/${name}-1672.webp 941w`;
-    image.sizes='(max-width: 600px) 70vw, 420px';
-    Object.assign(image.dataset,{src:image.src,srcset:image.srcset,sizes:image.sizes});
     f.children=[image,caption];
     f.querySelector=selector=>selector==='figcaption'?caption:selector.includes('data-welcome-art')||selector==='img'||selector==='.welcome-cutout'?image:null;
     return f;
@@ -50,13 +47,17 @@ async function harness(options={}) {
   dialog.getAnimations=()=>allAnimations.filter(a=>!a.canceled);
   dialog.querySelectorAll=selector=>selector==='.welcome-figure'?figures:selector.includes('data-welcome-art')?artwork:[];
   dialog.querySelector=selector=>({'.welcome-title':title,'.welcome-light':light,'.welcome-skip':skip})[selector]??null;
+  let resolveHero;
+  hero.complete=!options.heroPending;
+  const heroPromise=new Promise(resolve=>{resolveHero=()=>{hero.complete=true;resolve();};});
+  hero.decode=()=>heroPromise;
   const rootClasses=new Set();
   const document=new EventTarget();
   document.hidden=false;
   document.timeline={get currentTime(){return now;}};
   document.documentElement={classList:{add:c=>rootClasses.add(c),remove:c=>rootClasses.delete(c)}};
   document.getElementById=()=>dialog;
-  document.querySelector=selector=>selector==='[data-replay-welcome]'?replay:selector==='dialog[open]'?(dialog.open||options.otherDialog?dialog:null):selector==='.hero-actions a'?hero:null;
+  document.querySelector=selector=>selector==='.invitation-painting img'&&options.heroPending?hero:selector==='[data-replay-welcome]'?replay:selector==='dialog[open]'?(dialog.open||options.otherDialog?dialog:null):selector==='.hero-actions a'?hero:null;
   document.querySelectorAll=selector=>selector.includes('data-welcome-art')?artwork:[];
   const media=new EventTarget();media.matches=options.reduced??false;
   const window=new EventTarget();
@@ -64,13 +65,24 @@ async function harness(options={}) {
   const storageAccess=[];
   const sessionStorage={getItem(key){storageAccess.push('read');if(options.storageDenied)throw Error('denied');return values.get(key)??null;},setItem(key,value){storageAccess.push('write');if(options.storageDenied)throw Error('denied');values.set(key,value);}};
   class Image {
-    naturalWidth=720;naturalHeight=1280;src='';srcset='';sizes='';
+    naturalWidth=540;naturalHeight=960;_src='';srcset='';sizes='';abandoned=false;pendingReject=null;deity=null;
+    get src(){return this._src;}
+    set src(value){
+      this._src=value;
+      if(value===''){
+        this.abandoned=true;this.naturalWidth=0;
+        // Changing the source interrupts a pending browser decode. Model its rejection.
+        pendingImages.delete(this.deity);
+        this.pendingReject?.(new Error('image source replaced'));this.pendingReject=null;
+      }
+    }
+    removeAttribute(name){this[name]='';}
     get currentSrc(){return this.srcset.split(',').map(candidate=>candidate.trim().split(/\s+/)[0]).filter(Boolean)[1]||this.src;}
     decode(){
-      const deity=this.currentSrc.match(/\/(rama|shiva|krishna|hanuman)[^/]*\.webp/)?.[1];
+      const deity=this.currentSrc.match(/\/([a-z]+)-\d+\.webp/)?.[1];this.deity=deity;
       decodedImages.push(this);
       if(options.assetFailure===true||(typeof options.assetFailure==='string'&&options.assetFailure===deity))return Promise.reject(Error(`missing ${deity}`));
-      if(options.assetPending===true||(typeof options.assetPending==='string'&&options.assetPending===deity))return new Promise(resolve=>pendingImages.set(deity,resolve));
+      if(options.assetPending===true||(typeof options.assetPending==='string'&&options.assetPending===deity))return new Promise((resolve,reject)=>{this.pendingReject=reject;pendingImages.set(deity,()=>{this.pendingReject=null;resolve();});});
       return Promise.resolve();
     }
   }
@@ -87,43 +99,50 @@ async function harness(options={}) {
   };
   const stall=async(ms)=>{now+=ms;await advance(0);};
   return {dialog,replay,title,skip,hero,figures,artwork,decodedImages,states,animations:allAnimations,rootClasses,values,storageAccess,tasks,media,document,window,advance,stall,flush,focused:()=>focused,
+    resolveHero:async()=>{resolveHero();await flush();},
     resolveAsset:async(deity)=>{for(const [name,resolve] of pendingImages)if(!deity||name===deity){pendingImages.delete(name);resolve();}await flush();},
     enter:async()=>{skip.dispatchEvent(new Event('click'));dialog.close();await flush();},
     replayNow:async()=>{replay.dispatchEvent(new Event('click'));await flush();},
   };
 }
 
-test('welcome completes in 3.4 seconds, visits four figures in order and restores the reading action',async()=>{
+test('welcome completes in 2.8 seconds, visits eight figures in order and restores the reading action',async()=>{
   const h=await harness();assert.equal(h.dialog.open,true);assert.equal(h.focused(),h.skip);
-  await h.advance(3399);assert.equal(h.dialog.open,true);
+  await h.advance(2799);assert.equal(h.dialog.open,true);
   await h.advance(1);assert.equal(h.dialog.open,false);assert.equal(h.focused(),h.hero);
   const phases=h.states.filter(s=>s.value!=='complete');
-  assert.deepEqual(phases,[{value:'rama',at:0},{value:'shiva',at:680},{value:'krishna',at:1240},{value:'hanuman',at:1800},{value:'welcome',at:2360},{value:'revealing',at:3100}]);
+  assert.deepEqual(phases,[...deityOrder.map((value,index)=>({value,at:Math.floor(index/2)*500+(index%2)*35})),{value:'welcome',at:2020},{value:'revealing',at:2580}]);
   assert.equal(h.tasks.size,0);assert.equal(h.rootClasses.size,0);
   assert(h.animations.every(a=>a.canceled));
 });
 
-test('all stages share one animation clock with separate figures and a settled welcome',async()=>{
+test('all 27 effects share one clock, four paired spreads and a settled welcome',async()=>{
   const h=await harness();
   const animationsAtStart=h.animations.length;
-  const entries=h.animations.filter(a=>['rama','shiva','krishna','hanuman'].includes(a.element.name));
-  assert.equal(entries.length,4);
-  for(let i=1;i<entries.length;i++){
-    const previous=entries[i-1];
-    assert(entries[i].config.delay>=previous.config.delay+previous.config.duration+20);
+  assert.equal(animationsAtStart,27);
+  const entries=h.animations.filter(a=>deityOrder.includes(a.element.name));
+  assert.equal(entries.length,8);
+  for(let i=0;i<entries.length;i+=2){
+    const left=entries[i],right=entries[i+1];
+    assert.equal(left.config.delay,(i/2)*500);assert.equal(right.config.delay,left.config.delay+35);
+    assert.equal(left.config.delay+left.config.duration,right.config.delay+right.config.duration);
+    assert.match(left.frames[0].transform,/translate\(-18px,/);assert.match(right.frames[0].transform,/translate\(18px,/);
+    if(i>0)assert.equal(left.config.delay-entries[i-2].config.delay-entries[i-2].config.duration,20);
   }
+  for(let at=0;at<2020;at+=5)assert(entries.filter(a=>at>=a.config.delay&&at<a.config.delay+a.config.duration).length<=2,'At most one spatial pair may be active');
   for(const entry of entries){
     assert.equal(entry.frames[0].opacity,0);assert.equal(entry.frames.at(-1).opacity,0);
     assert.equal(entry.config.fill,'both');assert.equal(entry.startTime,0);
   }
   assert(h.animations.every(a=>a.startTime===0),'All painting uses the same browser timeline origin');
   const title=h.animations.find(a=>a.element===h.title);
-  assert(3100-title.config.delay-title.config.duration>=300,'The settled welcome must hold before its exit');
-  await h.advance(3300);assert.equal(h.animations.length,animationsAtStart,'No late scene timer constructs or resets visual effects');
+  assert.equal(title.config.delay,2020);assert.equal(title.config.duration,300);
+  assert.equal(2580-title.config.delay-title.config.duration,260,'The settled welcome holds for 260ms before its exit');
+  await h.advance(2700);assert.equal(h.animations.length,animationsAtStart,'No late scene timer constructs or resets visual effects');
 });
 
 test('entry works at every phase and removes delayed work immediately',async()=>{
-  for(const at of [0,700,1300,1900,2500,3250]){
+  for(const at of [0,40,510,550,1010,1050,1510,1550,2100,2700]){
     const h=await harness();await h.advance(at);await h.enter();
     assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
     await h.advance(6000);assert.equal(h.dialog.open,false);assert.equal(h.focused(),h.hero);
@@ -158,7 +177,7 @@ test('each homepage visit plays regardless of previous session, storage denial o
   for(const options of [{seen:true},{search:'?utm_source=invitation'},{navigation:'back_forward'},{storageDenied:true}]){
     const h=await harness(options);assert.equal(h.dialog.open,true);
     assert.deepEqual(h.storageAccess,[],'Welcome must neither read nor write browser storage');
-    await h.advance(3400);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
+    await h.advance(2800);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
   }
 });
 
@@ -181,13 +200,13 @@ test('a restored homepage gets a fresh timeline once, without replay on ordinary
   assert.deepEqual(h.storageAccess,[]);
 });
 
-test('all four responsive portraits decode before opening and their selected sources are displayed',async()=>{
-  const h=await harness({assetPending:'hanuman'});
-  assert.equal(h.decodedImages.length,4);
-  assert.equal(h.dialog.open,false,'Three ready images must not start an incomplete four-scene opening');
+test('all eight responsive portraits decode before opening and their selected sources are displayed',async()=>{
+  const h=await harness({assetPending:'saraswati'});
+  assert.equal(h.decodedImages.length,8);
+  assert.equal(h.dialog.open,false,'Seven ready images must not start an incomplete eight-portrait opening');
   await h.advance(500);assert.equal(h.dialog.open,false);
-  await h.resolveAsset('hanuman');assert.equal(h.dialog.open,true);
-  for(let i=0;i<4;i++){
+  await h.resolveAsset('saraswati');assert.equal(h.dialog.open,true);
+  for(let i=0;i<8;i++){
     assert(h.decodedImages[i].srcset,'Decode must use responsive candidates');
     assert(h.decodedImages[i].sizes,'Decode must use the displayed size contract');
     assert.equal(h.artwork[i].src,h.decodedImages[i].currentSrc);
@@ -197,7 +216,7 @@ test('all four responsive portraits decode before opening and their selected sou
 
 test('a failed or late later portrait leaves the website usable without reopening',async()=>{
   const failed=await harness({assetFailure:'krishna'});
-  assert.equal(failed.decodedImages.length,4);
+  assert.equal(failed.decodedImages.length,8);
   assert.equal(failed.dialog.open,false);await failed.advance(5000);
   assert.equal(failed.dialog.open,false);assert.equal(failed.tasks.size,0);
   const delayed=await harness({assetPending:'hanuman'});
@@ -225,20 +244,37 @@ test('slow art cannot interrupt an active visitor or another dialog',async()=>{
   const h=await harness({assetPending:true,otherDialog:true});await h.resolveAsset();assert.equal(h.dialog.open,false);
 });
 
-test('artwork deadline preserves usable content and cannot reopen late',async()=>{
+test('artwork deadline abandons all pending image requests and cannot reopen late',async()=>{
   const h=await harness({assetPending:true});await h.advance(900);assert.equal(h.dialog.open,false);
+  assert.equal(h.decodedImages.length,8);
+  for(const image of h.decodedImages){assert.equal(image.srcset,'');assert.equal(image.src,'');assert.equal(image.abandoned,true);}
+  assert(h.artwork.every(image=>!image.src),'Abandoned loaders must not populate displayed portraits');
+  assert.equal(h.tasks.size,0);
   await h.resolveAsset();await h.advance(5000);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
+});
+
+test('early input abandons pending art immediately and a later replay can load fresh media',async()=>{
+  for(const event of ['pointerdown','keydown','touchstart','wheel','scroll']){
+    const h=await harness({assetPending:true});h.window.dispatchEvent(new Event(event));await h.flush();
+    assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
+    assert.equal(h.decodedImages.length,8);
+    for(const image of h.decodedImages){assert.equal(image.srcset,'');assert.equal(image.src,'');assert.equal(image.abandoned,true);}
+    await h.replayNow();assert.equal(h.decodedImages.length,16,'Replay creates fresh loaders after cancellation');
+    await h.resolveAsset();assert.equal(h.dialog.open,true);
+    for(let i=0;i<8;i++)assert.equal(h.artwork[i].src,h.decodedImages[i+8].currentSrc);
+    await h.enter();assert.equal(h.tasks.size,0);
+  }
 });
 
 
 test('a stalled event loop cannot restart expired figures or construct late visual effects',async()=>{
   const h=await harness();const count=h.animations.length;await h.stall(1900);
-  assert.equal(h.dialog.dataset.state,'hanuman');assert.equal(h.animations.length,count);
-  const figures=h.animations.filter(a=>['rama','shiva','krishna','hanuman'].includes(a.element.name));
+  assert.equal(h.dialog.dataset.state,'saraswati');assert.equal(h.animations.length,count);
+  const figures=h.animations.filter(a=>deityOrder.includes(a.element.name));
   const active=figures.filter(a=>1900>=a.config.delay&&1900<a.config.delay+a.config.duration);
-  assert.equal(active.length,1);assert.equal(active[0].element.name,'hanuman');
-  await h.stall(800);assert.equal(h.dialog.dataset.state,'welcome');
-  assert(figures.every(a=>a.config.delay+a.config.duration<2700&&a.frames.at(-1).opacity===0));
+  assert.deepEqual(active.map(a=>a.element.name),['krishna','saraswati']);
+  await h.stall(500);assert.equal(h.dialog.dataset.state,'welcome');
+  assert(figures.every(a=>a.config.delay+a.config.duration<2020&&a.frames.at(-1).opacity===0));
   assert.equal(h.animations.length,count);await h.enter();assert.equal(h.tasks.size,0);
 });
 
@@ -248,7 +284,17 @@ test('a queued prior close cannot tear down a reopened history visit',async()=>{
   const restore=new Event('pageshow');Object.assign(restore,{persisted:true});
   h.window.dispatchEvent(restore);await h.flush();assert.equal(h.dialog.open,true);
   await h.advance(0);
-  assert.equal(h.dialog.dataset.state,'rama');
-  assert.equal(h.animations.filter(a=>!a.canceled).length,15);
-  await h.advance(3400);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
+  assert.equal(h.dialog.dataset.state,'ganesha');
+  assert.equal(h.animations.filter(a=>!a.canceled).length,27);
+  await h.advance(2800);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
+});
+
+
+test('a cold hero owns the network before optional portraits, without a late opening',async()=>{
+  const h=await harness({heroPending:true});
+  assert.equal(h.decodedImages.length,0);
+  await h.advance(900);assert.equal(h.dialog.open,false);
+  await h.resolveHero();assert.equal(h.decodedImages.length,0,'A late hero must not start abandoned portrait requests');
+  await h.replayNow();assert.equal(h.decodedImages.length,8);assert.equal(h.dialog.open,true);
+  await h.enter();
 });

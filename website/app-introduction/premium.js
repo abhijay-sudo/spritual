@@ -1,5 +1,22 @@
 (() => {
   'use strict';
+
+// Independent recovery if the optional viewport-image enhancement cannot load.
+// Native lazy loading still provides the complete illustrated site in that case.
+function recoverDeferredArtwork(){
+  if(document.documentElement.dataset.responsiveImages==='ready')return;
+  document.querySelectorAll('img[data-deferred-src]').forEach(image=>{
+    image.loading='lazy';
+    if(image.dataset.deferredSrcset)image.srcset=image.dataset.deferredSrcset;
+    image.src=image.dataset.deferredSrc;
+    image.style.removeProperty('display');image.style.removeProperty('visibility');
+    image.dataset.imageState='fallback';
+    delete image.dataset.deferredSrc;delete image.dataset.deferredSrcset;
+  });
+}
+if(document.readyState!=='complete')document.addEventListener('DOMContentLoaded',recoverDeferredArtwork,{once:true});
+else recoverDeferredArtwork();
+
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const scenes = [...document.querySelectorAll('[data-scroll-scene]')];
   const visible = new Set();

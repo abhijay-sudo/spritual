@@ -11,9 +11,10 @@
   const skip=dialog.querySelector('.welcome-skip');
   const timers=new Set(),animations=new Set();
   let generation=0,returnFocus=null,assetReady=null,pendingAuto=null,choreographyOrigin=null;
+  const artLoaders=new Set();
   const easing='cubic-bezier(.22,1,.36,1)';
-  // A finite 3.4s signature. Each figure arrives, settles, then gives way cleanly.
-  const timing={beat:560,leave:100,gap:20,arrive:220,welcome:2360,reveal:3100,exit:300,watchdog:4400};
+  // Four paired editorial spreads reveal eight distinct figures in 2.8 seconds.
+  const timing={beat:500,leave:90,gap:20,arrive:190,welcome:2020,reveal:2580,exit:220,watchdog:3800};
   const animate=(element,frames,options={})=>{
     const animation=element.animate(frames,{duration:400,easing,fill:'both',...options});
     // One compositor timeline: delayed stages do not depend on the next JS timer firing on time.
@@ -24,6 +25,7 @@
   };
   function later(callback,ms){const id=setTimeout(()=>{timers.delete(id);callback();},ms);timers.add(id);}
   function cancelWork(){
+    abandonArt();
     generation++;choreographyOrigin=null;
     pendingAuto?.abort();pendingAuto=null;
     timers.forEach(clearTimeout);timers.clear();
@@ -64,28 +66,47 @@
   dialog.addEventListener('touchcancel',()=>{touchOrigin=null;},{passive:true});
   // Native method="dialog" remains a working escape even if choreography fails.
   skip.addEventListener('click',()=>cancelWork());
+  function abandonArt(){
+    if(!artLoaders.size)return;
+    artLoaders.forEach(image=>{image.removeAttribute('srcset');image.removeAttribute('src');});
+    artLoaders.clear();assetReady=null;
+  }
   function artReady(){
     if(!assetReady){
       const portraits=[...dialog.querySelectorAll('[data-welcome-art]')];
-      assetReady=Promise.all(portraits.map(async portrait=>{
-        const image=new Image();
+      const loading=Promise.all(portraits.map(async portrait=>{
+        const image=new Image();artLoaders.add(image);
         const base=`/stories-app/welcome/portraits/${portrait.dataset.art}`;
-        image.sizes='(max-height: 480px) 27vh, (max-width: 600px) min(35vh, 72vw), min(36vh, 450px)';
-        image.srcset=`${base}-840.webp 473w, ${base}-1280.webp 720w, ${base}-1672.webp 941w`;
-        image.src=`${base}-840.webp`;
+        image.fetchPriority='low';
+        image.sizes='(max-width: 600px) 43vw, (max-height: 480px) 22vh, min(31vh, 350px)';
+        image.srcset=[640,960,1280].map(height=>`${base}-${height}.webp ${Math.round((portrait.width||941)*height/(portrait.height||1672))}w`).join(', ');
+        image.src=`${base}-640.webp`;
         try{
           await image.decode();
-          if(!image.naturalWidth)return false;
+          if(!image.naturalWidth||!artLoaders.has(image))return false;
           portrait.src=image.currentSrc||image.src;
           return true;
         }catch{return false;}
-      })).then(results=>results.length===4&&results.every(Boolean)).then(ok=>{if(!ok)assetReady=null;return ok;});
+        finally{artLoaders.delete(image);}
+      })).then(results=>results.length===8&&results.every(Boolean)).then(ok=>{
+        if(!ok&&assetReady===loading)assetReady=null;
+        return ok;
+      });
+      assetReady=loading;
     }
     return assetReady;
   }
-  async function readyWithinDeadline(){
-    let timer;
-    try{return await Promise.race([artReady(),new Promise(resolve=>{timer=setTimeout(()=>resolve(false),900);})]);}
+  async function readyWithinDeadline(ticket){
+    let timer,expired=false;
+    const prepare=async()=>{
+      // The useful page wins the cold-start network race. If its hero is slow,
+      // never start eight optional portrait requests after the deadline.
+      const hero=document.querySelector('.invitation-painting img');
+      if(hero&&!hero.complete){try{await hero.decode();}catch{return false;}}
+      if(expired||ticket!==generation)return false;
+      return artReady();
+    };
+    try{return await Promise.race([prepare(),new Promise(resolve=>{timer=setTimeout(()=>{expired=true;abandonArt();resolve(false);},900);})]);}
     finally{clearTimeout(timer);}
   }
   function resetVisuals(){
@@ -104,7 +125,7 @@
       const interrupt=()=>{if(ticket===generation)cancelWork();};
       for(const event of ['pointerdown','keydown','touchstart','wheel','scroll']) addEventListener(event,interrupt,{passive:true,signal:controller.signal});
     }
-    const ready=reduced.matches||await readyWithinDeadline();
+    const ready=reduced.matches||await readyWithinDeadline(ticket);
     controller.abort();if(pendingAuto===controller)pendingAuto=null;
     if(!ready||ticket!==generation||document.hidden||document.querySelector('dialog[open]')||(!manual&&location.hash))return;
     resetVisuals();
@@ -117,25 +138,27 @@
     choreographyOrigin=document.timeline.currentTime;
     if(light)animate(light,[{opacity:0,transform:'translateX(-12%)'},{opacity:.85,offset:.35},{opacity:.35,transform:'translateX(12%)'}],{duration:timing.reveal,easing:'ease-in-out'});
     figures.forEach((figure,index)=>{
-      const at=index===0?0:index*timing.beat+timing.leave+timing.gap;
-      const leaveAt=(index+1)*timing.beat;
-      const duration=leaveAt+timing.leave-at;
-      const arrive=index===0?260:timing.arrive;
+      const spread=Math.floor(index/2),side=index%2;
+      const at=spread*timing.beat+side*35;
+      const duration=timing.beat-timing.gap-side*35;
+      const arrive=timing.arrive;
+      const leaveAt=duration-timing.leave;
+      const direction=side===0?-1:1;
       animate(figure,[
-        {opacity:0,transform:'translateY(14px)',offset:0,easing},
+        {opacity:0,transform:`translate(${direction*18}px, 10px)`,offset:0,easing},
         {opacity:1,transform:'translateY(0)',offset:arrive/duration,easing:'linear'},
-        {opacity:1,transform:'translateY(0)',offset:(leaveAt-at)/duration,easing:'ease-in-out'},
-        {opacity:0,transform:'translateY(-3px)',offset:1}
+        {opacity:1,transform:'translateY(0)',offset:leaveAt/duration,easing:'ease-in-out'},
+        {opacity:0,transform:`translate(${direction*-6}px, -3px)`,offset:1}
       ],{delay:at,duration,easing:'linear'});
       const cutout=figure.querySelector('.welcome-cutout');
       if(cutout)animate(cutout,[{transform:'translateY(4px) scale(1)'},{transform:'translateY(-3px) scale(1.025)'}],{delay:at,duration,easing:'cubic-bezier(.2,.7,.3,1)'});
       const caption=figure.querySelector('figcaption');
-      if(caption)animate(caption,[{opacity:0,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{delay:at+65,duration:220});
+      if(caption)animate(caption,[{opacity:0,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],{delay:at+65,duration:170});
       // State labels are observational; painting and movement use the shared animation clock.
       if(index===0)dialog.dataset.state=figure.dataset.deity;
       else later(()=>{dialog.dataset.state=figure.dataset.deity;},at);
     });
-    animate(title,[{opacity:0,transform:'translateY(16px) scale(.96)'},{opacity:1,transform:'translateY(-1px) scale(1.005)',offset:.8},{opacity:1,transform:'translateY(0) scale(1)'}],{delay:timing.welcome,duration:400});
+    animate(title,[{opacity:0,transform:'translateY(16px) scale(.96)'},{opacity:1,transform:'translateY(-1px) scale(1.005)',offset:.8},{opacity:1,transform:'translateY(0) scale(1)'}],{delay:timing.welcome,duration:300});
     const total=timing.reveal+timing.exit;
     animate(dialog,[
       {opacity:0,offset:0,easing:'ease-out'},

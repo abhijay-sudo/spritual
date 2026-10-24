@@ -33,18 +33,21 @@
 .welcome-light { position: absolute; inset: 0 -30%; z-index: -1; pointer-events: none;
   background: linear-gradient(115deg, transparent 20%, #f3dfb52b 42%, #fffdf7a6 50%, #f3dfb51a 58%, transparent 78%);
 }
-.welcome-figures { position: relative; width: 100%; height: 100%; display: grid; place-items: center; }
+.welcome-figures { position: relative; width: min(900px, 100%); height: 100%; display: grid; place-items: center; }
 .welcome-figure {
   position: absolute; display: flex; flex-direction: column; align-items: center;
-  margin: 0; opacity: 0; width: 100%; isolation: isolate;
+  margin: 0; opacity: 0; width: 48%; height: 72%; top: 16%; isolation: isolate; justify-content: center;
 }
+.welcome-figure:nth-child(odd) { left: 1%; }
+.welcome-figure:nth-child(even) { right: 1%; }
+.welcome-edition { position: absolute; bottom: 7%; font: 10px/1.5 var(--sans); letter-spacing: 3px; color: #81744f; }
 .welcome-script {
   position: absolute; top: 50%; left: 50%; z-index: -1;
   transform: translate(-50%, -55%); white-space: nowrap; pointer-events: none;
-  font: clamp(240px, 31vw, 460px)/1.2 Tiro, serif; color: #183d3607;
+  font: clamp(130px, 18vw, 240px)/1.2 Tiro, serif; color: #183d3607;
 }
 .welcome-cutout {
-  display: block; height: min(64dvh, 800px, 128vw); width: auto;
+  display: block; height: min(60dvh, 620px, 77vw); width: auto; max-width: 100%;
   aspect-ratio: 941 / 1672; object-fit: contain;
 }
 .welcome-figure figcaption {
@@ -69,9 +72,12 @@
   .welcome-wordmark { font-size: 27px; }
   .welcome-skip { padding: 10px 14px; font-size: 12px; gap: 10px; }
   .welcome-stage { inset: 0; }
-  .welcome-script { font-size: 76vw; }
-  .welcome-cutout { height: min(62dvh, 128vw); }
-  .welcome-figure figcaption { font-size: 28px; margin-top: 12px; }
+  .welcome-script { font-size: 42vw; }
+  .welcome-figure { height: 66%; top: 18%; }
+  .welcome-figure:nth-child(even) { padding-top: 35px; }
+  .welcome-edition { bottom: 14%; font-size: 9px; letter-spacing: 2.5px; }
+  .welcome-cutout { height: min(52dvh, 77vw); }
+  .welcome-figure figcaption { font-size: 23px; margin-top: 12px; }
   .welcome-title > div { font-size: clamp(66px, 19vw, 104px); letter-spacing: -3px; }
   .welcome-title > img { width: 44px; height: 44px; margin-bottom: 20px; }
   .welcome-title > p { font-size: 10px; letter-spacing: 2.6px; }
@@ -79,7 +85,9 @@
 }
 @media (max-height: 480px) {
   .welcome-top { padding: 12px 20px; }
-  .welcome-stage { inset: 56px 20px 16px; }
+  .welcome-stage { inset: 45px 20px 12px; }
+  .welcome-edition { display: none; }
+  .welcome-figure { top: 0; height: 100%; padding-top: 0 !important; }
   .welcome-script { font-size: 50dvh; }
   .welcome-cutout { height: 48dvh; }
   .welcome-figure figcaption { font-size: 18px; margin-top: 4px; }

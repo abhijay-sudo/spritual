@@ -1,5 +1,18 @@
 # Spritual — active design directions
 
+## Faster illustrated welcome and honest reading journey — 24 October 2026 (current)
+
+The owner requested less sluggishness, a broader deity opening and stronger confidence in the website. Preserve the accepted paper/forest/brass palette, sunrise logo, Fraunces/Manrope/Tiro, illustrations, existing story prose and routes. The simpler option was to shorten the four-portrait slideshow; the selected approach shows **eight individual portraits across four spatially separate spreads in 2.8 seconds**, preserving the short arrival while broadening representation. Ganesha/Lakshmi, Rama/Hanuman, Shiva/Durga and Krishna/Saraswati are editorial arrangements, not assertions of religious relationships. No circles, halos, particles or new animation dependency.
+
+Each spread lasts 500ms: the second portrait follows by 35ms, each enters in 190ms with a bounded 18px lateral/10px vertical movement, then leaves over 90ms. The welcome begins at 2020ms, settles over 300ms, and dissolves at 2580–2800ms. All 27 effects share one document timeline and animate opacity/transform only. Every eligible homepage visit remains enabled; immediate Enter/Escape/scroll/swipe, reduced motion, history races and deep links retain their behavior. Unfinished image downloads now stop at the 900ms deadline or early interaction instead of competing with the homepage after playback is abandoned.
+
+Performance is part of the art direction: responsive delivery preserves source crops, offscreen imagery loads near its viewport, and the phone preview initializes on approach or explicit interaction. Shared Fraunces uses one URL across homepage and books. Remove unused scroll geometry work and the persistent header blur. Source files remain checksum-pinned; generated delivery derivatives do not change editorial artwork.
+
+The story dialog now prioritizes **Continue reading** into its actual English/Hindi book. Availability offers the real bookshelf, while the app remains explicitly coming soon. About, Privacy and Corrections explain the usable product and browser-local keeps. No price, live subscription, endorsement, user count or conversion improvement is invented. Visitor text changes are deliberate corrections to the available journey, not story-prose changes.
+
+Acceptance: native no-JS reading remains accessible; all eight assets fit the existing 1.5MB largest-variant budget; mobile initial images decrease; no overflow at 320/390/768/1440; English/Hindi source-to-book and kept-page recovery work; reduced motion and rapid repeated inputs cancel cleanly. Evidence and qualified measurements: `docs/qa/site-polish-2026-10-24/README.md`.
+
+
 ## Every-visit welcome motion — 24 October 2026 (current)
 
 Play on every eligible homepage navigation, refresh and unanchored history return. Ignore old seen flags and make no welcome storage reads/writes. Section deep links, reduced motion, early interaction, hidden pages and media failure still leave the intended content accessible; ordinary tab refocus does not restart it. `pageshow.persisted` covers cache restoration, while fresh documents start once.
