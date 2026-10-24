@@ -171,7 +171,7 @@ for(const reason of ['early input','deadline'] as const)test(`${reason} abandons
     await page.goto('/',{waitUntil:'domcontentloaded'});
     await expect.poll(()=>page.evaluate(()=>window.welcomeImageLoaders.filter(image=>image.src.includes('/welcome/portraits/')).length)).toBe(8);
     if(reason==='early input')await page.getByRole('link',{name:'Find your story',exact:true}).click();
-    await expect.poll(()=>page.evaluate(()=>window.welcomeImageLoaders.filter(image=>!image.hasAttribute('src')&&!image.hasAttribute('srcset')).length),{timeout:1500}).toBe(8);
+    await expect.poll(()=>page.evaluate(()=>window.welcomeImageLoaders.filter(image=>!image.hasAttribute('src')&&!image.hasAttribute('srcset')).length),{timeout:1500,intervals:[50]}).toBe(8);
     await expect(page.locator('#welcome-intro')).not.toBeVisible();
     release();
     await page.waitForTimeout(1000);
