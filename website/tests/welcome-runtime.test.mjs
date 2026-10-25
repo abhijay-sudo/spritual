@@ -43,7 +43,7 @@ async function harness(options={}) {
   const openingBook=new Element('opening-book'),bookLeft=new Element('book-left'),bookRight=new Element('book-right');
   const bookImages=[new Element('page-left'),new Element('page-right')];
   openingBook.querySelector=selector=>selector==='.welcome-book-left'?bookLeft:selector==='.welcome-book-right'?bookRight:null;
-  openingBook.querySelectorAll=()=>bookImages;
+  openingBook.querySelectorAll=()=>bookImages;openingBook.getBoundingClientRect=()=>({width:900,height:600});
   hero.currentSrc='/stories-app/edition/open-book-640.webp';hero.naturalWidth=640;
   dialog.dataset=new Proxy({}, {set(target,key,value){target[key]=value;if(key==='state')states.push({value,at:now});return true;}});
   dialog.open=false;
@@ -91,7 +91,7 @@ async function harness(options={}) {
       return Promise.resolve();
     }
   }
-  vm.runInNewContext(source,{document,Element,Image,AbortController,URLSearchParams,sessionStorage,
+  vm.runInNewContext(source,{innerWidth:1440,innerHeight:900,document,Element,Image,AbortController,URLSearchParams,sessionStorage,
     location:{hostname:'127.0.0.1',search:options.search??'',hash:options.hash??''},
     performance:{getEntriesByType:()=>[{type:options.navigation??'navigate'}]},
     matchMedia:()=>media,setTimeout:schedule,clearTimeout:clear,addEventListener:window.addEventListener.bind(window),
@@ -111,20 +111,20 @@ async function harness(options={}) {
   };
 }
 
-test('welcome completes in 4.14 seconds, visits eight figures in order and restores the reading action',async()=>{
+test('welcome completes in 5.7 seconds, visits eight figures in order and restores the reading action',async()=>{
   const h=await harness();assert.equal(h.dialog.open,true);assert.equal(h.focused(),h.skip);
-  await h.advance(4139);assert.equal(h.dialog.open,true);
+  await h.advance(5699);assert.equal(h.dialog.open,true);
   await h.advance(1);assert.equal(h.dialog.open,false);assert.equal(h.focused(),h.hero);
   const phases=h.states.filter(s=>s.value!=='complete');
-  assert.deepEqual(phases,[...deityOrder.map((value,index)=>({value,at:index*420})),{value:'welcome',at:3360},{value:'revealing',at:3920}]);
+  assert.deepEqual(phases,[...deityOrder.map((value,index)=>({value,at:index*420})),{value:'welcome',at:3360},{value:'revealing',at:5400}]);
   assert.equal(h.tasks.size,0);assert.equal(h.rootClasses.size,0);
   assert(h.animations.every(a=>a.canceled));
 });
 
-test('all 29 effects share one clock, eight single portraits and a settled welcome',async()=>{
+test('all 30 effects share one clock, eight single portraits and a settled welcome',async()=>{
   const h=await harness();
   const animationsAtStart=h.animations.length;
-  assert.equal(animationsAtStart,29);
+  assert.equal(animationsAtStart,30);
   const entries=h.animations.filter(a=>deityOrder.includes(a.element.name));
   assert.equal(entries.length,8);
   for(let i=0;i<entries.length;i++){
@@ -139,8 +139,11 @@ test('all 29 effects share one clock, eight single portraits and a settled welco
   }
   assert(h.animations.every(a=>a.startTime===0),'All painting uses the same browser timeline origin');
   const title=h.animations.find(a=>a.element===h.title);
-  assert.equal(title.config.delay,3360);assert.equal(title.config.duration,300);
-  assert.equal(3920-title.config.delay-title.config.duration,260,'The settled welcome holds for 260ms before its exit');
+  const book=h.animations.find(a=>a.element.name==='opening-book');
+  assert.equal(book.config.delay,3360);assert.equal(book.config.duration,1550);
+  assert.equal(book.frames[0].opacity,0);assert.match(book.frames.at(-1).transform,/scale\(/);
+  assert.equal(title.config.delay,4600);assert.equal(title.config.duration,550);
+  assert.equal(5400-title.config.delay-title.config.duration,250,'The settled welcome holds for 250ms before its exit');
   await h.advance(2700);assert.equal(h.animations.length,animationsAtStart,'No late scene timer constructs or resets visual effects');
 });
 
@@ -180,7 +183,7 @@ test('each homepage visit plays regardless of previous session, storage denial o
   for(const options of [{seen:true},{search:'?utm_source=invitation'},{navigation:'back_forward'},{storageDenied:true}]){
     const h=await harness(options);assert.equal(h.dialog.open,true);
     assert.deepEqual(h.storageAccess,[],'Welcome must neither read nor write browser storage');
-    await h.advance(4140);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
+    await h.advance(5700);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
   }
 });
 
@@ -288,8 +291,8 @@ test('a queued prior close cannot tear down a reopened history visit',async()=>{
   h.window.dispatchEvent(restore);await h.flush();assert.equal(h.dialog.open,true);
   await h.advance(0);
   assert.equal(h.dialog.dataset.state,'ganesha');
-  assert.equal(h.animations.filter(a=>!a.canceled).length,29);
-  await h.advance(4140);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
+  assert.equal(h.animations.filter(a=>!a.canceled).length,30);
+  await h.advance(5700);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
 });
 
 

@@ -14,7 +14,7 @@
   const artLoaders=new Set();
   const easing='cubic-bezier(.22,1,.36,1)';
   // A single portrait occupies each beat. Non-overlapping windows avoid paired silhouettes.
-  const timing={beat:420,leave:75,gap:0,arrive:110,welcome:3360,reveal:3920,exit:220,watchdog:5200};
+  const timing={beat:420,leave:75,gap:0,arrive:110,welcome:3360,reveal:5400,exit:300,watchdog:6800};
   const animate=(element,frames,options={})=>{
     const animation=element.animate(frames,{duration:400,easing,fill:'both',...options});
     // One compositor timeline: delayed stages do not depend on the next JS timer firing on time.
@@ -112,6 +112,7 @@
   function resetVisuals(){
     figures.forEach(el=>{el.style.opacity='0';el.style.transform='none';});
     title.style.opacity='0';title.style.transform='none';
+    const book=dialog.querySelector('.welcome-book');if(book){book.style.opacity='0';book.style.transform='none';}
     dialog.style.opacity='1';
     dialog.style.transform='none';
   }
@@ -133,12 +134,17 @@
     if(openingBook){
       const heroArt=document.querySelector('.invitation-painting img');
       openingBook.hidden=!heroArt?.currentSrc||!heroArt.naturalWidth;
-      if(!openingBook.hidden)openingBook.querySelectorAll('[data-opening-page]').forEach(image=>{image.src=heroArt.currentSrc;});
+      if(!openingBook.hidden)openingBook.querySelectorAll('[data-opening-page]').forEach(image=>{
+        // Keep the decoded hero visible while the larger, existing artwork loads.
+        image.style.backgroundImage=`url("${heroArt.currentSrc}")`;
+        image.onerror=()=>{image.onerror=null;image.src=heroArt.currentSrc;};
+        image.src='/stories-app/edition/open-book-1536.webp';
+      });
     }
     dialog.showModal();skip.focus({preventScroll:true});
     document.documentElement.classList.add('welcome-playing');
     if(reduced.matches){
-      dialog.dataset.state='welcome';title.style.opacity='1';
+      dialog.dataset.state='welcome';title.style.opacity='1';if(openingBook)openingBook.style.opacity='1';
       return;
     }
     choreographyOrigin=document.timeline.currentTime;
@@ -165,12 +171,15 @@
     });
     if(openingBook&&!openingBook.hidden){
       const left=openingBook.querySelector('.welcome-book-left'),right=openingBook.querySelector('.welcome-book-right');
+      const bounds=openingBook.getBoundingClientRect();
+      const zoom=Math.max(innerWidth/bounds.width,innerHeight/bounds.height)*1.35;
+      animate(openingBook,[{opacity:0,transform:'scale(.82)',offset:0},{opacity:1,transform:'scale(1)',offset:.3},{opacity:1,transform:'scale(1)',offset:.43},{opacity:1,transform:`scale(${zoom})`,offset:1}],{delay:timing.welcome,duration:1550,easing:'cubic-bezier(.45,0,.2,1)'});
       if(left&&right){
-        animate(left,[{transform:'rotateY(76deg)'},{transform:'rotateY(0deg)'}],{delay:timing.welcome,duration:500});
-        animate(right,[{transform:'rotateY(-76deg)'},{transform:'rotateY(0deg)'}],{delay:timing.welcome,duration:500});
+        animate(left,[{transform:'rotateY(76deg)'},{transform:'rotateY(0deg)'}],{delay:timing.welcome,duration:650});
+        animate(right,[{transform:'rotateY(-76deg)'},{transform:'rotateY(0deg)'}],{delay:timing.welcome,duration:650});
       }
     }
-    animate(title,[{opacity:0,transform:'translateY(16px) scale(.96)'},{opacity:1,transform:'translateY(-1px) scale(1.005)',offset:.8},{opacity:1,transform:'translateY(0) scale(1)'}],{delay:timing.welcome,duration:300});
+    animate(title,[{opacity:0,transform:'translateY(16px) scale(.96)'},{opacity:1,transform:'translateY(-1px) scale(1.005)',offset:.8},{opacity:1,transform:'translateY(0) scale(1)'}],{delay:4600,duration:550});
     const total=timing.reveal+timing.exit;
     animate(dialog,[
       {opacity:0,offset:0,easing:'ease-out'},

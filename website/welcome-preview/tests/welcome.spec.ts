@@ -21,7 +21,7 @@ test('complete opening visits eight figures in eight single portraits and reache
   const intro=page.locator('#welcome-intro');
   await expect(intro).toBeVisible();
   await expect(page.getByRole('button',{name:'Enter Spritual'})).toBeFocused();
-  await expect(intro).not.toBeVisible({timeout:4500});
+  await expect(intro).not.toBeVisible({timeout:6500});
   const states = await page.evaluate(() => [...new Set(window.welcomeStates)]);
   expect(states).toEqual(['ganesha','lakshmi','rama','hanuman','shiva','durga','krishna','saraswati','welcome','revealing','complete']);
   await expect(page.locator('.hero-actions a').first()).toBeFocused();
@@ -232,7 +232,14 @@ for(const width of [320,390,768,1440])test(`opening and welcome fit ${width}px w
   await page.screenshot({path:`${evidence}/single-ganesha-${width}.png`});
   await page.clock.runFor(3500);
   await expect(page.locator('#welcome-intro')).toHaveAttribute('data-state','welcome');
-  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=3750;}));
+  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=3700;}));
+  expect(await page.locator('.welcome-title').evaluate(e=>Number(getComputedStyle(e).opacity))).toBe(0);
+  const openingWidth=(await page.locator('.welcome-book').boundingBox())!.width;
+  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=4900;}));
+  const expanded=await page.locator('.welcome-book').boundingBox();
+  expect(expanded!.width).toBeGreaterThan(openingWidth);expect(expanded!.height).toBeGreaterThan(width===1440?900:844);
+  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=5150;}));
+  expect(await page.locator('.welcome-title').evaluate(e=>Number(getComputedStyle(e).opacity))).toBe(1);
   await page.screenshot({path:`${evidence}/single-welcome-${width}.png`});
   await expect(page.getByRole('button',{name:'Enter Spritual'})).toBeInViewport();
   await page.getByRole('button',{name:'Enter Spritual'}).click();
@@ -279,7 +286,7 @@ test('high-density phones receive separate sharp portraits and no framing or dup
     expect(assets).toHaveLength(8);
     for(const asset of assets){expect(asset.src).toMatch(/-1280\.webp$/);expect(asset.width).toBe(asset.src.includes('saraswati-')?721:720);expect(asset.height).toBe(1280);}
     expect(new Set(requests).size).toBe(8);
-    await expect(page.locator('#welcome-intro')).not.toBeVisible({timeout:4500});
+    await expect(page.locator('#welcome-intro')).not.toBeVisible({timeout:6500});
   }finally{await context.close();}
 });
 test('4K desktop canvas keeps bounded full portraits without enlarging their source pixels',async({page})=>{
@@ -340,7 +347,7 @@ test('a queued old close event cannot cancel a newly restored welcome',async({pa
   const intro=page.locator('#welcome-intro');
   await expect(intro).toBeVisible();
   expect(await intro.evaluate(dialog=>dialog.getAnimations({subtree:true}).length)).toBe(27);
-  await expect(intro).not.toBeVisible({timeout:4500});
+  await expect(intro).not.toBeVisible({timeout:6500});
   await expect(page.locator('.hero-actions a').first()).toBeFocused();
 });
 
