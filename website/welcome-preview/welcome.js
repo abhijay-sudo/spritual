@@ -14,7 +14,7 @@
   const artLoaders=new Set();
   const easing='cubic-bezier(.22,1,.36,1)';
   // A single portrait occupies each beat. Non-overlapping windows avoid paired silhouettes.
-  const timing={beat:420,leave:75,gap:0,arrive:110,welcome:3360,reveal:5400,exit:300,watchdog:6800};
+  const timing={beat:260,leave:55,gap:0,arrive:75,welcome:2080,reveal:3180,exit:220,watchdog:4500};
   const animate=(element,frames,options={})=>{
     const animation=element.animate(frames,{duration:400,easing,fill:'both',...options});
     // One compositor timeline: delayed stages do not depend on the next JS timer firing on time.
@@ -172,14 +172,14 @@
     if(openingBook&&!openingBook.hidden){
       const left=openingBook.querySelector('.welcome-book-left'),right=openingBook.querySelector('.welcome-book-right');
       const bounds=openingBook.getBoundingClientRect();
-      const zoom=Math.max(innerWidth/bounds.width,innerHeight/bounds.height)*1.35;
-      animate(openingBook,[{opacity:0,transform:'scale(.82)',offset:0},{opacity:1,transform:'scale(1)',offset:.3},{opacity:1,transform:'scale(1)',offset:.43},{opacity:1,transform:`scale(${zoom})`,offset:1}],{delay:timing.welcome,duration:1550,easing:'cubic-bezier(.45,0,.2,1)'});
+      const zoom=Math.min(2.4,Math.max(1.5,innerWidth/bounds.width,innerHeight/bounds.height));
+      animate(openingBook,[{opacity:0,transform:'scale(.9)',offset:0},{opacity:1,transform:'scale(1)',offset:.24},{opacity:1,transform:'scale(1.06)',offset:.4},{opacity:.08,transform:`scale(${zoom})`,offset:1}],{delay:timing.welcome,duration:900,easing:'cubic-bezier(.3,0,.2,1)'});
       if(left&&right){
-        animate(left,[{transform:'rotateY(76deg)'},{transform:'rotateY(0deg)'}],{delay:timing.welcome,duration:650});
-        animate(right,[{transform:'rotateY(-76deg)'},{transform:'rotateY(0deg)'}],{delay:timing.welcome,duration:650});
+        animate(left,[{transform:'rotateY(76deg)'},{transform:'rotateY(0deg)'}],{delay:timing.welcome,duration:400});
+        animate(right,[{transform:'rotateY(-76deg)'},{transform:'rotateY(0deg)'}],{delay:timing.welcome,duration:400});
       }
     }
-    animate(title,[{opacity:0,transform:'translateY(16px) scale(.96)'},{opacity:1,transform:'translateY(-1px) scale(1.005)',offset:.8},{opacity:1,transform:'translateY(0) scale(1)'}],{delay:4600,duration:550});
+    animate(title,[{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{delay:2600,duration:280});
     const total=timing.reveal+timing.exit;
     animate(dialog,[
       {opacity:0,offset:0,easing:'ease-out'},

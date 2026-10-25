@@ -100,7 +100,7 @@
 .welcome-book-half{position:relative;width:50%;height:100%;overflow:hidden;backface-visibility:hidden;will-change:transform}
 .welcome-book-half img{display:block;width:200%;max-width:none;height:100%;object-fit:fill;background-size:100% 100%;background-repeat:no-repeat}
 .welcome-book-left{transform-origin:right center}.welcome-book-right{transform-origin:left center}.welcome-book-right img{margin-left:-100%}
-.welcome-title{background:#faf7f2d9;z-index:1;pointer-events:none}
+.welcome-title{background:transparent;z-index:1;pointer-events:none}
 .welcome-title>img{width:48px;height:48px;margin-bottom:20px;border-radius:12px}
 .welcome-title>div{font-size:clamp(76px,14vw,180px)}
 .welcome-title>small{margin-top:14px}

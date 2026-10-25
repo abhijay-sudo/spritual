@@ -226,3 +226,7 @@ The welcome retains one deity at a time, then unfolds two halves of the already 
 ## Full-screen book entrance — 25 October 2026
 
 The welcome book is now an independent full-viewport scene, not a small illustration above the greeting. Eight single-deity beats remain. At 3360ms the paired leaves unfold for 650ms; a 1550ms shared-timeline camera transform grows the spread beyond both viewport dimensions. At 4600ms the greeting appears over an archival-paper veil. The 300ms website reveal starts at 5400ms. Total 5.7 seconds, with immediate skip/Escape/scroll. Reduced motion bypasses automatically and manual replay is static. Existing 1536px artwork supplies the zoom; decoded homepage art remains as its loading/error fallback. No new dependency, branding, content or commerce.
+
+## Shorter welcome handoff — 25 October 2026
+
+Supersedes the previous 5.7s opening: 3.4s total, with eight non-overlapping 260ms portrait beats. The book starts at 2080ms, opens in 400ms and makes one continuous 900ms move toward the viewer. Zoom is capped at 2.4x to avoid extreme mobile enlargement. Artwork fades to 8% as the greeting arrives at 2600ms in 280ms, without scale overshoot or a separate pale overlay. Website reveal starts at 3180ms and lasts 220ms. Keep skip, cold-start deadline, cancellation and reduced-motion semantics unchanged.
