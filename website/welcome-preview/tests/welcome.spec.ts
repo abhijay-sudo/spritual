@@ -348,7 +348,7 @@ test('a queued old close event cannot cancel a newly restored welcome',async({pa
 test('a cold hero gets network priority and a late load cannot begin optional portrait downloads',async({page})=>{
   const portraits:string[]=[];
   page.on('request',r=>{if(r.url().includes('/welcome/portraits/'))portraits.push(r.url());});
-  await page.route('**/*forest-journey*.webp',async route=>{await new Promise(resolve=>setTimeout(resolve,1500));await route.continue();});
+  await page.route('**/edition/open-book-*.webp',async route=>{await new Promise(resolve=>setTimeout(resolve,1500));await route.continue();});
   await page.goto('/',{waitUntil:'domcontentloaded'});
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
   await expect.poll(()=>page.locator('.invitation-painting img').evaluate((i:HTMLImageElement)=>i.complete&&i.naturalWidth>0)).toBe(true);

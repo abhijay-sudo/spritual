@@ -10,7 +10,7 @@ test('the hero loads immediately while distant paintings and the phone wait', as
   const requested: string[] = [];
   page.on('request', request => {if (request.resourceType() === 'image') requested.push(request.url());});
   await page.goto('/');
-  const hero = page.locator('.invitation-painting > img');
+  const hero = page.locator('.invitation-painting img');
   await imageReady(hero);
   await expect(hero).toHaveAttribute('fetchpriority', 'high');
   await expect(hero).not.toHaveAttribute('data-deferred-src');
