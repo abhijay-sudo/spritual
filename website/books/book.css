@@ -10,3 +10,22 @@
 .folio-prose{font-family:Georgia,BookHindi,serif;hyphens:none}.frontispiece>p{font-family:Georgia,BookHindi,serif}.book-leaves{min-height:460px}body:has(dialog[open]){overflow:hidden}
 @media(min-width:651px) and (max-width:1000px){.open-book{grid-template-columns:1fr}.frontispiece{display:grid;grid-template-columns:1fr 200px;text-align:left;gap:10px 30px;border-right:0;border-bottom:1px solid var(--line)}.frontispiece .eyebrow,.frontispiece h1,.frontispiece>p,.frontispiece .source-trigger{grid-column:1}.frontispiece h1{margin:5px 0;font-size:2.4rem;max-width:none}.frontispiece-art{grid-column:2;grid-row:1/span 4;height:200px;margin:0}.frontispiece .source-trigger{margin-top:5px}.book-leaves{padding:36px 48px}.folio-prose{max-width:62ch}.book-enhanced [data-reader][data-current-page]:not([data-current-page="0"]) .frontispiece-art{display:none}.book-enhanced [data-reader][data-current-page]:not([data-current-page="0"]) .frontispiece{display:block}.book-enhanced [data-reader][data-current-page]:not([data-current-page="0"]) .frontispiece>p{display:none}}
 @media(max-width:650px){.frontispiece{display:grid;grid-template-columns:minmax(0,1fr) 95px;align-items:start;gap:8px 18px;padding:23px;text-align:left}.frontispiece .eyebrow{grid-column:1;font-size:.59rem}.frontispiece h1{grid-column:1;font-size:1.65rem;line-height:1.14;margin:0;max-width:none}.frontispiece-art{grid-column:2;grid-row:1/span 3;height:132px;width:95px;border-radius:55px 55px 3px 3px;margin:3px 0 0}.frontispiece>p{display:none}.frontispiece .source-trigger{grid-column:1;font-size:.65rem;margin:0;min-height:36px}.book-leaves{padding-top:25px;min-height:360px}.reader-path{margin-bottom:8px}.book-enhanced [data-reader][data-current-page]:not([data-current-page="0"]) .frontispiece{display:block}.book-enhanced [data-reader][data-current-page]:not([data-current-page="0"]) .frontispiece .source-trigger{display:none}.book-enhanced [data-reader][data-current-page]:not([data-current-page="0"]) .frontispiece h1{font-size:1.4rem}.frontispiece .source-ornament{grid-column:2;grid-row:1/span 3;font-size:4rem;margin:0}}
+
+/* A real paper hinge, bounded to one viewport-sized decorative layer. */
+.book-leaves{position:relative;perspective:1500px;isolation:isolate;touch-action:pan-y pinch-zoom}
+.turn-sheet{position:absolute;inset:0 0 auto;z-index:4;transform-origin:left center;transform-style:preserve-3d;pointer-events:none;will-change:transform,opacity}
+.turn-face{position:absolute;inset:0;backface-visibility:hidden;overflow:hidden;background:var(--leaf);border:1px solid var(--line);border-radius:0 6px 6px 0}
+.turn-front{box-shadow:inset 9px 0 15px -10px #483e2866,4px 2px 7px #25221b18}
+.turn-back{transform:rotateY(180deg);background:linear-gradient(90deg,#b9ab8d44,var(--leaf) 9%,var(--leaf) 90%,#b9ab8d33)}
+.turn-content{margin:0!important}.turn-content h2{font-size:2rem;line-height:1.2}
+.turn-shadow{position:absolute;inset:0 0 auto;z-index:3;pointer-events:none;background:linear-gradient(90deg,#352d18,transparent 80%);transform-origin:left center}
+.turn-cover{background:#173e31;padding:35px;display:flex;align-items:flex-end;justify-content:center;color:#f8edcc;box-shadow:inset 8px 0 8px #0004,3px 2px 0 #b39b6d}
+.turn-cover:after{content:'';position:absolute;inset:16px;border:1px solid #d9be797a;pointer-events:none}
+.turn-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8}
+.turn-cover span{position:relative;text-align:center;font:clamp(25px,3vw,42px)/1.2 var(--serif);background:#173e31e8;padding:22px;width:100%;border:1px solid #d9be797a}
+@media(prefers-reduced-motion:no-preference){.open-book{animation:none}}
+@media(max-width:650px){.book-leaves{perspective:1000px}.turn-content h2{font-size:1.4rem}.turn-cover{padding:24px}}
+@media(prefers-reduced-motion:reduce){.turn-sheet,.turn-shadow{display:none!important}}
+@media print{.turn-sheet,.turn-shadow{display:none!important}}
+
+.open-book{overflow:clip}

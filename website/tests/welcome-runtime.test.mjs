@@ -40,13 +40,18 @@ async function harness(options={}) {
   });
   const artwork=figures.map(figure=>figure.children[0]);
   const dialog=new Element('dialog'),replay=new Element('replay'),title=new Element('title'),light=new Element('light'),skip=new Element('skip'),hero=new Element('hero');
+  const openingBook=new Element('opening-book'),bookLeft=new Element('book-left'),bookRight=new Element('book-right');
+  const bookImages=[new Element('page-left'),new Element('page-right')];
+  openingBook.querySelector=selector=>selector==='.welcome-book-left'?bookLeft:selector==='.welcome-book-right'?bookRight:null;
+  openingBook.querySelectorAll=()=>bookImages;
+  hero.currentSrc='/stories-app/edition/open-book-640.webp';hero.naturalWidth=640;
   dialog.dataset=new Proxy({}, {set(target,key,value){target[key]=value;if(key==='state')states.push({value,at:now});return true;}});
   dialog.open=false;
   dialog.showModal=()=>{dialog.open=true;};
   dialog.close=()=>{dialog.open=false;const dispatch=()=>dialog.dispatchEvent(new Event('close'));if(options.queuedClose)schedule(dispatch);else dispatch();};
   dialog.getAnimations=()=>allAnimations.filter(a=>!a.canceled);
   dialog.querySelectorAll=selector=>selector==='.welcome-figure'?figures:selector.includes('data-welcome-art')?artwork:[];
-  dialog.querySelector=selector=>({'.welcome-title':title,'.welcome-light':light,'.welcome-skip':skip})[selector]??null;
+  dialog.querySelector=selector=>({'.welcome-book':openingBook,'.welcome-title':title,'.welcome-light':light,'.welcome-skip':skip})[selector]??null;
   let resolveHero;
   hero.complete=!options.heroPending;
   const heroPromise=new Promise(resolve=>{resolveHero=()=>{hero.complete=true;resolve();};});
@@ -57,7 +62,7 @@ async function harness(options={}) {
   document.timeline={get currentTime(){return now;}};
   document.documentElement={classList:{add:c=>rootClasses.add(c),remove:c=>rootClasses.delete(c)}};
   document.getElementById=()=>dialog;
-  document.querySelector=selector=>selector==='.invitation-painting img'&&options.heroPending?hero:selector==='[data-replay-welcome]'?replay:selector==='dialog[open]'?(dialog.open||options.otherDialog?dialog:null):selector==='.hero-actions a'?hero:null;
+  document.querySelector=selector=>selector==='.invitation-painting img'?hero:selector==='[data-replay-welcome]'?replay:selector==='dialog[open]'?(dialog.open||options.otherDialog?dialog:null):selector==='.hero-actions a'?hero:null;
   document.querySelectorAll=selector=>selector.includes('data-welcome-art')?artwork:[];
   const media=new EventTarget();media.matches=options.reduced??false;
   const window=new EventTarget();
@@ -116,10 +121,10 @@ test('welcome completes in 4.14 seconds, visits eight figures in order and resto
   assert(h.animations.every(a=>a.canceled));
 });
 
-test('all 27 effects share one clock, eight single portraits and a settled welcome',async()=>{
+test('all 29 effects share one clock, eight single portraits and a settled welcome',async()=>{
   const h=await harness();
   const animationsAtStart=h.animations.length;
-  assert.equal(animationsAtStart,27);
+  assert.equal(animationsAtStart,29);
   const entries=h.animations.filter(a=>deityOrder.includes(a.element.name));
   assert.equal(entries.length,8);
   for(let i=0;i<entries.length;i++){
@@ -283,7 +288,7 @@ test('a queued prior close cannot tear down a reopened history visit',async()=>{
   h.window.dispatchEvent(restore);await h.flush();assert.equal(h.dialog.open,true);
   await h.advance(0);
   assert.equal(h.dialog.dataset.state,'ganesha');
-  assert.equal(h.animations.filter(a=>!a.canceled).length,27);
+  assert.equal(h.animations.filter(a=>!a.canceled).length,29);
   await h.advance(4140);assert.equal(h.dialog.open,false);assert.equal(h.tasks.size,0);
 });
 

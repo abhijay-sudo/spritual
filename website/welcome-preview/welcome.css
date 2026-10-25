@@ -94,3 +94,16 @@
 @media (forced-colors: active) {
   .welcome-skip { border-color: ButtonText; }
 }
+
+/* The final welcome opens the same illustrated volume as the homepage. */
+.welcome-title>.welcome-book{position:relative;display:flex;flex:none;width:min(420px,72vw);aspect-ratio:3/2;margin:0 0 14px;perspective:1000px;letter-spacing:normal;font-size:initial;filter:none}
+.welcome-book-half{position:relative;width:50%;height:100%;overflow:hidden;backface-visibility:hidden;will-change:transform}
+.welcome-book-half img{display:block;width:200%;max-width:none;height:100%;object-fit:fill}
+.welcome-book-left{transform-origin:right center}.welcome-book-right{transform-origin:left center}.welcome-book-right img{margin-left:-100%}
+.welcome-title>.welcome-book~img{width:32px;height:32px;margin-bottom:12px;border-radius:8px}
+.welcome-title>.welcome-book~div{font-size:clamp(66px,10vw,120px)}
+.welcome-title>.welcome-book~small{margin-top:12px}
+@media(max-height:600px){.welcome-title>.welcome-book{width:min(220px,40vw);max-height:30dvh;margin-bottom:5px}.welcome-title>.welcome-book~img{display:none}.welcome-title>.welcome-book~div{font-size:clamp(50px,9dvh,80px)}.welcome-title>.welcome-book~small{margin-top:5px}}
+@media(prefers-reduced-motion:reduce){.welcome-book-half{will-change:auto}}
+
+.welcome-book[hidden]{display:none!important}

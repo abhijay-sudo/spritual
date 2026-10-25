@@ -27,7 +27,7 @@ export async function addWelcomePreview(output) {
     <div class="welcome-stage" aria-hidden="true">
       <div class="welcome-light"></div><span class="welcome-edition">A WORLD OF STORIES</span>
       <div class="welcome-figures">${figures.map(([id,en,hi])=>`<figure class="welcome-figure" data-deity="${id}"><img class="welcome-cutout" data-welcome-art data-art="${id}" width="${release.portraits.find(p=>p.id===id).width}" height="${release.portraits.find(p=>p.id===id).height}" alt="" decoding="async"><figcaption>${en}<span lang="hi">${hi}</span></figcaption></figure>`).join('')}</div>
-      <div class="welcome-title"><img src="/stories-app/assets/brand-icon.svg" width="64" height="64" alt=""><p>Welcome to</p><div>Spritual<span>.</span></div><small>Stories to return to.</small></div>
+      <div class="welcome-title"><div class="welcome-book"><div class="welcome-book-half welcome-book-left"><img data-opening-page alt=""></div><div class="welcome-book-half welcome-book-right"><img data-opening-page alt=""></div></div><img src="/stories-app/assets/brand-icon.svg" width="64" height="64" alt=""><p>Welcome to</p><div>Spritual<span>.</span></div><small>Stories to return to.</small></div>
     </div>
   </dialog>`;
   let html=await readFile(resolve(output,'index.html'),'utf8');

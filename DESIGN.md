@@ -216,3 +216,9 @@ Chosen over enlarging the six-preview carousel: a small static bookshelf and a c
 - Page controls and table of contents update content/history/focus immediately. A bounded 220ms opacity/8px transition adds continuity. Rapid input cancels earlier motion. Reduced motion is instant.
 - Appearance is visit-only. Exact-place bookmarks are explicit, browser-local, schema-validated and separate from legacy saved data; failures never claim success. All prose remains readable with JavaScript disabled.
 - Historical corpus output lives only in ignored `artifacts/book-research`, blocked in CI/Vercel. Scope and evidence live in `docs/project/BOOK_LIBRARY_20261020.md`; downloading or importing an edition is not publication approval.
+
+## Paper motion — 25 October 2026
+
+Book entry uses a 640ms illustrated cover hinge; next/previous use a directional 480ms paper fold with a soft shadow. Native Web Animations transform/opacity effects replace the old 220ms fade. Content, focus and URL update immediately; only one inert, ID-free decorative sheet exists at a time. Resize, page hide, dialogs and reduced motion cancel it. Saved-page deep links skip entry motion. Horizontal touch swipes turn pages; vertical scroll, zoom and text selection remain available.
+
+The welcome retains one deity at a time, then unfolds two halves of the already decoded hero book in 500ms. This reuses the existing image and timing budget. Reduced motion stays static; essential reading does not depend on animation. Do not add animation dependencies or render-loop layout reads for these effects.
