@@ -26,7 +26,7 @@ export async function addWelcomePreview(output) {
     <div class="welcome-top"><span class="welcome-wordmark" aria-hidden="true">spritual</span><form method="dialog"><button class="welcome-skip" autofocus>Enter Spritual <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form></div>
     <div class="welcome-stage" aria-hidden="true">
       <div class="welcome-light"></div><span class="welcome-edition">A WORLD OF STORIES</span>
-      <div class="welcome-figures">${figures.map(([id,en,hi])=>`<figure class="welcome-figure" data-deity="${id}"><span class="welcome-script" lang="hi">${hi}</span><img class="welcome-cutout" data-welcome-art data-art="${id}" width="${release.portraits.find(p=>p.id===id).width}" height="${release.portraits.find(p=>p.id===id).height}" alt="" decoding="async"><figcaption>${en}<span lang="hi">${hi}</span></figcaption></figure>`).join('')}</div>
+      <div class="welcome-figures">${figures.map(([id,en,hi])=>`<figure class="welcome-figure" data-deity="${id}"><img class="welcome-cutout" data-welcome-art data-art="${id}" width="${release.portraits.find(p=>p.id===id).width}" height="${release.portraits.find(p=>p.id===id).height}" alt="" decoding="async"><figcaption>${en}<span lang="hi">${hi}</span></figcaption></figure>`).join('')}</div>
       <div class="welcome-title"><img src="/stories-app/assets/brand-icon.svg" width="64" height="64" alt=""><p>Welcome to</p><div>Spritual<span>.</span></div><small>Stories to return to.</small></div>
     </div>
   </dialog>`;

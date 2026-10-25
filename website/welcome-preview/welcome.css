@@ -40,11 +40,6 @@
 }
 .welcome-figure { left: 0; right: 0; }
 .welcome-edition { position: absolute; bottom: 7%; font: 10px/1.5 var(--sans); letter-spacing: 3px; color: #81744f; }
-.welcome-script {
-  position: absolute; top: 50%; left: 50%; z-index: -1;
-  transform: translate(-50%, -55%); white-space: nowrap; pointer-events: none;
-  font: clamp(130px, 18vw, 240px)/1.2 Tiro, serif; color: #183d3607;
-}
 .welcome-cutout {
   display: block; height: min(61dvh, 600px, 130vw); width: auto; max-width: 100%;
   aspect-ratio: 941 / 1672; object-fit: contain;
@@ -71,7 +66,6 @@
   .welcome-wordmark { font-size: 27px; }
   .welcome-skip { padding: 10px 14px; font-size: 12px; gap: 10px; }
   .welcome-stage { inset: 0; }
-  .welcome-script { font-size: 42vw; }
   .welcome-figure { height: 74%; top: 12%; }
   .welcome-edition { bottom: 14%; font-size: 9px; letter-spacing: 2.5px; }
   .welcome-cutout { height: min(56dvh, 120vw); }
@@ -86,7 +80,6 @@
   .welcome-stage { inset: 45px 20px 12px; }
   .welcome-edition { display: none; }
   .welcome-figure { top: 0; height: 100%; padding-top: 0 !important; }
-  .welcome-script { font-size: 50dvh; }
   .welcome-cutout { height: 48dvh; }
   .welcome-figure figcaption { font-size: 18px; margin-top: 4px; }
   .welcome-figure figcaption span { font-size: 13px; }
