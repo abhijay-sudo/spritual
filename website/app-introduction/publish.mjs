@@ -23,6 +23,15 @@ export async function publishIntroduction(output){
  if(!importedFont.equals(sharedFont))throw Error('Shared Fraunces font differs from the pinned introduction');
  const sharedFonts=text=>text.replaceAll('/stories-app/assets/fonts/fraunces-latin.woff2','/assets/fraunces-latin.woff2');
  const images=await prepareResponsiveImages(output);
+ const edition=JSON.parse(await readFile(resolve(root,'edition-assets/manifest.json'),'utf8'));
+ await mkdir(resolve(output,'stories-app/edition'),{recursive:true});
+ for(const record of edition.files){
+  if(!/^open-book-(640|1024|1536)\.webp$/.test(record.file))throw Error('Invalid edition artwork path');
+  const data=await readFile(resolve(root,'edition-assets',record.file));
+  if(data.length!==record.bytes||createHash('sha256').update(data).digest('hex')!==record.sha256)throw Error('Edition artwork integrity mismatch');
+  await writeFile(resolve(output,'stories-app/edition',record.file),data);
+ }
+
  for(const [file,expected] of Object.entries(manifest.files)){
   const input=resolve(root,'public',file),bytes=await readFile(input);
   if(createHash('sha256').update(bytes).digest('hex')!==expected)throw Error(`Reference source changed without a reviewed manifest update: ${file}`);

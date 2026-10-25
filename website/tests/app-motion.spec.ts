@@ -35,7 +35,7 @@ test('native dialog exits animate without deferring close or focus restoration',
 });
 test('no-JavaScript and reduced motion retain the entire invitation and story controls',async({browser,page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');await page.locator('[data-open-story]').first().click();await page.locator('[data-story-language="hi"]').click();await expect(page.locator('.motion-ghost')).toHaveCount(0);expect(await page.evaluate(()=>document.getAnimations().filter(a=>a.playState==='running').length)).toBe(0);
- const context=await browser.newContext({javaScriptEnabled:false,baseURL:process.env.WEBSITE_URL||'http://127.0.0.1:4190'});const plain=await context.newPage();await plain.goto('/');await expect(plain.locator('h1')).toHaveText('Stories worth slowing down.');await expect(plain.locator('[data-story-card]')).toHaveCount(6);await context.close();
+ const context=await browser.newContext({javaScriptEnabled:false,baseURL:process.env.WEBSITE_URL||'http://127.0.0.1:4190'});const plain=await context.newPage();await plain.goto('/');await expect(plain.locator('h1')).toHaveText('Stories worth slowing down for.');await expect(plain.locator('[data-story-card]')).toHaveCount(6);await context.close();
 });
 test('motion evidence and responsive reading retain the approved composition',async({page})=>{
  await mkdir(evidence,{recursive:true});const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));

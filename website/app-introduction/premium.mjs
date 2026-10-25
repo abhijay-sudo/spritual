@@ -14,21 +14,30 @@ export function premiumIntroduction(html) {
       <div class="hero-layout section-shell">
         <div class="hero-intro">
           <p class="eyebrow hero-eyebrow"><span class="status-dot" aria-hidden="true"></span> STORIES TO RETURN TO</p>
-          <h1 id="hero-title">Stories worth<br> <em>slowing down.</em></h1>
+          <h1 id="hero-title">Stories worth<br> slowing down for.</h1>
           <p class="hero-description">Illustrated stories from the Ramayana and Bhagavata Purana. A little wonder, in English or Hindi.</p>
           <div class="hero-actions"><a class="button button-primary" href="#journey">Find your story ${arrow}</a><a class="quiet-link" href="#experience">Take a first look <svg class="icon" aria-hidden="true"><use href="#i-up-right"/></svg></a></div>
           <p class="availability" data-release-short>App coming soon to iPhone &amp; Android</p>
         </div>
         <div class="hero-gallery" data-scroll-scene aria-label="An illustrated invitation into the Ramayana">
-          <figure class="invitation-painting"><img src="/stories-app/assets/forest-journey.webp" alt="Rama and Lakshmana accompany Vishvamitra into a richly painted forest at dusk." width="1672" height="941" fetchpriority="high"><figcaption>THE RAMAYANA <span>AN ILLUSTRATED RETELLING</span></figcaption></figure>
-          <div class="invitation-page"><span class="micro-label">BEGIN IN MITHILA</span><span class="page-rule" aria-hidden="true"></span><p>A guarded bow.<br>A quiet prince.<br><em>A turning point.</em></p><a class="cover-enter" href="/books/read/rama-bow/">Enter the story ${arrow}</a><span class="page-folio" aria-hidden="true">01</span></div>
-          <span class="painting-frame" aria-hidden="true"></span>
+          <figure class="invitation-painting"><a class="open-book-link" href="/books/read/rama-bow/" aria-label="Enter the story"><img src="/stories-app/edition/open-book-1024.webp" srcset="/stories-app/edition/open-book-640.webp 640w, /stories-app/edition/open-book-1024.webp 1024w, /stories-app/edition/open-book-1536.webp 1536w" sizes="(max-width: 700px) 100vw, 66vw" alt="An open illustrated book: Rama and Lakshmana follow Vishvamitra through a forest above a sunlit river valley." width="1536" height="1024" fetchpriority="high"></a><figcaption>THE RAMAYANA <span>AN ILLUSTRATED RETELLING</span></figcaption></figure>
         </div>
       </div>
       <div class="hero-colophon section-shell"><p>Old stories. <em>New discoveries.</em></p><a href="#journey">SCROLL TO DISCOVER <span aria-hidden="true">↓</span></a><span>ENGLISH <span aria-hidden="true">/</span> <span lang="hi">हिन्दी</span></span></div>
     </section>
 
 ` + html.slice(end);
+  html = html.replace('<link rel="preload" href="/stories-app/assets/forest-journey.webp" as="image">', '<link rel="preload" as="image" href="/stories-app/edition/open-book-1024.webp" imagesrcset="/stories-app/edition/open-book-640.webp 640w, /stories-app/edition/open-book-1024.webp 1024w, /stories-app/edition/open-book-1536.webp 1536w" imagesizes="(max-width: 700px) 100vw, 66vw" fetchpriority="high">');
+  html = html.replace('Every story, <br><em>a world within.</em>', 'Six stories. A world within.');
+  html = html.replace('EXPLORE THE STORIES', 'THE ILLUSTRATED LIBRARY');
+  html = html.replace('<section id="experience"', `<section class="featured-edition" aria-labelledby="featured-title">
+      <div class="featured-edition-inner section-shell">
+        <div class="featured-edition-copy"><p class="eyebrow">FEATURED STORY · RAMAYANA</p><h2 id="featured-title">When the<br> bow broke.</h2><p class="featured-subtitle">A turning point in Mithila.</p><p class="featured-excerpt">The great bow arrived in an iron chest, borne on eight wheels. Janaka’s attendants brought it before Vishvamitra and the two princes. Many rulers had already failed to master it.</p><a class="button button-outline" href="/books/read/rama-bow/">Continue reading ${arrow}</a></div>
+        <div class="featured-edition-art"><img src="/stories-app/assets/rama-bow-mithila.webp" alt="Rama lifts the great bow in an illustrated hall at Mithila." width="900" height="1350" loading="lazy" decoding="async"></div>
+        <nav class="featured-next" aria-label="More stories from the Ramayana"><span class="micro-label">KEEP EXPLORING</span><a href="/books/read/sita-earth/"><span>01</span>What the furrow held</a><a href="/books/read/hanuman-leap/"><span>02</span>The strength he remembered</a><a href="/books/read/shiva-river/"><span>03</span>Where the river paused</a></nav>
+      </div>
+    </section>
+    <section id="experience"`);
   // This is an invitation to currently available reading, not an unapproved pricing plan.
   html = html.replace(/      <div class="edition-details reveal">[\s\S]*?<\/ol>/, `      <div class="edition-details reveal"><div class="edition-name"><span class="eyebrow">YOUR NEXT CHAPTER</span><h3>A shelf full of beginnings.</h3><p>Explore the collection. Keep your place. Return when you’re ready.</p></div><a class="button button-outline" href="/books/">Open the bookshelf ${arrow}</a></div>`);
   html = html.replace('<div class="experience-glow" aria-hidden="true"></div>', '<div class="experience-landscape" aria-hidden="true"><img src="/stories-app/assets/forest-journey.webp" alt="" width="1672" height="941" loading="lazy"></div>');

@@ -1,3 +1,13 @@
+## Illustrated book reference — 25 October 2026
+
+The owner selected an open-book, cloth-bound library reference. Homepage primary action remains Find your story → a source-linked preview → the actual bilingual book. Preserve the sunrise logo, original six stories and all reading/storage behavior.
+
+Implement the reference as a real open-book hero, centred desktop brand, six individually coloured cloth-bound story covers, and a forest-green featured reading invitation. On phones, stack the hero deliberately and use a native swipe shelf with the next cover visible. The six books represent the six available stories, not complete scripture editions. The reference's storyboard is animation direction, not a visitor-facing section; preserve the eight single-portrait opening without faint names or circular framing.
+
+New open-book art is a generated presentation of the existing forest-journey illustration, recorded in website/app-introduction/edition-assets/manifest.json. It depicts Rama and Lakshmana with Vishvamitra. It is not an archival manuscript. Three compressed WebP sizes are hash-checked by the dependency-free publisher. Preserve the immutable imported Site and original art manifest.
+
+Motion: existing section arrivals remain 560ms and do not gate content; book covers lift 6px and turn 7deg on hover/focus over 350ms. Reduced motion removes the transformation and retains focus outlines. Native swipe and navigation remain immediate. No new tracking, billing or app release.
+
 ## 25 October — one portrait, one moment
 
 The owner rejected the paired-deity design. The opening now uses eight centred, non-overlapping 420ms portrait windows, followed by a 560ms welcome and 220ms exit (4.14s total). Opacity and small vertical/scale movement share one browser timeline. No circular framing, paired silhouettes, particles or new dependencies. Keep the immediate Enter/Escape/touch-scroll exit, reduced-motion bypass, every-eligible-visit behaviour and cold-load failure recovery.
