@@ -14,13 +14,14 @@
   const artLoaders=new Set();
   const easing='cubic-bezier(.22,1,.36,1)';
   // A single portrait occupies each beat. Non-overlapping windows avoid paired silhouettes.
-  const timing={beat:260,leave:55,gap:0,arrive:75,welcome:2080,reveal:3180,exit:220,watchdog:4500};
+  const timing={beat:260,leave:55,gap:0,arrive:75,welcome:2080,reveal:2980,exit:420,watchdog:4500};
   const animate=(element,frames,options={})=>{
     const animation=element.animate(frames,{duration:400,easing,fill:'both',...options});
     // One compositor timeline: delayed stages do not depend on the next JS timer firing on time.
     if(choreographyOrigin!==null)animation.startTime=choreographyOrigin;
     animations.add(animation);
-    animation.finished.catch(()=>{}).finally(()=>animations.delete(animation));
+    // Retain even finished effects until teardown, including those on the real homepage.
+    animation.finished.catch(()=>{});
     return animation;
   };
   function later(callback,ms){const id=setTimeout(()=>{timers.delete(id);callback();},ms);timers.add(id);}
@@ -179,7 +180,22 @@
         animate(right,[{transform:'rotateY(-76deg)'},{transform:'rotateY(0deg)'}],{delay:timing.welcome,duration:400});
       }
     }
-    animate(title,[{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{delay:2600,duration:280});
+    // The greeting and actual homepage share the exit clock: no blank frame between them.
+    animate(title,[
+      {opacity:0,transform:'translateY(6px)',offset:0,easing},
+      {opacity:1,transform:'translateY(0)',offset:.35},
+      {opacity:1,transform:'translateY(0)',offset:.475,easing},
+      {opacity:0,transform:'translateY(-14px)',offset:1}
+    ],{delay:2600,duration:800,easing:'linear'});
+    const heroCopy=document.querySelector('.hero-intro');
+    const heroBook=document.querySelector('.invitation-painting');
+    if(heroCopy)animate(heroCopy,[{opacity:.35,transform:'translateY(14px)'},{opacity:1,transform:'translateY(0)'}],{delay:timing.reveal,duration:timing.exit,easing:'cubic-bezier(.2,.7,.3,1)'});
+    if(heroBook)animate(heroBook,[{opacity:.5,transform:'translateY(20px) scale(.975)'},{opacity:1,transform:'translateY(0) scale(1)'}],{delay:timing.reveal,duration:timing.exit,easing:'cubic-bezier(.2,.7,.3,1)'});
+    const welcomeTop=dialog.querySelector('.welcome-top');
+    const siteHeader=document.querySelector('header');
+    if(welcomeTop)animate(welcomeTop,[{opacity:1},{opacity:0}],{delay:timing.reveal,duration:100});
+    if(siteHeader)animate(siteHeader,[{opacity:0},{opacity:1}],{delay:timing.reveal+100,duration:timing.exit-100});
+    if(openingBook&&!openingBook.hidden)animate(openingBook,[{opacity:.08},{opacity:0}],{delay:timing.reveal,duration:120,fill:'forwards'});
     const total=timing.reveal+timing.exit;
     animate(dialog,[
       {opacity:0,offset:0,easing:'ease-out'},

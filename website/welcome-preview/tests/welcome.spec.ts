@@ -239,7 +239,7 @@ for(const width of [320,390,768,1440])test(`opening and welcome fit ${width}px w
   const expanded=await page.locator('.welcome-book').boundingBox();
   expect(expanded!.width).toBeGreaterThan(openingWidth);expect(expanded!.width).toBeLessThanOrEqual(width*2.5);
   expect(await page.locator('.welcome-book').evaluate(e=>Number(getComputedStyle(e).opacity))).toBeCloseTo(.08,2);
-  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=3030;}));
+  await page.locator('#welcome-intro').evaluate(e=>e.getAnimations({subtree:true}).forEach(a=>{a.pause();a.currentTime=2900;}));
   expect(await page.locator('.welcome-title').evaluate(e=>Number(getComputedStyle(e).opacity))).toBe(1);
   await page.screenshot({path:`${evidence}/single-welcome-${width}.png`});
   await expect(page.getByRole('button',{name:'Enter Spritual'})).toBeInViewport();
@@ -382,4 +382,23 @@ test('production security policy permits playback and cancellation without viola
   await page.reload();await page.waitForTimeout(1600);
   expect(violations).toEqual([]);
   await expect(page.getByRole('link',{name:'Find your story',exact:true})).toBeVisible();
+});
+
+for(const width of [390,1440])test(`welcome hands off to the real homepage at ${width}px`,async({page})=>{
+ await page.setViewportSize({width,height:900});
+ await page.clock.install({time:new Date('2026-10-25T00:00:00Z')});
+ await page.clock.pauseAt(new Date('2026-10-25T00:00:01Z'));
+ await page.goto('/?intro=replay');await expect(page.locator('#welcome-intro')).toBeVisible();
+ await page.evaluate(()=>{
+  const targets=[document.querySelector('#welcome-intro'),document.querySelector('.hero-intro'),document.querySelector('.invitation-painting'),document.querySelector('header')];
+  for(const target of targets)target?.getAnimations({subtree:target.id==='welcome-intro'}).forEach(a=>{a.pause();a.currentTime=3200;});
+ });
+ const opacity=await page.locator('.hero-intro').evaluate(e=>Number(getComputedStyle(e).opacity));
+ expect(opacity).toBeGreaterThan(.35);expect(opacity).toBeLessThan(1);
+ await page.screenshot({path:`${evidence}/homepage-handoff-${width}.png`});
+ await page.getByRole('button',{name:'Enter Spritual',exact:true}).click();
+ await expect(page.locator('#welcome-intro')).not.toBeVisible();
+ expect(await page.locator('.hero-intro').evaluate(e=>e.getAnimations().length)).toBe(0);
+ await expect(page.getByRole('link',{name:'Find your story',exact:true})).toBeFocused();
+ await page.getByRole('link',{name:'Enter the story',exact:true}).click();await expect(page).toHaveURL(/books\/read\/rama-bow/);
 });

@@ -230,3 +230,7 @@ The welcome book is now an independent full-viewport scene, not a small illustra
 ## Shorter welcome handoff — 25 October 2026
 
 Supersedes the previous 5.7s opening: 3.4s total, with eight non-overlapping 260ms portrait beats. The book starts at 2080ms, opens in 400ms and makes one continuous 900ms move toward the viewer. Zoom is capped at 2.4x to avoid extreme mobile enlargement. Artwork fades to 8% as the greeting arrives at 2600ms in 280ms, without scale overshoot or a separate pale overlay. Website reveal starts at 3180ms and lasts 220ms. Keep skip, cold-start deadline, cancellation and reduced-motion semantics unchanged.
+
+## Welcome-to-homepage handoff — 25 October 2026
+
+Keep total duration 3.4s. The final 420ms begins at 2980ms: greeting lifts 14px and fades, actual homepage copy settles 14px and its book 20px/0.975 scale. Welcome controls fade in the first 100ms before the real header appears; the enlarged welcome art disappears in 120ms, preventing doubled controls/art. All effects share one timeline and remain tracked until teardown, including finished effects outside the dialog. Skip, navigation, reduced motion and hidden-page cancellation leave the actual homepage fully usable. No filters, new images, dependencies or blank interstitial.
