@@ -1,3 +1,15 @@
+## Semi-animated Ramayana — 26 October 2026
+
+The new collection is an editorial local preview, not a public catalogue expansion. Preserve sunrise logo, paper/forest/brass and Fraunces/Manrope/Tiro. Its path is collection → chapter → four scenes → next chapter, with explicit local bookmarks and source access throughout. The first chapter is now called “The story begins”; old public prose and URLs remain intact.
+
+Considered a static illustrated anthology and a heavier video/character-animation system. Selected original bilingual prose plus responsive paintings and native Web Animations: it gives each scene atmosphere without network providers, narration rights, a new rendering framework or delayed reading. Thirty-four plates support 88 passages; repeated chapter plates remain labelled honestly. No claim of 88 unique animated scenes.
+
+Desktop uses a painted left leaf and calm reading right leaf. Tablet uses a two-column frontispiece above the prose; phone keeps its illustration visible and groups its controls in one row. The catalogue uses a single illustrated volume and six chronological indexes, not repeated feature tiles. Content notes use native disclosure; source notes and next-chapter action work without JavaScript.
+
+Motion: entering a loaded visible scene triggers a finite 7.6s camera move (4.5% scale range), 5.4s light pass and, on ocean/river scenes, two 3.4s water-light cycles. Changing scenes gives a 280ms image crossfade and existing 480ms paper turn; prose updates immediately. Effects pause offscreen, in a hidden document or behind a dialog; rapid input cancels old layers. Motion off is remembered only for the session, via explicit choice. Reduced motion and absent animation APIs yield still pictures. No looping character gesture, flashing fire, scroll hijacking or reading-progress inference.
+
+Original prose, Hindi, episode references, sensitive passages and iconography still require named exact-version human review. See `website/collections/ramayana/README.md` and `docs/qa/ramayana-collection-2026-10-26/README.md`. This direction does not change the homepage welcome or publish the collection.
+
 ## Illustrated book reference — 25 October 2026
 
 The owner selected an open-book, cloth-bound library reference. Homepage primary action remains Find your story → a source-linked preview → the actual bilingual book. Preserve the sunrise logo, original six stories and all reading/storage behavior.

@@ -17,6 +17,8 @@ import {publishIntroduction} from './app-introduction/publish.mjs';
 import {buildBooks} from './books/build.mjs';
 const editorial=process.argv.includes('--editorial-preview');
 const welcomePreview=process.argv.includes('--welcome-preview');
+const collectionPreview=process.argv.includes('--collection-preview');
+if(collectionPreview&&(!welcomePreview||process.env.VERCEL||process.env.CI))throw Error('Collection drafts require the local --welcome-preview --collection-preview build.');
 const sanatanPreview=process.argv.includes('--sanatan-preview');
 const sanatanRelease=process.argv.includes('--sanatan-release');
 if(sanatanRelease)throw Error('Illustrated release is blocked: exact-version editorial and artwork approvals are unresolved. Use --sanatan-preview for local review, or the unflagged public projection.');
@@ -139,3 +141,5 @@ try { await copyFile(resolve(import.meta.dirname,'assets/social.png'),`${out}/as
 if(!editorial&&!sanatanEdition){await publishIntroduction(out);await buildBooks(out);const {addWelcomePreview}=await import('./welcome-preview/build.mjs');await addWelcomePreview(out);}
 const generatedPageCount=(await readdir(out,{recursive:true})).filter(file=>file==='index.html'||file.endsWith('/index.html')).length;
 console.log(`Built ${generatedPageCount} ${sanatanPreview?'local release preview':sanatanRelease?'illustrated public release':editorial?'local editorial preview':'public'} pages + 404${editorial?' and local-only imported reader pages':''}.`);
+
+if(collectionPreview){const {buildCollection}=await import('./collections/ramayana/build.mjs');await buildCollection(out);}

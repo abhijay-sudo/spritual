@@ -1,5 +1,11 @@
 # Astra takeover: Spiritual.co.in
 
+## Latest — 26 October 2026: complete local semi-animated Ramayana collection
+
+`website/collections/ramayana/` now implements a connected 22-chapter English/Hindi abridgement through Yuddha's return, with 88 scenes, 34 responsive plates, finite scene motion, shared paper turns, source notes and explicit kept-page return. Existing sixteen public retellings remain intact. Reuse `http://127.0.0.1:4194/books/ramayana/` after `node website/build.mjs --welcome-preview --collection-preview`; the normal production build excludes the draft. Text revision `466e7b922eec89f7`, 8,674 English narrative words. No claim of a complete verse edition or Uttara Kanda.
+
+Verified: 90 Node checks, 11 new Chrome collection tests, 19 existing book/motion regressions and both build modes. Mobile/desktop screenshots and motion recordings are under `docs/qa/ramayana-collection-2026-10-26/`. Two new paintings replace ambiguous composite scenes. See the collection README and research ledgers for the exact human source/Hindi/sensitive-content/rights/iconography review still needed. This is local implementation; no new content publication, native package, billing or production configuration change.
+
 ## Latest — 24 October 2026: every-visit welcome and synchronized motion
 
 The owner requested playback on every visit. The opening now ignores old session markers and plays on eligible homepage refresh, navigation and history restoration, preserving section links, reduced motion, immediate exit and media recovery. All fifteen native effects share one animation origin; later scene timers no longer construct visual effects. A brief entry fade and the existing 3.4-second sequence preserve the approved appearance. Current local evidence is in `docs/qa/welcome-every-visit-2026-10-24/README.md`; deployment will be recorded separately. No new artwork, app, content or backend release.
