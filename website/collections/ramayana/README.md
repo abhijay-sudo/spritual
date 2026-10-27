@@ -47,6 +47,10 @@ The default build targets `website/dist` and excludes this draft. The local flag
 
 ## Exact review packet before public or paid use
 
+**Start with [REVIEW_REQUIRED.md](REVIEW_REQUIRED.md).** The 27 October evidence pass checked all 123 cited URLs, all 120 responsive image hashes and the eight newer masters. It identifies the 32 inherited plates whose full generation/input records remain missing and lists exact high-risk editorial/art decisions. The limited English exact-phrase screen is not legal clearance or Hindi review.
+
+`publication-review.json` is an explicitly pending decision record, bound to the text, scene mapping and 121 delivered asset files (including the collection cover). Run `node website/collections/ramayana/publication-preflight.mjs` from the checkout root. Exit 1 is currently expected: six named review decisions and the rights markets/basis remain open. This command cannot enable publication or remove the local-only guard. Never fill reviewer fields with assumed approvals.
+
 Run the local build, then open `/books/ramayana/review-manifest.json`. It pins the text revision, every chapter's source URLs, scene-art mapping and SHA-256 of all 120 responsive image files. The generated master records are separate. Any text/art correction changes the material that must be reviewed.
 
 1. **Source/content review:** a named qualified reviewer must read the exact bilingual edition and the chapter research ledgers. Confirm sequence, character agency, omissions, cited sargas and editorial interpretation. Episode-level AI research is not a critical-edition collation or human approval.
@@ -56,6 +60,6 @@ Run the local build, then open `/books/ramayana/review-manifest.json`. It pins t
 5. **Art review:** inspect each exact plate for identities, anatomy, dress, objects and chronology, including Surasa, Mainaka, Vali and the coronation. The contact sheet is an index, not an approval. The 1536×1024 new masters are not 4K.
 6. **Owner release:** record reviewer, date, exact revision/hash and distribution decision in the existing release workflow. Existing website deployment permission does not manufacture approval of these new versions.
 
-Open blockers: named source/Hindi/rights/iconography review, physical phone/Safari verification, participant feedback and willingness-to-pay evidence. Native app packaging and billing were not changed by this website collection task.
+Open blockers: named source/Hindi/rights/iconography review, inherited-art provenance decision and physical-phone verification. WebKit with iPhone emulation and Chrome with Android emulation now have repeatable checks in `website/collection-devices.playwright.config.ts`; these are not physical iOS Safari/Android evidence. The existing Android OS emulator boots, but its Chrome first-run Terms require the owner's action before testing; full Xcode/iOS Simulator is unavailable. Participant feedback and willingness-to-pay remain unmeasured, not fabricated release approvals. Native app packaging and billing were not changed by this website collection task.
 
 Research: [original opening chapters](research-01-11.md), [original return chapters](research-12-22.md), [four inserted chapters](research-interludes.md), [expanded war sequence](research-war-expansion.md). Latest rendered evidence: `../../../docs/qa/ramayana-collection-2026-10-27/README.md`. The 26 October record is historical.

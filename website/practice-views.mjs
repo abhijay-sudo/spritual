@@ -2,7 +2,7 @@ import {ANCHOR_IDS, practiceById, practiceForStory} from './practice-data.mjs';
 const t = (lang,en,hi) => lang === 'hi' ? hi : en;
 const pick = (value,lang) => value[lang] || value.en;
 const esc = value => String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-const url = (lang,path) => `${lang === 'hi' ? '/hi' : ''}${path}`;
+const url = (lang,path) => lang==='hi'?`/hi${path}`:path.startsWith('/#')?`/reading-room/${path.slice(1)}`:path;
 export const diya = '<svg viewBox="0 0 40 40" aria-hidden="true" class="diya-icon"><path d="M20 4c2 6 7 9 5 14-1 5-9 5-10 0-2-5 3-8 5-14Z" fill="currentColor"/><path d="M5 25h30c-3 12-27 12-30 0Z" fill="currentColor"/><path d="M5 24c8-4 22-4 30 0" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
 export function lotusSvg() {
   return `<svg viewBox="0 0 64 64" fill="none" aria-hidden="true" class="practice-flower">${ANCHOR_IDS.map((id,i) => `<path data-practice-petal="${id}" d="M32 31C20 22 23 9 32 3c9 6 12 19 0 28Z" transform="rotate(${i*36} 32 32)"/>`).join('')}<circle cx="32" cy="32" r="5"/></svg>`;

@@ -2,7 +2,8 @@ import{KEY,parsePlaces,keepPlace,encodePlaces}from'./state.js';
 const lang=document.body.dataset.bookLanguage||'en',hi=lang==='hi';
 const text={kept:hi?'पृष्ठ सहेजा गया':'Page kept',keep:hi?'यह पृष्ठ सहेजें':'Keep this page',blocked:hi?'यह ब्राउज़र पृष्ठ सहेज नहीं सका। आप पढ़ना जारी रख सकते हैं।':'This browser could not save your page. You can keep reading.',corrupt:hi?'सहेजे पृष्ठ पढ़े नहीं जा सके। आपका पुराना डेटा बदला नहीं गया।':'Saved pages could not be read. Your existing data has been left unchanged.',removed:hi?'सहेजा पृष्ठ हटाया गया':'Kept page removed',remove:hi?'हटाएँ':'Remove'};
 const status=message=>document.querySelectorAll('[data-storage-status]').forEach(n=>n.textContent=message);
-function places(){try{return {ok:true,value:parsePlaces(localStorage.getItem(KEY))};}catch{return {ok:false,value:[]};}}
+function places(){let raw;try{raw=localStorage.getItem(KEY);}catch{return {ok:false,value:[],reason:'blocked'};}try{return {ok:true,value:parsePlaces(raw)};}catch{return {ok:false,value:[],reason:'corrupt'};}}
+const unavailablePlaces=data=>data.reason==='blocked'?text.blocked:text.corrupt;
 function write(next){try{localStorage.setItem(KEY,encodePlaces(next));return true;}catch{status(text.blocked);return false;}}
 const root=document.querySelector('[data-reader]'),folios=[...document.querySelectorAll('[data-folio]')];let current=0,animation=null;
 const legacyLink=[...document.querySelectorAll('[data-legacy-folio]')].find(a=>'#'+a.dataset.legacyFolio===location.hash);
@@ -10,8 +11,8 @@ if(legacyLink)location.replace(legacyLink.href);
 const reduce=matchMedia('(prefers-reduced-motion: reduce)');
 const keep=document.querySelector('[data-keep]');
 function updateKept(){if(!keep)return;const saved=places();keep.textContent=saved.ok&&saved.value.some(p=>p.id===root.dataset.bookId&&p.lang===lang&&p.folio===folios[current].id)?text.kept:text.keep;}
-function renderShelf(){const list=document.querySelector('[data-kept-list]');if(!list)return;const data=places();list.replaceChildren();if(!data.ok)status(text.corrupt);const empty=document.querySelector('[data-kept-empty]');if(empty)empty.hidden=data.value.length>0;
- for(const p of data.value){const li=document.createElement('li'),a=document.createElement('a'),button=document.createElement('button');a.href=p.route+'#'+p.folio;a.textContent=p.title+(p.lang==='hi'?' · हिन्दी':' · EN');button.type='button';button.textContent=text.remove;button.setAttribute('aria-label',text.remove+' '+p.title);button.addEventListener('click',()=>{const fresh=places();if(!fresh.ok){status(text.corrupt);return;}if(write(fresh.value.filter(x=>!(x.id===p.id&&x.lang===p.lang)))){renderShelf();status(text.removed);const target=list.querySelector('a')||document.querySelector('#kept h2');target.tabIndex=-1;target.focus();}});li.append(a,button);list.append(li);}}
+function renderShelf(){const list=document.querySelector('[data-kept-list]');if(!list)return;const data=places();list.replaceChildren();if(!data.ok)status(unavailablePlaces(data));const empty=document.querySelector('[data-kept-empty]');if(empty)empty.hidden=data.value.length>0;
+ for(const p of data.value){const li=document.createElement('li'),a=document.createElement('a'),button=document.createElement('button');a.href=p.route+'#'+p.folio;a.textContent=p.title+(p.lang==='hi'?' · हिन्दी':' · EN');button.type='button';button.textContent=text.remove;button.setAttribute('aria-label',text.remove+' '+p.title);button.addEventListener('click',()=>{const fresh=places();if(!fresh.ok){status(unavailablePlaces(fresh));return;}if(write(fresh.value.filter(x=>!(x.id===p.id&&x.lang===p.lang)))){renderShelf();status(text.removed);const target=list.querySelector('a')||document.querySelector('#kept h2');target.tabIndex=-1;target.focus();}});li.append(a,button);list.append(li);}}
 // Decorative paper lives outside the semantic folios. Content and navigation never wait for it.
 const leaves=document.querySelector('.book-leaves');
 function paperTurn(content,{back=false,opening=false}={}){
@@ -54,9 +55,17 @@ function paperTurn(content,{back=false,opening=false}={}){
  const shade=document.createElement('div');shade.className='turn-shadow';shade.setAttribute('aria-hidden','true');shade.style.height=sheet.style.height;leaves.append(shade);
  const duration=opening?660:580,ease='cubic-bezier(.32,.06,.24,1)';
  const frames=back?[{transform:'rotateY(-180deg)'},{transform:'rotateY(-82deg)',offset:.45},{transform:'rotateY(0deg)'}]:[{transform:'rotateY(0deg)'},{transform:'rotateY(-82deg)',offset:.45},{transform:'rotateY(-180deg)'}];
+ // WebKit can flatten backface culling while a nested sheet is animated.
+ // Explicitly cull each face at the same 90-degree hinge on the same clock.
+ // Visibility changes only at the edge; no per-frame JS or opacity on the sheet.
+ const hinge=back?.45*90/98:.45+.55*8/98;
+ const faceFrames=visible=>[{visibility:visible?'visible':'hidden',offset:0},{visibility:visible?'visible':'hidden',offset:hinge},{visibility:visible?'hidden':'visible',offset:hinge+.0001},{visibility:visible?'hidden':'visible',offset:1}];
  const effects=[sheet.animate(frames,{duration,easing:ease,fill:'both'}),
+  front.animate(faceFrames(!back),{duration,easing:ease,fill:'both'}),
+  rear.animate(faceFrames(back),{duration,easing:ease,fill:'both'}),
   shade.animate([{opacity:0,transform:'scaleX(.15)'},{opacity:.2,transform:'scaleX(.7)',offset:.42},{opacity:0,transform:'scaleX(.1)'}],{duration,easing:ease}),
   light.animate([{opacity:back?.35:0},{opacity:.32,offset:.45},{opacity:back?0:.15}],{duration,easing:ease})];
+ const clock=document.timeline.currentTime;if(clock!==null)for(const effect of effects)if(effect.playState!=='paused')effect.startTime=clock;
  let finished=false;
  const record={cancel(){if(finished)return;finished=true;effects.forEach(effect=>effect.cancel());sheet.remove();shade.remove();if(animation===record)animation=null;}};
  animation=record;Promise.all(effects.map(effect=>effect.finished)).catch(()=>{}).finally(()=>record.cancel());
@@ -92,7 +101,7 @@ if(root&&folios.length){
  document.querySelectorAll('[data-leaf-link]').forEach(a=>a.addEventListener('click',event=>{event.preventDefault();a.closest('dialog').dataset.focusLeaf='true';a.closest('dialog').close();const n=Number(a.dataset.leafLink);if(n!==current)go(n);else folios[current].focus();}));
  addEventListener('popstate',()=>show(fromHash(),{focus:true}));addEventListener('hashchange',()=>{if(folios.some(f=>'#'+f.id===location.hash))show(fromHash(),{focus:true});});
  document.addEventListener('keydown',event=>{if(event.altKey||event.ctrlKey||event.metaKey||event.shiftKey||document.querySelector('dialog[open]')||event.target.closest('input,textarea,select,button,a,summary,[contenteditable]')||!root.contains(event.target))return;if(event.key==='ArrowRight'){event.preventDefault();go(current+1);}if(event.key==='ArrowLeft'){event.preventDefault();go(current-1);}});
- keep?.addEventListener('click',()=>{const saved=places();if(!saved.ok){status(text.corrupt);return;}const place={id:root.dataset.bookId,lang,title:root.dataset.bookTitle,route:root.dataset.bookRoute,folio:folios[current].id,revision:root.dataset.bookRevision};if(write(keepPlace(saved.value,place))){status(hi?'यह पृष्ठ इसी ब्राउज़र में सहेजा गया।':'This page is kept in this browser.');updateKept();}});
+ keep?.addEventListener('click',()=>{const saved=places();if(!saved.ok){status(unavailablePlaces(saved));return;}const place={id:root.dataset.bookId,lang,title:root.dataset.bookTitle,route:root.dataset.bookRoute,folio:folios[current].id,revision:root.dataset.bookRevision};if(write(keepPlace(saved.value,place))){status(hi?'यह पृष्ठ इसी ब्राउज़र में सहेजा गया।':'This page is kept in this browser.');updateKept();}});
 }
 for(const button of document.querySelectorAll('[data-open-dialog]'))button.addEventListener('click',()=>{animation?.cancel();const dialog=document.getElementById(button.dataset.openDialog);dialog.showModal();dialog.addEventListener('close',()=>{if(dialog.dataset.focusLeaf){delete dialog.dataset.focusLeaf;folios[current]?.focus({preventScroll:true});}else button.focus();},{once:true});});
 document.querySelectorAll('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));

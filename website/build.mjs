@@ -85,7 +85,9 @@ function header(c,lang,route){
   {label:hi?'सवाल':'Questions',target:'#questions',active:false},
   {label:hi?'सहेजे स्थान':'Saved places',target:'library/saved/',active:route==='library/saved/'}
  ];
- const navLink=item=>`<a href="${base}${item.target}" ${item.active?'aria-current="page"':''}>${item.label}</a>`;
+ // English's former reading homepage has its own stable route. Native links
+ // must reach it without relying on the homepage's legacy JS redirect.
+ const navLink=item=>`<a href="${base}${!hi&&item.target.startsWith('#')?'reading-room/':''}${item.target}" ${item.active?'aria-current="page"':''}>${item.label}</a>`;
  const primaryLinks=primary.map(navLink);
  const language=`<div class="language-pair" aria-label="${hi?'भाषा':'Language'}">${hi?`<a class="language" href="/${route}" lang="en" aria-label="English">EN</a><span aria-current="true" lang="hi">हिन्दी</span>`:`<span aria-current="true" lang="en">EN</span><a class="language" href="/hi/${route}" lang="hi">हिन्दी</a>`}</div>`;
  const themeOptions=worlds.map(w=>`<a href="${base}${route}?world=${w.id}" data-world-option="${w.id}"><span aria-hidden="true">${w.mark}</span>${hi?w.hi:w.en}</a>`).join('');

@@ -1,3 +1,11 @@
+## Latest — 27 October 2026: publication evidence and cross-browser book QA
+
+The 28-chapter bilingual Ramayana remains a local review edition, revision `7d2503c2eca5f1d2`. Read `website/collections/ramayana/REVIEW_REQUIRED.md` for exact editorial/Hindi/art/rights decisions. All 123 source URLs, 120 JPEG hashes and eight newer masters were checked; 32 inherited plates still lack complete generation/input records. The pending publication preflight binds exact text, scene mappings and 121 delivered asset files and cannot enable production output. No approvals were fabricated.
+
+Fixed 193 native English navigation links, misleading blocked-storage feedback, and a visually reproduced WebKit mirrored-backface defect in forward/backward paper turns. The native 580ms hinge now explicitly culls the faces on the same animation clock. Both build modes, 100 Node checks and 69 browser cases passed; three CDP-only cases were inapplicable to other engines. Local/public route and asset audits found no broken references, and all required book routes are reachable. Evidence and screenshots: `docs/qa/ramayana-release-2026-10-27/README.md`.
+
+Browser coverage includes iPhone WebKit/Pixel Chrome emulation and desktop Chrome/WebKit on macOS, not physical phones or Windows. The Android OS emulator attempt stopped at Chrome's first-run legal terms, without accepting or bypassing them; the temporary emulator and reverse mapping were cleaned up. Full Xcode is absent. Keep port 4194 and the local-only content guard; no publication, payment, native release or production configuration changed.
+
 # Astra takeover: Spiritual.co.in
 
 ## Latest — 27 October 2026: 28 chapters and continuous paper reader

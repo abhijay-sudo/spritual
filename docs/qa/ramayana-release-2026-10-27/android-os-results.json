@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-27T17:35:33.886Z",
+  "status": "blocked",
+  "environment": "Spritual_API_36 Android OS emulator",
+  "physicalDevice": false,
+  "osBrowserTestExecuted": false,
+  "reason": "Chrome first-run screen requires acceptance of its Terms of Service. No terms accepted and no account added. Browser automation was stopped before any website test could run.",
+  "available": "Android SDK API 36 and existing project AVD booted successfully; Chrome package available.",
+  "cleanup": "Stopped only the emulator started by this task and removed its temporary adb reverse mapping.",
+  "alternativeEvidence": "21 browser-engine/device-emulation checks passed; this is distinct from Android OS testing."
+}
