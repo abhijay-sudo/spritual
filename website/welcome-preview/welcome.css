@@ -109,3 +109,10 @@
 @media(max-height:480px){.welcome-title>img{display:none}.welcome-title>div{font-size:64px}.welcome-title>small{margin-top:8px}.welcome-book{width:min(800px,90vw)}}
 @media(prefers-reduced-motion:reduce){.welcome-book,.welcome-book-half{will-change:auto}.welcome-book{opacity:1}.welcome-title{background:#faf7f2ed}}
 .welcome-book[hidden]{display:none!important}
+
+/* Entry routes share one opening without relying on the invitation page's utilities. */
+#welcome-intro .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.book-footer [data-replay-welcome]{border:0;padding:0;min-height:44px;font:inherit;text-decoration:underline;text-underline-offset:4px;color:inherit;background:transparent;cursor:pointer}
+.welcome-playing [data-welcome-copy],.welcome-playing .shelf-intro>div{animation:none!important}
+html[lang=hi] #welcome-intro .welcome-title>p,html[lang=hi] #welcome-intro .welcome-edition{letter-spacing:.03em;text-transform:none}
+#welcome-intro .welcome-figure figcaption [lang=hi]{font-family:BookHindi,Tiro,serif}

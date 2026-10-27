@@ -103,6 +103,7 @@ export const imageSizes = Object.freeze({
   shelfHero: '(max-width: 700px) 640px, 900px',
   shelfCard: '(max-width: 600px) calc((100vw - 58px) / 2), (max-width: 900px) calc((100vw - 100px) / 3), 266px',
   reader: '(max-width: 700px) 320px, 440px',
+  volume: '(max-width: 700px) calc((100vw - 66px) / 2), (max-width: 1376px) calc((100vw - 176px) / 4), 300px',
 });
 
 function attribute(tag, name, value) {
@@ -144,6 +145,7 @@ export function responsiveImageHtml(html, images, {page = 'home'} = {}) {
     const image = images[source];
     if (!image) return tag;
     const preceding = html.slice(Math.max(0, offset - 300), offset);
+    if (tag.includes('data-volume-image')) return deferred(adaptImage(tag, image, imageSizes.volume));
     if (page === 'reader') return adaptImage(tag, image, imageSizes.reader);
     if (page === 'shelf') {
       return tag.includes('fetchpriority="high"')

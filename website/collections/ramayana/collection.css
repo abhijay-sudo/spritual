@@ -186,3 +186,5 @@ body[data-page-theme=evening] [data-illustrated-reader] .chapter-ending{border-c
 
 .legacy-folio{display:none}.legacy-folio:target{display:block;padding:16px;border:1px solid var(--gold)}
 body[data-page-theme=evening] .chapter-content-note{color:#d0d1b7;border-left-color:#b7a16b}
+
+.collection-index{scroll-margin-top:24px}.collection-index-toolbar{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:22px}.collection-index-toolbar a{display:inline-flex;align-items:center;min-height:44px;font-size:12px;text-decoration:underline;text-underline-offset:5px}

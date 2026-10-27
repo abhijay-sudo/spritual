@@ -2,6 +2,8 @@ import {test,expect} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
 declare global { interface Window { welcomeStates: string[]; welcomeImageLoaders: HTMLImageElement[]; } }
 const evidence='docs/qa/site-polish-2026-10-24';
+// 24 portrait/image/caption effects + daylight + four book effects + greeting/topbar/dialog.
+const welcomeDialogEffects=8*3+1+4+3;
 test('complete opening visits eight figures in eight single portraits and reaches a real book',async({page})=>{
   await page.setViewportSize({width:1440,height:900});
   await mkdir(evidence,{recursive:true});
@@ -26,9 +28,10 @@ test('complete opening visits eight figures in eight single portraits and reache
   expect(states).toEqual(['ganesha','lakshmi','rama','hanuman','shiva','durga','krishna','saraswati','welcome','revealing','complete']);
   await expect(page.locator('.hero-actions a').first()).toBeFocused();
   expect(await page.evaluate(()=>document.getAnimations().filter(a=>a.effect&&((a.effect as KeyframeEffect).target as Element)?.closest('#welcome-intro')).length)).toBe(0);
-  await page.getByRole('link',{name:'Find your story',exact:true}).click();
-  await page.locator('[data-open-story]').first().click();
-  await page.locator('[data-open-book]').click();
+  await page.getByRole('link',{name:'Choose your book',exact:true}).click();
+  await page.locator('[data-volume="ramayana"] .volume-link').click();
+  await expect(page).toHaveURL(/\/books\/ramayana\/(?:#chapters)?$/);
+  await page.locator('#chapters.collection-chapters>li>a, #chapters>.collection-chapters>li>a, #chapters .collection-part .collection-chapters>li>a').first().click();
   await expect(page).toHaveURL(/\/books\/read\//);
   await expect(page.locator('[data-folio]:visible')).toHaveCount(1);
   expect(errors).toEqual([]);
@@ -79,7 +82,9 @@ test('every direct homepage visit plays even when a previous session marker exis
     await page.goto('/');await expect(page.locator('#welcome-intro')).toBeVisible();
     await page.getByRole('button',{name:'Enter Spritual'}).click();
     await expect(page.locator('#welcome-intro')).not.toBeVisible();
-    await page.goto('/books/');await expect(page.locator('#welcome-intro')).toHaveCount(0);
+    await page.goto('/books/');await expect(page.locator('#welcome-intro')).toBeVisible();
+    await page.keyboard.press('Escape');await expect(page.locator('#welcome-intro')).not.toBeVisible();
+    await page.goto('/books/stories/');await expect(page.locator('#welcome-intro')).toHaveCount(0);
   }
 });
 test('unanchored homepage visits through Back and Forward play again',async({page})=>{
@@ -87,6 +92,7 @@ test('unanchored homepage visits through Back and Forward play again',async({pag
   await page.goto('/');await expect(page.locator('#welcome-intro')).toBeVisible();
   await page.keyboard.press('Escape');
   await page.goBack();await expect(page).toHaveURL(/\/books\/$/);
+  await expect(page.locator('#welcome-intro')).toBeVisible();await page.keyboard.press('Escape');
   await page.goForward();await expect(page).toHaveURL(/\/$/);
   await expect(page.locator('#welcome-intro')).toBeVisible();await page.keyboard.press('Escape');
   await page.goto('/books/');await page.goBack();
@@ -137,18 +143,18 @@ test('denied session storage does not prevent playback or change book storage',a
   expect(await page.evaluate(()=>localStorage.getItem('spritual_book_places_v1'))).toBe('preserve-me');
   await page.reload();await expect(page.locator('#welcome-intro')).toBeVisible();await page.keyboard.press('Escape');
   expect(await page.evaluate(()=>localStorage.getItem('spritual_book_places_v1'))).toBe('preserve-me');
-  await page.getByRole('link',{name:'Find your story',exact:true}).click();await expect(page).toHaveURL(/#journey$/);
+  await page.getByRole('link',{name:'Choose your book',exact:true}).click();await expect(page).toHaveURL(/#journey$/);
 });
 test('asset failure leaves immediate usable HTML',async({page})=>{
   await page.route('**/welcome/portraits/*.webp',route=>route.abort());await page.goto('/');
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
   await page.waitForTimeout(1100);await expect(page.locator('#welcome-intro')).not.toBeVisible();
-  await page.getByRole('link',{name:'Find your story',exact:true}).click();await expect(page).toHaveURL(/#journey$/);
+  await page.getByRole('link',{name:'Choose your book',exact:true}).click();await expect(page).toHaveURL(/#journey$/);
 });
 test('slow artwork cannot interrupt someone after they start using the page',async({page})=>{
   await page.route('**/welcome/portraits/*.webp',async route=>{await new Promise(resolve=>setTimeout(resolve,1700));await route.continue();});
   await page.goto('/',{waitUntil:'domcontentloaded'});
-  await page.getByRole('link',{name:'Find your story',exact:true}).click();
+  await page.getByRole('link',{name:'Choose your book',exact:true}).click();
   await page.waitForTimeout(2000);
   await expect(page).toHaveURL(/#journey$/);await expect(page.locator('#welcome-intro')).not.toBeVisible();
 });
@@ -170,14 +176,14 @@ for(const reason of ['early input','deadline'] as const)test(`${reason} abandons
   try{
     await page.goto('/',{waitUntil:'domcontentloaded'});
     await expect.poll(()=>page.evaluate(()=>window.welcomeImageLoaders.filter(image=>image.src.includes('/welcome/portraits/')).length)).toBe(8);
-    if(reason==='early input')await page.getByRole('link',{name:'Find your story',exact:true}).click();
+    if(reason==='early input')await page.getByRole('link',{name:'Choose your book',exact:true}).click();
     await expect.poll(()=>page.evaluate(()=>window.welcomeImageLoaders.filter(image=>!image.hasAttribute('src')&&!image.hasAttribute('srcset')).length),{timeout:1500,intervals:[50]}).toBe(8);
     await expect(page.locator('#welcome-intro')).not.toBeVisible();
     release();
     await page.waitForTimeout(1000);
     await expect(page.locator('#welcome-intro')).not.toBeVisible();
     expect(await page.locator('[data-welcome-art]').evaluateAll(images=>images.every(image=>!image.hasAttribute('src')))).toBe(true);
-    if(reason==='deadline')await page.getByRole('link',{name:'Find your story',exact:true}).click();
+    if(reason==='deadline')await page.getByRole('link',{name:'Choose your book',exact:true}).click();
     await expect(page).toHaveURL(/#journey$/);
   }finally{release();}
 });
@@ -251,9 +257,14 @@ test('phone touch skip opens the Hindi story journey and supports short landscap
   const page=await context.newPage();
   await page.goto('/?intro=replay');await expect(page.locator('#welcome-intro')).toBeVisible();
   await expect(page.locator('#welcome-intro')).not.toBeVisible({timeout:8000});
-  await page.getByRole('link',{name:'Find your story',exact:true}).tap();await page.locator('[data-open-story]').first().tap();
-  await page.locator('[data-story-language="hi"]').tap();await expect(page.locator('#story-prose')).toHaveAttribute('lang','hi');
-  await page.locator('[data-close-story]').tap();await page.setViewportSize({width:844,height:390});
+  await page.getByRole('link',{name:'Choose your book',exact:true}).tap();
+  await page.locator('[data-volume="krishna"] .volume-link').tap();
+  await expect(page).toHaveURL(/\/books\/krishna\/$/);
+  await page.locator('.language-link').tap();await expect(page).toHaveURL(/\/hi\/books\/krishna\/$/);
+  await page.locator('.collection-chapter').tap();
+  await expect(page.locator('html')).toHaveAttribute('lang','hi');
+  await expect(page.locator('[data-folio]:visible')).toHaveCount(1);
+  await page.goto('/#journey');await page.setViewportSize({width:844,height:390});
   await page.getByRole('button',{name:'Replay welcome'}).tap();await expect(page.locator('#welcome-intro')).toBeVisible();
   await expect(page.getByRole('button',{name:'Enter Spritual'})).toBeInViewport();await page.getByRole('button',{name:'Enter Spritual'}).tap();
   await page.getByRole('button',{name:'Replay welcome'}).tap();
@@ -272,7 +283,7 @@ test('a failed later portrait fails open instead of presenting a blank deity pha
   await page.goto('/?intro=replay');
   await page.waitForTimeout(1000);
   await expect(page.locator('#welcome-intro')).not.toBeVisible();
-  await page.getByRole('link',{name:'Find your story',exact:true}).click();
+  await page.getByRole('link',{name:'Choose your book',exact:true}).click();
   await expect(page).toHaveURL(/#journey$/);
 });
 test('high-density phones receive separate sharp portraits and no framing or duplicate masters',async({browser})=>{
@@ -323,11 +334,11 @@ test('all motion shares a browser timeline and survives a stalled main thread wi
     const ends=effects.map(animation=>Number(animation.effect!.getComputedTiming().endTime));
     return {origins,before,after,elapsed,ends,visible,count:effects.length,sameEffects:effects.every(effect=>dialog.getAnimations({subtree:true}).includes(effect)),keys:[...new Set(keys)]};
   });
-  expect(evidence.count).toBe(27);
+  expect(evidence.count).toBe(welcomeDialogEffects);
   expect(new Set(evidence.origins).size).toBe(1);
   expect(evidence.origins[0]).not.toBeNull();
   expect(evidence.sameEffects).toBe(true);
-  expect(evidence.visible).toBeLessThanOrEqual(2);
+  expect(evidence.visible).toBeLessThanOrEqual(1);
   expect(evidence.keys.sort()).toEqual(['opacity','transform']);
   expect(evidence.elapsed-evidence.before[0]).toBeGreaterThanOrEqual(650);
   evidence.after.forEach((time,i)=>{
@@ -347,7 +358,7 @@ test('a queued old close event cannot cancel a newly restored welcome',async({pa
   await page.waitForTimeout(100);
   const intro=page.locator('#welcome-intro');
   await expect(intro).toBeVisible();
-  expect(await intro.evaluate(dialog=>dialog.getAnimations({subtree:true}).length)).toBe(27);
+  expect(await intro.evaluate(dialog=>dialog.getAnimations({subtree:true}).length)).toBe(welcomeDialogEffects);
   await expect(intro).not.toBeVisible({timeout:4500});
   await expect(page.locator('.hero-actions a').first()).toBeFocused();
 });
@@ -381,7 +392,7 @@ test('production security policy permits playback and cancellation without viola
   await page.route('**/welcome/portraits/*.webp',async route=>{await new Promise(resolve=>setTimeout(resolve,1400));await route.continue();});
   await page.reload();await page.waitForTimeout(1600);
   expect(violations).toEqual([]);
-  await expect(page.getByRole('link',{name:'Find your story',exact:true})).toBeVisible();
+  await expect(page.getByRole('link',{name:'Choose your book',exact:true})).toBeVisible();
 });
 
 for(const width of [390,1440])test(`welcome hands off to the real homepage at ${width}px`,async({page})=>{
@@ -399,6 +410,9 @@ for(const width of [390,1440])test(`welcome hands off to the real homepage at ${
  await page.getByRole('button',{name:'Enter Spritual',exact:true}).click();
  await expect(page.locator('#welcome-intro')).not.toBeVisible();
  expect(await page.locator('.hero-intro').evaluate(e=>e.getAnimations().length)).toBe(0);
- await expect(page.getByRole('link',{name:'Find your story',exact:true})).toBeFocused();
- await page.getByRole('link',{name:'Enter the story',exact:true}).click();await expect(page).toHaveURL(/books\/read\/rama-bow/);
+ await expect(page.getByRole('link',{name:'Choose your book',exact:true})).toBeFocused();
+ await page.locator('.open-book-link').click();await expect(page).toHaveURL(/\/books\/ramayana\/(?:#chapters)?$/);
+ await page.locator('#chapters.collection-chapters>li>a, #chapters>.collection-chapters>li>a, #chapters .collection-part .collection-chapters>li>a').first().click();
+ await expect(page).toHaveURL(/\/books\/read\//);
+ await expect(page.locator('[data-folio]:visible')).toHaveCount(1);
 });

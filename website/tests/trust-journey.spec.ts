@@ -3,15 +3,15 @@ import { test, expect } from '@playwright/test';
 test.use({ reducedMotion: 'reduce' });
 
 for (const language of ['en', 'hi'] as const) {
-  test(`${language} story footer continues into the matching sourced book`, async ({ page }) => {
+  test(`${language} collection contents continue into the matching sourced book`, async ({ page }) => {
     const errors: string[] = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto('/#journey');
-    await page.locator('[data-open-story="krishna-mountain"]').click();
-    await page.locator(`[data-story-language="${language}"]`).click();
-    const primary = page.locator('.story-dialog-footer [data-open-book]');
-    await expect(page.locator('[data-open-book]')).toHaveCount(1);
-    await expect(primary).toHaveText(language === 'hi' ? 'आगे पढ़ें' : 'Continue reading');
+    await page.locator('[data-volume="krishna"] .volume-link').click();
+    await expect(page).toHaveURL(/\/books\/krishna\/$/);
+    if(language==='hi')await page.locator('.language-link').click();
+    const primary = page.locator('#chapters .collection-chapter');
+    await expect(primary).toHaveCount(1);
     const destination = `${language === 'hi' ? '/hi' : ''}/books/read/krishna-mountain/`;
     await expect(primary).toHaveAttribute('href', destination);
     await primary.click();
@@ -53,7 +53,7 @@ test('app availability offers real reading without presenting an unconfigured do
   await expect(availability.locator('a[href*="apps.apple.com"], a[href*="play.google.com"]')).toHaveCount(0);
   await availability.getByRole('link', { name: 'Explore the bookshelf', exact: true }).click();
   await expect(page).toHaveURL(/\/books\/$/);
-  await expect(page.locator('[data-book-entry]').first()).toBeVisible();
+  await expect(page.locator('[data-volume] .volume-link').first()).toBeVisible();
 });
 
 test('homepage exposes reading provenance, privacy and public correction guidance', async ({ page }) => {

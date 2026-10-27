@@ -2,7 +2,7 @@
   'use strict';
   const dialog=document.getElementById('welcome-intro');
   const replay=document.querySelector('[data-replay-welcome]');
-  if(!dialog||!replay)return;
+  if(!dialog)return;
   if(!dialog.showModal||!Element.prototype.animate)return;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const figures=[...dialog.querySelectorAll('.welcome-figure')];
@@ -13,6 +13,8 @@
   let generation=0,returnFocus=null,assetReady=null,pendingAuto=null,choreographyOrigin=null;
   const artLoaders=new Set();
   const easing='cubic-bezier(.22,1,.36,1)';
+  const heroArtwork=()=>document.querySelector('[data-welcome-hero]')||document.querySelector('.invitation-painting img')||document.querySelector('.shelf-intro .edition-cover img');
+  const readingAction=()=>document.querySelector('[data-welcome-focus]')||document.querySelector('.hero-actions a')||document.querySelector('.shelf-intro .primary');
   // A single portrait occupies each beat. Non-overlapping windows avoid paired silhouettes.
   const timing={beat:260,leave:55,gap:0,arrive:75,welcome:2080,reveal:2980,exit:420,watchdog:4500};
   const animate=(element,frames,options={})=>{
@@ -36,7 +38,7 @@
   }
   function restoreFocus(){
     if(document.hidden)return;
-    const target=returnFocus?.isConnected?returnFocus:document.querySelector('.hero-actions a');
+    const target=returnFocus?.isConnected?returnFocus:readingAction();
     target?.focus({preventScroll:true});
   }
   function finish(reason='skip'){
@@ -102,7 +104,7 @@
     const prepare=async()=>{
       // The useful page wins the cold-start network race. If its hero is slow,
       // never start eight optional portrait requests after the deadline.
-      const hero=document.querySelector('.invitation-painting img');
+      const hero=heroArtwork();
       if(hero&&!hero.complete){try{await hero.decode();}catch{return false;}}
       if(expired||ticket!==generation)return false;
       return artReady();
@@ -133,7 +135,7 @@
     resetVisuals();
     const openingBook=dialog.querySelector('.welcome-book');
     if(openingBook){
-      const heroArt=document.querySelector('.invitation-painting img');
+      const heroArt=heroArtwork();
       openingBook.hidden=!heroArt?.currentSrc||!heroArt.naturalWidth;
       if(!openingBook.hidden)openingBook.querySelectorAll('[data-opening-page]').forEach(image=>{
         // Keep the decoded hero visible while the larger, existing artwork loads.
@@ -187,8 +189,8 @@
       {opacity:1,transform:'translateY(0)',offset:.475,easing},
       {opacity:0,transform:'translateY(-14px)',offset:1}
     ],{delay:2600,duration:800,easing:'linear'});
-    const heroCopy=document.querySelector('.hero-intro');
-    const heroBook=document.querySelector('.invitation-painting');
+    const heroCopy=document.querySelector('[data-welcome-copy]')||document.querySelector('.hero-intro')||document.querySelector('.shelf-intro>div');
+    const heroBook=document.querySelector('[data-welcome-artwork]')||document.querySelector('.invitation-painting')||document.querySelector('.shelf-intro .edition-cover');
     if(heroCopy)animate(heroCopy,[{opacity:.35,transform:'translateY(14px)'},{opacity:1,transform:'translateY(0)'}],{delay:timing.reveal,duration:timing.exit,easing:'cubic-bezier(.2,.7,.3,1)'});
     if(heroBook)animate(heroBook,[{opacity:.5,transform:'translateY(20px) scale(.975)'},{opacity:1,transform:'translateY(0) scale(1)'}],{delay:timing.reveal,duration:timing.exit,easing:'cubic-bezier(.2,.7,.3,1)'});
     const welcomeTop=dialog.querySelector('.welcome-top');
@@ -208,14 +210,16 @@
     later(()=>finish('complete'),timing.reveal+timing.exit);
     later(()=>finish('timeout'),timing.watchdog);
   }
-  replay.hidden=false;
-  replay.addEventListener('click',()=>{start(true).catch(()=>finish('error'));});
+  if(replay){
+    replay.hidden=false;
+    replay.addEventListener('click',()=>{start(true).catch(()=>finish('error'));});
+  }
   reduced.addEventListener('change',()=>finish('preference'));
   document.addEventListener('visibilitychange',()=>{if(document.hidden)finish('hidden');});
   addEventListener('pagehide',()=>finish('navigation'));
   addEventListener('hashchange',()=>finish('navigation'));
   function automaticVisit(){
-    // Every homepage navigation is eligible, including refresh and history restoration.
+    // Every injected entry route is eligible, including refresh and history restoration.
     // A section link still takes the visitor directly to their intended destination.
     if(location.hash||reduced.matches)return;
     start().catch(()=>finish('error'));

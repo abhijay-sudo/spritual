@@ -1,3 +1,15 @@
+## Collection-first homepage and bookshelf — 27 October 2026
+
+The entry journey is now **choose a book → see its contents → open a chapter → return to those contents**. This supersedes the mixed short-story dialog as the homepage's discovery path. A filter-only patch was considered; separate native contents routes make each collection's scope and order clearer, survive JavaScript failure and retain shareable URLs. The complete existing story index remains at `/books/stories/` in both languages.
+
+Preserve the sunrise logo, paper/forest/brass palette and established Fraunces/Manrope/Tiro. The open-book hero and Ramayana cover link straight to `#chapters`, avoiding a second hero before the chapter list; four illustrated cloth covers distinguish Ramayana, Krishna, Shiva and Dhruva. Desktop uses four covers; phone uses an intentional two-column shelf. Each cover shows its actual available chapter count. The local Ramayana preview has 28 chapters; ordinary public output contains the ten established journey retellings plus three related moments. Krishna, Shiva and Dhruva each contain one existing short chapter, not a fabricated complete corpus. Story prose and art are unchanged.
+
+Reuse the existing fullscreen single-portrait → opening-book → welcome → hero handoff on `/`, `/books/` and `/hi/books/`. It runs on eligible visits, with immediate Enter/Escape/scroll exit, deep-link and reduced-motion bypass, and media-failure recovery. Chapter contents and readers never start this welcome. Replaying with reduced motion shows a static dismissible welcome.
+
+Cover entrance: first intersection, opacity .35→1 and translateY 20→0, 480ms with up to 180ms stagger; clarifies the shelf's sequence without withholding links. Hover/keyboard focus: cover rotates −9° and lifts 7px over 420ms; active press settles to −3°/−2px. Reduced motion removes both effects, and page hide cancels active entrance effects. Existing 580ms reader paper turns are unchanged. Responsive images remain deferred until near the viewport, with native no-JavaScript images.
+
+Evidence and current limitations: `docs/qa/collection-home-2026-10-27/README.md`. No new content rights, billing, app-store availability or deployment is implied.
+
 ## Continuous illustrated book — 27 October 2026
 
 Cross-browser release QA found WebKit displaying the wrong mirrored backface during the 3D turn. Preserve the 580ms hinge and native semantics, but explicitly cull the two faces at the calculated 90-degree boundary with synchronized native visibility effects. Keep transforms on the sheet, never animate its opacity, and cancel the face effects with the parent on interruption. Forward and backward paused frames plus a rendered-pixel comparison guard this; CSS backface declarations alone are insufficient evidence. No user-agent sniffing, added library or per-frame JavaScript is needed.

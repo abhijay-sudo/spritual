@@ -64,7 +64,14 @@ async function harness(options={}) {
   document.timeline={get currentTime(){return now;}};
   document.documentElement={classList:{add:c=>rootClasses.add(c),remove:c=>rootClasses.delete(c)}};
   document.getElementById=()=>dialog;
-  document.querySelector=selector=>selector==='header'?siteHeader:selector==='.hero-intro'?heroCopy:selector==='.invitation-painting'?heroBook:selector==='.invitation-painting img'?hero:selector==='[data-replay-welcome]'?replay:selector==='dialog[open]'?(dialog.open||options.otherDialog?dialog:null):selector==='.hero-actions a'?hero:null;
+  document.querySelector=selector=>{
+    if(selector==='[data-replay-welcome]')return options.missingReplay?null:replay;
+    if(selector==='dialog[open]')return dialog.open||options.otherDialog?dialog:null;
+    if(selector==='header')return siteHeader;
+    const hooks=options.shelfHooks?{'[data-welcome-copy]':heroCopy,'[data-welcome-artwork]':heroBook,'[data-welcome-hero]':hero,'[data-welcome-focus]':hero}:
+      {'.hero-intro':heroCopy,'.invitation-painting':heroBook,'.invitation-painting img':hero,'.hero-actions a':hero};
+    return options.noHero?null:hooks[selector]??null;
+  };
   document.querySelectorAll=selector=>selector.includes('data-welcome-art')?artwork:[];
   const media=new EventTarget();media.matches=options.reduced??false;
   const window=new EventTarget();
@@ -307,4 +314,24 @@ test('a cold hero owns the network before optional portraits, without a late ope
   await h.resolveHero();assert.equal(h.decodedImages.length,0,'A late hero must not start abandoned portrait requests');
   await h.replayNow();assert.equal(h.decodedImages.length,8);assert.equal(h.dialog.open,true);
   await h.enter();
+});
+
+
+test('bookshelf hooks support the same opening and return focus to the real chapter action',async()=>{
+  const h=await harness({shelfHooks:true});
+  assert.equal(h.dialog.open,true);
+  assert.equal(h.animations.length,35);
+  await h.advance(3400);
+  assert.equal(h.dialog.open,false);
+  assert.equal(h.focused(),h.hero);
+  assert.equal(h.tasks.size,0);
+});
+
+test('automatic opening does not depend on an optional replay button or premium hero classes',async()=>{
+  const h=await harness({missingReplay:true,noHero:true});
+  assert.equal(h.dialog.open,true);
+  assert.equal(h.animations.filter(a=>deityOrder.includes(a.element.name)).length,8);
+  await h.advance(3400);
+  assert.equal(h.dialog.open,false);
+  assert.equal(h.tasks.size,0);
 });

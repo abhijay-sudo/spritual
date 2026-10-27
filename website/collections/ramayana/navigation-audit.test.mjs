@@ -33,7 +33,7 @@ async function fixture(t, files) {
   return root;
 }
 
-const expectations = {expectedPublicIds:['one'],expectedCollectionRoutes:['/books/ramayana/','/hi/books/ramayana/']};
+const expectations = {expectedLibraryRoutes:[],expectedPublicIds:['one'],expectedCollectionRoutes:['/books/ramayana/','/hi/books/ramayana/']};
 const valid = {
   'index.html':'<a href="/books/read/one/#leaf">Read</a><a href="/books/ramayana/">Collection</a><a href="/hi/">Hindi</a><link rel="stylesheet" href="/book.css">',
   'hi/index.html':'<a href="/hi/books/read/one/#leaf">Read</a><a href="/hi/books/ramayana/">Collection</a><a href="/">English</a>',

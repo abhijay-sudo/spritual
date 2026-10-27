@@ -50,7 +50,7 @@ function cssReferences(css) {
   return [...clean.matchAll(/url\(\s*(?:"([^"]*)"|'([^']*)'|([^\s)]*))\s*\)|@import\s+(?:"([^"]*)"|'([^']*)')/gi)].map(m => m[1] ?? m[2] ?? m[3] ?? m[4] ?? m[5]);
 }
 
-export async function auditNavigation(root, {collection = true, expectedPublicIds, expectedCollectionRoutes} = {}) {
+export async function auditNavigation(root, {collection = true, expectedPublicIds, expectedCollectionRoutes, expectedLibraryRoutes} = {}) {
   root = resolve(root);
   const entries = [], failures = [], pages = new Map(), fileSet = new Set(), graph = new Map(), checkedAssets = new Set();
   const walk = async directory => {
@@ -121,13 +121,16 @@ export async function auditNavigation(root, {collection = true, expectedPublicId
   const publicIds = expectedPublicIds ?? (await publicBooks()).map(book => book.id);
   const collectionRoutes = expectedCollectionRoutes ?? ['en','hi'].flatMap(lang => [collectionHome(lang), ...chapters.map(chapter => chapterRoute(chapter.id, lang))]);
   const publicRoutes = ['en','hi'].flatMap(lang => publicIds.map(id => `${lang === 'hi' ? '/hi' : ''}/books/read/${id}/`));
-  const expected = [...publicRoutes, ...(collection ? collectionRoutes : [])];
+  const libraryRoutes = expectedLibraryRoutes ?? ['en','hi'].flatMap(lang => ['ramayana','krishna','shiva','dhruva','stories'].map(id => `${lang === 'hi' ? '/hi' : ''}/books/${id}/`));
+  const expected = [...new Set([...publicRoutes, ...libraryRoutes, ...(collection ? collectionRoutes : [])])];
   for (const route of expected) {
     if (!fileFor(route)) failures.push({kind:'missing-expected-route', from:route.startsWith('/hi/') ? '/hi/' : '/', target:route});
     const reachable = route.startsWith('/hi/') ? fromHindi : fromEnglish;
     if (!reachable.has(route)) failures.push({kind:'unreachable-from-home', from:route.startsWith('/hi/') ? '/hi/' : '/', target:route});
   }
-  if (!collection) for (const route of collectionRoutes) if (fileFor(route)) failures.push({kind:'draft-in-public-build', from:'/', target:route});
+  // Public contents exist for the ten established retellings; only draft readers are forbidden.
+  const draftRoutes = expectedCollectionRoutes ?? ['en','hi'].flatMap(lang => chapters.map(chapter => chapterRoute(chapter.id,lang)));
+  if (!collection) for (const route of draftRoutes) if (fileFor(route)) failures.push({kind:'draft-in-public-build', from:'/', target:route});
   return {
     schemaVersion:1, generatedAt:new Date().toISOString(), root, mode:collection ? 'local-collection-preview' : 'public-build', textRevision:revision,
     limits:['Static generated HTML and referenced CSS only; no runtime JavaScript interaction or external source availability is claimed.', 'Reachability follows native anchor links. Metadata alternates and script-generated links do not create navigation edges.'],

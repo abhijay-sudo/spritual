@@ -140,8 +140,13 @@ await writeFile(`${out}/robots.txt`,'User-agent: *\nAllow: /\nSitemap: https://s
 await writeFile(`${out}/sitemap.xml`,`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${['','hi/','pause/','hi/pause/',...(sanatan?['corrections/','hi/corrections/']:[]),...libraryRoutes.filter(r=>!r.endsWith('saved/')),...(sanatan?storySitemapRoutes():[]),...(sanatanEdition?Object.keys(journeys).flatMap(id=>[`journeys/${id}/`,`hi/journeys/${id}/`]):[])].map(p=>`<url><loc>https://spritual.co.in/${p}</loc></url>`).join('')}</urlset>`);
 try { await copyFile(resolve(import.meta.dirname,'assets/social.png'),`${out}/assets/social.png`); } catch { console.warn('Social image not yet generated.'); }
 // Only the ordinary public homepage changes. Editorial and illustrated gates remain intact.
-if(!editorial&&!sanatanEdition){await publishIntroduction(out);await buildBooks(out);const {addWelcomePreview}=await import('./welcome-preview/build.mjs');await addWelcomePreview(out);}
+if(!editorial&&!sanatanEdition){
+ await publishIntroduction(out);
+ const previewChapters=collectionPreview?(await import('./collections/ramayana/model.mjs')).chapters.length:0;
+ await buildBooks(out,{previewChapters});
+}
 const generatedPageCount=(await readdir(out,{recursive:true})).filter(file=>file==='index.html'||file.endsWith('/index.html')).length;
 console.log(`Built ${generatedPageCount} ${sanatanPreview?'local release preview':sanatanRelease?'illustrated public release':editorial?'local editorial preview':'public'} pages + 404${editorial?' and local-only imported reader pages':''}.`);
 
 if(collectionPreview){const {buildCollection}=await import('./collections/ramayana/build.mjs');await buildCollection(out);}
+if(!editorial&&!sanatanEdition){const {addWelcomePreview}=await import('./welcome-preview/build.mjs');await addWelcomePreview(out);}

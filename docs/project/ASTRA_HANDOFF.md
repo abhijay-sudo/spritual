@@ -1,3 +1,9 @@
+## Latest — 28 October 2026: collection-first homepage and restored bookshelf welcome
+
+Reworked `/` and `/books/` into distinct illustrated Ramayana, Krishna, Shiva and Dhruva collections. Ramayana selection goes directly to ordered chapter contents; a small All collections/language toolbar keeps that anchored landing navigable. Other collections have compact contents pages, with honest one-chapter counts. Existing reader prose, sources, saved-page schema and URLs survive; `/books/stories/` retains all 16 originals. Reader endings stay within their own collection. The existing fullscreen single-portrait/book welcome now also runs on English/Hindi bookshelf entry pages, with native skip, reduced-motion/deep-link recovery and no reader interruptions.
+
+Verified locally: both builds, 109 Node checks, 65 website browser checks, 25 Ramayana checks and 33 unique welcome checks (31 initial passes + 2 corrected-assertion reruns), plus zero failures in both generated-link audits. Captured and inspected 320/390/768/1440 layouts and real browser playback. Evidence: `docs/qa/collection-home-2026-10-27/README.md`. Reuse 4194. Unreviewed 28-chapter prose/art remain excluded from the public build and the publication fingerprint is unchanged. No deployment or native/backend/billing change.
+
 ## Latest — 27 October 2026: publication evidence and cross-browser book QA
 
 The 28-chapter bilingual Ramayana remains a local review edition, revision `7d2503c2eca5f1d2`. Read `website/collections/ramayana/REVIEW_REQUIRED.md` for exact editorial/Hindi/art/rights decisions. All 123 source URLs, 120 JPEG hashes and eight newer masters were checked; 32 inherited plates still lack complete generation/input records. The pending publication preflight binds exact text, scene mappings and 121 delivered asset files and cannot enable production output. No approvals were fabricated.
