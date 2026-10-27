@@ -160,3 +160,29 @@ html[lang=hi] .folio-prose{line-height:1.95}
  .scene-toolbar{gap:7px;padding-top:4px}.scene-toolbar .scene-controls{gap:14px}
  .scene-toolbar .scene-controls button{font-size:10px}
 }
+
+/* Paper is a material, not a graphic over the words: faint fibres, clean ink,
+   a shallow central binding and a fine fore-edge visible outside the leaves. */
+[data-illustrated-reader] .open-book{border-color:#c9bea6;border-radius:3px 9px 9px 3px;box-shadow:0 2px 0 #f1e9d5,0 3px 0 #c5b99e,0 5px 0 #f1e9d5,0 6px 0 #c5b99e,0 9px 0 -1px #dfd4b9,0 11px 0 -1px #bdb194,0 24px 50px -26px #2a302d66}
+[data-illustrated-reader] :is(.frontispiece,.book-leaves,.turn-face){--page-fibre:repeating-linear-gradient(8deg,transparent 0 3px,#9f8e6810 3.3px,transparent 3.8px 7px);background-image:var(--page-fibre),linear-gradient(90deg,#e9e0cb 0,#fffaf0 24px,#fffaf0 94%,#f2ead8);background-color:#fffaf0}
+[data-illustrated-reader] .frontispiece{background-image:var(--page-fibre),linear-gradient(90deg,#f3ecdb 0,#fffaf0 8%,#fffaf0 90%,#e4dac3);border-right-color:#bcaf92}
+[data-illustrated-reader] .book-leaves:after{content:'';position:absolute;inset:0 auto 0 0;width:10px;background:linear-gradient(90deg,#7763401c,transparent);pointer-events:none}
+[data-illustrated-reader] .turn-back{background-image:var(--page-fibre),linear-gradient(90deg,#e0d5bd,#fffaf0 12%,#fffaf0 90%,#e4d7ba)}
+[data-illustrated-reader] .turn-cover{background-image:repeating-linear-gradient(0deg,#ffffff04 0 1px,transparent 1px 3px),linear-gradient(90deg,#0d2b20,#234e3b 9%,#173e31 20%);background-color:#173e31}
+[data-illustrated-reader] .folio-heading{border-bottom:1px solid #b5a57f55;padding-bottom:15px}
+[data-illustrated-reader] .folio-number{font-variant-numeric:tabular-nums;letter-spacing:.08em}
+[data-illustrated-reader] .folio-prose{font-kerning:normal;text-rendering:optimizeLegibility}
+[data-illustrated-reader] .page-controls [data-chapter-step]{border-color:#c4b797;background:#eee6d2;color:var(--ink)}
+[data-illustrated-reader] .page-controls [data-chapter-step]:hover{background:#234e3b;color:#fffaf0}
+body[data-page-theme=evening] [data-illustrated-reader] :is(.frontispiece,.book-leaves,.turn-face){background-image:var(--page-fibre),linear-gradient(90deg,#172b22,#263d30 8%,#263d30 95%,#21362b);background-color:#263d30}
+body[data-page-theme=evening] [data-illustrated-reader] .turn-imprint{color:#c4c9af}
+body[data-page-theme=evening] [data-illustrated-reader] .folio-heading{border-color:#a8b49944}
+body[data-page-theme=evening] [data-illustrated-reader] .chapter-ending{border-color:#a8b49944}
+@media(max-width:700px){
+ [data-illustrated-reader] .page-controls{gap:4px;padding-inline:7px}
+ [data-illustrated-reader] .page-controls [data-chapter-step]{min-height:44px;font-size:10px;padding:7px;max-width:112px}
+ [data-illustrated-reader] .folio-heading{padding-bottom:12px}
+}
+
+.legacy-folio{display:none}.legacy-folio:target{display:block;padding:16px;border:1px solid var(--gold)}
+body[data-page-theme=evening] .chapter-content-note{color:#d0d1b7;border-left-color:#b7a16b}

@@ -1,5 +1,11 @@
 # Astra takeover: Spiritual.co.in
 
+## Latest — 27 October 2026: 28 chapters and continuous paper reader
+
+Expanded the local Ramayana abridgement to 28 English/Hindi chapters, 112 scenes and 40 plates, with six new original illustrations. Revision `7d2503c2eca5f1d2`; 11,541 English narrative words. Full contents, native adjacent chapter navigation, two legacy war-page recoveries and session appearance preferences now connect the entire book. The duplex paper turn retains typography and uses a matching reverse leaf; visual QA found and fixed mirrored text from flattened 3D layers.
+
+Verified: both build modes, 90 Node checks, 25 final Chrome collection checks, 19 existing book/motion regressions (six paper cases rerun after the final fix). Actual screenshots at 320/390/768/1440 and intermediate sizes were inspected. Evidence: `docs/qa/ramayana-collection-2026-10-27/README.md`. Reuse port 4194 with the local collection flag. Existing public retellings, bookmarks, logo and homepage remain intact. Exact-version editorial/Hindi/rights/art review is pending; no publication, billing or native release occurred.
+
 ## Latest — 26 October 2026: complete local semi-animated Ramayana collection
 
 `website/collections/ramayana/` now implements a connected 22-chapter English/Hindi abridgement through Yuddha's return, with 88 scenes, 34 responsive plates, finite scene motion, shared paper turns, source notes and explicit kept-page return. Existing sixteen public retellings remain intact. Reuse `http://127.0.0.1:4194/books/ramayana/` after `node website/build.mjs --welcome-preview --collection-preview`; the normal production build excludes the draft. Text revision `466e7b922eec89f7`, 8,674 English narrative words. No claim of a complete verse edition or Uttara Kanda.

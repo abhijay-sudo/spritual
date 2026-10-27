@@ -25,7 +25,7 @@ export async function buildCollection(out) {
     for(const [index,chapter] of chapters.entries())await put(chapterRoute(chapter.id,lang),collectionReader(chapter,index,chapters,lang));
     const shelf=resolve(out,lang==='hi'?'hi/books/index.html':'books/index.html');
     const old=await readFile(shelf,'utf8');
-    await writeFile(shelf,old.replace('<main id="book-main">',`<main id="book-main"><p class="research-notice"><a href="${collectionHome(lang)}">${lang==='hi'?'नया संपादकीय पूर्वावलोकन: २२ अध्यायों की चित्रित रामायण खोलें ↗':'New editorial preview: open the illustrated Ramayana in 22 chapters ↗'}</a></p>`));
+    await writeFile(shelf,old.replace('<main id="book-main">',`<main id="book-main"><p class="research-notice"><a href="${collectionHome(lang)}">${lang==='hi'?`नया संपादकीय पूर्वावलोकन: ${chapters.length} अध्यायों की चित्रित रामायण खोलें ↗`:`New editorial preview: open the illustrated Ramayana in ${chapters.length} chapters ↗`}</a></p>`));
   }
   await writeFile(resolve(out,'robots.txt'),'User-agent: *\nDisallow: /\n');
   await writeFile(resolve(destination,'review-manifest.json'),JSON.stringify({...release,chapterCount:chapters.length,englishNarrativeWords:chapters.reduce((n,c)=>n+wordCount(c),0),artwork,artworkFiles,chapters:chapters.map(c=>({id:c.id,words:wordCount(c),sources:c.sources,scenes:sceneArt(c),review:'pending'}))},null,2));

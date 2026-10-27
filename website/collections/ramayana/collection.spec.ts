@@ -1,12 +1,12 @@
 import {test,expect} from '@playwright/test';
 import {mkdir} from 'node:fs/promises';
-const evidence='docs/qa/ramayana-collection-2026-10-26';
+const evidence='docs/qa/ramayana-collection-2026-10-27';
 const route='/books/read/ramayana-across-the-ocean/';
 const home='/books/ramayana/';
 test.beforeAll(async()=>{await mkdir(evidence,{recursive:true});});
 for(const width of [320,390,768,1440])test(`collection, illustrated turn, Hindi and kept-page return at ${width}px`,async({page})=>{
   await page.setViewportSize({width,height:900});
-  await page.goto(home);await expect(page.locator('.collection-chapters a')).toHaveCount(22);
+  await page.goto(home);await expect(page.locator('.collection-chapters a')).toHaveCount(28);
   await expect(page.locator('h1')).toContainText('The Ramayana');
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
   await page.screenshot({path:`${evidence}/shelf-${width}.png`,fullPage:true});
@@ -106,7 +106,7 @@ test('every chapter is reachable in English and Hindi and the ending returns to 
     for(const url of urls){const response=await page.request.get(url);expect(response.status()).toBe(200);const html=await response.text();expect(html).toContain('noindex, nofollow');expect(html).toContain('data-illustrated-reader');}
     await page.goto(urls.at(-1)!);await page.locator('[data-open-dialog="book-contents"]').click();await page.locator('[data-leaf-link="3"]').click();
     await expect(page.locator('.chapter-ending a')).toHaveAttribute('href',lang+home);
-    await page.locator('.chapter-ending a').click();await expect(page.locator('.collection-chapters a')).toHaveCount(22);
+    await page.locator('.chapter-ending a').click();await expect(page.locator('.collection-chapters a')).toHaveCount(28);
   }
 });
 

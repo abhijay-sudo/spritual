@@ -1,3 +1,13 @@
+## Continuous illustrated book — 27 October 2026
+
+The local Ramayana edition now has 28 connected bilingual chapters, 112 scenes and 40 plates. Preserve the existing brand, manuscript palette, logo and fonts. Additions remain an abridgement through the return in Yuddha Kanda, with exact publication review pending.
+
+Chose a native duplex paper hinge over a canvas/WebGL page-flip package: the existing semantic reader retains selectable text, native scrolling, keyboard access and no-JavaScript recovery. A page-step triggers a 580ms 0→−180° turn (reverse on back), easing `cubic-bezier(.32,.06,.24,1)`. A title-bearing cloth cover opens in 660ms only on a fresh chapter without a deep link. The reverse face matches the facing illustration on two-leaf desktop layouts; narrow layouts use a restrained printer’s imprint. Fold lighting and a shallow cast shadow explain depth. Typography stays identical during the turn. Rapid input, resize, hidden document and dialogs remove the decorative layer; content changes immediately. Reduced motion and explicit motion off remove the effect entirely.
+
+Fine low-contrast fibres, a shallow binding gutter and layered fore-edges add paper character without moving prose. Scene motion retains the finite 26 October contract below. Native adjacent chapter links replace disabled end buttons where another chapter exists, and the contents lists the full edition. Previous chapter enters its last page. Text size/evening paper are explicit session preferences; no inferred progress tracking is introduced. Long text remains scrollable, not truncated to fixed sheets.
+
+See `website/collections/ramayana/README.md` and `docs/qa/ramayana-collection-2026-10-27/README.md`. No homepage opening, pricing, backend or production state change is part of this refinement.
+
 ## Semi-animated Ramayana — 26 October 2026
 
 The new collection is an editorial local preview, not a public catalogue expansion. Preserve sunrise logo, paper/forest/brass and Fraunces/Manrope/Tiro. Its path is collection → chapter → four scenes → next chapter, with explicit local bookmarks and source access throughout. The first chapter is now called “The story begins”; old public prose and URLs remain intact.

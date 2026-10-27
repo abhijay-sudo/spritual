@@ -10,12 +10,12 @@ import {parsePlaces, encodePlaces} from '../../books/state.mjs';
 
 const expectedOrder = [
   'what-makes-a-person-admirable', 'princes-and-teacher', 'knowing-how-to-stop',
-  'road-to-mithila', 'the-bow-at-mithila', 'promise-of-exile',
-  'a-friend-beside-the-ganga', 'bharata-and-the-sandals', 'forest-torn-apart',
-  'shabaris-welcome', 'hanumans-first-conversation', 'alliance-and-vali',
+  'road-to-mithila', 'the-bow-at-mithila', 'the-second-bow', 'promise-of-exile',
+  'a-friend-beside-the-ganga', 'the-kings-last-night', 'bharata-and-the-sandals', 'a-home-in-panchavati', 'forest-torn-apart',
+  'shabaris-welcome', 'hanumans-first-conversation', 'alliance-and-vali', 'when-the-rains-ended',
   'search-to-southern-sea', 'across-the-ocean', 'through-lanka-at-night',
   'a-ring-brings-hope', 'witness-returns', 'refuge-and-crossing',
-  'war-and-its-cost', 'sita-speaks-after-victory', 'northward-home', 'returning-responsibility'
+  'at-lankas-gates', 'a-brothers-life', 'war-and-its-cost', 'sita-speaks-after-victory', 'northward-home', 'returning-responsibility'
 ];
 const langs = ['en', 'hi'];
 const attributes = (html, name) => [...html.matchAll(new RegExp(`\\s${name}="([^"]*)"`, 'g'))].map(match => match[1]);
@@ -31,14 +31,14 @@ function renderedRoutes() {
   return routes;
 }
 
-test('the abridgement follows all 22 narrative stops through return, without duplicated chapters', () => {
+test('the abridgement follows all 28 narrative stops through return, without duplicated chapters', () => {
   assert.deepEqual(chapters.map(chapter => chapter.id), expectedOrder);
-  assert.equal(new Set(chapters.map(chapter => chapter.id)).size, 22);
+  assert.equal(new Set(chapters.map(chapter => chapter.id)).size, 28);
   assert.strictEqual(validateCollection(), chapters);
   assert.deepEqual([...new Set(chapters.map(chapter => chapter.part.en))], [
     'Bala Kanda', 'Ayodhya Kanda', 'Aranya Kanda', 'Kishkindha Kanda', 'Sundara Kanda', 'Yuddha Kanda'
   ]);
-  assert.equal(chapters.flatMap(chapter => chapter.scenes).length, 88);
+  assert.equal(chapters.flatMap(chapter => chapter.scenes).length, 112);
   for (const chapter of chapters) {
     assert(wordCount(chapter) >= 200, `${chapter.id}: only a synopsis, not a finished chapter`);
     validateBook(asBook(chapter));
@@ -53,7 +53,7 @@ test('the abridgement follows all 22 narrative stops through return, without dup
 });
 
 test('validation rejects missing or reordered chapters, duplicate folios, missing translations and unsafe source links', () => {
-  assert.throws(() => validateCollection(chapters.slice(1)), /22 chapters/);
+  assert.throws(() => validateCollection(chapters.slice(1)), /28 chapters/);
   let draft = clone(); [draft[0], draft[1]] = [draft[1], draft[0]];
   assert.throws(() => validateCollection(draft), /order mismatch/);
   draft = clone(); draft[0].scenes[1].id = draft[0].scenes[0].id;
@@ -104,9 +104,9 @@ test('preview build refuses CI, deployment, missing opt-in and public destinatio
   }
 });
 
-test('the 46 rendered routes form a complete bilingual collection with valid chapter and fragment destinations', () => {
+test('the 58 rendered routes form a complete bilingual collection with valid chapter and fragment destinations', () => {
   const routes = renderedRoutes();
-  assert.equal(routes.size, 46);
+  assert.equal(routes.size, 58);
   for (const [route, html] of routes) {
     const ids = attributes(html, 'id');
     assert.equal(ids.length, new Set(ids).size, `${route}: duplicate DOM identifiers`);
@@ -153,7 +153,8 @@ test('every paragraph, citation, content note and folio is readable in static HT
       const url = new URL(source.url);
       assert.equal(url.protocol, 'https:');
       const citedEdition = ['valmikiramayan.net', 'www.valmikiramayan.net'].includes(url.hostname)
-        || source.url === 'https://www.gutenberg.org/files/24869/24869-h/24869-h.html';
+        || source.url === 'https://www.gutenberg.org/files/24869/24869-h/24869-h.html'
+        || source.url === 'https://www.sanskritdocuments.org/sites/valmikiramayan/kish/sarga31/kishkindha_31_prose.htm';
       assert(citedEdition, `${chapter.id}: unexpected source edition ${source.url}`);
       assert(html.includes(`href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer"`));
     }
@@ -161,7 +162,7 @@ test('every paragraph, citation, content note and folio is readable in static HT
     if (chapter.contentNote) assert(html.includes(escapeHtml(chapter.contentNote[lang])));
     assert.match(html, /<details class="edition-note" id="edition-note" open>/);
   }
-  for (const id of ['forest-torn-apart', 'war-and-its-cost', 'sita-speaks-after-victory']) {
+  for (const id of ['forest-torn-apart', 'at-lankas-gates', 'a-brothers-life', 'war-and-its-cost', 'sita-speaks-after-victory']) {
     const chapter = chapters.find(candidate => candidate.id === id);
     assert(chapter?.contentNote?.en && chapter.contentNote.hi, `${id}: missing sensitive-content note`);
   }

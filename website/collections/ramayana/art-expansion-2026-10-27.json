@@ -1,0 +1,74 @@
+{
+  "generated": "2026-10-27",
+  "provider": "OpenAI image generation tool",
+  "purpose": "Local editorial preview; no human publication or rights approval",
+  "images": [
+    {
+      "id": "25-second-bow",
+      "prompt": "Create an original landscape 3:2 Indian miniature-inspired illustrated-book painting. Fine hand-painted natural pigments, forest greens, warm parchment, earthy gold, softly aged paper texture, detailed foliage and credible anatomy; respectful figures, not photorealistic or cartoon. Keep entire heads, hands and key objects well within the frame with generous margins. No text, labels, logo, decorative border, collage, duplicate characters or multiple moments. Scene from Valmiki Ramayana Bala Kanda: Rama's encounter with Parashurama on the journey home after the weddings. Rama is a youthful blue-grey prince with one strung bow, held calmly and not aimed at anybody; Parashurama is a mature ascetic with tied hair, beard, a sacred thread and an axe lowered at his side. Elder king Dasharatha watches behind, concerned. A dusty path and distant wedding procession in soft focus. This is a restrained exchange, no combat, no injury, no triumph over a fallen body. Exactly one Rama and one Parashurama.",
+      "source": "/Users/abhijay/.codex/generated_images/01a0c52b-0fc7-7cf2-95a6-24eb1f0f7231/exec-4a57c846-a0d3-4c00-8183-0b56561292f5.png",
+      "review": "pending",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "7161903db612df3325bae63365216ff48fe59bb3b14e626c35c3a3520344d0f4",
+      "master": "art/25-second-bow.png",
+      "visualInspection": "Composition and anatomy inspected by the implementation agent; not a named editorial, rights or iconographic approval."
+    },
+    {
+      "id": "26-kings-last-night",
+      "prompt": "Create an original landscape 3:2 Indian miniature-inspired illustrated-book painting. Fine hand-painted natural pigments, forest greens, warm parchment, earthy gold, softly aged paper texture, detailed foliage and credible anatomy; respectful figures, not photorealistic or cartoon. Keep entire heads, hands and key objects well within the frame with generous margins. No text, labels, logo, decorative border, collage, duplicate characters or multiple moments. Scene from Valmiki Ramayana Ayodhya Kanda: king Dasharatha's sorrowful final night in the palace after Rama's exile. One elderly king Dasharatha rests on a low carved wooden bed under light cotton cloth, his face tired but dignified. Queen Kausalya, mature, seated beside him listening with compassion. Quiet oil lamp, warm amber room, carved pillars, blue night sky through a window; grief expressed gently, no graphic injury, no supernatural apparition, no dead body spectacle, no extra figures. Emphasis on the listening queen and dim palace quiet.",
+      "source": "/Users/abhijay/.codex/generated_images/01a0c52b-0fc7-7cf2-95a6-24eb1f0f7231/exec-15a3c423-c2b2-4154-af0f-a395d3bb82dc.png",
+      "review": "pending",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "4e8d20ac41151b72fdeabad076bb7b599ec582ed71cb81eb1286b9d244c2b91b",
+      "master": "art/26-kings-last-night.png",
+      "visualInspection": "Composition and anatomy inspected by the implementation agent; not a named editorial, rights or iconographic approval."
+    },
+    {
+      "id": "27-panchavati",
+      "prompt": "Create an original landscape 3:2 Indian miniature-inspired illustrated-book painting. Fine hand-painted natural pigments, forest greens, warm parchment, earthy gold, softly aged paper texture, detailed foliage and credible anatomy; respectful figures, not photorealistic or cartoon. Keep entire heads, hands and key objects well within the frame with generous margins. No text, labels, logo, decorative border, collage, duplicate characters or multiple moments. Scene from Valmiki Ramayana Aranya Kanda: Rama, Sita and Lakshmana settling at Panchavati beside the Godavari. A small newly finished hut of woven branches and leaves among five broad trees; Sita and blue-grey Rama stand beside it, looking at Lakshmana as he sets down a bundle of reeds. Jatayu, a dignified large vulture with natural wings, rests on a low bough nearby. All three human figures wear simple forest clothing. Gentle morning river light, quiet domestic accomplishment. Exactly three people and one bird. No palace, battle, monkeys or weapons aimed at anyone.",
+      "source": "/Users/abhijay/.codex/generated_images/01a0c52b-0fc7-7cf2-95a6-24eb1f0f7231/exec-fd31a107-f40f-4ee9-9b9f-463255746f4c.png",
+      "review": "pending",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "f0ca15be62b2e92fd52d570dfa082608e544040dc29928d0e765af78f894cdaa",
+      "master": "art/27-panchavati.png",
+      "visualInspection": "Composition and anatomy inspected by the implementation agent; not a named editorial, rights or iconographic approval."
+    },
+    {
+      "id": "28-monsoon",
+      "prompt": "Create an original landscape 3:2 Indian miniature-inspired illustrated-book painting. Fine hand-painted natural pigments, forest greens, warm parchment, earthy gold, softly aged paper texture, detailed foliage and credible anatomy; respectful figures, not photorealistic or cartoon. Keep entire heads, hands and key objects well within the frame with generous margins. No text, labels, logo, decorative border, collage, duplicate characters or multiple moments. Scene from Valmiki Ramayana Kishkindha Kanda: Rama and Lakshmana wait through the monsoon near a rocky cave at Prasravana. Blue-grey Rama is seated on a stone under shelter, his unstrung bow beside him, gazing over a rain-filled valley; Lakshmana stands nearby holding his bow down. Wet deep-green forest, peacocks in the distance, fine diagonal rain, low cloud and a river. Two people only. Reflective melancholy, no supernatural figures, no battle, no Sita, no monkeys.",
+      "source": "/Users/abhijay/.codex/generated_images/01a0c52b-0fc7-7cf2-95a6-24eb1f0f7231/exec-8a89cd30-96ad-4d91-90e0-cf8eb3e17bdf.png",
+      "review": "pending",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "dc581749bca78ba9496926dd86804b7f63a5f2197a80db0f99eed1016a010ece",
+      "master": "art/28-monsoon.png",
+      "visualInspection": "Composition and anatomy inspected by the implementation agent; not a named editorial, rights or iconographic approval."
+    },
+    {
+      "id": "29-angada-envoy",
+      "prompt": "Create an original landscape 3:2 Indian miniature-inspired illustrated-book painting. Fine hand-painted natural pigments, forest greens, warm parchment, earthy gold, softly aged paper texture, detailed foliage and credible anatomy; respectful figures, not photorealistic or cartoon. Keep entire heads, hands and key objects well within the frame with generous margins. No text, labels, logo, decorative border, collage, duplicate characters or multiple moments. Scene from Valmiki Ramayana Yuddha Kanda: Angada, a young vanara envoy with a monkey face and a single natural tail, stands upright at a respectful distance before Ravana's throne in Lanka. Ravana is a powerful crowned king in the traditional single-faced portrait convention; one king, one head, two arms, no duplicate heads. Two guards remain motionless at the far edges. Gold and rust palace pillars, morning light. Angada gestures with one open hand, no throne-tipping, no planted-foot contest, no fight. Serious final diplomatic appeal, not comic.",
+      "source": "/Users/abhijay/.codex/generated_images/01a0c52b-0fc7-7cf2-95a6-24eb1f0f7231/exec-58dbc904-c199-425a-88a7-25f0ac5a2be3.png",
+      "review": "pending",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "bbd05e9c8a8f110a9ede1e5b2418e41dea5c1e9925f4dbdd04e5abc153204b87",
+      "master": "art/29-angada-envoy.png",
+      "visualInspection": "Composition and anatomy inspected by the implementation agent; not a named editorial, rights or iconographic approval.",
+      "reviewNote": "Ravana uses a single-faced portrait convention. This must be checked explicitly by the iconographic reviewer; the illustration is not a literal rendering of every epic attribute."
+    },
+    {
+      "id": "30-medicine-mountain",
+      "prompt": "Create an original landscape 3:2 Indian miniature-inspired illustrated-book painting. Fine hand-painted natural pigments, forest greens, warm parchment, earthy gold, softly aged paper texture, detailed foliage and credible anatomy; respectful figures, not photorealistic or cartoon. Keep entire heads, hands and key objects well within the frame with generous margins. No text, labels, logo, decorative border, collage, duplicate characters or multiple moments. Scene from Valmiki Ramayana Yuddha Kanda: Hanuman bringing the mountain of medicinal herbs across the night sky. Exactly one Hanuman with a respectful vanara face, one tail, two arms and two legs, holding aloft one modest rocky summit crowned with varied luminous plants. Wide landscape below with forest and distant lamps, pearl moon behind cloud, warm light around healing herbs. His movement is purposeful and dignified. No injured people, no battle, no text, no extra limbs, no multiple mountains.",
+      "source": "/Users/abhijay/.codex/generated_images/01a0c52b-0fc7-7cf2-95a6-24eb1f0f7231/exec-95cd56bf-4520-4e6c-892a-02ee028da5f4.png",
+      "review": "pending",
+      "width": 1536,
+      "height": 1024,
+      "sha256": "74209fcc4c2d89b148ee2a82e4bedd994e1beac36581767b928b4c179a32796c",
+      "master": "art/30-medicine-mountain.png",
+      "visualInspection": "Composition and anatomy inspected by the implementation agent; not a named editorial, rights or iconographic approval."
+    }
+  ]
+}
