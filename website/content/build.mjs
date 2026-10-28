@@ -56,5 +56,6 @@ config.redirects=Object.entries(migration.aliases).map(([source,destination])=>(
 await writeFile(resolve(out,'redirects.json'),JSON.stringify(config.redirects,null,2));
 config.buildCommand='node build.mjs && node content/build.mjs --release';config.outputDirectory='canonical-dist';
 await writeFile(resolve(import.meta.dirname,'vercel-release.json'),JSON.stringify(config,null,2)+'\n');
+await mkdir(resolve(root,'../artifacts'),{recursive:true});
 await writeFile(resolve(root,'../artifacts/canonical-migration-report.json'),JSON.stringify({generatedAt:new Date().toISOString(),contentHash,artworkHash,collections:collections.map(c=>c.slug),stories:stories.length,scenes:stories.reduce((n,s)=>n+s.pages.length,0),routes:paths.size,aliases:migration.aliases,issues,workflow:stories.map(s=>({id:s.id,status:s.status,duration:s.duration_min}))},null,2));
 console.log(JSON.stringify({output:out,routes:paths.size,stories:stories.length,schemaIssues:issues.length,releaseReady:release}));
