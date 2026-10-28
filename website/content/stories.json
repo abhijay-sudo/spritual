@@ -1,0 +1,2778 @@
+[
+  {
+    "id": "ramayana-beginnings",
+    "slug": "ramayana-beginnings",
+    "collection": "ramayana",
+    "book": "Valmiki Ramayana",
+    "arc": "Bala Kanda",
+    "order": 1,
+    "title": {
+      "en": "A question, a journey, a bow",
+      "hi": "एक प्रश्न, एक यात्रा, एक धनुष"
+    },
+    "subtitle": {
+      "en": "An illustrated journey through Bala Kanda.",
+      "hi": "बालकाण्ड की चित्रित कथा-यात्रा।"
+    },
+    "synopsis": {
+      "en": "A question, a journey, a bow",
+      "hi": "एक प्रश्न, एक यात्रा, एक धनुष"
+    },
+    "cover_image": {
+      "src": "/stories-app/assets/forest-sages.webp",
+      "alt": {
+        "en": "Illustrated Ramayana landscape",
+        "hi": "रामायण का चित्रित दृश्य"
+      }
+    },
+    "source_refs": [
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Bala Kanda",
+        "citation": "Bala Kanda 1.1",
+        "external_url": "https://www.valmikiramayan.net/utf8/baala/sarga1/balaroman1.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Bala Kanda",
+        "citation": "Bala Kanda · Sarga 66, verses 13b–16a",
+        "external_url": "https://www.valmikiramayan.net/utf8/baala/sarga66/balaitrans66.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Bala Kanda",
+        "citation": "Bala Kanda 1.28",
+        "external_url": "https://valmikiramayan.net/baala/sarga28/balasans28.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Bala Kanda",
+        "citation": "Bala Kanda 1.67",
+        "external_url": "https://valmikiramayan.net/utf8/baala/sarga67/balaroman67.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Bala Kanda",
+        "citation": "Bala Kanda · Sarga 67, verses 1–23",
+        "external_url": "https://www.valmikiramayan.net/utf8/baala/sarga67/balaitrans67.htm"
+      }
+    ],
+    "characters": [
+      "valmiki",
+      "narada",
+      "rama",
+      "vishvamitra",
+      "lakshmana",
+      "sita",
+      "janaka"
+    ],
+    "places": [
+      "Ayodhya",
+      "Mithila",
+      "Siddhashrama"
+    ],
+    "values": [
+      "curiosity",
+      "responsibility",
+      "selfControl",
+      "courage"
+    ],
+    "moods": [
+      "Contemplative",
+      "Wonder"
+    ],
+    "age_band": "older-12+",
+    "duration_min": 8,
+    "festival_tags": [],
+    "status": "draft",
+    "pages": [
+      {
+        "page_number": 1,
+        "scene_title": {
+          "en": "A question in the ashrama",
+          "hi": "आश्रम में एक प्रश्न"
+        },
+        "text": {
+          "en": "Morning light moved through the trees around Valmiki’s ashrama. The sage had studied actions, promises and consequences, yet one question would not leave him: could all the qualities people praise truly live together in one human life?\n\nWhen Narada arrived, Valmiki did not ask who was strongest or most famous. He asked about steadiness, truthfulness, gratitude, courage, learning, compassion and the ability to govern anger. It was a question about a whole character, not a flawless performance.",
+          "hi": "वाल्मीकि के आश्रम के चारों ओर पेड़ों से सुबह का प्रकाश छन रहा था। ऋषि ने कर्म, वचन और परिणामों पर विचार किया था, फिर भी एक प्रश्न उनका साथ नहीं छोड़ रहा था: जिन गुणों की लोग प्रशंसा करते हैं, क्या वे सचमुच एक ही मनुष्य के जीवन में साथ रह सकते हैं?\n\nनारद आए तो वाल्मीकि ने यह नहीं पूछा कि सबसे बलवान या प्रसिद्ध कौन है। उन्होंने स्थिरता, सत्य, कृतज्ञता, साहस, ज्ञान, करुणा और क्रोध को सँभालने की क्षमता के बारे में पूछा। यह निर्दोष प्रदर्शन का नहीं, पूरे चरित्र का प्रश्न था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/forest-sages.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 2,
+        "scene_title": {
+          "en": "No single answer",
+          "hi": "एक गुण पर्याप्त नहीं"
+        },
+        "text": {
+          "en": "Narada listened before answering. He spoke of Rama of Ayodhya and named many strengths, but he did not turn the prince into a list of easy victories. A person can be brave and still meet grief; learned and still face uncertainty; committed and still leave others with difficult questions.\n\nThat made the answer larger, not smaller. Admirable character was not a jewel someone owned forever. It appeared in choices, was tested in relationships, and had to be renewed when circumstances changed.",
+          "hi": "नारद ने उत्तर देने से पहले ध्यान से सुना। उन्होंने अयोध्या के राम का नाम लिया और अनेक गुण बताए, पर राजकुमार को आसान विजयों की सूची नहीं बनाया। कोई साहसी होकर भी शोक से मिल सकता है; ज्ञानी होकर भी अनिश्चितता का सामना कर सकता है; संकल्पित होकर भी दूसरों के मन में कठिन प्रश्न छोड़ सकता है।\n\nइससे उत्तर छोटा नहीं, और व्यापक हुआ। प्रशंसनीय चरित्र कोई ऐसा रत्न नहीं था जो सदा के लिए मिल जाए। वह निर्णयों में दिखाई देता, संबंधों में परखा जाता और परिस्थितियाँ बदलने पर फिर से साधा जाता था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/forest-sages.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 3,
+        "scene_title": {
+          "en": "An opening, not a verdict",
+          "hi": "निर्णय नहीं, आरंभ"
+        },
+        "text": {
+          "en": "Narada began to sketch a life: a royal family, a forest exile, friendships, conflict, separation and return. Valmiki understood that the only honest way to approach his question was through a story long enough to show choices and their cost.\n\nSo the Ramayana opens with attention. Before judging any figure, the reader is asked to notice what qualities are present, which are in tension, and whose experience a decision changes. The question remains beside us as the journey begins.",
+          "hi": "नारद ने एक जीवन की रूपरेखा रखी: राजपरिवार, वनवास, मित्रता, संघर्ष, वियोग और वापसी। वाल्मीकि ने समझा कि उनके प्रश्न तक ईमानदारी से पहुँचने का मार्ग ऐसी लंबी कथा है जो निर्णय और उनकी कीमत—दोनों दिखा सके।\n\nइसलिए रामायण का आरंभ ध्यान से होता है। किसी पात्र का निर्णय करने से पहले पाठक से पूछा जाता है: कौन-से गुण उपस्थित हैं, किन गुणों में तनाव है, और किसी निर्णय से किसका अनुभव बदलता है। यात्रा शुरू होती है, पर प्रश्न हमारे साथ रहता है।"
+        },
+        "image": {
+          "src": "/stories-app/assets/forest-sages.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 4,
+        "scene_title": {
+          "en": "What the furrow held",
+          "hi": "हल की रेखा में मिली बेटी"
+        },
+        "text": {
+          "en": "Long before the princes came to Mithila to see Shiva’s bow, Janaka had a story of his own to tell. He had been ploughing a field for a sacred rite when the earth revealed a little girl. He found her in the furrow and named her Sita, a name that carried the memory of that first meeting.\n\nJanaka raised her as his own daughter. Years later, speaking to Vishvamitra, he remembered her unusual arrival and the child who had grown up in his home.\n\nBefore she was Mithila’s princess, Sita was the daughter Janaka had found in the earth. At the beginning of her story stood a field, a furrow, and a father ready to welcome her.",
+          "hi": "राजकुमारों के मिथिला आने और शिव के धनुष की परीक्षा से बहुत पहले, जनक के जीवन में एक अनोखी घटना हुई थी। एक यज्ञ के लिए भूमि जोतते समय उन्हें हल से बनी रेखा में एक बालिका मिली। उन्होंने उसका नाम सीता रखा। उस नाम में उनकी पहली भेंट की स्मृति बस गई।\n\nजनक ने सीता को अपनी बेटी मानकर पाला। वर्षों बाद, विश्वामित्र से बात करते हुए, उन्होंने याद किया कि सीता उन्हें कैसे मिली थीं और उनके घर में कैसे बड़ी हुई थीं।\n\nमिथिला की राजकुमारी बनने से पहले सीता धरती की बेटी थीं। उनकी कथा के आरंभ में था एक खेत, हल की एक रेखा और उन्हें अपनाने को तैयार एक पिता।"
+        },
+        "image": {
+          "src": "/stories-app/assets/sita-the-furrow.webp",
+          "alt": {
+            "en": "Janaka welcomes the infant Sita, found in the furrow of a sacred field.",
+            "hi": "खेत की सीता में मिली बालिका सीता का स्वागत करते जनक।"
+          }
+        }
+      },
+      {
+        "page_number": 5,
+        "scene_title": {
+          "en": "After receiving power",
+          "hi": "शक्ति मिलने के बाद"
+        },
+        "text": {
+          "en": "The forest journey had asked much of Rama and Lakshmana. Under Vishvamitra’s guidance they learned vigilance, discipline and the use of extraordinary weapons. The knowledge carried real force; it was not a prize to display.\n\nWhen the teaching seemed complete, the path grew quiet again. Rama considered what he had been given. Knowing how to send power outward answered only half of the problem.",
+          "hi": "वन-यात्रा ने राम और लक्ष्मण से बहुत कुछ माँगा। विश्वामित्र के मार्गदर्शन में उन्होंने सजगता, अनुशासन और असाधारण अस्त्रों का प्रयोग सीखा। यह ज्ञान वास्तविक शक्ति रखता था; दिखाने की वस्तु नहीं था।\n\nजब शिक्षा पूरी-सी लगी, मार्ग फिर शांत हो गया। राम ने मिले हुए ज्ञान पर विचार किया। शक्ति को बाहर भेजना जानना समस्या का केवल आधा उत्तर था।"
+        },
+        "image": {
+          "src": "/assets/collection-ramayana.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 6,
+        "scene_title": {
+          "en": "The second question",
+          "hi": "दूसरा प्रश्न"
+        },
+        "text": {
+          "en": "Rama turned to his teacher and asked for the knowledge of withdrawal: how could each weapon be called back or made still? The request changed the meaning of the lesson. Readiness was not only the ability to act; it was also the ability to prevent an action from continuing beyond its purpose.\n\nVishvamitra recognised the care inside the question. He taught the corresponding ways of restraint. Lakshmana listened too. Their training now held both movement and return, decision and reconsideration.",
+          "hi": "राम ने गुरु से अस्त्रों को वापस लेने का ज्ञान माँगा: हर शक्ति को लौटाया या शांत कैसे किया जाए? इस प्रश्न ने शिक्षा का अर्थ बदल दिया। तैयारी केवल कार्य करने की क्षमता नहीं थी; उद्देश्य पूरा होने के बाद उसे आगे बढ़ने से रोकने की क्षमता भी थी।\n\nविश्वामित्र ने प्रश्न में छिपी सावधानी को पहचाना। उन्होंने संयम और प्रत्याहार के उपाय सिखाए। लक्ष्मण भी सुनते रहे। अब उनकी शिक्षा में गति और वापसी, निर्णय और पुनर्विचार—दोनों थे।"
+        },
+        "image": {
+          "src": "/assets/collection-ramayana.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 7,
+        "scene_title": {
+          "en": "Carrying knowledge well",
+          "hi": "ज्ञान को सँभालकर चलना"
+        },
+        "text": {
+          "en": "The brothers continued through the forest. Nothing outside them announced the new knowledge, and that was part of its dignity. A powerful skill did not need to become a threat in every room.\n\nThe lesson travels beyond weapons. A strong word can be softened, a rushed message can remain unsent, and a plan can be paused when new harm becomes visible. Learning the way forward matters. Learning the way back matters too.",
+          "hi": "दोनों भाई वन में आगे बढ़े। उनके नए ज्ञान की घोषणा बाहर कुछ नहीं कर रहा था, और यही उसकी गरिमा थी। कोई शक्तिशाली कौशल हर जगह धमकी बनकर उपस्थित होना आवश्यक नहीं।\n\nयह सीख अस्त्रों से आगे जाती है। कठोर शब्द को कोमल किया जा सकता है, जल्दबाज़ी का संदेश भेजे बिना रोका जा सकता है, और नया नुकसान दिखाई दे तो योजना ठहराई जा सकती है। आगे बढ़ना सीखना जरूरी है; लौटना भी।"
+        },
+        "image": {
+          "src": "/assets/collection-ramayana.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 8,
+        "scene_title": {
+          "en": "The hall of the bow",
+          "hi": "धनुष की सभा"
+        },
+        "text": {
+          "en": "In Mithila, King Janaka had protected an ancient bow associated with Shiva. Many had heard of it; many had imagined what lifting it might prove. The object had gathered stories of strength around itself until the stories nearly filled the hall.\n\nSita’s future had become connected to the challenge. That made the moment more than a spectacle. Families, promises and her own life stood behind the public attention.",
+          "hi": "मिथिला में राजा जनक ने शिव से जुड़ा एक प्राचीन धनुष सुरक्षित रखा था। बहुत लोगों ने उसके बारे में सुना था और कल्पना की थी कि उसे उठाना क्या सिद्ध करेगा। उसके चारों ओर शक्ति की इतनी कथाएँ जमा थीं कि मानो सभा उन्हीं से भर गई हो।\n\nसीता का भविष्य इस चुनौती से जुड़ गया था। इसलिए यह क्षण केवल प्रदर्शन नहीं था। सार्वजनिक उत्सुकता के पीछे परिवार, वचन और उनका अपना जीवन भी था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/rama-bow-mithila.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 9,
+        "scene_title": {
+          "en": "Permission before action",
+          "hi": "कर्म से पहले अनुमति"
+        },
+        "text": {
+          "en": "Vishvamitra brought Rama and Lakshmana into the gathering. Rama did not rush toward the bow. He listened while Janaka explained it and while the attendants prepared to show it. Then he looked to his teacher and received permission to examine it.\n\nThe pause mattered. Strength without attention can turn another person’s sacred object into a stage. Here, action followed context, invitation and guidance.",
+          "hi": "विश्वामित्र राम और लक्ष्मण को सभा में लाए। राम धनुष की ओर दौड़े नहीं। उन्होंने जनक का विवरण सुना, सेवकों को धनुष दिखाने की तैयारी करते देखा, फिर गुरु की ओर देखकर उसे परखने की अनुमति ली।\n\nवह ठहराव महत्वपूर्ण था। ध्यान के बिना शक्ति किसी दूसरे की पवित्र वस्तु को मंच बना सकती है। यहाँ कर्म प्रसंग, निमंत्रण और मार्गदर्शन के बाद आया।"
+        },
+        "image": {
+          "src": "/stories-app/assets/rama-bow-mithila.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 10,
+        "scene_title": {
+          "en": "The sound that changed the room",
+          "hi": "जिस ध्वनि ने सभा बदल दी"
+        },
+        "text": {
+          "en": "Rama lifted the bow and began to set its cord. Under the force, it broke with a sound that shook the gathering. Surprise travelled through the hall before anyone found words.\n\nJanaka saw the condition of his challenge fulfilled and sent word to Ayodhya. The story moved toward marriage and new bonds between families. Yet the broken bow also leaves a useful question: after an extraordinary act, how do people care for all the lives its consequence will join?",
+          "hi": "राम ने धनुष उठाया और उसकी डोरी चढ़ाने लगे। बल पड़ते ही वह ऐसी ध्वनि के साथ टूटा कि सभा काँप उठी। किसी के शब्द खोजने से पहले आश्चर्य पूरे कक्ष में फैल गया।\n\nजनक ने अपनी शर्त पूरी होते देखी और अयोध्या संदेश भेजा। कथा विवाह और परिवारों के नए संबंधों की ओर बढ़ी। फिर भी टूटा धनुष एक उपयोगी प्रश्न छोड़ता है: किसी असाधारण कर्म के बाद लोग उन सभी जीवनों की देखभाल कैसे करें जिन्हें उसका परिणाम जोड़ेगा?"
+        },
+        "image": {
+          "src": "/stories-app/assets/rama-bow-mithila.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 11,
+        "scene_title": {
+          "en": "When the bow broke",
+          "hi": "जब शिव का धनुष टूटा"
+        },
+        "text": {
+          "en": "The great bow arrived in an iron chest, borne on eight wheels. Janaka’s attendants brought it before Vishvamitra and the two princes. Many rulers had already failed to master it.\n\nRama waited for his teacher’s permission. Then he opened the chest and asked to handle the bow. With an ease that astonished the gathering, he lifted it and set the string in place. As he drew the string back, the bow broke at its centre. The sound rolled through Mithila like thunder. The earth shook.\n\nJanaka had found the answer to a long-kept promise. The young prince standing beside the broken bow would become Sita’s husband.",
+          "hi": "आठ पहियों वाली लोहे की पेटी में शिव का विशाल धनुष लाया गया। जनक के सेवकों ने उसे विश्वामित्र और दोनों राजकुमारों के सामने रखा। अनेक राजा उसे साधने में असफल हो चुके थे।\n\nराम ने पहले अपने गुरु की अनुमति ली। फिर पेटी खोली और धनुष को हाथ में लेने की इच्छा जताई। सबके सामने उन्होंने सहजता से उसे उठाया और प्रत्यंचा चढ़ा दी। जैसे ही राम ने प्रत्यंचा खींची, धनुष बीच से टूट गया। गर्जना जैसी ध्वनि गूँजी। धरती काँप उठी।\n\nजनक की पुरानी प्रतिज्ञा अब पूरी होने वाली थी। टूटे धनुष के पास खड़ा यह राजकुमार अब सीता का जीवनसाथी बनने वाला था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/rama-bow-mithila.webp",
+          "alt": {
+            "en": "Rama lifts the great bow in a richly illustrated hall at Mithila.",
+            "hi": "मिथिला की सभा में महान धनुष उठाते राम।"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "ramayana-promises-and-partings",
+    "slug": "ramayana-promises-and-partings",
+    "collection": "ramayana",
+    "book": "Valmiki Ramayana",
+    "arc": "Ayodhya Kanda",
+    "order": 2,
+    "title": {
+      "en": "Promises and partings",
+      "hi": "वचन और विदा"
+    },
+    "subtitle": {
+      "en": "An illustrated journey through Ayodhya Kanda.",
+      "hi": "अयोध्याकाण्ड की चित्रित कथा-यात्रा।"
+    },
+    "synopsis": {
+      "en": "Promises and partings",
+      "hi": "वचन और विदा"
+    },
+    "cover_image": {
+      "src": "/assets/illustrated/13-promise-of-exile-960.jpg",
+      "alt": {
+        "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
+        "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
+      }
+    },
+    "source_refs": [
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Ayodhya Kanda",
+        "citation": "Ayodhya Kanda 2.1–18",
+        "external_url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga18/ayodhyaroman18.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Ayodhya Kanda",
+        "citation": "Ayodhya Kanda 2.26–30",
+        "external_url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga30/ayodhyaroman30.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Ayodhya Kanda",
+        "citation": "Ayodhya Kanda 2.31–40",
+        "external_url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga40/ayodhyaroman40.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Ayodhya Kanda",
+        "citation": "Ayodhya Kanda 2.50",
+        "external_url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga50/ayodhyaroman50.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Ayodhya Kanda",
+        "citation": "Ayodhya Kanda 2.112",
+        "external_url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga112/ayodhyaroman112.htm"
+      }
+    ],
+    "characters": [
+      "rama",
+      "sita",
+      "lakshmana",
+      "guha",
+      "bharata"
+    ],
+    "places": [
+      "Ayodhya",
+      "Shringaverapura",
+      "Chitrakuta",
+      "Nandigrama"
+    ],
+    "values": [
+      "friendship",
+      "hospitality",
+      "service",
+      "responsibility",
+      "devotion",
+      "selfControl"
+    ],
+    "moods": [
+      "Contemplative",
+      "Wonder"
+    ],
+    "age_band": "older-12+",
+    "duration_min": 7,
+    "festival_tags": [],
+    "status": "draft",
+    "pages": [
+      {
+        "page_number": 1,
+        "scene_title": {
+          "en": "A city prepares",
+          "hi": "नगर की तैयारी"
+        },
+        "text": {
+          "en": "Time has passed since the marriages. Dasharatha, conscious of his age, decides that Rama should be consecrated as heir. The proposal is welcomed, preparations gather pace, and Ayodhya looks towards a celebration. Bharata and Shatrughna are away with their maternal relatives. The brothers who will be most affected are not all present when the future begins to change.\n\nManthara warns Kaikeyi that Rama’s elevation could leave Bharata diminished. The warning turns into an argument for action. Kaikeyi remembers two boons Dasharatha once promised her and resolves to claim them. Outside, the city prepares the signs of welcome. Inside, a family’s old debt is being called due.",
+          "hi": "विवाहों के बाद समय बीत चुका है। अपनी बढ़ती आयु को देखते हुए दशरथ राम का युवराज के रूप में अभिषेक करने का निर्णय लेते हैं। प्रस्ताव का स्वागत होता है, तैयारियाँ तेज़ होती हैं और अयोध्या उत्सव की ओर देखती है। भरत और शत्रुघ्न अपने ननिहाल गए हैं। जिन भाइयों का भविष्य बदलने वाला है, वे सभी उस समय उपस्थित नहीं हैं।\n\nमंथरा कैकेयी को डराती है कि राम के युवराज बनने से भरत का स्थान कम हो सकता है। चेतावनी कार्रवाई के आग्रह में बदलती है। कैकेयी को दशरथ के दिए दो पुराने वर याद आते हैं और वे उन्हें माँगने का निश्चय करती हैं। बाहर नगर स्वागत की तैयारी कर रहा है। भीतर परिवार के पुराने वचन की पूर्ति माँगी जा रही है।"
+        },
+        "image": {
+          "src": "/assets/illustrated/13-promise-of-exile-960.jpg",
+          "alt": {
+            "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
+            "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
+          }
+        }
+      },
+      {
+        "page_number": 2,
+        "scene_title": {
+          "en": "Two boons",
+          "hi": "दो वर"
+        },
+        "text": {
+          "en": "Her demands are precise: Bharata is to be installed in Rama’s place, and Rama must live in the forest for fourteen years. Dasharatha is devastated. He pleads, but Kaikeyi insists on the promise. When Rama is summoned, he finds a father scarcely able to speak. Kaikeyi explains the decision that the king cannot bring himself to announce.\n\nRama accepts the exile as the fulfilment of his father’s pledged word. He does not organise a rival claim to the throne. Yet his acceptance cannot remove the grief around him. Kausalya must hear that the day expected to honour her son will instead take him away; Lakshmana is angry at the injustice.",
+          "hi": "माँग स्पष्ट है: राम के स्थान पर भरत का अभिषेक हो और राम चौदह वर्ष वन में रहें। दशरथ टूट जाते हैं। वे विनती करते हैं, पर कैकेयी वचन पर अड़ी रहती हैं। बुलाए जाने पर राम ऐसे पिता को देखते हैं जो बोल भी नहीं पा रहे। राजा जिस निर्णय को कह नहीं सकते, उसे कैकेयी बताती हैं।\n\nराम पिता के दिए वचन को पूरा करने के लिए वनवास स्वीकार करते हैं। वे सिंहासन के लिए दूसरा पक्ष खड़ा नहीं करते। फिर भी उनकी स्वीकृति आसपास का दुख नहीं मिटाती। कौसल्या को सुनना पड़ता है कि पुत्र के सम्मान का अपेक्षित दिन उसे उनसे दूर ले जाएगा; लक्ष्मण इस अन्याय से क्रोधित हैं।"
+        },
+        "image": {
+          "src": "/assets/illustrated/13-promise-of-exile-960.jpg",
+          "alt": {
+            "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
+            "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
+          }
+        }
+      },
+      {
+        "page_number": 3,
+        "scene_title": {
+          "en": "Sita chooses the road",
+          "hi": "सीता राह चुनती हैं"
+        },
+        "text": {
+          "en": "Rama tells Sita to remain in Ayodhya and describes the dangers of forest life. She refuses to let that settle the matter. She argues that their life is shared, and that comfort without him is not the choice she wants. Her answer is persistent, affectionate and forceful. Rama finally agrees that she will accompany him.\n\nLakshmana also asks to go, ready to help them through the exile. Their leaving is now the decision of three travellers, though the command was directed at one. They prepare for a life with fewer possessions and distribute belongings before departure. The city’s celebration has become a farewell it never expected to give.",
+          "hi": "राम सीता को अयोध्या में रहने के लिए कहते हैं और वन के संकट बताते हैं। सीता इसे अंतिम निर्णय नहीं मानतीं। वे तर्क देती हैं कि उनका जीवन साझा है और राम के बिना सुख-सुविधा उनका अपना चुनाव नहीं। उनका उत्तर स्नेहपूर्ण होने के साथ दृढ़ और बार-बार रखा गया है। अंततः राम उनके साथ चलने पर सहमत होते हैं।\n\nलक्ष्मण भी साथ जाने का आग्रह करते हैं और वनवास में उनकी सेवा के लिए तैयार होते हैं। आदेश एक व्यक्ति के लिए था, लेकिन अब प्रस्थान तीन यात्रियों का निर्णय है। वे कम साधनों वाले जीवन की तैयारी करते और अपनी वस्तुएँ बाँटते हैं। नगर का उत्सव ऐसे विदा-समारोह में बदल गया है जिसकी किसी ने कल्पना नहीं की थी।"
+        },
+        "image": {
+          "src": "/assets/illustrated/13-promise-of-exile-960.jpg",
+          "alt": {
+            "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
+            "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
+          }
+        }
+      },
+      {
+        "page_number": 4,
+        "scene_title": {
+          "en": "Beyond the palace",
+          "hi": "महल के बाहर"
+        },
+        "text": {
+          "en": "Sumantra brings the chariot. Rama, Sita and Lakshmana depart while people gather around them, unwilling to be left behind. Dasharatha and the queens are caught in the pain of watching them go. The crowd follows the road out of the city; affection cannot simply be ordered to stay within the gates.\n\nThe promised fourteen years have begun. Ahead are unfamiliar dwellings and river crossings. Behind them stands a kingdom whose next ruler has not even heard what was done in his name. Rama’s journey towards the forest and Bharata’s journey back towards home will soon have to meet.",
+          "hi": "सुमंत्र रथ लाते हैं। राम, सीता और लक्ष्मण निकलते हैं। लोग उनके आसपास जमा होते हैं और पीछे रहना नहीं चाहते। दशरथ तथा रानियाँ उन्हें जाते देखने की पीड़ा में हैं। भीड़ नगर के बाहर तक पीछे चलती है; स्नेह को केवल आज्ञा देकर द्वारों के भीतर नहीं रोका जा सकता।\n\nवचन के चौदह वर्ष शुरू हो गए हैं। आगे अपरिचित निवास और नदियाँ हैं। पीछे ऐसा राज्य है जिसके भावी शासक ने अभी सुना भी नहीं कि उसके नाम पर क्या हुआ। राम की वन की ओर और भरत की घर की ओर यात्रा जल्द एक-दूसरे से मिलने वाली हैं।"
+        },
+        "image": {
+          "src": "/assets/illustrated/13-promise-of-exile-960.jpg",
+          "alt": {
+            "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
+            "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
+          }
+        }
+      },
+      {
+        "page_number": 5,
+        "scene_title": {
+          "en": "News at the riverbank",
+          "hi": "नदी किनारे समाचार"
+        },
+        "text": {
+          "en": "Word reached Guha that Rama, Sita and Lakshmana had come toward the Ganga dressed for forest life. Guha did not wait for a formal invitation. He gathered what travellers might need and went to meet them.\n\nHe greeted Rama with the warmth of a friend, not the distance of a court. Food, drink, a place to rest and care for the horses were ready. The welcome noticed bodies that had travelled all day.",
+          "hi": "गुह को समाचार मिला कि राम, सीता और लक्ष्मण वन-जीवन के वस्त्र पहने गंगा की ओर आए हैं। गुह औपचारिक निमंत्रण की प्रतीक्षा नहीं करते। उन्होंने यात्रियों की जरूरत की वस्तुएँ जुटाईं और मिलने चले गए।\n\nउन्होंने राम का स्वागत दरबार की दूरी से नहीं, मित्र की गर्मजोशी से किया। भोजन, जल, विश्राम की जगह और घोड़ों की देखभाल तैयार थी। उस स्वागत ने दिन भर यात्रा किए शरीरों की थकान देखी।"
+        },
+        "image": {
+          "src": "/assets/world-rama.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 6,
+        "scene_title": {
+          "en": "Care that listens",
+          "hi": "सुनने वाली देखभाल"
+        },
+        "text": {
+          "en": "Rama received the affection but chose the simple food suited to the vow of exile. Guha did not argue that his own plan of hospitality must be accepted. He adjusted. Generosity became more precise because it listened.\n\nLakshmana remained watchful through the night. Guha offered companionship and protection. Between them grew the quiet trust of people who care for the same travellers, even when they express that care differently.",
+          "hi": "राम ने स्नेह स्वीकार किया, पर वनवास के व्रत के अनुकूल सरल भोजन चुना। गुह ने यह आग्रह नहीं किया कि उनकी आतिथ्य-योजना ही माननी होगी। वे बदल गए। सुनने के कारण उदारता और सटीक हो गई।\n\nलक्ष्मण रात भर सजग रहे। गुह ने साथ और सुरक्षा का प्रस्ताव रखा। उनके बीच उन लोगों का शांत विश्वास बना जो एक ही यात्रियों की देखभाल करते हैं, भले उसका ढंग अलग हो।"
+        },
+        "image": {
+          "src": "/assets/world-rama.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 7,
+        "scene_title": {
+          "en": "At the crossing",
+          "hi": "पार जाने का समय"
+        },
+        "text": {
+          "en": "By morning the river was no smaller, but the travellers were rested and a boat was ready. Guha’s friendship could not remove exile. It could make the next crossing safer and less lonely.\n\nThe best welcome is not always grand. Sometimes it is fresh water, careful listening, care for an animal, a place to sleep, and help with the next step.",
+          "hi": "सुबह नदी छोटी नहीं हुई थी, पर यात्री विश्राम कर चुके थे और नाव तैयार थी। गुह की मित्रता वनवास मिटा नहीं सकती थी। वह अगला पार सुरक्षित और कम अकेला बना सकती थी।\n\nसबसे अच्छा स्वागत हमेशा भव्य नहीं होता। कभी वह ताजा जल, ध्यान से सुनना, पशु की देखभाल, सोने की जगह और अगले कदम में सहायता होता है।"
+        },
+        "image": {
+          "src": "/assets/world-rama.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 8,
+        "scene_title": {
+          "en": "The request at Chitrakuta",
+          "hi": "चित्रकूट में आग्रह"
+        },
+        "text": {
+          "en": "Bharata had come from Ayodhya carrying grief and a request: Rama should return and govern. He had not asked for the throne created by their family’s broken promises. He wanted the rupture repaired.\n\nRama listened but held to the years of exile promised by their father. The brothers stood close in affection and far apart in judgment. Neither love nor sorrow made the decision simple.",
+          "hi": "भरत अयोध्या से शोक और एक आग्रह लेकर आए थे: राम लौटकर शासन सँभालें। परिवार के टूटे वचनों से मिला सिंहासन उन्होंने नहीं माँगा था। वे टूटन को जोड़ना चाहते थे।\n\nराम ने सुना, पर पिता के वचन के अनुसार वनवास के वर्षों पर अडिग रहे। स्नेह में भाई निकट थे, निर्णय में दूर। प्रेम और शोक—किसी ने भी निर्णय को सरल नहीं बनाया।"
+        },
+        "image": {
+          "src": "/assets/world-rama.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 9,
+        "scene_title": {
+          "en": "A sign of entrusted rule",
+          "hi": "सौंपे शासन का चिह्न"
+        },
+        "text": {
+          "en": "At last Bharata asked for Rama’s sandals. He would place them before the work of government as a sign that the kingdom was held in trust, not seized as his own possession.\n\nA pair of sandals could not make decisions. Bharata would still have to hear disputes, protect people, manage resources and accept criticism. The symbol did something different: it reminded him each day that his authority had a boundary and a purpose.",
+          "hi": "अंत में भरत ने राम की पादुकाएँ माँगीं। वे उन्हें शासन के कार्य के सामने इस संकेत की तरह रखेंगे कि राज्य विश्वास में सँभाला गया है, निजी अधिकार की तरह लिया नहीं गया।\n\nपादुकाएँ निर्णय नहीं ले सकती थीं। भरत को फिर भी विवाद सुनने, लोगों की रक्षा करने, संसाधन सँभालने और आलोचना स्वीकार करने का काम करना था। प्रतीक का कार्य अलग था: वह हर दिन याद दिलाता कि उनके अधिकार की सीमा और उद्देश्य है।"
+        },
+        "image": {
+          "src": "/assets/world-rama.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 10,
+        "scene_title": {
+          "en": "Responsibility without celebration",
+          "hi": "उत्सव के बिना उत्तरदायित्व"
+        },
+        "text": {
+          "en": "Bharata returned without the reunion he had hoped for. He chose to live simply at Nandigrama and govern while awaiting Rama’s return. This was not the ending he wanted, but it was work that could not be abandoned.\n\nSometimes responsibility arrives because a better choice is unavailable. The story does not ask us to enjoy that burden. It asks whether we can carry it without pretending it belongs only to us.",
+          "hi": "भरत उस मिलन के बिना लौटे जिसकी उन्हें आशा थी। उन्होंने नंदिग्राम में सरल जीवन जीते हुए राम की वापसी तक शासन सँभालने का निर्णय किया। यह उनकी इच्छित समाप्ति नहीं थी, पर ऐसा काम था जिसे छोड़ा नहीं जा सकता था।\n\nकभी उत्तरदायित्व इसलिए आता है क्योंकि कोई बेहतर विकल्प उपलब्ध नहीं होता। कथा हमसे उस भार का आनंद लेने को नहीं कहती। वह पूछती है: क्या हम उसे यह मानकर उठाए बिना सँभाल सकते हैं कि वह केवल हमारा ही है?"
+        },
+        "image": {
+          "src": "/assets/world-rama.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "ramayana-loss-and-hospitality",
+    "slug": "ramayana-loss-and-hospitality",
+    "collection": "ramayana",
+    "book": "Valmiki Ramayana",
+    "arc": "Aranya Kanda",
+    "order": 3,
+    "title": {
+      "en": "An absence, a welcome, a way onward",
+      "hi": "वियोग, स्वागत और आगे का मार्ग"
+    },
+    "subtitle": {
+      "en": "An illustrated journey through Aranya Kanda.",
+      "hi": "अरण्यकाण्ड की चित्रित कथा-यात्रा।"
+    },
+    "synopsis": {
+      "en": "An absence, a welcome, a way onward",
+      "hi": "वियोग, स्वागत और आगे का मार्ग"
+    },
+    "cover_image": {
+      "src": "/assets/illustrated/23-empty-hermitage-960.jpg",
+      "alt": {
+        "en": "Rama and Lakshmana stand before their empty forest hermitage.",
+        "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
+      }
+    },
+    "source_refs": [
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Aranya Kanda",
+        "citation": "Aranya Kanda 3.17–18",
+        "external_url": "https://www.valmikiramayan.net/utf8/aranya/sarga18/aranyaroman18.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Aranya Kanda",
+        "citation": "Aranya Kanda 3.30",
+        "external_url": "https://www.valmikiramayan.net/utf8/aranya/sarga30/aranyaroman30.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Aranya Kanda",
+        "citation": "Aranya Kanda 3.42–45",
+        "external_url": "https://www.valmikiramayan.net/utf8/aranya/sarga42/aranyaroman42.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Aranya Kanda",
+        "citation": "Aranya Kanda 3.49–51",
+        "external_url": "https://www.valmikiramayan.net/utf8/aranya/sarga49/aranyaroman49.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Aranya Kanda",
+        "citation": "Aranya Kanda 3.67–68",
+        "external_url": "https://www.valmikiramayan.net/utf8/aranya/sarga68/aranyaroman68.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Aranya Kanda",
+        "citation": "Aranya Kanda 3.74",
+        "external_url": "https://www.valmikiramayan.net/utf8/aranya/sarga74/aranyaroman74.htm"
+      }
+    ],
+    "characters": [
+      "rama",
+      "lakshmana",
+      "shabari"
+    ],
+    "places": [
+      "Panchavati",
+      "Matanga’s hermitage"
+    ],
+    "values": [
+      "hospitality",
+      "devotion",
+      "persistence"
+    ],
+    "moods": [
+      "Contemplative",
+      "Wonder"
+    ],
+    "age_band": "older-12+",
+    "duration_min": 6,
+    "festival_tags": [],
+    "status": "draft",
+    "pages": [
+      {
+        "page_number": 1,
+        "scene_title": {
+          "en": "A dwelling in Panchavati",
+          "hi": "पंचवटी में निवास"
+        },
+        "text": {
+          "en": "Forest life in Panchavati holds beauty and companionship, but also conflicts the travellers cannot keep outside their door. Shurpanakha, Ravana’s sister, approaches Rama and seeks him as a husband.\n\nA hurtful exchange follows. When she attacks Sita, Lakshmana wounds and disfigures her. She seeks help from her brother Khara; the violence grows into battle, and Rama kills Khara and his forces. Accounts of these events reach Ravana. He turns towards a scheme aimed at Sita, drawing Maricha into it despite Maricha’s warnings.",
+          "hi": "पंचवटी के वन-जीवन में सुंदरता और साथ है, लेकिन ऐसे संघर्ष भी हैं जिन्हें द्वार के बाहर नहीं रखा जा सकता। रावण की बहन शूर्पणखा राम के पास आती है और विवाह चाहती है।\n\nपीड़ा देने वाला संवाद होता है। सीता पर आक्रमण करने पर लक्ष्मण शूर्पणखा को घायल और अंग-भंग कर देते हैं। वह अपने भाई खर से सहायता माँगती है; हिंसा युद्ध तक बढ़ती है और राम खर तथा उसकी सेना को मारते हैं। घटनाओं का समाचार रावण तक पहुँचता है। वह सीता को लक्ष्य बनाकर योजना रचता है और मारीच की चेतावनी के बावजूद उसे उसमें शामिल करता है।"
+        },
+        "image": {
+          "src": "/assets/illustrated/23-empty-hermitage-960.jpg",
+          "alt": {
+            "en": "Rama and Lakshmana stand before their empty forest hermitage.",
+            "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 2,
+        "scene_title": {
+          "en": "The golden deer",
+          "hi": "स्वर्ण-मृग"
+        },
+        "text": {
+          "en": "Maricha takes the shape of a remarkable deer and appears near the dwelling. Sita is captivated by it and asks Rama to catch it. Lakshmana suspects a deception, but Rama follows the animal, leaving him to guard Sita. The deer keeps moving beyond reach, drawing the pursuit farther from home.\n\nAt last Rama shoots it. Dying, Maricha abandons the disguise and cries out in Rama’s voice, calling to Sita and Lakshmana. The cry reaches the dwelling. Sita fears Rama is in danger and insists that Lakshmana go to him. He believes his brother cannot be overcome so easily, but their disagreement becomes painful. He finally leaves.",
+          "hi": "मारीच अद्भुत मृग का रूप धरकर निवास के पास आता है। सीता उससे आकर्षित होकर राम से उसे पकड़ने को कहती हैं। लक्ष्मण को छल का संदेह होता है, लेकिन राम उन्हें सीता की रक्षा के लिए छोड़कर मृग के पीछे जाते हैं। मृग बार-बार पकड़ से दूर निकलता है और पीछा घर से दूर ले जाता है।\n\nअंततः राम बाण चलाते हैं। मरते हुए मारीच रूप छोड़कर राम की आवाज़ में सीता और लक्ष्मण को पुकारता है। पुकार निवास तक पहुँचती है। सीता को राम के संकट में होने का भय है और वे लक्ष्मण से जाने का आग्रह करती हैं। लक्ष्मण मानते हैं कि उनके भाई को इतनी आसानी से परास्त नहीं किया जा सकता, लेकिन मतभेद पीड़ादायक हो उठता है। अंत में वे निकलते हैं।"
+        },
+        "image": {
+          "src": "/assets/illustrated/23-empty-hermitage-960.jpg",
+          "alt": {
+            "en": "Rama and Lakshmana stand before their empty forest hermitage.",
+            "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 3,
+        "scene_title": {
+          "en": "The disguise falls",
+          "hi": "वेश उतरता है"
+        },
+        "text": {
+          "en": "Ravana approaches in the guise of a wandering ascetic. Sita receives the apparent guest. He then reveals his identity and demands that she come to him; she rejects him. He takes her by force and carries her away. Her appeals call upon Rama, Lakshmana and the surrounding forest to bear witness.\n\nThe elderly Jatayu hears her. He challenges Ravana and urges him to release her. When counsel fails, the bird fights. He damages Ravana’s chariot and weapons, but Ravana grievously wounds him and escapes with Sita. Jatayu falls. His resistance has not stopped the abduction, yet he remains the witness the searching brothers will need.",
+          "hi": "रावण घूमते हुए संन्यासी का वेश लेकर आता है। सीता अतिथि समझकर उसका स्वागत करती हैं। फिर वह अपना परिचय देता और उन्हें अपने साथ आने को कहता है; सीता उसे ठुकराती हैं। वह बलपूर्वक उन्हें उठाकर ले जाता है। सीता राम, लक्ष्मण और आसपास के वन को पुकारती हैं कि वे इस घटना के साक्षी बनें।\n\nवृद्ध जटायु उनकी आवाज़ सुनते हैं। वे रावण को ललकारते और सीता को छोड़ने को कहते हैं। समझाने से बात न बनने पर पक्षी युद्ध करता है। वह रावण के रथ और शस्त्रों को क्षति पहुँचाता है, लेकिन रावण उसे गंभीर रूप से घायल करके सीता को ले जाता है। जटायु गिर पड़ते हैं। वे अपहरण रोक नहीं सके, फिर भी वही साक्षी हैं जिसकी खोजते भाइयों को आवश्यकता होगी।"
+        },
+        "image": {
+          "src": "/assets/illustrated/23-empty-hermitage-960.jpg",
+          "alt": {
+            "en": "Rama and Lakshmana stand before their empty forest hermitage.",
+            "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 4,
+        "scene_title": {
+          "en": "What Jatayu can tell",
+          "hi": "जटायु का साक्ष्य"
+        },
+        "text": {
+          "en": "Rama and Lakshmana return to an empty dwelling. They search through fear and grief, finding signs of a struggle before they find Jatayu. The wounded bird identifies Ravana and describes the abduction as his strength fails. Rama’s questions can no longer bring back the time that has passed, but they give the search a name and a direction.\n\nJatayu dies in their presence. Rama and Lakshmana perform his funeral rites, honouring him with the care owed to a loved elder. Only then do they resume the search. Sita is still beyond their reach. The road ahead will require more than their own strength; it will require those willing to help them find her.",
+          "hi": "राम और लक्ष्मण सूने निवास में लौटते हैं। भय और शोक में खोजते हुए उन्हें संघर्ष के चिह्न और फिर जटायु मिलते हैं। घायल पक्षी टूटते बल के साथ रावण का नाम और अपहरण की बात बताता है। राम के प्रश्न बीता समय नहीं लौटा सकते, लेकिन खोज को एक नाम और दिशा देते हैं।\n\nजटायु उनके सामने प्राण त्यागते हैं। राम और लक्ष्मण प्रिय बुज़ुर्ग के योग्य सम्मान से उनके अंतिम संस्कार करते हैं। उसके बाद खोज फिर शुरू होती है। सीता अब भी उनकी पहुँच से बाहर हैं। आगे की राह केवल उनके अपने बल से पूरी नहीं होगी; उन्हें ऐसे साथियों की आवश्यकता होगी जो उन्हें खोजने में सहायता करें।"
+        },
+        "image": {
+          "src": "/assets/illustrated/23-empty-hermitage-960.jpg",
+          "alt": {
+            "en": "Rama and Lakshmana stand before their empty forest hermitage.",
+            "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 5,
+        "scene_title": {
+          "en": "A place kept ready",
+          "hi": "तैयार रखा गया स्थान"
+        },
+        "text": {
+          "en": "Shabari had lived and practised for many years in a forest ashrama. She tended the place after her teachers were gone: paths remained clear, water could be offered, and the memory of shared practice stayed alive through ordinary care.\n\nWaiting did not mean sitting without purpose. Seasons changed while she worked. Attention gathered slowly, like the forest food she chose for a possible guest.",
+          "hi": "शबरी ने वन-आश्रम में कई वर्षों तक साधना की थी। गुरुजनों के चले जाने के बाद भी उन्होंने स्थान सँभाला: पथ साफ रहे, जल दिया जा सके और साझा साधना की स्मृति साधारण देखभाल में जीवित रहे।\n\nप्रतीक्षा का अर्थ निष्क्रिय बैठे रहना नहीं था। काम करते हुए ऋतुएँ बदलीं। ध्यान धीरे-धीरे संचित हुआ, जैसे संभव अतिथि के लिए चुने गए वन-फल।"
+        },
+        "image": {
+          "src": "/assets/world-rama.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 6,
+        "scene_title": {
+          "en": "Rama and Lakshmana arrive",
+          "hi": "राम और लक्ष्मण का आगमन"
+        },
+        "text": {
+          "en": "Rama and Lakshmana came while searching for Sita. They carried grief and urgent questions. Shabari welcomed them with water, a place to sit and food gathered from the forest. Her care did not demand that they hide their sorrow.\n\nIn this Valmiki chapter, the food is carefully gathered and offered; it does not include the later, beloved detail of tasting each berry. Different tellings can carry different details, and naming that difference is another form of respect.",
+          "hi": "सीता की खोज करते हुए राम और लक्ष्मण आए। वे शोक और जरूरी प्रश्न साथ लाए थे। शबरी ने जल, बैठने की जगह और वन से जुटाए भोजन से स्वागत किया। उनकी देखभाल ने अतिथियों से अपना दुःख छिपाने की माँग नहीं की।\n\nवाल्मीकि के इस अध्याय में भोजन सावधानी से जुटाकर अर्पित किया गया है; बाद की प्रिय कथा में आने वाला हर बेर चखने का विवरण यहाँ नहीं है। अलग कथाओं में अलग विवरण हो सकते हैं, और उस भेद को बताना भी सम्मान है।"
+        },
+        "image": {
+          "src": "/assets/world-rama.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 7,
+        "scene_title": {
+          "en": "Knowledge of the way ahead",
+          "hi": "आगे के मार्ग का ज्ञान"
+        },
+        "text": {
+          "en": "Shabari’s welcome included guidance. She knew the surrounding forest and pointed the brothers toward the next part of their search. An elder’s gift was not only comfort; it was knowledge formed by long attention to place.\n\nAfter offering what she had prepared and completing the meeting she had awaited, Shabari understood her season of work as fulfilled. Rama and Lakshmana left with a direction. The quiet ashrama had become a turning point.",
+          "hi": "शबरी के स्वागत में मार्गदर्शन भी था। वे आसपास के वन को जानती थीं और भाइयों को खोज के अगले चरण की दिशा बताई। वृद्धा का उपहार केवल सांत्वना नहीं, स्थान पर लंबे ध्यान से बना ज्ञान भी था।\n\nजिस भेंट की उन्होंने प्रतीक्षा की थी, उसमें तैयार सब कुछ अर्पित कर शबरी ने अपनी साधना का समय पूर्ण समझा। राम और लक्ष्मण दिशा लेकर आगे बढ़े। शांत आश्रम कथा का मोड़ बन गया।"
+        },
+        "image": {
+          "src": "/assets/world-rama.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "ramayana-trust-and-alliance",
+    "slug": "ramayana-trust-and-alliance",
+    "collection": "ramayana",
+    "book": "Valmiki Ramayana",
+    "arc": "Kishkindha Kanda",
+    "order": 4,
+    "title": {
+      "en": "The work of trust",
+      "hi": "विश्वास का निर्माण"
+    },
+    "subtitle": {
+      "en": "An illustrated journey through Kishkindha Kanda.",
+      "hi": "किष्किन्धाकाण्ड की चित्रित कथा-यात्रा।"
+    },
+    "synopsis": {
+      "en": "The work of trust",
+      "hi": "विश्वास का निर्माण"
+    },
+    "cover_image": {
+      "src": "/assets/world-hanuman.webp",
+      "alt": {
+        "en": "Illustrated Ramayana landscape",
+        "hi": "रामायण का चित्रित दृश्य"
+      }
+    },
+    "source_refs": [
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Kishkindha Kanda",
+        "citation": "Kishkindha Kanda 4.3",
+        "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga3/kishkindharoman3.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Kishkindha Kanda",
+        "citation": "Kishkindha Kanda · 4.5",
+        "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga5/kishkindharoman5.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Kishkindha Kanda",
+        "citation": "Kishkindha Kanda · 4.12",
+        "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga12/kishkindharoman12.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Kishkindha Kanda",
+        "citation": "Kishkindha Kanda · 4.16",
+        "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga16/kishkindharoman16.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Kishkindha Kanda",
+        "citation": "Kishkindha Kanda · 4.17",
+        "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga17/kishkindharoman17.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Kishkindha Kanda",
+        "citation": "Kishkindha Kanda · 4.18",
+        "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga18/kishkindharoman18.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Kishkindha Kanda",
+        "citation": "Kishkindha Kanda · 4.26",
+        "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga26/kishkindharoman26.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Kishkindha Kanda",
+        "citation": "Kishkindha Kanda · Sarga 66, verses 1–7 and 20–22",
+        "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga66/kishkindhaitrans66.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Kishkindha Kanda",
+        "citation": "Kishkindha Kanda · Sarga 67, verses 1–5 and 35b–41",
+        "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga67/kishkindhaitrans67.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Sundara Kanda",
+        "citation": "Sundara Kanda · Sarga 1",
+        "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga1/sundaraitrans1.htm"
+      }
+    ],
+    "characters": [
+      "hanuman",
+      "rama",
+      "lakshmana"
+    ],
+    "places": [
+      "Rishyamukha",
+      "Kishkindha",
+      "Southern seashore"
+    ],
+    "values": [
+      "communication",
+      "trust",
+      "friendship"
+    ],
+    "moods": [
+      "Contemplative",
+      "Wonder"
+    ],
+    "age_band": "older-12+",
+    "duration_min": 7,
+    "festival_tags": [],
+    "status": "draft",
+    "pages": [
+      {
+        "page_number": 1,
+        "scene_title": {
+          "en": "Two travellers near the mountain",
+          "hi": "पर्वत के पास दो यात्री"
+        },
+        "text": {
+          "en": "From a distance, Rama and Lakshmana looked both disciplined and dangerous: dressed for the forest, carrying bows, moving with purpose. Sugriva feared that they might have been sent by an enemy and asked Hanuman to learn who they were.\n\nHanuman did not begin with accusation. He approached in a form and manner suited to conversation, observed the brothers, and spoke with care. Caution remained, but it did not have to sound like hostility.",
+          "hi": "दूर से राम और लक्ष्मण अनुशासित भी दिखते थे और खतरनाक भी: वन के वस्त्र, हाथ में धनुष और उद्देश्यपूर्ण चाल। सुग्रीव को भय हुआ कि वे किसी शत्रु के भेजे हुए न हों, इसलिए उन्होंने हनुमान से उनका परिचय जानने को कहा।\n\nहनुमान ने आरोप से आरंभ नहीं किया। वे बातचीत के अनुकूल रूप और ढंग से पास आए, भाइयों को देखा और सावधानी से बोले। सतर्कता बनी रही, पर उसे शत्रुता जैसा सुनाई देना जरूरी नहीं था।"
+        },
+        "image": {
+          "src": "/assets/world-hanuman.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 2,
+        "scene_title": {
+          "en": "Speech that opens a door",
+          "hi": "द्वार खोलने वाली वाणी"
+        },
+        "text": {
+          "en": "He introduced the concern behind his questions and offered enough about himself to make the exchange fair. His words were orderly, neither hurried nor harsh. Rama noticed not only what Hanuman asked, but how he had learned to speak.\n\nLakshmana answered with their story and their search for Sita. The careful opening allowed painful information to be shared. Trust was not complete, but a path toward it now existed.",
+          "hi": "उन्होंने अपने प्रश्नों के पीछे की चिंता बताई और संवाद को संतुलित बनाने के लिए अपने बारे में भी पर्याप्त कहा। उनकी वाणी क्रमबद्ध थी—न जल्दी, न कठोरता। राम ने केवल यह नहीं देखा कि हनुमान ने क्या पूछा; यह भी देखा कि उन्होंने बोलना कैसे सीखा था।\n\nलक्ष्मण ने उनकी कथा और सीता की खोज के बारे में बताया। सावधान आरंभ ने पीड़ादायक जानकारी साझा करने की जगह बनाई। विश्वास अभी पूरा नहीं था, पर उसकी ओर एक मार्ग बन गया था।"
+        },
+        "image": {
+          "src": "/assets/world-hanuman.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 3,
+        "scene_title": {
+          "en": "Toward an alliance",
+          "hi": "मित्रता की ओर"
+        },
+        "text": {
+          "en": "Hanuman recognised that the travellers’ need might meet Sugriva’s need. He offered to bring them together. The first service he performed was a connection: people separated by fear could sit in the same place and hear one another.\n\nGreat journeys sometimes turn on a conversation that is easy to overlook. Before the leap over the ocean, before battles and celebrations, there was a stranger who chose a trustworthy way to speak.",
+          "hi": "हनुमान ने पहचाना कि यात्रियों की आवश्यकता सुग्रीव की आवश्यकता से जुड़ सकती है। उन्होंने मिलाने का प्रस्ताव रखा। उनकी पहली सेवा एक संबंध बनाना था: भय से अलग हुए लोग एक स्थान पर बैठकर एक-दूसरे को सुन सकें।\n\nमहान यात्राएँ कभी ऐसी बातचीत पर मुड़ती हैं जिसे अनदेखा करना आसान है। समुद्र की छलाँग, युद्ध और उत्सव से पहले एक अपरिचित था जिसने विश्वास योग्य ढंग से बोलना चुना।"
+        },
+        "image": {
+          "src": "/assets/world-hanuman.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 4,
+        "scene_title": {
+          "en": "A promise beside the fire",
+          "hi": "अग्नि के पास दिया वचन"
+        },
+        "text": {
+          "en": "Hanuman brought the brothers to Sugriva. Until then, the strangers below the mountain had seemed a possible threat. Now Sugriva heard why they had come. Rama was searching for Sita. Sugriva, driven from Kishkindha by his brother Vali, lived with a small company beyond the reach of the king he feared.\n\nRama and Sugriva made an alliance in the presence of fire. Sugriva would help find Sita; Rama would help recover Sugriva’s lost place. Each had a wound the other could understand, but their troubles were not identical. Before their shared search could begin, Rama would enter a conflict between brothers whose account he had heard from one side.",
+          "hi": "हनुमान दोनों भाइयों को सुग्रीव के पास लाए। अब तक पर्वत के नीचे दिखे अपरिचित व्यक्ति संभावित खतरा थे। अब सुग्रीव ने उनके आने का कारण सुना। राम सीता को खोज रहे थे। भाई वालि द्वारा किष्किन्धा से निकाले गए सुग्रीव थोड़े-से साथियों के साथ उस राजा की पहुँच से दूर रहते थे जिससे उन्हें भय था।\n\nअग्नि को साक्षी रखकर दोनों ने संधि की। सुग्रीव सीता की खोज में सहायता करेंगे; राम सुग्रीव को उनका खोया स्थान दिलाने में मदद करेंगे। दोनों एक-दूसरे की पीड़ा समझ सकते थे, पर उनके संकट एक जैसे नहीं थे। साझा खोज आरंभ होने से पहले राम भाइयों के ऐसे संघर्ष में उतरने वाले थे जिसका वृत्तांत उन्होंने एक पक्ष से सुना था।"
+        },
+        "image": {
+          "src": "/assets/illustrated/15-alliance-and-vali-960.jpg",
+          "alt": {
+            "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
+            "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 5,
+        "scene_title": {
+          "en": "The garland",
+          "hi": "पहचान की माला"
+        },
+        "text": {
+          "en": "Sugriva needed assurance that Rama could face Vali’s strength. Rama sent an arrow through seven sala trees. Convinced, Sugriva challenged his brother. Yet in the first fierce exchange Rama did not shoot. The brothers looked so alike in combat that he could not be certain whom his arrow would strike. Sugriva escaped, injured and angry.\n\nRama explained his hesitation. For the second encounter, Sugriva wore a garland that would distinguish him. Inside Kishkindha, Tara warned Vali against the renewed challenge: a beaten opponent would not return so quickly without support. Vali heard her warning and went out nonetheless. The brothers fought again. From concealment, Rama released the arrow that brought Vali down.",
+          "hi": "सुग्रीव को भरोसा चाहिए था कि राम वालि की शक्ति का सामना कर सकेंगे। राम का एक बाण सात साल-वृक्षों को भेद गया। आश्वस्त होकर सुग्रीव ने भाई को ललकारा। फिर भी पहले भीषण संघर्ष में राम ने बाण नहीं चलाया। लड़ते हुए दोनों भाई इतने समान दिख रहे थे कि निशाने की निश्चित पहचान नहीं हो सकती थी। घायल और क्रोधित सुग्रीव वहाँ से बच निकले।\n\nराम ने रुकने का कारण बताया। दूसरी बार सुग्रीव ने पहचान के लिए माला पहनी। किष्किन्धा में तारा ने वालि को नई चुनौती से सावधान किया: पराजित विरोधी किसी सहारे के बिना इतनी जल्दी वापस नहीं आता। वालि चेतावनी सुनकर भी बाहर गए। दोनों भाई फिर भिड़े। ओट से राम ने वह बाण चलाया जिसने वालि को धराशायी कर दिया।"
+        },
+        "image": {
+          "src": "/assets/illustrated/15-alliance-and-vali-960.jpg",
+          "alt": {
+            "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
+            "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 6,
+        "scene_title": {
+          "en": "A question from the ground",
+          "hi": "धरती पर पड़े वालि का प्रश्न"
+        },
+        "text": {
+          "en": "Vali was not silent before the prince who approached him. Why had Rama struck while he was fighting someone else? What wrong had Vali done to Rama’s own kingdom? He challenged the distance between Rama’s reputation for justice and the manner of this attack. The epic gives the wounded king space to make his accusation.\n\nRama answered by invoking royal authority, Vali’s treatment of Sugriva and his taking of Sugriva’s wife. He defended punishment and the way it had been delivered. Vali accepted Rama’s reply, then turned to the future of his son Angada and asked that he be protected. That turn toward his child does not require us to forget the question that came before it.",
+          "hi": "अपने पास आए राजकुमार के सामने वालि मौन नहीं रहे। जब वे किसी और से लड़ रहे थे, तब राम ने बाण क्यों चलाया? उन्होंने राम के राज्य का क्या बिगाड़ा था? उन्होंने राम की न्यायप्रिय ख्याति और इस आक्रमण के ढंग के बीच अंतर पर प्रश्न किया। महाकाव्य घायल राजा को अपनी आपत्ति रखने का स्थान देता है।\n\nराम ने राजकीय अधिकार, सुग्रीव के साथ वालि के व्यवहार और सुग्रीव की पत्नी को अपने अधीन रखने का उल्लेख किया। उन्होंने दंड और उसे देने की रीति का पक्ष रखा। वालि ने राम का उत्तर स्वीकार किया, फिर पुत्र अंगद के भविष्य की चिंता करते हुए उसकी रक्षा का आग्रह किया। पुत्र की चिंता की ओर यह मोड़ पहले उठे प्रश्न को भुलाने की माँग नहीं करता।"
+        },
+        "image": {
+          "src": "/assets/illustrated/15-alliance-and-vali-960.jpg",
+          "alt": {
+            "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
+            "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 7,
+        "scene_title": {
+          "en": "A kingdom after a death",
+          "hi": "मृत्यु के बाद राज्य"
+        },
+        "text": {
+          "en": "Tara mourned. Sugriva’s victory over his brother became inseparable from grief, and funeral duties preceded the coronation. Rama remained outside the city, observing the terms of his exile. Sugriva was installed as king; Angada was named heir. The new order had to make room for the son of the man it had displaced.\n\nThe rains would delay travel. Beyond the restored palace, Sita was still missing. The fire beside which the alliance had begun had bound the friends to more than a throne. Once the season changed, Sugriva’s people would have to leave their familiar country and search far beyond it. The second half of the promise was waiting.",
+          "hi": "तारा ने विलाप किया। भाई पर सुग्रीव की विजय शोक से अलग नहीं रही, और राज्याभिषेक से पहले अंतिम संस्कार हुए। वनवास की शर्त निभाते हुए राम नगर के बाहर रहे। सुग्रीव राजा बने; अंगद युवराज घोषित हुए। नई व्यवस्था में उस व्यक्ति के पुत्र को भी स्थान मिलना था जिसे उसने हटाया था।\n\nवर्षा के कारण यात्रा रुकनी थी। लौटे हुए राजमहल से दूर सीता अब भी लापता थीं। जिस अग्नि के पास संधि हुई थी, उसके सामने मित्रों ने केवल सिंहासन का वचन नहीं दिया था। ऋतु बदलने पर सुग्रीव के लोगों को परिचित प्रदेश से बहुत दूर खोजने निकलना था। वचन का दूसरा भाग अभी प्रतीक्षा कर रहा था।"
+        },
+        "image": {
+          "src": "/assets/illustrated/15-alliance-and-vali-960.jpg",
+          "alt": {
+            "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
+            "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 8,
+        "scene_title": {
+          "en": "The strength he remembered",
+          "hi": "याद आई अपनी शक्ति"
+        },
+        "text": {
+          "en": "The vanaras had reached the ocean. Somewhere beyond it was Sita, but the water stretched farther than their confidence. Hanuman stood apart until Jambavan turned to him.\n\nThe elder recalled his birth, his strength and the daring that had carried him toward the sun as a child. He asked why someone with such power remained quiet. As Hanuman listened, his resolve rose. His form grew vast, and the company’s despair gave way to excitement.\n\nHe climbed Mount Mahendra and gathered himself for the crossing. Then he sprang into the sky, committed to finding Sita. The ocean still lay ahead. Hanuman met it with a purpose: to return with news of Sita.",
+          "hi": "वानर समुद्र के किनारे पहुँच चुके थे। उस पार कहीं सीता थीं। लेकिन सामने फैले जल को देखकर सबका साहस डगमगाने लगा था। हनुमान चुपचाप अलग खड़े थे। तभी जाम्बवान उनकी ओर मुड़े।\n\nउन्होंने हनुमान को उनके जन्म, उनकी शक्ति और बचपन की उस छलाँग का स्मरण कराया, जो उन्हें सूर्य की ओर ले गई थी। इतनी सामर्थ्य होते हुए वे मौन क्यों थे? सुनते-सुनते हनुमान का संकल्प जाग उठा। उनका रूप विशाल होने लगा और वानरों की निराशा उत्साह में बदल गई।\n\nहनुमान महेंद्र पर्वत पर चढ़े। समुद्र पार करने के लिए स्वयं को तैयार किया और आकाश में छलाँग लगा दी। सामने वही समुद्र था। अब उसे पार करके सीता का समाचार लाना था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/hanuman-ocean-leap.webp",
+          "alt": {
+            "en": "Hanuman leaps across a teal ocean towards distant Lanka under a saffron sky.",
+            "hi": "समुद्र के पार लंका की ओर छलाँग लगाते हनुमान।"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "ramayana-crossing-and-recognition",
+    "slug": "ramayana-crossing-and-recognition",
+    "collection": "ramayana",
+    "book": "Valmiki Ramayana",
+    "arc": "Sundara Kanda",
+    "order": 5,
+    "title": {
+      "en": "Across the sea, a sign of hope",
+      "hi": "समुद्र के पार आशा का संकेत"
+    },
+    "subtitle": {
+      "en": "An illustrated journey through Sundara Kanda.",
+      "hi": "सुन्दरकाण्ड की चित्रित कथा-यात्रा।"
+    },
+    "synopsis": {
+      "en": "Across the sea, a sign of hope",
+      "hi": "समुद्र के पार आशा का संकेत"
+    },
+    "cover_image": {
+      "src": "/stories-app/assets/hanuman-ocean-leap.webp",
+      "alt": {
+        "en": "Illustrated Ramayana landscape",
+        "hi": "रामायण का चित्रित दृश्य"
+      }
+    },
+    "source_refs": [
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Sundara Kanda",
+        "citation": "Sundara Kanda 5.1",
+        "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga1/sundararoman1.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Sundara Kanda",
+        "citation": "Sundara Kanda · 5.3",
+        "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga3/sundararoman3.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Sundara Kanda",
+        "citation": "Sundara Kanda · 5.11",
+        "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga11/sundararoman11.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Sundara Kanda",
+        "citation": "Sundara Kanda · 5.15",
+        "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga15/sundararoman15.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Sundara Kanda",
+        "citation": "Sundara Kanda · 5.21",
+        "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga21/sundararoman21.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Sundara Kanda",
+        "citation": "Sundara Kanda · 5.30",
+        "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga30/sundararoman30.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Sundara Kanda",
+        "citation": "Sundara Kanda · 5.31",
+        "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga31/sundararoman31.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Sundara Kanda",
+        "citation": "Sundara Kanda 5.36",
+        "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga36/sundarasans36.htm"
+      }
+    ],
+    "characters": [
+      "hanuman",
+      "mainaka",
+      "sita",
+      "rama"
+    ],
+    "places": [
+      "Mahendra",
+      "Lanka",
+      "Ashoka grove"
+    ],
+    "values": [
+      "courage",
+      "persistence",
+      "selfControl",
+      "hope",
+      "trust",
+      "service"
+    ],
+    "moods": [
+      "Contemplative",
+      "Wonder"
+    ],
+    "age_band": "older-12+",
+    "duration_min": 8,
+    "festival_tags": [],
+    "status": "draft",
+    "pages": [
+      {
+        "page_number": 1,
+        "scene_title": {
+          "en": "At the ocean’s edge",
+          "hi": "समुद्र के किनारे"
+        },
+        "text": {
+          "en": "The search party had reached a boundary that looked impossible. Sita was believed to be across the ocean in Lanka, but knowing the direction was not the same as reaching her. The vanaras looked toward Hanuman as he began to remember the full measure of his strength.\n\nHe steadied his purpose before gathering force. The leap was not for applause. It was part of a search for a person waiting in danger, and that responsibility gave the strength its direction.",
+          "hi": "खोज-दल एक ऐसी सीमा पर पहुँचा जो असंभव लगती थी। माना गया कि सीता समुद्र पार लंका में हैं, पर दिशा जानना वहाँ पहुँच जाना नहीं था। वानरों ने हनुमान की ओर देखा; वे अपनी शक्ति का पूरा विस्तार स्मरण करने लगे।\n\nबल जुटाने से पहले उन्होंने उद्देश्य स्थिर किया। छलाँग प्रशंसा के लिए नहीं थी। वह संकट में प्रतीक्षा करती एक व्यक्ति की खोज का हिस्सा थी, और उसी उत्तरदायित्व ने शक्ति को दिशा दी।"
+        },
+        "image": {
+          "src": "/stories-app/assets/hanuman-ocean-leap.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 2,
+        "scene_title": {
+          "en": "Mainaka’s offer",
+          "hi": "मैनाक का प्रस्ताव"
+        },
+        "text": {
+          "en": "As Hanuman crossed the sky, Mainaka mountain rose from the ocean and offered a place to rest. The offer carried gratitude for an old kindness and respect for Hanuman’s mission.\n\nHanuman did not treat kindness as an obstacle. He acknowledged the welcome and showed respect, but explained through his action that he could not delay. Gratitude did not require abandoning urgency.",
+          "hi": "हनुमान आकाश में आगे बढ़ रहे थे कि मैनाक पर्वत समुद्र से उठे और विश्राम का स्थान दिया। प्रस्ताव में पुरानी सहायता के प्रति कृतज्ञता और हनुमान के कार्य के प्रति सम्मान था।\n\nहनुमान ने दयालुता को बाधा नहीं माना। उन्होंने स्वागत को पहचाना और सम्मान दिया, पर अपने कर्म से बताया कि विलंब संभव नहीं। कृतज्ञ होने के लिए तात्कालिक काम छोड़ना आवश्यक नहीं था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/hanuman-ocean-leap.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 3,
+        "scene_title": {
+          "en": "Strength that can change shape",
+          "hi": "रूप बदलती शक्ति"
+        },
+        "text": {
+          "en": "Further tests demanded more than size. At one moment Hanuman expanded; at another he became small and swift. When a direct path closed, he used ingenuity rather than spending all his strength on one kind of answer.\n\nAt last Lanka rose ahead. Hanuman reduced his form and prepared to enter carefully. The same courage that launched a mountain-sized leap now became quiet attention. Persistence was not repeating one move; it was keeping the purpose while changing the method.",
+          "hi": "आगे की परीक्षाओं में केवल आकार पर्याप्त नहीं था। एक क्षण हनुमान विशाल हुए, दूसरे में छोटे और तीव्र। जब सीधा मार्ग बंद हुआ तो उन्होंने सारी शक्ति एक ही उत्तर पर खर्च करने के बजाय युक्ति अपनाई।\n\nअंततः लंका सामने उठी। हनुमान ने रूप छोटा किया और सावधानी से प्रवेश की तैयारी की। जिसने पर्वत-समान छलाँग लगाई थी, वही साहस अब शांत ध्यान बन गया। दृढ़ता एक ही चाल दोहराना नहीं; तरीका बदलते हुए उद्देश्य बनाए रखना था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/hanuman-ocean-leap.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 4,
+        "scene_title": {
+          "en": "A guarded threshold",
+          "hi": "पहरे वाला प्रवेश"
+        },
+        "text": {
+          "en": "Night covered Lanka when Hanuman approached its walls. Towers, gateways and guarded streets gave shape to Ravana’s power. At the entrance he encountered the city’s guardian, who challenged and struck him. He answered with a blow. Overcome, she recognised in his arrival the fulfilment of a warning about Lanka’s future and allowed him to pass.\n\nInside, Hanuman moved quietly through a city very different from the forest. He saw wealth, music, sleeping households and the palace’s splendour. None of these answered his question. Sita had been taken here against her will; a beautiful city did not tell him where its captive was kept.",
+          "hi": "जब हनुमान लंका की प्राचीर के पास पहुँचे, रात हो चुकी थी। मीनारें, प्रवेश-द्वार और पहरे वाले मार्ग रावण की शक्ति दिखाते थे। प्रवेश पर नगर की रक्षिका ने उन्हें रोका और प्रहार किया। हनुमान ने भी प्रहार से उत्तर दिया। परास्त होकर रक्षिका ने उनके आगमन में लंका के भविष्य की चेतावनी पूरी होती पहचानी और उन्हें जाने दिया।\n\nभीतर हनुमान चुपचाप ऐसे नगर में बढ़े जो वन से बहुत अलग था। धन, संगीत, सोए हुए घर और राजमहल का वैभव दिखाई दिया। इनमें से कोई दृश्य उनके प्रश्न का उत्तर नहीं था। सीता यहाँ अपनी इच्छा के विरुद्ध लाई गई थीं; सुंदर नगर यह नहीं बताता था कि बंदिनी कहाँ रखी गई है।"
+        },
+        "image": {
+          "src": "/assets/illustrated/17-lanka-at-night-960.jpg",
+          "alt": {
+            "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
+            "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 5,
+        "scene_title": {
+          "en": "The room he cannot find",
+          "hi": "जिस ठिकाने का पता नहीं"
+        },
+        "text": {
+          "en": "He searched the palace and its chambers. For a moment he mistook another woman for Sita, then rejected the thought: the circumstances did not fit the person he was seeking. He continued, uneasy about entering private spaces but intent on his task. The search tested judgment as much as endurance. A resemblance was not enough to become a finding.\n\nWhen the palace yielded no certainty, he turned toward a grove he had not yet searched. Beneath flowering trees he found a woman worn by grief and guarded by rakshasi attendants. Her clothing and remaining ornaments matched what Rama had described. Hanuman watched from concealment. At last the details began to agree.",
+          "hi": "उन्होंने महल और उसके कक्षों में खोजा। एक क्षण किसी दूसरी स्त्री को सीता समझे, फिर विचार बदल दिया: परिस्थितियाँ उस व्यक्ति से मेल नहीं खाती थीं जिसकी खोज थी। निजी स्थानों में जाने की असहजता के बावजूद वे अपने काम में लगे रहे। खोज में धैर्य जितना आवश्यक था, परख भी उतनी ही थी। केवल समानता मिल जाना प्रमाण नहीं था।\n\nमहल में निश्चित उत्तर न मिलने पर वे उस वाटिका की ओर मुड़े जहाँ अभी खोज नहीं हुई थी। फूलों से भरे वृक्षों के नीचे उन्हें दुःख से क्षीण एक स्त्री मिली, जिसे राक्षसी परिचारिकाएँ घेरे थीं। उसके वस्त्र और बचे हुए आभूषण राम के बताए संकेतों से मेल खाते थे। हनुमान ओट से देखते रहे। अंततः संकेत एक-दूसरे की पुष्टि करने लगे।"
+        },
+        "image": {
+          "src": "/assets/illustrated/17-lanka-at-night-960.jpg",
+          "alt": {
+            "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
+            "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 6,
+        "scene_title": {
+          "en": "Sita refuses",
+          "hi": "सीता का स्पष्ट इनकार"
+        },
+        "text": {
+          "en": "Ravana came to the grove. He offered Sita wealth and position, then pressed his demand with threats. She placed a blade of grass between them and answered him. She would not accept his proposal. She urged him to return her and make peace with Rama while he could. The king’s command had brought her to Lanka; it had not made her consent.\n\nHanuman remained hidden as the pressure continued around her. Sita’s speech made clear what the distant search party could not see: she was not merely waiting to be discovered. Day after day she was resisting the person who held power over her surroundings. News of her location would need to carry news of that resistance too.",
+          "hi": "रावण वाटिका में आया। उसने सीता को संपत्ति और पद का प्रलोभन दिया, फिर अपनी माँग के साथ धमकियाँ जोड़ीं। सीता ने बीच में एक तिनका रखा और उत्तर दिया। वे उसका प्रस्ताव स्वीकार नहीं करेंगी। उन्होंने कहा कि समय रहते उन्हें लौटाकर राम से मैत्री करे। राजा का बल उन्हें लंका तक ला सका था; उनकी सहमति नहीं पा सका था।\n\nचारों ओर दबाव बने रहने पर भी हनुमान छिपे रहे। सीता की वाणी ने वह स्पष्ट किया जो दूर का खोज-दल नहीं देख सकता था: वे केवल खोज लिए जाने की प्रतीक्षा नहीं कर रही थीं। अपने आसपास की पूरी व्यवस्था पर अधिकार रखने वाले व्यक्ति का वे प्रतिदिन प्रतिरोध कर रही थीं। उनके ठिकाने के समाचार में इस प्रतिरोध का समाचार भी जाना था।"
+        },
+        "image": {
+          "src": "/assets/illustrated/17-lanka-at-night-960.jpg",
+          "alt": {
+            "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
+            "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 7,
+        "scene_title": {
+          "en": "The first words",
+          "hi": "पहले शब्द"
+        },
+        "text": {
+          "en": "Hanuman had found her, but speaking was another problem. If he suddenly appeared, she might fear another disguise sent by Ravana. If he left without consoling her, he would have missed the purpose of coming. He considered his language and his manner carefully. The voice had to be intelligible and reassuring without demanding trust before it was earned.\n\nFrom among the branches he began to tell Rama’s story. Familiar names entered the grove from an unexpected place. Sita listened, then searched for the speaker. Hanuman came closer with humility. The long journey had brought him to a conversation whose next step depended on what she was willing to believe.",
+          "hi": "हनुमान ने उन्हें खोज लिया था, पर बात करना एक नया प्रश्न था। अचानक सामने आने पर सीता उसे रावण का कोई और छद्म समझ सकती थीं। बिना सांत्वना दिए लौटना भी आने का उद्देश्य अधूरा छोड़ता। उन्होंने भाषा और बोलने का ढंग सावधानी से सोचा। वाणी समझ में आए और आश्वासन दे, पर प्रमाण से पहले विश्वास की माँग न करे।\n\nडालियों के बीच से उन्होंने राम का वृत्तांत कहना आरंभ किया। अप्रत्याशित स्थान से परिचित नाम वाटिका में सुनाई दिए। सीता ने सुना, फिर बोलने वाले को खोजा। हनुमान विनम्रता से पास आए। लंबी यात्रा उन्हें ऐसी बातचीत तक लाई थी जिसका अगला कदम इस पर निर्भर था कि सीता किस बात पर विश्वास कर सकेंगी।"
+        },
+        "image": {
+          "src": "/assets/illustrated/17-lanka-at-night-960.jpg",
+          "alt": {
+            "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
+            "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 8,
+        "scene_title": {
+          "en": "A careful approach",
+          "hi": "सावधान भेंट"
+        },
+        "text": {
+          "en": "Hanuman had found Sita in the Ashoka grove, but finding her did not make the next step easy. She was watched, isolated and surrounded by danger. A sudden stranger claiming friendship could deepen fear instead of easing it.\n\nHe began carefully, speaking of Rama in a way that allowed Sita to listen and question. She did not surrender judgment because the news was welcome. Hope needed evidence and respect.",
+          "hi": "हनुमान ने अशोक वाटिका में सीता को खोज लिया था, पर उन्हें पा लेना अगले कदम को आसान नहीं बनाता। वे निगरानी में, अलग और संकट से घिरी थीं। मित्रता का दावा करता अचानक आया अपरिचित भय घटाने के बजाय बढ़ा सकता था।\n\nउन्होंने सावधानी से आरंभ किया, राम के बारे में ऐसे बोले कि सीता सुन भी सकें और प्रश्न भी कर सकें। समाचार प्रिय था, फिर भी उन्होंने अपना विवेक नहीं छोड़ा। आशा को प्रमाण और सम्मान चाहिए था।"
+        },
+        "image": {
+          "src": "/assets/world-hanuman.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 9,
+        "scene_title": {
+          "en": "The ring",
+          "hi": "मुद्रिका"
+        },
+        "text": {
+          "en": "Hanuman presented Rama’s ring, an object Sita could recognise. Its small circle carried more than a name: memory of a shared life, proof that the messenger had truly come from Rama, and a path for words to cross the distance between them.\n\nRecognition changed the meeting, but Sita remained an active participant. She asked, listened, judged what was possible and shaped the message that should return. Trust was not something done to her; it was something she chose with care.",
+          "hi": "हनुमान ने राम की मुद्रिका दिखाई, जिसे सीता पहचान सकती थीं। उस छोटे वलय में केवल नाम नहीं था: साझा जीवन की स्मृति, संदेशवाहक के सचमुच राम के पास से आने का प्रमाण और दूरी पार करते शब्दों का मार्ग।\n\nपहचान ने भेंट बदल दी, फिर भी सीता सक्रिय रहीं। उन्होंने पूछा, सुना, संभावना पर विचार किया और लौटने वाला संदेश स्वयं बनाया। विश्वास उनके ऊपर किया गया काम नहीं था; वह सावधानी से लिया उनका निर्णय था।"
+        },
+        "image": {
+          "src": "/assets/world-hanuman.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 10,
+        "scene_title": {
+          "en": "A message must return",
+          "hi": "संदेश को लौटना है"
+        },
+        "text": {
+          "en": "Hanuman offered immediate help, but Sita chose the form of return she considered right. She gave a token and details that Rama would understand, so reassurance could travel in both directions.\n\nThe ring had not ended the danger. It had created a trustworthy bridge of knowledge: Sita had been found, she had spoken for herself, and the search could become a rescue guided by her message.",
+          "hi": "हनुमान ने तत्काल सहायता का प्रस्ताव रखा, पर सीता ने वापसी का वह रूप चुना जिसे वे उचित मानती थीं। उन्होंने पहचान का चिह्न और ऐसी बातें दीं जिन्हें राम समझेंगे, ताकि आश्वासन दोनों दिशाओं में जा सके।\n\nमुद्रिका ने संकट समाप्त नहीं किया। उसने विश्वसनीय जानकारी का पुल बनाया: सीता मिल गई थीं, उन्होंने स्वयं अपनी बात कही थी और अब खोज उनके संदेश से निर्देशित बचाव बन सकती थी।"
+        },
+        "image": {
+          "src": "/assets/world-hanuman.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "ramayana-home-and-responsibility",
+    "slug": "ramayana-home-and-responsibility",
+    "collection": "ramayana",
+    "book": "Valmiki Ramayana",
+    "arc": "Yuddha Kanda",
+    "order": 6,
+    "title": {
+      "en": "The journey home",
+      "hi": "घर लौटने की यात्रा"
+    },
+    "subtitle": {
+      "en": "An illustrated journey through Yuddha Kanda.",
+      "hi": "युद्धकाण्ड की चित्रित कथा-यात्रा।"
+    },
+    "synopsis": {
+      "en": "The journey home",
+      "hi": "घर लौटने की यात्रा"
+    },
+    "cover_image": {
+      "src": "/assets/illustrated/21-sita-speaks-960.jpg",
+      "alt": {
+        "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
+        "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
+      }
+    },
+    "source_refs": [
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Yuddha Kanda",
+        "citation": "Yuddha Kanda · 6.113",
+        "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga113/yuddha_113_prose.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Yuddha Kanda",
+        "citation": "Yuddha Kanda · 6.114",
+        "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga114/yuddha_114_prose.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Yuddha Kanda",
+        "citation": "Yuddha Kanda · 6.115",
+        "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga115/yuddharoman115.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Yuddha Kanda",
+        "citation": "Yuddha Kanda · 6.116",
+        "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga116/yuddharoman116.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Yuddha Kanda",
+        "citation": "Yuddha Kanda · 6.117",
+        "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga117/yuddharoman117.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Yuddha Kanda",
+        "citation": "Yuddha Kanda · 6.118",
+        "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga118/yuddharoman118.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Yuddha Kanda",
+        "citation": "Yuddha Kanda · 6.120",
+        "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga120/yuddharoman120.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Yuddha Kanda",
+        "citation": "Yuddha Kanda · 6.122",
+        "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga122/yuddharoman122.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Yuddha Kanda",
+        "citation": "Yuddha Kanda · 6.123",
+        "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga123/yuddharoman123.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Yuddha Kanda",
+        "citation": "Yuddha Kanda · 6.124",
+        "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga124/yuddharoman124.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Yuddha Kanda",
+        "citation": "Yuddha Kanda · 6.125",
+        "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga125/yuddharoman125.htm"
+      },
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Yuddha Kanda",
+        "citation": "Yuddha Kanda 6.128",
+        "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga128/yuddharoman128.htm"
+      }
+    ],
+    "characters": [
+      "rama",
+      "sita",
+      "bharata",
+      "hanuman",
+      "lakshmana"
+    ],
+    "places": [
+      "Lanka",
+      "Ayodhya",
+      "Nandigrama"
+    ],
+    "values": [
+      "responsibility",
+      "service",
+      "friendship"
+    ],
+    "moods": [
+      "Contemplative",
+      "Wonder"
+    ],
+    "age_band": "older-12+",
+    "duration_min": 10,
+    "festival_tags": [
+      "Diwali"
+    ],
+    "status": "draft",
+    "pages": [
+      {
+        "page_number": 1,
+        "scene_title": {
+          "en": "Her first decision",
+          "hi": "सीता का पहला निर्णय"
+        },
+        "text": {
+          "en": "Hanuman entered the grove with the news of Ravana’s defeat. Sita’s relief left her briefly unable to answer. The search had reached her; the long captivity was ending. Hanuman then asked permission to punish the women who had threatened her. Sita refused. They had acted under Ravana’s orders, she said, and she would not answer the suffering she had endured with their deaths.\n\nWhat she asked for was to see Rama. Vibhishana came to bring her, following Rama’s request that she be bathed and adorned. Sita wished to go at once, as she was, but eventually accepted the preparations. She approached a public assembly of the allies who had fought for her release. The reunion she had imagined was now before many eyes.",
+          "hi": "हनुमान रावण की पराजय का समाचार लेकर वाटिका में आए। राहत से सीता कुछ क्षण उत्तर नहीं दे सकीं। खोज उन तक पहुँच गई थी; लंबा बंदी जीवन समाप्त हो रहा था। फिर हनुमान ने उन्हें धमकाने वाली स्त्रियों को दंड देने की अनुमति माँगी। सीता ने मना किया। उन्होंने कहा कि वे रावण के आदेश पर चल रही थीं; अपने सहन किए दुःख के उत्तर में वे उनकी मृत्यु नहीं चाहतीं।\n\nवे राम से मिलना चाहती थीं। विभीषण उन्हें लाने आए; राम का निर्देश था कि स्नान और श्रृंगार कराकर लाएँ। सीता जैसी थीं, वैसी ही तुरंत जाना चाहती थीं, फिर तैयारी के लिए मान गईं। वे उन सहयोगियों की सार्वजनिक सभा में पहुँचीं जिन्होंने उनकी मुक्ति के लिए युद्ध किया था। जिस मिलन की उन्होंने कल्पना की थी, वह अब अनेक आँखों के सामने था।"
+        },
+        "image": {
+          "src": "/assets/illustrated/21-sita-speaks-960.jpg",
+          "alt": {
+            "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
+            "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 2,
+        "scene_title": {
+          "en": "Words after the war",
+          "hi": "युद्ध के बाद के शब्द"
+        },
+        "text": {
+          "en": "Rama spoke of the wrong he had avenged and the honour he had recovered. Then he questioned accepting Sita after her long stay in another man’s house and told her she was free to go elsewhere. The words turned the moment of return into another ordeal. They treated the captivity imposed on her as a cause for suspicion about her.\n\nSita wept, then answered. She rejected the judgment that another person’s force could define her will. Her body had been beyond her control in the abduction; her mind and loyalty had not been surrendered. She asked why their shared life had not taught Rama to know her, and why this rejection had not been sent when Hanuman first reached her.",
+          "hi": "राम ने प्रतिकार किए गए अपमान और लौटाई प्रतिष्ठा की बात की। फिर दूसरे पुरुष के घर लंबे समय तक रहने के बाद सीता को स्वीकार करने पर प्रश्न उठाया और कहा कि वे कहीं और जा सकती हैं। इन शब्दों ने वापसी के क्षण को दूसरी पीड़ा में बदल दिया। उन पर थोपी गई कैद को उन्हीं के प्रति संदेह का कारण बना दिया गया।\n\nसीता रोईं, फिर उत्तर दिया। उन्होंने यह निर्णय अस्वीकार किया कि दूसरे का बल उनकी इच्छा को परिभाषित कर सकता है। अपहरण में शरीर उनके नियंत्रण से बाहर था; मन और निष्ठा उन्होंने नहीं सौंपी थी। उन्होंने पूछा कि साथ का जीवन राम को उनकी पहचान क्यों नहीं दे सका और हनुमान की पहली भेंट पर ही यह अस्वीकार क्यों नहीं भेजा गया।"
+        },
+        "image": {
+          "src": "/assets/illustrated/21-sita-speaks-960.jpg",
+          "alt": {
+            "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
+            "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 3,
+        "scene_title": {
+          "en": "Before the fire",
+          "hi": "अग्नि के सामने"
+        },
+        "text": {
+          "en": "She asked Lakshmana to prepare a fire. He looked toward Rama in distress and carried out the act. Sita invoked Agni as witness to the truth of her conduct and entered the flames. The gathering watched in anguish. The source describes a public ordeal; the force of the scene lies also in the suffering that preceded it.\n\nThe epic then brings the gods into the assembly. Agni appears with Sita unharmed and declares her blameless. He speaks of her resistance to Ravana and tells Rama to receive her without further harshness. The testimony confirms what Sita herself had already insisted upon. Her voice need not disappear behind the splendour of the divine appearance.",
+          "hi": "उन्होंने लक्ष्मण से अग्नि तैयार करने को कहा। दुःखी लक्ष्मण ने राम की ओर देखा और व्यवस्था की। सीता ने अपने आचरण की सत्यता के साक्षी के रूप में अग्निदेव का आह्वान किया और अग्नि में प्रवेश किया। सभा व्यथा से देखती रही। स्रोत एक सार्वजनिक परीक्षा बताता है; इस दृश्य का भार उससे पहले हुई पीड़ा में भी है।\n\nतब महाकाव्य देवताओं को सभा में लाता है। अग्निदेव अक्षत सीता के साथ प्रकट होकर उन्हें निर्दोष बताते हैं। वे रावण के प्रति उनके प्रतिरोध का उल्लेख करते हैं और राम से उन्हें बिना और कठोरता के स्वीकार करने को कहते हैं। यह साक्ष्य उस बात की पुष्टि करता है जिसे सीता पहले ही कह चुकी थीं। दैवी प्रकट होने के वैभव के पीछे उनकी अपनी वाणी खोनी नहीं चाहिए।"
+        },
+        "image": {
+          "src": "/assets/illustrated/21-sita-speaks-960.jpg",
+          "alt": {
+            "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
+            "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 4,
+        "scene_title": {
+          "en": "A reunion to read carefully",
+          "hi": "जिस मिलन को सावधानी से पढ़ें"
+        },
+        "text": {
+          "en": "Rama said that he had known Sita’s fidelity but had allowed the ordeal so that the world would not doubt her or accuse him. He received her, and the narrative describes their reunion with joy. That is the explanation the text places in his mouth. It does not erase the accusation or Sita’s answer from the same account.\n\nReaders have long approached this meeting through devotion, argument, sorrow and questioning. We can follow the story toward home while keeping its difficult words in view. Sita had endured captivity, refused her captor, chosen mercy and spoken in her own defence. The journey north would carry that whole history, not only the celebration of rescue.",
+          "hi": "राम ने कहा कि वे सीता की निष्ठा जानते थे, पर संसार उन पर संदेह न करे या राम को दोष न दे, इसलिए परीक्षा होने दी। उन्होंने सीता को स्वीकार किया और कथा मिलन का आनंद बताती है। यह वह स्पष्टीकरण है जो पाठ राम की वाणी में रखता है। इससे उसी वृत्तांत का आरोप या सीता का उत्तर मिट नहीं जाता।\n\nपाठक लंबे समय से इस भेंट को भक्ति, तर्क, दुःख और प्रश्न के साथ पढ़ते आए हैं। कठिन शब्दों को सामने रखते हुए भी कथा के साथ घर की ओर चला जा सकता है। सीता ने बंदी जीवन सहा, अपहरणकर्ता को ठुकराया, क्षमा चुनी और अपने पक्ष में बोलीं। उत्तर की यात्रा इस पूरे अनुभव को साथ ले जाएगी, केवल उद्धार के उत्सव को नहीं।"
+        },
+        "image": {
+          "src": "/assets/illustrated/21-sita-speaks-960.jpg",
+          "alt": {
+            "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
+            "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 5,
+        "scene_title": {
+          "en": "Those who made the journey possible",
+          "hi": "जिनके कारण यात्रा संभव हुई"
+        },
+        "text": {
+          "en": "Before departure, Indra offered Rama a boon. Rama asked for the allied vanaras and bears who had died in the war to be restored to life, and for the wounded to recover. The epic grants this extraordinary renewal. Those who had fought for him could return to their own families, rather than remain only names in the account of his victory.\n\nVibhishana honoured the allies with gifts. Rama prepared to depart in Pushpaka, the marvellous aerial vehicle that had been in Ravana’s possession. Sugriva, Vibhishana and their companions asked to accompany him to the coronation. Rama welcomed the request. The journey home would include the friendships made far from home.",
+          "hi": "प्रस्थान से पहले इन्द्र ने राम को वर माँगने को कहा। राम ने युद्ध में मरे सहयोगी वानरों और भालुओं को फिर जीवन तथा घायलों को स्वास्थ्य देने का आग्रह किया। महाकाव्य यह असाधारण पुनर्स्थापना प्रदान करता है। उनके लिए लड़ने वाले अपनी विजय के वृत्तांत में केवल नाम बनकर रहने के बजाय अपने परिवारों के पास लौट सकते थे।\n\nविभीषण ने सहयोगियों को उपहार देकर सम्मानित किया। राम रावण के अधिकार में रहे अद्भुत विमान पुष्पक से प्रस्थान की तैयारी करने लगे। सुग्रीव, विभीषण और साथियों ने राज्याभिषेक तक साथ चलने की इच्छा कही। राम ने स्वीकार किया। घर लौटने की यात्रा में घर से दूर बनी मित्रताएँ भी शामिल होंगी।"
+        },
+        "image": {
+          "src": "/assets/illustrated/22-northward-home-960.jpg",
+          "alt": {
+            "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
+            "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 6,
+        "scene_title": {
+          "en": "A landscape remembered",
+          "hi": "स्मृतियों का भू-दृश्य"
+        },
+        "text": {
+          "en": "The craft rose above Lanka. Rama pointed out the battlefield, the sea and Nala’s bridge to Sita. The places below were not merely landmarks; each belonged to an event she had experienced or had been unable to witness. The route gathered the separated parts of the story into one moving view, without making their experiences identical.\n\nAt Kishkindha, Sita asked that Tara and the women of the vanara households join them. The craft halted and the company grew. Northward lay the forests and rivers of exile, Panchavati and the remembered dwellings of hermits. They passed places where they had lived together and places through which the search had travelled without her.",
+          "hi": "विमान लंका के ऊपर उठा। राम ने सीता को युद्धभूमि, समुद्र और नल का सेतु दिखाया। नीचे के स्थान केवल पहचान-चिह्न नहीं थे; हर स्थान ऐसी घटना से जुड़ा था जिसे उन्होंने जिया था या देख नहीं सकी थीं। मार्ग कहानी के बिछड़े भागों को एक चलते दृश्य में जोड़ता गया, बिना सभी अनुभवों को एक जैसा बनाए।\n\nकिष्किन्धा पर सीता ने तारा और वानर-परिवारों की स्त्रियों को भी साथ लेने को कहा। विमान रुका और यात्रियों का समूह बढ़ा। उत्तर में वनवास के वन-नदी, पंचवटी और ऋषियों के परिचित आश्रम थे। वे उन स्थानों से गुजरे जहाँ साथ रहे थे, और उनसे भी जहाँ खोज उनके बिना पहुँची थी।"
+        },
+        "image": {
+          "src": "/assets/illustrated/22-northward-home-960.jpg",
+          "alt": {
+            "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
+            "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 7,
+        "scene_title": {
+          "en": "News of Ayodhya",
+          "hi": "अयोध्या का समाचार"
+        },
+        "text": {
+          "en": "They stopped at Bharadwaja’s hermitage. Rama asked after Ayodhya, his mothers and Bharata. The sage told him that Bharata still waited, keeping the sandals before him and living austerely. Fourteen years had changed the travellers; at home, someone had measured those same years through an entrusted responsibility and the expectation of their return.\n\nRama asked that the trees along the remaining route bear fruit for the companions who had travelled so far. Bharadwaja granted the wish, and the company could eat. Even near the destination, the needs of the travellers remained real. The last stretch of the journey was not only a royal approach; it was a road for a whole returning company.",
+          "hi": "वे भरद्वाज के आश्रम पर रुके। राम ने अयोध्या, माताओं और भरत का कुशल पूछा। ऋषि ने बताया कि भरत अब भी पादुकाओं को सामने रखकर संयमित जीवन में प्रतीक्षा कर रहे हैं। चौदह वर्षों ने यात्रियों को बदला था; घर पर किसी ने उन्हीं वर्षों को सौंपे हुए दायित्व और उनकी वापसी की आशा के साथ बिताया था।\n\nराम ने शेष मार्ग के वृक्षों पर साथियों के लिए फल आने का वर माँगा, जिन्होंने इतनी दूर यात्रा की थी। भरद्वाज ने वर दिया और दल ने भोजन पाया। गंतव्य के पास भी यात्रियों की आवश्यकताएँ बनी थीं। अंतिम यात्रा केवल राजा का आगमन नहीं, लौटते हुए पूरे समूह का मार्ग थी।"
+        },
+        "image": {
+          "src": "/assets/illustrated/22-northward-home-960.jpg",
+          "alt": {
+            "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
+            "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 8,
+        "scene_title": {
+          "en": "Hanuman goes ahead",
+          "hi": "हनुमान आगे जाते हैं"
+        },
+        "text": {
+          "en": "Rama sent Hanuman ahead to Guha and then to Bharata. He was to announce their welfare and return, and carefully observe Bharata’s response. Long possession of a kingdom might have changed a person’s wishes; Rama did not want a joyful homecoming to conceal that possibility. Again, Hanuman’s task required attentive speech and observation.\n\nAt Nandigrama, Hanuman found Bharata still living in the manner of an ascetic. He delivered the news. Bharata was overcome with joy and embraced the messenger. The feared division was absent from his response. For years he had guarded a place for his brother. Now the person whose sandals he had kept was close enough to welcome.",
+          "hi": "राम ने हनुमान को पहले गुह और फिर भरत के पास भेजा। उन्हें कुशल और वापसी का समाचार देना था तथा भरत की प्रतिक्रिया ध्यान से देखनी थी। लंबे समय तक राज्य सँभालने से किसी की इच्छा बदल सकती थी; राम नहीं चाहते थे कि लौटने की खुशी इस संभावना को ढक दे। फिर हनुमान के काम में सावधान वाणी और परख दोनों आवश्यक थीं।\n\nनंदिग्राम में हनुमान ने भरत को अब भी तपस्वी जैसा जीवन जीते पाया। उन्होंने समाचार दिया। भरत आनंद से भर उठे और दूत को गले लगाया। उनकी प्रतिक्रिया में आशंकित विभाजन नहीं था। वर्षों से उन्होंने भाई के लिए स्थान सँभाला था। अब जिनकी पादुकाएँ रखी थीं, वे स्वागत किए जाने जितने निकट थे।"
+        },
+        "image": {
+          "src": "/assets/illustrated/22-northward-home-960.jpg",
+          "alt": {
+            "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
+            "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
+          }
+        }
+      },
+      {
+        "page_number": 9,
+        "scene_title": {
+          "en": "News reaches Nandigrama",
+          "hi": "नंदिग्राम में समाचार"
+        },
+        "text": {
+          "en": "After the conflict in Lanka, the long road turned toward Ayodhya. Hanuman carried news ahead to Bharata: Rama, Sita and Lakshmana were returning. The years of waiting suddenly had an arrival within reach.\n\nBharata prepared not to defend the authority he had exercised, but to return it. The sandals that had marked a trust throughout the exile could now be placed back before Rama.",
+          "hi": "लंका के संघर्ष के बाद लंबा मार्ग अयोध्या की ओर मुड़ा। हनुमान ने भरत तक पहले समाचार पहुँचाया: राम, सीता और लक्ष्मण लौट रहे हैं। वर्षों की प्रतीक्षा के सामने अचानक आगमन निकट था।\n\nभरत ने सँभाले हुए अधिकार की रक्षा नहीं, उसे लौटाने की तैयारी की। वनवास भर जिस विश्वास को पादुकाओं ने चिह्नित किया था, अब उसे राम के सामने वापस रखा जा सकता था।"
+        },
+        "image": {
+          "src": "/assets/world-rama.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 10,
+        "scene_title": {
+          "en": "The handover",
+          "hi": "दायित्व सौंपना"
+        },
+        "text": {
+          "en": "A good handover includes truth about what was carried. Bharata welcomed Rama and returned the kingdom, but his years of stewardship did not disappear. Roads, decisions, worries and people had required his attention. Returning responsibility could honour that labour without turning it into ownership.\n\nRama received the responsibility amid family reunion and public ceremony. Sita and Lakshmana returned after their own years of hardship; their homecoming also deserved to be seen. No single crown could contain every person’s cost.",
+          "hi": "अच्छे दायित्व-सौंपने में सँभाले गए काम की सच्चाई शामिल होती है। भरत ने राम का स्वागत कर राज्य लौटाया, पर उनके वर्षों का संरक्षण मिटा नहीं। मार्ग, निर्णय, चिंता और लोगों ने उनका ध्यान माँगा था। दायित्व लौटाना उस श्रम का सम्मान कर सकता था, उसे निजी अधिकार बनाए बिना।\n\nराम ने पारिवारिक मिलन और सार्वजनिक समारोह के बीच दायित्व स्वीकार किया। सीता और लक्ष्मण भी अपने कठिन वर्षों के बाद लौटे थे; उनकी घर-वापसी भी देखी जानी चाहिए। कोई एक मुकुट हर व्यक्ति की कीमत को समेट नहीं सकता।"
+        },
+        "image": {
+          "src": "/assets/world-rama.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      },
+      {
+        "page_number": 11,
+        "scene_title": {
+          "en": "A beginning after return",
+          "hi": "वापसी के बाद आरंभ"
+        },
+        "text": {
+          "en": "The coronation is often told as a bright ending. It is also the beginning of daily rule: listening to people, sharing work, correcting mistakes and remembering alliances that made return possible. Celebration could mark a threshold, but it could not do the work that followed.\n\nBharata’s guardianship, Hanuman’s messages, Sita’s endurance, Lakshmana’s companionship and the help of many communities all stood behind the day. Returning responsibility meant returning to relationship too.",
+          "hi": "राज्याभिषेक को प्रायः उज्ज्वल अंत की तरह कहा जाता है। वह दैनिक शासन का आरंभ भी है: लोगों को सुनना, काम बाँटना, भूल सुधारना और उन मित्रताओं को याद रखना जिनसे वापसी संभव हुई। उत्सव सीमा-रेखा दिखा सकता था, आगे का काम नहीं कर सकता था।\n\nभरत का संरक्षण, हनुमान के संदेश, सीता का धैर्य, लक्ष्मण का साथ और अनेक समुदायों की सहायता उस दिन के पीछे खड़ी थी। उत्तरदायित्व की वापसी संबंधों की ओर लौटना भी था।"
+        },
+        "image": {
+          "src": "/assets/world-rama.webp",
+          "alt": {
+            "en": "Illustrated Ramayana landscape",
+            "hi": "रामायण का चित्रित दृश्य"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "krishna-mountain",
+    "slug": "krishna-mountain",
+    "collection": "krishna",
+    "book": "Bhagavata Purana",
+    "arc": "Skandha 10",
+    "order": 13,
+    "title": {
+      "en": "Beneath a lifted mountain",
+      "hi": "जब पर्वत बना आश्रय"
+    },
+    "subtitle": {
+      "en": "As rain swallows the paths of Vraja, Krishna lifts a mountain and calls everyone beneath it.",
+      "hi": "जब वर्षा ब्रज के रास्तों को डुबो देती है, कृष्ण एक पर्वत उठाकर सबको उसके नीचे बुलाते हैं।"
+    },
+    "synopsis": {
+      "en": "As rain swallows the paths of Vraja, Krishna lifts a mountain and calls everyone beneath it.",
+      "hi": "जब वर्षा ब्रज के रास्तों को डुबो देती है, कृष्ण एक पर्वत उठाकर सबको उसके नीचे बुलाते हैं।"
+    },
+    "cover_image": {
+      "src": "/stories-app/assets/krishna-govardhana.webp",
+      "alt": {
+        "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
+        "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
+      }
+    },
+    "source_refs": [
+      {
+        "book": "Bhagavata Purana",
+        "arc": "Skandha 10",
+        "citation": "Skandha 10, Chapter 25",
+        "external_url": "https://vedabase.io/en/library/sb/10/25/"
+      }
+    ],
+    "characters": [
+      "krishna",
+      "indra",
+      "nanda"
+    ],
+    "places": [
+      "Vraja",
+      "Govardhana"
+    ],
+    "values": [
+      "Devotion",
+      "Resolve",
+      "Care"
+    ],
+    "moods": [
+      "Wonder",
+      "Contemplative"
+    ],
+    "age_band": "independent-8+",
+    "duration_min": 6,
+    "festival_tags": [
+      "Janmashtami"
+    ],
+    "status": "draft",
+    "pages": [
+      {
+        "page_number": 1,
+        "scene_title": {
+          "en": "The gathering storm",
+          "hi": "घिरता तूफ़ान"
+        },
+        "text": {
+          "en": "The people of Vraja had turned their worship towards Govardhana at Krishna's urging. Indra, angered that the offering intended for him had been set aside, sent terrible clouds against the cowherd settlement. The rain did not arrive as a welcome change in the weather. Wind drove it across the pastures, thunder broke overhead, and hail struck the ground. Familiar paths began to vanish beneath water. The same landscape that had fed the cattle and held the village's daily life was becoming difficult to recognise. Before anyone could think about the larger quarrel, there was an immediate need: people and animals had to find shelter.",
+          "hi": "कृष्ण के कहने पर व्रजवासियों ने गोवर्धन की पूजा की थी। अपने लिए होने वाला यज्ञ रुकने से इंद्र क्रोधित हुए और उन्होंने ग्वालों की बस्ती पर भयानक मेघ भेजे। यह वर्षा मौसम का सुखद परिवर्तन बनकर नहीं आई। हवा उसे चरागाहों पर धकेल रही थी, ऊपर गर्जना थी और धरती पर ओले पड़ रहे थे। पानी के नीचे पहचाने हुए रास्ते मिटने लगे। जिस भूमि पर गायें चरती थीं और जहाँ गाँव का रोज़ का जीवन चलता था, उसे पहचानना कठिन होने लगा। बड़े विवाद के बारे में सोचने से पहले सामने एक आवश्यकता थी: मनुष्यों और पशुओं को सुरक्षित आश्रय चाहिए था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/krishna-govardhana.webp",
+          "alt": {
+            "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
+            "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
+          }
+        }
+      },
+      {
+        "page_number": 2,
+        "scene_title": {
+          "en": "A place to turn",
+          "hi": "किसकी ओर जाएँ"
+        },
+        "text": {
+          "en": "Cold and frightened, the cowherds approached Krishna with their cattle. They were not asking for an explanation of rain. They were asking for protection from a storm that had become too great to withstand. Krishna understood the cause of the danger. Indra's power was being used in anger against those who had trusted him, and Krishna resolved to protect them. The scene gathers everyone around the same need: adults, children and animals cannot negotiate with a flood. What happens next will matter because it creates a place for them all, not because a display of strength is impressive by itself.",
+          "hi": "ठंड और भय से व्याकुल ग्वाले अपनी गायों के साथ कृष्ण के पास आए। वे वर्षा का कारण समझाने को नहीं कह रहे थे। उन्हें ऐसे तूफ़ान से रक्षा चाहिए थी जिसे सहना कठिन हो गया था। कृष्ण खतरे का कारण जानते थे। जिन लोगों ने उन पर भरोसा किया था, उनके विरुद्ध इंद्र की शक्ति क्रोध में प्रयुक्त हो रही थी। कृष्ण ने उनकी रक्षा करने का निश्चय किया। दृश्य में बड़े, बच्चे और पशु एक ही आवश्यकता से जुड़े थे। बाढ़ के साथ कोई समझौता नहीं कर सकता था। आगे होने वाला कार्य इसलिए महत्त्वपूर्ण था कि वह सबके लिए जगह बनाएगा, केवल शक्ति का चमत्कार दिखाने के लिए नहीं।"
+        },
+        "image": {
+          "src": "/stories-app/assets/krishna-govardhana.webp",
+          "alt": {
+            "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
+            "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
+          }
+        }
+      },
+      {
+        "page_number": 3,
+        "scene_title": {
+          "en": "The hill becomes a roof",
+          "hi": "पर्वत बना छत"
+        },
+        "text": {
+          "en": "Krishna lifted Govardhana with one hand. The mountain that had stood within the community's familiar world became its shelter. He invited the people to bring their families, cattle and belongings beneath it and reassured them that they need not fear the hill falling. They entered the space he held open. Outside, the storm continued to show its force; underneath, life could gather without being scattered by every new gust. The image is immense, but its purpose is close and practical. A lifted mountain makes room for shivering animals, worried parents and people who need somewhere safe to stand together.",
+          "hi": "कृष्ण ने एक हाथ से गोवर्धन उठा लिया। जो पर्वत लोगों के परिचित संसार का हिस्सा था, वही उनका आश्रय बन गया। उन्होंने सबको अपने परिवार, पशु और सामान लेकर नीचे आने को कहा और भरोसा दिया कि पर्वत गिरने का भय न करें। लोग उस जगह में आए जिसे वे सँभाले हुए थे। बाहर तूफ़ान अपना बल दिखा रहा था, लेकिन नीचे जीवन हर झोंके में बिखरे बिना एकत्र हो सकता था। दृश्य बहुत बड़ा था, पर उसका प्रयोजन पास का और ठोस था। उठा हुआ पर्वत काँपते पशुओं, चिंतित माता-पिता और साथ खड़े होने के लिए सुरक्षित स्थान खोजते लोगों को जगह दे रहा था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/krishna-govardhana.webp",
+          "alt": {
+            "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
+            "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
+          }
+        }
+      },
+      {
+        "page_number": 4,
+        "scene_title": {
+          "en": "Seven days together",
+          "hi": "सात दिन साथ"
+        },
+        "text": {
+          "en": "For seven days Krishna held the mountain while the people remained beneath it. The Bhagavata tells of a protection sustained without the usual interruption of hunger, thirst or exhaustion. The event was not over when the hill first rose. Its meaning continued through the long keeping of that promise. Those who had entered in alarm stayed together until the danger passed. Outside, the clouds still spent their force. Inside the shelter, the community's attention rested on the one who held it. The strength in this scene is steady: not a single dramatic moment, but care that does not withdraw while it is still needed.",
+          "hi": "सात दिन तक कृष्ण पर्वत उठाए रहे और लोग उसके नीचे रहे। भागवत ऐसी रक्षा का वर्णन करता है जिसे सामान्य भूख, प्यास और थकान ने बाधित नहीं किया। पर्वत उठते ही प्रसंग पूरा नहीं हो गया था। दिए हुए आश्वासन को लंबे समय तक निभाने में उसका अर्थ बना रहा। जो लोग घबराकर भीतर आए थे, वे खतरा बीतने तक साथ रहे। बाहर मेघ अपना बल खर्च कर रहे थे। आश्रय के भीतर लोगों का ध्यान उसे सँभालने वाले कृष्ण पर था। इस दृश्य की शक्ति स्थिर है: केवल एक नाटकीय क्षण नहीं, बल्कि ऐसी देखभाल जो आवश्यकता बने रहने पर पीछे नहीं हटती।"
+        },
+        "image": {
+          "src": "/stories-app/assets/krishna-govardhana.webp",
+          "alt": {
+            "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
+            "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
+          }
+        }
+      },
+      {
+        "page_number": 5,
+        "scene_title": {
+          "en": "The clouds withdraw",
+          "hi": "मेघों का लौटना"
+        },
+        "text": {
+          "en": "Indra saw that the storm had failed to break Krishna's protection. His certainty gave way, and he ordered the clouds to withdraw. Rain ceased, the wind quieted, and the sky began to clear. Krishna then invited everyone to leave the shelter with their families and animals. The movement back into the open was as important as the movement under the hill. Shelter was not meant to become a permanent enclosure. Once the danger had passed, the people could return to their homes and ordinary paths. Krishna waited for their departure, then placed Govardhana back where it belonged.",
+          "hi": "इंद्र ने देखा कि तूफ़ान कृष्ण की रक्षा को तोड़ नहीं सका। उनका विश्वास डगमगाया और उन्होंने मेघों को लौटने की आज्ञा दी। वर्षा रुकी, हवा शांत हुई और आकाश खुलने लगा। तब कृष्ण ने सबको परिवार और पशुओं सहित बाहर निकलने के लिए कहा। खुले स्थान में लौटना उतना ही महत्त्वपूर्ण था जितना पर्वत के नीचे आना। आश्रय को स्थायी बंधन नहीं बनना था। खतरा बीतने पर लोग फिर अपने घरों और परिचित मार्गों पर जा सकते थे। कृष्ण ने उनके बाहर आने की प्रतीक्षा की और फिर गोवर्धन को उसके स्थान पर रख दिया। पर्वत का उठना रक्षा था और उसका वापस रखना भी उसी देखभाल का भाग था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/krishna-govardhana.webp",
+          "alt": {
+            "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
+            "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
+          }
+        }
+      },
+      {
+        "page_number": 6,
+        "scene_title": {
+          "en": "An ordinary world returned",
+          "hi": "लौटता अपना संसार"
+        },
+        "text": {
+          "en": "The cowherds came to Krishna with affection and relief. Some embraced him; elders offered blessings, and the community rejoiced. Govardhana stood again as a hill, but it could no longer be only an unnoticed part of the landscape. It had held the memory of a refuge. The chapter closes in celebration rather than with the frightened village left forever under the shadow of the storm. What had been threatened was the life they shared, and that life could begin moving again. The familiar world returned to them through an act whose greatness was measured by the room it made for others.",
+          "hi": "ग्वाले स्नेह और राहत के साथ कृष्ण के पास आए। किसी ने गले लगाया, बड़ों ने आशीर्वाद दिए और सबने आनंद मनाया। गोवर्धन फिर पर्वत की तरह खड़ा था, लेकिन अब वह दृश्य का ऐसा हिस्सा नहीं रह सकता था जिस पर ध्यान ही न जाए। उससे आश्रय की स्मृति जुड़ गई थी। अध्याय उत्सव में समाप्त होता है; भयभीत गाँव को हमेशा तूफ़ान की छाया के नीचे नहीं छोड़ता। संकट में उनका साझा जीवन था और अब वह जीवन फिर चल सकता था। एक ऐसे कार्य से परिचित संसार उन्हें लौट मिला जिसकी महानता इस बात में थी कि उसने दूसरों के लिए कितनी जगह बनाई।"
+        },
+        "image": {
+          "src": "/stories-app/assets/krishna-govardhana.webp",
+          "alt": {
+            "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
+            "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
+          }
+        }
+      },
+      {
+        "page_number": 7,
+        "scene_title": {
+          "en": "Beneath a lifted mountain",
+          "hi": "जब पर्वत बना आश्रय"
+        },
+        "text": {
+          "en": "The rain would not stop. Wind struck the trees, hail beat against the ground, and the people of Vraja gathered around Krishna with their frightened cattle. Indra had sent the storm in anger. Krishna answered by lifting Govardhana with one hand.\n\nHe called the villagers beneath the hill. There was room for their families, their animals and the wagons that carried their belongings. Above them, stone became a roof. Beyond it, the storm continued.\n\nFor seven days, Krishna held the mountain. When the clouds finally withdrew, he invited everyone back into the clear light and returned Govardhana to its place. The villagers came forward to embrace him. The immense shelter had been held by someone they knew and loved.",
+          "hi": "वर्षा थमने का नाम नहीं ले रही थी। पेड़ हवा से झुक रहे थे, धरती पर ओले पड़ रहे थे। ब्रजवासी अपने डरे हुए पशुओं के साथ कृष्ण के पास पहुँचने लगे। इंद्र ने क्रोध में यह तूफ़ान भेजा था। कृष्ण ने एक हाथ से गोवर्धन पर्वत उठा लिया।\n\nउन्होंने सबको उसके नीचे बुलाया। परिवारों, पशुओं और सामान से भरी गाड़ियों के लिए वहाँ जगह थी। सिर के ऊपर पर्वत की छत थी। बाहर तूफ़ान अब भी जारी था।\n\nसात दिनों तक कृष्ण पर्वत थामे रहे। बादल हटे, तो उन्होंने सबको उजाले में बाहर आने दिया और गोवर्धन को फिर उसके स्थान पर रख दिया। ब्रजवासी उन्हें गले लगाने के लिए आगे बढ़े। इतना विशाल आश्रय उसी ने थाम रखा था, जिसे वे अपना मानते थे।"
+        },
+        "image": {
+          "src": "/stories-app/assets/krishna-govardhana.webp",
+          "alt": {
+            "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
+            "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "shiva-river",
+    "slug": "shiva-river",
+    "collection": "shiva",
+    "book": "Valmiki Ramayana",
+    "arc": "Bala Kanda",
+    "order": 15,
+    "title": {
+      "en": "Where the river paused",
+      "hi": "जटाओं में ठहरी गंगा"
+    },
+    "subtitle": {
+      "en": "Ganga descends with overwhelming force, and Shiva gives the river a way to reach the earth.",
+      "hi": "गंगा प्रचंड वेग से उतरती हैं, और शिव उनकी धारा को पृथ्वी तक पहुँचने का मार्ग देते हैं।"
+    },
+    "synopsis": {
+      "en": "Ganga descends with overwhelming force, and Shiva gives the river a way to reach the earth.",
+      "hi": "गंगा प्रचंड वेग से उतरती हैं, और शिव उनकी धारा को पृथ्वी तक पहुँचने का मार्ग देते हैं।"
+    },
+    "cover_image": {
+      "src": "/stories-app/assets/shiva-ganga-descent.webp",
+      "alt": {
+        "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
+        "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
+      }
+    },
+    "source_refs": [
+      {
+        "book": "Valmiki Ramayana",
+        "arc": "Bala Kanda",
+        "citation": "Bala Kanda, Sarga 43",
+        "external_url": "https://www.valmikiramayan.net/utf8/baala/sarga43/balaitrans43.htm"
+      }
+    ],
+    "characters": [
+      "shiva",
+      "ganga",
+      "bhagiratha"
+    ],
+    "places": [
+      "Himalaya",
+      "Bindu lake"
+    ],
+    "values": [
+      "Devotion",
+      "Resolve",
+      "Care"
+    ],
+    "moods": [
+      "Wonder",
+      "Contemplative"
+    ],
+    "age_band": "independent-8+",
+    "duration_min": 6,
+    "festival_tags": [
+      "Maha Shivaratri"
+    ],
+    "status": "draft",
+    "pages": [
+      {
+        "page_number": 1,
+        "scene_title": {
+          "en": "A promise still unfinished",
+          "hi": "अधूरा संकल्प"
+        },
+        "text": {
+          "en": "Bhagiratha's purpose was to bring Ganga down so that the ashes of his ancestors could be touched by her waters. A wish so large could not be fulfilled by desire alone. The river's descent needed to be received; otherwise the force of her coming would overwhelm the earth. Bhagiratha therefore turned to Shiva. The Ramayana describes a long and demanding practice before Shiva appeared and agreed to bear Ganga upon his head. The king had reached an answer, but not the end of the work. An immense power was about to arrive, and the manner of its arrival mattered as much as the hope attached to it.",
+          "hi": "भगीरथ का संकल्प था कि गंगा नीचे आएँ और उनके पूर्वजों की भस्म को अपने जल से स्पर्श करें। इतनी बड़ी इच्छा केवल चाहने से पूरी नहीं हो सकती थी। नदी के वेग को धारण करना आवश्यक था; अन्यथा उसके उतरने का बल पृथ्वी पर भारी पड़ता। इसलिए भगीरथ शिव की ओर मुड़े। रामायण लंबे और कठिन तप का वर्णन करती है, जिसके बाद शिव प्रकट हुए और गंगा को अपने मस्तक पर धारण करने को तैयार हुए। राजा को उत्तर मिल गया था, लेकिन कार्य अभी पूरा नहीं हुआ था। अपार शक्ति आने वाली थी और उसके आने का ढंग उतना ही महत्त्वपूर्ण था जितनी उससे जुड़ी आशा।"
+        },
+        "image": {
+          "src": "/stories-app/assets/shiva-ganga-descent.webp",
+          "alt": {
+            "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
+            "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
+          }
+        }
+      },
+      {
+        "page_number": 2,
+        "scene_title": {
+          "en": "The descent",
+          "hi": "अवतरण"
+        },
+        "text": {
+          "en": "Ganga came down with overwhelming speed. In the story, her confidence in that force grew into the thought that she could sweep Shiva away with her. Shiva understood her intention. He did not meet the descending river by being carried wherever its rush might lead. He received it within his matted hair. Water that had seemed impossible to contain entered a place from which it could not find its own way out. The great arrival had become a pause. Bhagiratha, who had worked so long for the river to reach the earth, now faced another unexpected delay in the fulfilment of his purpose.",
+          "hi": "गंगा असह्य वेग से नीचे आईं। कथा में अपने बल का विश्वास इस विचार तक पहुँचा कि वे शिव को भी बहाकर ले जा सकती हैं। शिव ने उनका आशय समझ लिया। उन्होंने उतरती नदी का सामना इस तरह नहीं किया कि उसका प्रवाह उन्हें जहाँ चाहे ले जाए। उसे अपनी जटाओं में धारण कर लिया। जिस जल को रोकना असंभव लगता था, वह ऐसे स्थान में पहुँचा जहाँ से निकलने का मार्ग उसे स्वयं नहीं मिला। महान अवतरण एक ठहराव बन गया। नदी को पृथ्वी पर लाने के लिए इतने समय से प्रयत्न कर रहे भगीरथ के संकल्प के सामने अब एक और अप्रत्याशित विलंब था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/shiva-ganga-descent.webp",
+          "alt": {
+            "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
+            "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
+          }
+        }
+      },
+      {
+        "page_number": 3,
+        "scene_title": {
+          "en": "Held, not lost",
+          "hi": "रुकी, खोई नहीं"
+        },
+        "text": {
+          "en": "The river was present, yet its waters had not reached the place for which Bhagiratha had sought them. He could not mistake arrival for completion. Nor could he treat the new obstacle as proof that all his earlier effort had been useless. He returned to his practice and sought Shiva's favour again. This part of the episode keeps attention on a patient kind of resolve. The king did not command the river into usefulness. He had to remain attentive to what the task now required. The purpose was still the same, but the next step was different from the one he had imagined before Ganga descended.",
+          "hi": "नदी आ गई थीं, लेकिन उनका जल उस स्थान तक नहीं पहुँचा था जिसके लिए भगीरथ उन्हें लाना चाहते थे। वे आने को ही कार्य की समाप्ति नहीं मान सकते थे। नई बाधा का अर्थ यह भी नहीं था कि पिछले सारे प्रयत्न व्यर्थ गए। उन्होंने फिर तप किया और शिव की कृपा चाही। प्रसंग का यह भाग धैर्य वाले संकल्प पर ध्यान रखता है। राजा आदेश देकर नदी को उपयोगी नहीं बना सकते थे। उन्हें देखना था कि अब कार्य के लिए क्या आवश्यक है। उद्देश्य वही था, लेकिन अगला कदम उस कल्पना से अलग था जो गंगा के उतरने से पहले उन्होंने मन में बनाई होगी।"
+        },
+        "image": {
+          "src": "/stories-app/assets/shiva-ganga-descent.webp",
+          "alt": {
+            "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
+            "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
+          }
+        }
+      },
+      {
+        "page_number": 4,
+        "scene_title": {
+          "en": "A way onto the earth",
+          "hi": "पृथ्वी पर मार्ग"
+        },
+        "text": {
+          "en": "Pleased with Bhagiratha, Shiva released Ganga towards the lake called Bindu. From there the waters flowed in seven streams. The descent was no longer a single irresistible rush. The river had found courses by which it could move through the world. Bhagiratha went ahead, and one stream followed the path he led. The scene changes from falling to flowing, from an encounter of immense forces to a journey across the earth. The water was not diminished into something unimportant. It had been given a way to reach the purpose for which the king had laboured, without that purpose being swallowed by the violence of its arrival.",
+          "hi": "भगीरथ से प्रसन्न होकर शिव ने गंगा को बिंदु सरोवर की ओर छोड़ा। वहाँ से जल सात धाराओं में बहने लगा। अवतरण अब केवल एक अजेय वेग नहीं था। नदी को ऐसे मार्ग मिले जिनसे वह संसार में आगे बढ़ सके। भगीरथ आगे चले और एक धारा उनके दिखाए रास्ते पर चली। दृश्य गिरने से बहने की ओर बदलता है, अपार शक्तियों की भेंट से पृथ्वी पर होने वाली यात्रा की ओर। जल का महत्त्व छोटा नहीं किया गया था। उसे उस उद्देश्य तक पहुँचने का मार्ग मिला जिसके लिए राजा ने परिश्रम किया था। आने की प्रचंडता में उसी उद्देश्य को खो जाने से बचाया गया था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/shiva-ganga-descent.webp",
+          "alt": {
+            "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
+            "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
+          }
+        }
+      },
+      {
+        "page_number": 5,
+        "scene_title": {
+          "en": "Following the chariot",
+          "hi": "रथ के पीछे"
+        },
+        "text": {
+          "en": "Bhagiratha led onward in his chariot, and Ganga followed. The Ramayana tells of further events along the way, including the sage Jahnu, through whose intervention she came to be called Jahnavi. The journey was not a blank line between heaven and the ancestors' resting place. It passed through a world already inhabited by others. Eventually the river reached the ashes for which Bhagiratha had undertaken his great effort. The waters covered them. In the sacred telling, this contact brought release to the ancestors. A purpose carried through patience, renewed prayer and several kinds of encounter had at last reached its destination.",
+          "hi": "भगीरथ रथ पर आगे बढ़े और गंगा उनके पीछे चलीं। रामायण मार्ग की आगे की घटनाएँ भी सुनाती है, जिनमें ऋषि जह्नु का प्रसंग आता है और उनसे नदी का नाम जाह्नवी जुड़ता है। स्वर्ग और पूर्वजों के स्थान के बीच की यात्रा कोई खाली रेखा नहीं थी। वह ऐसे संसार से गुजरती थी जिसमें दूसरे भी रहते थे। अंततः नदी उस भस्म तक पहुँची जिसके लिए भगीरथ ने इतना प्रयत्न किया था। जल ने उसे ढक लिया। पवित्र कथा में इस स्पर्श से पूर्वजों को मुक्ति मिली। धैर्य, बार-बार की प्रार्थना और अनेक भेंटों से सँभाला गया उद्देश्य आखिर अपने गंतव्य तक पहुँच गया।"
+        },
+        "image": {
+          "src": "/stories-app/assets/shiva-ganga-descent.webp",
+          "alt": {
+            "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
+            "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
+          }
+        }
+      },
+      {
+        "page_number": 6,
+        "scene_title": {
+          "en": "The strength to receive",
+          "hi": "धारण करने की शक्ति"
+        },
+        "text": {
+          "en": "The story remembers Bhagiratha's effort and Shiva's receiving of Ganga together. Neither the king's resolve nor the river's force was sufficient on its own. The descent needed a strength capable of holding it, and the flow needed a purpose that would guide it onward. This is why the image of water resting in Shiva's hair carries more than the spectacle of a river falling from the sky. It holds the pause that makes continuation possible. What is powerful need not become destructive; what is delayed need not be abandoned. In this telling, the way forward is found through receiving, restraining and releasing at the right time.",
+          "hi": "कथा भगीरथ के प्रयत्न और शिव द्वारा गंगा को धारण करने, दोनों को साथ याद रखती है। राजा का संकल्प और नदी का वेग अपने-अपने बल पर पर्याप्त नहीं थे। अवतरण को सँभालने वाली शक्ति चाहिए थी और प्रवाह को आगे ले जाने वाला उद्देश्य। इसलिए शिव की जटाओं में ठहरे जल का चित्र केवल आकाश से गिरती नदी का चमत्कार नहीं है। उसमें वह विराम है जो आगे बढ़ना संभव बनाता है। शक्तिशाली होना विनाशकारी होना नहीं है और देर होना त्याग देने का कारण नहीं। इस कथा में मार्ग उचित समय पर ग्रहण करने, रोकने और मुक्त करने से बनता है।"
+        },
+        "image": {
+          "src": "/stories-app/assets/shiva-ganga-descent.webp",
+          "alt": {
+            "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
+            "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
+          }
+        }
+      },
+      {
+        "page_number": 7,
+        "scene_title": {
+          "en": "Where the river paused",
+          "hi": "जटाओं में ठहरी गंगा"
+        },
+        "text": {
+          "en": "Bhagiratha had brought his plea as far as the sky. Ganga was ready to descend, but someone had to receive the force of her fall. Shiva agreed. The river rushed towards him, immense and proud of her power.\n\nHe caught her in the deep coils of his matted hair. Ganga searched for a way through, but every current remained within those vast locks. Bhagiratha continued his devotion. At last, Shiva released the river towards Bindu Lake, where her waters divided into seven streams.\n\nOne stream followed Bhagiratha as he set out in his chariot. The long-awaited journey could continue. From sky to hair, from hair to earth, the river had found a passage.",
+          "hi": "भगीरथ की प्रार्थना आकाश तक पहुँच चुकी थी। गंगा धरती पर उतरने वाली थीं, लेकिन उनके प्रबल वेग को कोई सँभाले, यह आवश्यक था। शिव ने सहमति दी। अपने बल पर गर्व करती हुई गंगा उनकी ओर उमड़ पड़ीं।\n\nशिव ने उन्हें अपनी घनी जटाओं में समेट लिया। गंगा बाहर निकलने का रास्ता खोजती रहीं, पर उनकी धाराएँ जटाओं में ही ठहरी रहीं। भगीरथ ने फिर तपस्या की। अंततः शिव ने गंगा को बिंदु सरोवर की ओर बहने दिया। वहाँ उनका जल सात धाराओं में बँट गया।\n\nएक धारा भगीरथ के रथ के पीछे चल पड़ी। लंबे समय से प्रतीक्षित यात्रा अब आगे बढ़ सकती थी। आकाश से शिव की जटाओं तक, और जटाओं से धरती तक, गंगा को उतरने का मार्ग मिल गया था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/shiva-ganga-descent.webp",
+          "alt": {
+            "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
+            "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "dhruva-star",
+    "slug": "dhruva-star",
+    "collection": "krishna",
+    "book": "Bhagavata Purana",
+    "arc": "Skandha 4",
+    "order": 16,
+    "title": {
+      "en": "A place beyond the palace",
+      "hi": "महल से आगे का रास्ता"
+    },
+    "subtitle": {
+      "en": "A hurt young prince leaves the palace, and a forest becomes the setting for an unexpected meeting.",
+      "hi": "आहत मन लेकर एक बालक महल से निकलता है, और वन में उसकी यात्रा एक अनोखी भेंट तक पहुँचती है।"
+    },
+    "synopsis": {
+      "en": "A hurt young prince leaves the palace, and a forest becomes the setting for an unexpected meeting.",
+      "hi": "आहत मन लेकर एक बालक महल से निकलता है, और वन में उसकी यात्रा एक अनोखी भेंट तक पहुँचती है।"
+    },
+    "cover_image": {
+      "src": "/stories-app/assets/dhruva-under-stars.webp",
+      "alt": {
+        "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
+        "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
+      }
+    },
+    "source_refs": [
+      {
+        "book": "Bhagavata Purana",
+        "arc": "Skandha 4",
+        "citation": "Skandha 4 · Chapter 8, verses 9–24 and 25–54",
+        "external_url": "https://vedabase.io/en/library/sb/4/8/"
+      },
+      {
+        "book": "Bhagavata Purana",
+        "arc": "Skandha 4",
+        "citation": "Skandha 4 · Chapter 9, verses 1–3",
+        "external_url": "https://vedabase.io/en/library/sb/4/9/"
+      },
+      {
+        "book": "Bhagavata Purana",
+        "arc": "Skandha 4",
+        "citation": "Chapter 9: vision, prayer and return",
+        "external_url": "https://vedabase.io/en/library/sb/4/9/"
+      }
+    ],
+    "characters": [
+      "dhruva",
+      "narada",
+      "vishnu",
+      "suniti"
+    ],
+    "places": [
+      "Madhuvana"
+    ],
+    "values": [
+      "Devotion",
+      "Resolve",
+      "Care"
+    ],
+    "moods": [
+      "Wonder",
+      "Contemplative"
+    ],
+    "age_band": "independent-8+",
+    "duration_min": 7,
+    "festival_tags": [],
+    "status": "draft",
+    "pages": [
+      {
+        "page_number": 1,
+        "scene_title": {
+          "en": "A hurt that would not quieten",
+          "hi": "मन में ठहरा दुख"
+        },
+        "text": {
+          "en": "Dhruva was a child when a wound within his father's household changed the direction of his life. He wanted recognition and a place that could not be taken away from him. His mother Suniti did not turn his pain into a promise of revenge. She directed his attention towards the divine. Dhruva left the palace with a fierce intention, but intention was not yet understanding. The forest offered no familiar seat or title to claim. What he carried there was the ache of rejection and the hope that a different kind of attainment might answer it. The story begins with that restless mixture of hurt and resolve.",
+          "hi": "ध्रुव बालक थे जब पिता के घर में मिले आघात ने जीवन की दिशा बदल दी। वे स्वीकार चाहते थे और ऐसा स्थान चाहते थे जिसे कोई छीन न सके। माता सुनीति ने उनके दुख को प्रतिशोध के वचन में नहीं बदला। उन्होंने उनका ध्यान भगवान की ओर किया। प्रबल निश्चय लेकर ध्रुव राजमहल से निकले, लेकिन निश्चय अभी समझ नहीं था। वन में दावा करने के लिए परिचित आसन या पद नहीं था। वे अस्वीकार की पीड़ा और यह आशा लेकर गए कि कोई दूसरा साधन उसका उत्तर दे सकता है। कथा दुख और संकल्प के इसी बेचैन मेल से आरंभ होती है।"
+        },
+        "image": {
+          "src": "/stories-app/assets/dhruva-under-stars.webp",
+          "alt": {
+            "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
+            "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
+          }
+        }
+      },
+      {
+        "page_number": 2,
+        "scene_title": {
+          "en": "Meeting Narada",
+          "hi": "नारद से भेंट"
+        },
+        "text": {
+          "en": "Narada met the young seeker and spoke to him. He recognised that Dhruva was still a child, and his first counsel tested the firmness of the boy's purpose. Dhruva listened, yet could not simply put aside the hurt that had brought him away from home. Seeing his determination, Narada gave him a path of worship and contemplation. The meeting did not remove every difficulty. It changed an unfocused wish into a practice with direction. Dhruva would not need to invent the whole way for himself. Someone had listened closely enough to understand both his vulnerability and the strength with which he was asking to proceed.",
+          "hi": "नारद उस बाल साधक से मिले और उनसे बात की। वे जानते थे कि ध्रुव अभी बच्चे हैं और उनकी आरंभिक सलाह से बालक के निश्चय की दृढ़ता सामने आई। ध्रुव ने सुना, लेकिन जिस दुख के कारण घर छोड़ा था, उसे सहज ही अलग नहीं रख सके। उनकी लगन देखकर नारद ने उपासना और ध्यान का मार्ग बताया। इस भेंट से हर कठिनाई समाप्त नहीं हुई। लेकिन दिशाहीन इच्छा को अभ्यास का मार्ग मिला। पूरी राह ध्रुव को अकेले नहीं बनानी थी। किसी ने इतना ध्यान देकर सुना था कि उनकी असुरक्षा और आगे बढ़ने के आग्रह की शक्ति, दोनों को पहचाना।"
+        },
+        "image": {
+          "src": "/stories-app/assets/dhruva-under-stars.webp",
+          "alt": {
+            "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
+            "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
+          }
+        }
+      },
+      {
+        "page_number": 3,
+        "scene_title": {
+          "en": "The forest becomes a place of practice",
+          "hi": "साधना का वन"
+        },
+        "text": {
+          "en": "Dhruva went to Madhuvana and undertook the discipline Narada had taught. The Bhagavata describes the intensity of his devotion in the language of extraordinary ancient austerity. His practice gathered his energy around the form he had learned to contemplate. Its movement is inward: the attention once fixed on a denied place in the palace becomes absorbed in the form of Vishnu. Days no longer gather around the same quarrel. The boy's original desire has not simply vanished, but something larger is taking hold of his life. The forest is not merely where he has fled. It has become the place where he is learning to attend.",
+          "hi": "ध्रुव मधुवन गए और नारद से सीखे अनुशासन में लगे। भागवत उनकी भक्ति की तीव्रता को असाधारण प्राचीन तपस्या की भाषा में व्यक्त करता है। अभ्यास में उनकी शक्ति उसी रूप के ध्यान में एकाग्र होने लगी जिसे उन्होंने समझा था। उसकी गति भीतर की ओर है: जो ध्यान राजमहल में न मिले स्थान पर अटका था, वह विष्णु के रूप में लीन होने लगा। दिन अब उसी विवाद के चारों ओर नहीं घूमते थे। बालक की पहली इच्छा बस गायब नहीं हो गई थी, लेकिन जीवन में उससे बड़ी बात आकार ले रही थी। वन केवल भागकर आने का स्थान नहीं रहा। वह ध्यान देना सीखने का स्थान बन गया था।"
+        },
+        "image": {
+          "src": "/stories-app/assets/dhruva-under-stars.webp",
+          "alt": {
+            "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
+            "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
+          }
+        }
+      },
+      {
+        "page_number": 4,
+        "scene_title": {
+          "en": "The form before him",
+          "hi": "सामने वही रूप"
+        },
+        "text": {
+          "en": "At last Vishnu came to Dhruva. The form upon which the boy had meditated disappeared from his inward vision, and when he opened his eyes, that same presence stood before him. Dhruva bowed in overwhelming devotion. He wished to speak, but suitable words did not come easily to the child. Vishnu touched him with the conch, and prayer became possible. The scene holds a tender reversal. The boy who had gone out seeking a position now stood before a presence that was not another seat to possess. Recognition had become something more intimate than the success with which he had first imagined answering his hurt.",
+          "hi": "अंततः विष्णु ध्रुव के पास आए। जिस रूप पर बालक ध्यान करते थे, वह भीतर की दृष्टि से ओझल हुआ। आँखें खोलीं तो वही उपस्थिति सामने थी। ध्रुव गहन भक्ति से झुक गए। वे कुछ कहना चाहते थे, लेकिन बालक को उचित शब्द सहज नहीं मिल रहे थे। विष्णु ने शंख से उनका स्पर्श किया और प्रार्थना संभव हुई। दृश्य में एक कोमल परिवर्तन है। जो बालक स्थान पाने की इच्छा लेकर निकला था, वह अब ऐसी उपस्थिति के सामने था जो पाने के लिए एक और आसन नहीं थी। स्वीकार का अर्थ उस सफलता से अधिक आत्मीय हो गया था जिससे वे अपने दुख का उत्तर देना चाहते थे।"
+        },
+        "image": {
+          "src": "/stories-app/assets/dhruva-under-stars.webp",
+          "alt": {
+            "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
+            "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
+          }
+        }
+      },
+      {
+        "page_number": 5,
+        "scene_title": {
+          "en": "A gift and a changed wish",
+          "hi": "वर और बदलती इच्छा"
+        },
+        "text": {
+          "en": "Vishnu knew the desire with which Dhruva had begun and granted him a distinguished future, including a lasting heavenly place. Yet the telling does not reduce their meeting to a successful bargain. Dhruva later reflected on the smallness of what he had sought when compared with the divine presence he had encountered. The old wish had led him towards something it could not fully contain. This recognition did not erase the path he had taken. It gave him a new way of understanding it. A seeker may begin with a wound and still discover, along the way, that healing is larger than proving the person who caused it wrong.",
+          "hi": "विष्णु उस इच्छा को जानते थे जिससे ध्रुव ने आरंभ किया था। उन्होंने विशिष्ट भविष्य और स्थायी दिव्य स्थान का वर दिया। फिर भी कथा उनकी भेंट को सफल सौदे तक सीमित नहीं करती। बाद में ध्रुव ने सोचा कि मिली हुई दिव्य उपस्थिति के सामने उन्होंने जो माँगा था, वह कितना छोटा था। पुरानी इच्छा उन्हें ऐसी बात की ओर ले गई थी जो उसकी सीमा में नहीं समा सकती थी। इस पहचान ने पीछे की यात्रा को मिटाया नहीं, उसे समझने का नया ढंग दिया। साधक आघात से आरंभ कर सकता है और मार्ग में जान सकता है कि उससे उबरना केवल आघात देने वाले को गलत सिद्ध करने से बड़ी बात है।"
+        },
+        "image": {
+          "src": "/stories-app/assets/dhruva-under-stars.webp",
+          "alt": {
+            "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
+            "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
+          }
+        }
+      },
+      {
+        "page_number": 6,
+        "scene_title": {
+          "en": "Returning home",
+          "hi": "घर लौटना"
+        },
+        "text": {
+          "en": "Dhruva returned towards his father's kingdom. News of his approach brought his family out to meet him, and the return carried affection that had been absent from the moment of departure. The palace was still part of his life, but it was no longer the only measure of what his life could mean. He had left with a demand for an unshakable place. He came back after a meeting that had changed the scale of the demand itself. The forest did not have to become a permanent hiding place from the world. What he had received there could accompany him as he entered relationships and responsibilities again.",
+          "hi": "ध्रुव पिता के राज्य की ओर लौटे। आने का समाचार सुनकर परिवार उनसे मिलने निकला और वापसी में वह स्नेह था जो प्रस्थान के क्षण में नहीं मिला था। राजमहल अभी उनके जीवन का हिस्सा था, लेकिन जीवन का अर्थ नापने का एकमात्र साधन नहीं रहा। वे अचल स्थान की माँग लेकर गए थे। ऐसी भेंट के बाद लौट रहे थे जिसने उस माँग का आकार ही बदल दिया था। वन को संसार से छिपने का स्थायी ठिकाना नहीं बनना था। वहाँ जो पाया था, वह फिर संबंधों और उत्तरदायित्वों में प्रवेश करते समय उनके साथ रह सकता था। उनकी यात्रा बाहर जाने के साथ लौटने की भी थी।"
+        },
+        "image": {
+          "src": "/stories-app/assets/dhruva-under-stars.webp",
+          "alt": {
+            "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
+            "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
+          }
+        }
+      },
+      {
+        "page_number": 7,
+        "scene_title": {
+          "en": "A place beyond the palace",
+          "hi": "महल से आगे का रास्ता"
+        },
+        "text": {
+          "en": "Dhruva wanted a place beside his father. Instead, his stepmother’s sharp words sent him away in tears. His mother, Suniti, held him close and urged him to turn towards Vishnu rather than wish harm on anyone. Dhruva left the palace with a fierce resolve.\n\nOn the way, Narada met him. The sage first counselled patience, then recognised how firmly the boy had set his heart. He guided Dhruva to Madhuvana, beside the Yamuna, and taught him to meditate on Vishnu.\n\nIn that forest, Dhruva kept his attention on the form Narada had described. Then, one day, the presence within his meditation disappeared. He opened his eyes. The one he had been seeking stood before him.",
+          "hi": "ध्रुव अपने पिता की गोद में बैठना चाहते थे। लेकिन सौतेली माँ के कठोर शब्दों ने उन्हें रुला दिया। वे अपनी माँ सुनीति के पास गए। सुनीति ने उन्हें स्नेह से सँभाला और किसी का अहित चाहने के बजाय विष्णु की ओर मन लगाने को कहा। ध्रुव दृढ़ निश्चय लेकर महल से निकले।\n\nरास्ते में नारद उनसे मिले। पहले उन्होंने ध्रुव को धैर्य रखने को कहा, फिर बालक के अटल संकल्प को समझा। उन्होंने ध्रुव को यमुना के किनारे मधुवन जाने का मार्ग बताया और विष्णु का ध्यान करना सिखाया।\n\nवन के उस एकांत में ध्रुव उसी रूप का ध्यान करते रहे, जिसका वर्णन नारद ने किया था। फिर एक दिन मन में दिखाई देने वाला वह रूप ओझल हो गया। उन्होंने आँखें खोलीं। जिन्हें वे भीतर खोज रहे थे, वे सामने खड़े थे।"
+        },
+        "image": {
+          "src": "/stories-app/assets/dhruva-under-stars.webp",
+          "alt": {
+            "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
+            "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "devi-two-requests",
+    "slug": "devi-two-requests",
+    "collection": "devi",
+    "book": "Devi Mahatmya",
+    "arc": "Uttama Charita",
+    "order": 1,
+    "title": {
+      "en": "Two requests beside the river",
+      "hi": "नदी किनारे दो निवेदन"
+    },
+    "subtitle": {
+      "en": "Suratha and Samadhi ask the Goddess for different futures.",
+      "hi": "सुरथ और समाधि देवी से अलग भविष्य माँगते हैं।"
+    },
+    "synopsis": {
+      "en": "A king and a merchant share a long practice, then discover that their deepest wishes lead in different directions.",
+      "hi": "राजा और वैश्य साथ साधना करते हैं, लेकिन उनकी गहरी इच्छाएँ अलग दिशाओं की ओर जाती हैं।"
+    },
+    "cover_image": {
+      "src": "/content-assets/devi-two-requests.webp",
+      "alt": {
+        "en": "Devi appears beside the river before Suratha and Samadhi",
+        "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
+      }
+    },
+    "source_refs": [
+      {
+        "book": "Devi Mahatmya",
+        "arc": "Uttama Charita",
+        "citation": "Chapter 13; opening context from Chapter 1",
+        "edition_note": "The concluding chapter distinguishes Suratha’s request for kingship from the merchant’s request for liberating knowledge.",
+        "external_url": "https://www.hindupedia.com/en/Devi_Mahatmyam_Text"
+      }
+    ],
+    "characters": [
+      "devi",
+      "suratha",
+      "samadhi",
+      "medhas"
+    ],
+    "places": [
+      "The riverbank near Medhas’s hermitage"
+    ],
+    "values": [
+      "Discernment",
+      "Devotion",
+      "Self-knowledge"
+    ],
+    "moods": [
+      "Contemplative",
+      "Resolve"
+    ],
+    "age_band": "older-12+",
+    "duration_min": 7,
+    "festival_tags": [
+      "Navratri"
+    ],
+    "status": "draft",
+    "pages": [
+      {
+        "page_number": 1,
+        "scene_title": {
+          "en": "After the telling",
+          "hi": "कथा सुनने के बाद"
+        },
+        "text": {
+          "en": "The sage Medhas had finished telling of the Goddess. King Suratha and the merchant Samadhi had listened together, but they had not arrived at the hermitage with the same life behind them. Suratha had lost his kingdom. Samadhi had been driven away from his own household. Both knew the strange pull of caring for what had wounded them. Understanding that sorrow did not immediately loosen its hold. Now the sage directed them towards the Goddess herself. The stories they had heard were not a wall between them and their questions. They had become a doorway through which each could begin to seek an answer.",
+          "hi": "ऋषि मेधस देवी की कथा सुना चुके थे। राजा सुरथ और वैश्य समाधि ने साथ बैठकर सुना था, लेकिन आश्रम तक पहुँचने से पहले दोनों का जीवन अलग था। सुरथ अपना राज्य खो चुके थे। समाधि को अपने ही परिवार ने घर से निकाल दिया था। दोनों जानते थे कि जिनसे दुख मिला हो, उनके लिए भी मन में ममता रह सकती है। दुख का कारण समझ लेने से उसका खिंचाव तुरंत समाप्त नहीं होता। अब ऋषि ने उन्हें देवी की शरण में जाने का मार्ग बताया। सुनी हुई कथाएँ उनके प्रश्नों के सामने दीवार नहीं थीं। वे ऐसा द्वार बन गई थीं जिससे दोनों अपना उत्तर खोजने की ओर बढ़ सकते थे।"
+        },
+        "image": {
+          "src": "/content-assets/devi-two-requests.webp",
+          "alt": {
+            "en": "Devi appears beside the river before Suratha and Samadhi",
+            "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
+          }
+        }
+      },
+      {
+        "page_number": 2,
+        "scene_title": {
+          "en": "Beside the river",
+          "hi": "नदी के किनारे"
+        },
+        "text": {
+          "en": "They bowed to the sage and left for the riverbank. There, away from a court and a counting house, they began their worship. They made an image of the Goddess from earth. The work placed something tangible before them: soil given form by hands that had once been occupied with other responsibilities. Neither man had recovered what he had lost. Neither knew how the future would unfold. Yet they could give attention to the act before them. The riverbank became a place where sorrow did not have to be denied before devotion could begin. They came carrying their questions, rather than pretending to have outgrown them.",
+          "hi": "उन्होंने ऋषि को प्रणाम किया और नदी के किनारे चले गए। राजसभा और व्यापार के संसार से दूर, वहीं उन्होंने उपासना आरंभ की। मिट्टी से देवी की प्रतिमा बनाई। जिन हाथों में पहले दूसरे उत्तरदायित्व थे, उन्हीं हाथों ने मिट्टी को रूप दिया। जो खो गया था, वह अभी किसी को वापस नहीं मिला था। भविष्य किस दिशा में जाएगा, यह भी वे नहीं जानते थे। फिर भी सामने के कार्य में अपना ध्यान दे सकते थे। नदी का तट ऐसा स्थान बना जहाँ भक्ति आरंभ करने से पहले दुख को नकारना आवश्यक नहीं था। वे अपने प्रश्न लेकर आए थे, यह दिखाने नहीं कि अब उनके मन में कोई उलझन बची ही नहीं।"
+        },
+        "image": {
+          "src": "/content-assets/devi-two-requests.webp",
+          "alt": {
+            "en": "Devi appears beside the river before Suratha and Samadhi",
+            "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
+          }
+        }
+      },
+      {
+        "page_number": 3,
+        "scene_title": {
+          "en": "Attention over time",
+          "hi": "समय के साथ साधना"
+        },
+        "text": {
+          "en": "The text speaks of three years of worship and austerity. This was not a wish spoken once and quickly rewarded. The two men stayed with their practice through a long passage of time. The Purana describes their discipline in the language of intense ancient devotion; the heart of this scene is their sustained turning towards the Goddess. Each carried a different longing, and neither could perform the other's inward work. Their companionship did not require identical desires. Side by side, they continued. The king remained a king without a kingdom, and the merchant remained a seeker whose question was growing beyond the wealth and household he had lost.",
+          "hi": "ग्रंथ उनकी उपासना और तपस्या की अवधि तीन वर्ष बताता है। यह एक बार इच्छा कहने और तुरंत फल मिल जाने का प्रसंग नहीं था। दोनों लंबे समय तक अपने अभ्यास में लगे रहे। पुराण उनके अनुशासन को प्राचीन गहन भक्ति की भाषा में कहता है; इस दृश्य के केंद्र में देवी की ओर बार-बार लौटता उनका ध्यान है। दोनों की आकांक्षा अलग थी और एक दूसरे के मन का कार्य पूरा नहीं कर सकता था। साथ रहने के लिए उनकी इच्छाओं का एक जैसा होना आवश्यक नहीं था। राजा के पास अभी राज्य नहीं था। वैश्य का प्रश्न धीरे-धीरे खोए हुए धन और घर की सीमा से आगे बढ़ रहा था।"
+        },
+        "image": {
+          "src": "/content-assets/devi-two-requests.webp",
+          "alt": {
+            "en": "Devi appears beside the river before Suratha and Samadhi",
+            "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
+          }
+        }
+      },
+      {
+        "page_number": 4,
+        "scene_title": {
+          "en": "The Goddess appears",
+          "hi": "देवी का प्रकट होना"
+        },
+        "text": {
+          "en": "Pleased with their devotion, the Goddess appeared before them and invited them to ask for what they desired. The invitation did not make the two men exchange their wishes for a single correct answer. It brought each one's deepest concern into the open. Suratha had thought of a kingdom: its people, its authority, and the position from which he had been driven. Samadhi had thought of the mind's bonds: the persistent feeling of possession and the pain that followed it. Standing before the same Goddess, they could speak differently. Their shared journey had led to a moment in which each had to name his own request.",
+          "hi": "उनकी भक्ति से प्रसन्न होकर देवी प्रकट हुईं और दोनों को अपना इच्छित वर माँगने के लिए कहा। इस निमंत्रण का अर्थ यह नहीं था कि वे अपनी अलग इच्छाएँ छोड़कर कोई एक सही उत्तर दें। उससे मन की सबसे गहरी चिंता सामने आई। सुरथ के विचार में राज्य था, उसके लोग थे और वह स्थान था जिससे उन्हें हटा दिया गया था। समाधि के विचार में मन के बंधन थे, अपना होने की लगातार अनुभूति थी और उससे जुड़ी पीड़ा थी। एक ही देवी के सामने खड़े होकर वे अलग बातें कह सकते थे। साथ की यात्रा अब ऐसे क्षण तक लाई थी जहाँ प्रत्येक को अपना निवेदन स्वयं स्पष्ट करना था।"
+        },
+        "image": {
+          "src": "/content-assets/devi-two-requests.webp",
+          "alt": {
+            "en": "Devi appears beside the river before Suratha and Samadhi",
+            "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
+          }
+        }
+      },
+      {
+        "page_number": 5,
+        "scene_title": {
+          "en": "Suratha asks",
+          "hi": "सुरथ का निवेदन"
+        },
+        "text": {
+          "en": "Suratha asked to regain his kingdom in this life and to possess enduring sovereignty in another. He did not disguise his wish as something else. The Goddess answered him: he would recover his kingdom, and in a future birth he would become the Manu called Savarni. The horizon of the reply stretched far beyond the immediate defeat that had brought him to the forest. Yet it began by meeting the question he had actually asked. Suratha's request belonged to responsibility and power in the world. His story was not being ended by making him into a different kind of seeker than the one who stood there.",
+          "hi": "सुरथ ने इसी जीवन में अपना राज्य वापस पाने और अगले जन्म में स्थिर राजसत्ता का वर माँगा। उन्होंने अपनी इच्छा को किसी दूसरे रूप में छिपाया नहीं। देवी ने उत्तर दिया कि उन्हें राज्य फिर मिलेगा और आगे के जन्म में वे सावर्णि नाम के मनु होंगे। यह उत्तर उस पराजय से बहुत आगे तक जाता था जिसने राजा को वन में पहुँचा दिया था। फिर भी उसकी शुरुआत उसी प्रश्न से हुई जो उन्होंने वास्तव में पूछा था। सुरथ का निवेदन संसार के भीतर उत्तरदायित्व और सत्ता से जुड़ा था। उनकी कथा समाप्त करने के लिए उन्हें अचानक किसी दूसरे प्रकार का साधक नहीं बना दिया गया। वे अपने वास्तविक प्रश्न के साथ सुने गए।"
+        },
+        "image": {
+          "src": "/content-assets/devi-two-requests.webp",
+          "alt": {
+            "en": "Devi appears beside the river before Suratha and Samadhi",
+            "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
+          }
+        }
+      },
+      {
+        "page_number": 6,
+        "scene_title": {
+          "en": "Samadhi asks",
+          "hi": "समाधि का निवेदन"
+        },
+        "text": {
+          "en": "Samadhi asked for knowledge that would free him from the binding sense of I and mine. His request was not for a larger fortune or a restored place in the household. He had felt how possession could continue to govern the mind even after possessions were gone. The Goddess promised the knowledge he sought. The two answers were different because the two requests were different. The narrative gives neither man the other's boon. Suratha was promised a return to worldly authority; Samadhi was promised an understanding that would loosen attachment. Both had stood before the Goddess without needing to erase the difference between their paths.",
+          "hi": "समाधि ने ऐसा ज्ञान माँगा जो मैं और मेरा के बंधन से मुक्त कर सके। उनका निवेदन अधिक धन पाने या घर में पुराना स्थान वापस पाने का नहीं था। वे अनुभव कर चुके थे कि वस्तुएँ छूट जाने पर भी अधिकार का भाव मन को बाँधे रख सकता है। देवी ने उन्हें इच्छित ज्ञान देने का वर दिया। उत्तर अलग थे क्योंकि निवेदन अलग थे। कथा किसी को दूसरे का वर नहीं देती। सुरथ को सांसारिक अधिकार की वापसी का आश्वासन मिला और समाधि को आसक्ति खोलने वाली समझ का। देवी के सामने खड़े होने के लिए दोनों को अपने मार्गों के बीच का अंतर मिटाना नहीं पड़ा था।"
+        },
+        "image": {
+          "src": "/content-assets/devi-two-requests.webp",
+          "alt": {
+            "en": "Devi appears beside the river before Suratha and Samadhi",
+            "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
+          }
+        }
+      },
+      {
+        "page_number": 7,
+        "scene_title": {
+          "en": "Two paths from one place",
+          "hi": "एक स्थान से दो राहें"
+        },
+        "text": {
+          "en": "After granting the boons, the Goddess disappeared. The riverbank held the end of their shared petition, but not a single future for them both. One would move towards a kingdom; the other towards liberating knowledge. The closing scene leaves their difference intact. A person listening to it need not hurry to decide which request resembles their own. The story first makes room for honest attention: what is it that I am truly asking for? Suratha and Samadhi had come with pain, listened, practised and spoken. The answer they received did not flatten their lives into one pattern. It met them at the questions they were ready to voice.",
+          "hi": "वर देने के बाद देवी अंतर्धान हो गईं। नदी के किनारे दोनों की संयुक्त प्रार्थना पूरी हुई, लेकिन आगे दोनों के लिए एक ही भविष्य नहीं था। एक का मार्ग राज्य की ओर जाता था, दूसरे का मुक्ति देने वाले ज्ञान की ओर। समापन का दृश्य उनके अंतर को बनाए रखता है। सुनने वाले को तुरंत यह तय करने की जल्दी नहीं करनी पड़ती कि कौन-सी इच्छा अपनी है। कथा पहले सच्चे ध्यान के लिए जगह बनाती है: मैं वास्तव में क्या माँग रहा हूँ? सुरथ और समाधि दुख लेकर आए, उन्होंने सुना, साधना की और अपना निवेदन रखा। मिला हुआ उत्तर उनके जीवन को एक साँचे में नहीं ढालता। वह उनके अपने प्रश्नों से मिलता है।"
+        },
+        "image": {
+          "src": "/content-assets/devi-two-requests.webp",
+          "alt": {
+            "en": "Devi appears beside the river before Suratha and Samadhi",
+            "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "ganesha-the-nearer-world",
+    "slug": "ganesha-the-nearer-world",
+    "collection": "ganesha",
+    "book": "Shiva Purana",
+    "arc": "Rudra Samhita",
+    "order": 1,
+    "title": {
+      "en": "The nearer world",
+      "hi": "पास का संसार"
+    },
+    "subtitle": {
+      "en": "Ganesha finds another meaning in a journey around the earth.",
+      "hi": "पृथ्वी की परिक्रमा में गणेश एक दूसरा अर्थ खोजते हैं।"
+    },
+    "synopsis": {
+      "en": "Two brothers hear the same challenge. While Kartikeya sets out, Ganesha considers a teaching about honouring his parents.",
+      "hi": "दो भाई एक ही चुनौती सुनते हैं। कार्तिकेय यात्रा पर निकलते हैं और गणेश माता तथा पिता के आदर की शिक्षा पर विचार करते हैं।"
+    },
+    "cover_image": {
+      "src": "/content-assets/ganesha-nearer-world.webp",
+      "alt": {
+        "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
+        "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
+      }
+    },
+    "source_refs": [
+      {
+        "book": "Shiva Purana",
+        "arc": "Rudra Samhita",
+        "citation": "Kumara Khanda, Chapter 19",
+        "edition_note": "This episode follows the marriage challenge in the Kumara Khanda; the family story continues in Chapter 20.",
+        "external_url": "https://www.wisdomlib.org/hinduism/book/shiva-purana-english/d/doc226139.html"
+      }
+    ],
+    "characters": [
+      "ganesha",
+      "kartikeya",
+      "shiva",
+      "parvati"
+    ],
+    "places": [
+      "Kailasa"
+    ],
+    "values": [
+      "Discernment",
+      "Respect",
+      "Thoughtfulness"
+    ],
+    "moods": [
+      "Contemplative",
+      "Wonder"
+    ],
+    "age_band": "independent-8+",
+    "duration_min": 7,
+    "festival_tags": [
+      "Ganesh Chaturthi"
+    ],
+    "status": "draft",
+    "pages": [
+      {
+        "page_number": 1,
+        "scene_title": {
+          "en": "A question at home",
+          "hi": "घर में उठा प्रश्न"
+        },
+        "text": {
+          "en": "At Kailasa, a question arose between two brothers. Ganesha and Kartikeya were both ready to begin a new chapter of life, and each wished his marriage to be arranged first. Shiva and Parvati listened to their sons. The answer they offered seemed to turn a household question into an immense journey: whoever travelled around the earth and returned first would marry first. Beyond their home lay rivers, forests, cities and distant shores. To circle that world would take strength, endurance and a clear sense of direction. The brothers heard the same challenge, but they did not understand its possibilities in the same way.",
+          "hi": "कैलास में दो भाइयों के बीच एक प्रश्न उठा। गणेश और कार्तिकेय जीवन का नया अध्याय आरंभ करना चाहते थे और दोनों की इच्छा थी कि उनका विवाह पहले हो। शिव और पार्वती ने अपने पुत्रों की बात सुनी। उन्होंने जो उपाय बताया, उससे घर का छोटा प्रश्न एक बड़ी यात्रा बन गया: जो पहले पृथ्वी की परिक्रमा करके लौटेगा, उसका विवाह पहले होगा। घर के बाहर नदियाँ, वन, नगर और दूर तक फैले समुद्र थे। उस संसार की परिक्रमा के लिए बल, धैर्य और दिशा का ज्ञान चाहिए था। दोनों भाइयों ने एक ही बात सुनी, लेकिन उसमें दिखाई देने वाली संभावनाएँ उनके लिए अलग थीं।"
+        },
+        "image": {
+          "src": "/content-assets/ganesha-nearer-world.webp",
+          "alt": {
+            "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
+            "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
+          }
+        }
+      },
+      {
+        "page_number": 2,
+        "scene_title": {
+          "en": "The road opens",
+          "hi": "यात्रा का आरंभ"
+        },
+        "text": {
+          "en": "Kartikeya set out to make the journey. The challenge called for movement, and he answered it by leaving home and entering the wide world. Ganesha remained behind. He knew that he could not simply imitate his brother and expect the same result. The distance had not become smaller because he wished it so. For a while, the task stood before him in all its size. Yet remaining still did not mean that he had abandoned it. He began to consider what the instruction required, what he had learned, and whether a journey could be understood through more than the ground crossed by a traveller.",
+          "hi": "कार्तिकेय पृथ्वी की परिक्रमा करने निकल पड़े। चुनौती यात्रा की थी और उन्होंने घर से बाहर जाकर उसका उत्तर दिया। गणेश वहीं रहे। वे जानते थे कि भाई की नकल करने भर से वही परिणाम नहीं मिलेगा। उनके चाहने से पृथ्वी का विस्तार छोटा नहीं हो सकता था। कुछ समय तक पूरा कार्य अपनी विशालता के साथ उनके सामने रहा। लेकिन रुकने का अर्थ यह नहीं था कि उन्होंने प्रयत्न छोड़ दिया था। वे सोचने लगे कि माता और पिता के वचन का आशय क्या है, सीखा हुआ ज्ञान क्या कहता है और क्या किसी यात्रा को केवल तय की गई दूरी से समझना पर्याप्त होता है।"
+        },
+        "image": {
+          "src": "/content-assets/ganesha-nearer-world.webp",
+          "alt": {
+            "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
+            "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
+          }
+        }
+      },
+      {
+        "page_number": 3,
+        "scene_title": {
+          "en": "Another way to listen",
+          "hi": "सुनने का दूसरा ढंग"
+        },
+        "text": {
+          "en": "Ganesha turned his attention towards the teaching that parents were worthy of reverence. This was not a new road appearing beneath his feet. It was a way of looking again at the place where he already stood. The earth was vast; the obligations closest to him were also real. He could not claim to have crossed mountains or oceans that he had never visited. Instead, he would offer an action whose meaning he was prepared to explain. Before asking his parents to accept his reasoning, he would honour them. His answer began with care, rather than with an announcement that he had already won.",
+          "hi": "गणेश का ध्यान उस शिक्षा की ओर गया जिसमें माता और पिता को आदर देने का महत्त्व बताया जाता है। उनके पैरों के नीचे कोई नया रास्ता नहीं उग आया था। यह उसी स्थान को फिर से देखने का एक ढंग था जहाँ वे खड़े थे। पृथ्वी विशाल थी और पास के संबंधों का उत्तरदायित्व भी वास्तविक था। जिन पहाड़ों और समुद्रों तक वे गए ही नहीं थे, उन्हें पार करने का दावा वे नहीं कर सकते थे। इसलिए उन्होंने ऐसा कर्म करने का निश्चय किया जिसका अर्थ समझा सकें। अपना तर्क स्वीकार कराने से पहले वे माता और पिता का सम्मान करेंगे। उनके उत्तर की शुरुआत विजय की घोषणा से नहीं, आदर से हुई।"
+        },
+        "image": {
+          "src": "/content-assets/ganesha-nearer-world.webp",
+          "alt": {
+            "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
+            "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
+          }
+        }
+      },
+      {
+        "page_number": 4,
+        "scene_title": {
+          "en": "Seven quiet circles",
+          "hi": "सात शांत परिक्रमाएँ"
+        },
+        "text": {
+          "en": "He arranged seats for Shiva and Parvati and invited them to sit. Then he worshipped them and walked around them seven times. The movement was small enough to take place at home, yet he gave it his full attention. A circle ended where it began, and another followed. There was no distant horizon to measure, no river to ford, no mountain pass to cross. What mattered here was the relationship at the centre of the movement. Ganesha completed the seven rounds and bowed. Only then did he ask that the promise about marriage be fulfilled. His parents still had a question for him.",
+          "hi": "उन्होंने शिव और पार्वती के लिए आसन रखे और उनसे बैठने का अनुरोध किया। फिर उनकी पूजा की और उनके चारों ओर सात परिक्रमाएँ कीं। यह कार्य घर में ही पूरा हो सकता था, फिर भी गणेश ने उसे पूरा ध्यान दिया। एक परिक्रमा वहीं समाप्त होती जहाँ से चली थी, और उसके बाद अगली शुरू होती। यहाँ दूर का क्षितिज नापना नहीं था, नदी पार नहीं करनी थी और पर्वत का मार्ग नहीं खोजना था। इस गति के केंद्र में माता और पिता के साथ उनका संबंध था। सातों परिक्रमाएँ पूरी करके गणेश ने प्रणाम किया। तभी उन्होंने विवाह का वचन पूरा करने का निवेदन किया। माता और पिता के मन में अभी एक प्रश्न था।"
+        },
+        "image": {
+          "src": "/content-assets/ganesha-nearer-world.webp",
+          "alt": {
+            "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
+            "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
+          }
+        }
+      },
+      {
+        "page_number": 5,
+        "scene_title": {
+          "en": "An answer must be explained",
+          "hi": "उत्तर का अर्थ"
+        },
+        "text": {
+          "en": "Shiva and Parvati reminded him of the journey around the earth. Kartikeya had gone to undertake it; Ganesha had remained at home. Ganesha answered by bringing forward the teaching on honouring parents. He argued that worshipping them and circling them carried the merit of circling the earth. His answer depended on that sacred understanding, not on pretending that seven walks had covered the world's physical distance. The distinction mattered. He was asking his parents to recognise another meaning of the task. The scene became a conversation about knowledge: not merely remembering a teaching, but knowing when it could illuminate an action.",
+          "hi": "शिव और पार्वती ने उन्हें पृथ्वी की परिक्रमा की शर्त याद दिलाई। कार्तिकेय उसे पूरा करने गए थे और गणेश घर पर रहे थे। गणेश ने उत्तर में माता और पिता के आदर संबंधी शिक्षा रखी। उन्होंने कहा कि उनकी पूजा और परिक्रमा करने का पुण्य पृथ्वी की परिक्रमा के समान माना गया है। उनका तर्क इसी धार्मिक समझ पर आधारित था, इस दावे पर नहीं कि सात छोटे चक्करों में संसार की भौतिक दूरी तय हो गई थी। यह अंतर महत्त्वपूर्ण था। वे अपने माता और पिता से कार्य का दूसरा अर्थ पहचानने का आग्रह कर रहे थे। प्रसंग ज्ञान की चर्चा बन गया: शिक्षा याद रखना और उचित अवसर पर उसका अर्थ समझना।"
+        },
+        "image": {
+          "src": "/content-assets/ganesha-nearer-world.webp",
+          "alt": {
+            "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
+            "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
+          }
+        }
+      },
+      {
+        "page_number": 6,
+        "scene_title": {
+          "en": "The promise is recognised",
+          "hi": "वचन की स्वीकृति"
+        },
+        "text": {
+          "en": "His parents accepted the force of his reasoning and agreed to arrange his marriage. Ganesha had met the challenge through understanding and devotion, while his brother was still completing the outward journey. The story does not require us to make Kartikeya's effort foolish in order to value Ganesha's insight. One had answered through travel; the other had found a sacred meaning close to home. Their different paths would have consequences for the family, and the Purana continues beyond this moment. Here, however, the decision was made. A question that had seemed to demand only speed had opened into a question about how wisdom acts.",
+          "hi": "माता और पिता ने उनके तर्क को स्वीकार किया और विवाह की व्यवस्था करने पर सहमति दी। गणेश ने समझ और भक्ति के सहारे चुनौती का उत्तर दिया था, जबकि उनके भाई की बाहरी यात्रा अभी चल रही थी। गणेश की सूझ का आदर करने के लिए कार्तिकेय के प्रयत्न को मूर्खता कहना आवश्यक नहीं है। एक ने यात्रा की राह चुनी, दूसरे ने घर के पास धार्मिक अर्थ पहचाना। इन अलग राहों का परिवार पर आगे प्रभाव पड़ेगा और पुराण की कथा इस क्षण के बाद भी चलती है। यहाँ निर्णय हो चुका था। जो प्रश्न केवल गति की माँग करता दिखाई दिया था, वह विवेक के प्रयोग का प्रश्न बन गया।"
+        },
+        "image": {
+          "src": "/content-assets/ganesha-nearer-world.webp",
+          "alt": {
+            "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
+            "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
+          }
+        }
+      },
+      {
+        "page_number": 7,
+        "scene_title": {
+          "en": "The world close at hand",
+          "hi": "पास का संसार"
+        },
+        "text": {
+          "en": "The image that remains is simple: two parents seated, a son walking around them, and a journey understood afresh. It invites attention to what can be overlooked when every answer seems to lie far away. This does not make the wider world unimportant, nor does it turn every difficult instruction into a puzzle to evade. Ganesha offered reasons for his act and stood ready to be questioned. His stillness held effort; his small circle held an idea. Beside the courage to set out, the story leaves room for another kind of courage: to pause, consider carefully, and speak for an understanding one can honestly defend.",
+          "hi": "अंत में एक सरल दृश्य मन में रह जाता है: आसन पर बैठे माता और पिता, उनकी परिक्रमा करता पुत्र और यात्रा का नया अर्थ। जब हर उत्तर दूर कहीं दिखाई देता हो, तब पास की किसी महत्त्वपूर्ण बात पर ध्यान छूट सकता है। इस कथा से बाहरी संसार का महत्त्व कम नहीं होता और न हर कठिन निर्देश से बच निकलने की सीख मिलती है। गणेश ने अपने कर्म का कारण बताया और प्रश्नों का उत्तर देने को तैयार रहे। उनके ठहरने में प्रयत्न था और छोटे वृत्त में एक विचार। आगे निकलने के साहस के साथ कथा दूसरे साहस के लिए भी जगह रखती है: रुकना, ध्यान से सोचना और अपनी समझ का सच्चा आधार प्रस्तुत करना।"
+        },
+        "image": {
+          "src": "/content-assets/ganesha-nearer-world.webp",
+          "alt": {
+            "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
+            "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "mahabharata-the-companion",
+    "slug": "mahabharata-the-companion",
+    "collection": "mahabharata",
+    "book": "Vyasa Mahabharata",
+    "arc": "Mahaprasthanika Parva",
+    "order": 1,
+    "title": {
+      "en": "The companion he would not leave",
+      "hi": "जिस साथी को छोड़ना स्वीकार नहीं था"
+    },
+    "subtitle": {
+      "en": "At the threshold of heaven, Yudhishthira remembers a dog.",
+      "hi": "स्वर्ग की दहलीज पर युधिष्ठिर कुत्ते के साथ को याद रखते हैं।"
+    },
+    "synopsis": {
+      "en": "Indra offers a heavenly journey, but one condition asks the king to abandon the creature still beside him.",
+      "hi": "इंद्र दिव्य यात्रा का निमंत्रण देते हैं, लेकिन एक शर्त राजा से पास खड़े प्राणी का साथ छोड़ने को कहती है।"
+    },
+    "cover_image": {
+      "src": "/content-assets/mahabharata-companion.webp",
+      "alt": {
+        "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
+        "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
+      }
+    },
+    "source_refs": [
+      {
+        "book": "Vyasa Mahabharata",
+        "arc": "Mahaprasthanika Parva",
+        "citation": "Section 3",
+        "edition_note": "The episode follows the final section of Mahaprasthanika Parva in the K. M. Ganguli edition.",
+        "external_url": "https://sacred-texts.com/hin/m17/m17003.htm"
+      }
+    ],
+    "characters": [
+      "yudhishthira",
+      "indra",
+      "dharma"
+    ],
+    "places": [
+      "The mountain path on the great departure"
+    ],
+    "values": [
+      "Compassion",
+      "Loyalty",
+      "Responsibility"
+    ],
+    "moods": [
+      "Contemplative",
+      "Resolve"
+    ],
+    "age_band": "older-12+",
+    "duration_min": 7,
+    "festival_tags": [],
+    "status": "draft",
+    "pages": [
+      {
+        "page_number": 1,
+        "scene_title": {
+          "en": "The last companion",
+          "hi": "अंतिम साथी"
+        },
+        "text": {
+          "en": "Near the end of the great journey, Yudhishthira walked with a dog beside him. The kingdom had been left behind, and the companions who had begun the journey with him had fallen along the way. Draupadi and his brothers were no longer walking at his side. The dog, however, remained alive and followed him. Nothing in its appearance announced an important visitor. It was simply a creature that had stayed. Before the king stood the possibility of leaving the human road altogether. Beside him stood a life that still depended on what he would choose. The distance between those two concerns was about to become the whole question.",
+          "hi": "महान यात्रा के अंत के निकट युधिष्ठिर के साथ एक कुत्ता चल रहा था। राज्य पीछे छूट चुका था और जिन्होंने साथ यात्रा आरंभ की थी, वे मार्ग में गिर चुके थे। द्रौपदी और उनके भाई अब उनके पास नहीं चल रहे थे। कुत्ता जीवित था और साथ बना हुआ था। उसके रूप से किसी विशेष अतिथि का संकेत नहीं मिलता था। वह बस ऐसा जीव था जिसने साथ नहीं छोड़ा था। राजा के सामने मनुष्य के मार्ग से आगे निकल जाने की संभावना थी। उनके पास एक ऐसा जीवन भी था जो अब भी उनके निर्णय पर निर्भर था। इन दो बातों के बीच का अंतर अब पूरी कथा का प्रश्न बनने वाला था।"
+        },
+        "image": {
+          "src": "/content-assets/mahabharata-companion.webp",
+          "alt": {
+            "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
+            "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
+          }
+        }
+      },
+      {
+        "page_number": 2,
+        "scene_title": {
+          "en": "A chariot arrives",
+          "hi": "रथ का आगमन"
+        },
+        "text": {
+          "en": "Indra arrived in a heavenly chariot and invited Yudhishthira to ascend. The king first spoke of those he had lost. He did not wish to enter heaven without his brothers and Draupadi. Indra assured him that they had already reached the heavenly regions after leaving their bodies, and that he would see them there. Yudhishthira himself was being offered entry in his living body. The invitation was extraordinary, but the king did not step into the chariot at once. The answer about his family had not answered every obligation. The dog was still there. Yudhishthira asked that this faithful companion be allowed to go with him.",
+          "hi": "इंद्र दिव्य रथ पर आए और युधिष्ठिर से उसमें बैठने को कहा। राजा ने पहले अपने बिछुड़े साथियों की बात की। वे भाइयों और द्रौपदी के बिना स्वर्ग नहीं जाना चाहते थे। इंद्र ने आश्वासन दिया कि शरीर छोड़कर वे पहले ही दिव्य लोकों में पहुँच चुके हैं और वहाँ उनसे भेंट होगी। युधिष्ठिर को अपने जीवित शरीर के साथ प्रवेश का निमंत्रण मिला था। यह असाधारण अवसर था, पर राजा तुरंत रथ पर नहीं बैठे। परिवार के बारे में मिला उत्तर सभी उत्तरदायित्वों का उत्तर नहीं था। कुत्ता अभी उनके पास खड़ा था। युधिष्ठिर ने इस निष्ठावान साथी को भी साथ चलने देने का आग्रह किया।"
+        },
+        "image": {
+          "src": "/content-assets/mahabharata-companion.webp",
+          "alt": {
+            "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
+            "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
+          }
+        }
+      },
+      {
+        "page_number": 3,
+        "scene_title": {
+          "en": "The condition",
+          "hi": "सामने रखी शर्त"
+        },
+        "text": {
+          "en": "Indra urged him to leave the dog behind. Heavenly happiness, honour and immortality were waiting; abandoning this animal, he said, need not be considered cruel. The king listened, but the scale of the promised reward did not make the companion disappear from his attention. The dog had followed him without a bargain and without power to demand protection. That made the decision more serious, not less. Yudhishthira answered that he did not want happiness purchased by casting off one who was devoted to him. It was not a refusal to recognise the splendour of the offer. It was a refusal to let splendour settle the question by itself.",
+          "hi": "इंद्र ने उन्हें कुत्ते को पीछे छोड़ देने के लिए कहा। स्वर्ग का सुख, सम्मान और अमरता उनकी प्रतीक्षा कर रहे थे; उनके अनुसार इस जीव को छोड़ना क्रूरता नहीं माना जाना चाहिए। राजा ने सुना, लेकिन बड़े पुरस्कार के वचन से साथी उनके ध्यान से ओझल नहीं हुआ। कुत्ता किसी सौदे के बिना साथ चला था और उसके पास सुरक्षा माँगने की शक्ति भी नहीं थी। इससे निर्णय छोटा नहीं, अधिक गंभीर हो गया। युधिष्ठिर ने उत्तर दिया कि जो उनके प्रति निष्ठावान है, उसे छोड़कर मिलने वाला सुख नहीं चाहिए। वे प्रस्ताव की महानता को नकार नहीं रहे थे। वे उस महानता को अकेले निर्णय करने का अधिकार नहीं दे रहे थे।"
+        },
+        "image": {
+          "src": "/content-assets/mahabharata-companion.webp",
+          "alt": {
+            "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
+            "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
+          }
+        }
+      },
+      {
+        "page_number": 4,
+        "scene_title": {
+          "en": "A difficult comparison",
+          "hi": "कठिन तुलना"
+        },
+        "text": {
+          "en": "Indra challenged him again. Had he not already left his brothers and Draupadi behind? Why should a dog hold him back now? Yudhishthira drew a distinction between the dead, whom he could not restore to life, and the living creature still seeking his protection. He had not deserted his family while they lived. The dog was alive now. To abandon it would therefore be another kind of act, chosen in the present for his own advantage. The question was not whether he could undo everything that had happened on the mountain. It was whether grief and loss could become an excuse to disregard the life that remained beside him.",
+          "hi": "इंद्र ने फिर प्रश्न किया। क्या वे अपने भाइयों और द्रौपदी को पीछे नहीं छोड़ आए थे? अब एक कुत्ता उन्हें क्यों रोक रहा था? युधिष्ठिर ने उन मृत साथियों में, जिन्हें वे पुनः जीवन नहीं दे सकते थे, और इस जीवित प्राणी में अंतर रखा जो उनकी सुरक्षा चाहता था। परिवार के जीवित रहते उन्होंने उनका साथ नहीं छोड़ा था। कुत्ता अभी जीवित था। उसे त्यागना एक अलग प्रकार का कर्म होगा, जो वे वर्तमान में अपने लाभ के लिए चुनेंगे। प्रश्न यह नहीं था कि पर्वत पर हुई हर घटना को पलट सकते हैं या नहीं। प्रश्न था कि क्या दुख और क्षति पास बचे जीवन की उपेक्षा का कारण बन सकते हैं।"
+        },
+        "image": {
+          "src": "/content-assets/mahabharata-companion.webp",
+          "alt": {
+            "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
+            "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
+          }
+        }
+      },
+      {
+        "page_number": 5,
+        "scene_title": {
+          "en": "The refusal stands",
+          "hi": "निर्णय पर स्थिर"
+        },
+        "text": {
+          "en": "Yudhishthira remained firm. A being that was frightened, helpless or seeking refuge was not someone he would willingly abandon for his own happiness. The chariot had not moved farther away, and the dog had not become more impressive. Nothing outward needed to change for the choice to become clear. The king was prepared to give up the offered ascent rather than the companion. He did not know that a revelation was about to follow. His decision had to be made with the knowledge available to him: an invitation, a condition, and a vulnerable creature that had trusted him. The refusal was complete before any reward for it could be seen.",
+          "hi": "युधिष्ठिर अपने निर्णय पर स्थिर रहे। जो भयभीत हो, असहाय हो या शरण चाहता हो, उसे अपने सुख के लिए छोड़ना उन्हें स्वीकार नहीं था। रथ उनसे दूर नहीं गया था और कुत्ते का रूप अधिक प्रभावशाली नहीं हुआ था। निर्णय स्पष्ट होने के लिए बाहर कुछ बदलना आवश्यक नहीं था। राजा साथी को छोड़ने के स्थान पर दिव्य यात्रा का अवसर छोड़ने को तैयार थे। वे नहीं जानते थे कि अगले क्षण कोई रहस्य खुलेगा। उन्हें उपलब्ध ज्ञान से ही निर्णय करना था: एक निमंत्रण, उसके साथ रखी शर्त और उन पर भरोसा करने वाला निर्बल जीव। निर्णय का कोई पुरस्कार दिखाई देने से पहले ही उनका इनकार पूरा हो चुका था।"
+        },
+        "image": {
+          "src": "/content-assets/mahabharata-companion.webp",
+          "alt": {
+            "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
+            "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
+          }
+        }
+      },
+      {
+        "page_number": 6,
+        "scene_title": {
+          "en": "The hidden visitor",
+          "hi": "छिपा हुआ आगंतुक"
+        },
+        "text": {
+          "en": "Then the dog revealed himself as Dharma, the divine embodiment of righteousness and Yudhishthira's father. He praised the king's compassion and recalled an earlier testing in the forest. The creature who had appeared unable to speak for himself had carried a question that even a king could not answer through rank or power. Yudhishthira had chosen before he knew who stood beside him. That order gives the moment its force. He had not protected the dog because it might turn out to be divine. The revelation recognised a compassion already offered to what he believed was an ordinary dependent creature at the edge of the human world.",
+          "hi": "तब कुत्ते ने धर्म के रूप में स्वयं को प्रकट किया। वे धर्म के देवता और युधिष्ठिर के पिता थे। उन्होंने राजा की करुणा की प्रशंसा की और वन में हुई एक पुरानी परीक्षा का स्मरण कराया। जो प्राणी अपने लिए बोलने में असमर्थ दिखता था, वह ऐसा प्रश्न लेकर आया था जिसका उत्तर पद या शक्ति से नहीं दिया जा सकता। युधिष्ठिर ने यह जानने से पहले निर्णय किया था कि उनके पास कौन है। इसी क्रम से प्रसंग का महत्त्व बनता है। उन्होंने कुत्ते की रक्षा इसलिए नहीं की थी कि वह देवता निकल सकता है। रहस्य खुलने से उस करुणा की पहचान हुई जो एक साधारण आश्रित जीव को पहले ही दी जा चुकी थी।"
+        },
+        "image": {
+          "src": "/content-assets/mahabharata-companion.webp",
+          "alt": {
+            "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
+            "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
+          }
+        }
+      },
+      {
+        "page_number": 7,
+        "scene_title": {
+          "en": "What he carries onward",
+          "hi": "आगे साथ जाती बात"
+        },
+        "text": {
+          "en": "Yudhishthira was received into the chariot and carried towards heaven. Yet the passage does not end with a king forgetting everyone in the brightness of his own success. He again asked to be where his brothers and Draupadi were. Their story would continue beyond this scene. What had been settled on the mountain was narrower and clearer: the promised destination had not cancelled his responsibility towards a living companion. The dog was no longer a dog, but the choice made for him remained. At the threshold of a world beyond ordinary life, Yudhishthira had insisted that care for the vulnerable still belonged to the journey.",
+          "hi": "युधिष्ठिर रथ पर बैठाए गए और स्वर्ग की ओर चले। लेकिन प्रसंग ऐसे राजा पर समाप्त नहीं होता जो अपनी सफलता के प्रकाश में सबको भूल गया हो। उन्होंने फिर अपने भाइयों और द्रौपदी के पास जाने की इच्छा रखी। उनकी कथा इस दृश्य के आगे भी चलेगी। पर्वत पर जो बात निश्चित हुई थी, वह अधिक सीमित और स्पष्ट थी: वादा किया गया गंतव्य जीवित साथी के प्रति उत्तरदायित्व को समाप्त नहीं कर सकता। कुत्ता अब कुत्ता नहीं रह गया था, लेकिन उसके लिए किया गया निर्णय बना रहा। साधारण जीवन से आगे के संसार की दहलीज पर युधिष्ठिर ने कहा था कि निर्बल की देखभाल भी यात्रा का हिस्सा है।"
+        },
+        "image": {
+          "src": "/content-assets/mahabharata-companion.webp",
+          "alt": {
+            "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
+            "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
+          }
+        }
+      }
+    ]
+  }
+]
