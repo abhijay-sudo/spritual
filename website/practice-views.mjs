@@ -8,7 +8,7 @@ export function lotusSvg() {
   return `<svg viewBox="0 0 64 64" fill="none" aria-hidden="true" class="practice-flower">${ANCHOR_IDS.map((id,i) => `<path data-practice-petal="${id}" d="M32 31C20 22 23 9 32 3c9 6 12 19 0 28Z" transform="rotate(${i*36} 32 32)"/>`).join('')}<circle cx="32" cy="32" r="5"/></svg>`;
 }
 export function lotusNav(lang) {
-  return `<a class="practice-lotus" href="${url(lang,'/#dharma-yatra')}" data-practice-lotus aria-label="${t(lang,'Lotus of Practice — open your Dharma Yatra','अभ्यास का कमल — अपनी धर्म यात्रा खोलें')}" title="${t(lang,'Lotus of Practice','अभ्यास का कमल')}">${lotusSvg()}</a>`;
+  return `<a class="practice-lotus" href="${url(lang,'/reading-room/#dharma-yatra')}" data-practice-lotus aria-label="${t(lang,'Lotus of Practice — open your Dharma Yatra','अभ्यास का कमल — अपनी धर्म यात्रा खोलें')}" title="${t(lang,'Lotus of Practice','अभ्यास का कमल')}">${lotusSvg()}</a>`;
 }
 export function sankalpaCard(story,lang) {
   const practice = practiceForStory(story.id);
@@ -31,7 +31,7 @@ export function sankalpaCard(story,lang) {
     <p class="sankalpa-note">${t(lang,'A petal marks an intention. Choose “I tried it” after practising. Your petals stay, even when you take a break.','एक पंखुड़ी संकल्प का संकेत है। अभ्यास करने के बाद “मैंने अभ्यास किया” चुनें। विराम लेने पर भी पंखुड़ियाँ बनी रहती हैं।')}</p>
     <p class="sankalpa-storage-note">${t(lang,'Kept only in this browser.','केवल इस ब्राउज़र में सहेजा जाता है।')}</p>
     <p class="sankalpa-status" data-sankalpa-status role="status" aria-live="polite"></p><button type="button" class="text-button" data-sankalpa-undo hidden>${t(lang,'Undo','वापस लें')}</button>
-    <a class="sankalpa-return text-link" href="${url(lang,'/#dharma-yatra')}">${t(lang,'Return to Dharma Yatra','धर्म यात्रा पर लौटें')} <span aria-hidden="true">→</span></a>
+    <a class="sankalpa-return text-link" href="${url(lang,'/reading-room/#dharma-yatra')}">${t(lang,'Return to Dharma Yatra','धर्म यात्रा पर लौटें')} <span aria-hidden="true">→</span></a>
     <noscript><p>${t(lang,'You can practise this invitation without saving it. Enable JavaScript to keep a petal on this browser.','आप इसे सहेजे बिना भी अपना सकते हैं। इस ब्राउज़र में पंखुड़ी रखने के लिए JavaScript चालू करें।')}</p></noscript>
   </section>`;
 }

@@ -28,10 +28,10 @@ test('single chapter readers return to their own contents without sending reader
     assert(ending.includes(`href="/${prefix}books/${volume.id}/"`));
   }
 });
-test('welcome is present on both entry pages, but not chapter contents or readers',async()=>{
+test('all entry pages and readers remain free of the retired welcome gate',async()=>{
   for(const route of ['index.html','books/index.html','hi/books/index.html']) {
     const html=await readFile(new URL(`../dist/${route}`,import.meta.url),'utf8');
-    assert.equal((html.match(/id="welcome-intro"/g)||[]).length,1,route);
+    assert.equal((html.match(/id="welcome-intro"/g)||[]).length,0,route);
   }
   for(const route of ['books/shiva/index.html','books/ramayana/index.html','books/read/shiva-river/index.html']){
     const html=await readFile(new URL(`../dist/${route}`,import.meta.url),'utf8');

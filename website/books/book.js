@@ -1,5 +1,5 @@
 import{KEY,parsePlaces,keepPlace,encodePlaces}from'./state.js';
-const lang=document.body.dataset.bookLanguage||'en',hi=lang==='hi';
+const lang=document.body.dataset.bookLanguage||document.documentElement.lang||'en',hi=lang==='hi';
 const text={kept:hi?'पृष्ठ सहेजा गया':'Page kept',keep:hi?'यह पृष्ठ सहेजें':'Keep this page',blocked:hi?'यह ब्राउज़र पृष्ठ सहेज नहीं सका। आप पढ़ना जारी रख सकते हैं।':'This browser could not save your page. You can keep reading.',corrupt:hi?'सहेजे पृष्ठ पढ़े नहीं जा सके। आपका पुराना डेटा बदला नहीं गया।':'Saved pages could not be read. Your existing data has been left unchanged.',removed:hi?'सहेजा पृष्ठ हटाया गया':'Kept page removed',remove:hi?'हटाएँ':'Remove'};
 const status=message=>document.querySelectorAll('[data-storage-status]').forEach(n=>n.textContent=message);
 function places(){let raw;try{raw=localStorage.getItem(KEY);}catch{return {ok:false,value:[],reason:'blocked'};}try{return {ok:true,value:parsePlaces(raw)};}catch{return {ok:false,value:[],reason:'corrupt'};}}
@@ -122,7 +122,7 @@ function applyAppearance(){
   themes.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.pageTheme===appearance.theme)));
  }
 }
-function saveAppearance(){applyAppearance();animation?.cancel();try{sessionStorage.setItem(appearanceKey,JSON.stringify(appearance));}catch{}}
+function saveAppearance(){applyAppearance();animation?.cancel();try{sessionStorage.setItem(appearanceKey,JSON.stringify(appearance));if(appearance.size)sessionStorage.setItem('spritual_experience_size_v1',appearance.size);}catch{}}
 applyAppearance();
 document.querySelectorAll('[data-text-size]').forEach(b=>b.addEventListener('click',()=>{appearance.size=b.dataset.textSize;saveAppearance();}));
 document.querySelectorAll('button[data-page-theme]').forEach(b=>b.addEventListener('click',()=>{appearance.theme=b.dataset.pageTheme;saveAppearance();}));

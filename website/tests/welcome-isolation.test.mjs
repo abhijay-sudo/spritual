@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile,access,readdir} from 'node:fs/promises';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
+import {injectWelcome} from '../welcome-preview/build.mjs';
 
 // Read the encoded dimensions without adding an image-decoding dependency to website CI.
 function webpDimensions(bytes){
@@ -19,9 +20,10 @@ function webpDimensions(bytes){
   assert.fail('WebP is missing an image dimensions header');
 }
 
-test('public output contains only hash-pinned responsive portraits within the transfer budget',async()=>{
+test('archived portraits remain hash-pinned while public output excludes the welcome payload',async()=>{
   const html=await readFile(new URL('../dist/index.html',import.meta.url),'utf8');
-  assert(html.includes('welcome-intro'));assert(html.includes('/stories-app/welcome/'));
+  assert(!html.includes('welcome-intro'));assert(!html.includes('/stories-app/welcome/'));
+  await assert.rejects(access(new URL('../dist/stories-app/welcome/',import.meta.url)));
   const approval=JSON.parse(await readFile(new URL('../welcome-preview/release.json',import.meta.url),'utf8'));
   assert.deepEqual(approval.portraits.map(portrait=>portrait.id),['ganesha','lakshmi','rama','hanuman','shiva','durga','krishna','saraswati']);
   const expectedFiles=['welcome.css','welcome.js'];
@@ -43,7 +45,7 @@ test('public output contains only hash-pinned responsive portraits within the tr
       const basename=variant.file.slice('assets/portraits/'.length);
       assert.equal(variant.width,Math.round(portrait.width*variant.height/portrait.height));
       assert(variant.width<=portrait.width&&variant.height<=portrait.height,'Delivery must not pretend an upscale adds detail');
-      const published=await readFile(new URL(`../dist/stories-app/welcome/portraits/${basename}`,import.meta.url));
+      const published=await readFile(new URL(`../welcome-preview/assets/portraits/${basename}`,import.meta.url));
       assert.equal(published.length,variant.bytes,variant.file);
       assert.equal(createHash('sha256').update(published).digest('hex'),variant.sha256,variant.file);
       assert.deepEqual(webpDimensions(published),{width:variant.width,height:variant.height},variant.file);
@@ -53,22 +55,16 @@ test('public output contains only hash-pinned responsive portraits within the tr
     largestSelectedBytes+=largestPortraitBytes;
   }
   assert(largestSelectedBytes<=1500000,`All eight largest selected portraits total ${largestSelectedBytes} bytes; budget is 1.5MB`);
-  const files=await readdir(new URL('../dist/stories-app/welcome/',import.meta.url),{recursive:true,withFileTypes:true});
-  const root=new URL('../dist/stories-app/welcome/',import.meta.url).pathname;
-  const publishedFiles=files.filter(file=>file.isFile()).map(file=>`${file.parentPath.slice(root.length).replace(/^\//,'')}/${file.name}`.replace(/^\//,''));
-  assert.deepEqual(publishedFiles.sort(),expectedFiles.sort(),'No source masters, old sprite or release metadata may leak into public output');
-  await assert.rejects(access(new URL('../dist/stories-app/welcome/deity-silhouettes.webp',import.meta.url)));
-  await assert.rejects(access(new URL('../dist/stories-app/welcome/deity-silhouettes.png',import.meta.url)));
-  await assert.rejects(access(new URL('../dist/stories-app/welcome/release.json',import.meta.url)));
+
 });
-test('the welcome uses eight individual image elements without circular or oval framing',async()=>{
-  const html=await readFile(new URL('../dist/index.html',import.meta.url),'utf8');
+test('archived welcome renderer retains its individually framed source-art contract',async()=>{
+  const html=injectWelcome('<html><head></head><body></body></html>');
   const intro=html.match(/<dialog\b[^>]*id="welcome-intro"[\s\S]*?<\/dialog>/)?.[0];
   assert(intro,'Homepage must contain the native welcome dialog');
   assert.equal([...intro.matchAll(/<img\b[^>]*\bdata-welcome-art(?:=|\s|>)/g)].length,8);
   assert.deepEqual([...intro.matchAll(/data-deity="([a-z]+)"/g)].map(match=>match[1]),['ganesha','lakshmi','rama','hanuman','shiva','durga','krishna','saraswati']);
   assert(!/welcome-(?:arch|horizon)|<(?:circle|ellipse)\b/i.test(intro),'No oval arch or circular framing belongs in the opening');
-  const css=await readFile(new URL('../dist/stories-app/welcome/welcome.css',import.meta.url),'utf8');
+  const css=await readFile(new URL('../welcome-preview/welcome.css',import.meta.url),'utf8');
   assert(!/welcome-(?:arch|horizon)|clip-path\s*:\s*(?:circle|ellipse)\(|border-radius\s*:\s*50%/i.test(css));
 });
 test('hosted builds reject the welcome preview before writing output',()=>{

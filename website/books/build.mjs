@@ -1,3 +1,4 @@
+import {experienceHeader} from '../experience/shell.mjs';
 import{mkdir,readFile,writeFile,copyFile}from'node:fs/promises';
 import{resolve}from'node:path';
 import{publicBooks,validateBook}from'./model.mjs';
@@ -13,7 +14,13 @@ export async function buildBooks(out,options={}){
  async function put(route,html){await mkdir(resolve(out,'.'+route),{recursive:true});await writeFile(resolve(out,'.'+route,'index.html'),responsiveImageHtml(html,images,{page:route.includes('/read/')?'reader':'shelf'}));routes.push(route);}
  for(const lang of ['en','hi']){
   const volumes=libraryCollections(books,options);
-  await put(base(lang),libraryHome(books,lang,options));
+  const prefix=lang==='hi'?'/hi':'',hub=libraryHome(books,lang,options);
+  const paths=`<nav class="experience-library-paths" aria-label="${lang==='hi'?'पुस्तकालय में खोजें':'Explore the library'}"><a href="${prefix}/books/stories/">${lang==='hi'?'सभी 16 कथाएँ':'All 16 stories'}</a><a href="${prefix}/library/stories/">${lang==='hi'?'मूल्य के अनुसार खोजें':'Browse by value'}</a><a href="${prefix}/reading-room/#dharma-yatra">${lang==='hi'?'धर्म यात्रा':'Dharma Yatra'}</a><a href="${prefix}/library/sources/">${lang==='hi'?'स्रोत-मार्गदर्शिकाएँ':'Source guides'}</a></nav>`;
+  const unified=hub.replace(/(<main[^>]*>)/,'$1'+paths).replaceAll(`https://spritual.co.in${base(lang)}`,`https://spritual.co.in${prefix}/library/`);
+  await put(`${prefix}/library/stories/`,(await readFile(resolve(out,`.${prefix}/library/index.html`),'utf8')).replaceAll('https://spritual.co.in/library/','https://spritual.co.in/library/stories/').replaceAll('https://spritual.co.in/hi/library/','https://spritual.co.in/hi/library/stories/').replace(/<title>.*?<\/title>/,`<title>${lang==='hi'?'मूल्य के अनुसार कथाएँ':'Stories by value'} — Spritual</title>`));
+  await put(base(lang),unified);
+  await put(`${prefix}/library/`,unified.replace(experienceHeader(lang,base(lang)),experienceHeader(lang,`${prefix}/library/`)).replace('href="#main"','href="#book-main"'));
+
   // The searchable legacy catalogue remains available at a stable dedicated route.
   await put(`${base(lang)}stories/`,shelf(books,lang,{indexOnly:true}));
   for(const volume of volumes)await put(collectionPath(volume.id,lang),collectionContents(volume,lang));
