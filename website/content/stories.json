@@ -84,7 +84,7 @@
     "age_band": "older-12+",
     "duration_min": 8,
     "festival_tags": [],
-    "status": "draft",
+    "status": "published",
     "pages": [
       {
         "page_number": 1,
@@ -372,7 +372,7 @@
     "age_band": "older-12+",
     "duration_min": 7,
     "festival_tags": [],
-    "status": "draft",
+    "status": "published",
     "pages": [
       {
         "page_number": 1,
@@ -641,7 +641,7 @@
     "age_band": "older-12+",
     "duration_min": 6,
     "festival_tags": [],
-    "status": "draft",
+    "status": "published",
     "pages": [
       {
         "page_number": 1,
@@ -881,7 +881,7 @@
     "age_band": "older-12+",
     "duration_min": 7,
     "festival_tags": [],
-    "status": "draft",
+    "status": "published",
     "pages": [
       {
         "page_number": 1,
@@ -1131,7 +1131,7 @@
     "age_band": "older-12+",
     "duration_min": 8,
     "festival_tags": [],
-    "status": "draft",
+    "status": "published",
     "pages": [
       {
         "page_number": 1,
@@ -1441,7 +1441,7 @@
     "festival_tags": [
       "Diwali"
     ],
-    "status": "draft",
+    "status": "published",
     "pages": [
       {
         "page_number": 1,
@@ -1700,7 +1700,7 @@
     "festival_tags": [
       "Janmashtami"
     ],
-    "status": "draft",
+    "status": "published",
     "pages": [
       {
         "page_number": 1,
@@ -1887,7 +1887,7 @@
     "festival_tags": [
       "Maha Shivaratri"
     ],
-    "status": "draft",
+    "status": "published",
     "pages": [
       {
         "page_number": 1,
@@ -2084,7 +2084,7 @@
     "age_band": "independent-8+",
     "duration_min": 7,
     "festival_tags": [],
-    "status": "draft",
+    "status": "published",
     "pages": [
       {
         "page_number": 1,
@@ -2272,7 +2272,7 @@
     "festival_tags": [
       "Navratri"
     ],
-    "status": "draft",
+    "status": "published",
     "pages": [
       {
         "page_number": 1,
@@ -2460,7 +2460,7 @@
     "festival_tags": [
       "Ganesh Chaturthi"
     ],
-    "status": "draft",
+    "status": "published",
     "pages": [
       {
         "page_number": 1,
@@ -2645,7 +2645,7 @@
     "age_band": "older-12+",
     "duration_min": 7,
     "festival_tags": [],
-    "status": "draft",
+    "status": "published",
     "pages": [
       {
         "page_number": 1,

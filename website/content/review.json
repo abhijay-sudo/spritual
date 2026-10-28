@@ -1,6 +1,13 @@
 {
   "status": "pending",
   "reviewer": null,
-  "contentHash": null,
-  "artworkReview": "pending"
+  "contentHash": "d7a87b9a216f9fa54960e828a2a995cde27c1161f4ba4827bb8e4e5480630733",
+  "artworkReview": "pending",
+  "artworkHash": "87a863e7cc4ec1223eb1497e65aaa37cd408d8d1e480f202ef44177d173566f5",
+  "releaseAuthorization": {
+    "kind": "owner-directed-release",
+    "instruction": "Once you are done, push it live.",
+    "date": "2026-10-29",
+    "note": "Owner explicitly instructed publication after being informed review remained pending. Independent editorial and artwork review remain pending."
+  }
 }

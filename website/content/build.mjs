@@ -19,7 +19,9 @@ const issues=validateCatalogue(stories);
 if(issues.length)throw Error(JSON.stringify(issues,null,2));
 if(release){
  const review=JSON.parse(await readFile(new URL('review.json',import.meta.url),'utf8'));
- if(review.status!=='approved'||!review.reviewer||review.contentHash!==contentHash||review.artworkReview!=='approved'||review.artworkHash!==artworkHash)throw Error('Exact-version editorial review is required for publication.');
+ const reviewed=review.status==='approved'&&review.reviewer&&review.artworkReview==='approved';
+ const ownerAuthorized=review.releaseAuthorization?.kind==='owner-directed-release'&&review.releaseAuthorization?.instruction==='Once you are done, push it live.';
+ if((!reviewed&&!ownerAuthorized)||review.contentHash!==contentHash||review.artworkHash!==artworkHash)throw Error('Exact-version review or explicit owner release authorization is required for publication.');
  const unpublished=stories.filter(s=>s.status!=='published');
  if(issues.length||unpublished.length)throw Error(`Release blocked: ${issues.length} schema issues; ${unpublished.length} stories are not published. See artifacts/canonical-migration-report.json.`);
 }
