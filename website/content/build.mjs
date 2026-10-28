@@ -36,7 +36,7 @@ await copyFile(new URL('legacy-routes.json',import.meta.url),resolve(out,'legacy
 for(const name of (await readdir(resolve(root,'dist'))).filter(name=>/\.(css|js)$/.test(name)))await cp(resolve(root,'dist',name),resolve(out,name));
 for(const name of ['canonical.css','canonical.js'])await cp(resolve(import.meta.dirname,name),resolve(out,name));
 await writeFile(resolve(out,'redirect.js'),`const link=document.querySelector('[data-redirect]');if(link){const url=new URL(link.href);if(location.hash&&!url.hash)url.hash=location.hash;location.replace(url.href);}`);
-const paths=new Set();async function put(path,html){const folder=resolve(out,'.'+path);await mkdir(folder,{recursive:true});await writeFile(resolve(folder,'index.html'),release?html:html.replace('</head>','<meta name="robots" content="noindex,nofollow"></head>'));paths.add(path);}
+const paths=new Set(),indexablePaths=new Set();async function put(path,html){const folder=resolve(out,'.'+path);await mkdir(folder,{recursive:true});await writeFile(resolve(folder,'index.html'),release?html:html.replace('</head>','<meta name="robots" content="noindex,nofollow"></head>'));paths.add(path);if(!/<meta name="robots" content="noindex/.test(html))indexablePaths.add(path);}
 for(const lang of ['en','hi']){
  await put(lang==='hi'?'/hi/':'/',home(stories,lang));
  await put(`${lang==='hi'?'/hi':''}/my-reading/`,savedPage(lang));
@@ -48,7 +48,7 @@ for(const lang of ['en','hi']){
  for(const story of stories){await put(bookPath(story,lang),directory(stories,{collection:story.collection,book:story.book,lang}));await put(arcPath(story,lang),directory(stories,{collection:story.collection,book:story.book,arc:story.arc,lang}));await put(storyPath(story,lang),storyReader(story,lang));}
 }
 for(const [old,destination] of Object.entries(migration.aliases)){const folder=resolve(out,'.'+old);await mkdir(folder,{recursive:true});await writeFile(resolve(folder,'index.html'),`<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex"><link rel="canonical" href="https://spritual.co.in${destination.split('?')[0].split('#')[0]}"><script src="/redirect.js" defer></script><title>Spritual</title></head><body><a data-redirect href="${destination}">Continue reading →</a></body></html>`);}
-await writeFile(resolve(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[...paths].map(p=>`<url><loc>https://spritual.co.in${p}</loc></url>`).join('')}</urlset>`);
+await writeFile(resolve(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[...indexablePaths].map(p=>`<url><loc>https://spritual.co.in${p}</loc></url>`).join('')}</urlset>`);
 // Review build is deliberately not indexable; a production export must pass --release.
 await writeFile(resolve(out,'robots.txt'),release?'User-agent: *\nAllow: /\nSitemap: https://spritual.co.in/sitemap.xml\n':'User-agent: *\nDisallow: /\n');
 const config=JSON.parse(await readFile(resolve(root,'vercel.json'),'utf8'));

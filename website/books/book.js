@@ -13,7 +13,7 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)');
 const keep=document.querySelector('[data-keep]');
 function updateKept(){if(!keep)return;const saved=places();keep.textContent=saved.ok&&saved.value.some(p=>p.id===root.dataset.bookId&&p.lang===lang&&p.folio===folios[current].id)?text.kept:text.keep;}
 function renderShelf(){const list=document.querySelector('[data-kept-list]');if(!list)return;const data=places();list.replaceChildren();if(!data.ok)status(unavailablePlaces(data));const empty=document.querySelector('[data-kept-empty]');if(empty)empty.hidden=data.value.length>0;
- for(const p of data.value){const li=document.createElement('li'),a=document.createElement('a'),button=document.createElement('button');a.href=p.route+'#'+p.folio;a.textContent=p.title+(p.lang==='hi'?' · हिन्दी':' · EN');button.type='button';button.textContent=text.remove;button.setAttribute('aria-label',text.remove+' '+p.title);button.addEventListener('click',()=>{const fresh=places();if(!fresh.ok){status(unavailablePlaces(fresh));return;}if(write(fresh.value.filter(x=>!(x.id===p.id&&x.lang===p.lang)))){renderShelf();status(text.removed);const target=list.querySelector('a')||document.querySelector('#kept h2');target.tabIndex=-1;target.focus();}});li.append(a,button);list.append(li);}}
+ for(const p of data.value){const li=document.createElement('li'),a=document.createElement('a'),button=document.createElement('button');a.href=p.route+'#'+p.folio;a.textContent=p.title+(p.lang==='hi'?' · हिन्दी':' · EN');button.type='button';button.textContent=text.remove;button.setAttribute('aria-label',text.remove+' '+p.title);button.addEventListener('click',()=>{const fresh=places();if(!fresh.ok){status(unavailablePlaces(fresh));return;}if(write(fresh.value.filter(x=>!(x.id===p.id&&x.lang===p.lang)))){renderShelf();status(text.removed);const target=list.querySelector('a')||document.querySelector('#kept h1, #kept h2');if(target){target.tabIndex=-1;target.focus();}}});li.append(a,button);list.append(li);}}
 // Decorative paper lives outside the semantic folios. Content and navigation never wait for it.
 const leaves=document.querySelector('.book-leaves');
 const paper=leaves?new PaperEngine(leaves):null;
@@ -31,7 +31,11 @@ function show(index,{focus=false,motion=false,showArt=false}={}){
  document.querySelectorAll('[data-leaf-link]').forEach(a=>{if(Number(a.dataset.leafLink)===current)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
  document.querySelectorAll('[data-language-switch]').forEach(a=>{const u=new URL(a.href);u.hash=folios[current].id;a.href=u.pathname+u.hash;});
  root.dispatchEvent(new CustomEvent('book:pagechange',{bubbles:true,detail:{index:current,id:folios[current].id}}));
- if(focus)folios[current].focus({preventScroll:true});
+ if(focus){
+  const scene=folios[current];scene.focus({preventScroll:true});
+  const rect=scene.getBoundingClientRect();
+  if(rect.top<0||rect.top>innerHeight-80)scene.scrollIntoView({block:'start',behavior:'instant'});
+ }
  if(motion&&previous!==current)paperTurn(current<previous?folios[current]:old,{back:current<previous});
  updateKept();
 }

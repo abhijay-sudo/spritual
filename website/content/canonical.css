@@ -8,3 +8,24 @@ body[data-canonical-reader] #book-main{padding-top:16px}body[data-canonical-read
 
 /* Keep every illustrated scene visible; legacy readers collapsed art after page one. */
 body[data-canonical-reader] .frontispiece-art{display:block!important;width:100%!important;max-width:none!important;border-radius:3px!important} @view-transition{navigation:none}
+
+/* Council QA: visible first action, usable reading settings, readable night mode. */
+@media(max-width:550px){
+ .editorial-hero{gap:24px;padding-top:26px}
+ .editorial-hero>img{grid-row:auto;height:280px}
+ .editorial-hero h1{font-size:42px}
+ body[data-canonical-reader] .folio-prose{font-size:var(--read-size,20px)!important}
+}
+body[data-canonical-reader][data-page-theme=evening] .folio-prose{color:#faf6ee!important}
+body[data-canonical-reader][data-page-theme=evening] .source-trigger{color:#faf6ee!important}
+select:focus-visible,summary:focus-visible{outline:2px solid #93601f;outline-offset:4px}
+@font-face{font-family:Manuscript;src:url('/assets/cormorant-garamond-latin.woff2');font-display:swap}
+@font-face{font-family:Interface;src:url('/assets/manrope-latin.woff2');font-display:swap}
+@font-face{font-family:Hindi;src:url('/assets/tiro-devanagari-hindi.woff2');font-display:swap}
+body[data-canonical-reader] .reader-story-title{font-size:clamp(25px,3vw,38px);line-height:1.2;margin:20px 0 16px;max-width:32ch}
+html[lang=hi] body[data-canonical-reader] .reader-story-title{line-height:1.5}
+.directory-row small{font:14px Interface,Hindi,sans-serif;color:#695738}
+.directory-unavailable{margin:28px 0;color:#695738}
+.directory-unavailable summary{cursor:pointer;min-height:44px;padding:10px 0}
+.directory-unavailable li{margin:8px 0}
+body[data-canonical-reader] .reader-path.breadcrumbs{justify-content:flex-start;gap:12px}
