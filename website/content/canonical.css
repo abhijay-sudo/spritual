@@ -29,3 +29,30 @@ html[lang=hi] body[data-canonical-reader] .reader-story-title{line-height:1.5}
 .directory-unavailable summary{cursor:pointer;min-height:44px;padding:10px 0}
 .directory-unavailable li{margin:8px 0}
 body[data-canonical-reader] .reader-path.breadcrumbs{justify-content:flex-start;gap:12px}
+
+/* A quiet motion system: physical leaves, immediate controls, no blocked content. */
+:root{--motion-settle:cubic-bezier(.22,.61,.36,1)}
+.manuscript-turn{position:absolute;inset:0;z-index:12;pointer-events:none;perspective:1800px;contain:layout style}
+.turn-leaf{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform,opacity}
+.turn-front,.turn-rear{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#faf6ee;border-radius:2px;box-shadow:8px 6px 28px #30231426}
+.turn-front:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#5b402718,transparent 15%,transparent 85%,#5b40270d)}
+.turn-rear{transform:rotateY(180deg);background:linear-gradient(90deg,#e7dbc4,#faf6ee 20%,#f0e8d9);box-shadow:-12px 8px 28px #30231420}
+body[data-page-theme=evening] .turn-front{background:#152a24}
+body[data-page-theme=evening] .turn-rear{background:linear-gradient(90deg,#0f201a,#1d382d)}
+body[data-canonical-reader] .book-leaves{perspective:1800px}
+body[data-canonical-reader] .turn-content{pointer-events:none}
+.primary,button,.directory-row,.collection-tile,.story-card>a{transition:transform 180ms var(--motion-settle),background-color 180ms,color 180ms,box-shadow 240ms}
+.primary:active,button:active:not(:disabled){transform:translateY(1px) scale(.985)}
+.collection-tile>img,.story-card img{transition:transform 600ms var(--motion-settle)}
+.story-card a{overflow:hidden}.story-card a>div{position:relative;background:#faf6ee}
+@media(hover:hover) and (pointer:fine){
+ .collection-tile:hover{transform:translateY(-4px);box-shadow:0 12px 26px #362a1710}
+ .collection-tile:hover>img,.story-card a:hover img{transform:scale(1.025)}
+ .directory-row:hover{transform:translateX(4px)}
+ .primary:hover{background:#29483c;box-shadow:0 6px 16px #152a241c}
+}
+dialog[open]{animation:drawer-arrive 220ms var(--motion-settle)}
+dialog[open]::backdrop{animation:backdrop-arrive 180ms ease-out}
+@keyframes drawer-arrive{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes backdrop-arrive{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.manuscript-turn{display:none!important}.collection-tile:hover,.directory-row:hover,.primary:active,button:active:not(:disabled),.story-card a:hover img,.collection-tile:hover>img{transform:none!important}}

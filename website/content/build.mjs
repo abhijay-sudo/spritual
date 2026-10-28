@@ -32,6 +32,7 @@ for(const dir of ['assets','experience','books','stories-app'])await cp(resolve(
 for(const image of new Set(stories.flatMap(s=>[s.cover_image.src,...s.pages.map(p=>p.image.src)]))){if(image.startsWith('/assets/illustrated/')){const target=resolve(out,'.'+image);await mkdir(resolve(target,'..'),{recursive:true});await copyFile(resolve(root,'.'+image),target);}}
 await copyFile(resolve(root,'books/state.mjs'),resolve(out,'books/state.js'));
 await copyFile(resolve(root,'books/book.js'),resolve(out,'books/book.js'));
+await copyFile(resolve(root,'experience/manuscript-turn.js'),resolve(out,'experience/manuscript-turn.js'));
 await copyFile(new URL('legacy-routes.json',import.meta.url),resolve(out,'legacy-routes.json'));
 for(const name of (await readdir(resolve(root,'dist'))).filter(name=>/\.(css|js)$/.test(name)))await cp(resolve(root,'dist',name),resolve(out,name));
 for(const name of ['canonical.css','canonical.js'])await cp(resolve(import.meta.dirname,name),resolve(out,name));

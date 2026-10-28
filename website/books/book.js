@@ -1,3 +1,4 @@
+import {ManuscriptTurn} from '../experience/manuscript-turn.js';
 import {PaperEngine} from '../experience/paper-engine.js';
 import{KEY,parsePlaces,keepPlace,encodePlaces}from'./state.js';
 const lang=document.body.dataset.bookLanguage||document.documentElement.lang||'en',hi=lang==='hi';
@@ -16,11 +17,12 @@ function renderShelf(){const list=document.querySelector('[data-kept-list]');if(
  for(const p of data.value){const li=document.createElement('li'),a=document.createElement('a'),button=document.createElement('button');a.href=p.route+'#'+p.folio;a.textContent=p.title+(p.lang==='hi'?' · हिन्दी':' · EN');button.type='button';button.textContent=text.remove;button.setAttribute('aria-label',text.remove+' '+p.title);button.addEventListener('click',()=>{const fresh=places();if(!fresh.ok){status(unavailablePlaces(fresh));return;}if(write(fresh.value.filter(x=>!(x.id===p.id&&x.lang===p.lang)))){renderShelf();status(text.removed);const target=list.querySelector('a')||document.querySelector('#kept h1, #kept h2');if(target){target.tabIndex=-1;target.focus();}}});li.append(a,button);list.append(li);}}
 // Decorative paper lives outside the semantic folios. Content and navigation never wait for it.
 const leaves=document.querySelector('.book-leaves');
-const paper=leaves?new PaperEngine(leaves):null;
-function paperTurn(content,{back=false,opening=false}={}){if(opening)return;animation?.cancel();if(!paper)return;animation=paper.turn(content,{back,duration:1100});}
+const canonicalReader=!!document.body.hasAttribute('data-canonical-reader');
+const paper=leaves?(canonicalReader?new ManuscriptTurn(leaves):new PaperEngine(leaves)):null;
+function paperTurn(content,{back=false,opening=false}={}){if(opening)return;animation?.cancel();if(!paper)return;animation=paper.turn(content,{back,duration:canonicalReader?720:1100});}
 
 function show(index,{focus=false,motion=false,showArt=false}={}){
- if(!folios.length)return;const previous=current,old=folios[current];current=Math.max(0,Math.min(folios.length-1,index));animation?.cancel();
+ if(!folios.length)return;const previous=current,old=folios[current];const snapshot=canonicalReader&&motion&&!reduce.matches?paper.capture(old):null;current=Math.max(0,Math.min(folios.length-1,index));animation?.cancel();
  folios.forEach((f,i)=>f.hidden=i!==current);root.dataset.currentPage=String(current);
  document.querySelectorAll('[data-leaf-step]').forEach(b=>{
   const direction=Number(b.dataset.leafStep),boundary=direction<0?current===0:current===folios.length-1;
@@ -36,7 +38,7 @@ function show(index,{focus=false,motion=false,showArt=false}={}){
   const rect=scene.getBoundingClientRect();
   if(rect.top<0||rect.top>innerHeight-80)scene.scrollIntoView({block:'start',behavior:'instant'});
  }
- if(motion&&previous!==current)paperTurn(current<previous?folios[current]:old,{back:current<previous});
+ if(motion&&previous!==current)paperTurn(canonicalReader?snapshot:(current<previous?folios[current]:old),{back:current<previous});
  updateKept();
 }
 function fromHash(){let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return 0;}const i=folios.findIndex(f=>f.id===id);return i<0?0:i;}
