@@ -2,7 +2,7 @@ import {mkdir,cp,writeFile,readFile,copyFile,rm,readdir} from 'node:fs/promises'
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {collections,books,arcs,bookPath,arcPath,storyPath} from './taxonomy.mjs';
-import {home,directory,storyReader,characterPage,savedPage,shell,dailyPage} from './render.mjs';
+import {home,directory,storyReader,characterPage,savedPage,shell,dailyPage,utilityPage,notFound} from './render.mjs';
 import {validateCatalogue} from './validate.mjs';
 
 const root=resolve(import.meta.dirname,'..'),release=process.argv.includes('--release'),out=resolve(root,release?'canonical-dist':'../artifacts/canonical-site');
@@ -42,12 +42,14 @@ for(const lang of ['en','hi']){
  await put(lang==='hi'?'/hi/':'/',home(stories,lang));
  await put(`${lang==='hi'?'/hi':''}/my-reading/`,savedPage(lang));
  await put(`${lang==='hi'?'/hi':''}/daily/`,dailyPage(stories,lang));
- for(const utility of ['pause','privacy','corrections']){const path=`${lang==='hi'?'/hi':''}/${utility}/`;let html=await readFile(resolve(root,'dist','.'+path,'index.html'),'utf8');const chrome=shell(utility,'',path,lang);html=html.replace(/<header[\s\S]*?<\/header>/,chrome.match(/<header[\s\S]*?<\/header>/)[0]).replace(/<footer[\s\S]*?<\/footer>/,chrome.match(/<footer[\s\S]*?<\/footer>/)[0]).replace('</head>','<link rel="stylesheet" href="/canonical.css"></head>');await put(path,html);}
+ for(const utility of ['pause']){const path=`${lang==='hi'?'/hi':''}/${utility}/`;let html=await readFile(resolve(root,'dist','.'+path,'index.html'),'utf8');const chrome=shell(utility,'',path,lang);html=html.replace(/<header[\s\S]*?<\/header>/,chrome.match(/<header[\s\S]*?<\/header>/)[0]).replace(/<footer[\s\S]*?<\/footer>/,chrome.match(/<footer[\s\S]*?<\/footer>/)[0]).replace('</head>','<link rel="stylesheet" href="/canonical.css"></head>');await put(path,html);}
+ for(const kind of ['privacy','corrections'])await put(`${lang==='hi'?'/hi':''}/${kind}/`,utilityPage(kind,lang));
  for(const collection of collections)await put(`${lang==='hi'?'/hi':''}/collections/${collection.slug}/`,directory(stories,{collection:collection.slug,lang}));
  for(const c of collections)for(const key of c.books){const book=books[key].title;await put(bookPath({collection:c.slug,book},lang),directory(stories,{collection:c.slug,book,lang}));for(const arc of arcs[key])await put(arcPath({collection:c.slug,book,arc},lang),directory(stories,{collection:c.slug,book,arc,lang}));}
  for(const id of new Set(stories.flatMap(s=>s.characters)))await put(`${lang==='hi'?'/hi':''}/characters/${id}/`,characterPage(id,stories,lang));
- for(const story of stories){await put(bookPath(story,lang),directory(stories,{collection:story.collection,book:story.book,lang}));await put(arcPath(story,lang),directory(stories,{collection:story.collection,book:story.book,arc:story.arc,lang}));await put(storyPath(story,lang),storyReader(story,lang));}
+ for(const story of stories){await put(bookPath(story,lang),directory(stories,{collection:story.collection,book:story.book,lang}));await put(arcPath(story,lang),directory(stories,{collection:story.collection,book:story.book,arc:story.arc,lang}));await put(storyPath(story,lang),storyReader(story,lang,stories.filter(s=>s.collection===story.collection&&s.order>story.order).sort((a,b)=>a.order-b.order)[0]||null));}
 }
+await writeFile(resolve(out,'404.html'),notFound());
 for(const [old,destination] of Object.entries(migration.aliases)){const folder=resolve(out,'.'+old);await mkdir(folder,{recursive:true});await writeFile(resolve(folder,'index.html'),`<!doctype html><html><head><meta charset="utf-8"><meta name="robots" content="noindex"><link rel="canonical" href="https://spritual.co.in${destination.split('?')[0].split('#')[0]}"><script src="/redirect.js" defer></script><title>Spritual</title></head><body><a data-redirect href="${destination}">Continue reading →</a></body></html>`);}
 await writeFile(resolve(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[...indexablePaths].map(p=>`<url><loc>https://spritual.co.in${p}</loc></url>`).join('')}</urlset>`);
 // Review build is deliberately not indexable; a production export must pass --release.

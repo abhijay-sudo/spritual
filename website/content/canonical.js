@@ -22,7 +22,7 @@ if(!motionPreference.matches){
  const targets=[...document.querySelectorAll('.editorial-hero>div,.editorial-hero>img,.reader-story-title')];
  targets.forEach((node,index)=>{
   if(node.getBoundingClientRect().top>=innerHeight)return;
-  const animation=node.animate([{opacity:.65,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:480,delay:index*70,easing:'cubic-bezier(.22,.61,.36,1)'});
+  const animation=node.animate([{opacity:1,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:480,delay:index*70,easing:'cubic-bezier(.22,.61,.36,1)'});
   entranceAnimations.add(animation);animation.finished.then(()=>entranceAnimations.delete(animation),()=>entranceAnimations.delete(animation));
  });
 }

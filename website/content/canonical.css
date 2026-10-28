@@ -56,3 +56,4 @@ dialog[open]::backdrop{animation:backdrop-arrive 180ms ease-out}
 @keyframes drawer-arrive{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
 @keyframes backdrop-arrive{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.manuscript-turn{display:none!important}.collection-tile:hover,.directory-row:hover,.primary:active,button:active:not(:disabled),.story-card a:hover img,.collection-tile:hover>img{transform:none!important}}
+footer{flex-wrap:wrap;align-items:center}footer nav{display:flex;gap:24px;flex-wrap:wrap}footer a{display:inline-flex;align-items:center;min-height:44px}.utility{max-width:850px}.utility h2{font-size:30px;margin-top:36px}.utility p{line-height:1.85}.utility>.primary{margin-bottom:24px}
