@@ -150,7 +150,7 @@ if(!editorial&&!sanatanEdition){
  const books=await buildBooks(out,{previewChapters});
  const homeImages=await prepareResponsiveImages(out);
  await mkdir(`${out}/experience`,{recursive:true});
- for(const file of ['experience.css','experience.js'])await copyFile(resolve(import.meta.dirname,'experience',file),`${out}/experience/${file}`);
+ for(const file of ['experience.css','experience.js','manuscript-design.css','hero-1600.webp','hero-800.webp','journey-1600.webp','manuscript-mark.svg'])await copyFile(resolve(import.meta.dirname,'experience',file),`${out}/experience/${file}`);
  for(const lang of ['en','hi']){
   const prefix=lang==='hi'?'hi/':'';
   await writeFile(`${out}/${prefix}index.html`,page(copy[lang],lang,'',livingHome(books,lang,homeImages),false,lang==='hi'?'कथाएँ, मनन और शांत पल — Spritual':'Stories for the life you live — Spritual',lang==='hi'?'अंग्रेज़ी और हिन्दी में कथाएँ, जीवन के प्रश्न और छोटे संकल्प।':'Illustrated stories in English and Hindi, life questions and small daily intentions.'));
