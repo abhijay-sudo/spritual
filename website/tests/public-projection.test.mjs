@@ -38,7 +38,7 @@ test('known unavailable saved IDs survive preferences and available-story progre
  assert.deepEqual(current.bookmarks,state.bookmarks);
 });
 test('production configuration cannot build the unapproved illustrated release',async()=>{
- const config=JSON.parse(await readFile(resolve(root,'vercel.json'),'utf8'));assert.equal(config.buildCommand,'node build.mjs');
+ const config=JSON.parse(await readFile(resolve(root,'vercel.json'),'utf8'));assert.equal(config.buildCommand,'node build.mjs && node content/build.mjs --release');assert.equal(config.outputDirectory,'canonical-dist');
  const result=spawnSync(process.execPath,[resolve(root,'build.mjs'),'--sanatan-release'],{encoding:'utf8'});
  assert.notEqual(result.status,0);assert.match(result.stderr,/exact-version editorial and artwork approvals are unresolved/);
 });

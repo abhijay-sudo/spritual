@@ -36,3 +36,7 @@ This candidate has not replaced production. `website/vercel.json` remains unchan
 `artifacts/canonical-migration-report.json` records exact content/art hashes. All stories remain drafts. Named editorial and art review must be recorded in `website/content/review.json` against these hashes, with approved rights, before setting stories to published. Do not fabricate or infer review. The release build fails closed until these records match.
 
 After review: set publication status, activate the prepared Vercel configuration, build with `--release`, deploy through the authorized account, then verify Ready status, production aliases, deployed revision and representative old/new routes in both languages. A Git push alone is not deployment proof.
+
+## Owner-directed release — 29 October
+
+The owner subsequently instructed: “Once you are done, push it live.” This supersedes the prior publication hold for this candidate. `review.json` records that instruction against the exact content and artwork hashes, separately from independent review, which remains pending. The active Vercel configuration now builds the canonical release. Publication status indicates availability, not a claim of independent scholarly approval.
