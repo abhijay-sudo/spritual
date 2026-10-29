@@ -23,10 +23,9 @@ test('mobile reading appearance changes prose size and survives language navigat
 });
 
 
-test('mobile next page reveals the beginning of the new scene',async({page})=>{
+test('mobile page turn does not jump the document scroll position',async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.goto(story);
- await page.getByRole('button',{name:'Next page →',exact:true}).click();
+ const next=page.getByRole('button',{name:'Next page →',exact:true});await next.scrollIntoViewIfNeeded();const before=await page.evaluate(()=>scrollY);await next.click();
  await expect(page.locator('[data-page-position]')).toHaveText('Page 2 of 11');
- const top=await page.locator('[data-folio]:visible h2').evaluate(node=>node.getBoundingClientRect().top);
- expect(top).toBeGreaterThanOrEqual(0);expect(top).toBeLessThan(400);
+ expect(Math.abs(await page.evaluate(()=>scrollY)-before)).toBeLessThan(3);
 });

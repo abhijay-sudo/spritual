@@ -1,4 +1,3 @@
-import {ManuscriptTurn} from '../experience/manuscript-turn.js';
 import {PaperEngine} from '../experience/paper-engine.js';
 import{KEY,parsePlaces,keepPlace,encodePlaces}from'./state.js';
 const lang=document.body.dataset.bookLanguage||document.documentElement.lang||'en',hi=lang==='hi';
@@ -18,8 +17,8 @@ function renderShelf(){const list=document.querySelector('[data-kept-list]');if(
 // Decorative paper lives outside the semantic folios. Content and navigation never wait for it.
 const leaves=document.querySelector('.book-leaves');
 const canonicalReader=!!document.body.hasAttribute('data-canonical-reader');
-const paper=leaves?(canonicalReader?new ManuscriptTurn(leaves):new PaperEngine(leaves)):null;
-function paperTurn(content,{back=false,opening=false}={}){if(opening)return;animation?.cancel();if(!paper)return;animation=paper.turn(content,{back,duration:canonicalReader?720:1100});}
+const paper=leaves?new PaperEngine(leaves):null;
+function paperTurn(content,{back=false,opening=false}={}){if(opening)return;animation?.cancel();if(!paper)return;animation=paper.turn(content,{back,duration:1100});}
 
 function show(index,{focus=false,motion=false,showArt=false}={}){
  if(!folios.length)return;const previous=current,old=folios[current];const snapshot=canonicalReader&&motion&&!reduce.matches?paper.capture(old):null;current=Math.max(0,Math.min(folios.length-1,index));animation?.cancel();
@@ -36,7 +35,7 @@ function show(index,{focus=false,motion=false,showArt=false}={}){
  if(focus){
   const scene=folios[current];scene.focus({preventScroll:true});
   const rect=scene.getBoundingClientRect();
-  if(rect.top<0||rect.top>innerHeight-80)scene.scrollIntoView({block:'start',behavior:'instant'});
+  if(!canonicalReader&&(rect.top<0||rect.top>innerHeight-80))scene.scrollIntoView({block:'start',behavior:'instant'});
  }
  if(motion&&previous!==current)paperTurn(canonicalReader?snapshot:(current<previous?folios[current]:old),{back:current<previous});
  updateKept();

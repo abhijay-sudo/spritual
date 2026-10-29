@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
-test('mobile home keeps reading action in the first viewport',async({page})=>{
- await page.setViewportSize({width:360,height:800});await page.goto('/');
- const box=await page.locator('.editorial-hero .primary').boundingBox();expect(box).not.toBeNull();expect(box!.y+box!.height).toBeLessThan(800);
+test('mobile home puts the single manuscript in the first viewport',async({page})=>{
+ await page.setViewportSize({width:360,height:800});await page.goto('/');await expect(page.locator('html')).toHaveAttribute('data-arrival','done');
+ const box=await page.locator('[data-home-book]').boundingBox();expect(box).not.toBeNull();expect(box!.y+box!.height).toBeLessThan(800);
  await page.screenshot({path:'docs/qa/council-home-360.png'});
 });
 test('Hindi search and readable age filters find existing stories',async({page})=>{

@@ -19,7 +19,7 @@ const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
 const entranceAnimations=new Set();
 function settleEntrances(){for(const animation of entranceAnimations)animation.cancel();entranceAnimations.clear();}
 if(!motionPreference.matches){
- const targets=[...document.querySelectorAll('.editorial-hero>div,.editorial-hero>img,.reader-story-title')];
+ const targets=[...document.querySelectorAll('.editorial-hero:not(.ceremony-hero)>div,.editorial-hero:not(.ceremony-hero)>img,.reader-story-title')];
  targets.forEach((node,index)=>{
   if(node.getBoundingClientRect().top>=innerHeight)return;
   const animation=node.animate([{opacity:1,transform:'translateY(10px)'},{opacity:1,transform:'none'}],{duration:480,delay:index*70,easing:'cubic-bezier(.22,.61,.36,1)'});
@@ -27,3 +27,7 @@ if(!motionPreference.matches){
  });
 }
 motionPreference.addEventListener('change',settleEntrances);addEventListener('pagehide',settleEntrances);
+
+for(const button of document.querySelectorAll('[data-home-size]'))button.addEventListener('click',()=>{const size=button.dataset.homeSize;document.documentElement.style.setProperty('--read-size',size+'px');document.querySelectorAll('[data-home-size]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));try{const old=JSON.parse(sessionStorage.getItem('spritual_book_appearance_v1')||'{}');sessionStorage.setItem('spritual_book_appearance_v1',JSON.stringify({...old,size}));sessionStorage.setItem('spritual_experience_size_v1',size);}catch{}});
+const enter=document.querySelector('[data-manuscript-enter]');let entering=false;
+enter?.addEventListener('click',event=>{if(event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||motionPreference.matches)return;event.preventDefault();if(entering)return;entering=true;const book=document.querySelector('[data-home-book]');const fade=book.animate([{opacity:1},{opacity:.25}],{duration:240,easing:'linear',fill:'forwards'});const destination=enter.href;fade.finished.then(()=>location.assign(destination),()=>location.assign(destination));});

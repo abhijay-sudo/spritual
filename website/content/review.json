@@ -1,13 +1,14 @@
 {
   "status": "pending",
   "reviewer": null,
-  "contentHash": "d7a87b9a216f9fa54960e828a2a995cde27c1161f4ba4827bb8e4e5480630733",
+  "contentHash": "49151486726b770411d3708189be05db4b47ce6e97f8e84dcc9daed85fd1971c",
   "artworkReview": "pending",
-  "artworkHash": "87a863e7cc4ec1223eb1497e65aaa37cd408d8d1e480f202ef44177d173566f5",
+  "artworkHash": "649ec0f84cffc972daff02918350117b7b96ea0d63ee1a1ce3369274a09f4e6c",
   "releaseAuthorization": {
     "kind": "owner-directed-release",
     "instruction": "Once you are done, push it live.",
     "date": "2026-10-29",
-    "note": "Owner explicitly instructed publication after being informed review remained pending. Independent editorial and artwork review remain pending."
+    "note": "Owner explicitly instructed publication after being informed review remained pending. Independent editorial and artwork review remain pending.",
+    "latestScope": "29 October manuscript motion brief: existing forest illumination reused on destination page 5 for hero-reader continuity; no story prose changed."
   }
 }

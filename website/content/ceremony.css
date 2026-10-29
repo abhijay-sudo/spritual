@@ -1,0 +1,72 @@
+/* The same paper, illumination and curl surface from arrival through reading. */
+.ceremony-hero{position:relative;display:block;max-width:none!important;height:680px;min-height:620px;padding:0!important;overflow:hidden;isolation:isolate}
+.ceremony-desk{position:absolute;inset:0;z-index:-1}.ceremony-desk img{width:100%;height:100%;object-fit:cover}
+.ceremony-hero .manuscript-intro{position:relative;width:38%;padding:76px 0 36px 5vw;z-index:2}
+.ceremony-hero h1{font-size:clamp(36px,3.5vw,56px);max-width:12ch}.ceremony-hero .manuscript-intro>p{font-size:19px;max-width:29ch}
+.ceremony-hero .manuscript-object{right:4%;top:10%;width:53%;height:78%;transform:perspective(1800px) rotateX(5deg) rotateZ(1deg)}
+.ceremony-hero .manuscript-actions{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.ceremony-hero .manuscript-secondary{display:inline-flex;min-height:44px;align-items:center;padding:8px 24px;border:1px solid #93601f;background:#faf6eeaa}
+.ceremony-hero .manuscript-primary{background:#152a24!important;min-height:48px;font-size:15px}
+.ceremony-hero .manuscript-primary:hover{background:#29483c!important;transform:none}
+.ceremony-hero .manuscript-prose-page{min-height:0}.ceremony-hero .manuscript-page-text{border-image:none;border:1px solid #ac874f;padding:24px;margin:18px;height:calc(100% - 36px)}
+.ceremony-hero .manuscript-page-text:before{content:'❧';background:none;display:block;height:auto;text-align:center;font-size:28px;color:#93601f;border:0;margin:0 0 14px}
+.ceremony-hero .manuscript-page-text h2{font:clamp(23px,2.4vw,34px)/1.15 Manuscript,Hindi,Georgia}
+.ceremony-hero .manuscript-running-head{font:italic 26px Manuscript,Georgia!important}
+.ceremony-hero .manuscript-page-text>p:last-child{font:clamp(16px,1.4vw,20px)/1.7 Georgia,Hindi,serif;-webkit-line-clamp:4}
+.ceremony-hero .manuscript-art-page img{object-fit:cover}
+html[data-arrival=pending] .ceremony-hero .manuscript-intro,html[data-arrival=turning] .ceremony-hero .manuscript-intro{opacity:0;pointer-events:none}
+html[data-arrival=room] .ceremony-hero .manuscript-intro,html[data-arrival=done] .ceremony-hero .manuscript-intro{opacity:1;pointer-events:auto}
+html[data-arrival=pending] .ceremony-hero .manuscript-art-page{visibility:hidden}
+html[data-arrival=pending] .ceremony-hero .manuscript-closed-cover{display:flex}
+footer .arrival-replay{margin:0;color:#77511f;font:13px Interface,Hindi,sans-serif;min-height:44px}
+.paper-sound{font-size:17px;min-width:44px;min-height:44px;padding:4px;cursor:pointer}.paper-sound span{font:13px Interface,Hindi,sans-serif}
+.brand small{font-size:11px!important}header{max-height:72px}header nav{gap:16px}
+body[data-canonical-reader] .reader-tools{opacity:1!important;transition:opacity 240ms}
+body[data-canonical-reader] [data-reader].reading-hush .reader-tools:not(:hover):not(:focus-within){opacity:0!important}
+body[data-canonical-reader] .book-leaves{overflow:visible;box-shadow:var(--fore-edge,4px) 4px 0 #d8c7a744!important;border-radius:3px}
+body[data-canonical-reader] .paper-ribbon-content{padding:36px clamp(22px,3vw,50px)}
+body[data-canonical-reader] .paper-ribbon-content .folio{margin:0!important}
+body[data-canonical-reader] .paper-ribbon-content{color:#152a24;background:linear-gradient(90deg,#e8dcca,#faf6ee 12%,#f3ebdc)}
+body[data-canonical-reader] .folio-prose p.paper-dropcap:first-letter{font-family:Georgia,serif!important}
+body[data-canonical-reader] .open-book{animation:reader-room 240ms linear}
+@keyframes reader-room{from{opacity:.82}to{opacity:1}}
+@media(hover:hover){.ceremony-hero .manuscript-prose-page:hover:after{width:6%;height:8%;inset:auto 0 0 auto;content:'';transform:none;background:linear-gradient(135deg,transparent 47%,#baa177 49%,#fff4dc 54%,#decba5);clip-path:polygon(100% 0,100% 100%,0 100%);pointer-events:none}}
+@media(max-width:900px) and (min-width:701px){.ceremony-hero{height:620px}.ceremony-hero .manuscript-intro{width:39%;padding-left:24px}.ceremony-hero h1{font-size:38px}.ceremony-hero .manuscript-object{right:2%;width:55%;height:72%;top:12%}.ceremony-hero .manuscript-page-text{padding:12px;margin:12px;height:calc(100% - 24px)}}
+@media(max-width:700px){
+ header{height:72px!important;min-height:72px!important;padding:4px 12px 0;display:block;position:relative}
+ header .brand{font-size:24px;height:30px;width:max-content;gap:8px}header .brand img{width:30px;height:30px}header .brand small{font-size:11px!important}
+ header nav{height:36px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding-right:0}
+ header nav>a{font-size:13px;min-height:36px}
+ header nav>.paper-sound{position:absolute;right:8px;top:0;min-height:36px}
+ header nav>[data-language-switch]{position:absolute;right:68px;top:0;min-height:36px}
+ .ceremony-hero{height:auto;min-height:0;display:flex;flex-direction:column;padding:0 0 24px!important;overflow:hidden}
+ .ceremony-desk{inset:0 0 auto;height:56vh;min-height:320px}
+ .ceremony-hero .manuscript-object{position:relative;order:0;right:auto;top:auto;width:86%;height:52vh;min-height:310px;max-height:490px;margin:16px auto 10px;grid-template-columns:1fr;transform:perspective(1200px) rotateX(3deg) rotateZ(1deg)}
+ .ceremony-hero .manuscript-art-page{display:none}.ceremony-hero .manuscript-page-text{padding:14px 24px;justify-content:center}
+ .ceremony-hero .manuscript-page-text:before{content:'';background:url('/experience/illumination-400.webp') center 35%/cover;height:100px;flex-shrink:0;border:2px double #aa8148;margin:0 0 10px}
+ .ceremony-hero .manuscript-page-text h2{font-size:27px;margin:0 0 8px}.ceremony-hero .manuscript-running-head{font-size:25px!important;margin-bottom:8px!important}.ceremony-hero .manuscript-flourish{display:none}
+ .ceremony-hero .manuscript-page-text>p:last-child{font-size:17px;line-height:1.5;-webkit-line-clamp:3;margin:8px 0}
+ .ceremony-hero .manuscript-intro{order:1;width:100%;padding:16px 24px 8px}.ceremony-hero h1{font-size:34px;max-width:18ch}.ceremony-hero .manuscript-intro>p{font-size:17px;max-width:36ch}.ceremony-hero .manuscript-actions{gap:10px}
+ .ceremony-hero .arrival-skip{top:calc(52vh - 25px);bottom:auto;right:20px}
+ body[data-canonical-reader] .book-leaves{overflow:clip}
+}
+@media(prefers-reduced-motion:reduce){.ceremony-hero .manuscript-intro{opacity:1!important;pointer-events:auto!important}.ceremony-hero .manuscript-object{transform:none!important;animation:none!important}.paper-surface{display:none!important}body[data-canonical-reader] [data-reader].reading-hush .reader-tools{opacity:1!important}body[data-canonical-reader] .open-book{animation:none}}
+.ceremony-hero .manuscript-page-text{border:7px solid #a88249;border-image:url('/experience/illumination.webp') 40 round}
+.ceremony-hero .manuscript-page-text>p:last-child{display:block;overflow:visible;font-size:var(--read-size,19px)}
+.home-appearance{position:relative}.home-appearance summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:44px;height:44px;font-size:13px}.home-appearance>div{position:absolute;right:0;top:44px;z-index:30;min-width:180px;padding:16px;background:#faf6ee;border:1px solid #bba580;box-shadow:0 12px 28px #152a2420}.home-appearance button{min-width:44px;min-height:44px;background:none;border:1px solid #bba580}.home-appearance button[aria-pressed=true]{background:#152a24;color:#faf6ee}
+@media(max-width:700px){header nav>.home-appearance{position:absolute;right:112px;top:0}.home-appearance summary{height:36px}.ceremony-hero .manuscript-page-text>p:last-child{font-size:var(--read-size,17px)}}
+body[data-canonical-reader] .open-book{gap:0!important;border:5px double #a5844b!important;border-radius:4px 12px 12px 4px;box-shadow:3px 5px 0 #decba2,6px 8px 0 #987c50,0 14px 30px #30231420!important;background:#f6ecd6!important}
+body[data-canonical-reader] .frontispiece{padding:24px!important;background:linear-gradient(90deg,#f5eddb,#faf6ee 85%,#e5d8bf)!important}
+body[data-canonical-reader] .book-leaves{background:linear-gradient(90deg,#e5d8bf,#faf6ee 6%,#faf6ee 94%,#eee3cf)!important}
+body[data-canonical-reader] .frontispiece-art{box-shadow:none;border:3px double #a5844b}
+body[data-canonical-reader][data-page-theme=evening] .book-leaves,body[data-canonical-reader][data-page-theme=evening] .frontispiece{background:#152a24!important}
+@media(max-width:700px){body[data-canonical-reader] .frontispiece{padding:16px!important}body[data-canonical-reader] .open-book{border-width:3px!important}}
+@media(prefers-reduced-motion:reduce){body[data-canonical-reader] .open-book{animation:none!important}}
+.ceremony-hero .primary{transition:background-color 160ms,transform 90ms}.ceremony-hero .primary:active{transform:scale(.98)}
+@media(min-width:701px){.ceremony-hero .manuscript-page-text>p:last-child{max-height:none}}
+/* On small screens retain all four links with real 44px targets in a 72px header. */
+@media(max-width:700px){header{display:flex!important;align-items:center;padding:0 8px!important;gap:0}header .brand{width:32px;flex:0 0 32px;height:44px}header .brand>span{display:none}header nav{position:static;flex:1;height:72px;justify-content:flex-end;gap:0}header nav>a,header nav>.paper-sound,header nav>.home-appearance,header nav>[data-language-switch]{position:static;flex:0 0 44px;min-width:44px;width:44px;height:44px;min-height:44px;padding:0 2px;line-height:1.2;text-align:center;justify-content:center}header nav>a{display:flex;align-items:center}header nav>.home-appearance{position:relative}.home-appearance summary{height:44px;width:44px}.paper-sound{gap:1px}.paper-sound span{font-size:13px}}
+@keyframes ceremony-soft-arrival{from{opacity:.85}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){html[data-arrival=done] .ceremony-hero .manuscript-object{animation:ceremony-soft-arrival 250ms linear!important}}
+@media(max-width:700px){header nav>.home-appearance{right:auto;top:auto}}
+@media(max-width:700px){header nav>.home-appearance{padding:0}}
