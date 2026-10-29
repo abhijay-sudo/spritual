@@ -8,11 +8,13 @@ Timing: 700ms arrival + 1100ms curl + 240ms text reveal, staggered through 120ms
 
 Verification before release:
 - 110 Node tests pass.
-- 49 Chromium browser journeys pass.
-- 22 focused WebKit journeys pass.
+- 49 Chromium browser journeys pass, plus the added full-length footer-replay regression.
+- 22 focused WebKit journeys pass, plus the added footer-replay regression.
 - 461 generated HTML files pass the local link/asset audit.
 - Axe WCAG A/AA reports no violations on affected EN/HI homes and reader.
 - Visual inspection at 390, 768, 1440; reduced motion, all skip methods, first/return visits, blocked storage, Save-Data, low frame-rate fallback and context loss covered.
 - Production export succeeds with unchanged content/artwork fingerprints and existing owner-directed release authorization.
 
 Story prose and independent editorial/art review status are unchanged.
+
+Live follow-up caught automatic footer-to-book scrolling shortening replay to 317ms. The replay scroll is now excluded from skip handling for its two animation frames; real wheel, touch and keyboard skip remain active. The new full-length replay test passes in Chromium and WebKit.
