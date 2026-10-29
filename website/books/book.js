@@ -13,7 +13,7 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)');
 const keep=document.querySelector('[data-keep]');
 function updateKept(){if(!keep)return;const saved=places();keep.textContent=saved.ok&&saved.value.some(p=>p.id===root.dataset.bookId&&p.lang===lang&&p.folio===folios[current].id)?text.kept:text.keep;}
 function renderShelf(){const list=document.querySelector('[data-kept-list]');if(!list)return;const data=places();list.replaceChildren();if(!data.ok)status(unavailablePlaces(data));const empty=document.querySelector('[data-kept-empty]');if(empty)empty.hidden=data.value.length>0;
- for(const p of data.value){const li=document.createElement('li'),a=document.createElement('a'),button=document.createElement('button');a.href=p.route+'#'+p.folio;a.textContent=p.title+(p.lang==='hi'?' · हिन्दी':' · EN');button.type='button';button.textContent=text.remove;button.setAttribute('aria-label',text.remove+' '+p.title);button.addEventListener('click',()=>{const fresh=places();if(!fresh.ok){status(unavailablePlaces(fresh));return;}if(write(fresh.value.filter(x=>!(x.id===p.id&&x.lang===p.lang)))){renderShelf();status(text.removed);const target=list.querySelector('a')||document.querySelector('#kept h1, #kept h2');if(target){target.tabIndex=-1;target.focus();}}});li.append(a,button);list.append(li);}}
+ for(const p of data.value){const li=document.createElement('li'),a=document.createElement('a'),button=document.createElement('button');a.href=p.route+'#'+p.folio;a.textContent=p.title+(p.lang==='hi'?' · हिन्दी':' · EN');button.type='button';button.textContent=text.remove;button.setAttribute('aria-label',text.remove+' '+p.title);button.addEventListener('click',()=>{const fresh=places();if(!fresh.ok){status(unavailablePlaces(fresh));return;}if(write(fresh.value.filter(x=>!(x.id===p.id&&x.lang===p.lang)))){renderShelf();status(text.removed);const target=list.querySelector('a')||document.querySelector('#kept h1, #kept h2');if(target){target.tabIndex=-1;target.focus();}}});li.dataset.savedPlace=JSON.stringify(p);li.append(a,button);list.append(li);}document.dispatchEvent(new CustomEvent('shelf:rendered'));}
 // Decorative paper lives outside the semantic folios. Content and navigation never wait for it.
 const leaves=document.querySelector('.book-leaves');
 const canonicalReader=!!document.body.hasAttribute('data-canonical-reader');
@@ -21,8 +21,8 @@ const paper=leaves?new PaperEngine(leaves):null;
 function paperTurn(content,{back=false,opening=false}={}){if(opening)return;animation?.cancel();if(!paper)return;animation=paper.turn(content,{back,duration:1100});}
 
 function show(index,{focus=false,motion=false,showArt=false}={}){
- if(!folios.length)return;const previous=current,old=folios[current];const snapshot=canonicalReader&&motion&&!reduce.matches?paper.capture(old):null;current=Math.max(0,Math.min(folios.length-1,index));animation?.cancel();
- folios.forEach((f,i)=>f.hidden=i!==current);root.dataset.currentPage=String(current);
+ if(!folios.length)return;const previous=current,old=folios[current];const snapshot=canonicalReader&&root.dataset.readingModeState!=='flow'&&motion&&!reduce.matches?paper.capture(old):null;current=Math.max(0,Math.min(folios.length-1,index));animation?.cancel();
+ folios.forEach((f,i)=>f.hidden=root.dataset.readingModeState!=='flow'&&i!==current);root.dataset.currentPage=String(current);
  document.querySelectorAll('[data-leaf-step]').forEach(b=>{
   const direction=Number(b.dataset.leafStep),boundary=direction<0?current===0:current===folios.length-1;
   const chapterLink=root.querySelector(`[data-chapter-step="${direction}"]`);
@@ -37,24 +37,27 @@ function show(index,{focus=false,motion=false,showArt=false}={}){
   const rect=scene.getBoundingClientRect();
   if(!canonicalReader&&(rect.top<0||rect.top>innerHeight-80))scene.scrollIntoView({block:'start',behavior:'instant'});
  }
- if(motion&&previous!==current)paperTurn(canonicalReader?snapshot:(current<previous?folios[current]:old),{back:current<previous});
+ if(motion&&root.dataset.readingModeState!=='flow'&&previous!==current)paperTurn(canonicalReader?snapshot:(current<previous?folios[current]:old),{back:current<previous});
  updateKept();
 }
 function fromHash(){let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return 0;}const i=folios.findIndex(f=>f.id===id);return i<0?0:i;}
 if(root&&folios.length){
- document.documentElement.classList.add('book-enhanced');show(fromHash());
+ document.documentElement.classList.add('book-enhanced');root.dataset.readingModeState='book';try{if(sessionStorage.getItem('spritual_reading_mode_v1')==='flow')root.dataset.readingModeState='flow';}catch{}show(fromHash());
  // No entry animation on a deep link: return straight to the kept page or source note.
  if(!location.hash)paperTurn(folios[current],{opening:true});
- const go=(i,{showArt=false}={})=>{if(i<0||i>=folios.length){const link=root.querySelector(`[data-chapter-step="${i<0?-1:1}"]`);if(link)location.assign(link.href);return;}const next=Math.max(0,Math.min(folios.length-1,i));if(next===current)return;history.pushState(null,'','#'+folios[next].id);show(next,{focus:true,motion:true,showArt});};
+ const go=(i,{showArt=false}={})=>{if(i<0||i>=folios.length){const link=root.querySelector(`[data-chapter-step="${i<0?-1:1}"]`);if(link)location.assign(link.href);return;}const next=Math.max(0,Math.min(folios.length-1,i));if(next===current)return;history.pushState(null,'','#'+folios[next].id);show(next,{focus:true,motion:true,showArt});if(root.dataset.readingModeState==='flow')folios[next].scrollIntoView({block:'start',behavior:reduce.matches?'instant':'smooth'});};
+ document.addEventListener('book:navigate',e=>go(Number(e.detail.index)));
+ document.addEventListener('book:mode',e=>{flowReady=true;animation?.cancel();root.dataset.readingModeState=e.detail.mode==='flow'?'flow':'book';try{sessionStorage.setItem('spritual_reading_mode_v1',root.dataset.readingModeState);}catch{}show(current);if(root.dataset.readingModeState==='flow')folios[current].scrollIntoView({block:'start',behavior:'instant'});});
+ let flowFrame=0,flowReady=false;const initialFlowIndex=fromHash();Promise.all([document.fonts.ready,document.readyState==='complete'?Promise.resolve():new Promise(resolve=>addEventListener('load',resolve,{once:true}))]).then(()=>requestAnimationFrame(()=>{if(root.dataset.readingModeState==='flow'&&location.hash){show(initialFlowIndex);folios[current].scrollIntoView({block:'start',behavior:'instant'});}}));for(const type of ['wheel','touchmove'])addEventListener(type,()=>{flowReady=true;},{passive:true});addEventListener('keydown',e=>{if(['PageDown','PageUp','ArrowDown','ArrowUp','Home','End',' '].includes(e.key))flowReady=true;});addEventListener('scroll',()=>{if(!flowReady||root.dataset.readingModeState!=='flow'||flowFrame)return;flowFrame=requestAnimationFrame(()=>{flowFrame=0;if(root.dataset.readingModeState!=='flow')return;const line=Math.min(innerHeight*.55,420);let best=current,distance=Infinity;folios.forEach((f,i)=>{const r=f.getBoundingClientRect(),d=r.top<=line&&r.bottom>=line?0:Math.min(Math.abs(r.top-line),Math.abs(r.bottom-line));if(d<distance){distance=d;best=i;}});if(best!==current){history.replaceState(null,'','#'+folios[best].id);show(best);}});},{passive:true});
  let swipe=null;
- leaves.addEventListener('pointerdown',event=>{if(!event.isPrimary){swipe=null;return;}if(event.target.closest('a,button,input,summary,[contenteditable]'))return;swipe={id:event.pointerId,x:event.clientX,y:event.clientY};},{passive:true});
+ leaves.addEventListener('pointerdown',event=>{if(root.dataset.readingModeState==='flow'||!event.isPrimary){swipe=null;return;}if(event.target.closest('a,button,input,summary,[contenteditable]'))return;swipe={id:event.pointerId,x:event.clientX,y:event.clientY};},{passive:true});
  leaves.addEventListener('pointerup',event=>{if(!swipe||swipe.id!==event.pointerId)return;const dx=event.clientX-swipe.x,dy=event.clientY-swipe.y;swipe=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.7&&!getSelection()?.toString())go(current+(dx<0?1:-1),{showArt:true});else if(Math.abs(dx)<8&&Math.abs(dy)<8&&!getSelection()?.toString()){const r=leaves.getBoundingClientRect(),x=(event.clientX-r.left)/r.width;if(x>.67)go(current+1);else if(x<.33)go(current-1);}},{passive:true});
  leaves.addEventListener('pointercancel',()=>{swipe=null;},{passive:true});
  document.querySelectorAll('[data-leaf-step]').forEach(b=>b.addEventListener('click',event=>go(current+Number(b.dataset.leafStep),{showArt:event.detail>0})));
  document.querySelectorAll('[data-leaf-link]').forEach(a=>a.addEventListener('click',event=>{event.preventDefault();a.closest('dialog').dataset.focusLeaf='true';a.closest('dialog').close();const n=Number(a.dataset.leafLink);if(n!==current)go(n);else folios[current].focus();}));
  addEventListener('popstate',()=>show(fromHash(),{focus:true}));addEventListener('hashchange',()=>{if(folios.some(f=>'#'+f.id===location.hash))show(fromHash(),{focus:true});});
  document.addEventListener('keydown',event=>{if(event.altKey||event.ctrlKey||event.metaKey||event.shiftKey||document.querySelector('dialog[open]')||event.target.closest('input,textarea,select,button,a,summary,[contenteditable]')||(!root.contains(event.target)&&event.target!==document.body))return;if((event.key==='ArrowRight'||event.code==='Space')){event.preventDefault();go(current+1);}if(event.key==='ArrowLeft'){event.preventDefault();go(current-1);}});
- keep?.addEventListener('click',()=>{const saved=places();if(!saved.ok){status(unavailablePlaces(saved));return;}const place={id:root.dataset.bookId,lang,title:root.dataset.bookTitle,route:root.dataset.bookRoute,folio:folios[current].id,revision:root.dataset.bookRevision};if(write(keepPlace(saved.value,place))){status(hi?'यह पृष्ठ इसी ब्राउज़र में सहेजा गया।':'This page is kept in this browser.');updateKept();}});
+ keep?.addEventListener('click',()=>{const saved=places();if(!saved.ok){status(unavailablePlaces(saved));return;}const place={id:root.dataset.bookId,lang,title:root.dataset.bookTitle,route:root.dataset.bookRoute,folio:folios[current].id,revision:root.dataset.bookRevision,savedAt:new Date().toISOString()};if(write(keepPlace(saved.value,place))){status(hi?'यह पृष्ठ इसी ब्राउज़र में सहेजा गया।':'This page is kept in this browser.');updateKept();document.dispatchEvent(new CustomEvent('book:kept'));}});
 }
 for(const button of document.querySelectorAll('[data-open-dialog]'))button.addEventListener('click',()=>{animation?.cancel();const dialog=document.getElementById(button.dataset.openDialog);dialog.showModal();dialog.addEventListener('close',()=>{if(dialog.dataset.focusLeaf){delete dialog.dataset.focusLeaf;folios[current]?.focus({preventScroll:true});}else button.focus();},{once:true});});
 document.querySelectorAll('[data-close-dialog]').forEach(b=>b.addEventListener('click',()=>b.closest('dialog').close()));
@@ -90,7 +93,7 @@ if(editionNote)editionNote.open=location.hash==='#edition-note';
 for(const a of document.querySelectorAll('.source-trigger'))a.addEventListener('click',()=>{document.querySelector('#edition-note').open=true;});
 addEventListener('pagehide',()=>animation?.cancel());addEventListener('resize',()=>animation?.cancel());
 reduce.addEventListener('change',()=>animation?.cancel());document.addEventListener('book:motionchange',()=>animation?.cancel());document.addEventListener('visibilitychange',()=>{if(document.hidden)animation?.cancel();});
-addEventListener('storage',event=>{if(event.key===KEY||event.key===null){renderShelf();updateKept();}});
+addEventListener('storage',event=>{if(event.key===KEY||event.key===null){renderShelf();updateKept();document.dispatchEvent(new CustomEvent('book:kept'));}});
 renderShelf();document.querySelectorAll('[data-enhancement]').forEach(n=>n.hidden=false);
 
 

@@ -7,7 +7,7 @@
 body[data-canonical-reader] #book-main{padding-top:16px}body[data-canonical-reader] .reader-path{margin:0 auto 12px!important}body[data-canonical-reader] .reader-tools{margin:0 auto 20px!important;min-height:44px}body[data-canonical-reader] .frontispiece-art{height:min(58vh,560px)!important}body[data-canonical-reader] [data-page-position]{color:#77511f!important;font-size:13px!important}body[data-canonical-reader] .folio{min-height:480px!important}@media(max-width:550px){body[data-canonical-reader] .frontispiece-art{height:260px!important}body[data-canonical-reader] .folio{min-height:0!important}}
 
 /* Keep every illustrated scene visible; legacy readers collapsed art after page one. */
-body[data-canonical-reader] .frontispiece-art{display:block!important;width:100%!important;max-width:none!important;border-radius:3px!important} @view-transition{navigation:none}
+body[data-canonical-reader] .frontispiece-art{display:block!important;width:100%!important;max-width:none!important;border-radius:3px!important} @view-transition{navigation:auto}
 
 /* Council QA: visible first action, usable reading settings, readable night mode. */
 @media(max-width:550px){

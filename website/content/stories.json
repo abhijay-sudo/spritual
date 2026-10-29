@@ -11,8 +11,8 @@
       "hi": "एक प्रश्न, एक यात्रा, एक धनुष"
     },
     "subtitle": {
-      "en": "An illustrated journey through Bala Kanda.",
-      "hi": "बालकाण्ड की चित्रित कथा-यात्रा।"
+      "en": "Valmiki’s question, infant Sita in the sacred furrow, the discipline of recalling weapons, and the breaking of Shiva’s bow.",
+      "hi": "वाल्मीकि का प्रश्न, पवित्र हलरेखा में शिशु सीता, अस्त्रों को लौटाने का अनुशासन और शिवधनुष का टूटना।"
     },
     "synopsis": {
       "en": "A question, a journey, a bow",
@@ -29,31 +29,31 @@
       {
         "book": "Valmiki Ramayana",
         "arc": "Bala Kanda",
-        "citation": "Bala Kanda 1.1",
+        "citation": "1.1",
         "external_url": "https://www.valmikiramayan.net/utf8/baala/sarga1/balaroman1.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Bala Kanda",
-        "citation": "Bala Kanda · Sarga 66, verses 13b–16a",
+        "citation": "Sarga 66, verses 13b–16a",
         "external_url": "https://www.valmikiramayan.net/utf8/baala/sarga66/balaitrans66.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Bala Kanda",
-        "citation": "Bala Kanda 1.28",
+        "citation": "1.28",
         "external_url": "https://valmikiramayan.net/baala/sarga28/balasans28.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Bala Kanda",
-        "citation": "Bala Kanda 1.67",
+        "citation": "1.67",
         "external_url": "https://valmikiramayan.net/utf8/baala/sarga67/balaroman67.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Bala Kanda",
-        "citation": "Bala Kanda · Sarga 67, verses 1–23",
+        "citation": "Sarga 67, verses 1–23",
         "external_url": "https://www.valmikiramayan.net/utf8/baala/sarga67/balaitrans67.htm"
       }
     ],
@@ -97,11 +97,12 @@
           "hi": "वाल्मीकि के आश्रम के चारों ओर पेड़ों से सुबह का प्रकाश छन रहा था। ऋषि ने कर्म, वचन और परिणामों पर विचार किया था, फिर भी एक प्रश्न उनका साथ नहीं छोड़ रहा था: जिन गुणों की लोग प्रशंसा करते हैं, क्या वे सचमुच एक ही मनुष्य के जीवन में साथ रह सकते हैं?\n\nनारद आए तो वाल्मीकि ने यह नहीं पूछा कि सबसे बलवान या प्रसिद्ध कौन है। उन्होंने स्थिरता, सत्य, कृतज्ञता, साहस, ज्ञान, करुणा और क्रोध को सँभालने की क्षमता के बारे में पूछा। यह निर्दोष प्रदर्शन का नहीं, पूरे चरित्र का प्रश्न था।"
         },
         "image": {
-          "src": "/stories-app/assets/forest-sages.webp",
+          "src": "/assets/illustrated/01-valmiki-question-960.jpg",
           "alt": {
-            "en": "Illustrated Ramayana landscape",
-            "hi": "रामायण का चित्रित दृश्य"
-          }
+            "en": "A question in the ashrama — an illustrated scene",
+            "hi": "आश्रम में एक प्रश्न — चित्रित दृश्य"
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -115,11 +116,12 @@
           "hi": "नारद ने उत्तर देने से पहले ध्यान से सुना। उन्होंने अयोध्या के राम का नाम लिया और अनेक गुण बताए, पर राजकुमार को आसान विजयों की सूची नहीं बनाया। कोई साहसी होकर भी शोक से मिल सकता है; ज्ञानी होकर भी अनिश्चितता का सामना कर सकता है; संकल्पित होकर भी दूसरों के मन में कठिन प्रश्न छोड़ सकता है।\n\nइससे उत्तर छोटा नहीं, और व्यापक हुआ। प्रशंसनीय चरित्र कोई ऐसा रत्न नहीं था जो सदा के लिए मिल जाए। वह निर्णयों में दिखाई देता, संबंधों में परखा जाता और परिस्थितियाँ बदलने पर फिर से साधा जाता था।"
         },
         "image": {
-          "src": "/stories-app/assets/forest-sages.webp",
+          "src": "/assets/illustrated/01-scene-narada-answer-960.jpg",
           "alt": {
-            "en": "Illustrated Ramayana landscape",
-            "hi": "रामायण का चित्रित दृश्य"
-          }
+            "en": "No single answer — an illustrated scene",
+            "hi": "एक गुण पर्याप्त नहीं — चित्रित दृश्य"
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -133,11 +135,12 @@
           "hi": "नारद ने एक जीवन की रूपरेखा रखी: राजपरिवार, वनवास, मित्रता, संघर्ष, वियोग और वापसी। वाल्मीकि ने समझा कि उनके प्रश्न तक ईमानदारी से पहुँचने का मार्ग ऐसी लंबी कथा है जो निर्णय और उनकी कीमत—दोनों दिखा सके।\n\nइसलिए रामायण का आरंभ ध्यान से होता है। किसी पात्र का निर्णय करने से पहले पाठक से पूछा जाता है: कौन-से गुण उपस्थित हैं, किन गुणों में तनाव है, और किसी निर्णय से किसका अनुभव बदलता है। यात्रा शुरू होती है, पर प्रश्न हमारे साथ रहता है।"
         },
         "image": {
-          "src": "/stories-app/assets/forest-sages.webp",
+          "src": "/assets/illustrated/01-scene-story-begins-960.jpg",
           "alt": {
-            "en": "Illustrated Ramayana landscape",
-            "hi": "रामायण का चित्रित दृश्य"
-          }
+            "en": "An opening, not a verdict — an illustrated scene",
+            "hi": "निर्णय नहीं, आरंभ — चित्रित दृश्य"
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -155,7 +158,8 @@
           "alt": {
             "en": "Janaka welcomes the infant Sita, found in the furrow of a sacred field.",
             "hi": "खेत की सीता में मिली बालिका सीता का स्वागत करते जनक।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -173,7 +177,8 @@
           "alt": {
             "en": "Rama, Sita and Lakshmana in the forest",
             "hi": "वन में राम, सीता और लक्ष्मण"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -187,11 +192,12 @@
           "hi": "राम ने गुरु से अस्त्रों को वापस लेने का ज्ञान माँगा: हर शक्ति को लौटाया या शांत कैसे किया जाए? इस प्रश्न ने शिक्षा का अर्थ बदल दिया। तैयारी केवल कार्य करने की क्षमता नहीं थी; उद्देश्य पूरा होने के बाद उसे आगे बढ़ने से रोकने की क्षमता भी थी।\n\nविश्वामित्र ने प्रश्न में छिपी सावधानी को पहचाना। उन्होंने संयम और प्रत्याहार के उपाय सिखाए। लक्ष्मण भी सुनते रहे। अब उनकी शिक्षा में गति और वापसी, निर्णय और पुनर्विचार—दोनों थे।"
         },
         "image": {
-          "src": "/assets/collection-ramayana.webp",
+          "src": "/assets/illustrated/02-scene-withdrawal-960.jpg",
           "alt": {
-            "en": "Illustrated Ramayana landscape",
-            "hi": "रामायण का चित्रित दृश्य"
-          }
+            "en": "The second question — an illustrated scene",
+            "hi": "दूसरा प्रश्न — चित्रित दृश्य"
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -205,11 +211,12 @@
           "hi": "दोनों भाई वन में आगे बढ़े। उनके नए ज्ञान की घोषणा बाहर कुछ नहीं कर रहा था, और यही उसकी गरिमा थी। कोई शक्तिशाली कौशल हर जगह धमकी बनकर उपस्थित होना आवश्यक नहीं।\n\nयह सीख अस्त्रों से आगे जाती है। कठोर शब्द को कोमल किया जा सकता है, जल्दबाज़ी का संदेश भेजे बिना रोका जा सकता है, और नया नुकसान दिखाई दे तो योजना ठहराई जा सकती है। आगे बढ़ना सीखना जरूरी है; लौटना भी।"
         },
         "image": {
-          "src": "/assets/collection-ramayana.webp",
+          "src": "/assets/illustrated/02-knowing-when-to-stop-960.jpg",
           "alt": {
-            "en": "Illustrated Ramayana landscape",
-            "hi": "रामायण का चित्रित दृश्य"
-          }
+            "en": "Carrying knowledge well — an illustrated scene",
+            "hi": "ज्ञान को सँभालकर चलना — चित्रित दृश्य"
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -223,11 +230,12 @@
           "hi": "मिथिला में राजा जनक ने शिव से जुड़ा एक प्राचीन धनुष सुरक्षित रखा था। बहुत लोगों ने उसके बारे में सुना था और कल्पना की थी कि उसे उठाना क्या सिद्ध करेगा। उसके चारों ओर शक्ति की इतनी कथाएँ जमा थीं कि मानो सभा उन्हीं से भर गई हो।\n\nसीता का भविष्य इस चुनौती से जुड़ गया था। इसलिए यह क्षण केवल प्रदर्शन नहीं था। सार्वजनिक उत्सुकता के पीछे परिवार, वचन और उनका अपना जीवन भी था।"
         },
         "image": {
-          "src": "/stories-app/assets/rama-bow-mithila.webp",
+          "src": "/assets/illustrated/03-bow-at-mithila-960.jpg",
           "alt": {
-            "en": "Illustrated Ramayana landscape",
-            "hi": "रामायण का चित्रित दृश्य"
-          }
+            "en": "The hall of the bow — an illustrated scene",
+            "hi": "धनुष की सभा — चित्रित दृश्य"
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -241,11 +249,12 @@
           "hi": "विश्वामित्र राम और लक्ष्मण को सभा में लाए। राम धनुष की ओर दौड़े नहीं। उन्होंने जनक का विवरण सुना, सेवकों को धनुष दिखाने की तैयारी करते देखा, फिर गुरु की ओर देखकर उसे परखने की अनुमति ली।\n\nवह ठहराव महत्वपूर्ण था। ध्यान के बिना शक्ति किसी दूसरे की पवित्र वस्तु को मंच बना सकती है। यहाँ कर्म प्रसंग, निमंत्रण और मार्गदर्शन के बाद आया।"
         },
         "image": {
-          "src": "/stories-app/assets/rama-bow-mithila.webp",
+          "src": "/assets/illustrated/25-second-bow-960.jpg",
           "alt": {
-            "en": "Illustrated Ramayana landscape",
-            "hi": "रामायण का चित्रित दृश्य"
-          }
+            "en": "Permission before action — an illustrated scene",
+            "hi": "कर्म से पहले अनुमति — चित्रित दृश्य"
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -259,11 +268,12 @@
           "hi": "राम ने धनुष उठाया और उसकी डोरी चढ़ाने लगे। बल पड़ते ही वह ऐसी ध्वनि के साथ टूटा कि सभा काँप उठी। किसी के शब्द खोजने से पहले आश्चर्य पूरे कक्ष में फैल गया।\n\nजनक ने अपनी शर्त पूरी होते देखी और अयोध्या संदेश भेजा। कथा विवाह और परिवारों के नए संबंधों की ओर बढ़ी। फिर भी टूटा धनुष एक उपयोगी प्रश्न छोड़ता है: किसी असाधारण कर्म के बाद लोग उन सभी जीवनों की देखभाल कैसे करें जिन्हें उसका परिणाम जोड़ेगा?"
         },
         "image": {
-          "src": "/stories-app/assets/rama-bow-mithila.webp",
+          "src": "/assets/illustrated/03-scene-after-bow-960.jpg",
           "alt": {
-            "en": "Illustrated Ramayana landscape",
-            "hi": "रामायण का चित्रित दृश्य"
-          }
+            "en": "The sound that changed the room — an illustrated scene",
+            "hi": "जिस ध्वनि ने सभा बदल दी — चित्रित दृश्य"
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -277,11 +287,12 @@
           "hi": "आठ पहियों वाली लोहे की पेटी में शिव का विशाल धनुष लाया गया। जनक के सेवकों ने उसे विश्वामित्र और दोनों राजकुमारों के सामने रखा। अनेक राजा उसे साधने में असफल हो चुके थे।\n\nराम ने पहले अपने गुरु की अनुमति ली। फिर पेटी खोली और धनुष को हाथ में लेने की इच्छा जताई। सबके सामने उन्होंने सहजता से उसे उठाया और प्रत्यंचा चढ़ा दी। जैसे ही राम ने प्रत्यंचा खींची, धनुष बीच से टूट गया। गर्जना जैसी ध्वनि गूँजी। धरती काँप उठी।\n\nजनक की पुरानी प्रतिज्ञा अब पूरी होने वाली थी। टूटे धनुष के पास खड़ा यह राजकुमार अब सीता का जीवनसाथी बनने वाला था।"
         },
         "image": {
-          "src": "/stories-app/assets/rama-bow-mithila.webp",
+          "src": "/assets/illustrated/03-bow-at-mithila-960.jpg",
           "alt": {
-            "en": "Rama lifts the great bow in a richly illustrated hall at Mithila.",
-            "hi": "मिथिला की सभा में महान धनुष उठाते राम।"
-          }
+            "en": "When the bow broke — an illustrated scene",
+            "hi": "जब शिव का धनुष टूटा — चित्रित दृश्य"
+          },
+          "focal_point": "center 45%"
         }
       }
     ]
@@ -298,8 +309,8 @@
       "hi": "वचन और विदा"
     },
     "subtitle": {
-      "en": "An illustrated journey through Ayodhya Kanda.",
-      "hi": "अयोध्याकाण्ड की चित्रित कथा-यात्रा।"
+      "en": "A sudden exile, Guha’s quiet friendship beside the Ganga, and Bharata’s refusal to claim a throne that is not his.",
+      "hi": "अचानक वनवास, गंगा के किनारे गुह की शांत मित्रता और उस सिंहासन को स्वीकारने से भरत का इनकार जो उनका नहीं है।"
     },
     "synopsis": {
       "en": "Promises and partings",
@@ -316,31 +327,31 @@
       {
         "book": "Valmiki Ramayana",
         "arc": "Ayodhya Kanda",
-        "citation": "Ayodhya Kanda 2.1–18",
+        "citation": "2.1–18",
         "external_url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga18/ayodhyaroman18.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Ayodhya Kanda",
-        "citation": "Ayodhya Kanda 2.26–30",
+        "citation": "2.26–30",
         "external_url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga30/ayodhyaroman30.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Ayodhya Kanda",
-        "citation": "Ayodhya Kanda 2.31–40",
+        "citation": "2.31–40",
         "external_url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga40/ayodhyaroman40.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Ayodhya Kanda",
-        "citation": "Ayodhya Kanda 2.50",
+        "citation": "2.50",
         "external_url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga50/ayodhyaroman50.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Ayodhya Kanda",
-        "citation": "Ayodhya Kanda 2.112",
+        "citation": "2.112",
         "external_url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga112/ayodhyaroman112.htm"
       }
     ],
@@ -389,7 +400,8 @@
           "alt": {
             "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
             "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -407,7 +419,8 @@
           "alt": {
             "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
             "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -425,7 +438,8 @@
           "alt": {
             "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
             "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -443,7 +457,8 @@
           "alt": {
             "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
             "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -461,7 +476,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -479,7 +495,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -497,7 +514,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -515,7 +533,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -533,7 +552,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -551,7 +571,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 35%"
         }
       }
     ]
@@ -568,8 +589,8 @@
       "hi": "वियोग, स्वागत और आगे का मार्ग"
     },
     "subtitle": {
-      "en": "An illustrated journey through Aranya Kanda.",
-      "hi": "अरण्यकाण्ड की चित्रित कथा-यात्रा।"
+      "en": "An empty hermitage in Panchavati, Jatayu’s last stand, and Shabari’s patient welcome in the forest.",
+      "hi": "पंचवटी की सूनी कुटिया, जटायु का अंतिम संघर्ष और वन में शबरी का धैर्य भरा स्वागत।"
     },
     "synopsis": {
       "en": "An absence, a welcome, a way onward",
@@ -586,37 +607,37 @@
       {
         "book": "Valmiki Ramayana",
         "arc": "Aranya Kanda",
-        "citation": "Aranya Kanda 3.17–18",
+        "citation": "3.17–18",
         "external_url": "https://www.valmikiramayan.net/utf8/aranya/sarga18/aranyaroman18.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Aranya Kanda",
-        "citation": "Aranya Kanda 3.30",
+        "citation": "3.30",
         "external_url": "https://www.valmikiramayan.net/utf8/aranya/sarga30/aranyaroman30.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Aranya Kanda",
-        "citation": "Aranya Kanda 3.42–45",
+        "citation": "3.42–45",
         "external_url": "https://www.valmikiramayan.net/utf8/aranya/sarga42/aranyaroman42.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Aranya Kanda",
-        "citation": "Aranya Kanda 3.49–51",
+        "citation": "3.49–51",
         "external_url": "https://www.valmikiramayan.net/utf8/aranya/sarga49/aranyaroman49.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Aranya Kanda",
-        "citation": "Aranya Kanda 3.67–68",
+        "citation": "3.67–68",
         "external_url": "https://www.valmikiramayan.net/utf8/aranya/sarga68/aranyaroman68.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Aranya Kanda",
-        "citation": "Aranya Kanda 3.74",
+        "citation": "3.74",
         "external_url": "https://www.valmikiramayan.net/utf8/aranya/sarga74/aranyaroman74.htm"
       }
     ],
@@ -658,7 +679,8 @@
           "alt": {
             "en": "Rama and Lakshmana stand before their empty forest hermitage.",
             "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -676,7 +698,8 @@
           "alt": {
             "en": "Rama and Lakshmana stand before their empty forest hermitage.",
             "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -694,7 +717,8 @@
           "alt": {
             "en": "Rama and Lakshmana stand before their empty forest hermitage.",
             "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -712,7 +736,8 @@
           "alt": {
             "en": "Rama and Lakshmana stand before their empty forest hermitage.",
             "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -730,7 +755,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -748,7 +774,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -766,7 +793,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 35%"
         }
       }
     ]
@@ -783,8 +811,8 @@
       "hi": "विश्वास का निर्माण"
     },
     "subtitle": {
-      "en": "An illustrated journey through Kishkindha Kanda.",
-      "hi": "किष्किन्धाकाण्ड की चित्रित कथा-यात्रा।"
+      "en": "Hanuman chooses words that build trust before alliance, setting the search for Sita in motion.",
+      "hi": "हनुमान ऐसे शब्द चुनते हैं जो संधि से पहले विश्वास जगाते हैं और सीता की खोज को आगे बढ़ाते हैं।"
     },
     "synopsis": {
       "en": "The work of trust",
@@ -801,61 +829,61 @@
       {
         "book": "Valmiki Ramayana",
         "arc": "Kishkindha Kanda",
-        "citation": "Kishkindha Kanda 4.3",
+        "citation": "4.3",
         "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga3/kishkindharoman3.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Kishkindha Kanda",
-        "citation": "Kishkindha Kanda · 4.5",
+        "citation": "4.5",
         "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga5/kishkindharoman5.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Kishkindha Kanda",
-        "citation": "Kishkindha Kanda · 4.12",
+        "citation": "4.12",
         "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga12/kishkindharoman12.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Kishkindha Kanda",
-        "citation": "Kishkindha Kanda · 4.16",
+        "citation": "4.16",
         "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga16/kishkindharoman16.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Kishkindha Kanda",
-        "citation": "Kishkindha Kanda · 4.17",
+        "citation": "4.17",
         "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga17/kishkindharoman17.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Kishkindha Kanda",
-        "citation": "Kishkindha Kanda · 4.18",
+        "citation": "4.18",
         "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga18/kishkindharoman18.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Kishkindha Kanda",
-        "citation": "Kishkindha Kanda · 4.26",
+        "citation": "4.26",
         "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga26/kishkindharoman26.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Kishkindha Kanda",
-        "citation": "Kishkindha Kanda · Sarga 66, verses 1–7 and 20–22",
+        "citation": "Sarga 66, verses 1–7 and 20–22",
         "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga66/kishkindhaitrans66.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Kishkindha Kanda",
-        "citation": "Kishkindha Kanda · Sarga 67, verses 1–5 and 35b–41",
+        "citation": "Sarga 67, verses 1–5 and 35b–41",
         "external_url": "https://www.valmikiramayan.net/utf8/kish/sarga67/kishkindhaitrans67.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Sundara Kanda",
-        "citation": "Sundara Kanda · Sarga 1",
+        "citation": "Sarga 1",
         "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga1/sundaraitrans1.htm"
       }
     ],
@@ -898,7 +926,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -916,7 +945,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -934,7 +964,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -952,7 +983,8 @@
           "alt": {
             "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
             "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -970,7 +1002,8 @@
           "alt": {
             "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
             "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -988,7 +1021,8 @@
           "alt": {
             "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
             "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -1006,7 +1040,8 @@
           "alt": {
             "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
             "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -1024,7 +1059,8 @@
           "alt": {
             "en": "Hanuman leaps across a teal ocean towards distant Lanka under a saffron sky.",
             "hi": "समुद्र के पार लंका की ओर छलाँग लगाते हनुमान।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       }
     ]
@@ -1041,8 +1077,8 @@
       "hi": "समुद्र के पार आशा का संकेत"
     },
     "subtitle": {
-      "en": "An illustrated journey through Sundara Kanda.",
-      "hi": "सुन्दरकाण्ड की चित्रित कथा-यात्रा।"
+      "en": "A leap across the ocean and a ring of recognition that restores hope in the Ashoka grove.",
+      "hi": "सागर के पार एक छलाँग और पहचान की अँगूठी, जो अशोक वाटिका में आशा फिर जगाती है।"
     },
     "synopsis": {
       "en": "Across the sea, a sign of hope",
@@ -1059,49 +1095,49 @@
       {
         "book": "Valmiki Ramayana",
         "arc": "Sundara Kanda",
-        "citation": "Sundara Kanda 5.1",
+        "citation": "5.1",
         "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga1/sundararoman1.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Sundara Kanda",
-        "citation": "Sundara Kanda · 5.3",
+        "citation": "5.3",
         "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga3/sundararoman3.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Sundara Kanda",
-        "citation": "Sundara Kanda · 5.11",
+        "citation": "5.11",
         "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga11/sundararoman11.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Sundara Kanda",
-        "citation": "Sundara Kanda · 5.15",
+        "citation": "5.15",
         "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga15/sundararoman15.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Sundara Kanda",
-        "citation": "Sundara Kanda · 5.21",
+        "citation": "5.21",
         "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga21/sundararoman21.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Sundara Kanda",
-        "citation": "Sundara Kanda · 5.30",
+        "citation": "5.30",
         "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga30/sundararoman30.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Sundara Kanda",
-        "citation": "Sundara Kanda · 5.31",
+        "citation": "5.31",
         "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga31/sundararoman31.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Sundara Kanda",
-        "citation": "Sundara Kanda 5.36",
+        "citation": "5.36",
         "external_url": "https://www.valmikiramayan.net/utf8/sundara/sarga36/sundarasans36.htm"
       }
     ],
@@ -1148,7 +1184,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -1166,7 +1203,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -1184,7 +1222,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -1202,7 +1241,8 @@
           "alt": {
             "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
             "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -1220,7 +1260,8 @@
           "alt": {
             "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
             "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -1238,7 +1279,8 @@
           "alt": {
             "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
             "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -1256,7 +1298,8 @@
           "alt": {
             "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
             "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -1274,7 +1317,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -1292,7 +1336,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -1310,7 +1355,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 35%"
         }
       }
     ]
@@ -1327,8 +1373,8 @@
       "hi": "घर लौटने की यात्रा"
     },
     "subtitle": {
-      "en": "An illustrated journey through Yuddha Kanda.",
-      "hi": "युद्धकाण्ड की चित्रित कथा-यात्रा।"
+      "en": "Truth spoken before the assembly, the long return to Ayodhya, and responsibility restored.",
+      "hi": "सभा में कहा गया सत्य, अयोध्या की लंबी वापसी और फिर सँभाला गया उत्तरदायित्व।"
     },
     "synopsis": {
       "en": "The journey home",
@@ -1345,73 +1391,73 @@
       {
         "book": "Valmiki Ramayana",
         "arc": "Yuddha Kanda",
-        "citation": "Yuddha Kanda · 6.113",
+        "citation": "6.113",
         "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga113/yuddha_113_prose.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Yuddha Kanda",
-        "citation": "Yuddha Kanda · 6.114",
+        "citation": "6.114",
         "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga114/yuddha_114_prose.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Yuddha Kanda",
-        "citation": "Yuddha Kanda · 6.115",
+        "citation": "6.115",
         "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga115/yuddharoman115.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Yuddha Kanda",
-        "citation": "Yuddha Kanda · 6.116",
+        "citation": "6.116",
         "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga116/yuddharoman116.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Yuddha Kanda",
-        "citation": "Yuddha Kanda · 6.117",
+        "citation": "6.117",
         "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga117/yuddharoman117.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Yuddha Kanda",
-        "citation": "Yuddha Kanda · 6.118",
+        "citation": "6.118",
         "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga118/yuddharoman118.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Yuddha Kanda",
-        "citation": "Yuddha Kanda · 6.120",
+        "citation": "6.120",
         "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga120/yuddharoman120.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Yuddha Kanda",
-        "citation": "Yuddha Kanda · 6.122",
+        "citation": "6.122",
         "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga122/yuddharoman122.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Yuddha Kanda",
-        "citation": "Yuddha Kanda · 6.123",
+        "citation": "6.123",
         "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga123/yuddharoman123.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Yuddha Kanda",
-        "citation": "Yuddha Kanda · 6.124",
+        "citation": "6.124",
         "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga124/yuddharoman124.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Yuddha Kanda",
-        "citation": "Yuddha Kanda · 6.125",
+        "citation": "6.125",
         "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga125/yuddharoman125.htm"
       },
       {
         "book": "Valmiki Ramayana",
         "arc": "Yuddha Kanda",
-        "citation": "Yuddha Kanda 6.128",
+        "citation": "6.128",
         "external_url": "https://www.valmikiramayan.net/utf8/yuddha/sarga128/yuddharoman128.htm"
       }
     ],
@@ -1458,7 +1504,8 @@
           "alt": {
             "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
             "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -1476,7 +1523,8 @@
           "alt": {
             "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
             "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -1494,7 +1542,8 @@
           "alt": {
             "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
             "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -1512,7 +1561,8 @@
           "alt": {
             "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
             "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -1530,7 +1580,8 @@
           "alt": {
             "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
             "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -1548,7 +1599,8 @@
           "alt": {
             "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
             "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -1566,7 +1618,8 @@
           "alt": {
             "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
             "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -1584,7 +1637,8 @@
           "alt": {
             "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
             "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -1602,7 +1656,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -1620,7 +1675,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -1638,7 +1694,8 @@
           "alt": {
             "en": "Illustrated Ramayana landscape",
             "hi": "रामायण का चित्रित दृश्य"
-          }
+          },
+          "focal_point": "center 45%"
         }
       }
     ]
@@ -1673,7 +1730,7 @@
       {
         "book": "Bhagavata Purana",
         "arc": "Skandha 10",
-        "citation": "Skandha 10, Chapter 25",
+        "citation": ", Chapter 25",
         "external_url": "https://vedabase.io/en/library/sb/10/25/"
       }
     ],
@@ -1717,7 +1774,8 @@
           "alt": {
             "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
             "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -1735,7 +1793,8 @@
           "alt": {
             "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
             "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -1753,7 +1812,8 @@
           "alt": {
             "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
             "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -1771,7 +1831,8 @@
           "alt": {
             "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
             "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -1789,7 +1850,8 @@
           "alt": {
             "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
             "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -1807,7 +1869,8 @@
           "alt": {
             "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
             "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -1825,7 +1888,8 @@
           "alt": {
             "en": "Krishna shelters villagers and cattle beneath Govardhana during the rain.",
             "hi": "वर्षा में गोवर्धन के नीचे लोगों और गायों को आश्रय देते कृष्ण।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       }
     ]
@@ -1860,7 +1924,7 @@
       {
         "book": "Valmiki Ramayana",
         "arc": "Bala Kanda",
-        "citation": "Bala Kanda, Sarga 43",
+        "citation": ", Sarga 43",
         "external_url": "https://www.valmikiramayan.net/utf8/baala/sarga43/balaitrans43.htm"
       }
     ],
@@ -1904,7 +1968,8 @@
           "alt": {
             "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
             "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -1922,7 +1987,8 @@
           "alt": {
             "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
             "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -1940,7 +2006,8 @@
           "alt": {
             "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
             "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -1958,7 +2025,8 @@
           "alt": {
             "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
             "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -1976,7 +2044,8 @@
           "alt": {
             "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
             "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -1994,7 +2063,8 @@
           "alt": {
             "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
             "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -2012,7 +2082,8 @@
           "alt": {
             "en": "Shiva receives Ganga through his matted hair in a Himalayan landscape.",
             "hi": "हिमालय में अपनी जटाओं से गंगा को धारण करते शिव।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       }
     ]
@@ -2047,13 +2118,13 @@
       {
         "book": "Bhagavata Purana",
         "arc": "Skandha 4",
-        "citation": "Skandha 4 · Chapter 8, verses 9–24 and 25–54",
+        "citation": "Chapter 8, verses 9–24 and 25–54",
         "external_url": "https://vedabase.io/en/library/sb/4/8/"
       },
       {
         "book": "Bhagavata Purana",
         "arc": "Skandha 4",
-        "citation": "Skandha 4 · Chapter 9, verses 1–3",
+        "citation": "Chapter 9, verses 1–3",
         "external_url": "https://vedabase.io/en/library/sb/4/9/"
       },
       {
@@ -2101,7 +2172,8 @@
           "alt": {
             "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
             "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -2119,7 +2191,8 @@
           "alt": {
             "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
             "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -2137,7 +2210,8 @@
           "alt": {
             "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
             "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -2155,7 +2229,8 @@
           "alt": {
             "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
             "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -2173,7 +2248,8 @@
           "alt": {
             "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
             "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -2191,7 +2267,8 @@
           "alt": {
             "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
             "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -2209,7 +2286,8 @@
           "alt": {
             "en": "Young Dhruva meditates beneath a forest canopy under the stars.",
             "hi": "तारों भरे आकाश के नीचे वन में ध्यान करते बालक ध्रुव।"
-          }
+          },
+          "focal_point": "center 35%"
         }
       }
     ]
@@ -2289,7 +2367,8 @@
           "alt": {
             "en": "Devi appears beside the river before Suratha and Samadhi",
             "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -2307,7 +2386,8 @@
           "alt": {
             "en": "Devi appears beside the river before Suratha and Samadhi",
             "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -2325,7 +2405,8 @@
           "alt": {
             "en": "Devi appears beside the river before Suratha and Samadhi",
             "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -2343,7 +2424,8 @@
           "alt": {
             "en": "Devi appears beside the river before Suratha and Samadhi",
             "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -2361,7 +2443,8 @@
           "alt": {
             "en": "Devi appears beside the river before Suratha and Samadhi",
             "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -2379,7 +2462,8 @@
           "alt": {
             "en": "Devi appears beside the river before Suratha and Samadhi",
             "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -2397,7 +2481,8 @@
           "alt": {
             "en": "Devi appears beside the river before Suratha and Samadhi",
             "hi": "नदी किनारे सुरथ और समाधि के सामने प्रकट देवी"
-          }
+          },
+          "focal_point": "center 35%"
         }
       }
     ]
@@ -2477,7 +2562,8 @@
           "alt": {
             "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
             "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -2495,7 +2581,8 @@
           "alt": {
             "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
             "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -2513,7 +2600,8 @@
           "alt": {
             "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
             "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -2531,7 +2619,8 @@
           "alt": {
             "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
             "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -2549,7 +2638,8 @@
           "alt": {
             "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
             "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -2567,7 +2657,8 @@
           "alt": {
             "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
             "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -2585,7 +2676,8 @@
           "alt": {
             "en": "Ganesha walks around Shiva and Parvati in a garden at Kailasa",
             "hi": "कैलास के उद्यान में शिव और पार्वती की परिक्रमा करते गणेश"
-          }
+          },
+          "focal_point": "center 35%"
         }
       }
     ]
@@ -2662,7 +2754,8 @@
           "alt": {
             "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
             "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -2680,7 +2773,8 @@
           "alt": {
             "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
             "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -2698,7 +2792,8 @@
           "alt": {
             "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
             "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -2716,7 +2811,8 @@
           "alt": {
             "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
             "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
-          }
+          },
+          "focal_point": "center 35%"
         }
       },
       {
@@ -2734,7 +2830,8 @@
           "alt": {
             "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
             "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
-          }
+          },
+          "focal_point": "center 45%"
         }
       },
       {
@@ -2752,7 +2849,8 @@
           "alt": {
             "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
             "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
-          }
+          },
+          "focal_point": "center 55%"
         }
       },
       {
@@ -2770,7 +2868,8 @@
           "alt": {
             "en": "Yudhishthira stands beside a dog as Indra waits in a celestial chariot",
             "hi": "कुत्ते के पास खड़े युधिष्ठिर और दिव्य रथ पर प्रतीक्षा करते इंद्र"
-          }
+          },
+          "focal_point": "center 35%"
         }
       }
     ]

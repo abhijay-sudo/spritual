@@ -8,7 +8,7 @@ test('Hindi search and readable age filters find existing stories',async({page})
  await page.goto('/hi/');const input=page.locator('[data-search-input]');
  await input.fill('गणेश');await expect(page.locator('[data-story]:visible')).toHaveCount(1);
  await input.fill('साहस');expect(await page.locator('[data-story]:visible').count()).toBeGreaterThan(0);
- await input.fill('');await page.locator('.filters summary').click();await page.locator('[data-filter="age"]').selectOption('independent-8+');
+ await input.fill('');await page.locator('[data-filter="age"]').selectOption('independent-8+');
  expect(await page.locator('[data-story]:visible').count()).toBeGreaterThan(0);
  await expect(page.locator('[data-filter="age"]')).toContainText('8 वर्ष और अधिक');
 });
