@@ -1,3 +1,7 @@
+## Latest — 30 October 2026: Apple design refinement of the canonical website
+
+The current application is `website/content/` and the canonical 276-route build. The illustrated manuscript identity now shares a refined editorial system, accessible mobile bottom navigation, quieter discovery, fluid page turns and native dialog sheets, exact scene continuity, and recoverable Saved removal. See [the release record](APPLE_DESIGN_RELEASE_2026-10-30.md) for scope, verification boundaries and the checks required to confirm production. Older alpha and alternative-route entries below are historical.
+
 ## Latest — 28 October 2026: collection-first homepage and restored bookshelf welcome
 
 Reworked `/` and `/books/` into distinct illustrated Ramayana, Krishna, Shiva and Dhruva collections. Ramayana selection goes directly to ordered chapter contents; a small All collections/language toolbar keeps that anchored landing navigable. Other collections have compact contents pages, with honest one-chapter counts. Existing reader prose, sources, saved-page schema and URLs survive; `/books/stories/` retains all 16 originals. Reader endings stay within their own collection. The existing fullscreen single-portrait/book welcome now also runs on English/Hindi bookshelf entry pages, with native skip, reduced-motion/deep-link recovery and no reader interruptions.

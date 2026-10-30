@@ -35,7 +35,9 @@ test('slow frame rate downgrades and preserves the final manuscript',async({page
 });
 test('mobile header controls meet target size without overlap',async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.goto('/');
- const boxes=await page.locator('header nav>a,header nav>.paper-sound,header .home-appearance summary').evaluateAll(nodes=>nodes.map(n=>{const r=n.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width,height:r.height}}));
+ for(const selector of ['header nav>a','.header-tools>a,.header-tools>button,.header-tools summary,header .brand']){
+ const boxes=await page.locator(selector).evaluateAll(nodes=>nodes.map(n=>{const r=n.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width,height:r.height}}));
  for(const box of boxes){expect(box.width).toBeGreaterThanOrEqual(44);expect(box.height).toBeGreaterThanOrEqual(44);}
  const ordered=boxes.sort((a,b)=>a.left-b.left);for(let i=1;i<ordered.length;i++)expect(ordered[i].left).toBeGreaterThanOrEqual(ordered[i-1].right-1);
+ }
 });

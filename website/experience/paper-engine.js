@@ -21,7 +21,7 @@ function webgl(layer,tex,back){const canvas=document.createElement('canvas');can
 function ribbon(layer,content,cover,w,h,back){
  const strips=[],count=32;
  for(let i=0;i<count;i++){
-  const strip=document.createElement('div');strip.className='paper-ribbon';strip.style.height=h+'px';
+  const strip=document.createElement('div');strip.className='paper-ribbon';strip.style.height=h+'px';strip.style.width=(w/count+1)+'px';
   const face=document.createElement('div');face.className=cover?'paper-ribbon-content paper-cloth':'paper-ribbon-content';face.style.width=w+'px';face.style.height=h+'px';face.style.left=-(i*w/count)+'px';
   if(cover){const name=document.createElement('span');name.textContent='Spritual';const sub=document.createElement('small');sub.textContent='The Living Manuscript';face.append(name,sub);}else{const clone=content?.cloneNode(true);if(clone){clone.hidden=false;for(const n of [clone,...clone.querySelectorAll('*')])for(const attr of ['id','data-folio','tabindex','aria-labelledby'])n.removeAttribute(attr);face.append(clone);}}
   strip.append(face);layer.append(strip);strips.push(strip);
@@ -31,14 +31,73 @@ function ribbon(layer,content,cover,w,h,back){
   const point=x=>{const d=Math.max(0,x-axis),angle=Math.min(d/r,Math.PI);return {x:d?axis+Math.sin(angle)*r-Math.max(0,d-r*Math.PI):x,z:(1-Math.cos(angle))*r};};
   strips.forEach((strip,i)=>{const a=point(i/count),b=point((i+1)/count),dx=b.x-a.x,dz=b.z-a.z,angle=Math.atan2(dz,dx),rear=angle>Math.PI/2;
    // Adjacent chords share endpoints, preventing gaps at the bend and gutter overshoot.
-   strip.style.width=(Math.hypot(dx,dz)*w+1)+'px';strip.style.transform=`translate3d(${a.x*w}px,0,${a.z*w}px) rotateY(${-angle*180/Math.PI}deg)`;strip.style.filter=`brightness(${.94+.06*Math.cos(angle)})`;
+   const scale=(Math.hypot(dx,dz)*w+1)/(w/count+1);strip.style.transform=`translate3d(${a.x*w}px,0,${a.z*w}px) rotateY(${-angle*180/Math.PI}deg) scaleX(${scale})`;strip.style.filter=`brightness(${.94+.06*Math.cos(angle)})`;
    const face=strip.firstElementChild;face.style.opacity=rear?'.08':'1';face.style.background=rear?'transparent':'';face.style.borderColor=rear?'transparent':'';
   });
  },dispose(){strips.forEach(strip=>strip.remove());}};
 }
 export class PaperEngine{
  constructor(host){this.host=host;this.active=null;this.mode='idle';}
- capture(content){const rect=this.host.getBoundingClientRect();return {element:content,texture:texture(content,false,rect.width,rect.height)};}
+ capture(content,{raster=true}={}){const rect=this.host.getBoundingClientRect();return {element:content,...(raster?{texture:texture(content,false,rect.width,rect.height)}:{})};}
+ // Reader-only direct manipulation. The arrival keeps its separately timed turn().
+ // Progress is presentation state: grabbing an active spring never restarts the leaf.
+ track(content,{back=false,underlay=null,onSettled=()=>{},onCancel=()=>{}}={}){
+  this.cancel();
+  const host=this.host,rect=host.getBoundingClientRect(),quiet=reduced()||document.hidden;
+  let layer=null,preview=null,renderer=null,raf=0,done=false,progress=0,velocity=0,target=1,settling=false;
+  const clean=()=>{
+   cancelAnimationFrame(raf);renderer?.dispose();layer?.remove();preview?.remove();
+   delete host.dataset.paperProgress;delete host.dataset.paperState;
+   if(this.active===record)this.active=null;
+  };
+  const finish=value=>{if(done)return;done=true;progress=value;clean();onSettled(value);};
+  const draw=()=>{
+   host.dataset.paperProgress=progress.toFixed(4);
+   if(!renderer)return;
+   try{renderer.draw(progress);}catch{
+    low=true;host.dataset.paperDowngraded='true';renderer?.dispose();
+    try{renderer=ribbon(layer,content?.element||content,false,rect.width,rect.height,back);this.mode='css-curl';host.dataset.paperEngine=this.mode;renderer.draw(progress);}catch{renderer=null;layer?.remove();preview?.remove();}
+   }
+  };
+  const record={
+   get progress(){return progress;},get velocity(){return velocity;},get target(){return target;},get settling(){return settling;},get finished(){return done;},
+   hold(){if(done)return progress;cancelAnimationFrame(raf);settling=false;host.dataset.paperState='held';return progress;},
+   set(value,speed=0){if(done)return;cancelAnimationFrame(raf);settling=false;progress=Math.max(0,Math.min(1,value));velocity=Math.max(-6,Math.min(6,speed));host.dataset.paperState='dragging';draw();},
+   settle(value,speed=velocity){
+    if(done)return;cancelAnimationFrame(raf);target=value?1:0;velocity=Math.max(-6,Math.min(6,speed));settling=true;host.dataset.paperState='settling';
+    if(quiet){finish(target);return;}
+    // Analytic critically damped spring: stable after a long frame and at any refresh rate.
+    const origin=progress,initialVelocity=velocity,start=performance.now(),omega=16;
+    const run=now=>{
+     if(done||!settling)return;
+     const elapsed=(now-start)/1000,offset=origin-target,b=initialVelocity+omega*offset,decay=Math.exp(-omega*elapsed);
+     const position=target+(offset+b*elapsed)*decay;
+     velocity=(initialVelocity-omega*b*elapsed)*decay;
+     progress=Math.max(0,Math.min(1,position));draw();
+     if((Math.abs(position-target)<.001&&Math.abs(velocity)<.015)||elapsed>1){finish(target);return;}
+     raf=requestAnimationFrame(run);
+    };
+    raf=requestAnimationFrame(run);
+   },
+   cancel(){if(done)return;done=true;clean();onCancel();}
+  };
+  this.active=record;
+  if(!quiet){
+   if(underlay&&!back){
+    preview=document.createElement('div');preview.className='paper-preview';preview.inert=true;preview.setAttribute('aria-hidden','true');
+    const style=getComputedStyle(host);Object.assign(preview.style,{position:'absolute',inset:'0',padding:style.padding,background:style.background,borderRadius:style.borderRadius,pointerEvents:'none',overflow:'hidden',zIndex:'4'});
+    const clone=underlay.cloneNode(true);clone.hidden=false;
+    for(const node of [clone,...clone.querySelectorAll('*')])for(const attr of ['id','data-folio','tabindex','aria-labelledby'])node.removeAttribute(attr);
+    preview.append(clone);host.append(preview);
+   }
+   layer=document.createElement('div');layer.className='paper-surface';layer.inert=true;layer.setAttribute('aria-hidden','true');host.append(layer);
+   // Direct input cannot wait for first-use shader compilation. The compositor
+   // ribbon also keeps the actual typeset DOM instead of rasterizing reader text.
+   this.mode='css-curl';renderer=ribbon(layer,content?.element||content,false,rect.width,rect.height,back);
+   host.dataset.paperEngine=this.mode;tick();
+  }else{this.mode='crossfade';host.dataset.paperEngine=this.mode;}
+  host.dataset.paperState='held';draw();return record;
+ }
  turn(content,{cover=false,back=false,duration=timings.turn,onDone=()=>{}}={}){this.cancel();const host=this.host,rect=host.getBoundingClientRect(),layer=document.createElement('div');layer.className='paper-surface';layer.inert=true;layer.setAttribute('aria-hidden','true');host.append(layer);let renderer,done=false,start=performance.now(),from=0,raf,frameStart=start,frames=0;const finish=()=>{if(done)return;done=true;cancelAnimationFrame(raf);renderer?.dispose();layer.remove();if(this.active===record)this.active=null;onDone();};const record={cancel:finish,fastForward:(ms=timings.skip)=>{from=progress;start=performance.now();duration=ms;}};let progress=0;this.active=record;
  if(reduced()||document.hidden){this.mode='crossfade';finish();return record;}
  try{if(!low&&!navigator.connection?.saveData&&!(navigator.deviceMemory&&navigator.deviceMemory<=2))renderer=webgl(layer,content?.texture||texture(content,cover,rect.width,rect.height),back);}catch{}

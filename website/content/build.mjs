@@ -35,7 +35,7 @@ await copyFile(resolve(root,'books/book.js'),resolve(out,'books/book.js'));
 for(const file of ['paper-engine.js','arrival.js','arrival-init.js'])await copyFile(resolve(root,'experience',file),resolve(out,'experience',file));
 await copyFile(new URL('legacy-routes.json',import.meta.url),resolve(out,'legacy-routes.json'));
 for(const name of (await readdir(resolve(root,'dist'))).filter(name=>/\.(css|js)$/.test(name)))await cp(resolve(root,'dist',name),resolve(out,name));
-for(const name of ['canonical.css','canonical.js','ceremony.css','experience-motion.css','experience-motion.js','experience-features.js','grain.svg'])await cp(resolve(import.meta.dirname,name),resolve(out,name));
+for(const name of ['canonical.css','canonical.js','ceremony.css','experience-motion.css','experience-motion.js','experience-features.js','grain.svg','premium.css','premium.js','fluid-ui.css','fluid-ui.js'])await cp(resolve(import.meta.dirname,name),resolve(out,name));
 await writeFile(resolve(out,'redirect.js'),`const link=document.querySelector('[data-redirect]');if(link){const url=new URL(link.href);if(location.hash&&!url.hash)url.hash=location.hash;location.replace(url.href);}`);
 const paths=new Set(),indexablePaths=new Set();async function put(path,html){const folder=resolve(out,'.'+path);await mkdir(folder,{recursive:true});await writeFile(resolve(folder,'index.html'),release?html:html.replace('</head>','<meta name="robots" content="noindex,nofollow"></head>'));paths.add(path);if(!/<meta name="robots" content="noindex/.test(html))indexablePaths.add(path);}
 for(const lang of ['en','hi']){
