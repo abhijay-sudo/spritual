@@ -1,0 +1,28 @@
+import{PaperEngine,timings,setSound,soundEnabled,tick}from'./paper-engine.js';
+const html=document.documentElement,hi=html.lang==='hi',reduce=matchMedia('(prefers-reduced-motion: reduce)'),key='spritual_manuscript_arrival_v1';
+const soundButton=document.querySelector('.paper-sound');
+function soundLabel(){if(!soundButton)return;const on=soundEnabled();soundButton.setAttribute('aria-pressed',String(on));soundButton.setAttribute('aria-label',hi?(on?'पृष्ठ की ध्वनि बंद करें':'पृष्ठ की ध्वनि चालू करें'):(on?'Turn page sounds off':'Turn page sounds on'));soundButton.querySelector('span').textContent=hi?(on?'चालू':'बंद'):(on?'On':'Off');}
+document.addEventListener('pointerdown',()=>{if(soundEnabled())setSound(true);},{once:true,passive:true});
+soundLabel();soundButton?.addEventListener('click',()=>{setSound(!soundEnabled());soundLabel();});
+const book=document.querySelector('[data-home-book]'),skip=document.querySelector('.arrival-skip'),replay=document.querySelector('.arrival-replay');
+if(book){const host=book.querySelector('.manuscript-prose-page'),engine=new PaperEngine(host);let timer,deadline,record,active=false,started=0,skipping=false,replayScroll=false;
+ const remember=()=>{try{localStorage.setItem(key,String(Date.now()));}catch{}};
+ const finish=()=>{if(!active)return;active=false;clearTimeout(timer);clearTimeout(deadline);clearTimeout(window.spritualArrivalWatchdog);html.dataset.arrival='done';book.dataset.openingElapsed=String(Math.round(performance.now()-started));skip.hidden=true;remember();document.dispatchEvent(new CustomEvent('manuscript:opened'));};
+ const turn=()=>{if(!active)return;html.dataset.arrival='turning';record=engine.turn(null,{cover:true,duration:timings.turn,onDone:()=>{if(active){html.dataset.arrival='room';timer=setTimeout(finish,skipping?0:timings.room+120);}}});};
+ const start=(manual=false)=>{clearTimeout(timer);clearTimeout(deadline);active=false;engine.cancel();skipping=false;if(reduce.matches){html.dataset.arrival='done';book.animate([{opacity:.75},{opacity:1}],{duration:250});remember();return;}active=true;started=manual?performance.now():(window.spritualArrivalStart||performance.now());html.dataset.arrival='pending';skip.hidden=false;book.dataset.openingElapsed='';const elapsed=performance.now()-started;timer=setTimeout(turn,Math.max(0,timings.arrival-elapsed));deadline=setTimeout(()=>{engine.cancel();finish();},Math.max(0,2200-elapsed));tick(true);};
+ const fast=()=>{if(!active||skipping)return;skipping=true;clearTimeout(timer);clearTimeout(deadline);html.dataset.arrival='skipping';if(record&&engine.active)record.fastForward(timings.skip);else{html.dataset.arrival='turning';record=engine.turn(null,{cover:true,duration:timings.skip,onDone:finish});}deadline=setTimeout(()=>{engine.cancel();finish();},timings.skip);};
+ document.addEventListener('focusin',e=>{if(active&&e.target.closest('.manuscript-intro'))fast();});skip?.addEventListener('click',fast);book.addEventListener('click',fast);addEventListener('keydown',e=>{if(active&&['Escape','Enter'].includes(e.key)){if(e.key==='Enter'&&e.target.closest('a,button'))return;e.preventDefault();fast();}});addEventListener('wheel',fast,{passive:true});addEventListener('scroll',()=>{if(!replayScroll)fast();},{passive:true});book.addEventListener('touchmove',fast,{passive:true});addEventListener('pagehide',()=>{engine.cancel();finish();});document.addEventListener('visibilitychange',()=>{if(document.hidden){engine.cancel();finish();}});reduce.addEventListener('change',()=>{if(reduce.matches){engine.cancel();finish();}});
+ replay?.addEventListener('click',()=>{replayScroll=true;book.scrollIntoView({block:'center',behavior:'instant'});start(true);requestAnimationFrame(()=>requestAnimationFrame(()=>{replayScroll=false;}));});
+ if(html.dataset.arrival==='pending')start();else html.dataset.arrival='done';
+ // The single ceremony is complete; no ambient page turns or permanent rendering loop.
+}
+const reader=document.querySelector('[data-reader]');
+if(reader){
+ if(innerWidth<=700){const source=reader.querySelector('.source-trigger');if(source)reader.querySelector('.reader-path').append(source);}
+ const chrome=reader.querySelector('.reader-tools');let hide;
+ const wake=()=>{reader.classList.remove('reading-hush');clearTimeout(hide);if(!reduce.matches)hide=setTimeout(()=>{if(!document.querySelector('dialog[open]')&&!chrome?.contains(document.activeElement))reader.classList.add('reading-hush');},2400);};
+ for(const event of ['pointermove','pointerdown','keydown','focusin'])reader.addEventListener(event,wake,{passive:true});reader.addEventListener('focusout',wake);reader.addEventListener('book:pagechange',()=>{const n=Number(reader.dataset.currentPage)||0,total=reader.querySelectorAll('[data-folio]').length;reader.style.setProperty('--book-progress',String((n+1)/total));reader.style.setProperty('--fore-edge',`${Math.max(1,6*(1-(n+1)/total))}px`);wake();});wake();
+ // Share the hero's illumination with its destination, without replacing any story text.
+ if(reader.dataset.bookId==='knowing-how-to-stop'){const art=reader.querySelector('.frontispiece-art img');if(art){art.src='/experience/illumination.webp';art.alt=hi?'वन में राम, सीता और लक्ष्मण का चित्र':'An illuminated forest scene with Rama, Sita and Lakshmana';}}
+ if(!hi){const segmenter=typeof Intl.Segmenter==='function'?new Intl.Segmenter('en',{granularity:'grapheme'}):null;for(const p of reader.querySelectorAll('.folio-prose p:first-child')){const word=p.textContent.trim().split(/\s+/)[0];const count=segmenter?[...segmenter.segment(word)].length:[...word].length;p.classList.toggle('paper-dropcap',count>2);}}
+}

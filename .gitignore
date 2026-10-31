@@ -15,6 +15,7 @@ supabase/.branches/
 
 dist-native/
 artifacts/
+website/canonical-dist/
 *.apk
 *.aab
 *.keystore

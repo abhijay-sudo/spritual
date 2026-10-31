@@ -1,0 +1,386 @@
+{
+  "aliases": {
+    "/books/read/what-makes-a-person-admirable/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=what-makes-a-person-admirable",
+    "/story/what-makes-a-person-admirable/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=what-makes-a-person-admirable",
+    "/read/what-makes-a-person-admirable/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=what-makes-a-person-admirable",
+    "/hi/books/read/what-makes-a-person-admirable/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=what-makes-a-person-admirable",
+    "/hi/story/what-makes-a-person-admirable/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=what-makes-a-person-admirable",
+    "/hi/read/what-makes-a-person-admirable/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=what-makes-a-person-admirable",
+    "/books/read/sita-earth/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=sita-earth",
+    "/story/sita-earth/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=sita-earth",
+    "/read/sita-earth/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=sita-earth",
+    "/hi/books/read/sita-earth/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=sita-earth",
+    "/hi/story/sita-earth/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=sita-earth",
+    "/hi/read/sita-earth/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=sita-earth",
+    "/books/read/knowing-how-to-stop/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=knowing-how-to-stop",
+    "/story/knowing-how-to-stop/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=knowing-how-to-stop",
+    "/read/knowing-how-to-stop/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=knowing-how-to-stop",
+    "/hi/books/read/knowing-how-to-stop/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=knowing-how-to-stop",
+    "/hi/story/knowing-how-to-stop/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=knowing-how-to-stop",
+    "/hi/read/knowing-how-to-stop/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=knowing-how-to-stop",
+    "/books/read/the-bow-at-mithila/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=the-bow-at-mithila",
+    "/story/the-bow-at-mithila/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=the-bow-at-mithila",
+    "/read/the-bow-at-mithila/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=the-bow-at-mithila",
+    "/hi/books/read/the-bow-at-mithila/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=the-bow-at-mithila",
+    "/hi/story/the-bow-at-mithila/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=the-bow-at-mithila",
+    "/hi/read/the-bow-at-mithila/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=the-bow-at-mithila",
+    "/books/read/rama-bow/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=rama-bow",
+    "/story/rama-bow/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=rama-bow",
+    "/read/rama-bow/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=rama-bow",
+    "/hi/books/read/rama-bow/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=rama-bow",
+    "/hi/story/rama-bow/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=rama-bow",
+    "/hi/read/rama-bow/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/?from=rama-bow",
+    "/books/read/a-friend-beside-the-ganga/": "/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/?from=a-friend-beside-the-ganga",
+    "/story/a-friend-beside-the-ganga/": "/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/?from=a-friend-beside-the-ganga",
+    "/read/a-friend-beside-the-ganga/": "/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/?from=a-friend-beside-the-ganga",
+    "/hi/books/read/a-friend-beside-the-ganga/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/?from=a-friend-beside-the-ganga",
+    "/hi/story/a-friend-beside-the-ganga/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/?from=a-friend-beside-the-ganga",
+    "/hi/read/a-friend-beside-the-ganga/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/?from=a-friend-beside-the-ganga",
+    "/books/read/bharata-and-the-sandals/": "/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/?from=bharata-and-the-sandals",
+    "/story/bharata-and-the-sandals/": "/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/?from=bharata-and-the-sandals",
+    "/read/bharata-and-the-sandals/": "/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/?from=bharata-and-the-sandals",
+    "/hi/books/read/bharata-and-the-sandals/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/?from=bharata-and-the-sandals",
+    "/hi/story/bharata-and-the-sandals/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/?from=bharata-and-the-sandals",
+    "/hi/read/bharata-and-the-sandals/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/?from=bharata-and-the-sandals",
+    "/books/read/shabaris-welcome/": "/collections/ramayana/books/valmiki-ramayana/arcs/aranya-kanda/stories/ramayana-loss-and-hospitality/?from=shabaris-welcome",
+    "/story/shabaris-welcome/": "/collections/ramayana/books/valmiki-ramayana/arcs/aranya-kanda/stories/ramayana-loss-and-hospitality/?from=shabaris-welcome",
+    "/read/shabaris-welcome/": "/collections/ramayana/books/valmiki-ramayana/arcs/aranya-kanda/stories/ramayana-loss-and-hospitality/?from=shabaris-welcome",
+    "/hi/books/read/shabaris-welcome/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/aranya-kanda/stories/ramayana-loss-and-hospitality/?from=shabaris-welcome",
+    "/hi/story/shabaris-welcome/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/aranya-kanda/stories/ramayana-loss-and-hospitality/?from=shabaris-welcome",
+    "/hi/read/shabaris-welcome/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/aranya-kanda/stories/ramayana-loss-and-hospitality/?from=shabaris-welcome",
+    "/books/read/hanumans-first-conversation/": "/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/?from=hanumans-first-conversation",
+    "/story/hanumans-first-conversation/": "/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/?from=hanumans-first-conversation",
+    "/read/hanumans-first-conversation/": "/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/?from=hanumans-first-conversation",
+    "/hi/books/read/hanumans-first-conversation/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/?from=hanumans-first-conversation",
+    "/hi/story/hanumans-first-conversation/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/?from=hanumans-first-conversation",
+    "/hi/read/hanumans-first-conversation/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/?from=hanumans-first-conversation",
+    "/books/read/hanuman-leap/": "/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/?from=hanuman-leap",
+    "/story/hanuman-leap/": "/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/?from=hanuman-leap",
+    "/read/hanuman-leap/": "/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/?from=hanuman-leap",
+    "/hi/books/read/hanuman-leap/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/?from=hanuman-leap",
+    "/hi/story/hanuman-leap/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/?from=hanuman-leap",
+    "/hi/read/hanuman-leap/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/?from=hanuman-leap",
+    "/books/read/across-the-ocean/": "/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/?from=across-the-ocean",
+    "/story/across-the-ocean/": "/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/?from=across-the-ocean",
+    "/read/across-the-ocean/": "/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/?from=across-the-ocean",
+    "/hi/books/read/across-the-ocean/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/?from=across-the-ocean",
+    "/hi/story/across-the-ocean/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/?from=across-the-ocean",
+    "/hi/read/across-the-ocean/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/?from=across-the-ocean",
+    "/books/read/a-ring-brings-hope/": "/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/?from=a-ring-brings-hope",
+    "/story/a-ring-brings-hope/": "/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/?from=a-ring-brings-hope",
+    "/read/a-ring-brings-hope/": "/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/?from=a-ring-brings-hope",
+    "/hi/books/read/a-ring-brings-hope/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/?from=a-ring-brings-hope",
+    "/hi/story/a-ring-brings-hope/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/?from=a-ring-brings-hope",
+    "/hi/read/a-ring-brings-hope/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/?from=a-ring-brings-hope",
+    "/books/read/returning-responsibility/": "/collections/ramayana/books/valmiki-ramayana/arcs/yuddha-kanda/stories/ramayana-home-and-responsibility/?from=returning-responsibility",
+    "/story/returning-responsibility/": "/collections/ramayana/books/valmiki-ramayana/arcs/yuddha-kanda/stories/ramayana-home-and-responsibility/?from=returning-responsibility",
+    "/read/returning-responsibility/": "/collections/ramayana/books/valmiki-ramayana/arcs/yuddha-kanda/stories/ramayana-home-and-responsibility/?from=returning-responsibility",
+    "/hi/books/read/returning-responsibility/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/yuddha-kanda/stories/ramayana-home-and-responsibility/?from=returning-responsibility",
+    "/hi/story/returning-responsibility/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/yuddha-kanda/stories/ramayana-home-and-responsibility/?from=returning-responsibility",
+    "/hi/read/returning-responsibility/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/yuddha-kanda/stories/ramayana-home-and-responsibility/?from=returning-responsibility",
+    "/books/read/krishna-mountain/": "/collections/krishna/books/bhagavata-purana/arcs/skandha-10/stories/krishna-mountain/?from=krishna-mountain",
+    "/story/krishna-mountain/": "/collections/krishna/books/bhagavata-purana/arcs/skandha-10/stories/krishna-mountain/?from=krishna-mountain",
+    "/read/krishna-mountain/": "/collections/krishna/books/bhagavata-purana/arcs/skandha-10/stories/krishna-mountain/?from=krishna-mountain",
+    "/hi/books/read/krishna-mountain/": "/hi/collections/krishna/books/bhagavata-purana/arcs/skandha-10/stories/krishna-mountain/?from=krishna-mountain",
+    "/hi/story/krishna-mountain/": "/hi/collections/krishna/books/bhagavata-purana/arcs/skandha-10/stories/krishna-mountain/?from=krishna-mountain",
+    "/hi/read/krishna-mountain/": "/hi/collections/krishna/books/bhagavata-purana/arcs/skandha-10/stories/krishna-mountain/?from=krishna-mountain",
+    "/books/read/shiva-river/": "/collections/shiva/books/valmiki-ramayana/arcs/bala-kanda/stories/shiva-river/?from=shiva-river",
+    "/story/shiva-river/": "/collections/shiva/books/valmiki-ramayana/arcs/bala-kanda/stories/shiva-river/?from=shiva-river",
+    "/read/shiva-river/": "/collections/shiva/books/valmiki-ramayana/arcs/bala-kanda/stories/shiva-river/?from=shiva-river",
+    "/hi/books/read/shiva-river/": "/hi/collections/shiva/books/valmiki-ramayana/arcs/bala-kanda/stories/shiva-river/?from=shiva-river",
+    "/hi/story/shiva-river/": "/hi/collections/shiva/books/valmiki-ramayana/arcs/bala-kanda/stories/shiva-river/?from=shiva-river",
+    "/hi/read/shiva-river/": "/hi/collections/shiva/books/valmiki-ramayana/arcs/bala-kanda/stories/shiva-river/?from=shiva-river",
+    "/books/read/dhruva-star/": "/collections/krishna/books/bhagavata-purana/arcs/skandha-4/stories/dhruva-star/?from=dhruva-star",
+    "/story/dhruva-star/": "/collections/krishna/books/bhagavata-purana/arcs/skandha-4/stories/dhruva-star/?from=dhruva-star",
+    "/read/dhruva-star/": "/collections/krishna/books/bhagavata-purana/arcs/skandha-4/stories/dhruva-star/?from=dhruva-star",
+    "/hi/books/read/dhruva-star/": "/hi/collections/krishna/books/bhagavata-purana/arcs/skandha-4/stories/dhruva-star/?from=dhruva-star",
+    "/hi/story/dhruva-star/": "/hi/collections/krishna/books/bhagavata-purana/arcs/skandha-4/stories/dhruva-star/?from=dhruva-star",
+    "/hi/read/dhruva-star/": "/hi/collections/krishna/books/bhagavata-purana/arcs/skandha-4/stories/dhruva-star/?from=dhruva-star",
+    "/books/": "/#collections",
+    "/library/": "/#collections",
+    "/library/sources/": "/#collections",
+    "/books/stories/": "/#stories",
+    "/library/stories/": "/#stories",
+    "/books/ramayana/": "/collections/ramayana/",
+    "/books/krishna/": "/collections/krishna/",
+    "/books/shiva/": "/collections/shiva/",
+    "/books/dhruva/": "/collections/krishna/books/bhagavata-purana/arcs/skandha-4/",
+    "/library/mahabharata/": "/collections/mahabharata/books/vyasa-mahabharata/",
+    "/library/mahabharata/adi/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/adi-parva/",
+    "/library/mahabharata/sabha/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/sabha-parva/",
+    "/library/mahabharata/vana/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/vana-parva/",
+    "/library/mahabharata/virata/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/virata-parva/",
+    "/library/mahabharata/udyoga/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/udyoga-parva/",
+    "/library/mahabharata/bhishma/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/bhishma-parva/",
+    "/library/mahabharata/drona/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/drona-parva/",
+    "/library/mahabharata/karna/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/karna-parva/",
+    "/library/mahabharata/shalya/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/shalya-parva/",
+    "/library/mahabharata/sauptika/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/sauptika-parva/",
+    "/library/mahabharata/stri/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/stri-parva/",
+    "/library/mahabharata/shanti/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/shanti-parva/",
+    "/library/mahabharata/anushasana/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/anushasana-parva/",
+    "/library/mahabharata/ashvamedhika/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/ashvamedhika-parva/",
+    "/library/mahabharata/ashramavasika/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/ashramavasika-parva/",
+    "/library/mahabharata/mausala/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/mausala-parva/",
+    "/library/mahabharata/mahaprasthanika/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/mahaprasthanika-parva/",
+    "/library/mahabharata/svargarohana/": "/collections/mahabharata/books/vyasa-mahabharata/arcs/svargarohana-parva/",
+    "/library/ramayana/": "/collections/ramayana/books/valmiki-ramayana/",
+    "/library/ramayana/bala/": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/",
+    "/library/ramayana/ayodhya/": "/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/",
+    "/library/ramayana/aranya/": "/collections/ramayana/books/valmiki-ramayana/arcs/aranya-kanda/",
+    "/library/ramayana/kishkindha/": "/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/",
+    "/library/ramayana/sundara/": "/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/",
+    "/library/ramayana/yuddha/": "/collections/ramayana/books/valmiki-ramayana/arcs/yuddha-kanda/",
+    "/library/ramayana/uttara/": "/collections/ramayana/books/valmiki-ramayana/arcs/uttara-kanda/",
+    "/library/shiva/": "/collections/shiva/books/shiva-purana/",
+    "/library/shiva/vidyeshvara/": "/collections/shiva/books/shiva-purana/arcs/vidyeshvara-samhita/",
+    "/library/shiva/rudra/": "/collections/shiva/books/shiva-purana/arcs/rudra-samhita/",
+    "/library/shiva/shatarudra/": "/collections/shiva/books/shiva-purana/arcs/shatarudra-samhita/",
+    "/library/shiva/kotirudra/": "/collections/shiva/books/shiva-purana/arcs/kotirudra-samhita/",
+    "/library/shiva/uma/": "/collections/shiva/books/shiva-purana/arcs/uma-samhita/",
+    "/library/shiva/kailasa/": "/collections/shiva/books/shiva-purana/arcs/kailasa-samhita/",
+    "/library/shiva/vayaviya/": "/collections/shiva/books/shiva-purana/arcs/vayaviya-samhita/",
+    "/hi/books/": "/hi/#collections",
+    "/hi/library/": "/hi/#collections",
+    "/hi/library/sources/": "/hi/#collections",
+    "/hi/books/stories/": "/hi/#stories",
+    "/hi/library/stories/": "/hi/#stories",
+    "/hi/books/ramayana/": "/hi/collections/ramayana/",
+    "/hi/books/krishna/": "/hi/collections/krishna/",
+    "/hi/books/shiva/": "/hi/collections/shiva/",
+    "/hi/books/dhruva/": "/hi/collections/krishna/books/bhagavata-purana/arcs/skandha-4/",
+    "/hi/library/mahabharata/": "/hi/collections/mahabharata/books/vyasa-mahabharata/",
+    "/hi/library/mahabharata/adi/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/adi-parva/",
+    "/hi/library/mahabharata/sabha/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/sabha-parva/",
+    "/hi/library/mahabharata/vana/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/vana-parva/",
+    "/hi/library/mahabharata/virata/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/virata-parva/",
+    "/hi/library/mahabharata/udyoga/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/udyoga-parva/",
+    "/hi/library/mahabharata/bhishma/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/bhishma-parva/",
+    "/hi/library/mahabharata/drona/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/drona-parva/",
+    "/hi/library/mahabharata/karna/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/karna-parva/",
+    "/hi/library/mahabharata/shalya/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/shalya-parva/",
+    "/hi/library/mahabharata/sauptika/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/sauptika-parva/",
+    "/hi/library/mahabharata/stri/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/stri-parva/",
+    "/hi/library/mahabharata/shanti/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/shanti-parva/",
+    "/hi/library/mahabharata/anushasana/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/anushasana-parva/",
+    "/hi/library/mahabharata/ashvamedhika/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/ashvamedhika-parva/",
+    "/hi/library/mahabharata/ashramavasika/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/ashramavasika-parva/",
+    "/hi/library/mahabharata/mausala/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/mausala-parva/",
+    "/hi/library/mahabharata/mahaprasthanika/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/mahaprasthanika-parva/",
+    "/hi/library/mahabharata/svargarohana/": "/hi/collections/mahabharata/books/vyasa-mahabharata/arcs/svargarohana-parva/",
+    "/hi/library/ramayana/": "/hi/collections/ramayana/books/valmiki-ramayana/",
+    "/hi/library/ramayana/bala/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/",
+    "/hi/library/ramayana/ayodhya/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/",
+    "/hi/library/ramayana/aranya/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/aranya-kanda/",
+    "/hi/library/ramayana/kishkindha/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/",
+    "/hi/library/ramayana/sundara/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/",
+    "/hi/library/ramayana/yuddha/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/yuddha-kanda/",
+    "/hi/library/ramayana/uttara/": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/uttara-kanda/",
+    "/hi/library/shiva/": "/hi/collections/shiva/books/shiva-purana/",
+    "/hi/library/shiva/vidyeshvara/": "/hi/collections/shiva/books/shiva-purana/arcs/vidyeshvara-samhita/",
+    "/hi/library/shiva/rudra/": "/hi/collections/shiva/books/shiva-purana/arcs/rudra-samhita/",
+    "/hi/library/shiva/shatarudra/": "/hi/collections/shiva/books/shiva-purana/arcs/shatarudra-samhita/",
+    "/hi/library/shiva/kotirudra/": "/hi/collections/shiva/books/shiva-purana/arcs/kotirudra-samhita/",
+    "/hi/library/shiva/uma/": "/hi/collections/shiva/books/shiva-purana/arcs/uma-samhita/",
+    "/hi/library/shiva/kailasa/": "/hi/collections/shiva/books/shiva-purana/arcs/kailasa-samhita/",
+    "/hi/library/shiva/vayaviya/": "/hi/collections/shiva/books/shiva-purana/arcs/vayaviya-samhita/"
+  },
+  "legacy": {
+    "what-makes-a-person-admirable": {
+      "id": "ramayana-beginnings",
+      "start": 1,
+      "folios": {
+        "the-question": 1,
+        "many-qualities": 2,
+        "the-opening": 3
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/"
+      }
+    },
+    "sita-earth": {
+      "id": "ramayana-beginnings",
+      "start": 4,
+      "folios": {
+        "opening": 4
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/"
+      }
+    },
+    "knowing-how-to-stop": {
+      "id": "ramayana-beginnings",
+      "start": 5,
+      "folios": {
+        "after-the-gift": 5,
+        "the-second-question": 6,
+        "carrying-it-well": 7
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/"
+      }
+    },
+    "the-bow-at-mithila": {
+      "id": "ramayana-beginnings",
+      "start": 8,
+      "folios": {
+        "the-hall": 8,
+        "permission": 9,
+        "the-sound": 10
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/"
+      }
+    },
+    "rama-bow": {
+      "id": "ramayana-beginnings",
+      "start": 11,
+      "folios": {
+        "opening": 11
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/bala-kanda/stories/ramayana-beginnings/"
+      }
+    },
+    "a-friend-beside-the-ganga": {
+      "id": "ramayana-promises-and-partings",
+      "start": 5,
+      "folios": {
+        "riverbank": 5,
+        "what-is-needed": 6,
+        "the-crossing": 7
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/"
+      }
+    },
+    "bharata-and-the-sandals": {
+      "id": "ramayana-promises-and-partings",
+      "start": 8,
+      "folios": {
+        "request": 8,
+        "a-sign": 9,
+        "nandigrama": 10
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/ayodhya-kanda/stories/ramayana-promises-and-partings/"
+      }
+    },
+    "shabaris-welcome": {
+      "id": "ramayana-loss-and-hospitality",
+      "start": 5,
+      "folios": {
+        "kept-place": 5,
+        "arrival": 6,
+        "the-way-ahead": 7
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/aranya-kanda/stories/ramayana-loss-and-hospitality/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/aranya-kanda/stories/ramayana-loss-and-hospitality/"
+      }
+    },
+    "hanumans-first-conversation": {
+      "id": "ramayana-trust-and-alliance",
+      "start": 1,
+      "folios": {
+        "two-travellers": 1,
+        "speech-that-opens": 2,
+        "toward-alliance": 3
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/"
+      }
+    },
+    "hanuman-leap": {
+      "id": "ramayana-trust-and-alliance",
+      "start": 8,
+      "folios": {
+        "opening": 8
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/kishkindha-kanda/stories/ramayana-trust-and-alliance/"
+      }
+    },
+    "across-the-ocean": {
+      "id": "ramayana-crossing-and-recognition",
+      "start": 1,
+      "folios": {
+        "the-edge": 1,
+        "mainakas-offer": 2,
+        "changing-shape": 3
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/"
+      }
+    },
+    "a-ring-brings-hope": {
+      "id": "ramayana-crossing-and-recognition",
+      "start": 8,
+      "folios": {
+        "careful-approach": 8,
+        "the-ring": 9,
+        "message-returning": 10
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/sundara-kanda/stories/ramayana-crossing-and-recognition/"
+      }
+    },
+    "returning-responsibility": {
+      "id": "ramayana-home-and-responsibility",
+      "start": 9,
+      "folios": {
+        "news-of-return": 9,
+        "the-handover": 10,
+        "a-beginning": 11
+      },
+      "paths": {
+        "en": "/collections/ramayana/books/valmiki-ramayana/arcs/yuddha-kanda/stories/ramayana-home-and-responsibility/",
+        "hi": "/hi/collections/ramayana/books/valmiki-ramayana/arcs/yuddha-kanda/stories/ramayana-home-and-responsibility/"
+      }
+    },
+    "krishna-mountain": {
+      "id": "krishna-mountain",
+      "start": 1,
+      "folios": {
+        "opening": 7
+      },
+      "paths": {
+        "en": "/collections/krishna/books/bhagavata-purana/arcs/skandha-10/stories/krishna-mountain/",
+        "hi": "/hi/collections/krishna/books/bhagavata-purana/arcs/skandha-10/stories/krishna-mountain/"
+      }
+    },
+    "shiva-river": {
+      "id": "shiva-river",
+      "start": 1,
+      "folios": {
+        "opening": 7
+      },
+      "paths": {
+        "en": "/collections/shiva/books/valmiki-ramayana/arcs/bala-kanda/stories/shiva-river/",
+        "hi": "/hi/collections/shiva/books/valmiki-ramayana/arcs/bala-kanda/stories/shiva-river/"
+      }
+    },
+    "dhruva-star": {
+      "id": "dhruva-star",
+      "start": 1,
+      "folios": {
+        "opening": 7
+      },
+      "paths": {
+        "en": "/collections/krishna/books/bhagavata-purana/arcs/skandha-4/stories/dhruva-star/",
+        "hi": "/hi/collections/krishna/books/bhagavata-purana/arcs/skandha-4/stories/dhruva-star/"
+      }
+    }
+  }
+}

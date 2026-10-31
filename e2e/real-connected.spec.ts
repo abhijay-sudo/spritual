@@ -142,6 +142,7 @@ test("connected mode signs in with a verified session, reads a circle and contro
   await expect(page.getByRole("button", { name: "Remove saved mark" })).toBeVisible();
 
   await page.getByRole("button", { name: "हिन्दी" }).click();
+  await expect(page.locator("html")).toHaveAttribute("lang", "hi");
   await expect(page.getByRole("heading", { name: "पाठ उपलब्ध नहीं है।" })).toBeVisible();
   await expect(page.getByText(reading.body)).toHaveCount(0);
   await page.getByRole("link", { name: "उपलब्ध पाठ देखें" }).click();
@@ -149,6 +150,7 @@ test("connected mode signs in with a verified session, reads a circle and contro
   await expect(page.getByText(hindiReading.body)).toBeVisible();
   await expect(page.getByRole("button", { name: "बाद के लिए सहेजें" })).toBeVisible();
   await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("lang", "hi");
   await expect(page.getByText(hindiReading.body)).toBeVisible();
   await page.goto("/alpha/today");
   await expect(page.getByRole("heading", { name: "एक समय में एक पाठ।" })).toBeVisible();
@@ -205,9 +207,11 @@ test("connected mode does not expose demo identities to a signed-out visitor", a
   await expect(page.getByLabel("Email address")).toBeVisible();
   await page.getByRole("button", { name: "हिन्दी" }).click();
   await expect(page.getByRole("heading", { name: "अपने शिक्षक के साथ आगे बढ़ें।" })).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("lang", "hi");
   await expect(page.getByLabel("ईमेल पता")).toBeVisible();
   await page.reload();
   await expect(page.getByRole("heading", { name: "अपने शिक्षक के साथ आगे बढ़ें।" })).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("lang", "hi");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await expect(page.getByText("Demo workspace controls")).toHaveCount(0);
 });

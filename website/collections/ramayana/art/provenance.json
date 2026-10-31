@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "artwork": [
+    {
+      "file": "empty-hermitage.png",
+      "scene": "Aranya Kanda: Rama and Lakshmana return to their empty Panchavati hermitage.",
+      "prompt": "Use case: illustration-story. Create one exquisite landscape illustration for an original Valmiki Ramayana abridgement. Scene: Rama and Lakshmana return to their empty forest hermitage at Panchavati after Sita's abduction. Depict exactly two brothers: Rama with subtle blue-grey complexion, forest ascetic clothing in muted saffron, long dark tied hair and bow carried down; Lakshmana with warm natural brown complexion, similarly simple forest attire and bow. Both stand outside a modest leaf-and-bamboo hut, searching the empty threshold, with restrained grief and concern, no combat. Sita and Ravana are NOT present. Landscape Deccan riverbank forest, large trees, pale flowers, late-afternoon dappled amber light. Rich hand-painted Indian miniature-inspired storybook landscape, detailed natural vegetation, delicate pigment texture, deep forest greens, warm parchment and earthy gold. Natural believable anatomy, respectful composition, NOT photorealistic, NOT cartoon, no text, logos, ornamental border, halos, magic lines or duplicate characters. Wide 3:2 composition, entire scene within frame, suitable for subtle slow camera movement in a premium reading app. High detail.",
+      "inspection": "Two brothers and empty hut visually inspected. Replaces a composite abduction/Jatayu illustration; no extra figures or graphic injury. Still requires named iconographic and rights review.",
+      "sha256": "aee73dfd93862c530940f3381ee2c4c82b5572b55f8e0b3442e273470d58d7b4",
+      "width": 1536,
+      "height": 1024,
+      "status": "local-review-only",
+      "reviewer": null,
+      "generator": "Built-in OpenAI image generation",
+      "created": "2026-10-26"
+    },
+    {
+      "file": "surasa-test.png",
+      "scene": "Sundara Kanda 5.1: the single instant of small Hanuman approaching Surasa during her test.",
+      "prompt": "Use case illustration-story. One landscape 3:2 painterly storybook plate for the Valmiki Ramayana, Sundara Kanda 5.1: the single instant in which Hanuman becomes very small to pass the test of Surasa. Exactly ONE Hanuman, tiny in size, poised in the air near the widely opened mouth of Surasa who rises from the ocean. Hanuman has a respectful monkey face and tail, russet-orange dhoti and small gold ornaments; he is agile and calm. Surasa is a divine naga mother with dignified feminine face and serpent lower body; not a monster, not erotic, not graphic. This is a test of ingenuity, no combat or injury. Wide dawn ocean landscape, delicate clouds and turquoise waves, fine Indian miniature-inspired brushwork, warm parchment light, forest-green and ochre accents, rich natural pigments, highly detailed, matching a premium illustrated epic. Single moment, single Hanuman, no other figures, no captions, text, logo, border, collage, or simultaneous narrative stages. Keep both characters fully visible and anatomically coherent.",
+      "inspection": "One tiny Hanuman and one Surasa visually inspected. Replaces a plate with duplicate Hanuman figures and two conflated encounters. Still requires named iconographic and rights review.",
+      "sha256": "396c991fbf561ddd203bc516cb9ee0eb96f162b9551cc55e2da25c4f1393c56d",
+      "width": 1536,
+      "height": 1024,
+      "status": "local-review-only",
+      "reviewer": null,
+      "generator": "Built-in OpenAI image generation",
+      "created": "2026-10-26"
+    }
+  ]
+}

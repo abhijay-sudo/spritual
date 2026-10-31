@@ -1,0 +1,319 @@
+[
+  {
+    "id": "beginning-birds",
+    "file": "01-valmiki-question",
+    "alt": {
+      "en": "Valmiki and Narada speak beneath a banyan beside a river at dawn.",
+      "hi": "भोर में नदी किनारे बरगद के नीचे वाल्मीकि और नारद संवाद करते हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "beginning-outline",
+    "after": 0,
+    "file": "01-scene-narada-answer",
+    "alt": {
+      "en": "Narada answers while Valmiki records the beginning of a long story.",
+      "hi": "नारद उत्तर देते हैं और वाल्मीकि दीर्घ कथा का आरंभ लिखते हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "beginning-voices",
+    "after": 1,
+    "file": "01-scene-story-begins",
+    "alt": {
+      "en": "Valmiki looks from his manuscript toward the human world the story will enter.",
+      "hi": "वाल्मीकि पाण्डुलिपि से उस मानव-जगत की ओर देखते हैं जिसमें कथा प्रवेश करेगी।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "princes-tataka",
+    "file": "11-princes-and-teacher",
+    "alt": {
+      "en": "Rama and Lakshmana leave Ayodhya with Vishvamitra while Dasharatha watches from the gate.",
+      "hi": "दशरथ के देखते हुए राम और लक्ष्मण विश्वामित्र के साथ अयोध्या से निकलते हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "restraint-presences",
+    "file": "02-knowing-when-to-stop",
+    "alt": {
+      "en": "Vishvamitra entrusts sacred weapons to Rama as Lakshmana watches.",
+      "hi": "लक्ष्मण की उपस्थिति में विश्वामित्र राम को दिव्य अस्त्र सौंपते हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "restraint-forest",
+    "after": 1,
+    "file": "02-scene-withdrawal",
+    "alt": {
+      "en": "Rama learns to withdraw power while Vishvamitra and Lakshmana observe.",
+      "hi": "विश्वामित्र और लक्ष्मण की उपस्थिति में राम शक्ति वापस लेना सीखते हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "mithila-janaka",
+    "file": "12-road-to-mithila",
+    "alt": {
+      "en": "Vishvamitra guides Rama and Lakshmana along a river road toward Mithila at dawn.",
+      "hi": "भोर में विश्वामित्र राम और लक्ष्मण को नदी-मार्ग से मिथिला की ओर ले जाते हैं।"
+    },
+    "atmosphere": "light"
+  },
+  {
+    "id": "bow-break",
+    "file": "03-bow-at-mithila",
+    "alt": {
+      "en": "The ancient bow breaks in Mithila as Rama, Sita and Janaka witness the consequence.",
+      "hi": "मिथिला में प्राचीन धनुष टूटता है; राम, सीता और जनक उस क्षण के साक्षी हैं।"
+    },
+    "atmosphere": "light"
+  },
+  {
+    "id": "bow-weddings",
+    "after": 2,
+    "file": "03-scene-after-bow",
+    "alt": {
+      "en": "Rama, Sita and Janaka absorb the consequence after the bow breaks.",
+      "hi": "धनुष टूटने के बाद राम, सीता और जनक उस परिणाम को समझते हैं।"
+    },
+    "atmosphere": "light"
+  },
+  {
+    "id": "exile-departure",
+    "file": "13-promise-of-exile",
+    "alt": {
+      "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
+      "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "ganga-night-watch",
+    "file": "04-friend-beside-ganga",
+    "alt": {
+      "en": "Guha welcomes Rama, Sita and Lakshmana beside the Ganga at sunset.",
+      "hi": "सूर्यास्त में गंगा किनारे गुह राम, सीता और लक्ष्मण का स्वागत करते हैं।"
+    },
+    "atmosphere": "water"
+  },
+  {
+    "id": "ganga-crossing",
+    "after": 2,
+    "file": "04-scene-river-crossing",
+    "alt": {
+      "en": "Guha steadies the boat as the three travellers begin their Ganga crossing.",
+      "hi": "गंगा पार करने की शुरुआत में गुह नाव सँभालते हैं और तीनों यात्री चढ़ते हैं।"
+    },
+    "atmosphere": "water"
+  },
+  {
+    "id": "bharata-padukas",
+    "file": "05-bharata-and-sandals",
+    "alt": {
+      "en": "Rama entrusts a pair of wooden sandals to Bharata at the forest hermitage.",
+      "hi": "वन-आश्रम में राम भरत को काष्ठ-पादुकाओं की जोड़ी सौंपते हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "bharata-nandigrama",
+    "after": 2,
+    "file": "05-scene-nandigrama-trust",
+    "alt": {
+      "en": "Bharata places the foot-shaped wooden padukas before the work of stewardship at Nandigrama.",
+      "hi": "भरत नंदिग्राम में शासन-सेवा आरंभ करने से पहले काष्ठ-पादुकाएँ रखते हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "forest-last-witness",
+    "file": "23-empty-hermitage",
+    "alt": {
+      "en": "Rama and Lakshmana stand before their empty forest hermitage.",
+      "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "shabari-memory",
+    "file": "06-shabari-welcome",
+    "alt": {
+      "en": "Shabari offers gathered fruit and water to Rama and Lakshmana.",
+      "hi": "शबरी राम और लक्ष्मण को जुटाए फल और जल अर्पित करती हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "shabari-pampa",
+    "after": 2,
+    "file": "06-scene-direction-ahead",
+    "alt": {
+      "en": "Shabari uses her knowledge of place to point Rama and Lakshmana toward the way ahead.",
+      "hi": "शबरी स्थान के अपने ज्ञान से राम और लक्ष्मण को आगे का मार्ग बताती हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "meeting-speech",
+    "file": "07-hanuman-first-conversation",
+    "alt": {
+      "en": "Hanuman begins a careful conversation with Rama and Lakshmana near Rishyamuka.",
+      "hi": "ऋष्यमूक के निकट हनुमान राम और लक्ष्मण से सावधान संवाद आरंभ करते हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "meeting-answer",
+    "after": 2,
+    "file": "07-scene-toward-alliance",
+    "alt": {
+      "en": "Hanuman guides Rama and Lakshmana toward the alliance his careful speech opened.",
+      "hi": "हनुमान राम और लक्ष्मण को उस मित्रता की ओर ले जाते हैं जिसका मार्ग उनकी सावधान वाणी ने खोला।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "alliance-crown",
+    "file": "15-alliance-and-vali",
+    "alt": {
+      "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
+      "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "search-remembered-strength",
+    "file": "16-search-southern-sea",
+    "alt": {
+      "en": "Hanuman and the southern search party stand before the ocean as Sampati points toward distant Lanka.",
+      "hi": "हनुमान और दक्षिणी खोज-दल समुद्र के सामने खड़े हैं और सम्पाति दूर लंका की दिशा बताते हैं।"
+    },
+    "atmosphere": "water"
+  },
+  {
+    "id": "ocean-lanka",
+    "file": "08-across-ocean",
+    "alt": {
+      "en": "Hanuman crosses the indigo ocean as Mainaka rises ahead.",
+      "hi": "मैनाक के आगे उठते हुए हनुमान नील समुद्र पार करते हैं।"
+    },
+    "atmosphere": "water"
+  },
+  {
+    "id": "ocean-mainaka",
+    "after": 0,
+    "file": "08-scene-mainaka-offer",
+    "alt": {
+      "en": "Hanuman touches Mainaka in gratitude and continues toward Lanka.",
+      "hi": "हनुमान कृतज्ञता से मैनाक को स्पर्श कर लंका की ओर बढ़ते हैं।"
+    },
+    "atmosphere": "water"
+  },
+  {
+    "id": "ocean-surasa",
+    "file": "24-surasa-test",
+    "alt": {
+      "en": "A single small Hanuman approaches Surasa’s open mouth above the ocean during her test.",
+      "hi": "समुद्र के ऊपर सुरसा की परीक्षा में छोटे रूप में एक हनुमान उनके खुले मुख के निकट आते हैं।"
+    },
+    "atmosphere": "water"
+  },
+  {
+    "id": "lanka-first-words",
+    "file": "17-lanka-at-night",
+    "alt": {
+      "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
+      "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
+    },
+    "atmosphere": "light"
+  },
+  {
+    "id": "ring-news",
+    "file": "09-ring-brings-hope",
+    "alt": {
+      "en": "Hanuman presents Rama’s ring to Sita beneath an ashoka tree.",
+      "hi": "अशोक-वृक्ष के नीचे हनुमान सीता को राम की मुद्रिका देते हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "ring-choice",
+    "after": 1,
+    "file": "09-scene-offer-and-answer",
+    "alt": {
+      "en": "Sita answers Hanuman’s offer to carry her away with calm resolve.",
+      "hi": "सीता हनुमान के साथ चलने के प्रस्ताव का शांत दृढ़ता से उत्तर देती हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "ring-jewel",
+    "after": 2,
+    "file": "09-scene-token-message",
+    "alt": {
+      "en": "Sita gives Hanuman a crest jewel and message for Rama.",
+      "hi": "सीता हनुमान को राम के लिए चूड़ामणि और संदेश देती हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "witness-jewel-delivered",
+    "file": "18-witness-returns",
+    "alt": {
+      "en": "Hanuman places Sita’s crest jewel before Rama as the search party gathers around.",
+      "hi": "खोज-दल के बीच हनुमान राम के सामने सीता की चूड़ामणि रखते हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "refuge-bridge",
+    "file": "19-refuge-and-crossing",
+    "alt": {
+      "en": "Vibhishana waits above the seashore camp while Rama, Hanuman and Sugriva debate refuge.",
+      "hi": "विभीषण समुद्र-तट शिविर के ऊपर प्रतीक्षा करते हैं और राम, हनुमान तथा सुग्रीव शरण पर विचार करते हैं।"
+    },
+    "atmosphere": "water"
+  },
+  {
+    "id": "war-afterward",
+    "file": "20-war-and-its-cost",
+    "alt": {
+      "en": "After battle, Vibhishana and Mandodari stand in a smoke-softened Lanka as weapons are lowered.",
+      "hi": "युद्ध के बाद धुएँ से धुँधली लंका में विभीषण और मंदोदरी खड़े हैं, शस्त्र नीचे किए जा रहे हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "sita-reunion",
+    "file": "21-sita-speaks",
+    "alt": {
+      "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
+      "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
+    },
+    "atmosphere": "light"
+  },
+  {
+    "id": "homeward-message",
+    "file": "22-northward-home",
+    "alt": {
+      "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
+      "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
+    },
+    "atmosphere": "forest"
+  },
+  {
+    "id": "return-closing",
+    "file": "10-returning-responsibility-v3",
+    "alt": {
+      "en": "Bharata returns the entrusted foot-shaped wooden padukas and stewardship to Rama near Ayodhya.",
+      "hi": "अयोध्या के निकट भरत राम को सौंपी काष्ठ-पादुकाएँ और दायित्व लौटाते हैं।"
+    },
+    "atmosphere": "light"
+  }
+]

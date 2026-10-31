@@ -1,0 +1,2039 @@
+{
+  "status": "draft",
+  "editor": null,
+  "rightsReview": "pending",
+  "paidAccess": false,
+  "revision": "466e7b922eec89f7",
+  "chapterCount": 22,
+  "englishNarrativeWords": 8674,
+  "artwork": [
+    "01-valmiki-question",
+    "01-scene-narada-answer",
+    "01-scene-story-begins",
+    "11-princes-and-teacher",
+    "02-knowing-when-to-stop",
+    "02-scene-withdrawal",
+    "12-road-to-mithila",
+    "03-bow-at-mithila",
+    "03-scene-after-bow",
+    "13-promise-of-exile",
+    "04-friend-beside-ganga",
+    "04-scene-river-crossing",
+    "05-bharata-and-sandals",
+    "05-scene-nandigrama-trust",
+    "23-empty-hermitage",
+    "06-shabari-welcome",
+    "06-scene-direction-ahead",
+    "07-hanuman-first-conversation",
+    "07-scene-toward-alliance",
+    "15-alliance-and-vali",
+    "16-search-southern-sea",
+    "08-across-ocean",
+    "08-scene-mainaka-offer",
+    "24-surasa-test",
+    "17-lanka-at-night",
+    "09-ring-brings-hope",
+    "09-scene-offer-and-answer",
+    "09-scene-token-message",
+    "18-witness-returns",
+    "19-refuge-and-crossing",
+    "20-war-and-its-cost",
+    "21-sita-speaks",
+    "22-northward-home",
+    "10-returning-responsibility-v3"
+  ],
+  "artworkFiles": [
+    {
+      "file": "01-valmiki-question-640.jpg",
+      "bytes": 91461,
+      "sha256": "6754f69cb2f25eb7c5e086400178593db4e956d50bdd705f0846c14b38f89488",
+      "review": "pending"
+    },
+    {
+      "file": "01-valmiki-question-960.jpg",
+      "bytes": 196294,
+      "sha256": "c72423becc20635a95826321e2365c53e0906c9cc573b5c3dc10d41d168552eb",
+      "review": "pending"
+    },
+    {
+      "file": "01-valmiki-question-1280.jpg",
+      "bytes": 329731,
+      "sha256": "efcd6e828ceb73a3c51da9c89161bcce6b8074e4f1fc49074db12253f770e176",
+      "review": "pending"
+    },
+    {
+      "file": "01-scene-narada-answer-640.jpg",
+      "bytes": 91376,
+      "sha256": "3dd9ca7a7551feacb3afaf6c5584de6ac0a2a8a078fb2e855e858b5069cc90f8",
+      "review": "pending"
+    },
+    {
+      "file": "01-scene-narada-answer-960.jpg",
+      "bytes": 199189,
+      "sha256": "2003f6af436cab88936d7cc8ea1dfbc97965517a8c895729f668873a2ac35aa8",
+      "review": "pending"
+    },
+    {
+      "file": "01-scene-narada-answer-1280.jpg",
+      "bytes": 338006,
+      "sha256": "2591e3203aeaffabb3634f8416019a5058b0dad5633686319e7398e4824d0f2d",
+      "review": "pending"
+    },
+    {
+      "file": "01-scene-story-begins-640.jpg",
+      "bytes": 86736,
+      "sha256": "d26db4e2b2b6dd528581ff205d8af2838a6bc82feaebb07ada99623741012cdd",
+      "review": "pending"
+    },
+    {
+      "file": "01-scene-story-begins-960.jpg",
+      "bytes": 189067,
+      "sha256": "34343fc966c64e9be124c36071f337b0e4e809f682b5987cc58a6a343f83563d",
+      "review": "pending"
+    },
+    {
+      "file": "01-scene-story-begins-1280.jpg",
+      "bytes": 321777,
+      "sha256": "683663ad40edbb5a256b20456a7d18c51868a9f35e74da75b315028fd10a6a7e",
+      "review": "pending"
+    },
+    {
+      "file": "11-princes-and-teacher-640.jpg",
+      "bytes": 85126,
+      "sha256": "6b60fc50515b3c8ec2ccc1195dba89ad7ef5179961d010e7e861f730f56a5957",
+      "review": "pending"
+    },
+    {
+      "file": "11-princes-and-teacher-960.jpg",
+      "bytes": 176855,
+      "sha256": "bc5cf27b3f2b1397c158a306d96fb3083e4f8902bddb8aba47fff2cccefdea57",
+      "review": "pending"
+    },
+    {
+      "file": "11-princes-and-teacher-1280.jpg",
+      "bytes": 291062,
+      "sha256": "d16e74a2306a967caa2657a766c58ccc3254fc272dc2bb7bbc7379b0cc004ead",
+      "review": "pending"
+    },
+    {
+      "file": "02-knowing-when-to-stop-640.jpg",
+      "bytes": 83733,
+      "sha256": "53844e48cde3fc523789bf3514a14870972cd8fbdcb5cacf970c0f56098fbc82",
+      "review": "pending"
+    },
+    {
+      "file": "02-knowing-when-to-stop-960.jpg",
+      "bytes": 175028,
+      "sha256": "2785f7f997a2c2965027ac1701a542eb30ccf522bb0d35f92d85b44f35658d9f",
+      "review": "pending"
+    },
+    {
+      "file": "02-knowing-when-to-stop-1280.jpg",
+      "bytes": 288474,
+      "sha256": "965182513e51c562f00d4c74a41a38884e250f4d6782d5cb64dac920807e085a",
+      "review": "pending"
+    },
+    {
+      "file": "02-scene-withdrawal-640.jpg",
+      "bytes": 91599,
+      "sha256": "ac0339078633733e975bffaeef250a9da31c447c283785c8d5896b7770bc2018",
+      "review": "pending"
+    },
+    {
+      "file": "02-scene-withdrawal-960.jpg",
+      "bytes": 189032,
+      "sha256": "ffb2d85f670a05173be3fec30e83df9c25e46ef0cf7efbafba8da9c81e759a98",
+      "review": "pending"
+    },
+    {
+      "file": "02-scene-withdrawal-1280.jpg",
+      "bytes": 306642,
+      "sha256": "068f2ab78212987ad7a4e8f6b4dd9957bf0529a30eb03e7c9a9e9ee88419aacc",
+      "review": "pending"
+    },
+    {
+      "file": "12-road-to-mithila-640.jpg",
+      "bytes": 90245,
+      "sha256": "ebb6f415979030d40f6df64ea929faf8523293ba4eea0d9447be08e26a79a778",
+      "review": "pending"
+    },
+    {
+      "file": "12-road-to-mithila-960.jpg",
+      "bytes": 192914,
+      "sha256": "a421b6e8238aec7cda1c9c7b2a2ee17b05c12ec032a4020b5b4058111c48ccd7",
+      "review": "pending"
+    },
+    {
+      "file": "12-road-to-mithila-1280.jpg",
+      "bytes": 321217,
+      "sha256": "01889f8f7b47d2fb9e193d0737c74e03ec09c90fb422389e87da5847514bbcf9",
+      "review": "pending"
+    },
+    {
+      "file": "03-bow-at-mithila-640.jpg",
+      "bytes": 83198,
+      "sha256": "5ec737b7b119bc6ff70aa1ec9933eb27d22663c18de6cd174197c47ca4c64f8d",
+      "review": "pending"
+    },
+    {
+      "file": "03-bow-at-mithila-960.jpg",
+      "bytes": 173775,
+      "sha256": "91a0a8024a13fac2dff4d1d3927f44aec347503ae7e7e90a0fd7a6d8029e3bf9",
+      "review": "pending"
+    },
+    {
+      "file": "03-bow-at-mithila-1280.jpg",
+      "bytes": 285894,
+      "sha256": "b32c1ef068a4668ea7155227adc0de081431d2661979f3db07406f3abf2d1685",
+      "review": "pending"
+    },
+    {
+      "file": "03-scene-after-bow-640.jpg",
+      "bytes": 87927,
+      "sha256": "3ab656d56b1a3ca1a0acdd093a417c6fb6824d21460cc6cbf681b20557f91af7",
+      "review": "pending"
+    },
+    {
+      "file": "03-scene-after-bow-960.jpg",
+      "bytes": 181746,
+      "sha256": "101fa3e01c610ce2cae98dfeb3d175535ede711e031945abf9ce6ef15cfa3e38",
+      "review": "pending"
+    },
+    {
+      "file": "03-scene-after-bow-1280.jpg",
+      "bytes": 295173,
+      "sha256": "df65dbee567a37a28e7e2f3df94f292a273ec0ebf388b370898454a801a89ee7",
+      "review": "pending"
+    },
+    {
+      "file": "13-promise-of-exile-640.jpg",
+      "bytes": 92015,
+      "sha256": "a336d298f29badf87df537148051f7b46148a42c9d5e21309ea5047d700ef36b",
+      "review": "pending"
+    },
+    {
+      "file": "13-promise-of-exile-960.jpg",
+      "bytes": 198556,
+      "sha256": "3e07f79238df9fae78cd6e5054e179b227499156695f157d23bee6a1b43e3116",
+      "review": "pending"
+    },
+    {
+      "file": "13-promise-of-exile-1280.jpg",
+      "bytes": 332100,
+      "sha256": "d9d3bd99321e57479af9e12d7cf64449acc37b76c679fa426f03de37a5f0d073",
+      "review": "pending"
+    },
+    {
+      "file": "04-friend-beside-ganga-640.jpg",
+      "bytes": 88719,
+      "sha256": "bd7234c31a99734ee1ec2e5e9f9627c48c1b4e60fd60c471866f6f5bd4764c00",
+      "review": "pending"
+    },
+    {
+      "file": "04-friend-beside-ganga-960.jpg",
+      "bytes": 192735,
+      "sha256": "3c1409a93321b8198211f80ce0da7fd98d1f53425e7fe20dba0df6e6d07e3f48",
+      "review": "pending"
+    },
+    {
+      "file": "04-friend-beside-ganga-1280.jpg",
+      "bytes": 325928,
+      "sha256": "8e4bd70c8a143973e4bab2e5f9a797588c6b0d08052c0ef1790f1da7bf1ef0e7",
+      "review": "pending"
+    },
+    {
+      "file": "04-scene-river-crossing-640.jpg",
+      "bytes": 100202,
+      "sha256": "3923bd678aaa0635b2d4dde4760fde7684392e2b0b6ab3f8a23f84019c43c6d8",
+      "review": "pending"
+    },
+    {
+      "file": "04-scene-river-crossing-960.jpg",
+      "bytes": 215825,
+      "sha256": "b3f201e27f43eee69592fcd7c6bd7aeaadff0531d29464db7512388bd2d40621",
+      "review": "pending"
+    },
+    {
+      "file": "04-scene-river-crossing-1280.jpg",
+      "bytes": 359982,
+      "sha256": "fd24257ed59d51ab6a45af94d753240860d5f5ea6b8bf3d714691a6aa1de336f",
+      "review": "pending"
+    },
+    {
+      "file": "05-bharata-and-sandals-640.jpg",
+      "bytes": 88291,
+      "sha256": "4167df4c6d97ba49a7fbf1f8fd9fa5722f7f73517a99f20cd675b66a7e90cfc6",
+      "review": "pending"
+    },
+    {
+      "file": "05-bharata-and-sandals-960.jpg",
+      "bytes": 183039,
+      "sha256": "ca8532641547786be830ecb28dc1bd1a0f757f975af8e8650eaa3e373cd87759",
+      "review": "pending"
+    },
+    {
+      "file": "05-bharata-and-sandals-1280.jpg",
+      "bytes": 298559,
+      "sha256": "c4096383b5e77c40f27602a259d20186b6173f4d0481d21f36477f9d6d274352",
+      "review": "pending"
+    },
+    {
+      "file": "05-scene-nandigrama-trust-640.jpg",
+      "bytes": 87166,
+      "sha256": "9e00063fce9dbd26bc525510983ce4e1d1765e1f25826fe9296b4e6e62d057fb",
+      "review": "pending"
+    },
+    {
+      "file": "05-scene-nandigrama-trust-960.jpg",
+      "bytes": 178361,
+      "sha256": "960aff3f267e0bb769450dabe9ac5a79180edeb916e20511a5d07114a8ff913f",
+      "review": "pending"
+    },
+    {
+      "file": "05-scene-nandigrama-trust-1280.jpg",
+      "bytes": 286214,
+      "sha256": "78f7f26b04a1fdd2b914b5348066f89e14a142337e6ba852abf5d497d8391385",
+      "review": "pending"
+    },
+    {
+      "file": "23-empty-hermitage-640.jpg",
+      "bytes": 94567,
+      "sha256": "eb7fe592ff8872a71b667d212f49ad866057a2481944ca98f0c67c0ad8ff2614",
+      "review": "pending"
+    },
+    {
+      "file": "23-empty-hermitage-960.jpg",
+      "bytes": 203402,
+      "sha256": "39c1a2b7f02bc868916cddb4e4d3c1544a63eacc40957ec6d3412bf71fa5d5a8",
+      "review": "pending"
+    },
+    {
+      "file": "23-empty-hermitage-1280.jpg",
+      "bytes": 338726,
+      "sha256": "c8f9c0465ff775e52321353fd6cdc4a1bf7606741421d38344528f1e7272d45b",
+      "review": "pending"
+    },
+    {
+      "file": "06-shabari-welcome-640.jpg",
+      "bytes": 94379,
+      "sha256": "f9ca3468ed19daaa6c81892311113aff1951791bdae1958752842d10a780ea22",
+      "review": "pending"
+    },
+    {
+      "file": "06-shabari-welcome-960.jpg",
+      "bytes": 202945,
+      "sha256": "92ac5a92059e8f32f6ca3ccebd5320c62510d22463b5b62c257525e398398433",
+      "review": "pending"
+    },
+    {
+      "file": "06-shabari-welcome-1280.jpg",
+      "bytes": 341251,
+      "sha256": "3eca6bebdd963629934da278546f39ae728cb9e75c819d4f6517955e060cd6da",
+      "review": "pending"
+    },
+    {
+      "file": "06-scene-direction-ahead-640.jpg",
+      "bytes": 105703,
+      "sha256": "81a7b35499b65b08ec9eadffd557056da0a22fbfadf850aaee489999975f189b",
+      "review": "pending"
+    },
+    {
+      "file": "06-scene-direction-ahead-960.jpg",
+      "bytes": 224819,
+      "sha256": "60156c32ae2c9200581a2f62fa6fc8c7fff2fe0bd2733d99185d97a3cf984ab9",
+      "review": "pending"
+    },
+    {
+      "file": "06-scene-direction-ahead-1280.jpg",
+      "bytes": 373071,
+      "sha256": "456591f65bdbdb8b05229590764b21f7dc962daaacb5fde479bc06eb31d0cd81",
+      "review": "pending"
+    },
+    {
+      "file": "07-hanuman-first-conversation-640.jpg",
+      "bytes": 88217,
+      "sha256": "da9b1dc693b182e3178206f23975875f3b3c7292f1aa4d2e01960ea51d064c8a",
+      "review": "pending"
+    },
+    {
+      "file": "07-hanuman-first-conversation-960.jpg",
+      "bytes": 188714,
+      "sha256": "f93679a08d87cc12d72e3e36f558e6d68d8d124a3b75ea6c11a18eed44b82747",
+      "review": "pending"
+    },
+    {
+      "file": "07-hanuman-first-conversation-1280.jpg",
+      "bytes": 317560,
+      "sha256": "6233aa499cf5d8e710604809416462be79e6d0df33a4c2552bfa68a506bc12d1",
+      "review": "pending"
+    },
+    {
+      "file": "07-scene-toward-alliance-640.jpg",
+      "bytes": 101634,
+      "sha256": "2e27c79897fb5771a9bf2c44b03aa5e9cf6369c0f64d8e351599ed51b8a419c4",
+      "review": "pending"
+    },
+    {
+      "file": "07-scene-toward-alliance-960.jpg",
+      "bytes": 217271,
+      "sha256": "736c81a276b9da4730661b654b45c5b1adad0d8a9073d34b29420b0376e82e25",
+      "review": "pending"
+    },
+    {
+      "file": "07-scene-toward-alliance-1280.jpg",
+      "bytes": 359836,
+      "sha256": "43d7b85ff0d23b6c8d15925ac9926d6297948d71d10c3af91c56a0d26cbb8678",
+      "review": "pending"
+    },
+    {
+      "file": "15-alliance-and-vali-640.jpg",
+      "bytes": 94975,
+      "sha256": "63ba289bf73f37ca7c9d02f88eb237f66d1e9a5b3e6c5b7de4c2cf90f086dda3",
+      "review": "pending"
+    },
+    {
+      "file": "15-alliance-and-vali-960.jpg",
+      "bytes": 204271,
+      "sha256": "a0fbaa4f6da935ef7672ab7ef8c85a9d194d7b4a399226eb4545af2e4945c57a",
+      "review": "pending"
+    },
+    {
+      "file": "15-alliance-and-vali-1280.jpg",
+      "bytes": 342392,
+      "sha256": "340f43a4defcfe611d9164edada01220c482365863fc74dab16f3e4d62970542",
+      "review": "pending"
+    },
+    {
+      "file": "16-search-southern-sea-640.jpg",
+      "bytes": 93928,
+      "sha256": "91d9fda5a4894869408b105f440f8346af8014ed097662c429936290072b2a77",
+      "review": "pending"
+    },
+    {
+      "file": "16-search-southern-sea-960.jpg",
+      "bytes": 202540,
+      "sha256": "83b303024589766bd2ba158a4f50c43b6fb359348d524bdf9a933e4200e4394a",
+      "review": "pending"
+    },
+    {
+      "file": "16-search-southern-sea-1280.jpg",
+      "bytes": 339186,
+      "sha256": "74a19a2a07ad9b15f558c2f058527d325fbd6a0860fe22080873709c603a3f10",
+      "review": "pending"
+    },
+    {
+      "file": "08-across-ocean-640.jpg",
+      "bytes": 85866,
+      "sha256": "ca5edfc874dbd7ee5c499813d678d564d7c9b86ba43bbc1dae8ed14831b102c9",
+      "review": "pending"
+    },
+    {
+      "file": "08-across-ocean-960.jpg",
+      "bytes": 186675,
+      "sha256": "ffc6ba0dce6bb8a524a9967df632dc523711cb9c3cd15a829918d36a7d00092f",
+      "review": "pending"
+    },
+    {
+      "file": "08-across-ocean-1280.jpg",
+      "bytes": 314935,
+      "sha256": "124211e904d0feb4e7b8c73b55be88b902e5e92cc2b63077edc606e95f5a11c1",
+      "review": "pending"
+    },
+    {
+      "file": "08-scene-mainaka-offer-640.jpg",
+      "bytes": 87507,
+      "sha256": "4d8e9d0fcceb7f77f51a0aa7165000b6dab9dff29788eb6309830993b47f2548",
+      "review": "pending"
+    },
+    {
+      "file": "08-scene-mainaka-offer-960.jpg",
+      "bytes": 193819,
+      "sha256": "d12a7e0498a9f7e6a767ac4e0c64e41663bbff20203402fc383ceadf9f3b014b",
+      "review": "pending"
+    },
+    {
+      "file": "08-scene-mainaka-offer-1280.jpg",
+      "bytes": 335217,
+      "sha256": "1127abbc52cc1c2e6aa839c6ac63af420b3f388f67db7a2328db7667aea2208c",
+      "review": "pending"
+    },
+    {
+      "file": "24-surasa-test-640.jpg",
+      "bytes": 76917,
+      "sha256": "3732a473b58994d5be115baec3d0c16f1789dcff1d5c9c63aa6be1528f0c998c",
+      "review": "pending"
+    },
+    {
+      "file": "24-surasa-test-960.jpg",
+      "bytes": 162869,
+      "sha256": "252a3c37f3e1fe1cff7405b10c31d65949bbe7c632387b6259cc89f3adbcbaf0",
+      "review": "pending"
+    },
+    {
+      "file": "24-surasa-test-1280.jpg",
+      "bytes": 276637,
+      "sha256": "0d68f59ed02617e01d8418610d37de9f7bb46bff3256da87ae9affdbca3d868e",
+      "review": "pending"
+    },
+    {
+      "file": "17-lanka-at-night-640.jpg",
+      "bytes": 77858,
+      "sha256": "4b8abdb385caf1ba83a027bb549081363c4988d5c7dfb6e909650aec17d93e5b",
+      "review": "pending"
+    },
+    {
+      "file": "17-lanka-at-night-960.jpg",
+      "bytes": 163105,
+      "sha256": "a451acab936fb1ba91c851a635393cb9c0a041ab11f8f7a8503cbeaafdfab2da",
+      "review": "pending"
+    },
+    {
+      "file": "17-lanka-at-night-1280.jpg",
+      "bytes": 270929,
+      "sha256": "a88f8089250d0d6a88da726ccfa1b49e20f65a285891b060eb9b518ea6a2dfcd",
+      "review": "pending"
+    },
+    {
+      "file": "09-ring-brings-hope-640.jpg",
+      "bytes": 79459,
+      "sha256": "ed6182ae7e8f4cfad5f60bee8e38995419557c917bbb74049819f8e850e48d67",
+      "review": "pending"
+    },
+    {
+      "file": "09-ring-brings-hope-960.jpg",
+      "bytes": 168215,
+      "sha256": "2a74088e769d64cc38bcf3c97601c5989a58f52e9e684202f830b1d32c44dbe0",
+      "review": "pending"
+    },
+    {
+      "file": "09-ring-brings-hope-1280.jpg",
+      "bytes": 280764,
+      "sha256": "bb0f8156878e0651b5793329d21532f9c336a73e45aaef6dfe5afbb900d4b928",
+      "review": "pending"
+    },
+    {
+      "file": "09-scene-offer-and-answer-640.jpg",
+      "bytes": 85342,
+      "sha256": "fa45d22dd332b35bdab4214d756b9ea60bab53f994580ebae0d3978cd074c730",
+      "review": "pending"
+    },
+    {
+      "file": "09-scene-offer-and-answer-960.jpg",
+      "bytes": 187267,
+      "sha256": "b9f0e5eb1b37996d79771369224e0c541920e3801450f3c168c7302bb8addf77",
+      "review": "pending"
+    },
+    {
+      "file": "09-scene-offer-and-answer-1280.jpg",
+      "bytes": 319670,
+      "sha256": "502bb357890415273e1a7b20448cae3369b25e141edb97bd9dd025e32e6d102c",
+      "review": "pending"
+    },
+    {
+      "file": "09-scene-token-message-640.jpg",
+      "bytes": 85188,
+      "sha256": "6896b16d7d746f3c9569a0f36f99de072c5e61dc91cc05b03e0885ca5948c94c",
+      "review": "pending"
+    },
+    {
+      "file": "09-scene-token-message-960.jpg",
+      "bytes": 185348,
+      "sha256": "bef1048534ea403f69706842fceeee063243df30b2d92b7b36177bd6e11070e0",
+      "review": "pending"
+    },
+    {
+      "file": "09-scene-token-message-1280.jpg",
+      "bytes": 314558,
+      "sha256": "7af999dce525c3dce90947fa53025b2701912600ac60e3a364d20c62df2dec7d",
+      "review": "pending"
+    },
+    {
+      "file": "18-witness-returns-640.jpg",
+      "bytes": 89959,
+      "sha256": "1b6b37dc9dced791456fcd650dd74c7c54e58fc5fb0a2c353e544d177a2d5034",
+      "review": "pending"
+    },
+    {
+      "file": "18-witness-returns-960.jpg",
+      "bytes": 192749,
+      "sha256": "35083e4f8ec428905b00804756ad60c3e64be197dbf62dc22d3acf666edb64e0",
+      "review": "pending"
+    },
+    {
+      "file": "18-witness-returns-1280.jpg",
+      "bytes": 322014,
+      "sha256": "4e76aba07b4540da37fdd5043dcdc7b2e45bcf706aab6af4e1468aae68b03f69",
+      "review": "pending"
+    },
+    {
+      "file": "19-refuge-and-crossing-640.jpg",
+      "bytes": 95968,
+      "sha256": "2fd8f70791b35000818c54e9d239c4d510564df54b13737385d3da27b61fd062",
+      "review": "pending"
+    },
+    {
+      "file": "19-refuge-and-crossing-960.jpg",
+      "bytes": 205465,
+      "sha256": "7f3abe2a6a311383445e164ed25c453832b3b991aae3a1fd3cc9fcb2ffbf6909",
+      "review": "pending"
+    },
+    {
+      "file": "19-refuge-and-crossing-1280.jpg",
+      "bytes": 340741,
+      "sha256": "a3a5e183d838c98f3cd27b4b69642ddf290d85c08ded7522866dafa066b49c65",
+      "review": "pending"
+    },
+    {
+      "file": "20-war-and-its-cost-640.jpg",
+      "bytes": 83651,
+      "sha256": "cf6f7f92201fac88852b0e084e312179472b439deb7d5bf37e0861fb903269ef",
+      "review": "pending"
+    },
+    {
+      "file": "20-war-and-its-cost-960.jpg",
+      "bytes": 169529,
+      "sha256": "c9ee9e893c04a868d3ee7a4232c4e2a161a437d14a61f4ce171fd6b4a61b9d2d",
+      "review": "pending"
+    },
+    {
+      "file": "20-war-and-its-cost-1280.jpg",
+      "bytes": 272341,
+      "sha256": "03700ecce25f27b4f64ca73f7d52dda255cc5831fd4d77053ddf213ac5dd7b99",
+      "review": "pending"
+    },
+    {
+      "file": "21-sita-speaks-640.jpg",
+      "bytes": 87251,
+      "sha256": "1ad7aa8fbbb210d95fb4b9dbbac618b2037549cf7ca6d273c331654d584ae207",
+      "review": "pending"
+    },
+    {
+      "file": "21-sita-speaks-960.jpg",
+      "bytes": 191400,
+      "sha256": "3f1c6853aafd77ebe8cd9a2f99b7b58399d9537e0635e99aa234735f73525be3",
+      "review": "pending"
+    },
+    {
+      "file": "21-sita-speaks-1280.jpg",
+      "bytes": 325020,
+      "sha256": "71c45714f4bf907c9f4d2ea1dd0ca5b5fde96fd89bab142c9ea39b7501d2a921",
+      "review": "pending"
+    },
+    {
+      "file": "22-northward-home-640.jpg",
+      "bytes": 95133,
+      "sha256": "b300aa04edf949f56963e5ce779a59c5919bbe65278787a7db249d3b5aad5986",
+      "review": "pending"
+    },
+    {
+      "file": "22-northward-home-960.jpg",
+      "bytes": 200324,
+      "sha256": "67850ab56854485f7872013c87fb37beeef441464c28abdaa16e8ab1fc7cb4ce",
+      "review": "pending"
+    },
+    {
+      "file": "22-northward-home-1280.jpg",
+      "bytes": 331610,
+      "sha256": "5b681c11a9c02fed33dbc7a97f4ed4ee716a354427071d329f42c14777c751de",
+      "review": "pending"
+    },
+    {
+      "file": "10-returning-responsibility-v3-640.jpg",
+      "bytes": 91654,
+      "sha256": "65e685e5a5c8435db11e3d955eec7897aa4807735d54f15aec49b65b181f7ff1",
+      "review": "pending"
+    },
+    {
+      "file": "10-returning-responsibility-v3-960.jpg",
+      "bytes": 185415,
+      "sha256": "679b8323fab0a1e3b2f9c718e7858f26404cd455a53f02892d87a8b1bb4c49be",
+      "review": "pending"
+    },
+    {
+      "file": "10-returning-responsibility-v3-1280.jpg",
+      "bytes": 298613,
+      "sha256": "432b37fadf481d72f729531f099c40add148ce6acf696fd03434bb7641c2de87",
+      "review": "pending"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "what-makes-a-person-admirable",
+      "words": 349,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.1",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga1/balaroman1.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.2",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga2/balaroman2.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.4",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga4/balaroman4.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "beginning-question",
+          "file": "01-valmiki-question",
+          "alt": {
+            "en": "Valmiki and Narada speak beneath a banyan beside a river at dawn.",
+            "hi": "भोर में नदी किनारे बरगद के नीचे वाल्मीकि और नारद संवाद करते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "beginning-outline",
+          "after": 0,
+          "file": "01-scene-narada-answer",
+          "alt": {
+            "en": "Narada answers while Valmiki records the beginning of a long story.",
+            "hi": "नारद उत्तर देते हैं और वाल्मीकि दीर्घ कथा का आरंभ लिखते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "beginning-birds",
+          "file": "01-valmiki-question",
+          "alt": {
+            "en": "Valmiki and Narada speak beneath a banyan beside a river at dawn.",
+            "hi": "भोर में नदी किनारे बरगद के नीचे वाल्मीकि और नारद संवाद करते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "beginning-voices",
+          "after": 1,
+          "file": "01-scene-story-begins",
+          "alt": {
+            "en": "Valmiki looks from his manuscript toward the human world the story will enter.",
+            "hi": "वाल्मीकि पाण्डुलिपि से उस मानव-जगत की ओर देखते हैं जिसमें कथा प्रवेश करेगी।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "princes-and-teacher",
+      "words": 340,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.18",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga18/balaroman18.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.20–22",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga22/balaroman22.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.26–27",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga26/balaroman26.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "princes-ayodhya",
+          "file": "11-princes-and-teacher",
+          "alt": {
+            "en": "Rama and Lakshmana leave Ayodhya with Vishvamitra while Dasharatha watches from the gate.",
+            "hi": "दशरथ के देखते हुए राम और लक्ष्मण विश्वामित्र के साथ अयोध्या से निकलते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "princes-request",
+          "file": "11-princes-and-teacher",
+          "alt": {
+            "en": "Rama and Lakshmana leave Ayodhya with Vishvamitra while Dasharatha watches from the gate.",
+            "hi": "दशरथ के देखते हुए राम और लक्ष्मण विश्वामित्र के साथ अयोध्या से निकलते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "princes-river",
+          "file": "11-princes-and-teacher",
+          "alt": {
+            "en": "Rama and Lakshmana leave Ayodhya with Vishvamitra while Dasharatha watches from the gate.",
+            "hi": "दशरथ के देखते हुए राम और लक्ष्मण विश्वामित्र के साथ अयोध्या से निकलते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "princes-tataka",
+          "file": "11-princes-and-teacher",
+          "alt": {
+            "en": "Rama and Lakshmana leave Ayodhya with Vishvamitra while Dasharatha watches from the gate.",
+            "hi": "दशरथ के देखते हुए राम और लक्ष्मण विश्वामित्र के साथ अयोध्या से निकलते हैं।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "knowing-how-to-stop",
+      "words": 261,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.27",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga27/balaroman27.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.28",
+          "url": "https://valmikiramayan.net/baala/sarga28/balasans28.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "restraint-gift",
+          "file": "02-knowing-when-to-stop",
+          "alt": {
+            "en": "Vishvamitra entrusts sacred weapons to Rama as Lakshmana watches.",
+            "hi": "लक्ष्मण की उपस्थिति में विश्वामित्र राम को दिव्य अस्त्र सौंपते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "restraint-presences",
+          "file": "02-knowing-when-to-stop",
+          "alt": {
+            "en": "Vishvamitra entrusts sacred weapons to Rama as Lakshmana watches.",
+            "hi": "लक्ष्मण की उपस्थिति में विश्वामित्र राम को दिव्य अस्त्र सौंपते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "restraint-question",
+          "after": 1,
+          "file": "02-scene-withdrawal",
+          "alt": {
+            "en": "Rama learns to withdraw power while Vishvamitra and Lakshmana observe.",
+            "hi": "विश्वामित्र और लक्ष्मण की उपस्थिति में राम शक्ति वापस लेना सीखते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "restraint-forest",
+          "after": 1,
+          "file": "02-scene-withdrawal",
+          "alt": {
+            "en": "Rama learns to withdraw power while Vishvamitra and Lakshmana observe.",
+            "hi": "विश्वामित्र और लक्ष्मण की उपस्थिति में राम शक्ति वापस लेना सीखते हैं।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "road-to-mithila",
+      "words": 340,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.30–31",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga30/balasans30.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.43",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga43/balaroman43.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.48–49",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga49/balaroman49.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.66",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga66/balaroman66.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "mithila-vigil",
+          "file": "12-road-to-mithila",
+          "alt": {
+            "en": "Vishvamitra guides Rama and Lakshmana along a river road toward Mithila at dawn.",
+            "hi": "भोर में विश्वामित्र राम और लक्ष्मण को नदी-मार्ग से मिथिला की ओर ले जाते हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "mithila-river-history",
+          "file": "12-road-to-mithila",
+          "alt": {
+            "en": "Vishvamitra guides Rama and Lakshmana along a river road toward Mithila at dawn.",
+            "hi": "भोर में विश्वामित्र राम और लक्ष्मण को नदी-मार्ग से मिथिला की ओर ले जाते हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "mithila-ahalya",
+          "file": "12-road-to-mithila",
+          "alt": {
+            "en": "Vishvamitra guides Rama and Lakshmana along a river road toward Mithila at dawn.",
+            "hi": "भोर में विश्वामित्र राम और लक्ष्मण को नदी-मार्ग से मिथिला की ओर ले जाते हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "mithila-janaka",
+          "file": "12-road-to-mithila",
+          "alt": {
+            "en": "Vishvamitra guides Rama and Lakshmana along a river road toward Mithila at dawn.",
+            "hi": "भोर में विश्वामित्र राम और लक्ष्मण को नदी-मार्ग से मिथिला की ओर ले जाते हैं।"
+          },
+          "atmosphere": "light"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "the-bow-at-mithila",
+      "words": 356,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.66",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga66/balaroman66.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.67",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga67/balaroman67.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Bala Kanda 1.73",
+          "url": "https://www.valmikiramayan.net/utf8/baala/sarga73/balaroman73.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "bow-janakas-promise",
+          "file": "03-bow-at-mithila",
+          "alt": {
+            "en": "The ancient bow breaks in Mithila as Rama, Sita and Janaka witness the consequence.",
+            "hi": "मिथिला में प्राचीन धनुष टूटता है; राम, सीता और जनक उस क्षण के साक्षी हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "bow-permission",
+          "file": "03-bow-at-mithila",
+          "alt": {
+            "en": "The ancient bow breaks in Mithila as Rama, Sita and Janaka witness the consequence.",
+            "hi": "मिथिला में प्राचीन धनुष टूटता है; राम, सीता और जनक उस क्षण के साक्षी हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "bow-break",
+          "file": "03-bow-at-mithila",
+          "alt": {
+            "en": "The ancient bow breaks in Mithila as Rama, Sita and Janaka witness the consequence.",
+            "hi": "मिथिला में प्राचीन धनुष टूटता है; राम, सीता और जनक उस क्षण के साक्षी हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "bow-weddings",
+          "after": 2,
+          "file": "03-scene-after-bow",
+          "alt": {
+            "en": "Rama, Sita and Janaka absorb the consequence after the bow breaks.",
+            "hi": "धनुष टूटने के बाद राम, सीता और जनक उस परिणाम को समझते हैं।"
+          },
+          "atmosphere": "light"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "promise-of-exile",
+      "words": 422,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Ayodhya Kanda 2.1–18",
+          "url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga18/ayodhyaroman18.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Ayodhya Kanda 2.26–30",
+          "url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga30/ayodhyaroman30.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Ayodhya Kanda 2.31–40",
+          "url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga40/ayodhyaroman40.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "exile-preparation",
+          "file": "13-promise-of-exile",
+          "alt": {
+            "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
+            "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "exile-boons",
+          "file": "13-promise-of-exile",
+          "alt": {
+            "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
+            "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "exile-sita-speaks",
+          "file": "13-promise-of-exile",
+          "alt": {
+            "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
+            "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "exile-departure",
+          "file": "13-promise-of-exile",
+          "alt": {
+            "en": "Rama, Sita and Lakshmana leave Ayodhya in forest dress as the city recedes behind them.",
+            "hi": "राम, सीता और लक्ष्मण वन-वस्त्रों में निकलते हैं और अयोध्या पीछे छूटती है।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "a-friend-beside-the-ganga",
+      "words": 393,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Ayodhya Kanda 2.50",
+          "url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga50/ayodhyaroman50.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Ayodhya Kanda 2.51",
+          "url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga51/ayodhyaroman51.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Ayodhya Kanda 2.52",
+          "url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga52/ayodhyaroman52.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "ganga-arrival",
+          "file": "04-friend-beside-ganga",
+          "alt": {
+            "en": "Guha welcomes Rama, Sita and Lakshmana beside the Ganga at sunset.",
+            "hi": "सूर्यास्त में गंगा किनारे गुह राम, सीता और लक्ष्मण का स्वागत करते हैं।"
+          },
+          "atmosphere": "water"
+        },
+        {
+          "id": "ganga-hospitality",
+          "file": "04-friend-beside-ganga",
+          "alt": {
+            "en": "Guha welcomes Rama, Sita and Lakshmana beside the Ganga at sunset.",
+            "hi": "सूर्यास्त में गंगा किनारे गुह राम, सीता और लक्ष्मण का स्वागत करते हैं।"
+          },
+          "atmosphere": "water"
+        },
+        {
+          "id": "ganga-night-watch",
+          "file": "04-friend-beside-ganga",
+          "alt": {
+            "en": "Guha welcomes Rama, Sita and Lakshmana beside the Ganga at sunset.",
+            "hi": "सूर्यास्त में गंगा किनारे गुह राम, सीता और लक्ष्मण का स्वागत करते हैं।"
+          },
+          "atmosphere": "water"
+        },
+        {
+          "id": "ganga-crossing",
+          "after": 2,
+          "file": "04-scene-river-crossing",
+          "alt": {
+            "en": "Guha steadies the boat as the three travellers begin their Ganga crossing.",
+            "hi": "गंगा पार करने की शुरुआत में गुह नाव सँभालते हैं और तीनों यात्री चढ़ते हैं।"
+          },
+          "atmosphere": "water"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "bharata-and-the-sandals",
+      "words": 408,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Ayodhya Kanda 2.72–73",
+          "url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga72/ayodhyaroman72.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Ayodhya Kanda 2.99–104",
+          "url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga102/ayodhyaroman102.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Ayodhya Kanda 2.112",
+          "url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga112/ayodhyaroman112.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Ayodhya Kanda 2.115",
+          "url": "https://www.valmikiramayan.net/utf8/ayodhya/sarga115/ayodhyaroman115.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "bharata-homecoming",
+          "file": "05-bharata-and-sandals",
+          "alt": {
+            "en": "Rama entrusts a pair of wooden sandals to Bharata at the forest hermitage.",
+            "hi": "वन-आश्रम में राम भरत को काष्ठ-पादुकाओं की जोड़ी सौंपते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "bharata-meeting",
+          "file": "05-bharata-and-sandals",
+          "alt": {
+            "en": "Rama entrusts a pair of wooden sandals to Bharata at the forest hermitage.",
+            "hi": "वन-आश्रम में राम भरत को काष्ठ-पादुकाओं की जोड़ी सौंपते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "bharata-padukas",
+          "file": "05-bharata-and-sandals",
+          "alt": {
+            "en": "Rama entrusts a pair of wooden sandals to Bharata at the forest hermitage.",
+            "hi": "वन-आश्रम में राम भरत को काष्ठ-पादुकाओं की जोड़ी सौंपते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "bharata-nandigrama",
+          "after": 2,
+          "file": "05-scene-nandigrama-trust",
+          "alt": {
+            "en": "Bharata places the foot-shaped wooden padukas before the work of stewardship at Nandigrama.",
+            "hi": "भरत नंदिग्राम में शासन-सेवा आरंभ करने से पहले काष्ठ-पादुकाएँ रखते हैं।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "forest-torn-apart",
+      "words": 428,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Aranya Kanda 3.17–18",
+          "url": "https://www.valmikiramayan.net/utf8/aranya/sarga18/aranyaroman18.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Aranya Kanda 3.30",
+          "url": "https://www.valmikiramayan.net/utf8/aranya/sarga30/aranyaroman30.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Aranya Kanda 3.42–45",
+          "url": "https://www.valmikiramayan.net/utf8/aranya/sarga42/aranyaroman42.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Aranya Kanda 3.49–51",
+          "url": "https://www.valmikiramayan.net/utf8/aranya/sarga49/aranyaroman49.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Aranya Kanda 3.67–68",
+          "url": "https://www.valmikiramayan.net/utf8/aranya/sarga68/aranyaroman68.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "forest-panchavati",
+          "file": "23-empty-hermitage",
+          "alt": {
+            "en": "Rama and Lakshmana stand before their empty forest hermitage.",
+            "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "forest-golden-deer",
+          "file": "23-empty-hermitage",
+          "alt": {
+            "en": "Rama and Lakshmana stand before their empty forest hermitage.",
+            "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "forest-abduction",
+          "file": "23-empty-hermitage",
+          "alt": {
+            "en": "Rama and Lakshmana stand before their empty forest hermitage.",
+            "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "forest-last-witness",
+          "file": "23-empty-hermitage",
+          "alt": {
+            "en": "Rama and Lakshmana stand before their empty forest hermitage.",
+            "hi": "राम और लक्ष्मण अपने खाली वन-आश्रम के सामने खड़े हैं।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "shabaris-welcome",
+      "words": 308,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Aranya Kanda 3.71–73",
+          "url": "https://www.valmikiramayan.net/utf8/aranya/sarga73/aranyaroman73.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Aranya Kanda 3.74",
+          "url": "https://www.valmikiramayan.net/utf8/aranya/sarga74/aranyaroman74.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda 4.1",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga1/kishkindharoman1.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "shabari-road",
+          "file": "06-shabari-welcome",
+          "alt": {
+            "en": "Shabari offers gathered fruit and water to Rama and Lakshmana.",
+            "hi": "शबरी राम और लक्ष्मण को जुटाए फल और जल अर्पित करती हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "shabari-arrival",
+          "file": "06-shabari-welcome",
+          "alt": {
+            "en": "Shabari offers gathered fruit and water to Rama and Lakshmana.",
+            "hi": "शबरी राम और लक्ष्मण को जुटाए फल और जल अर्पित करती हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "shabari-memory",
+          "file": "06-shabari-welcome",
+          "alt": {
+            "en": "Shabari offers gathered fruit and water to Rama and Lakshmana.",
+            "hi": "शबरी राम और लक्ष्मण को जुटाए फल और जल अर्पित करती हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "shabari-pampa",
+          "after": 2,
+          "file": "06-scene-direction-ahead",
+          "alt": {
+            "en": "Shabari uses her knowledge of place to point Rama and Lakshmana toward the way ahead.",
+            "hi": "शबरी स्थान के अपने ज्ञान से राम और लक्ष्मण को आगे का मार्ग बताती हैं।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "hanumans-first-conversation",
+      "words": 356,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda 4.2",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga2/kishkindharoman2.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda 4.3",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga3/kishkindharoman3.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda 4.4",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga4/kishkindharoman4.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "meeting-watchers",
+          "file": "07-hanuman-first-conversation",
+          "alt": {
+            "en": "Hanuman begins a careful conversation with Rama and Lakshmana near Rishyamuka.",
+            "hi": "ऋष्यमूक के निकट हनुमान राम और लक्ष्मण से सावधान संवाद आरंभ करते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "meeting-approach",
+          "file": "07-hanuman-first-conversation",
+          "alt": {
+            "en": "Hanuman begins a careful conversation with Rama and Lakshmana near Rishyamuka.",
+            "hi": "ऋष्यमूक के निकट हनुमान राम और लक्ष्मण से सावधान संवाद आरंभ करते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "meeting-speech",
+          "file": "07-hanuman-first-conversation",
+          "alt": {
+            "en": "Hanuman begins a careful conversation with Rama and Lakshmana near Rishyamuka.",
+            "hi": "ऋष्यमूक के निकट हनुमान राम और लक्ष्मण से सावधान संवाद आरंभ करते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "meeting-answer",
+          "after": 2,
+          "file": "07-scene-toward-alliance",
+          "alt": {
+            "en": "Hanuman guides Rama and Lakshmana toward the alliance his careful speech opened.",
+            "hi": "हनुमान राम और लक्ष्मण को उस मित्रता की ओर ले जाते हैं जिसका मार्ग उनकी सावधान वाणी ने खोला।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "alliance-and-vali",
+      "words": 447,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda · 4.5",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga5/kishkindharoman5.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda · 4.12",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga12/kishkindharoman12.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda · 4.16",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga16/kishkindharoman16.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda · 4.17",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga17/kishkindharoman17.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda · 4.18",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga18/kishkindharoman18.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda · 4.26",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga26/kishkindharoman26.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "alliance-fire",
+          "file": "15-alliance-and-vali",
+          "alt": {
+            "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
+            "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "alliance-garland",
+          "file": "15-alliance-and-vali",
+          "alt": {
+            "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
+            "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "alliance-question",
+          "file": "15-alliance-and-vali",
+          "alt": {
+            "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
+            "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "alliance-crown",
+          "file": "15-alliance-and-vali",
+          "alt": {
+            "en": "Rama listens as the wounded Vali questions him, with Sugriva waiting at a distance.",
+            "hi": "घायल वालि राम से प्रश्न करते हैं और सुग्रीव दूर प्रतीक्षा करते हैं।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "search-to-southern-sea",
+      "words": 450,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda · 4.44",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga44/kishkindharoman44.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda · 4.52",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga52/kishkindharoman52.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda · 4.58",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga58/kishkindharoman58.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda · 4.66",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga66/kishkindharoman66.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Kishkindha Kanda · 4.67",
+          "url": "https://www.valmikiramayan.net/utf8/kish/sarga67/kishkindharoman67.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "search-ring",
+          "file": "16-search-southern-sea",
+          "alt": {
+            "en": "Hanuman and the southern search party stand before the ocean as Sampati points toward distant Lanka.",
+            "hi": "हनुमान और दक्षिणी खोज-दल समुद्र के सामने खड़े हैं और सम्पाति दूर लंका की दिशा बताते हैं।"
+          },
+          "atmosphere": "water"
+        },
+        {
+          "id": "search-cavern",
+          "file": "16-search-southern-sea",
+          "alt": {
+            "en": "Hanuman and the southern search party stand before the ocean as Sampati points toward distant Lanka.",
+            "hi": "हनुमान और दक्षिणी खोज-दल समुद्र के सामने खड़े हैं और सम्पाति दूर लंका की दिशा बताते हैं।"
+          },
+          "atmosphere": "water"
+        },
+        {
+          "id": "search-sampati",
+          "file": "16-search-southern-sea",
+          "alt": {
+            "en": "Hanuman and the southern search party stand before the ocean as Sampati points toward distant Lanka.",
+            "hi": "हनुमान और दक्षिणी खोज-दल समुद्र के सामने खड़े हैं और सम्पाति दूर लंका की दिशा बताते हैं।"
+          },
+          "atmosphere": "water"
+        },
+        {
+          "id": "search-remembered-strength",
+          "file": "16-search-southern-sea",
+          "alt": {
+            "en": "Hanuman and the southern search party stand before the ocean as Sampati points toward distant Lanka.",
+            "hi": "हनुमान और दक्षिणी खोज-दल समुद्र के सामने खड़े हैं और सम्पाति दूर लंका की दिशा बताते हैं।"
+          },
+          "atmosphere": "water"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "across-the-ocean",
+      "words": 309,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.1",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga1/sundararoman1.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.2",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga2/sundararoman2.htm"
+        },
+        {
+          "label": "R. T. H. Griffith · The Ramayan of Valmiki · Book V, Canto I (1870–1874)",
+          "url": "https://www.gutenberg.org/files/24869/24869-h/24869-h.html"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "ocean-departure",
+          "file": "08-across-ocean",
+          "alt": {
+            "en": "Hanuman crosses the indigo ocean as Mainaka rises ahead.",
+            "hi": "मैनाक के आगे उठते हुए हनुमान नील समुद्र पार करते हैं।"
+          },
+          "atmosphere": "water"
+        },
+        {
+          "id": "ocean-mainaka",
+          "after": 0,
+          "file": "08-scene-mainaka-offer",
+          "alt": {
+            "en": "Hanuman touches Mainaka in gratitude and continues toward Lanka.",
+            "hi": "हनुमान कृतज्ञता से मैनाक को स्पर्श कर लंका की ओर बढ़ते हैं।"
+          },
+          "atmosphere": "water"
+        },
+        {
+          "id": "ocean-surasa",
+          "file": "24-surasa-test",
+          "alt": {
+            "en": "A single small Hanuman approaches Surasa’s open mouth above the ocean during her test.",
+            "hi": "समुद्र के ऊपर सुरसा की परीक्षा में छोटे रूप में एक हनुमान उनके खुले मुख के निकट आते हैं।"
+          },
+          "atmosphere": "water"
+        },
+        {
+          "id": "ocean-lanka",
+          "file": "08-across-ocean",
+          "alt": {
+            "en": "Hanuman crosses the indigo ocean as Mainaka rises ahead.",
+            "hi": "मैनाक के आगे उठते हुए हनुमान नील समुद्र पार करते हैं।"
+          },
+          "atmosphere": "water"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "through-lanka-at-night",
+      "words": 441,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.3",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga3/sundararoman3.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.11",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga11/sundararoman11.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.15",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga15/sundararoman15.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.21",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga21/sundararoman21.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.30",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga30/sundararoman30.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.31",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga31/sundararoman31.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "lanka-gate",
+          "file": "17-lanka-at-night",
+          "alt": {
+            "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
+            "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "lanka-search",
+          "file": "17-lanka-at-night",
+          "alt": {
+            "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
+            "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "lanka-sita-refuses",
+          "file": "17-lanka-at-night",
+          "alt": {
+            "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
+            "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "lanka-first-words",
+          "file": "17-lanka-at-night",
+          "alt": {
+            "en": "Hanuman, small and concealed among leaves, first sees Sita in the moonlit ashoka grove.",
+            "hi": "पत्तों में छोटे और छिपे हनुमान चाँदनी अशोक-वाटिका में पहली बार सीता को देखते हैं।"
+          },
+          "atmosphere": "light"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "a-ring-brings-hope",
+      "words": 444,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.35",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga35/sundararoman35.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.36",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga36/sundararoman36.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.37",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga37/sundararoman37.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.38",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga38/sundararoman38.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "ring-questions",
+          "file": "09-ring-brings-hope",
+          "alt": {
+            "en": "Hanuman presents Rama’s ring to Sita beneath an ashoka tree.",
+            "hi": "अशोक-वृक्ष के नीचे हनुमान सीता को राम की मुद्रिका देते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "ring-news",
+          "file": "09-ring-brings-hope",
+          "alt": {
+            "en": "Hanuman presents Rama’s ring to Sita beneath an ashoka tree.",
+            "hi": "अशोक-वृक्ष के नीचे हनुमान सीता को राम की मुद्रिका देते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "ring-choice",
+          "after": 1,
+          "file": "09-scene-offer-and-answer",
+          "alt": {
+            "en": "Sita answers Hanuman’s offer to carry her away with calm resolve.",
+            "hi": "सीता हनुमान के साथ चलने के प्रस्ताव का शांत दृढ़ता से उत्तर देती हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "ring-jewel",
+          "after": 2,
+          "file": "09-scene-token-message",
+          "alt": {
+            "en": "Sita gives Hanuman a crest jewel and message for Rama.",
+            "hi": "सीता हनुमान को राम के लिए चूड़ामणि और संदेश देती हैं।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "witness-returns",
+      "words": 451,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.41",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga41/sundararoman41.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.48",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga48/sundararoman48.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.51",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga51/sundararoman51.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.52",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga52/sundararoman52.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.54",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga54/sundararoman54.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.55",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga55/sundararoman55.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.56",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga56/sundara_56_prose.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Sundara Kanda · 5.65",
+          "url": "https://www.valmikiramayan.net/utf8/sundara/sarga65/sundararoman65.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "witness-court",
+          "file": "18-witness-returns",
+          "alt": {
+            "en": "Hanuman places Sita’s crest jewel before Rama as the search party gathers around.",
+            "hi": "खोज-दल के बीच हनुमान राम के सामने सीता की चूड़ामणि रखते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "witness-fire",
+          "file": "18-witness-returns",
+          "alt": {
+            "en": "Hanuman places Sita’s crest jewel before Rama as the search party gathers around.",
+            "hi": "खोज-दल के बीच हनुमान राम के सामने सीता की चूड़ामणि रखते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "witness-other-shore",
+          "file": "18-witness-returns",
+          "alt": {
+            "en": "Hanuman places Sita’s crest jewel before Rama as the search party gathers around.",
+            "hi": "खोज-दल के बीच हनुमान राम के सामने सीता की चूड़ामणि रखते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "witness-jewel-delivered",
+          "file": "18-witness-returns",
+          "alt": {
+            "en": "Hanuman places Sita’s crest jewel before Rama as the search party gathers around.",
+            "hi": "खोज-दल के बीच हनुमान राम के सामने सीता की चूड़ामणि रखते हैं।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "refuge-and-crossing",
+      "words": 430,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.17",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga17/yuddha_17_prose.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.18",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga18/yuddha_18_prose.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.21",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga21/yuddha_21_prose.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.22",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga22/yuddharoman22.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "refuge-arrival",
+          "file": "19-refuge-and-crossing",
+          "alt": {
+            "en": "Vibhishana waits above the seashore camp while Rama, Hanuman and Sugriva debate refuge.",
+            "hi": "विभीषण समुद्र-तट शिविर के ऊपर प्रतीक्षा करते हैं और राम, हनुमान तथा सुग्रीव शरण पर विचार करते हैं।"
+          },
+          "atmosphere": "water"
+        },
+        {
+          "id": "refuge-rama-decides",
+          "file": "19-refuge-and-crossing",
+          "alt": {
+            "en": "Vibhishana waits above the seashore camp while Rama, Hanuman and Sugriva debate refuge.",
+            "hi": "विभीषण समुद्र-तट शिविर के ऊपर प्रतीक्षा करते हैं और राम, हनुमान तथा सुग्रीव शरण पर विचार करते हैं।"
+          },
+          "atmosphere": "water"
+        },
+        {
+          "id": "refuge-ocean-answer",
+          "file": "19-refuge-and-crossing",
+          "alt": {
+            "en": "Vibhishana waits above the seashore camp while Rama, Hanuman and Sugriva debate refuge.",
+            "hi": "विभीषण समुद्र-तट शिविर के ऊपर प्रतीक्षा करते हैं और राम, हनुमान तथा सुग्रीव शरण पर विचार करते हैं।"
+          },
+          "atmosphere": "water"
+        },
+        {
+          "id": "refuge-bridge",
+          "file": "19-refuge-and-crossing",
+          "alt": {
+            "en": "Vibhishana waits above the seashore camp while Rama, Hanuman and Sugriva debate refuge.",
+            "hi": "विभीषण समुद्र-तट शिविर के ऊपर प्रतीक्षा करते हैं और राम, हनुमान तथा सुग्रीव शरण पर विचार करते हैं।"
+          },
+          "atmosphere": "water"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "war-and-its-cost",
+      "words": 457,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.41",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga41/yuddha_41_prose.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.67",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga67/yuddha_67_prose.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.74",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga74/yuddharoman74.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.91",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga91/yuddharoman91.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.108",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga108/yuddharoman108.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.111",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga111/yuddharoman111.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.112",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga112/yuddharoman112.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.113",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga113/yuddha_113_prose.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "war-last-message",
+          "file": "20-war-and-its-cost",
+          "alt": {
+            "en": "After battle, Vibhishana and Mandodari stand in a smoke-softened Lanka as weapons are lowered.",
+            "hi": "युद्ध के बाद धुएँ से धुँधली लंका में विभीषण और मंदोदरी खड़े हैं, शस्त्र नीचे किए जा रहे हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "war-medicine",
+          "file": "20-war-and-its-cost",
+          "alt": {
+            "en": "After battle, Vibhishana and Mandodari stand in a smoke-softened Lanka as weapons are lowered.",
+            "hi": "युद्ध के बाद धुएँ से धुँधली लंका में विभीषण और मंदोदरी खड़े हैं, शस्त्र नीचे किए जा रहे हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "war-final-combat",
+          "file": "20-war-and-its-cost",
+          "alt": {
+            "en": "After battle, Vibhishana and Mandodari stand in a smoke-softened Lanka as weapons are lowered.",
+            "hi": "युद्ध के बाद धुएँ से धुँधली लंका में विभीषण और मंदोदरी खड़े हैं, शस्त्र नीचे किए जा रहे हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "war-afterward",
+          "file": "20-war-and-its-cost",
+          "alt": {
+            "en": "After battle, Vibhishana and Mandodari stand in a smoke-softened Lanka as weapons are lowered.",
+            "hi": "युद्ध के बाद धुएँ से धुँधली लंका में विभीषण और मंदोदरी खड़े हैं, शस्त्र नीचे किए जा रहे हैं।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "sita-speaks-after-victory",
+      "words": 469,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.113",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga113/yuddha_113_prose.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.114",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga114/yuddha_114_prose.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.115",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga115/yuddharoman115.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.116",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga116/yuddharoman116.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.117",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga117/yuddharoman117.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.118",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga118/yuddharoman118.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "sita-mercy",
+          "file": "21-sita-speaks",
+          "alt": {
+            "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
+            "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "sita-public-speech",
+          "file": "21-sita-speaks",
+          "alt": {
+            "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
+            "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "sita-ordeal",
+          "file": "21-sita-speaks",
+          "alt": {
+            "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
+            "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "sita-reunion",
+          "file": "21-sita-speaks",
+          "alt": {
+            "en": "Sita stands speaking before the gathered assembly while Rama listens at a distance.",
+            "hi": "सभा के सामने सीता बोलती हैं और राम कुछ दूरी पर सुनते हैं।"
+          },
+          "atmosphere": "light"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "northward-home",
+      "words": 444,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.120",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga120/yuddharoman120.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.122",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga122/yuddharoman122.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.123",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga123/yuddharoman123.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.124",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga124/yuddharoman124.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.125",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga125/yuddharoman125.htm"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "homeward-restoration",
+          "file": "22-northward-home",
+          "alt": {
+            "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
+            "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "homeward-landscape",
+          "file": "22-northward-home",
+          "alt": {
+            "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
+            "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "homeward-bharadwaja",
+          "file": "22-northward-home",
+          "alt": {
+            "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
+            "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
+          },
+          "atmosphere": "forest"
+        },
+        {
+          "id": "homeward-message",
+          "file": "22-northward-home",
+          "alt": {
+            "en": "Rama, Sita, Lakshmana and Hanuman look down from the homeward journey as remembered rivers pass below.",
+            "hi": "घर लौटते हुए राम, सीता, लक्ष्मण और हनुमान नीचे गुजरती परिचित नदियों को देखते हैं।"
+          },
+          "atmosphere": "forest"
+        }
+      ],
+      "review": "pending"
+    },
+    {
+      "id": "returning-responsibility",
+      "words": 371,
+      "sources": [
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.127",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga127/yuddharoman127.htm"
+        },
+        {
+          "label": "Valmiki Ramayana · Yuddha Kanda · 6.128",
+          "url": "https://www.valmikiramayan.net/utf8/yuddha/sarga128/yuddharoman128.htm"
+        },
+        {
+          "label": "R. T. H. Griffith · The Ramayan of Valmiki · Book VI, concluding cantos (1870–1874)",
+          "url": "https://www.gutenberg.org/files/24869/24869-h/24869-h.html"
+        }
+      ],
+      "scenes": [
+        {
+          "id": "return-preparations",
+          "file": "10-returning-responsibility-v3",
+          "alt": {
+            "en": "Bharata returns the entrusted foot-shaped wooden padukas and stewardship to Rama near Ayodhya.",
+            "hi": "अयोध्या के निकट भरत राम को सौंपी काष्ठ-पादुकाएँ और दायित्व लौटाते हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "return-sandals",
+          "file": "10-returning-responsibility-v3",
+          "alt": {
+            "en": "Bharata returns the entrusted foot-shaped wooden padukas and stewardship to Rama near Ayodhya.",
+            "hi": "अयोध्या के निकट भरत राम को सौंपी काष्ठ-पादुकाएँ और दायित्व लौटाते हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "return-consecration",
+          "file": "10-returning-responsibility-v3",
+          "alt": {
+            "en": "Bharata returns the entrusted foot-shaped wooden padukas and stewardship to Rama near Ayodhya.",
+            "hi": "अयोध्या के निकट भरत राम को सौंपी काष्ठ-पादुकाएँ और दायित्व लौटाते हैं।"
+          },
+          "atmosphere": "light"
+        },
+        {
+          "id": "return-closing",
+          "file": "10-returning-responsibility-v3",
+          "alt": {
+            "en": "Bharata returns the entrusted foot-shaped wooden padukas and stewardship to Rama near Ayodhya.",
+            "hi": "अयोध्या के निकट भरत राम को सौंपी काष्ठ-पादुकाएँ और दायित्व लौटाते हैं।"
+          },
+          "atmosphere": "light"
+        }
+      ],
+      "review": "pending"
+    }
+  ]
+}

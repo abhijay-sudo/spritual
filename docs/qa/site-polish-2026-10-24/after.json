@@ -1,0 +1,74 @@
+[
+  {
+    "mode": "desktop",
+    "heroReadyMs": 8,
+    "lcpMs": 76,
+    "cls": 0.0003145586346075532,
+    "longTasks": [],
+    "introPlayed": true,
+    "bytes": 995095,
+    "images": [
+      {
+        "url": "/stories-app/assets/responsive/forest-journey-1120-ab638c4acf18.webp",
+        "bytes": 211978,
+        "ms": 3
+      },
+      {
+        "url": "/stories-app/welcome/portraits/ganesha-640.webp",
+        "bytes": 65140,
+        "ms": 2
+      },
+      {
+        "url": "/stories-app/welcome/portraits/rama-640.webp",
+        "bytes": 51260,
+        "ms": 2
+      },
+      {
+        "url": "/stories-app/welcome/portraits/lakshmi-640.webp",
+        "bytes": 50340,
+        "ms": 2
+      },
+      {
+        "url": "/stories-app/welcome/portraits/hanuman-640.webp",
+        "bytes": 47364,
+        "ms": 2
+      },
+      {
+        "url": "/stories-app/welcome/portraits/shiva-640.webp",
+        "bytes": 48534,
+        "ms": 3
+      },
+      {
+        "url": "/stories-app/welcome/portraits/durga-640.webp",
+        "bytes": 68024,
+        "ms": 2
+      },
+      {
+        "url": "/stories-app/welcome/portraits/krishna-640.webp",
+        "bytes": 44088,
+        "ms": 3
+      },
+      {
+        "url": "/stories-app/welcome/portraits/saraswati-640.webp",
+        "bytes": 54952,
+        "ms": 3
+      }
+    ]
+  },
+  {
+    "mode": "mobile-constrained",
+    "heroReadyMs": 3660,
+    "lcpMs": 3684,
+    "cls": 0.00031047632232325973,
+    "longTasks": [],
+    "introPlayed": false,
+    "bytes": 612523,
+    "images": [
+      {
+        "url": "/stories-app/assets/responsive/forest-journey-1280-76a9afc23849.webp",
+        "bytes": 259108,
+        "ms": 3536
+      }
+    ]
+  }
+]

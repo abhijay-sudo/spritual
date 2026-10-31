@@ -1,0 +1,417 @@
+{
+  "schemaVersion": 1,
+  "generation": {
+    "tool": "sharp",
+    "version": "0.35.5",
+    "widths": [
+      360,
+      480,
+      720,
+      1120,
+      1280
+    ],
+    "webp": {
+      "quality": 82,
+      "effort": 6,
+      "smartSubsample": true
+    },
+    "operation": "Proportional downscaling only; no crop or enlargement."
+  },
+  "images": [
+    {
+      "source": "assets/ayodhya-dawn.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 336580,
+      "sha256": "72b65179f25ae65c50e8d2609c70197db9df530824d9e8460bb0a12c5a815744",
+      "variants": [
+        {
+          "file": "ayodhya-dawn-360-b211e4457b3c.webp",
+          "width": 360,
+          "height": 203,
+          "bytes": 18426,
+          "sha256": "b211e4457b3c08d6e8fcbc4180f558bdf305335e230cdba5e31233069347568c"
+        },
+        {
+          "file": "ayodhya-dawn-480-57d64cc5771d.webp",
+          "width": 480,
+          "height": 270,
+          "bytes": 31442,
+          "sha256": "57d64cc5771d9efac0d77de50809910de89511d3fd1eae279691685c79ef5063"
+        },
+        {
+          "file": "ayodhya-dawn-720-595ffaaac9cc.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 69824,
+          "sha256": "595ffaaac9cc840c1b49591f8dbc842ae8203dd2cdbf887931978d07421167c5"
+        },
+        {
+          "file": "ayodhya-dawn-1120-d7c3ca3afee3.webp",
+          "width": 1120,
+          "height": 630,
+          "bytes": 152282,
+          "sha256": "d7c3ca3afee34299a076f60bb87534e2c13bee7de49bede89ee82952dfaa893b"
+        },
+        {
+          "file": "ayodhya-dawn-1280-53494836ae6e.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 183062,
+          "sha256": "53494836ae6e417ca881d3f9672962e0a7986fd9439e6ce26ce0a01634fcbd26"
+        }
+      ]
+    },
+    {
+      "source": "assets/dhruva-under-stars.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 373412,
+      "sha256": "c3f6fb6bcaa3cb47d25715e3e6ed14c14a99b5f9a66d1e1551a9c0d19f6b56c3",
+      "variants": [
+        {
+          "file": "dhruva-under-stars-360-a45ac09a62fa.webp",
+          "width": 360,
+          "height": 540,
+          "bytes": 72692,
+          "sha256": "a45ac09a62fa25117265fad7fcd43489adef356b29f69dd2177506fc226ddc7d"
+        },
+        {
+          "file": "dhruva-under-stars-480-c66af2e9f607.webp",
+          "width": 480,
+          "height": 720,
+          "bytes": 122370,
+          "sha256": "c66af2e9f607b5e4eeb16fb4d376f0527493606ba02cd6715a1c48176a3f379e"
+        },
+        {
+          "file": "dhruva-under-stars-720-1575d68087f5.webp",
+          "width": 720,
+          "height": 1080,
+          "bytes": 227178,
+          "sha256": "1575d68087f54a06108b6059cb1d316df5c2ca746a212778e8ffc0144336f879"
+        }
+      ]
+    },
+    {
+      "source": "assets/forest-journey.webp",
+      "width": 1672,
+      "height": 941,
+      "bytes": 481364,
+      "sha256": "af90887f5afa6d7a7c75d9580f3b502b010b3e02fb33619084456b0d78f488c2",
+      "variants": [
+        {
+          "file": "forest-journey-360-7927bea050af.webp",
+          "width": 360,
+          "height": 203,
+          "bytes": 26940,
+          "sha256": "7927bea050afee88cc8f24cc4c471244137b3c353a60ad656ba5ef2cc8889ccb"
+        },
+        {
+          "file": "forest-journey-480-094985157118.webp",
+          "width": 480,
+          "height": 270,
+          "bytes": 46142,
+          "sha256": "094985157118302c46436fa57c48847d90699db14b4fc4efba693022537be8fb"
+        },
+        {
+          "file": "forest-journey-720-a0a833ee5c22.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 100582,
+          "sha256": "a0a833ee5c22f4511f68298685aa984a34ec595f9cb73388ae1ffbd58d408e0b"
+        },
+        {
+          "file": "forest-journey-1120-ab638c4acf18.webp",
+          "width": 1120,
+          "height": 630,
+          "bytes": 211678,
+          "sha256": "ab638c4acf184d4ea31bc13613dcbf9fb3693587d5f644ccb931a165dba7dc83"
+        },
+        {
+          "file": "forest-journey-1280-76a9afc23849.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 258808,
+          "sha256": "76a9afc23849165f5cbb9d6fa18e15ff28de8b45fc7b9da238efe4393045da9a"
+        }
+      ]
+    },
+    {
+      "source": "assets/forest-sages.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 415548,
+      "sha256": "6b2939d96e937c0198fdb042584f79eceaf7b3e9b93ed4c0c9f82e6e16687f11",
+      "variants": [
+        {
+          "file": "forest-sages-360-aebe22fff5b9.webp",
+          "width": 360,
+          "height": 540,
+          "bytes": 75014,
+          "sha256": "aebe22fff5b968a0fa27aac32e42af367aabd87a87b011b7d6efc8f7dc340a41"
+        },
+        {
+          "file": "forest-sages-480-aabbd8e0cd58.webp",
+          "width": 480,
+          "height": 720,
+          "bytes": 123890,
+          "sha256": "aabbd8e0cd5815507c6a3b4981fb717c0cee2f03eaa87d7cc460824c21e97b09"
+        },
+        {
+          "file": "forest-sages-720-7f38175ad860.webp",
+          "width": 720,
+          "height": 1080,
+          "bytes": 233080,
+          "sha256": "7f38175ad86073c298788fca03c5ca24c67539b4d85378392ccf5e4df913264a"
+        }
+      ]
+    },
+    {
+      "source": "assets/hanuman-ocean-leap.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 274514,
+      "sha256": "3381c97c851125455de898b7dee599fe9a51101b8ba41808eccc922f223030b1",
+      "variants": [
+        {
+          "file": "hanuman-ocean-leap-360-0a6e84d80010.webp",
+          "width": 360,
+          "height": 540,
+          "bytes": 54516,
+          "sha256": "0a6e84d8001055b95e0c27387eb804b35b0f3cb2f8b4746642f375fa71ee45bf"
+        },
+        {
+          "file": "hanuman-ocean-leap-480-ec3fef6871ac.webp",
+          "width": 480,
+          "height": 720,
+          "bytes": 89500,
+          "sha256": "ec3fef6871accce5d58523d8b794c55b314e6dc29656dac6a71e2dbe5a4ef030"
+        },
+        {
+          "file": "hanuman-ocean-leap-720-05d73f8be995.webp",
+          "width": 720,
+          "height": 1080,
+          "bytes": 172218,
+          "sha256": "05d73f8be9959c85abeda2c3092568cf706da8d46d4d5a217f014640e7267237"
+        }
+      ]
+    },
+    {
+      "source": "assets/krishna-govardhana.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 364652,
+      "sha256": "6e87c1c28e0856ec4462f6e6b81cb3dce3111f1798d19dd25a97148eefeeb9e5",
+      "variants": [
+        {
+          "file": "krishna-govardhana-360-ac86d8c54445.webp",
+          "width": 360,
+          "height": 540,
+          "bytes": 69802,
+          "sha256": "ac86d8c54445fdbcbf3540199b6f8985bd58320b44c4b04501dfc32e1af7dbab"
+        },
+        {
+          "file": "krishna-govardhana-480-07445e2ca0a6.webp",
+          "width": 480,
+          "height": 720,
+          "bytes": 115734,
+          "sha256": "07445e2ca0a694cff4dc005c78c88445cabe062591356110a7886c103bb9bbf0"
+        },
+        {
+          "file": "krishna-govardhana-720-716466505965.webp",
+          "width": 720,
+          "height": 1080,
+          "bytes": 223398,
+          "sha256": "7164665059658d4d1354d0c3a212802e09531ab58ddac5a379f3b3ade629194f"
+        }
+      ]
+    },
+    {
+      "source": "assets/narada-river-path.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 338760,
+      "sha256": "93d16e636e6a7d1332022c657d8f97421bf26de4d44c9a2211fe960e7d1e7797",
+      "variants": [
+        {
+          "file": "narada-river-path-360-d761d9d160a8.webp",
+          "width": 360,
+          "height": 540,
+          "bytes": 68716,
+          "sha256": "d761d9d160a84d9d97865d2fd5f08862ff52649258cbc2993f6e93e525b258d1"
+        },
+        {
+          "file": "narada-river-path-480-ce6a0b3381ef.webp",
+          "width": 480,
+          "height": 720,
+          "bytes": 114456,
+          "sha256": "ce6a0b3381efef9b1f696efa6aef4c150d48a06d500a235de6e74d8b26f279e5"
+        },
+        {
+          "file": "narada-river-path-720-80dee5b0889f.webp",
+          "width": 720,
+          "height": 1080,
+          "bytes": 208852,
+          "sha256": "80dee5b0889fec20f8000216df02a2e0636b1c219c370b7bc47082a9d625982f"
+        }
+      ]
+    },
+    {
+      "source": "assets/rama-bow-mithila.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 286308,
+      "sha256": "dad011dcf2318451c0bf6991cc2238f9b612d7d210439ec3522e7ef8fcee135d",
+      "variants": [
+        {
+          "file": "rama-bow-mithila-360-128fae3d8bce.webp",
+          "width": 360,
+          "height": 540,
+          "bytes": 65196,
+          "sha256": "128fae3d8bce0edc9736f69a1af44b48308772b56bb4d1a83c4416154089aed8"
+        },
+        {
+          "file": "rama-bow-mithila-480-a39a2c5632c1.webp",
+          "width": 480,
+          "height": 720,
+          "bytes": 103092,
+          "sha256": "a39a2c5632c114ece3fb799acfd64388b5d905860859ff98b7be2c79ddf83a37"
+        },
+        {
+          "file": "rama-bow-mithila-720-81e59a664ace.webp",
+          "width": 720,
+          "height": 1080,
+          "bytes": 187628,
+          "sha256": "81e59a664ace018c70a3868b95a64c772de4d3284dd1240532099d357a3ab38a"
+        }
+      ]
+    },
+    {
+      "source": "assets/sarayu-riverfront.webp",
+      "width": 1200,
+      "height": 675,
+      "bytes": 155908,
+      "sha256": "740da3e45319ce24eb059fdf2d5c8dec732cd98a84639f6fa9e413bb8afa2ebd",
+      "variants": [
+        {
+          "file": "sarayu-riverfront-360-87c0cf354159.webp",
+          "width": 360,
+          "height": 202,
+          "bytes": 17846,
+          "sha256": "87c0cf3541595abdf95e3ab289e19a050b43671fc8ef9be29465c96ae0b01de2"
+        },
+        {
+          "file": "sarayu-riverfront-480-378e4f316686.webp",
+          "width": 480,
+          "height": 270,
+          "bytes": 29830,
+          "sha256": "378e4f316686804250dee9aa66108565afc2384cfac8ad901b447081b2ad1f6d"
+        },
+        {
+          "file": "sarayu-riverfront-720-3af7c6051ca9.webp",
+          "width": 720,
+          "height": 405,
+          "bytes": 59088,
+          "sha256": "3af7c6051ca964c689933104b4fa3fc69cd696c1398f356c6521de521e688153"
+        },
+        {
+          "file": "sarayu-riverfront-1120-019c5198492c.webp",
+          "width": 1120,
+          "height": 630,
+          "bytes": 116230,
+          "sha256": "019c5198492cb2a280287cf6d36e042f36e26112873788b73c7073d640ddc2e9"
+        }
+      ]
+    },
+    {
+      "source": "assets/shiva-ganga-descent.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 310246,
+      "sha256": "1bcc99771532d0b49aa79fe5b2ed6e105a10bb96e11a877df546f60855b806bd",
+      "variants": [
+        {
+          "file": "shiva-ganga-descent-360-22f6b97f5a44.webp",
+          "width": 360,
+          "height": 540,
+          "bytes": 61176,
+          "sha256": "22f6b97f5a44704014944313b1fbf414512f135dba143a857615914e4af39640"
+        },
+        {
+          "file": "shiva-ganga-descent-480-de2655aaf010.webp",
+          "width": 480,
+          "height": 720,
+          "bytes": 99496,
+          "sha256": "de2655aaf010f586a0abab7ac146fe4504b9f9ca78043d562bd04ebf5c64c99b"
+        },
+        {
+          "file": "shiva-ganga-descent-720-67c9ebda9b53.webp",
+          "width": 720,
+          "height": 1080,
+          "bytes": 188412,
+          "sha256": "67c9ebda9b531591cbca90fdf3748c865b3141184222efe2ef576a8c4a005dae"
+        }
+      ]
+    },
+    {
+      "source": "assets/sita-the-furrow.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 343208,
+      "sha256": "ca45afb762146202e093112ba8f15fd3168fdacbf009fd994d1e49f976ce4921",
+      "variants": [
+        {
+          "file": "sita-the-furrow-360-e6e8405b2d54.webp",
+          "width": 360,
+          "height": 540,
+          "bytes": 72140,
+          "sha256": "e6e8405b2d54d1e5cb2c0284b5faf0be2a42f201f3413bc73399d22c15f434ef"
+        },
+        {
+          "file": "sita-the-furrow-480-a5f8ef862e8d.webp",
+          "width": 480,
+          "height": 720,
+          "bytes": 116494,
+          "sha256": "a5f8ef862e8d3355d938b899315e0573dae1269bc9810f2e3247fd8b0fca68d7"
+        },
+        {
+          "file": "sita-the-furrow-720-a2f013d12090.webp",
+          "width": 720,
+          "height": 1080,
+          "bytes": 215826,
+          "sha256": "a2f013d120909fdee81853c7f33c671f809d29b4590fcfc66892b4f8b80e46bc"
+        }
+      ]
+    },
+    {
+      "source": "assets/valmiki-manuscript.webp",
+      "width": 900,
+      "height": 1350,
+      "bytes": 334196,
+      "sha256": "5df0ed4268692e384c250086281625b8771627ad17da03b3cc9e193bed8b29ec",
+      "variants": [
+        {
+          "file": "valmiki-manuscript-360-c4aa9f1867d2.webp",
+          "width": 360,
+          "height": 540,
+          "bytes": 65158,
+          "sha256": "c4aa9f1867d28cd1643b41c8fea44d0f27ac7ee706869695a2b3cbdda9e9aa44"
+        },
+        {
+          "file": "valmiki-manuscript-480-2638372ef5c7.webp",
+          "width": 480,
+          "height": 720,
+          "bytes": 106706,
+          "sha256": "2638372ef5c74c35f1205baad2e77ec40d87588bc3c57851b22af64e5c7febd1"
+        },
+        {
+          "file": "valmiki-manuscript-720-465618332938.webp",
+          "width": 720,
+          "height": 1080,
+          "bytes": 198882,
+          "sha256": "46561833293845db40dba2a83d430dc2f05d3c329068265954f3d0d21a78499d"
+        }
+      ]
+    }
+  ]
+}

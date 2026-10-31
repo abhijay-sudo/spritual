@@ -1,0 +1,375 @@
+
+Running 132 tests using 1 worker
+
+(node:3900) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    1 website/tests/app-introduction.spec.ts:5:1 › six source-linked stories work in both languages, with filters and focus recovery (6.4s)
+  ✓    2 website/tests/app-introduction.spec.ts:18:1 › app demonstration supports Hindi, font bounds, scenes, context and visit-only notebook (6.6s)
+  ✓    3 website/tests/app-introduction.spec.ts:26:1 › Get Spritual stays honestly unavailable and returns focus from a story (2.2s)
+  ✓    4 website/tests/app-introduction.spec.ts:29:1 › native mobile rail, short landscape reader and legacy links remain usable (425ms)
+  ✓    5 website/tests/app-introduction.spec.ts:34:39 › exact reference composition at 320px with reduced motion (884ms)
+  ✓    6 website/tests/app-introduction.spec.ts:34:39 › exact reference composition at 390px with reduced motion (916ms)
+  ✓    7 website/tests/app-introduction.spec.ts:34:39 › exact reference composition at 768px with reduced motion (1.1s)
+  ✓    8 website/tests/app-introduction.spec.ts:34:39 › exact reference composition at 1440px with reduced motion (1.5s)
+  ✓    9 website/tests/hush.spec.ts:3:1 › one responsive navigation exposes every primary destination and compact controls (259ms)
+  ✓   10 website/tests/hush.spec.ts:10:1 › single navigation reflows without a duplicate menu (482ms)
+  ✓   11 website/tests/hush.spec.ts:14:1 › one header, immediate reading, optional breath and keyboard preferences (275ms)
+  ✓   12 website/tests/hush.spec.ts:20:1 › focus mode removes chrome from keyboard navigation and Escape returns focus (217ms)
+  ✓   13 website/tests/hush.spec.ts:24:1 › pause runs smoothly without storing completion; reduced motion disables decorative loops (285ms)
+  ✓   14 website/tests/hush.spec.ts:30:45 › Hush visual states and reflow at 390px (2.5s)
+  ✓   15 website/tests/hush.spec.ts:30:45 › Hush visual states and reflow at 768px (1.1s)
+  ✓   16 website/tests/hush.spec.ts:30:45 › Hush visual states and reflow at 1024px (1.2s)
+  ✓   17 website/tests/hush.spec.ts:30:45 › Hush visual states and reflow at 1440px (1.4s)
+  ✓   18 website/tests/hush.spec.ts:30:45 › Hush visual states and reflow at 1680px (1.3s)
+  ✓   19 website/tests/journey.spec.ts:3:1 › discover a reflection, pause, finish deliberately, save, return and remove (18.8s)
+  ✓   20 website/tests/journey.spec.ts:9:1 › blocked save never claims success and user can continue (1.3s)
+  ✓   21 website/tests/journey.spec.ts:12:1 › corrupt data requires explicit removal; no accidental overwrite (1.1s)
+  ✓   22 website/tests/journey.spec.ts:15:1 › copy failure has a usable clean link; Hindi keeps language and no saved data (200ms)
+  ✓   23 website/tests/journey.spec.ts:18:1 › hiding page pauses running time and reset is explicit (2.5s)
+  ✓   24 website/tests/journey.spec.ts:21:39 › English and Hindi fit 320px; links and images load (1.9s)
+  ✓   25 website/tests/journey.spec.ts:21:39 › English and Hindi fit 390px; links and images load (2.6s)
+  ✓   26 website/tests/journey.spec.ts:21:39 › English and Hindi fit 768px; links and images load (2.7s)
+  ✓   27 website/tests/journey.spec.ts:21:39 › English and Hindi fit 1440px; links and images load (2.3s)
+  ✓   28 website/tests/journey.spec.ts:26:1 › static content survives JavaScript off, no app assets or network trackers ship (289ms)
+  ✓   29 website/tests/journey.spec.ts:30:1 › keyboard skip navigation and 200% text are usable (208ms)
+  ✓   30 website/tests/library.spec.ts:4:1 › source directory search, save, language switch and removal remain available (676ms)
+  ✓   31 website/tests/library.spec.ts:11:1 › source-directory search combines filters and recovers from an empty result (209ms)
+  ✓   32 website/tests/library.spec.ts:15:1 › source discovery query and collection survive refresh and language switching (307ms)
+  ✓   33 website/tests/library.spec.ts:19:1 › source catalogue exposes collection jumps and readable mobile controls (182ms)
+  ✓   34 website/tests/library.spec.ts:23:35 › saved source-guide control keeps readable contrast at 320px (187ms)
+  ✓   35 website/tests/library.spec.ts:23:35 › saved source-guide control keeps readable contrast at 390px (187ms)
+  ✓   36 website/tests/library.spec.ts:23:35 › saved source-guide control keeps readable contrast at 1440px (201ms)
+  ✓   37 website/tests/library.spec.ts:27:1 › shelf corruption is visible and requires explicit removal (160ms)
+  ✓   38 website/tests/library.spec.ts:28:1 › denied writes do not claim a saved reading place (156ms)
+  ✓   39 website/tests/library.spec.ts:29:1 › reading controls, next section, source safety and local-only boundaries (308ms)
+  ✓   40 website/tests/library.spec.ts:31:39 › story library and source guides fit 320px in both languages (817ms)
+  ✓   41 website/tests/library.spec.ts:31:39 › story library and source guides fit 390px in both languages (838ms)
+  ✓   42 website/tests/library.spec.ts:31:39 › story library and source guides fit 768px in both languages (1.3s)
+  ✓   43 website/tests/library.spec.ts:31:39 › story library and source guides fit 1440px in both languages (1.2s)
+  ✓   44 website/tests/library.spec.ts:33:1 › without JavaScript the entire source directory and external links remain usable (243ms)
+  ✓   45 website/tests/library.spec.ts:35:1 › capture current mobile and desktop review states (1.8s)
+  ✓   46 website/tests/manuscript.spec.ts:7:1 › sanctuary early return and language links survive a delayed module graph (295ms)
+  ✓   47 website/tests/manuscript.spec.ts:20:1 › sanctuary can return immediately while its interaction module is unavailable (468ms)
+  ✓   48 website/tests/manuscript.spec.ts:28:1 › reader context is keyboard operable, exclusive, interruptible and returns focus (1.5s)
+  ✓   49 website/tests/manuscript.spec.ts:45:1 › reader survives immediate save, quiet-minute early exit and exact semantic resume across language (5.2s)
+  ✓   50 website/tests/manuscript.spec.ts:62:1 › quiet-minute round trip restores a fractional paragraph and language maps that block (8.2s)
+  ✓   51 website/tests/manuscript.spec.ts:74:1 › 60-second sanctuary has exact phases, deliberate settling, no automatic intention and optional sound lifecycle (17.7s)
+  ✓   52 website/tests/manuscript.spec.ts:86:1 › hidden document, reduced motion, natural mode, skip hold and language changes leave no live loops (2.4s)
+  ✓   53 website/tests/manuscript.spec.ts:98:1 › sound requires a gesture, stops on hiding, and never restarts itself (351ms)
+  ✓   54 website/tests/manuscript.spec.ts:105:1 › denied storage and no JavaScript do not block readable paragraphs or timer exit (370ms)
+  ✓   55 website/tests/manuscript.spec.ts:112:44 › reader and sanctuary reflow in both languages at 320px (3.0s)
+  ✓   56 website/tests/manuscript.spec.ts:112:44 › reader and sanctuary reflow in both languages at 390px (2.9s)
+  ✓   57 website/tests/manuscript.spec.ts:112:44 › reader and sanctuary reflow in both languages at 768px (3.0s)
+  ✓   58 website/tests/manuscript.spec.ts:112:44 › reader and sanctuary reflow in both languages at 1024px (3.7s)
+  ✓   59 website/tests/manuscript.spec.ts:112:44 › reader and sanctuary reflow in both languages at 1440px (3.3s)
+  ✓   60 website/tests/navigation.spec.ts:3:1 › global navigation has one clear hierarchy at mobile and desktop sizes (594ms)
+  ✓   61 website/tests/navigation.spec.ts:19:1 › Yatra remains the active parent across details, characters and source guides (518ms)
+  ✓   62 website/tests/navigation.spec.ts:32:1 › story discovery and source guides are distinct but connected journeys (249ms)
+  ✓   63 website/tests/navigation.spec.ts:46:1 › reader contents, character context and return path preserve the reading place (1.6s)
+  ✓   64 website/tests/navigation.spec.ts:72:1 › reader contents stays fully inside narrow viewports (347ms)
+  ✓   65 website/tests/navigation.spec.ts:94:1 › explicit reader sections outrank saved progress and survive language changes (3.6s)
+  ✓   66 website/tests/navigation.spec.ts:120:1 › Hindi keeps the same navigation model and direct daily context (283ms)
+  ✓   67 website/tests/navigation.spec.ts:128:1 › Saved hub brings story reading and legacy source-guide saves together (208ms)
+  ✓   68 website/tests/navigation.spec.ts:139:1 › returning readers see Continue immediately and reader language stays in the top chrome (748ms)
+  ✓   69 website/tests/performance.spec.ts:5:1 › mobile English and Hindi openers select the intermediate delivery size without duplicate full-image downloads (940ms)
+  ✓   70 website/tests/performance.spec.ts:19:1 › unsupported picture format still displays the original reviewed WebP (783ms)
+  ✓   71 website/tests/practice.spec.ts:19:1 › chronological illustrated milestones, scroll-only sutra and all chapter links remain usable (1.2s)
+  ✓   72 website/tests/practice.spec.ts:39:1 › hold cancellation, sealing, explicit practice and return work without changing reading data (7.0s)
+  ✓   73 website/tests/practice.spec.ts:73:1 › touch hold cancels on release and navigation, and only a full gesture seals (8.9s)
+  ✓   74 website/tests/practice.spec.ts:93:1 › one-tap keyboard alternative, Undo, multi-tab sync and repeated choices stay idempotent (2.0s)
+  ✓   75 website/tests/practice.spec.ts:112:1 › corrupted and denied practice storage remain untouched with truthful recovery (3.3s)
+  ✓   76 website/tests/practice.spec.ts:126:1 › Hindi switching preserves the Sankalpa anchor and the existing semantic reading place (2.0s)
+  ✓   77 website/tests/practice.spec.ts:141:1 › petals survive long breaks and the available path has a quiet finite ending (206ms)
+  ✓   78 website/tests/practice.spec.ts:152:1 › responsive timeline and Sankalpa, theme contrast, enlarged Hindi and reduced motion (8.8s)
+  ✓   79 website/tests/practice.spec.ts:194:1 › practice stays legible in all six worlds, all reader appearances and enlarged English (2.2s)
+  ✓   80 website/tests/practice.spec.ts:231:1 › design evidence shows completed, current and upcoming nodes and the hold ripple (3.6s)
+  ✘   81 website/tests/practice.spec.ts:253:1 › without JavaScript the timeline and practice invitation remain readable (5.1s)
+(node:7081) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   82 website/tests/public-projection.spec.ts:3:1 › unavailable chapters remain visible in Saved without losing their exact original records (1.1s)
+  ✓   83 website/tests/public-projection.spec.ts:14:1 › public journeys are finite and never navigate to withheld chapters (355ms)
+  ✘   84 website/tests/public-sensory.spec.ts:3:1 › 360px masthead keeps all existing EN and Hindi tools on one row (30.2s)
+(node:7104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   85 website/tests/public-sensory.spec.ts:15:1 › print mats preserve existing image, caption and reading column without clipping (637ms)
+  ✓   86 website/tests/public-sensory.spec.ts:29:1 › page turn commits before immediate save and interrupt cancels every delayed effect (2.7s)
+  ✓   87 website/tests/public-sensory.spec.ts:44:1 › rapid turns, reduced-motion changes and hidden-page interruption never leave a veil (2.0s)
+  ✓   88 website/tests/public-sensory.spec.ts:58:1 › focus and context controls remain usable after interrupting entry and paragraph effects (229ms)
+  ✘   89 website/tests/public-sensory.spec.ts:68:1 › actual doubled text reflows without a decorative overflow clip in both languages (297ms)
+(node:7117) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   90 website/tests/recovery.spec.ts:9:1 › illustrated home reflows at every target width and images remain visible in both languages (5.1s)
+  ✓   91 website/tests/recovery.spec.ts:29:1 › six atmosphere choices update only the hero; interrupted or failed images retain usable art (990ms)
+  ✓   92 website/tests/recovery.spec.ts:47:1 › inline breath is optional, finite, cancellable and never records practice or reading (4.1s)
+  ✓   93 website/tests/recovery.spec.ts:62:1 › returning arrival spotlights exact progress and Hindi uses the localized scene title (6.2s)
+  ✘   94 website/tests/recovery.spec.ts:76:1 › Kanda filters, language and diya jump preserve URLs and never manufacture completion (6.4s)
+(node:7573) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   95 website/tests/recovery.spec.ts:88:1 › home cards have independent cancellable holds, explicit tried acknowledgement, Undo and multitab sync (2.8s)
+  ✓   96 website/tests/recovery.spec.ts:104:1 › short-screen sanctuary controls and reader continuation labels are visibly separated in EN and Hindi (576ms)
+  ✓   97 website/tests/recovery.spec.ts:115:1 › public no-JavaScript artwork and reading links do not depend on animation or storage (227ms)
+  ✓   98 website/tests/recovery.spec.ts:123:1 › denied and corrupted home storage keep navigation open and preserve unreadable records (321ms)
+  ✘   99 website/tests/reflow.spec.ts:3:1 › critical surfaces reflow at 200% before web fonts are available (255ms)
+(node:8024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  100 website/tests/sanatan.spec.ts:3:1 › home is a free reading product with real destinations and skippable setup (555ms)
+  ✘  101 website/tests/sanatan.spec.ts:5:1 › onboarding language choice routes to the matching localized destination (30.2s)
+(node:9747) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  102 website/tests/sanatan.spec.ts:7:1 › library search and combined filters update URL and recover (277ms)
+  ✓  103 website/tests/sanatan.spec.ts:9:1 › detail exposes review, adaptation, source, content note and a working reader (214ms)
+  ✓  104 website/tests/sanatan.spec.ts:11:1 › reading-room journey uses approved local art and deep-links to real turning points (479ms)
+  ✓  105 website/tests/sanatan.spec.ts:13:1 › folio controls perform an animated, keyboard-accessible page turn with a reduced-motion fallback (746ms)
+  ✓  106 website/tests/sanatan.spec.ts:33:1 › illuminated reader preserves readable folios across tablet widths and loads the reference fonts (685ms)
+  ✓  107 website/tests/sanatan.spec.ts:70:1 › reader reflection and folio controls meet text contrast in every supported theme (1.7s)
+  ✓  108 website/tests/sanatan.spec.ts:97:132 › journey jump saves and reopens the requested en passage after 0ms (1.1s)
+  ✓  109 website/tests/sanatan.spec.ts:97:132 › journey jump saves and reopens the requested en passage after 2200ms (3.3s)
+  ✓  110 website/tests/sanatan.spec.ts:97:132 › journey jump saves and reopens the requested hi passage after 0ms (1.2s)
+  ✓  111 website/tests/sanatan.spec.ts:97:132 › journey jump saves and reopens the requested hi passage after 2200ms (3.3s)
+  ✓  112 website/tests/sanatan.spec.ts:99:1 › reader settings, context sheets, bookmark and resume are local and real (1.9s)
+  ✓  113 website/tests/sanatan.spec.ts:101:1 › resume restores the saved within-block ratio without overwriting it during startup (3.5s)
+  ✓  114 website/tests/sanatan.spec.ts:103:1 › same-scene bookmarks show distinct passage excerpts and saved-item labels (214ms)
+  ✓  115 website/tests/sanatan.spec.ts:105:1 › reader comfort settings remain active in memory when storage writes are denied (473ms)
+  ✓  116 website/tests/sanatan.spec.ts:107:1 › Hindi retains language, filters and reader position without overflow (1.5s)
+  ✓  117 website/tests/sanatan.spec.ts:109:39 › key story surfaces fit 320px (2.0s)
+  ✓  118 website/tests/sanatan.spec.ts:109:39 › key story surfaces fit 390px (1.2s)
+  ✓  119 website/tests/sanatan.spec.ts:109:39 › key story surfaces fit 768px (1.3s)
+  ✓  120 website/tests/sanatan.spec.ts:109:39 › key story surfaces fit 1440px (1.6s)
+  ✓  121 website/tests/sanatan.spec.ts:111:1 › keyboard focus and reduced motion remain usable (254ms)
+  ✓  122 website/tests/sanatan.spec.ts:113:1 › reading-room content reflows with 200% text at 320px (170ms)
+  ✓  123 website/tests/worlds.spec.ts:8:1 › all six reading worlds are real navigation with durable URL and browser history (424ms)
+  ✓  124 website/tests/worlds.spec.ts:28:1 › story context is honest and an explicit choice overrides it (328ms)
+  ✓  125 website/tests/worlds.spec.ts:40:1 › world choice follows language and neutral routes without losing the selected page (372ms)
+  ✓  126 website/tests/worlds.spec.ts:50:1 › quiet pause can return to the exact source guide and retain language (1.1s)
+  ✓  127 website/tests/worlds.spec.ts:59:1 › source-guide pause invitation preserves its real return route (475ms)
+  ✓  128 website/tests/worlds.spec.ts:73:1 › pause controls remain compact and return keeps explicit or neutral world context (400ms)
+  ✓  129 website/tests/worlds.spec.ts:88:1 › active world chip is visible on narrow deep links and history changes (274ms)
+  ✓  130 website/tests/worlds.spec.ts:98:1 › capture final must-fix evidence from current code (876ms)
+  ✘  131 website/tests/worlds.spec.ts:109:1 › every public surface exposes the chooser and storage failure keeps a usable neutral fallback (5.3s)
+(node:11079) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  132 website/tests/worlds.spec.ts:120:1 › reduced motion keeps complete themed content without transitions (193ms)
+
+
+  1) website/tests/practice.spec.ts:253:1 › without JavaScript the timeline and practice invitation remain readable
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('[data-yatra-id]')
+    Expected: 10
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('[data-yatra-id]') with timeout 5000ms
+      - waiting for locator('[data-yatra-id]')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      254 |   const context=await browser.newContext({javaScriptEnabled:false,baseURL:process.env.WEBSITE_URL||'http://127.0.0.1:4190'});
+      255 |   const page=await context.newPage();await page.goto('/#dharma-yatra');
+    > 256 |   await expect(page.locator('[data-yatra-id]')).toHaveCount(process.env.WEBSITE_RELEASE?editionStoryKeys.length:10);
+          |                                                 ^
+      257 |   await page.locator(`[data-yatra-id="${second}"] a.yatra-card`).focus();
+      258 |   await page.keyboard.press('Enter');
+      259 |   await expect(page.locator('#sankalpa-title')).toBeVisible();
+        at /Users/abhijay/Desktop/spritual/stories-reference-release/website/tests/practice.spec.ts:256:49
+
+    Error Context: test-results/website/practice-without-JavaScrip-d5186--invitation-remain-readable/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/website/practice-without-JavaScrip-d5186--invitation-remain-readable/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/website/practice-without-JavaScrip-d5186--invitation-remain-readable/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) website/tests/public-sensory.spec.ts:3:1 › 360px masthead keeps all existing EN and Hindi tools on one row
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.evaluate: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('.header-actions')
+
+
+       5 |   for(const path of ['/','/hi/']){
+       6 |     await page.goto(path);await page.evaluate(()=>document.fonts.ready);
+    >  7 |     const bounds=await page.locator('.header-actions').evaluate(el=>[...el.children].filter(n=>n.getClientRects().length).map(n=>n.getBoundingClientRect().toJSON()));
+         |                                                        ^
+       8 |     expect(Math.max(...bounds.map(r=>r.top))-Math.min(...bounds.map(r=>r.top))).toBeLessThan(8);
+       9 |     for(const r of bounds){expect(r.left).toBeGreaterThanOrEqual(0);expect(r.right).toBeLessThanOrEqual(360);}
+      10 |     await expect(page.locator('.desktop-nav a')).toHaveCount(4);
+        at /Users/abhijay/Desktop/spritual/stories-reference-release/website/tests/public-sensory.spec.ts:7:56
+
+    Error Context: test-results/website/public-sensory-360px-masth-edcd5--and-Hindi-tools-on-one-row/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/website/public-sensory-360px-masth-edcd5--and-Hindi-tools-on-one-row/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/website/public-sensory-360px-masth-edcd5--and-Hindi-tools-on-one-row/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) website/tests/public-sensory.spec.ts:68:1 › actual doubled text reflows without a decorative overflow clip in both languages
+
+    Error: en / at 320px
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 320
+    Received:    398
+
+      76 |       for(const {el,size} of sizes)el.style.fontSize=`${size*2}px`;
+      77 |     });
+    > 78 |     expect(await page.evaluate(()=>document.documentElement.scrollWidth),`${lang} ${route} at ${width}px`).toBeLessThanOrEqual(width);
+         |                                                                                                            ^
+      79 |     if(route==='/'){
+      80 |       const bounds=await page.locator('.arrival-art').evaluate(el=>({frame:el.getBoundingClientRect().toJSON(),caption:el.querySelector('figcaption')!.getBoundingClientRect().toJSON()}));
+      81 |       expect(bounds.caption.top).toBeGreaterThanOrEqual(bounds.frame.top);
+        at /Users/abhijay/Desktop/spritual/stories-reference-release/website/tests/public-sensory.spec.ts:78:108
+
+    Error Context: test-results/website/public-sensory-actual-doub-597d9-flow-clip-in-both-languages/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/website/public-sensory-actual-doub-597d9-flow-clip-in-both-languages/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/website/public-sensory-actual-doub-597d9-flow-clip-in-both-languages/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) website/tests/recovery.spec.ts:76:1 › Kanda filters, language and diya jump preserve URLs and never manufacture completion
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('[data-kanda-group]:visible')
+    Expected: 1
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('[data-kanda-group]:visible') with timeout 5000ms
+      - waiting for locator('[data-kanda-group]:visible')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      79 |  expect(new URL(page.url()).searchParams.get('kanda')).toBe('sundara-kanda');
+      80 |  await page.locator('.language').click();await expect(page).toHaveURL(/\/hi\/.*kanda=sundara-kanda/);
+    > 81 |  await expect(page.locator('[data-kanda-group]:visible')).toHaveCount(1);
+         |                                                           ^
+      82 |  await page.locator(`[data-diya-id=${first}]`).click();await expect(page.locator('[data-kanda-group]:visible')).toHaveCount(6);
+      83 |  await expect(page.locator(`#yatra-${first} .chapter-copy h4`)).toBeFocused();
+      84 |  expect(new URL(page.url()).searchParams.get('world')).toBe('krishna');expect(new URL(page.url()).searchParams.has('kanda')).toBe(false);
+        at /Users/abhijay/Desktop/spritual/stories-reference-release/website/tests/recovery.spec.ts:81:59
+
+    Error Context: test-results/website/recovery-Kanda-filters-lan-a45ed-ever-manufacture-completion/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/website/recovery-Kanda-filters-lan-a45ed-ever-manufacture-completion/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/website/recovery-Kanda-filters-lan-a45ed-ever-manufacture-completion/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) website/tests/reflow.spec.ts:3:1 › critical surfaces reflow at 200% before web fonts are available
+
+    Error: page.evaluate: TypeError: Cannot read properties of null (reading 'getBoundingClientRect')
+        at eval (eval at evaluate (:311:30), <anonymous>:5:54)
+        at Array.map (<anonymous>)
+        at eval (eval at evaluate (:311:30), <anonymous>:4:22)
+        at UtilityScript.evaluate (<anonymous>:313:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at eval (eval at evaluate (:311:30), <anonymous>:5:54)
+        at eval (eval at evaluate (:311:30), <anonymous>:4:22)
+        at UtilityScript.evaluate (<anonymous>:313:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at /Users/abhijay/Desktop/spritual/stories-reference-release/website/tests/reflow.spec.ts:27:31
+
+    Error Context: test-results/website/reflow-critical-surfaces-r-b4e2b-ore-web-fonts-are-available/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/website/reflow-critical-surfaces-r-b4e2b-ore-web-fonts-are-available/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/website/reflow-critical-surfaces-r-b4e2b-ore-web-fonts-are-available/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) website/tests/sanatan.spec.ts:5:1 › onboarding language choice routes to the matching localized destination
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Choose reading preferences' })
+
+
+      3 | test('home is a free reading product with real destinations and skippable setup',async({page})=>{await page.goto('/reading-room/');await expect(page).toHaveTitle(/Stories to read, reflect on, and share/);await expect(page.getByRole('heading',{level:1})).toHaveText('Before the stories, take one quiet breath.');if((await page.locator('.editorial-banner').count())>0)await expect(page.getByText('LOCAL SANATAN RELEASE PREVIEW')).toBeVisible();await expect(page.getByRole('link',{name:'Explore the library'})).toHaveAttribute('href','/library/');await expect(page.getByRole('link',{name:'Explore all 10 stories'})).toHaveAttribute('href','#dharma-yatra');await expect(page.getByText(/Ten selected Ramayana retellings/)).toBeVisible();await expect(page.getByText(/Add to cart|Buy now|price/i)).toHaveCount(0);await page.getByRole('button',{name:'Choose reading preferences'}).click();await expect(page.getByRole('heading',{name:'How would you like to read?'})).toBeVisible();await expect(page.getByText(/No account, date of birth or profile/)).toBeVisible();await page.getByRole('button',{name:'Skip for now'}).click();await expect(page.locator('#reading-preferences')).not.toBeVisible();await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('spritual_reading_v2')!).onboarding)).toBe('skipped');});
+      4 |
+    > 5 | test('onboarding language choice routes to the matching localized destination',async({page})=>{await page.goto('/?welcome=1');await page.getByRole('button',{name:'Choose reading preferences'}).click();await page.getByLabel('हिन्दी').check();await page.getByRole('button',{name:'Save preferences'}).click();await expect(page).toHaveURL(/\/hi\/\?welcome=1$/);await expect(page.locator('html')).toHaveAttribute('lang','hi');await expect(page.getByRole('heading',{level:1,name:'कथाओं से पहले, एक शांत साँस लें।'})).toBeVisible();const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('spritual_reading_v2')!));expect(saved.preferences.language).toBe('hi');expect(saved.onboarding).toBe('complete');});
+        |                                                                                                                                                                                                  ^
+      6 |
+      7 | test('library search and combined filters update URL and recover',async({page})=>{await page.goto('/library/');await expect(page.locator('[data-story-card]')).toHaveCount(10);await page.getByLabel('Search stories').fill('Hanuman');await expect(page.locator('[data-story-card]:visible')).toHaveCount(4);await expect(page).toHaveURL(/q=Hanuman/);await page.locator('#advanced-filters summary').click();await page.getByLabel('Reading guidance').selectOption('family');await expect(page.locator('[data-story-card]:visible')).toHaveCount(1);await expect(page.locator('#story-empty')).toBeHidden();await page.getByRole('button',{name:'Clear filters'}).click();await expect(page.locator('[data-story-card]:visible')).toHaveCount(10);await expect(page).toHaveURL(/\/library\/$/);});
+      8 |
+        at /Users/abhijay/Desktop/spritual/stories-reference-release/website/tests/sanatan.spec.ts:5:194
+
+    Error Context: test-results/website/sanatan-onboarding-languag-cc4a4-ching-localized-destination/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/website/sanatan-onboarding-languag-cc4a4-ching-localized-destination/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/website/sanatan-onboarding-languag-cc4a4-ching-localized-destination/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) website/tests/worlds.spec.ts:109:1 › every public surface exposes the chooser and storage failure keeps a usable neutral fallback
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.theme-picker [data-world-option]')
+    Expected: 6
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.theme-picker [data-world-option]') with timeout 5000ms
+      - waiting for locator('.theme-picker [data-world-option]')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      109 | test('every public surface exposes the chooser and storage failure keeps a usable neutral fallback',async({page})=>{
+      110 |   for(const path of ['/','/library/','/library/saved/','/privacy/','/missing-page/']){
+    > 111 |     await page.goto(path);await expect(page.locator('.theme-picker [data-world-option]')).toHaveCount(6);
+          |                                                                                           ^
+      112 |   }
+      113 |   await page.goto('/pause/');await expect(page.locator('.theme-picker [data-world-option]')).toHaveCount(6);
+      114 |   await page.addInitScript(()=>{Storage.prototype.getItem=()=>{throw Error('blocked')};Storage.prototype.setItem=()=>{throw Error('blocked')};});
+        at /Users/abhijay/Desktop/spritual/stories-reference-release/website/tests/worlds.spec.ts:111:91
+
+    Error Context: test-results/website/worlds-every-public-surfac-a7afc-s-a-usable-neutral-fallback/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/website/worlds-every-public-surfac-a7afc-s-a-usable-neutral-fallback/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/website/worlds-every-public-surfac-a7afc-s-a-usable-neutral-fallback/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7 failed
+    website/tests/practice.spec.ts:253:1 › without JavaScript the timeline and practice invitation remain readable
+    website/tests/public-sensory.spec.ts:3:1 › 360px masthead keeps all existing EN and Hindi tools on one row
+    website/tests/public-sensory.spec.ts:68:1 › actual doubled text reflows without a decorative overflow clip in both languages
+    website/tests/recovery.spec.ts:76:1 › Kanda filters, language and diya jump preserve URLs and never manufacture completion
+    website/tests/reflow.spec.ts:3:1 › critical surfaces reflow at 200% before web fonts are available
+    website/tests/sanatan.spec.ts:5:1 › onboarding language choice routes to the matching localized destination
+    website/tests/worlds.spec.ts:109:1 › every public surface exposes the chooser and storage failure keeps a usable neutral fallback
+  125 passed (5.3m)

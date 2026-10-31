@@ -1,0 +1,378 @@
+/* =========================================================================
+   SPRITUAL — 3D HARDCOVER MANUSCRIPT TOME GEOMETRY & MOTION ENGINE
+   Awwwards SOTY / Stripe Press / Apple Books caliber 3D Book Architecture
+   ========================================================================= */
+
+:root {
+  --bg-ivory: #FAF6EE;
+  --bg-vellum: #F2E9D8;
+  --ink-kohl: #141210;
+  --gold-foil: #C59B27;
+  --gold-foil-sheen: #E6CA65;
+  --sindoor: #C84B31;
+  --ashrama-green: #1E332E;
+  --book-thickness: 28px;
+}
+
+/* 3D Perspective Stage */
+.tome-stage {
+  perspective: 2200px;
+  transform-style: preserve-3d;
+  position: relative;
+  display: block;
+}
+
+/* 3D Book Container */
+.tome-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(4deg) rotateY(-8deg) translateZ(0px);
+  transition: box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  cursor: pointer;
+  border-radius: 4px 14px 14px 4px;
+}
+
+/* Front Hardcover Hinged from Left Spine */
+.tome-cover-front {
+  position: relative;
+  display: block;
+  z-index: 4;
+  transform-origin: 0% 50%;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  border-radius: 3px 12px 12px 3px;
+  box-shadow:
+    inset 6px 0 12px rgba(0, 0, 0, 0.35),
+    inset -1px 0 2px rgba(255, 235, 180, 0.45),
+    18px 28px 45px -10px rgba(20, 18, 16, 0.38);
+  overflow: hidden;
+  background: var(--bg-surface, #F3ECE0);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Dynamic Gold-Foil Specular Glare Overlay on Cover */
+.tome-cover-front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    650px circle at var(--mouse-x, 30%) var(--mouse-y, 30%),
+    rgba(255, 223, 128, 0.34),
+    rgba(200, 75, 49, 0.08) 38%,
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 6;
+}
+
+/* Spine Crease Groove (Left Edge) */
+.tome-cover-front::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  width: 3px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.45), rgba(255, 215, 120, 0.35));
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* 3D Gilded Paper Page-Block (Right Edge Thickness) */
+.tome-page-block {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  right: 0;
+  width: var(--book-thickness);
+  transform-origin: right center;
+  transform: rotateY(90deg) translateZ(0px);
+  background: repeating-linear-gradient(
+    90deg,
+    #F7F0E2 0px,
+    #F7F0E2 2px,
+    #D8CBB5 2px,
+    #D8CBB5 3px
+  );
+  box-shadow: inset 0 0 8px rgba(20, 18, 16, 0.25);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* 3D Inner Flyleaf Pages that fan out when cover cracks open */
+.tome-inner-leaf {
+  position: absolute;
+  inset: 6px 8px 6px 4px;
+  background: linear-gradient(105deg, #E8DEC8 0%, #FAF6EE 18%, #F4EBD9 100%);
+  border-radius: 2px 10px 10px 2px;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  z-index: 2;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+  padding: 16px 20px;
+  box-sizing: border-box;
+}
+
+.tome-inner-leaf.leaf-1 {
+  z-index: 2;
+  background: linear-gradient(105deg, #E4D9C3 0%, #F5ECDD 100%);
+}
+.tome-inner-leaf.leaf-2 {
+  z-index: 2;
+  background: linear-gradient(105deg, #EDE3CF 0%, #FAF6EE 100%);
+}
+.tome-inner-leaf.leaf-3 {
+  z-index: 3;
+  background: linear-gradient(105deg, #F2E9D7 0%, #FAF6EE 22%, #F6EDE0 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.leaf-content {
+  opacity: 0.92;
+}
+.leaf-content .number {
+  font: 700 13px/1 ui-monospace, monospace;
+  color: var(--gold-foil);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 6px;
+}
+.leaf-content h4, .leaf-content h3 {
+  font: 600 17px/1.25 Manuscript, Georgia, serif;
+  color: var(--ink-kohl);
+  margin: 0 0 6px 0;
+}
+.leaf-content p {
+  font: 400 12px/1.55 Georgia, serif;
+  color: #5A5248;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Back Hardcover Base */
+.tome-cover-back {
+  position: absolute;
+  inset: 0;
+  background: #231C16;
+  border-radius: 3px 12px 12px 3px;
+  transform: translateZ(calc(-1 * var(--book-thickness)));
+  box-shadow: 25px 40px 65px rgba(20, 18, 16, 0.45);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Embossed Gold Banner on Front Cover */
+.cover-emboss-banner {
+  position: absolute;
+  bottom: 24px;
+  left: 20px;
+  right: 20px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: rgba(250, 246, 238, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(197, 155, 39, 0.35);
+  box-shadow: 0 4px 16px rgba(20, 18, 16, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 7;
+}
+.cover-emboss-banner span {
+  font: 700 16px/1.1 Manuscript, Georgia, serif;
+  color: var(--ink-kohl);
+  letter-spacing: 0.04em;
+}
+.cover-emboss-banner small {
+  font: 600 9px/1.4 var(--ui);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold-foil);
+  margin-top: 2px;
+}
+.cover-emboss-banner .fleuron-gold {
+  font-style: normal;
+  color: var(--gold-foil);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Grand Manuscript Unfurl Backdrop */
+.tome-unfurl-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(250, 246, 238, 0.94);
+  backdrop-filter: blur(20px) saturate(140%);
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tome-unfurl-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Golden SVG Shockwave Ring (Climax Scenes 10 & 11) */
+.golden-shockwave-ring {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -50px;
+  border-radius: 50%;
+  border: 4px solid var(--gold-foil);
+  box-shadow: 0 0 35px var(--gold-foil), inset 0 0 20px var(--sindoor);
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  transform: scale(0.1);
+}
+.golden-shockwave-ring.trigger {
+  animation: shockwaveExpand 1.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes shockwaveExpand {
+  0% { opacity: 0.95; transform: scale(0.1); }
+  60% { opacity: 0.7; }
+  100% { opacity: 0; transform: scale(25); }
+}
+
+/* Camera Tremor for Climax */
+.climax-tremor {
+  animation: cameraTremor 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes cameraTremor {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  15% { transform: translate(-8px, 3px) rotate(-0.5deg); }
+  35% { transform: translate(7px, -4px) rotate(0.4deg); }
+  55% { transform: translate(-4px, 2px) rotate(-0.25deg); }
+  75% { transform: translate(3px, -1px) rotate(0.15deg); }
+}
+
+/* Fixed Atmospheric Ashrama Light Canvas */
+#ashrama-light-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Soundscape Header Toggle Pill */
+.soundscape-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-hairline, rgba(20, 18, 16, 0.12));
+  background: var(--bg-surface, #F3ECE0);
+  font: 500 12px/1.2 var(--ui);
+  color: var(--ink-secondary, #4A433B);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.soundscape-toggle:hover {
+  border-color: var(--gold-foil);
+  color: var(--ink-kohl);
+}
+.soundscape-toggle[aria-pressed="true"] {
+  background: rgba(197, 155, 39, 0.15);
+  border-color: var(--gold-foil);
+  color: #8C6A12;
+  font-weight: 600;
+}
+
+/* Reader Dual Mode Switcher */
+.reader-mode-switch {
+  display: inline-flex;
+  background: var(--bg-surface, #F3ECE0);
+  border: 1px solid var(--border-hairline, rgba(20, 18, 16, 0.12));
+  border-radius: 8px;
+  padding: 3px;
+  gap: 2px;
+  margin: 12px 0 16px;
+}
+.reader-mode-switch button {
+  padding: 6px 14px;
+  border: 0;
+  background: transparent;
+  border-radius: 6px;
+  font: 500 13px/1.3 var(--ui);
+  color: var(--ink-secondary, #4A433B);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.reader-mode-switch button[aria-pressed="true"] {
+  background: #FAF6EE;
+  color: var(--ink-kohl, #141210);
+  box-shadow: 0 2px 8px rgba(20, 18, 16, 0.08);
+  font-weight: 600;
+}
+
+/* 3D PageFlip Container (Book Mode) */
+.stpageflip-wrapper {
+  margin: 28px auto;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  perspective: 2000px;
+}
+.stpageflip-wrapper[hidden] {
+  display: none !important;
+}
+
+/* Cross-Document View Transitions */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.65s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Responsive Viewport Containment: Zero horizontal drift */
+@media (max-width: 768px) {
+  .tome-stage {
+    perspective: 1200px;
+  }
+  .tome-3d {
+    transform: rotateX(2deg) rotateY(-4deg) translateZ(0px);
+  }
+  .tome-page-block {
+    width: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tome-stage {
+    perspective: none;
+  }
+  .tome-3d {
+    transform: none !important;
+  }
+  .tome-cover-back,
+  .tome-page-block,
+  .tome-inner-leaf {
+    display: none;
+  }
+}

@@ -1,0 +1,1152 @@
+{
+  "config": {
+    "argv": [
+      "/Users/abhijay/.nvm/versions/node/v25.9.0/bin/node",
+      "/private/tmp/spritual-welcome-release-20261024/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "website/collection-devices.playwright.config.ts"
+    ],
+    "configFile": "/private/tmp/spritual-welcome-release-20261024/website/collection-devices.playwright.config.ts",
+    "rootDir": "/private/tmp/spritual-welcome-release-20261024/website/collections/ramayana",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/private/tmp/spritual-welcome-release-20261024/test-results/ramayana-devices",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "iphone-webkit",
+        "name": "iphone-webkit",
+        "testDir": "/private/tmp/spritual-welcome-release-20261024/website/collections/ramayana",
+        "testIgnore": [],
+        "testMatch": [
+          "devices.spec.ts"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/private/tmp/spritual-welcome-release-20261024/test-results/ramayana-devices",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "android-chrome",
+        "name": "android-chrome",
+        "testDir": "/private/tmp/spritual-welcome-release-20261024/website/collections/ramayana",
+        "testIgnore": [],
+        "testMatch": [
+          "devices.spec.ts"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/private/tmp/spritual-welcome-release-20261024/test-results/ramayana-devices",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-chrome",
+        "name": "desktop-chrome",
+        "testDir": "/private/tmp/spritual-welcome-release-20261024/website/collections/ramayana",
+        "testIgnore": [],
+        "testMatch": [
+          "devices.spec.ts"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/private/tmp/spritual-welcome-release-20261024/test-results/ramayana-devices",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-webkit",
+        "name": "desktop-webkit",
+        "testDir": "/private/tmp/spritual-welcome-release-20261024/website/collections/ramayana",
+        "testIgnore": [],
+        "testMatch": [
+          "devices.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../docs/qa/ramayana-release-2026-10-27/device-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "node website/serve.mjs --welcome-preview",
+      "cwd": "..",
+      "url": "http://127.0.0.1:4194",
+      "reuseExistingServer": true
+    }
+  },
+  "suites": [
+    {
+      "title": "devices.spec.ts",
+      "file": "devices.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "shelf → chapter → pages → keep → return (en)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "iphone-webkit",
+              "projectName": "iphone-webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3861,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:45:56.040Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-3d332576c7f7b039aae8",
+          "file": "devices.spec.ts",
+          "line": 25,
+          "column": 35
+        },
+        {
+          "title": "shelf → chapter → pages → keep → return (hi)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "iphone-webkit",
+              "projectName": "iphone-webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3774,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:00.134Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-ce164dd38bd98aeb55ab",
+          "file": "devices.spec.ts",
+          "line": 25,
+          "column": 35
+        },
+        {
+          "title": "paper fronts and reverse faces, rapid input, keyboard and history recover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "iphone-webkit",
+              "projectName": "iphone-webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1974,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:03.913Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-bdd8452613898f4e3cea",
+          "file": "devices.spec.ts",
+          "line": 61,
+          "column": 1
+        },
+        {
+          "title": "backward turns reveal the correct face on both sides of the hinge",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "iphone-webkit",
+              "projectName": "iphone-webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 895,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:05.891Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-aafccc922ad311ada6cd",
+          "file": "devices.spec.ts",
+          "line": 109,
+          "column": 1
+        },
+        {
+          "title": "motion reduction, denied storage and missing artwork keep reading available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "iphone-webkit",
+              "projectName": "iphone-webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 493,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:06.794Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-c0f07d05012134deb53b",
+          "file": "devices.spec.ts",
+          "line": 130,
+          "column": 1
+        },
+        {
+          "title": "responsive paper layout and controls fit narrow, tablet and desktop widths",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "iphone-webkit",
+              "projectName": "iphone-webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2574,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:07.309Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-831c48406b273cbd3426",
+          "file": "devices.spec.ts",
+          "line": 147,
+          "column": 1
+        },
+        {
+          "title": "Android browser touch swipes turn horizontally and scroll vertically",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "CDP touch injection available only in Chromium mobile emulation; other projects test taps.",
+                  "location": {
+                    "file": "/private/tmp/spritual-welcome-release-20261024/website/collections/ramayana/devices.spec.ts",
+                    "line": 158,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "iphone-webkit",
+              "projectName": "iphone-webkit",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 532,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:09.888Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "CDP touch injection available only in Chromium mobile emulation; other projects test taps.",
+                      "location": {
+                        "file": "/private/tmp/spritual-welcome-release-20261024/website/collections/ramayana/devices.spec.ts",
+                        "line": 158,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-85831ae770b3f6ed9604",
+          "file": "devices.spec.ts",
+          "line": 157,
+          "column": 1
+        },
+        {
+          "title": "shelf → chapter → pages → keep → return (en)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-chrome",
+              "projectName": "android-chrome",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3318,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:10.979Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-9a70ffe398b34bd3403f",
+          "file": "devices.spec.ts",
+          "line": 25,
+          "column": 35
+        },
+        {
+          "title": "shelf → chapter → pages → keep → return (hi)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-chrome",
+              "projectName": "android-chrome",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2883,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:15.524Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-b2b503b11b661202dc7c",
+          "file": "devices.spec.ts",
+          "line": 25,
+          "column": 35
+        },
+        {
+          "title": "paper fronts and reverse faces, rapid input, keyboard and history recover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-chrome",
+              "projectName": "android-chrome",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1749,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:18.414Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-304c9ad82a9f192f9720",
+          "file": "devices.spec.ts",
+          "line": 61,
+          "column": 1
+        },
+        {
+          "title": "backward turns reveal the correct face on both sides of the hinge",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-chrome",
+              "projectName": "android-chrome",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 848,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:20.174Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-f2512dd133b96f976240",
+          "file": "devices.spec.ts",
+          "line": 109,
+          "column": 1
+        },
+        {
+          "title": "motion reduction, denied storage and missing artwork keep reading available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-chrome",
+              "projectName": "android-chrome",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 470,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:21.028Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-6348a140d76ea0803333",
+          "file": "devices.spec.ts",
+          "line": 130,
+          "column": 1
+        },
+        {
+          "title": "responsive paper layout and controls fit narrow, tablet and desktop widths",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-chrome",
+              "projectName": "android-chrome",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1519,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:21.503Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-e8910cb85d114ff26da7",
+          "file": "devices.spec.ts",
+          "line": 147,
+          "column": 1
+        },
+        {
+          "title": "Android browser touch swipes turn horizontally and scroll vertically",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-chrome",
+              "projectName": "android-chrome",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 679,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:23.027Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-2cd9df407b0624daaa15",
+          "file": "devices.spec.ts",
+          "line": 157,
+          "column": 1
+        },
+        {
+          "title": "shelf → chapter → pages → keep → return (en)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chrome",
+              "projectName": "desktop-chrome",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2639,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:24.174Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-3d8e607895a6c059cbd0",
+          "file": "devices.spec.ts",
+          "line": 25,
+          "column": 35
+        },
+        {
+          "title": "shelf → chapter → pages → keep → return (hi)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chrome",
+              "projectName": "desktop-chrome",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2544,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:27.053Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-aeff2f0c7edf1b93bbf6",
+          "file": "devices.spec.ts",
+          "line": 25,
+          "column": 35
+        },
+        {
+          "title": "paper fronts and reverse faces, rapid input, keyboard and history recover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chrome",
+              "projectName": "desktop-chrome",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1649,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:29.607Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-af44cde8b980a0e62fef",
+          "file": "devices.spec.ts",
+          "line": 61,
+          "column": 1
+        },
+        {
+          "title": "backward turns reveal the correct face on both sides of the hinge",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chrome",
+              "projectName": "desktop-chrome",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1285,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:31.263Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-cbd4be8a7674ff1ae110",
+          "file": "devices.spec.ts",
+          "line": 109,
+          "column": 1
+        },
+        {
+          "title": "motion reduction, denied storage and missing artwork keep reading available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chrome",
+              "projectName": "desktop-chrome",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 400,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:32.556Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-bfd183665faaf56a4457",
+          "file": "devices.spec.ts",
+          "line": 130,
+          "column": 1
+        },
+        {
+          "title": "responsive paper layout and controls fit narrow, tablet and desktop widths",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-chrome",
+              "projectName": "desktop-chrome",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 571,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:32.961Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-24f63c48f0cd307ff3ad",
+          "file": "devices.spec.ts",
+          "line": 147,
+          "column": 1
+        },
+        {
+          "title": "Android browser touch swipes turn horizontally and scroll vertically",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "CDP touch injection available only in Chromium mobile emulation; other projects test taps.",
+                  "location": {
+                    "file": "/private/tmp/spritual-welcome-release-20261024/website/collections/ramayana/devices.spec.ts",
+                    "line": 158,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-chrome",
+              "projectName": "desktop-chrome",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 120,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:33.537Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "CDP touch injection available only in Chromium mobile emulation; other projects test taps.",
+                      "location": {
+                        "file": "/private/tmp/spritual-welcome-release-20261024/website/collections/ramayana/devices.spec.ts",
+                        "line": 158,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-ffac71c1789e4ca72c69",
+          "file": "devices.spec.ts",
+          "line": 157,
+          "column": 1
+        },
+        {
+          "title": "shelf → chapter → pages → keep → return (en)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-webkit",
+              "projectName": "desktop-webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3688,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:34.069Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-a510fb3ef646474233cb",
+          "file": "devices.spec.ts",
+          "line": 25,
+          "column": 35
+        },
+        {
+          "title": "shelf → chapter → pages → keep → return (hi)",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-webkit",
+              "projectName": "desktop-webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3380,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:38.306Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-337829a822aa0c36f613",
+          "file": "devices.spec.ts",
+          "line": 25,
+          "column": 35
+        },
+        {
+          "title": "paper fronts and reverse faces, rapid input, keyboard and history recover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-webkit",
+              "projectName": "desktop-webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1703,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:41.691Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-efc96d68405ddf06a474",
+          "file": "devices.spec.ts",
+          "line": 61,
+          "column": 1
+        },
+        {
+          "title": "backward turns reveal the correct face on both sides of the hinge",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-webkit",
+              "projectName": "desktop-webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1356,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:43.399Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-3c4758ef1c969362a907",
+          "file": "devices.spec.ts",
+          "line": 109,
+          "column": 1
+        },
+        {
+          "title": "motion reduction, denied storage and missing artwork keep reading available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-webkit",
+              "projectName": "desktop-webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 395,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:44.761Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-4f59dd0dfc9cefb183a8",
+          "file": "devices.spec.ts",
+          "line": 130,
+          "column": 1
+        },
+        {
+          "title": "responsive paper layout and controls fit narrow, tablet and desktop widths",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop-webkit",
+              "projectName": "desktop-webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 573,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:45.162Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-c0acf05c3dd2d47383ed",
+          "file": "devices.spec.ts",
+          "line": 147,
+          "column": 1
+        },
+        {
+          "title": "Android browser touch swipes turn horizontally and scroll vertically",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "CDP touch injection available only in Chromium mobile emulation; other projects test taps.",
+                  "location": {
+                    "file": "/private/tmp/spritual-welcome-release-20261024/website/collections/ramayana/devices.spec.ts",
+                    "line": 158,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "desktop-webkit",
+              "projectName": "desktop-webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 145,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-27T17:46:45.739Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "CDP touch injection available only in Chromium mobile emulation; other projects test taps.",
+                      "location": {
+                        "file": "/private/tmp/spritual-welcome-release-20261024/website/collections/ramayana/devices.spec.ts",
+                        "line": 158,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "441c969b5ac029ba9e26-82b29c4c245477d9cd36",
+          "file": "devices.spec.ts",
+          "line": 157,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-27T17:45:55.778Z",
+    "duration": 50150.139,
+    "expected": 25,
+    "skipped": 3,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

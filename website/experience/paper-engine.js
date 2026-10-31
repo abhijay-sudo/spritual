@@ -1,0 +1,107 @@
+// Shared subdivided paper surface. WebGL2 is optional; semantic content is never a texture.
+export const timings={arrival:700,turn:1100,room:240,skip:280,crossfade:240};
+const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+let low=false, sound=false, audio;
+try{sound=localStorage.getItem('spritual_paper_sound_v1')==='on';}catch{}
+export function setSound(on){sound=on;try{localStorage.setItem('spritual_paper_sound_v1',on?'on':'off');}catch{}if(on){try{audio??=new (window.AudioContext||window.webkitAudioContext)();audio.resume();}catch{}}}
+export function soundEnabled(){return sound;}
+export function tick(settle=false){if(!sound||!audio||audio.state!=='running')return;const n=Math.floor(audio.sampleRate*.09),buffer=audio.createBuffer(1,n,audio.sampleRate),d=buffer.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,3);const source=audio.createBufferSource(),gain=audio.createGain(),filter=audio.createBiquadFilter();source.buffer=buffer;filter.type='lowpass';filter.frequency.value=settle?350:1800;gain.gain.value=.035;source.connect(filter).connect(gain).connect(audio.destination);source.start();}
+function texture(content,cover,w,h){const c=document.createElement('canvas');c.width=Math.min(900,Math.ceil(w*1.4));c.height=Math.min(1400,Math.ceil(h*1.4));const ctx=c.getContext('2d'),sx=c.width/w,sy=c.height/h;ctx.scale(sx,sy);ctx.fillStyle=cover?'#18372d':'#faf0d9';ctx.fillRect(0,0,w,h);ctx.strokeStyle=cover?'#b89654':'#c4a878';ctx.lineWidth=1;ctx.strokeRect(15,15,w-30,h-30);ctx.strokeRect(20,20,w-40,h-40);
+ if(cover){ctx.textAlign='center';ctx.fillStyle='#dcc38b';ctx.font=`${Math.min(w/7,52)}px Georgia`;ctx.fillText('Spritual',w/2,h*.43);ctx.font=`${Math.max(12,w/35)}px Georgia`;ctx.fillText('The Living Manuscript',w/2,h*.51);ctx.font='42px Georgia';ctx.fillText('❧',w/2,h*.65);}
+ else{let y=55;const max=w-70;ctx.fillStyle='#26352b';for(const node of content?.querySelectorAll('h2,p')||[]){const heading=node.tagName==='H2',size=heading?24:Math.min(23,parseFloat(getComputedStyle(node).fontSize)||20);const style=getComputedStyle(node);ctx.font=`${style.fontWeight} ${size}px ${style.fontFamily}`;let line='';for(const word of node.textContent.split(/\s+/)){const next=line?line+' '+word:word;if(ctx.measureText(next).width>max&&line){ctx.fillText(line,35,y);y+=size*1.65;line=word;}else line=next;}ctx.fillText(line,35,y);y+=size*2.3;if(y>h-20)break;}}
+ return c;}
+const vertex=`#version 300 es
+precision highp float;
+in vec2 aUV;uniform float uProgress;uniform float uBack;out vec2 vUV;out float vShade;out float vRear;
+void main(){float p=mix(uProgress,1.0-uProgress,uBack);float axis=1.0-p;float d=max(0.0,aUV.x-axis);float r=.002+.18*sin(p*3.14159);float angle=min(d/r,3.14159);float x=aUV.x;float z=0.0;if(d>0.0){x=axis+sin(angle)*r-max(0.0,d-r*3.14159);z=(1.0-cos(angle))*r;}vUV=aUV;vRear=step(1.5708,angle);vShade=.9+.1*cos(angle);float y=1.0-2.0*aUV.y;gl_Position=vec4(x,y+z*.16,z*.1,1.0);}`;
+const fragment=`#version 300 es
+precision highp float;in vec2 vUV;in float vShade;in float vRear;uniform sampler2D uPaper;out vec4 color;
+void main(){vec4 ink=texture(uPaper,vUV);vec3 rear=mix(vec3(.96,.91,.80),ink.rgb,.08);vec3 surface=mix(ink.rgb,rear,vRear);float gutter=.93+.07*smoothstep(0.0,.09,vUV.x);color=vec4(surface*vShade*gutter,1.0);}`;
+function webgl(layer,tex,back){const canvas=document.createElement('canvas');canvas.className='paper-gpu';canvas.setAttribute('aria-hidden','true');const gl=canvas.getContext('webgl2',{alpha:true,antialias:true,powerPreference:'low-power'});if(!gl)return null;let lost=false;canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();lost=true;low=true;});const compile=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error('Paper shader unavailable');return s;};const program=gl.createProgram(),vs=compile(gl.VERTEX_SHADER,vertex),fs=compile(gl.FRAGMENT_SHADER,fragment);gl.attachShader(program,vs);gl.attachShader(program,fs);gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error('Paper shader link unavailable');gl.useProgram(program);const points=[];for(let x=0;x<64;x++)for(let y=0;y<16;y++){const a=x/64,b=y/16,c=(x+1)/64,d=(y+1)/16;points.push(a,b,c,b,a,d,c,b,c,d,a,d);}const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(points),gl.STATIC_DRAW);const attr=gl.getAttribLocation(program,'aUV');gl.enableVertexAttribArray(attr);gl.vertexAttribPointer(attr,2,gl.FLOAT,false,0,0);const t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);canvas.width=tex.width*2;canvas.height=tex.height;gl.viewport(0,0,canvas.width,canvas.height);gl.uniform1f(gl.getUniformLocation(program,'uBack'),back?1:0);layer.append(canvas);const uniform=gl.getUniformLocation(program,'uProgress');return{draw(p){if(lost)throw Error('Context lost');gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.uniform1f(uniform,p);gl.drawArrays(gl.TRIANGLES,0,points.length/2);},dispose(){gl.deleteBuffer(buf);gl.deleteTexture(t);gl.deleteProgram(program);gl.deleteShader(vs);gl.deleteShader(fs);canvas.remove();}};}
+function ribbon(layer,content,cover,w,h,back){
+ const strips=[],count=32;
+ for(let i=0;i<count;i++){
+  const strip=document.createElement('div');strip.className='paper-ribbon';strip.style.height=h+'px';strip.style.width=(w/count+1)+'px';
+  const face=document.createElement('div');face.className=cover?'paper-ribbon-content paper-cloth':'paper-ribbon-content';face.style.width=w+'px';face.style.height=h+'px';face.style.left=-(i*w/count)+'px';
+  if(cover){const name=document.createElement('span');name.textContent='Spritual';const sub=document.createElement('small');sub.textContent='The Living Manuscript';face.append(name,sub);}else{const clone=content?.cloneNode(true);if(clone){clone.hidden=false;for(const n of [clone,...clone.querySelectorAll('*')])for(const attr of ['id','data-folio','tabindex','aria-labelledby'])n.removeAttribute(attr);face.append(clone);}}
+  strip.append(face);layer.append(strip);strips.push(strip);
+ }
+ return {draw(v){
+  const p=back?1-v:v,axis=1-p,r=.002+.18*Math.sin(p*Math.PI);
+  const point=x=>{const d=Math.max(0,x-axis),angle=Math.min(d/r,Math.PI);return {x:d?axis+Math.sin(angle)*r-Math.max(0,d-r*Math.PI):x,z:(1-Math.cos(angle))*r};};
+  strips.forEach((strip,i)=>{const a=point(i/count),b=point((i+1)/count),dx=b.x-a.x,dz=b.z-a.z,angle=Math.atan2(dz,dx),rear=angle>Math.PI/2;
+   // Adjacent chords share endpoints, preventing gaps at the bend and gutter overshoot.
+   const scale=(Math.hypot(dx,dz)*w+1)/(w/count+1);strip.style.transform=`translate3d(${a.x*w}px,0,${a.z*w}px) rotateY(${-angle*180/Math.PI}deg) scaleX(${scale})`;strip.style.filter=`brightness(${.94+.06*Math.cos(angle)})`;
+   const face=strip.firstElementChild;face.style.opacity=rear?'.08':'1';face.style.background=rear?'transparent':'';face.style.borderColor=rear?'transparent':'';
+  });
+ },dispose(){strips.forEach(strip=>strip.remove());}};
+}
+export class PaperEngine{
+ constructor(host){this.host=host;this.active=null;this.mode='idle';}
+ capture(content,{raster=true}={}){const rect=this.host.getBoundingClientRect();return {element:content,...(raster?{texture:texture(content,false,rect.width,rect.height)}:{})};}
+ // Reader-only direct manipulation. The arrival keeps its separately timed turn().
+ // Progress is presentation state: grabbing an active spring never restarts the leaf.
+ track(content,{back=false,underlay=null,onSettled=()=>{},onCancel=()=>{}}={}){
+  this.cancel();
+  const host=this.host,rect=host.getBoundingClientRect(),quiet=reduced()||document.hidden;
+  let layer=null,preview=null,renderer=null,raf=0,done=false,progress=0,velocity=0,target=1,settling=false;
+  const clean=()=>{
+   cancelAnimationFrame(raf);renderer?.dispose();layer?.remove();preview?.remove();
+   delete host.dataset.paperProgress;delete host.dataset.paperState;
+   if(this.active===record)this.active=null;
+  };
+  const finish=value=>{if(done)return;done=true;progress=value;clean();onSettled(value);};
+  const draw=()=>{
+   host.dataset.paperProgress=progress.toFixed(4);
+   if(!renderer)return;
+   try{renderer.draw(progress);}catch{
+    low=true;host.dataset.paperDowngraded='true';renderer?.dispose();
+    try{renderer=ribbon(layer,content?.element||content,false,rect.width,rect.height,back);this.mode='css-curl';host.dataset.paperEngine=this.mode;renderer.draw(progress);}catch{renderer=null;layer?.remove();preview?.remove();}
+   }
+  };
+  const record={
+   get progress(){return progress;},get velocity(){return velocity;},get target(){return target;},get settling(){return settling;},get finished(){return done;},
+   hold(){if(done)return progress;cancelAnimationFrame(raf);settling=false;host.dataset.paperState='held';return progress;},
+   set(value,speed=0){if(done)return;cancelAnimationFrame(raf);settling=false;progress=Math.max(0,Math.min(1,value));velocity=Math.max(-6,Math.min(6,speed));host.dataset.paperState='dragging';draw();},
+   settle(value,speed=velocity){
+    if(done)return;cancelAnimationFrame(raf);target=value?1:0;velocity=Math.max(-6,Math.min(6,speed));settling=true;host.dataset.paperState='settling';
+    if(quiet){finish(target);return;}
+    // Analytic critically damped spring: stable after a long frame and at any refresh rate.
+    const origin=progress,initialVelocity=velocity,start=performance.now(),omega=16;
+    const run=now=>{
+     if(done||!settling)return;
+     const elapsed=(now-start)/1000,offset=origin-target,b=initialVelocity+omega*offset,decay=Math.exp(-omega*elapsed);
+     const position=target+(offset+b*elapsed)*decay;
+     velocity=(initialVelocity-omega*b*elapsed)*decay;
+     progress=Math.max(0,Math.min(1,position));draw();
+     if((Math.abs(position-target)<.001&&Math.abs(velocity)<.015)||elapsed>1){finish(target);return;}
+     raf=requestAnimationFrame(run);
+    };
+    raf=requestAnimationFrame(run);
+   },
+   cancel(){if(done)return;done=true;clean();onCancel();}
+  };
+  this.active=record;
+  if(!quiet){
+   if(underlay&&!back){
+    preview=document.createElement('div');preview.className='paper-preview';preview.inert=true;preview.setAttribute('aria-hidden','true');
+    const style=getComputedStyle(host);Object.assign(preview.style,{position:'absolute',inset:'0',padding:style.padding,background:style.background,borderRadius:style.borderRadius,pointerEvents:'none',overflow:'hidden',zIndex:'4'});
+    const clone=underlay.cloneNode(true);clone.hidden=false;
+    for(const node of [clone,...clone.querySelectorAll('*')])for(const attr of ['id','data-folio','tabindex','aria-labelledby'])node.removeAttribute(attr);
+    preview.append(clone);host.append(preview);
+   }
+   layer=document.createElement('div');layer.className='paper-surface';layer.inert=true;layer.setAttribute('aria-hidden','true');host.append(layer);
+   // Direct input cannot wait for first-use shader compilation. The compositor
+   // ribbon also keeps the actual typeset DOM instead of rasterizing reader text.
+   this.mode='css-curl';renderer=ribbon(layer,content?.element||content,false,rect.width,rect.height,back);
+   host.dataset.paperEngine=this.mode;tick();
+  }else{this.mode='crossfade';host.dataset.paperEngine=this.mode;}
+  host.dataset.paperState='held';draw();return record;
+ }
+ turn(content,{cover=false,back=false,duration=timings.turn,onDone=()=>{}}={}){this.cancel();const host=this.host,rect=host.getBoundingClientRect(),layer=document.createElement('div');layer.className='paper-surface';layer.inert=true;layer.setAttribute('aria-hidden','true');host.append(layer);let renderer,done=false,start=performance.now(),from=0,raf,frameStart=start,frames=0;const finish=()=>{if(done)return;done=true;cancelAnimationFrame(raf);renderer?.dispose();layer.remove();if(this.active===record)this.active=null;onDone();};const record={cancel:finish,fastForward:(ms=timings.skip)=>{from=progress;start=performance.now();duration=ms;}};let progress=0;this.active=record;
+ if(reduced()||document.hidden){this.mode='crossfade';finish();return record;}
+ try{if(!low&&!navigator.connection?.saveData&&!(navigator.deviceMemory&&navigator.deviceMemory<=2))renderer=webgl(layer,content?.texture||texture(content,cover,rect.width,rect.height),back);}catch{}
+ if(renderer)this.mode='webgl2';else{this.mode='css-curl';renderer=ribbon(layer,content?.element||content,cover,rect.width,rect.height,back);}host.dataset.paperEngine=this.mode;tick(cover);
+ const run=now=>{if(done)return;const t=Math.min(1,(now-start)/duration);progress=from+(1-from)*(1-Math.pow(1-t,3));try{renderer.draw(progress);}catch{low=true;host.dataset.paperDowngraded='true';if(this.mode==='webgl2'){renderer?.dispose();renderer=ribbon(layer,content?.element||content,cover,rect.width,rect.height,back);this.mode='css-curl';host.dataset.paperEngine=this.mode;renderer.draw(progress);}else{host.animate([{opacity:.8},{opacity:1}],{duration:timings.crossfade});finish();return;}}frames++;if(now-frameStart>=1000){if(frames*1000/(now-frameStart)<50){low=true;host.dataset.paperDowngraded='true';if(this.mode==='webgl2'){renderer.dispose();renderer=ribbon(layer,content?.element||content,cover,rect.width,rect.height,back);this.mode='css-curl';host.dataset.paperEngine=this.mode;}else{host.animate([{opacity:.8},{opacity:1}],{duration:240});finish();return;}}frames=0;frameStart=now;}if(t>=1)finish();else raf=requestAnimationFrame(run);};raf=requestAnimationFrame(run);return record;}
+ cancel(){this.active?.cancel();}
+}

@@ -1,0 +1,3 @@
+// Route existing story previews into the complete book reader, preserving their native dialog.
+const title=document.getElementById('story-dialog-title'),link=document.querySelector('[data-open-book]');
+if(title&&link){const update=()=>{const story=(window.SPRITUAL_STORIES||[]).find(s=>s.en.title===title.textContent||s.hi.title===title.textContent);if(!story){link.hidden=true;return;}const hi=story.hi.title===title.textContent;link.hidden=false;link.href=(hi?'/hi':'')+'/books/read/'+story.id+'/';link.textContent=hi?'आगे पढ़ें':'Continue reading';};new MutationObserver(update).observe(title,{childList:true,characterData:true,subtree:true});update();}
