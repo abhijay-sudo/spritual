@@ -131,17 +131,17 @@ if(shelf){
 // =========================================================================
 // 3. INTENTION SEAL
 // =========================================================================
-const intention=document.querySelector('[data-intention]');
-if(intention){
+const seal=document.querySelector('[data-seal-intention]');
+if(seal){
+ const ring=document.createElement('i');ring.className='seal-ring';ring.setAttribute('aria-hidden','true');seal.prepend(ring);
+ const key='spritual_daily_intention_v1',today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata'}).format(new Date()),status=document.querySelector('[data-intention-status]'),clear=document.querySelector('[data-clear-intention]');
  let timer=0,animation=null;
- const today=new Date().toISOString().slice(0,10),key='spritual_intention_v1';
- const seal=intention.querySelector('[data-intention-seal]'),clear=intention.querySelector('[data-clear-intention]'),status=intention.querySelector('[data-intention-status]');
- function cancel(){if(timer){clearTimeout(timer);timer=0;}if(animation){animation.cancel();animation=null;}}
- function saved(){cancel();seal.hidden=true;clear.hidden=false;status.textContent=text('Your intention is kept in this browser for today.','आज का संकल्प इसी ब्राउज़र में सहेजा गया है।');}
+ function cancel(){clearTimeout(timer);timer=0;animation?.cancel();animation=null;}
+ function saved(){seal.hidden=true;clear.hidden=false;status.textContent=text('Your intention is kept in this browser for today.','आज का संकल्प इसी ब्राउज़र में सहेजा गया है।');}
  try{if(JSON.parse(localStorage.getItem(key)||'null')?.day===today)saved();}catch{}
  function begin(){
   if(timer||seal.hidden)return;
-  animation=seal.querySelector('.seal-ring')?.animate(reduced.matches?[{opacity:.15},{opacity:.5}]:[{transform:'scaleX(0)',opacity:1},{transform:'scaleX(1)',opacity:1}],{duration:2000,easing:'linear',fill:'forwards'});
+  animation=seal.querySelector('.seal-ring').animate(reduced.matches?[{opacity:.15},{opacity:.5}]:[{transform:'scaleX(0)',opacity:1},{transform:'scaleX(1)',opacity:1}],{duration:2000,easing:'linear',fill:'forwards'});
   timer=setTimeout(()=>{
    cancel();
    try{

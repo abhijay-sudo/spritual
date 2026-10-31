@@ -265,14 +265,9 @@
   75% { transform: translate(3px, -1px) rotate(0.15deg); }
 }
 
-/* Fixed Atmospheric Ashrama Light Canvas */
+/* Fixed Atmospheric Ashrama Light Canvas (Removed per user mandate) */
 #ashrama-light-canvas {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
+  display: none !important;
 }
 
 /* Soundscape Header Toggle Pill */
@@ -376,3 +371,283 @@
     display: none;
   }
 }
+
+/* =========================================================================
+   TOP-OF-THE-LINE SACRED DEITY SILHOUETTE SANCTUM CURTAIN
+   ========================================================================= */
+
+.deity-sanctum-curtain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 99999;
+  background: radial-gradient(circle at 50% 45%, #241B12 0%, #15110D 55%, #0A0806 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #FAF6EE;
+  user-select: none;
+  cursor: pointer;
+  pointer-events: none;
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.deity-sanctum-curtain[hidden] {
+  display: none !important;
+}
+
+/* Ambient Sacred Radiance Backdrop */
+.sanctum-radiance {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sanctum-sun-burst {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(900px, 120vw);
+  height: min(900px, 120vw);
+  background: radial-gradient(circle, rgba(235, 195, 75, 0.32) 0%, rgba(200, 75, 49, 0.14) 42%, transparent 72%);
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+/* Stage Altar */
+.sanctum-stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* Sacred Geometric Mandala Halo */
+.deity-mandala-halo {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(520px, 85vw);
+  height: min(520px, 85vw);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+.mandala-svg {
+  width: 100%;
+  height: 100%;
+  animation: mandalaSpin 120s linear infinite;
+}
+
+@keyframes mandalaSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Central Deity Figure Container */
+.deity-figure-container {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: min(54vh, 520px);
+  max-width: 100%;
+}
+
+/* Volumetric Floor Shadow */
+.deity-ground-shadow {
+  position: absolute;
+  bottom: -15px;
+  width: 240px;
+  height: 30px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.85) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(8px);
+  z-index: 1;
+}
+
+/* Deity Silhouette Picture */
+.deity-silhouette-art {
+  display: block;
+  height: 100%;
+  z-index: 2;
+}
+
+.deity-silhouette-img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 90vw;
+  object-fit: contain;
+  /* Deep, razor-sharp silhouette with burnished gold rim light */
+  filter: brightness(0) drop-shadow(0 0 35px rgba(212, 175, 55, 0.75)) drop-shadow(0 0 70px rgba(200, 75, 49, 0.35)) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8));
+  will-change: filter, transform;
+  pointer-events: none;
+}
+
+/* Sacred Invocation Below Silhouette */
+.sanctum-invocation {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  margin-top: 14px;
+  max-width: 600px;
+}
+
+.sanctum-mantra {
+  font: 500 16px/1.4 Tiro, "Noto Serif Devanagari", Georgia, serif;
+  color: #D4AF37;
+  letter-spacing: 0.15em;
+  margin: 0 0 6px;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+.sanctum-brand-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.sanctum-title {
+  font: 600 clamp(32px, 5vw, 48px)/1 Manuscript, Georgia, serif;
+  letter-spacing: 0.04em;
+  color: #FAF6EE;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.sanctum-subtitle {
+  font: 500 12px/1.4 "Plus Jakarta Sans", sans-serif;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #B59B6A;
+  margin: 2px 0 6px;
+}
+
+.sanctum-epigraph {
+  font: 400 14px/1.5 Georgia, serif;
+  color: #C8BBA5;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Deity Archetype Selector Pills */
+.deity-archetype-nav {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  z-index: 5;
+  flex-wrap: wrap;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.deity-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(250, 246, 238, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: #FAF6EE;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+}
+
+.deity-pill small {
+  font-size: 11px;
+  color: #B59B6A;
+}
+
+.deity-pill:hover,
+.deity-pill.active {
+  background: rgba(212, 175, 55, 0.22);
+  border-color: #D4AF37;
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.35);
+  transform: translateY(-1px);
+}
+
+.deity-pill.active {
+  font-weight: 600;
+  color: #FFE699;
+}
+
+/* Top Right Fast Action Button */
+.sanctum-controls {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.sanctum-enter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 24px;
+  background: #FAF6EE;
+  color: #141210;
+  border: 1px solid #D4AF37;
+  font: 600 13px/1.2 "Plus Jakarta Sans", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+  transition: all 0.25s ease;
+}
+
+.sanctum-enter-btn:hover {
+  background: #FFEAA0;
+  transform: scale(1.03);
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.4);
+}
+
+/* Mobile Responsiveness: Strict Zero-Overflow */
+@media (max-width: 600px) {
+  .sanctum-controls {
+    top: 16px;
+    right: 16px;
+  }
+  .sanctum-enter-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  .deity-figure-container {
+    height: min(44vh, 380px);
+  }
+  .sanctum-mantra {
+    font-size: 14px;
+  }
+  .sanctum-title {
+    font-size: 28px;
+  }
+  .sanctum-epigraph {
+    font-size: 12px;
+  }
+  .deity-pill {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+}
+

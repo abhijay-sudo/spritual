@@ -35,7 +35,8 @@ if (!reducedMotion.matches && typeof window !== 'undefined') {
     lenis = new LenisClass({
       lerp: 0.08,
       smoothWheel: true,
-      wheelMultiplier: 0.95
+      wheelMultiplier: 0.95,
+      prevent: (node) => !!node?.closest?.('[data-lenis-prevent], dialog, .fluid-sheet, .fluid-sheet-content, .command-dialog, [role="dialog"]')
     });
 
     if (gsap) {
@@ -54,6 +55,14 @@ if (!reducedMotion.matches && typeof window !== 'undefined') {
       }
       requestAnimationFrame(raf);
     }
+
+    // Keep Lenis halted during arrival ceremony to preserve instant scroll positioning
+    if (document.documentElement.dataset.arrival !== 'done') {
+      lenis.stop();
+    }
+    document.addEventListener('manuscript:opened', () => {
+      lenis?.start();
+    });
   }
 
   const Flip = getFlip();
@@ -125,6 +134,7 @@ function init3DTomes() {
 
     // B. Clicking a Book: "The Grand Manuscript Unfurl" Master Timeline (920ms)
     tome.addEventListener('click', (e) => {
+      if (tome.hasAttribute('data-home-book')) return;
       const link = tome.dataset.tomeLink || tome.querySelector('a')?.getAttribute('href');
       if (!link) return;
 
@@ -249,40 +259,11 @@ function initStoryReaderEngine() {
     document.body.appendChild(shockwaveRing);
   }
 
-  // Dual Mode Switcher: [ 📖 3D Open Book | 📜 Living Scroll ]
-  const controlsBar = document.querySelector('.reader-mode-bar');
-  if (controlsBar && !document.querySelector('.reader-mode-switch')) {
-    const switchWrap = document.createElement('div');
-    switchWrap.className = 'reader-mode-switch';
-    switchWrap.setAttribute('role', 'group');
-    switchWrap.setAttribute('aria-label', hi ? 'पठन विधि चुनें' : 'Reading presentation');
-
-    const bookBtn = document.createElement('button');
-    bookBtn.type = 'button';
-    bookBtn.setAttribute('aria-pressed', 'false');
-    bookBtn.textContent = hi ? '📖 3D पुस्तक' : '📖 3D Open Book';
-
-    const scrollBtn = document.createElement('button');
-    scrollBtn.type = 'button';
-    scrollBtn.setAttribute('aria-pressed', 'true');
-    scrollBtn.textContent = hi ? '📜 जीवंत प्रवाह' : '📜 Living Scroll';
-
-    switchWrap.appendChild(bookBtn);
-    switchWrap.appendChild(scrollBtn);
-    controlsBar.prepend(switchWrap);
-
-    bookBtn.addEventListener('click', () => {
-      bookBtn.setAttribute('aria-pressed', 'true');
-      scrollBtn.setAttribute('aria-pressed', 'false');
-      enable3DPageFlipMode();
-    });
-
-    scrollBtn.addEventListener('click', () => {
-      scrollBtn.setAttribute('aria-pressed', 'true');
-      bookBtn.setAttribute('aria-pressed', 'false');
-      disable3DPageFlipMode();
-    });
-  }
+  // Dual Mode Switcher wired to existing appearance settings
+  const leafFlowBtn = document.querySelector('[data-reading-flow="leaf"]');
+  const scrollFlowBtn = document.querySelector('[data-reading-flow="scroll"]');
+  if (leafFlowBtn) leafFlowBtn.addEventListener('click', enable3DPageFlipMode);
+  if (scrollFlowBtn) scrollFlowBtn.addEventListener('click', disable3DPageFlipMode);
 
   // Scrollytelling Living Scroll Engine
   let climaxPlayed = false;
@@ -437,112 +418,258 @@ function initStoryReaderEngine() {
 }
 
 // =========================================================================
-// 4. AMBIENT SUNLIT ASHRAMA SHADER & DRIFTING GOLD DUST CANVAS
+// =========================================================================
+// 4. TOP-OF-THE-LINE SACRED DEITY ARRIVAL CEREMONY & SANCTUM CURTAIN
+// Silhouette emergence, rotating mandala halo, golden rim glow, procedural chime
 // =========================================================================
 function initAshramaLightCanvas() {
-  let canvas = document.getElementById('ashrama-light-canvas');
-  if (!canvas) {
-    canvas = document.createElement('canvas');
-    canvas.id = 'ashrama-light-canvas';
-    canvas.setAttribute('aria-hidden', 'true');
-    document.body.prepend(canvas);
+  // Dust motes removed per user mandate
+  const canvas = document.getElementById('ashrama-light-canvas');
+  if (canvas) canvas.remove();
+}
+
+function initDeitySanctumCurtain() {
+  const curtain = document.getElementById('deity-sanctum-curtain');
+  if (!curtain) return;
+
+  // Immediate bypass if reduced motion is requested
+  if (reducedMotion.matches) {
+    curtain.style.display = 'none';
+    curtain.setAttribute('hidden', '');
+    return;
   }
 
-  const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
-  let w = window.innerWidth;
-  let h = window.innerHeight;
-
-  function resize() {
-    w = window.innerWidth;
-    h = window.innerHeight;
-    canvas.width = w * dpr;
-    canvas.height = h * dpr;
-    ctx.scale(dpr, dpr);
+  // If arrival has already completed for this session/visit, hide immediately
+  if (document.documentElement.dataset.arrival === 'done') {
+    curtain.style.display = 'none';
+    curtain.setAttribute('hidden', '');
+    return;
   }
-  resize();
-  addEventListener('resize', resize);
 
-  // 35 Floating Golden Dust Motes with 3D Depth (z) and Cursor Velocity Repulsion
-  const MOTES_COUNT = 35;
-  const motes = [];
-  let mouse = { x: -1000, y: -1000, vx: 0, vy: 0, lastX: 0, lastY: 0 };
+  const deityImg = curtain.querySelector('[data-deity-img]');
+  const mantraEl = curtain.querySelector('[data-sanctum-mantra]');
+  const pills = curtain.querySelectorAll('[data-deity-choice]');
+  const enterBtn = curtain.querySelector('[data-sanctum-enter]');
+  const mandalaHalo = curtain.querySelector('.deity-mandala-halo');
+  const radiance = curtain.querySelector('.sanctum-sun-burst');
+  const invocation = curtain.querySelector('.sanctum-invocation');
 
-  window.addEventListener('pointermove', (e) => {
-    mouse.vx = e.clientX - mouse.lastX;
-    mouse.vy = e.clientY - mouse.lastY;
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    mouse.lastX = e.clientX;
-    mouse.lastY = e.clientY;
+  const DEITY_PROFILES = {
+    shiva: {
+      mantra: '॥ ॐ नमः शिवाय ॥',
+      freq: 432,
+      src: '/content-assets/portraits/shiva-960.webp'
+    },
+    rama: {
+      mantra: '॥ ॐ रामाय नमः ॥',
+      freq: 480,
+      src: '/content-assets/portraits/rama-960.webp'
+    },
+    krishna: {
+      mantra: '॥ ॐ नमो भगवते वासुदेवाय ॥',
+      freq: 528,
+      src: '/content-assets/portraits/krishna-960.webp'
+    },
+    ganesha: {
+      mantra: '॥ ॐ गं गणपतये नमः ॥',
+      freq: 396,
+      src: '/content-assets/portraits/ganesha-960.webp'
+    },
+    durga: {
+      mantra: '॥ ॐ दुं दुर्गायै नमः ॥',
+      freq: 639,
+      src: '/content-assets/portraits/durga-960.webp'
+    }
+  };
+
+  const gsap = getGSAP();
+  let entranceTimeline = null;
+
+  function runEntrance() {
+    if (!gsap) return;
+    if (entranceTimeline) entranceTimeline.kill();
+
+    entranceTimeline = gsap.timeline({
+      defaults: { ease: 'power2.out' },
+      onComplete: () => {
+        setTimeout(() => {
+          if (!dismissed) dismissSanctum(false);
+        }, 2200);
+      }
+    });
+
+    gsap.set(deityImg, {
+      opacity: 0,
+      scale: 0.92,
+      filter: 'brightness(0) drop-shadow(0 0 10px rgba(212, 175, 55, 0.1))'
+    });
+    gsap.set(mandalaHalo, { opacity: 0, scale: 0.65 });
+    gsap.set(radiance, { opacity: 0, scale: 0.7 });
+    gsap.set(invocation, { opacity: 0, y: 16 });
+    gsap.set(pills, { opacity: 0, y: 10 });
+    gsap.set(enterBtn, { opacity: 0, scale: 0.9 });
+
+    entranceTimeline
+      .to(radiance, { opacity: 0.9, scale: 1.1, duration: 1.2, ease: 'sine.out' }, 0)
+      .to(mandalaHalo, { opacity: 0.85, scale: 1, duration: 1.3, ease: 'back.out(1.2)' }, 0.15)
+      .to(deityImg, {
+        opacity: 1,
+        scale: 1,
+        filter: 'brightness(0) drop-shadow(0 0 35px rgba(212, 175, 55, 0.75)) drop-shadow(0 0 70px rgba(200, 75, 49, 0.35)) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8))',
+        duration: 1.3,
+        ease: 'power3.out'
+      }, 0.25)
+      .to(invocation, { opacity: 1, y: 0, duration: 0.9 }, 0.65)
+      .to(pills, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08 }, 0.85)
+      .to(enterBtn, { opacity: 1, scale: 1, duration: 0.5 }, 1.05);
+  }
+
+  runEntrance();
+
+  // Switch divine archetype on pill selection
+  pills.forEach((pill) => {
+    pill.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const choice = pill.dataset.deityChoice;
+      const profile = DEITY_PROFILES[choice];
+      if (!profile) return;
+
+      pills.forEach(p => p.classList.toggle('active', p === pill));
+
+      try {
+        playTempleChime(profile.freq);
+      } catch {}
+
+      if (mantraEl) {
+        mantraEl.textContent = profile.mantra;
+        if (gsap) {
+          gsap.fromTo(mantraEl, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.35 });
+        }
+      }
+
+      if (deityImg) {
+        if (gsap) {
+          gsap.to(deityImg, {
+            opacity: 0.35,
+            scale: 0.96,
+            duration: 0.2,
+            onComplete: () => {
+              deityImg.src = profile.src;
+              gsap.to(deityImg, {
+                opacity: 1,
+                scale: 1,
+                duration: 0.45,
+                ease: 'back.out(1.2)'
+              });
+            }
+          });
+        } else {
+          deityImg.src = profile.src;
+        }
+      }
+    });
   });
 
-  for (let i = 0; i < MOTES_COUNT; i++) {
-    motes.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      z: 0.4 + Math.random() * 1.6, // depth scaling
-      radius: 1.2 + Math.random() * 2.4,
-      speedX: (Math.random() - 0.5) * 0.35,
-      speedY: 0.18 + Math.random() * 0.42,
-      baseAlpha: 0.35 + Math.random() * 0.55,
-      phase: Math.random() * Math.PI * 2,
-      freq: 0.006 + Math.random() * 0.012
+  let dismissed = false;
+  function dismissSanctum(fastForward = true) {
+    if (dismissed) return;
+    dismissed = true;
+
+    if (entranceTimeline) entranceTimeline.kill();
+
+    if (gsap) {
+      gsap.to(curtain, {
+        opacity: 0,
+        scale: 1.06,
+        duration: 0.5,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          curtain.style.display = 'none';
+          curtain.setAttribute('hidden', '');
+        }
+      });
+    } else {
+      curtain.style.display = 'none';
+      curtain.setAttribute('hidden', '');
+    }
+
+    if (fastForward) {
+      const skipBtn = document.querySelector('.arrival-skip');
+      if (skipBtn) {
+        skipBtn.click();
+      } else {
+        document.documentElement.dataset.arrival = 'done';
+        try {
+          localStorage.setItem('spritual_manuscript_arrival_v1', String(Date.now()));
+        } catch {}
+        document.dispatchEvent(new CustomEvent('manuscript:opened'));
+      }
+    }
+  }
+
+  // Dismissal triggers: enter button
+  if (enterBtn) {
+    enterBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dismissSanctum(true);
     });
   }
 
-  let startTime = performance.now();
-  function renderAshrama(time) {
-    if (reducedMotion.matches) return;
-    const elapsed = time - startTime;
-    ctx.clearRect(0, 0, w, h);
-
-    // Pass 1: Warm Diagonal Sunbeams
-    const rayGrad = ctx.createLinearGradient(0, 0, w * 0.75, h);
-    rayGrad.addColorStop(0, 'rgba(250, 240, 215, 0.07)');
-    rayGrad.addColorStop(0.35, 'rgba(212, 175, 55, 0.035)');
-    rayGrad.addColorStop(0.7, 'rgba(250, 240, 215, 0.015)');
-    rayGrad.addColorStop(1, 'transparent');
-    ctx.fillStyle = rayGrad;
-    ctx.fillRect(0, 0, w, h);
-
-    // Pass 2: Golden Dust Motes with Velocity Repulsion
-    for (const m of motes) {
-      // Repulsion physics from pointer
-      const dx = m.x - mouse.x;
-      const dy = m.y - mouse.y;
-      const dist = Math.hypot(dx, dy);
-      if (dist < 120 && dist > 0) {
-        const force = (1 - dist / 120) * 2.2;
-        m.x += (dx / dist) * force + mouse.vx * 0.05;
-        m.y += (dy / dist) * force + mouse.vy * 0.05;
-      }
-
-      // Harmonic sinusoidal drift
-      m.x += m.speedX * m.z + Math.sin(elapsed * m.freq + m.phase) * 0.3;
-      m.y += m.speedY * m.z;
-
-      // Wrap boundaries
-      if (m.x < 0) m.x = w;
-      if (m.x > w) m.x = 0;
-      if (m.y > h) { m.y = -10; m.x = Math.random() * w; }
-
-      const shimmer = m.baseAlpha * (0.7 + 0.3 * Math.sin(elapsed * 0.002 + m.phase));
-      const grad = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, m.radius * m.z * 2.2);
-      grad.addColorStop(0, `rgba(229, 192, 75, ${shimmer})`);
-      grad.addColorStop(0.5, `rgba(200, 75, 49, ${shimmer * 0.4})`);
-      grad.addColorStop(1, 'transparent');
-
-      ctx.beginPath();
-      ctx.arc(m.x, m.y, m.radius * m.z * 2, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
-      ctx.fill();
+  // Click on curtain or outside controls (excluding replay button)
+  document.addEventListener('click', (e) => {
+    if (dismissed || e.target.closest('.deity-pill, .sanctum-enter-btn, .arrival-replay')) return;
+    if (curtain.style.display !== 'none' && !curtain.hasAttribute('hidden')) {
+      dismissSanctum(true);
     }
+  });
 
-    requestAnimationFrame(renderAshrama);
+  // Keyboard navigation: Escape, Enter, Space
+  window.addEventListener('keydown', (e) => {
+    if (!dismissed && ['Escape', 'Enter', ' '].includes(e.key)) {
+      if (e.key === 'Enter' && e.target.closest('.deity-pill')) return;
+      dismissSanctum(true);
+    }
+  });
+
+  // Wheel dismissal
+  window.addEventListener('wheel', (e) => {
+    if (!dismissed && Math.abs(e.deltaY) > 8) {
+      dismissSanctum(true);
+    }
+  }, { passive: true });
+
+  // Touch dismissal
+  curtain.addEventListener('touchmove', () => {
+    if (!dismissed) {
+      dismissSanctum(true);
+    }
+  }, { passive: true });
+
+  // Sync with system arrival state
+  const observer = new MutationObserver(() => {
+    if (document.documentElement.dataset.arrival === 'done') {
+      dismissSanctum(false);
+    }
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-arrival'] });
+
+  document.addEventListener('manuscript:opened', () => {
+    dismissSanctum(false);
+  });
+
+  // Replay integration: re-opening ceremony when footer replay button is clicked
+  const replayBtn = document.querySelector('.arrival-replay');
+  if (replayBtn) {
+    replayBtn.addEventListener('click', () => {
+      dismissed = false;
+      lenis?.stop();
+      curtain.removeAttribute('hidden');
+      curtain.style.display = 'flex';
+      curtain.style.opacity = '1';
+      curtain.style.transform = 'none';
+      runEntrance();
+    });
   }
-
-  requestAnimationFrame(renderAshrama);
 }
 
 // =========================================================================
@@ -645,6 +772,7 @@ function initAll() {
   init3DTomes();
   initStoryReaderEngine();
   initAshramaLightCanvas();
+  initDeitySanctumCurtain();
   initFlipValueFilter();
   initTypographyAndFleurons();
 }
