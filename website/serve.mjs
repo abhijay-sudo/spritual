@@ -6,9 +6,10 @@ const editorial=process.argv.includes('--editorial-preview');
 const welcomePreview=process.argv.includes('--welcome-preview');
 const sanatan=process.argv.includes('--sanatan-preview');
 const release=process.argv.includes('--sanatan-release');
+const canonical=process.argv.includes('--canonical')||process.argv.includes('--release');
 if([bookResearch,editorial,sanatan,release,welcomePreview].filter(Boolean).length>1)throw Error('Choose one website mode.');
 const port=bookResearch?4193:editorial?4191:sanatan?4192:welcomePreview?4194:4190;
-const root = resolve(import.meta.dirname, bookResearch?'../artifacts/book-research':editorial?'../artifacts/editorial-site':sanatan?'../artifacts/sanatan-site':welcomePreview?'../artifacts/welcome-site':'dist');
+const root = resolve(import.meta.dirname, canonical?'canonical-dist':bookResearch?'../artifacts/book-research':editorial?'../artifacts/editorial-site':sanatan?'../artifacts/sanatan-site':welcomePreview?'../artifacts/welcome-site':'dist');
 const types = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.avif':'image/avif','.jpg':'image/jpeg','.jpeg':'image/jpeg','.woff2':'font/woff2','.txt':'text/plain','.xml':'application/xml','.png':'image/png'};
 createServer(async (req,res) => {
  try {
