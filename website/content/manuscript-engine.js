@@ -250,6 +250,38 @@ function initStoryReaderEngine() {
   const gsap = getGSAP();
   const ScrollTrigger = getScrollTrigger();
 
+  // Story Reader Sanctuary Opening Ceremony
+  if (gsap && !reducedMotion.matches) {
+    const openBook = document.querySelector('.open-book');
+    const storyTitle = document.querySelector('.reader-story-title');
+
+    if (openBook) {
+      gsap.fromTo(
+        openBook,
+        { opacity: 0.88, y: 14, rotateX: 2 },
+        { opacity: 1, y: 0, rotateX: 0, duration: 0.85, ease: 'power2.out' }
+      );
+    }
+    if (asideImg) {
+      gsap.fromTo(
+        asideImg,
+        { opacity: 0.65, scale: 1.04 },
+        { opacity: 1, scale: 1, duration: 1.05, ease: 'power2.out' }
+      );
+      const inkDisp = document.getElementById('ink-displacement');
+      if (inkDisp) {
+        gsap.fromTo(inkDisp, { attr: { scale: 32 } }, { attr: { scale: 0 }, duration: 0.8, ease: 'power2.out' });
+      }
+    }
+    if (storyTitle) {
+      gsap.fromTo(
+        storyTitle,
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.65, delay: 0.1, ease: 'power2.out' }
+      );
+    }
+  }
+
   // Create Golden Shockwave Element for Climax
   let shockwaveRing = document.querySelector('.golden-shockwave-ring');
   if (!shockwaveRing) {
@@ -440,7 +472,11 @@ function initDeitySanctumCurtain() {
   }
 
   // If arrival has already completed for this session/visit, hide immediately
-  if (document.documentElement.dataset.arrival === 'done') {
+  let sessionDismissed = false;
+  try {
+    sessionDismissed = sessionStorage.getItem('spritual_sanctum_session_dismissed') === '1';
+  } catch {}
+  if (sessionDismissed && document.documentElement.dataset.arrival === 'done') {
     curtain.style.display = 'none';
     curtain.setAttribute('hidden', '');
     return;
@@ -494,7 +530,7 @@ function initDeitySanctumCurtain() {
       onComplete: () => {
         setTimeout(() => {
           if (!dismissed) dismissSanctum(false);
-        }, 2200);
+        }, 3400);
       }
     });
 
@@ -574,14 +610,18 @@ function initDeitySanctumCurtain() {
   function dismissSanctum(fastForward = true) {
     if (dismissed) return;
     dismissed = true;
+    try {
+      sessionStorage.setItem('spritual_sanctum_session_dismissed', '1');
+    } catch {}
 
     if (entranceTimeline) entranceTimeline.kill();
 
+    curtain.style.pointerEvents = 'none';
     if (gsap) {
       gsap.to(curtain, {
         opacity: 0,
         scale: 1.06,
-        duration: 0.5,
+        duration: 0.55,
         ease: 'power2.inOut',
         onComplete: () => {
           curtain.style.display = 'none';
@@ -645,16 +685,16 @@ function initDeitySanctumCurtain() {
     }
   }, { passive: true });
 
-  // Sync with system arrival state
+  // Sync with system arrival state only if already session-dismissed or explicit skip
   const observer = new MutationObserver(() => {
-    if (document.documentElement.dataset.arrival === 'done') {
+    if (document.documentElement.dataset.arrival === 'done' && sessionDismissed) {
       dismissSanctum(false);
     }
   });
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-arrival'] });
 
   document.addEventListener('manuscript:opened', () => {
-    dismissSanctum(false);
+    if (sessionDismissed) dismissSanctum(false);
   });
 
   // Replay integration: re-opening ceremony when footer replay button is clicked
@@ -662,11 +702,15 @@ function initDeitySanctumCurtain() {
   if (replayBtn) {
     replayBtn.addEventListener('click', () => {
       dismissed = false;
+      try {
+        sessionStorage.removeItem('spritual_sanctum_session_dismissed');
+      } catch {}
       lenis?.stop();
       curtain.removeAttribute('hidden');
       curtain.style.display = 'flex';
       curtain.style.opacity = '1';
       curtain.style.transform = 'none';
+      curtain.style.pointerEvents = 'auto';
       runEntrance();
     });
   }

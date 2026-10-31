@@ -19,22 +19,53 @@ precision highp float;in vec2 vUV;in float vShade;in float vRear;uniform sampler
 void main(){vec4 ink=texture(uPaper,vUV);vec3 rear=mix(vec3(.96,.91,.80),ink.rgb,.08);vec3 surface=mix(ink.rgb,rear,vRear);float gutter=.93+.07*smoothstep(0.0,.09,vUV.x);color=vec4(surface*vShade*gutter,1.0);}`;
 function webgl(layer,tex,back){const canvas=document.createElement('canvas');canvas.className='paper-gpu';canvas.setAttribute('aria-hidden','true');const gl=canvas.getContext('webgl2',{alpha:true,antialias:true,powerPreference:'low-power'});if(!gl)return null;let lost=false;canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();lost=true;low=true;});const compile=(type,src)=>{const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error('Paper shader unavailable');return s;};const program=gl.createProgram(),vs=compile(gl.VERTEX_SHADER,vertex),fs=compile(gl.FRAGMENT_SHADER,fragment);gl.attachShader(program,vs);gl.attachShader(program,fs);gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw Error('Paper shader link unavailable');gl.useProgram(program);const points=[];for(let x=0;x<64;x++)for(let y=0;y<16;y++){const a=x/64,b=y/16,c=(x+1)/64,d=(y+1)/16;points.push(a,b,c,b,a,d,c,b,c,d,a,d);}const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(points),gl.STATIC_DRAW);const attr=gl.getAttribLocation(program,'aUV');gl.enableVertexAttribArray(attr);gl.vertexAttribPointer(attr,2,gl.FLOAT,false,0,0);const t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,tex);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);canvas.width=tex.width*2;canvas.height=tex.height;gl.viewport(0,0,canvas.width,canvas.height);gl.uniform1f(gl.getUniformLocation(program,'uBack'),back?1:0);layer.append(canvas);const uniform=gl.getUniformLocation(program,'uProgress');return{draw(p){if(lost)throw Error('Context lost');gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.uniform1f(uniform,p);gl.drawArrays(gl.TRIANGLES,0,points.length/2);},dispose(){gl.deleteBuffer(buf);gl.deleteTexture(t);gl.deleteProgram(program);gl.deleteShader(vs);gl.deleteShader(fs);canvas.remove();}};}
 function ribbon(layer,content,cover,w,h,back){
- const strips=[],count=32;
- for(let i=0;i<count;i++){
-  const strip=document.createElement('div');strip.className='paper-ribbon';strip.style.height=h+'px';strip.style.width=(w/count+1)+'px';
-  const face=document.createElement('div');face.className=cover?'paper-ribbon-content paper-cloth':'paper-ribbon-content';face.style.width=w+'px';face.style.height=h+'px';face.style.left=-(i*w/count)+'px';
-  if(cover){const name=document.createElement('span');name.textContent='Spritual';const sub=document.createElement('small');sub.textContent='The Living Manuscript';face.append(name,sub);}else{const clone=content?.cloneNode(true);if(clone){clone.hidden=false;for(const n of [clone,...clone.querySelectorAll('*')])for(const attr of ['id','data-folio','tabindex','aria-labelledby'])n.removeAttribute(attr);face.append(clone);}}
-  strip.append(face);layer.append(strip);strips.push(strip);
- }
- return {draw(v){
-  const p=back?1-v:v,axis=1-p,r=.002+.18*Math.sin(p*Math.PI);
-  const point=x=>{const d=Math.max(0,x-axis),angle=Math.min(d/r,Math.PI);return {x:d?axis+Math.sin(angle)*r-Math.max(0,d-r*Math.PI):x,z:(1-Math.cos(angle))*r};};
-  strips.forEach((strip,i)=>{const a=point(i/count),b=point((i+1)/count),dx=b.x-a.x,dz=b.z-a.z,angle=Math.atan2(dz,dx),rear=angle>Math.PI/2;
-   // Adjacent chords share endpoints, preventing gaps at the bend and gutter overshoot.
-   const scale=(Math.hypot(dx,dz)*w+1)/(w/count+1);strip.style.transform=`translate3d(${a.x*w}px,0,${a.z*w}px) rotateY(${-angle*180/Math.PI}deg) scaleX(${scale})`;strip.style.filter=`brightness(${.94+.06*Math.cos(angle)})`;
-   const face=strip.firstElementChild;face.style.opacity=rear?'.08':'1';face.style.background=rear?'transparent':'';face.style.borderColor=rear?'transparent':'';
-  });
- },dispose(){strips.forEach(strip=>strip.remove());}};
+ const shadow=document.createElement('div');shadow.className='paper-contact-shadow';
+ Object.assign(shadow.style,{position:'absolute',top:'0',left:'0',width:w+'px',height:h+'px',pointerEvents:'none',zIndex:'1',opacity:'0',transformOrigin:back?'right center':'left center'});
+ layer.append(shadow);
+
+ const leaf=document.createElement('div');leaf.className='paper-ribbon paper-leaf-turn';
+ Object.assign(leaf.style,{position:'absolute',top:'0',left:'0',width:w+'px',height:h+'px',transformOrigin:back?'right center':'left center',transformStyle:'preserve-3d',backfaceVisibility:'hidden',zIndex:'5',willChange:'transform'});
+
+ const face=document.createElement('div');face.className=cover?'paper-ribbon-content paper-cloth paper-leaf-front':'paper-ribbon-content paper-leaf-front';
+ Object.assign(face.style,{position:'absolute',top:'0',left:'0',width:w+'px',height:h+'px',boxSizing:'border-box',backfaceVisibility:'hidden',transform:'rotateY(0deg)',transformStyle:'preserve-3d',overflow:'hidden'});
+
+ if(cover){const name=document.createElement('span');name.textContent='Spritual';const sub=document.createElement('small');sub.textContent='The Living Manuscript';face.append(name,sub);}
+ else{const clone=content?.cloneNode(true);if(clone){clone.hidden=false;for(const n of [clone,...clone.querySelectorAll('*')])for(const attr of ['id','data-folio','tabindex','aria-labelledby'])n.removeAttribute(attr);face.append(clone);}}
+
+ const sheen=document.createElement('div');sheen.className='paper-specular-sheen';
+ Object.assign(sheen.style,{position:'absolute',inset:'0',pointerEvents:'none',background:'linear-gradient(110deg, transparent 25%, rgba(255,255,255,0.4) 48%, rgba(212,175,55,0.25) 55%, transparent 75%)',opacity:'0',mixBlendMode:'overlay',zIndex:'2'});
+ face.append(sheen);
+
+ const backFace=document.createElement('div');backFace.className=cover?'paper-cloth paper-leaf-back':'paper-ribbon-content paper-leaf-back';
+ Object.assign(backFace.style,{position:'absolute',top:'0',left:'0',width:w+'px',height:h+'px',boxSizing:'border-box',backfaceVisibility:'hidden',transform:'rotateY(180deg)',transformStyle:'preserve-3d',overflow:'hidden',background:cover?'linear-gradient(135deg, #152e25, #1d4034)':'linear-gradient(90deg, #e4d5be, #f8f0e1 15%, #faf5ea 85%, #e6d8c3)',boxShadow:'inset 0 0 40px rgba(180, 150, 110, 0.25)'});
+ const backDecoration=document.createElement('div');backDecoration.setAttribute('aria-hidden','true');
+ Object.assign(backDecoration.style,{position:'absolute',inset:'18px',border:'1px solid rgba(185, 150, 90, 0.25)',display:'flex',alignItems:'center',justifyContent:'center',color:'rgba(185, 150, 90, 0.4)',font:'italic 28px Georgia, serif',pointerEvents:'none'});
+ backDecoration.textContent='❧';backFace.append(backDecoration);
+
+ leaf.append(face,backFace);layer.append(leaf);
+
+ return {
+  draw(v){
+   const p=Math.max(0,Math.min(1,v));
+   const lift=Math.sin(p*Math.PI)*32;
+   const angle=back?-180*(1-p):-180*p;
+   const curlZ=(back?1:-1)*Math.sin(p*Math.PI)*4.2;
+   const skewY=(back?-1:1)*Math.sin(p*Math.PI)*2.2;
+   leaf.style.transform=`translate3d(0,0,${lift}px) rotateY(${angle}deg) rotateZ(${curlZ}deg) skewY(${skewY}deg)`;
+
+   const intensity=Math.sin(p*Math.PI);
+   shadow.style.opacity=(intensity*0.45).toFixed(3);
+   const shadowPos=back?(1-p)*100:p*100;
+   shadow.style.background=`radial-gradient(ellipse at ${shadowPos.toFixed(1)}% 50%, rgba(20, 15, 10, 0.45) 0%, transparent 65%)`;
+
+   sheen.style.opacity=(intensity*0.75).toFixed(3);
+   sheen.style.transform=`translateX(${((p-0.5)*80).toFixed(1)}%)`;
+
+   face.style.filter=`brightness(${(0.92+0.08*Math.cos(p*Math.PI*0.5)).toFixed(3)})`;
+   backFace.style.filter=`brightness(${(0.88+0.12*Math.sin(p*Math.PI*0.5)).toFixed(3)})`;
+  },
+  dispose(){shadow.remove();leaf.remove();}
+ };
 }
 export class PaperEngine{
  constructor(host){this.host=host;this.active=null;this.mode='idle';}
