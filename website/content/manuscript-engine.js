@@ -332,6 +332,7 @@ function initStoryReaderEngine() {
     });
 
     function activateScene(idx, folio) {
+      if (reader.dataset.readingModeState !== 'flow') return;
       folios.forEach(f => f.classList.remove('active-reading-scene'));
       folio.classList.add('active-reading-scene');
 
