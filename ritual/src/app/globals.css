@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-paper-base: #D4C5A9;
+  --color-paper-text: #1C1A17;
+  --color-paper-muted: #5A5145;
+  --color-paper-border: #BAA989;
+  --color-paper-accent: #B8963E;
+  --color-terracotta: #A65A3A;
+  --color-sindoor: #C84B31;
+
+  --ease-sacred: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-breath: cubic-bezier(0.4, 0, 0.2, 1);
+  --reading-width: 68ch;
+}
+
+[data-tone="vellum"] {
+  --color-paper-base: #FAF6EE;
+  --color-paper-text: #1C1A17;
+  --color-paper-muted: #524B43;
+  --color-paper-border: #E5D7BE;
+  --color-paper-accent: #B8963E;
+}
+
+[data-tone="palm-leaf"] {
+  --color-paper-base: #D4C5A9;
+  --color-paper-text: #1C1A17;
+  --color-paper-muted: #5A5145;
+  --color-paper-border: #BAA989;
+  --color-paper-accent: #B8963E;
+}
+
+[data-tone="night"] {
+  --color-paper-base: #1A1035;
+  --color-paper-text: #EADBCC;
+  --color-paper-muted: #A396BE;
+  --color-paper-border: #2F2156;
+  --color-paper-accent: #E0BA55;
+  --color-terracotta: #D47B58;
+}
+
+[data-tone="high-contrast"] {
+  --color-paper-base: #0B0A09;
+  --color-paper-text: #FFFFFF;
+  --color-paper-muted: #D8D2C4;
+  --color-paper-border: #6B6355;
+  --color-paper-accent: #FFDF00;
+  --color-terracotta: #FF7F50;
+}
+
+body {
+  background-color: var(--color-paper-base);
+  color: var(--color-paper-text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.6s var(--ease-sacred), color 0.6s var(--ease-sacred);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(184, 150, 62, 0.05), transparent 45%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+}
+
+/* Sacred typography hierarchy */
+.font-retelling {
+  font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+}
+
+.font-sanskrit {
+  font-family: 'Noto Serif Devanagari', serif;
+}
+
+.reading-column {
+  max-width: var(--reading-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Gold hairline divider */
+.gold-hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-paper-accent) 50%, transparent 100%);
+  opacity: 0.55;
+}
+
+/* Subtle ink bleed utility */
+.ink-bleed {
+  filter: drop-shadow(0 0 1px rgba(28, 26, 23, 0.15));
+}
+
+/* Diya glow pulse */
+@keyframes diyaGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(184, 150, 62, 0.4), inset 0 0 8px rgba(246, 211, 101, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(246, 211, 101, 0.7), inset 0 0 14px rgba(246, 211, 101, 0.6);
+  }
+}
+
+.diya-flame {
+  animation: diyaGlow 3.5s ease-in-out infinite;
+}
+
+/* Reduced motion compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

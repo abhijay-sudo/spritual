@@ -3,6 +3,9 @@ dist/
 coverage/
 playwright-report/
 test-results/
+.next/
+ritual/node_modules/
+ritual/.next/
 *.tsbuildinfo
 .env
 .env.*
