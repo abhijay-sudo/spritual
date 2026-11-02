@@ -182,59 +182,27 @@ function initSunlightAndDustShader() {
     h = canvas.height = window.innerHeight;
   }, { passive: true });
 
-  const pointer = { x: w * 0.5, y: h * 0.3, vx: 0, vy: 0 };
+  const pointer = { x: w * 0.5, y: h * 0.3 };
   window.addEventListener("pointermove", (e) => {
-    pointer.vx = e.clientX - pointer.x;
-    pointer.vy = e.clientY - pointer.y;
     pointer.x = e.clientX;
     pointer.y = e.clientY;
   }, { passive: true });
-
-  const motes = Array.from({ length: 38 }, () => ({
-    x: Math.random() * w,
-    y: Math.random() * h,
-    r: 1.1 + Math.random() * 2.4,
-    vx: (Math.random() - 0.5) * 0.28,
-    vy: -0.15 - Math.random() * 0.35,
-    phase: Math.random() * Math.PI * 2
-  }));
 
   if (gsap) {
     gsap.ticker.add((time) => {
       ctx.clearRect(0, 0, w, h);
 
-      // Warm diagonal ashrama morning sunbeam gradient
-      const rayGrad = ctx.createLinearGradient(0, 0, w * 0.85, h * 0.85);
-      rayGrad.addColorStop(0, "rgba(246, 211, 101, 0.085)");
-      rayGrad.addColorStop(0.45, "rgba(197, 155, 39, 0.03)");
+      // Atmospheric morning Ashrama sunbeam caustics (clean, zero dust motes)
+      const breath = Math.sin(time * 0.8) * 0.02;
+      const originX = w * 0.25 + (pointer.x - w * 0.5) * 0.05;
+      const originY = h * 0.1 + (pointer.y - h * 0.5) * 0.05;
+
+      const rayGrad = ctx.createRadialGradient(originX, originY, 40, originX, originY, Math.max(w, h) * 0.85);
+      rayGrad.addColorStop(0, `rgba(246, 211, 101, ${(0.075 + breath).toFixed(4)})`);
+      rayGrad.addColorStop(0.38, `rgba(197, 155, 39, ${(0.025 + breath * 0.5).toFixed(4)})`);
       rayGrad.addColorStop(1, "rgba(250, 246, 238, 0)");
       ctx.fillStyle = rayGrad;
       ctx.fillRect(0, 0, w, h);
-
-      for (const m of motes) {
-        m.phase += 0.025;
-        m.x += m.vx + Math.sin(m.phase) * 0.18;
-        m.y += m.vy;
-
-        const dx = m.x - pointer.x;
-        const dy = m.y - pointer.y;
-        const distSq = dx * dx + dy * dy;
-        if (distSq < 18000 && distSq > 1) {
-          const force = (18000 - distSq) / 18000;
-          m.x += (dx / Math.sqrt(distSq)) * force * 2.2;
-          m.y += (dy / Math.sqrt(distSq)) * force * 2.2;
-        }
-
-        if (m.y < -10) m.y = h + 10;
-        if (m.x < -10) m.x = w + 10;
-        if (m.x > w + 10) m.x = -10;
-
-        const alpha = 0.22 + 0.35 * (0.5 + 0.5 * Math.sin(time * 1.8 + m.phase));
-        ctx.beginPath();
-        ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(218, 172, 52, ${alpha.toFixed(3)})`;
-        ctx.fill();
-      }
     });
   }
 }

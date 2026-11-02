@@ -486,7 +486,7 @@ function initDeitySanctumCurtain() {
   const deityImg = curtain.querySelector('[data-deity-img]');
   const mantraEl = curtain.querySelector('[data-sanctum-mantra]');
   const pills = curtain.querySelectorAll('[data-deity-choice]');
-  const enterBtn = curtain.querySelector('[data-sanctum-enter]');
+  const enterBtns = curtain.querySelectorAll('[data-sanctum-enter]');
   const mandalaHalo = curtain.querySelector('.deity-mandala-halo');
   const radiance = curtain.querySelector('.sanctum-sun-burst');
   const invocation = curtain.querySelector('.sanctum-invocation');
@@ -531,34 +531,35 @@ function initDeitySanctumCurtain() {
       onComplete: () => {
         setTimeout(() => {
           if (!dismissed) dismissSanctum(false);
-        }, 3400);
+        }, 2200);
       }
     });
 
     gsap.set(deityImg, {
       opacity: 0,
-      scale: 0.92,
-      filter: 'brightness(0) drop-shadow(0 0 10px rgba(212, 175, 55, 0.1))'
+      scale: 0.94,
+      y: 16
     });
-    gsap.set(mandalaHalo, { opacity: 0, scale: 0.65 });
-    gsap.set(radiance, { opacity: 0, scale: 0.7 });
+    gsap.set(mandalaHalo, { opacity: 0, scale: 0.75, rotate: -15 });
+    gsap.set(radiance, { opacity: 0, scale: 0.8 });
     gsap.set(invocation, { opacity: 0, y: 16 });
-    gsap.set(pills, { opacity: 0, y: 10 });
-    gsap.set(enterBtn, { opacity: 0, scale: 0.9 });
+    gsap.set(pills, { opacity: 0, y: 12 });
+    gsap.set('.sanctum-grand-action', { opacity: 0, y: 14 });
+    gsap.set(enterBtns, { opacity: 0, scale: 0.92 });
 
     entranceTimeline
-      .to(radiance, { opacity: 0.9, scale: 1.1, duration: 1.2, ease: 'sine.out' }, 0)
-      .to(mandalaHalo, { opacity: 0.85, scale: 1, duration: 1.3, ease: 'back.out(1.2)' }, 0.15)
+      .to(radiance, { opacity: 1, scale: 1.05, duration: 1.1, ease: 'sine.out' }, 0)
+      .to(mandalaHalo, { opacity: 0.92, scale: 1, rotate: 0, duration: 1.2, ease: 'power3.out' }, 0.1)
       .to(deityImg, {
         opacity: 1,
         scale: 1,
-        filter: 'brightness(0) drop-shadow(0 0 35px rgba(212, 175, 55, 0.75)) drop-shadow(0 0 70px rgba(200, 75, 49, 0.35)) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8))',
-        duration: 1.3,
+        y: 0,
+        duration: 1.1,
         ease: 'power3.out'
-      }, 0.25)
-      .to(invocation, { opacity: 1, y: 0, duration: 0.9 }, 0.65)
-      .to(pills, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08 }, 0.85)
-      .to(enterBtn, { opacity: 1, scale: 1, duration: 0.5 }, 1.05);
+      }, 0.2)
+      .to(invocation, { opacity: 1, y: 0, duration: 0.8 }, 0.45)
+      .to(pills, { opacity: 1, y: 0, duration: 0.5, stagger: 0.06 }, 0.65)
+      .to(['.sanctum-grand-action', enterBtns], { opacity: 1, scale: 1, y: 0, duration: 0.5 }, 0.85);
   }
 
   runEntrance();
@@ -617,12 +618,24 @@ function initDeitySanctumCurtain() {
 
     if (entranceTimeline) entranceTimeline.kill();
 
+    try {
+      playTempleChime(528);
+    } catch {}
+
     curtain.style.pointerEvents = 'none';
     if (gsap) {
+      if (mandalaHalo) {
+        gsap.to(mandalaHalo, {
+          scale: 2.5,
+          opacity: 0,
+          duration: 0.55,
+          ease: 'expo.out'
+        });
+      }
       gsap.to(curtain, {
         opacity: 0,
-        scale: 1.06,
-        duration: 0.55,
+        scale: 1.05,
+        duration: 0.5,
         ease: 'power2.inOut',
         onComplete: () => {
           curtain.style.display = 'none';
@@ -648,13 +661,18 @@ function initDeitySanctumCurtain() {
     }
   }
 
-  // Dismissal triggers: enter button
-  if (enterBtn) {
-    enterBtn.addEventListener('click', (e) => {
+  // Dismissal triggers: all enter buttons (central hero + top-right)
+  enterBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
       e.stopPropagation();
       dismissSanctum(true);
     });
-  }
+  });
+
+  // Listen for arrival engine completion
+  document.addEventListener('manuscript:opened', () => {
+    if (!dismissed) dismissSanctum(false);
+  });
 
   // Click on curtain or outside controls (excluding replay button)
   document.addEventListener('click', (e) => {
