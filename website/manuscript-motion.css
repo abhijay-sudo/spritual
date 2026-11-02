@@ -1,0 +1,519 @@
+/* ==========================================================================
+   SPRITUAL.CO.IN — 120FPS 3D LIVING MANUSCRIPT ENGINE (`manuscript-motion.css`)
+   ========================================================================== */
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.65s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --ms-ivory: #FAF6EE;
+  --ms-vellum: #F2E8D5;
+  --ms-parchment-deep: #E5D7BE;
+  --ms-ink: #141210;
+  --ms-ink-soft: #4A433B;
+  --ms-gold: #C59B27;
+  --ms-gold-bright: #F6D365;
+  --ms-sindoor: #C84B31;
+  --ms-spine-dark: #1E1712;
+  --ms-book-depth: 26px;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* 1. Ambient Sunlit Ashrama Canvas & Ink-Bleed Portal Overlay */
+#ashrama-sunlight-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9990;
+}
+
+#tome-grand-portal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(250, 246, 238, 0.94), rgba(235, 223, 200, 0.98));
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9995;
+}
+
+/* 2. Progressive Blur Sticky Header & Soundscape Pill */
+header {
+  position: sticky !important;
+  top: 0;
+  z-index: 1000 !important;
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  background: linear-gradient(180deg, rgba(250, 246, 238, 0.92) 0%, rgba(250, 246, 238, 0.72) 100%) !important;
+  border-bottom: 1px solid rgba(197, 155, 39, 0.22) !important;
+  transition: padding 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+@media (max-width: 700px) {
+  header {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+
+header.header-scrolled {
+  box-shadow: 0 12px 34px -12px rgba(20, 18, 16, 0.12);
+}
+
+.ms-nav-magnetic-pill {
+  position: fixed;
+  pointer-events: none;
+  background: rgba(197, 155, 39, 0.14);
+  border: 1px solid rgba(197, 155, 39, 0.38);
+  border-radius: 999px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.ms-sound-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  background: rgba(242, 232, 213, 0.85);
+  border: 1px solid rgba(197, 155, 39, 0.4);
+  color: var(--ms-ink);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s ease;
+}
+
+.ms-sound-toggle:hover {
+  transform: scale(1.05);
+  background: rgba(197, 155, 39, 0.2);
+}
+
+/* 3. 3D Hardcover Manuscript Tome Engine (Every Card & Hero Book) */
+.tome-stage {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.tome-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(4deg) rotateY(-9deg) translateZ(0px);
+  will-change: transform;
+  cursor: pointer;
+  border-radius: 4px 14px 14px 4px;
+}
+
+.tome-cover-front {
+  position: relative;
+  z-index: 6;
+  transform-origin: 0% 50%;
+  transform-style: preserve-3d;
+  background: var(--ms-vellum);
+  border-radius: 4px 14px 14px 4px;
+  border: 1px solid rgba(197, 155, 39, 0.42);
+  box-shadow:
+    inset 7px 0 14px rgba(0, 0, 0, 0.28),
+    inset -1px 0 2px rgba(255, 238, 185, 0.6),
+    16px 24px 42px -8px rgba(20, 18, 16, 0.34);
+  overflow: hidden;
+  backface-visibility: visible;
+}
+
+/* Spine Hinge Groove */
+.tome-cover-front::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 11px;
+  width: 3px;
+  background: linear-gradient(90deg, rgba(20, 18, 16, 0.5), rgba(246, 211, 101, 0.45));
+  z-index: 12;
+  pointer-events: none;
+}
+
+/* Gold-Foil Cursor Specular Glare */
+.tome-cover-front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    550px circle at var(--glare-x, 25%) var(--glare-y, 25%),
+    rgba(246, 211, 101, 0.38),
+    rgba(200, 75, 49, 0.10) 40%,
+    transparent 72%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 11;
+}
+
+/* Left Cylindrical Book Spine */
+.tome-spine-wall {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--ms-book-depth);
+  transform-origin: left center;
+  transform: rotateY(-90deg);
+  background: linear-gradient(90deg, #16110D 0%, #2E231A 45%, #C59B27 50%, #241B14 55%, #16110D 100%);
+  border-radius: 4px 0 0 4px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Right Gilded Paper Page-Block Thickness */
+.tome-page-block {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  right: 1px;
+  width: var(--ms-book-depth);
+  transform-origin: right center;
+  transform: rotateY(90deg);
+  background: repeating-linear-gradient(
+    90deg,
+    #FAF6EE 0px,
+    #FAF6EE 2px,
+    #D6C7AE 2px,
+    #D6C7AE 3.5px
+  );
+  box-shadow: inset 0 0 10px rgba(20, 18, 16, 0.25);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Inner Vellum Flyleaves that Fan Out in 3D When Cover Opens */
+.tome-inner-leaf {
+  position: absolute;
+  inset: 6px 8px 6px 4px;
+  background: linear-gradient(100deg, #DFD2BA 0%, #FAF6EE 16%, #F3E9D7 100%);
+  border-radius: 2px 11px 11px 2px;
+  border-right: 1px solid rgba(197, 155, 39, 0.35);
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  box-shadow: 4px 0 14px rgba(20, 18, 16, 0.14);
+  pointer-events: none;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 28px;
+  overflow: hidden;
+}
+
+.tome-inner-leaf-verse {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ms-ink-soft);
+  border-left: 2px solid var(--ms-gold);
+  padding-left: 12px;
+  opacity: 0.9;
+}
+
+.tome-inner-leaf-ornament {
+  color: var(--ms-sindoor);
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+/* Back Hardcover Board */
+.tome-cover-back {
+  position: absolute;
+  inset: 2px;
+  background: var(--ms-spine-dark);
+  border-radius: 4px 14px 14px 4px;
+  transform: translateZ(calc(-1 * var(--ms-book-depth)));
+  box-shadow: 24px 36px 58px rgba(20, 18, 16, 0.46);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 4. Story Reader: Dual Mode (3D Page-Curl Book Spread vs. Living Scroll) */
+.ms-reader-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 18px 0 28px;
+  padding: 10px 16px;
+  background: rgba(242, 232, 213, 0.78);
+  border: 1px solid rgba(197, 155, 39, 0.36);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+}
+
+.ms-mode-switch-group {
+  display: inline-flex;
+  background: rgba(20, 18, 16, 0.07);
+  padding: 4px;
+  border-radius: 999px;
+  gap: 4px;
+}
+
+.ms-mode-btn {
+  border: none;
+  background: transparent;
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ms-ink-soft);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ms-mode-btn.active {
+  background: var(--ms-ivory);
+  color: var(--ms-ink);
+  box-shadow: 0 4px 12px rgba(20, 18, 16, 0.12);
+}
+
+/* Golden Spine Thread in Living Scroll Mode */
+.ms-golden-spine-track {
+  position: fixed;
+  left: 50%;
+  top: 18vh;
+  bottom: 14vh;
+  width: 2px;
+  background: rgba(197, 155, 39, 0.2);
+  z-index: 40;
+  pointer-events: none;
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .ms-golden-spine-track.active {
+    display: block;
+  }
+}
+
+.ms-golden-spine-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(180deg, var(--ms-sindoor), var(--ms-gold-bright), var(--ms-gold));
+  box-shadow: 0 0 12px rgba(197, 155, 39, 0.65);
+}
+
+.ms-spine-bead {
+  position: absolute;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  background: var(--ms-ivory);
+  border: 2px solid var(--ms-gold);
+  transform: rotate(45deg) scale(0.75);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.ms-spine-bead.active {
+  background: var(--ms-sindoor);
+  transform: rotate(45deg) scale(1.35);
+  box-shadow: 0 0 14px rgba(200, 75, 49, 0.7);
+}
+
+/* 3D Interactive Page-Curl Book Stage */
+.ms-3d-open-book-stage {
+  display: none;
+  perspective: 2600px;
+  margin: 20px auto 48px;
+  max-width: 1080px;
+  user-select: none;
+}
+
+.ms-3d-open-book-stage.active {
+  display: block;
+}
+
+.ms-book-spread {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 620px;
+  background: var(--ms-ivory);
+  border-radius: 10px;
+  border: 2px solid rgba(197, 155, 39, 0.45);
+  box-shadow:
+    0 35px 80px -15px rgba(20, 18, 16, 0.42),
+    0 0 0 8px #261D16,
+    0 0 0 10px rgba(197, 155, 39, 0.5);
+  transform-style: preserve-3d;
+}
+
+@media (max-width: 820px) {
+  .ms-book-spread {
+    grid-template-columns: 1fr;
+    min-height: 520px;
+  }
+  .ms-book-page-left {
+    display: none !important;
+  }
+}
+
+/* Center Gutter Spine Shadow */
+.ms-book-spread::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 48px;
+  margin-left: -24px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(20, 18, 16, 0.18) 42%,
+    rgba(20, 18, 16, 0.34) 50%,
+    rgba(20, 18, 16, 0.16) 58%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.ms-book-page-left,
+.ms-book-page-right {
+  position: relative;
+  padding: 38px 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: radial-gradient(circle at 50% 35%, #FAF6EE 0%, #EFE4CE 100%);
+  overflow: hidden;
+}
+
+.ms-book-page-left img {
+  width: 100%;
+  height: 390px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(197, 155, 39, 0.45);
+  box-shadow: 0 16px 36px -10px rgba(20, 18, 16, 0.3);
+}
+
+/* 3D Conical Turning Leaf Overlay */
+.ms-turning-leaf-3d {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  background: linear-gradient(90deg, #E2D4B9 0%, #FAF6EE 22%, #F3E8D3 100%);
+  box-shadow: -18px 0 38px rgba(20, 18, 16, 0.28);
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.ms-book-curl-corner {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 58px;
+  height: 58px;
+  background: linear-gradient(135deg, transparent 48%, rgba(214, 198, 170, 0.9) 50%, #FAF6EE 65%);
+  box-shadow: -6px -6px 16px rgba(20, 18, 16, 0.18);
+  border-radius: 12px 0 0 0;
+  cursor: pointer;
+  z-index: 15;
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1), height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ms-book-curl-corner:hover {
+  width: 82px;
+  height: 82px;
+}
+
+/* Silk Bookmark Ribbon on Story Scenes */
+.ms-silk-ribbon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  border-radius: 4px 4px 12px 4px;
+  background: rgba(200, 75, 49, 0.12);
+  border: 1px solid rgba(200, 75, 49, 0.38);
+  color: var(--ms-sindoor);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ms-silk-ribbon-btn.saved {
+  background: var(--ms-sindoor);
+  color: #FAF6EE;
+  box-shadow: 0 6px 16px rgba(200, 75, 49, 0.35);
+}
+
+/* 5. Quiet Moment (`/pause/`) Interactive 12-Petal Sacred Lotus Canvas */
+#ms-prana-mandala-wrap {
+  position: relative;
+  width: min(440px, 88vw);
+  height: min(440px, 88vw);
+  margin: 18px auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#ms-prana-canvas {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* 6. Word Blur-Rise Reveal & Shockwave Ring */
+.ms-word-reveal {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+.ms-bow-shockwave {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  margin-top: -20px;
+  border-radius: 50%;
+  border: 3px solid var(--ms-gold-bright);
+  box-shadow: 0 0 40px var(--ms-sindoor), inset 0 0 30px var(--ms-gold);
+  pointer-events: none;
+  z-index: 9998;
+}
