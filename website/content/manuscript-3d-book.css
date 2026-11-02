@@ -651,3 +651,904 @@
   }
 }
 
+/* =========================================================================
+   SPRITUAL — 3D SMARTPHONE APP SIMULATOR & EXPANDED SANCTUARY SECTIONS
+   ========================================================================= */
+
+.device-showcase-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  box-sizing: border-box;
+}
+
+.showcase-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+  align-items: center;
+}
+
+.sanctum-pill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(200, 75, 49, 0.08);
+  border: 1px solid rgba(200, 75, 49, 0.25);
+  color: #C84B31;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #C84B31;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+.showcase-headline {
+  font-size: clamp(2rem, 3.6vw, 2.9rem);
+  line-height: 1.18;
+  font-family: "Newsreader", "Noto Serif Devanagari", serif;
+  color: var(--ink-kohl, #141210);
+  margin: 16px 0;
+}
+
+.showcase-description {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #4A433B;
+  margin-bottom: 28px;
+}
+
+.showcase-feature-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.feature-bullet {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.bullet-icon {
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.bullet-text strong {
+  display: block;
+  font-size: 15px;
+  color: #141210;
+  margin-bottom: 2px;
+}
+
+.bullet-text p {
+  font-size: 13px;
+  color: #5A5248;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.showcase-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.showcase-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #C84B31, #A33820);
+  color: #FAF6EE !important;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 6px 20px rgba(200, 75, 49, 0.35);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.showcase-primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(200, 75, 49, 0.45);
+}
+
+.native-stores-badge {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.store-badge-pill {
+  padding: 5px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(20, 18, 16, 0.12);
+  background: rgba(243, 236, 224, 0.7);
+  font-size: 11px;
+  color: #4A433B;
+  font-weight: 600;
+}
+
+/* 3D Phone Simulator Frame */
+.simulator-stage {
+  perspective: 1600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.simulator-phone-chassis {
+  width: 310px;
+  height: 620px;
+  max-width: 90vw;
+  background: #1C1B1A;
+  border-radius: 46px;
+  padding: 10px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-8deg) rotateX(4deg);
+  box-shadow:
+    0 25px 60px -15px rgba(20, 18, 16, 0.45),
+    0 10px 25px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 2px rgba(212, 175, 55, 0.25);
+  transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.4s ease;
+  box-sizing: border-box;
+}
+
+.chassis-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: 46px;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, transparent 40%, rgba(212, 175, 55, 0.12) 100%);
+  z-index: 5;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 36px;
+  overflow: hidden;
+  background: #FAF6EE;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.phone-status-bar {
+  height: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 18px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #141210;
+  flex-shrink: 0;
+}
+
+.dynamic-island {
+  width: 74px;
+  height: 20px;
+  background: #000;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 6px;
+}
+
+.island-camera {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #111;
+  border: 1.5px solid #222;
+}
+
+.status-icons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.phone-app-viewport {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sim-screen {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  padding: 8px 14px;
+  box-sizing: border-box;
+}
+
+.sim-screen.active {
+  display: flex;
+  animation: simFade 0.3s ease-out;
+}
+
+.app-screen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(20, 18, 16, 0.08);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+.app-brand-mark {
+  font-family: "Newsreader", serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #C84B31;
+}
+
+.app-header-date {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #7A7064;
+}
+
+.sim-card-illumination {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sim-art-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+
+.sim-card-overlay {
+  padding: 10px;
+  background: #F3ECE0;
+  flex: 1;
+}
+
+.sim-tag {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #C84B31;
+  font-weight: 700;
+  display: block;
+}
+
+.sim-story-title {
+  font-family: "Newsreader", serif;
+  font-size: 15px;
+  color: #141210;
+  margin: 3px 0;
+}
+
+.sim-story-dek {
+  font-size: 11px;
+  color: #5A5248;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.sim-today-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0 0;
+}
+
+.sim-time-badge {
+  font-size: 10px;
+  font-weight: 600;
+  color: #7A7064;
+}
+
+.sim-card-action {
+  font-size: 11px;
+  font-weight: 700;
+  color: #C84B31;
+  text-decoration: none;
+}
+
+/* Japa Mala Screen */
+.sim-japa-stage {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 8px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.japa-bead-halo {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed rgba(212, 175, 55, 0.4);
+}
+
+.japa-bead-pip {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #D4AF37;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: rotate(var(--bead-angle)) translate(74px) rotate(calc(-1 * var(--bead-angle)));
+}
+
+.japa-counter-core {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #F3ECE0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.japa-mantra-glyph {
+  font-size: 18px;
+  color: #C84B31;
+}
+
+.japa-count-display {
+  font-size: 20px;
+  font-weight: 700;
+  color: #141210;
+}
+
+.japa-total-label {
+  font-size: 9px;
+  color: #7A7064;
+}
+
+.japa-active-mantra {
+  text-align: center;
+  font-size: 12px;
+  color: #4A433B;
+  margin: 4px 0 8px;
+}
+
+.sim-japa-tap-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #F3ECE0, #E8DEC9);
+  border: 1.5px solid #D4AF37;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 0 auto;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.sim-japa-tap-btn:active {
+  transform: scale(0.96);
+  background: #FFEAA0;
+}
+
+.sim-japa-tap-btn span {
+  font-size: 12px;
+  font-weight: 700;
+  color: #141210;
+}
+
+.sim-japa-tap-btn small {
+  font-size: 9px;
+  color: #7A7064;
+}
+
+/* Prana Screen */
+.sim-prana-stage {
+  width: 160px;
+  height: 160px;
+  margin: 10px auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sim-breath-flower {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: breathCycle 12s infinite ease-in-out;
+}
+
+.breath-petal {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 75, 49, 0.25) 0%, transparent 70%);
+}
+
+.breath-petal:nth-child(1) { transform: translateY(-24px); }
+.breath-petal:nth-child(2) { transform: translateX(24px); }
+.breath-petal:nth-child(3) { transform: translateY(24px); }
+.breath-petal:nth-child(4) { transform: translateX(-24px); }
+
+.sim-breath-center {
+  z-index: 2;
+  text-align: center;
+}
+
+.sim-breath-phase-text {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #C84B31;
+}
+
+.sim-breath-timer {
+  font-size: 18px;
+  font-weight: 700;
+  color: #141210;
+}
+
+.sim-prana-instruction {
+  text-align: center;
+  font-size: 11px;
+  color: #7A7064;
+  margin-top: 6px;
+}
+
+/* Phone App Dock */
+.phone-app-dock {
+  height: 48px;
+  background: rgba(243, 236, 224, 0.95);
+  border-top: 1px solid rgba(20, 18, 16, 0.08);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.phone-dock-item {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  font-size: 9px;
+  color: #7A7064;
+  transition: color 0.2s;
+  padding: 4px 8px;
+}
+
+.phone-dock-item.active {
+  color: #C84B31;
+  font-weight: 700;
+}
+
+.phone-dock-item .dock-icon {
+  font-size: 14px;
+}
+
+.phone-home-indicator {
+  width: 100px;
+  height: 4px;
+  background: #141210;
+  border-radius: 2px;
+  margin: 4px auto 3px;
+  flex-shrink: 0;
+}
+
+/* Sacred Mantra Marquee */
+.sacred-mantra-marquee {
+  background: #F3ECE0;
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 14px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 15px;
+  color: #8B6508;
+  letter-spacing: 0.5px;
+  margin: 20px 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: fit-content;
+  animation: marqueeMove 32s linear infinite;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-right: 24px;
+}
+
+.marquee-sep {
+  color: #C84B31;
+  font-size: 12px;
+}
+
+/* Character Relational Atlas */
+.character-atlas-section {
+  padding: 80px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.constellation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.constellation-card {
+  background: #F3ECE0;
+  border: 1px solid rgba(20, 18, 16, 0.09);
+  border-radius: 18px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.constellation-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 16px 36px -10px rgba(212, 175, 55, 0.25);
+}
+
+.constellation-avatar-frame {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 14px;
+  border: 2.5px solid #D4AF37;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.constellation-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.constellation-archetype {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #C84B31;
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.constellation-name {
+  font-family: "Newsreader", "Noto Serif Devanagari", serif;
+  font-size: 20px;
+  color: #141210;
+  margin: 0 0 6px;
+}
+
+.constellation-virtue {
+  font-size: 13px;
+  color: #5A5248;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+.constellation-quote-pill {
+  font-size: 12px;
+  background: rgba(200, 75, 49, 0.08);
+  color: #C84B31;
+  border-radius: 12px;
+  padding: 4px 12px;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+.constellation-link {
+  font-size: 13px;
+  font-weight: 700;
+  color: #141210;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+}
+
+.constellation-link:hover {
+  color: #C84B31;
+}
+
+/* Scholarly Sanskrit Provenance */
+.scholarly-sanatan-section {
+  padding: 60px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.scholarly-parchment-card {
+  background: #F3ECE0;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 16px;
+  padding: 40px 32px;
+  position: relative;
+  box-shadow: inset 0 0 0 4px #FAF6EE, inset 0 0 0 5px rgba(212, 175, 55, 0.3), 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.parchment-corner {
+  position: absolute;
+  font-size: 18px;
+  color: #C84B31;
+  pointer-events: none;
+}
+
+.parchment-corner.top-left { top: 12px; left: 14px; }
+.parchment-corner.top-right { top: 12px; right: 14px; }
+.parchment-corner.bottom-left { bottom: 12px; left: 14px; }
+.parchment-corner.bottom-right { bottom: 12px; right: 14px; }
+
+.scholarly-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.scholarly-seal {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: #C84B31;
+  color: #FAF6EE;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.sacred-shloka-box {
+  background: #FAF6EE;
+  border-radius: 12px;
+  padding: 28px 24px;
+  border: 1px solid rgba(20, 18, 16, 0.08);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.shloka-devanagari {
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  line-height: 1.8;
+  color: #141210;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.shloka-iast {
+  font-size: 13px;
+  font-style: italic;
+  color: #6A6052;
+  margin: 0 0 20px;
+}
+
+.sandhi-breakdown-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px 0 24px;
+}
+
+.sandhi-pill {
+  background: #F3ECE0;
+  border: 1px solid rgba(20, 18, 16, 0.1);
+  border-radius: 8px;
+  padding: 4px 10px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.sandhi-pill:hover {
+  transform: translateY(-2px);
+  border-color: #D4AF37;
+}
+
+.sandhi-root {
+  font-size: 12px;
+  font-weight: 700;
+  color: #141210;
+}
+
+.sandhi-meaning {
+  font-size: 10px;
+  color: #7A7064;
+}
+
+.shloka-translation {
+  font-size: 15px;
+  font-style: italic;
+  color: #3A352F;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto 10px;
+}
+
+.shloka-citation {
+  font-size: 12px;
+  font-weight: 600;
+  color: #7A7064;
+  display: block;
+}
+
+.scholarly-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.pillar-card {
+  background: #FAF6EE;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(20, 18, 16, 0.06);
+}
+
+.pillar-glyph {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.pillar-card h3 {
+  font-size: 15px;
+  color: #141210;
+  margin: 0 0 6px;
+}
+
+.pillar-card p {
+  font-size: 12px;
+  color: #5A5248;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Editorial Manifesto */
+.editorial-manifesto-section {
+  padding: 60px 24px 80px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.manifesto-card {
+  background: #F3ECE0;
+  border: 1px solid rgba(20, 18, 16, 0.08);
+  border-radius: 20px;
+  padding: 44px 32px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.03);
+}
+
+.manifesto-card h2 {
+  font-family: "Newsreader", serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: #141210;
+  margin: 8px 0 16px;
+}
+
+.manifesto-body p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4A433B;
+  margin-bottom: 28px;
+}
+
+.manifesto-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.mstat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mstat-num {
+  font-family: "Newsreader", serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #C84B31;
+}
+
+.mstat-label {
+  font-size: 12px;
+  color: #7A7064;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 820px) {
+  .showcase-content-grid {
+    grid-template-columns: 1fr;
+  }
+  .simulator-stage {
+    margin-top: 24px;
+  }
+  .simulator-phone-chassis {
+    transform: none !important;
+  }
+}
+
+/* Keyframes */
+@keyframes marqueeMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+@keyframes breathCycle {
+  0%, 100% { transform: scale(0.85); }
+  33% { transform: scale(1.18); }
+  50% { transform: scale(1.18); }
+  100% { transform: scale(0.85); }
+}
+
+@keyframes simFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+

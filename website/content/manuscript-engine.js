@@ -810,6 +810,80 @@ function initTypographyAndFleurons() {
 }
 
 // =========================================================================
+// 7. INTERACTIVE 3D SMARTPHONE SIMULATOR & RELATIONAL CONSTELLATION
+// =========================================================================
+function initDeviceSimulator() {
+  const chassis = document.querySelector('[data-phone-chassis]');
+  const stage = document.querySelector('.simulator-stage');
+  const dockItems = document.querySelectorAll('.phone-dock-item');
+  const screens = document.querySelectorAll('.sim-screen');
+  const japaBtn = document.querySelector('[data-sim-japa-btn]');
+  const japaDisplay = document.querySelector('[data-sim-japa-count]');
+  const beadPips = document.querySelectorAll('.japa-bead-pip');
+
+  if (!chassis) return;
+
+  // A. Dock Tab Switching
+  dockItems.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.simTab;
+      if (!target) return;
+
+      dockItems.forEach(b => b.classList.toggle('active', b === btn));
+      screens.forEach((screen) => {
+        screen.classList.toggle('active', screen.dataset.simScreen === target);
+      });
+      playPageRustle();
+    });
+  });
+
+  // B. 108 Tactile Japa Mala Tap
+  let currentJapa = 1;
+  if (japaBtn && japaDisplay) {
+    japaBtn.addEventListener('click', () => {
+      currentJapa = (currentJapa % 108) + 1;
+      japaDisplay.textContent = String(currentJapa).padStart(3, '0');
+      playTempleChime();
+
+      // Highlight active bead in halo
+      if (beadPips.length > 0) {
+        const activeIdx = (currentJapa - 1) % beadPips.length;
+        beadPips.forEach((pip, idx) => {
+          pip.style.background = idx === activeIdx ? '#C84B31' : '#D4AF37';
+          pip.style.transform = idx === activeIdx ? `rotate(${idx * 15}deg) translate(74px) scale(1.6)` : `rotate(${idx * 15}deg) translate(74px) scale(1)`;
+        });
+      }
+    });
+  }
+
+  // C. Interactive 3D Perspective Tilt on Desktop
+  if (stage && !reducedMotion.matches) {
+    stage.addEventListener('pointermove', (e) => {
+      const rect = stage.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width - 0.5;
+      const py = (e.clientY - rect.top) / rect.height - 0.5;
+      chassis.style.transform = `rotateY(${px * 24}deg) rotateX(${-py * 16}deg) translateZ(10px)`;
+    });
+
+    stage.addEventListener('pointerleave', () => {
+      chassis.style.transform = 'rotateY(-8deg) rotateX(4deg) translateZ(0)';
+    });
+  }
+}
+
+function initCharacterConstellation() {
+  const cards = document.querySelectorAll('.constellation-card');
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    card.addEventListener('pointerenter', () => {
+      if (reducedMotion.matches) return;
+      card.style.borderColor = '#D4AF37';
+    });
+  });
+}
+
+// =========================================================================
 // INITIALIZE ON DOM READY & AFTER NAVIGATION
 // =========================================================================
 function initAll() {
@@ -819,6 +893,8 @@ function initAll() {
   initDeitySanctumCurtain();
   initFlipValueFilter();
   initTypographyAndFleurons();
+  initDeviceSimulator();
+  initCharacterConstellation();
 }
 
 if (typeof document !== 'undefined') {
