@@ -1,0 +1,40 @@
+import {test,expect} from '@playwright/test';
+import {mkdir} from 'node:fs/promises';
+const route='/books/read/knowing-how-to-stop/';
+const evidence='docs/qa/book-motion-2026-10-25';
+for(const width of [320,390,768,1440])test(`paper opening and reversible turns fit ${width}px`,async({page})=>{
+ await mkdir(evidence,{recursive:true});await page.setViewportSize({width,height:900});
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(route);await expect(page.locator('.turn-sheet')).toHaveCount(1);
+ await expect(page.locator('.turn-sheet')).toHaveAttribute('aria-hidden','true');
+ await page.evaluate(()=>document.querySelector('.turn-sheet')?.getAnimations().forEach(a=>{a.pause();a.currentTime=260;}));
+ await page.screenshot({path:`${evidence}/opening-${width}.png`});
+ await page.locator('[data-leaf-step="1"]').click();
+ await expect(page.locator('[data-page-position]')).toHaveText('Page 2 of 3');
+ await expect(page.locator('[data-folio]:visible')).toHaveCount(1);
+ await expect(page.locator('.turn-sheet [id],.turn-sheet [data-folio]')).toHaveCount(0);
+ expect(await page.locator('.turn-sheet').evaluate((e:HTMLElement)=>e.inert)).toBe(true);
+ await page.evaluate(()=>document.querySelector('.turn-sheet')?.getAnimations().forEach(a=>{a.pause();a.currentTime=210;}));
+ await page.screenshot({path:`${evidence}/turn-${width}.png`});
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await page.locator('[data-leaf-step="-1"]').click();await expect(page.locator('[data-page-position]')).toHaveText('Page 1 of 3');
+ await expect(page.locator('.turn-sheet')).toHaveCount(0);expect(errors).toEqual([]);
+});
+test('rapid turns, resize, preferences and deep links leave no stale paper',async({page})=>{
+ await page.goto(route+'#after-the-gift');await expect(page.locator('.turn-sheet')).toHaveCount(0);
+ await page.evaluate(()=>{for(let i=0;i<15;i++)document.querySelector<HTMLButtonElement>(`[data-leaf-step="${i%2?-1:1}"]`)!.click();});
+ await expect(page.locator('[data-page-position]')).toHaveText('Page 2 of 3');await expect(page.locator('[data-folio]:visible')).toHaveCount(1);await expect(page.locator('.turn-sheet')).toHaveCount(1);
+ await page.setViewportSize({width:700,height:900});await expect(page.locator('.turn-sheet')).toHaveCount(0);
+ await page.locator('[data-leaf-step="1"]').click();await page.emulateMedia({reducedMotion:'reduce'});await expect(page.locator('.turn-sheet')).toHaveCount(0);
+ await page.locator('[data-leaf-step="-1"]').click();await expect(page.locator('.turn-sheet')).toHaveCount(0);
+ await page.getByRole('link',{name:'Read in Hindi',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('lang','hi');await expect(page.locator('.turn-sheet')).toHaveCount(0);
+});
+test('touch swipe turns a page, while vertical movement and selected text do not',async({page})=>{
+ await page.goto(route+'#after-the-gift');
+ const gesture=async(dx:number,dy:number)=>page.locator('.book-leaves').evaluate((leaf,{dx,dy})=>{leaf.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,pointerType:'touch',pointerId:1,isPrimary:true,clientX:250,clientY:200}));leaf.dispatchEvent(new PointerEvent('pointerup',{bubbles:true,pointerType:'touch',pointerId:1,isPrimary:true,clientX:250+dx,clientY:200+dy}));},{dx,dy});
+ await gesture(-20,120);await expect(page.locator('[data-page-position]')).toHaveText('Page 1 of 3');
+ await gesture(-100,10);await expect(page.locator('[data-page-position]')).toHaveText('Page 2 of 3');
+ await gesture(100,5);await expect(page.locator('[data-page-position]')).toHaveText('Page 1 of 3');
+ await page.locator('[data-folio]:visible p').first().evaluate(p=>{const r=document.createRange();r.selectNodeContents(p);getSelection()!.removeAllRanges();getSelection()!.addRange(r);});
+ await gesture(-100,0);await expect(page.locator('[data-page-position]')).toHaveText('Page 1 of 3');
+});

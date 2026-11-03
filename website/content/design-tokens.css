@@ -1,0 +1,94 @@
+/**
+ * Spritual — The Living Manuscript: High-Contrast Sunlit Manuscript Design Tokens
+ * 120fps Editorial Aesthetic calibrated for light-first tactile reading.
+ */
+
+:root {
+  /* Surface & Canvas Tokens */
+  --bg-canvas: #FAF6EE;
+  --bg-surface: #F3ECE0;
+  --bg-surface-elevated: #EFE6D8;
+  --bg-glass: rgba(250, 246, 238, 0.82);
+  --bg-glass-card: rgba(243, 236, 224, 0.75);
+
+  /* Deep Kohl & Editorial Ink Tokens (WCAG AAA) */
+  --ink-primary: #141210;
+  --ink-secondary: #4A433B;
+  --ink-muted: #7A7064;
+  --ink-faint: rgba(20, 18, 16, 0.25);
+
+  /* Sacred Pigment Accents */
+  --accent-sindoor: #C84B31;
+  --accent-sindoor-glow: rgba(200, 75, 49, 0.18);
+  --accent-gold: #B8860B;
+  --accent-gold-sheen: #D4AF37;
+  --accent-gold-glow: rgba(212, 175, 55, 0.22);
+  --accent-forest: #1E332E;
+  --accent-forest-soft: rgba(30, 51, 46, 0.08);
+
+  /* Borders & Hairlines */
+  --border-hairline: rgba(20, 18, 16, 0.09);
+  --border-subtle: rgba(20, 18, 16, 0.14);
+  --border-gold: rgba(184, 134, 11, 0.32);
+
+  /* Measure & Typography Settings */
+  --measure-prose: 62ch;
+  --line-height-prose: 1.75;
+  --read-size: 20px;
+
+  /* Spring Physics Timings (GPU Transform / Opacity) */
+  --spring-manuscript: cubic-bezier(0.22, 1, 0.36, 1);
+  --spring-silk: cubic-bezier(0.16, 1, 0.3, 1);
+  --spring-prana: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Paper Tone 2: Warm Palm Leaf */
+[data-paper-tone="palm-leaf"] {
+  --bg-canvas: #F2E8D5;
+  --bg-surface: #E8DCC6;
+  --bg-glass: rgba(242, 232, 213, 0.85);
+  --ink-primary: #181410;
+  --ink-secondary: #4E4234;
+  --ink-muted: #7D6E5C;
+  --border-hairline: rgba(24, 20, 16, 0.11);
+}
+
+/* Paper Tone 3: Twilight Ashrama (Night Readers) */
+[data-paper-tone="twilight"],
+body[data-page-theme="evening"] {
+  --bg-canvas: #181614;
+  --bg-surface: #221F1B;
+  --bg-surface-elevated: #2C2823;
+  --bg-glass: rgba(24, 22, 20, 0.88);
+  --ink-primary: #FAF6EE;
+  --ink-secondary: #D4CCC0;
+  --ink-muted: #9E9484;
+  --ink-faint: rgba(250, 246, 238, 0.2);
+  --border-hairline: rgba(250, 246, 238, 0.12);
+  --border-subtle: rgba(250, 246, 238, 0.18);
+  --accent-forest: #3E5E54;
+}
+
+/* Global Token Application */
+body {
+  background-color: var(--bg-canvas) !important;
+  color: var(--ink-primary) !important;
+  transition: background-color 300ms var(--spring-silk), color 300ms var(--spring-silk);
+}
+
+.folio-prose,
+.manuscript-page-text p {
+  max-width: var(--measure-prose);
+  line-height: var(--line-height-prose);
+  font-size: var(--read-size);
+}
+
+.tabular,
+.folio-number,
+.pill,
+.scene-dots button,
+time,
+[data-page-position],
+[data-daily-position] {
+  font-variant-numeric: tabular-nums;
+}

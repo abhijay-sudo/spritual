@@ -1,0 +1,6 @@
+verify	Run node website/build.mjs	2026-10-19T19:33:38.2831909Z Built 242 public pages + 404.
+verify	Run node --test website/tests/*.test.mjs	2026-10-19T19:33:39.3968302Z # tests 58
+verify	Run node --test website/tests/*.test.mjs	2026-10-19T19:33:39.3968923Z # pass 58
+verify	Run npx playwright test --config website/playwright.config.ts	2026-10-19T19:40:15.9995710Z   151 passed (6.3m)
+verify	Run node --test website/tests/public-projection.test.mjs	2026-10-19T19:40:16.4519501Z # tests 3
+verify	Run node --test website/tests/public-projection.test.mjs	2026-10-19T19:40:16.4532237Z # pass 3

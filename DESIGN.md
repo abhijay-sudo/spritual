@@ -1,3 +1,154 @@
+## Collection-first homepage and bookshelf — 27 October 2026
+
+The entry journey is now **choose a book → see its contents → open a chapter → return to those contents**. This supersedes the mixed short-story dialog as the homepage's discovery path. A filter-only patch was considered; separate native contents routes make each collection's scope and order clearer, survive JavaScript failure and retain shareable URLs. The complete existing story index remains at `/books/stories/` in both languages.
+
+Preserve the sunrise logo, paper/forest/brass palette and established Fraunces/Manrope/Tiro. The open-book hero and Ramayana cover link straight to `#chapters`, avoiding a second hero before the chapter list; four illustrated cloth covers distinguish Ramayana, Krishna, Shiva and Dhruva. Desktop uses four covers; phone uses an intentional two-column shelf. Each cover shows its actual available chapter count. The local Ramayana preview has 28 chapters; ordinary public output contains the ten established journey retellings plus three related moments. Krishna, Shiva and Dhruva each contain one existing short chapter, not a fabricated complete corpus. Story prose and art are unchanged.
+
+Reuse the existing fullscreen single-portrait → opening-book → welcome → hero handoff on `/`, `/books/` and `/hi/books/`. It runs on eligible visits, with immediate Enter/Escape/scroll exit, deep-link and reduced-motion bypass, and media-failure recovery. Chapter contents and readers never start this welcome. Replaying with reduced motion shows a static dismissible welcome.
+
+Cover entrance: first intersection, opacity .35→1 and translateY 20→0, 480ms with up to 180ms stagger; clarifies the shelf's sequence without withholding links. Hover/keyboard focus: cover rotates −9° and lifts 7px over 420ms; active press settles to −3°/−2px. Reduced motion removes both effects, and page hide cancels active entrance effects. Existing 580ms reader paper turns are unchanged. Responsive images remain deferred until near the viewport, with native no-JavaScript images.
+
+Evidence and current limitations: `docs/qa/collection-home-2026-10-27/README.md`. No new content rights, billing, app-store availability or deployment is implied.
+
+## Continuous illustrated book — 27 October 2026
+
+Cross-browser release QA found WebKit displaying the wrong mirrored backface during the 3D turn. Preserve the 580ms hinge and native semantics, but explicitly cull the two faces at the calculated 90-degree boundary with synchronized native visibility effects. Keep transforms on the sheet, never animate its opacity, and cancel the face effects with the parent on interruption. Forward and backward paused frames plus a rendered-pixel comparison guard this; CSS backface declarations alone are insufficient evidence. No user-agent sniffing, added library or per-frame JavaScript is needed.
+
+The local Ramayana edition now has 28 connected bilingual chapters, 112 scenes and 40 plates. Preserve the existing brand, manuscript palette, logo and fonts. Additions remain an abridgement through the return in Yuddha Kanda, with exact publication review pending.
+
+Chose a native duplex paper hinge over a canvas/WebGL page-flip package: the existing semantic reader retains selectable text, native scrolling, keyboard access and no-JavaScript recovery. A page-step triggers a 580ms 0→−180° turn (reverse on back), easing `cubic-bezier(.32,.06,.24,1)`. A title-bearing cloth cover opens in 660ms only on a fresh chapter without a deep link. The reverse face matches the facing illustration on two-leaf desktop layouts; narrow layouts use a restrained printer’s imprint. Fold lighting and a shallow cast shadow explain depth. Typography stays identical during the turn. Rapid input, resize, hidden document and dialogs remove the decorative layer; content changes immediately. Reduced motion and explicit motion off remove the effect entirely.
+
+Fine low-contrast fibres, a shallow binding gutter and layered fore-edges add paper character without moving prose. Scene motion retains the finite 26 October contract below. Native adjacent chapter links replace disabled end buttons where another chapter exists, and the contents lists the full edition. Previous chapter enters its last page. Text size/evening paper are explicit session preferences; no inferred progress tracking is introduced. Long text remains scrollable, not truncated to fixed sheets.
+
+See `website/collections/ramayana/README.md` and `docs/qa/ramayana-collection-2026-10-27/README.md`. No homepage opening, pricing, backend or production state change is part of this refinement.
+
+## Semi-animated Ramayana — 26 October 2026
+
+The new collection is an editorial local preview, not a public catalogue expansion. Preserve sunrise logo, paper/forest/brass and Fraunces/Manrope/Tiro. Its path is collection → chapter → four scenes → next chapter, with explicit local bookmarks and source access throughout. The first chapter is now called “The story begins”; old public prose and URLs remain intact.
+
+Considered a static illustrated anthology and a heavier video/character-animation system. Selected original bilingual prose plus responsive paintings and native Web Animations: it gives each scene atmosphere without network providers, narration rights, a new rendering framework or delayed reading. Thirty-four plates support 88 passages; repeated chapter plates remain labelled honestly. No claim of 88 unique animated scenes.
+
+Desktop uses a painted left leaf and calm reading right leaf. Tablet uses a two-column frontispiece above the prose; phone keeps its illustration visible and groups its controls in one row. The catalogue uses a single illustrated volume and six chronological indexes, not repeated feature tiles. Content notes use native disclosure; source notes and next-chapter action work without JavaScript.
+
+Motion: entering a loaded visible scene triggers a finite 7.6s camera move (4.5% scale range), 5.4s light pass and, on ocean/river scenes, two 3.4s water-light cycles. Changing scenes gives a 280ms image crossfade and existing 480ms paper turn; prose updates immediately. Effects pause offscreen, in a hidden document or behind a dialog; rapid input cancels old layers. Motion off is remembered only for the session, via explicit choice. Reduced motion and absent animation APIs yield still pictures. No looping character gesture, flashing fire, scroll hijacking or reading-progress inference.
+
+Original prose, Hindi, episode references, sensitive passages and iconography still require named exact-version human review. See `website/collections/ramayana/README.md` and `docs/qa/ramayana-collection-2026-10-26/README.md`. This direction does not change the homepage welcome or publish the collection.
+
+## Illustrated book reference — 25 October 2026
+
+The owner selected an open-book, cloth-bound library reference. Homepage primary action remains Find your story → a source-linked preview → the actual bilingual book. Preserve the sunrise logo, original six stories and all reading/storage behavior.
+
+Implement the reference as a real open-book hero, centred desktop brand, six individually coloured cloth-bound story covers, and a forest-green featured reading invitation. On phones, stack the hero deliberately and use a native swipe shelf with the next cover visible. The six books represent the six available stories, not complete scripture editions. The reference's storyboard is animation direction, not a visitor-facing section; preserve the eight single-portrait opening without faint names or circular framing.
+
+New open-book art is a generated presentation of the existing forest-journey illustration, recorded in website/app-introduction/edition-assets/manifest.json. It depicts Rama and Lakshmana with Vishvamitra. It is not an archival manuscript. Three compressed WebP sizes are hash-checked by the dependency-free publisher. Preserve the immutable imported Site and original art manifest.
+
+Motion: existing section arrivals remain 560ms and do not gate content; book covers lift 6px and turn 7deg on hover/focus over 350ms. Reduced motion removes the transformation and retains focus outlines. Native swipe and navigation remain immediate. No new tracking, billing or app release.
+
+## 25 October — one portrait, one moment
+
+The owner rejected the paired-deity design. The opening now uses eight centred, non-overlapping 420ms portrait windows, followed by a 560ms welcome and 220ms exit (4.14s total). Opacity and small vertical/scale movement share one browser timeline. No circular framing, paired silhouettes, particles or new dependencies. Keep the immediate Enter/Escape/touch-scroll exit, reduced-motion bypass, every-eligible-visit behaviour and cold-load failure recovery.
+
+Considered a minimal restoration and a larger cinematic procession. Selected the procession with the existing provenance-recorded portraits: it restores the owner's single-figure requirement without adding media weight. Source-size-aware selection and a 600px desktop cap prevent upscaling the smallest selected portrait. Portraits are generated illustrations, not native 4K or scholarly-approved iconography.
+
+Homepage direction: an illustrated volume. Preserve sunrise logo, paper/forest/brass and Fraunces/Manrope/Tiro. A wider panorama, binding crease, layered paper edges and balanced title replace the tall framed painting; book-like story covers align on one shelf. The first narrative invitation now enters the existing bow-at-Mithila story. All book prose, source notes, consented saved places and honest app availability survive. Typography stays readable at 320px; reading screens remain calm. The concept image was exploratory only; its invented catalogue labels and alternate logo were not imported.
+
+Commercial strategy and new story drafts live only in the development checkout under `docs/product/`; these are not public prices or content approvals. Website release does not enable payments or deploy the app.
+
+# Spritual — active design directions
+
+## Faster illustrated welcome and honest reading journey — 24 October 2026 (current)
+
+The owner requested less sluggishness, a broader deity opening and stronger confidence in the website. Preserve the accepted paper/forest/brass palette, sunrise logo, Fraunces/Manrope/Tiro, illustrations, existing story prose and routes. The simpler option was to shorten the four-portrait slideshow; the selected approach shows **eight individual portraits across four spatially separate spreads in 2.8 seconds**, preserving the short arrival while broadening representation. Ganesha/Lakshmi, Rama/Hanuman, Shiva/Durga and Krishna/Saraswati are editorial arrangements, not assertions of religious relationships. No circles, halos, particles or new animation dependency.
+
+Each spread lasts 500ms: the second portrait follows by 35ms, each enters in 190ms with a bounded 18px lateral/10px vertical movement, then leaves over 90ms. The welcome begins at 2020ms, settles over 300ms, and dissolves at 2580–2800ms. All 27 effects share one document timeline and animate opacity/transform only. Every eligible homepage visit remains enabled; immediate Enter/Escape/scroll/swipe, reduced motion, history races and deep links retain their behavior. Unfinished image downloads now stop at the 900ms deadline or early interaction instead of competing with the homepage after playback is abandoned.
+
+Performance is part of the art direction: responsive delivery preserves source crops, offscreen imagery loads near its viewport, and the phone preview initializes on approach or explicit interaction. Shared Fraunces uses one URL across homepage and books. Remove unused scroll geometry work and the persistent header blur. Source files remain checksum-pinned; generated delivery derivatives do not change editorial artwork.
+
+The story dialog now prioritizes **Continue reading** into its actual English/Hindi book. Availability offers the real bookshelf, while the app remains explicitly coming soon. About, Privacy and Corrections explain the usable product and browser-local keeps. No price, live subscription, endorsement, user count or conversion improvement is invented. Visitor text changes are deliberate corrections to the available journey, not story-prose changes.
+
+Acceptance: native no-JS reading remains accessible; all eight assets fit the existing 1.5MB largest-variant budget; mobile initial images decrease; no overflow at 320/390/768/1440; English/Hindi source-to-book and kept-page recovery work; reduced motion and rapid repeated inputs cancel cleanly. Evidence and qualified measurements: `docs/qa/site-polish-2026-10-24/README.md`.
+
+
+## Every-visit welcome motion — 24 October 2026 (current)
+
+Play on every eligible homepage navigation, refresh and unanchored history return. Ignore old seen flags and make no welcome storage reads/writes. Section deep links, reduced motion, early interaction, hidden pages and media failure still leave the intended content accessible; ordinary tab refocus does not restart it. `pageshow.persisted` covers cache restoration, while fresh documents start once.
+
+The accepted portrait composition, logo, copy, fonts and 3.4-second sequence remain. All fifteen native WAAPI effects are scheduled at one document-timeline origin before playback. Figure opacity/position, image drift, captions, passing daylight, welcome and the final fade use transform/opacity only. The opening fades in over 120ms; the final fade remains 300ms. Later timers update observational state labels and close the native dialog; they do not construct or restart visual effects. This keeps scene timing coherent when the main thread is busy. Cancellation clears timers and all effects immediately. Evidence: `docs/qa/welcome-every-visit-2026-10-24/README.md`.
+
+## Unframed portrait refinement — 24 October 2026 (art direction retained)
+
+The owner rejected circular framing and soft art. Remove the arch and curved horizon entirely. Individual forest/gold portraits replace the four-up sprite; do not reintroduce circular crops or a halo. The selected source is a detailed engraved/miniature style with natural anatomy and transparent edges. Keep the original logo, fonts, palette, copy and routes.
+
+The built-in generator returned 941×1672 masters despite a 4K request; never label these native 4K. `website/welcome-preview/release.json` records all four masters and twelve downscaled/full-resolution WebP variants. Source PNGs stay out of public output. The browser selects one size per figure and waits for all four within a shared 900ms deadline. Any failure leaves the homepage usable. Portraits cap at 800 CSS pixels high; inspect high-density and 3840px layouts without claiming new source detail.
+
+Motion: 560ms figure beats, 100ms exit, 20ms gap, 220ms arrival (first 260ms), finite portrait drift/1.025 scale and 65ms-delayed captions. Soft linear daylight passes once; no rings or ambient loops. Welcome enters at 2.36s with a 400ms gentle settle, then dissolves from 3.1s to 3.4s. All movement cancels on immediate exit, hidden page, navigation or changed motion preference. Reduced motion bypasses automatically; explicit replay remains static. Evidence and comparison ledger: `docs/qa/welcome-portraits-2026-10-24/README.md`.
+
+## Fullscreen welcome — 24 October 2026 (previous ring version, superseded above)
+
+The owner authorized Chrome mobile/desktop QA and publication of the finished existing deity opening. A small center-stage montage was visually inspected and rejected as too static. The selected refinement uses large Rama → Shiva → Krishna → Hanuman illustrations, oversized but decorative Devanagari names, a fine full-height arch and finite warm light movement. It resolves into the unchanged sunrise mark and “Welcome to Spritual”, then reveals the actual homepage. Paper/forest/brass and the existing Fraunces/Manrope/Tiro remain. No new artwork subject, provider, audio, framework or animation dependency.
+
+`website/welcome-preview/` retains its original folder name but now supplies the ordinary public homepage too. `node website/build.mjs --welcome-preview` remains a loopback-only study output on port 4194; normal `node website/build.mjs` produces the authorized public opening. Editorial/Sanatan/app gates remain independent. `release.json` pins the exact 397kB WebP to the owner's current release instruction; no scholarly or iconographic review is claimed. See `website/welcome-preview/ARTWORK.md`.
+
+| Trigger | Motion | Purpose and alternative |
+| --- | --- | --- |
+| First eligible session visit | Four 460ms beats; 90ms exit, clear interval, 180ms arrival (first: 220ms); bounded portrait scale | Recognisable distinct figures without intentional overlap; Enter/Escape always immediate |
+| Opening | Background light settles once over 2.64s; arch draws in 650ms | Give the whole viewport depth; no perpetual loops |
+| 1.94s | Welcome enters in 320ms and holds; arch expands gently | Resolve into the actual brand |
+| 2.64s | 300ms unfiltered dissolve | Complete configured sequence in 2.94s |
+| Reduced motion, deep link, returning tab or early interaction | Automatic opening bypassed | Reading remains immediately available |
+| Explicit replay with reduced motion | Static welcome and same Enter control | No movement or automatic dismissal |
+
+A native dialog covers the viewport, without taking over the browser's fullscreen mode. Finite timers/animations cancel on exit, navigation, hidden tab and changed motion preference. Stale layers are hidden if timers arrive late. Keep the 900ms asset deadline, storage-denial bypass, focus restoration, truthful app availability and native no-JavaScript story journey. Deliberate wheel or vertical swipe input dismisses immediately without simulating scrolling; subsequent native scrolling remains untouched. Replay is available in the footer. No subscription conversion claim follows from this work. QA evidence: `docs/qa/welcome-2026-10-24/README.md`; initial study evidence is historical.
+
+
+## Current public website — 23 October 2026
+
+The owner requested a premium website revamp with scroll animation and a clearer path toward the app. This supersedes the 19 October pixel-equality requirement for `/`; the original retrieved Site remains checksum-pinned, unmodified provenance. The active publishing adaptation is `website/app-introduction/premium.mjs`, `premium.css` and `premium.js`, with the existing shared reader, collection and finite interaction modules. Keep the static Node/HTML/CSS/JavaScript architecture.
+
+Direction: **an illustrated editorial invitation**. A quieter typography-only refresh was considered; the selected approach makes the product tangible through a framed painting and floating page, a portrait story gallery, an interactive forest-toned reading room, and a riverfront closing invitation. Preserve the sunrise logo, Fraunces headings, Tiro Hindi, original artwork and prose. Load the already bundled OFL Manrope for UI rather than relying on a system substitute. Paper `#FAF7F2`, forest `#183D36`, olive `#6B7558`, restrained brass; 1296px content width, generous but bounded spacing, fine book edges rather than generic feature tiles.
+
+The first action is **Find your story**. The six bilingual previews connect to actual `/books/read/` routes; a direct bookshelf link works without JavaScript. The app remains coming soon: no store links, charges, signup collection or claimed conversion lift. The earlier planned free-chapter/edition-purchase promises are removed from this invitation; this does not change any live price. Notebook preview saves are explicitly visit-only. Existing book URLs, source notices, preferences and saved reading places remain intact.
+
+| Trigger | Response | Purpose / reduced-motion alternative |
+| --- | --- | --- |
+| Initial enhanced page arrival | 12px copy fade/rise, 400–750ms; no delayed CTA | Establish hierarchy; immediate static content without JS or with reduced motion |
+| Native scroll through hero | Bounded image scale, page lift up to 44px and 3.5° rotation range, fine-frame depth | Suggest an opening illustrated book; static painting/page in reduced motion |
+| Entering collection/reading room/closing | One 14px, 560ms editorial entrance; original painting arrivals 520ms | Connect sections, never hide content before enhancement; immediately visible alternative |
+| Native scroll through landscapes | At most 16px image movement, slight overscan | Connect illustration to reading; static alternate |
+| Story filter / language / scene / dialog / CTA | Existing finite 380ms filtering, 260ms crossfades, 180–240ms dialogs, 90ms press | Immediate semantics/focus; instant state with reduced motion |
+
+No scroll interception, automatic carousel, cursor follower, particles, new motion dependency or permanent render loop. Scroll frames run only when needed and for visible scenes; visibility changes, reduced motion and page exit cancel work. Transient language layers stay inert and ID-free. Reading itself stays calm. At 700px and below the invitation/reading room stack; the story collection retains its native phone rail through 600px and a two-column tablet layout above it. Essential HTML remains usable without scripts; smooth anchor scrolling activates only with the motion enhancement, leaving the plain HTML journey immediate.
+
+Verification and concept/render comparison: `docs/qa/premium-home-2026-10-23/README.md`. Historical sections below record earlier versions, not current visual-equality requirements.
+
+## Historical exact-reference homepage — 19 October 2026
+
+For `website/` homepage tasks, the owner's exact selected reference is `https://spritual-stories-app.abhijaypl.chatgpt.site/`, version 4, source commit `16c0ba01def25b4c31516e9bb032706ea0328df5`. This supersedes older visual directions for `/` only. The original source and manifest live in `website/app-introduction/`.
+
+Preserve its sunrise mark, warm paper canvas, forest-green type and reading room, Fraunces headings, restrained gold and olive accents, twelve original miniature-inspired illustrations, responsive handset composition, six-story collection and clear Get Spritual invitation. Mobile uses a native horizontal story rail. Do not replace the artwork, add sections, invent app availability, or restyle it with the legacy manuscript theme.
+
+Keep the reference's finite handset entrance, bounded desktop scroll presentation, native rail navigation, tab feedback and modal transitions. Respect its reduced-motion alternatives, keyboard controls, focus restoration, English/Hindi story text, source links and visit-only notebook semantics. Copy is owner's selected source, not permission to fabricate app listings or production integrations.
+
+The build relocates assets into `/stories-app/` so existing readers and storage remain independent. The original files are checksum-pinned; intended source changes require a manifest update and responsive comparison. Public canonical and indexability are deployment adaptations. Legacy reader designs below apply only to their existing routes. See `website/README.md` and the dated QA report for scope and actual evidence.
+
+## Motion refinement — 20 October 2026
+
+The owner requested fade-in/fade-out polish on the published reference. Keep the selected composition and original import intact; the additive `website/app-introduction/motion.css` and `motion.js` implement this newer direction without editing the checksum-pinned source. Native CSS transitions and Web Animations are sufficient; add no framework.
+
+| Trigger | Response and timing | Purpose | Reduced motion |
+| --- | --- | --- | --- |
+| First arrival | Eyebrow/title/description rise 12px and fade, 550–750ms; CTA settles in 400ms without a delayed action | Establish hierarchy alongside existing handset arrival | Static final state |
+| Painting enters viewport | One 520ms fade/rise, stagger capped at 130ms | Introduce the collection without repeated scroll effects | Immediate visibility |
+| Story filter | Immediate semantic filter; visible paintings settle over 380ms | Make the new result set legible | Immediate results |
+| Language/story change | Old text fades out in 70ms; new text fades in after 78ms, complete by 260ms. Artwork dissolves over 220–260ms | Avoid overlapping scripts; preserve reading position and focus | Instant content update |
+| Preview mode/scene | 260ms content fade through paper; controls remain visible. Accompanying editorial text settles over 320ms | Connect the feature tab with its preview | Instant state |
+| Dialog open/close | Native top-layer opacity 180ms and 10px settle 240ms, with backdrop fade | Give entry/exit continuity without delaying close or focus restoration | Instant native dialog |
+| CTA hover/focus/press | One 650ms light sweep; 90ms press response | Make the main action feel responsive | Color/focus feedback only |
+
+Transient outgoing layers are inert, aria-hidden, ID-free and pointer-transparent. Rapid input replaces earlier transitions. Escape, closing, resizing, reduced-motion changes and leaving/hiding the page clean up layers. Offscreen content does not animate. No cursor followers, perpetual effects, scroll interception, paragraph reveals, navigation delays, tracking or availability changes. Motion is progressive enhancement; text and controls remain in normal HTML. Validate dynamic behavior, not screenshots alone; the historical reference PNG comparisons were superseded by the 23 October responsive and journey checks.
+
+---
+
 # Local design rules
 
 > Current `/alpha` member design (26 September): one-reading Today, bounded Explore, Saved, and paper-like reader with quiet feedback. See `docs/BUILD_STATUS.md` and `docs/VERIFICATION.md`. The detailed rules below document the legacy/default product and older concepts; they do not override the current calm member direction.
@@ -88,3 +239,34 @@ Three local SVG landscapes share sage hills, an ochre sun and simple architectur
 Reading settings form one native modal sheet: Paper/Evening, Standard/Large, pronunciation. Opening pauses the optional timer; closing returns focus and leaves it paused. Theme choices persist but evening styling is confined to reading routes. Keep readable contrast on secondary text, selected controls and notices. Animate entry for 220ms; include the backdrop in reduced-motion handling. Short screens scroll inside the sheet; never obscure the final action.
 
 My Practice puts the selected collection before habit preferences. URL query selection survives a lesson visit and Back. Counts and empty states derive from the same known-content records. Rhythm settings use a closed native disclosure. Deleting a reflection requires an explicit inline choice; cancellation restores the original control without retaining a deleted-note archive.
+
+## Source-linked book experience — 20 October 2026
+
+The owner's new story-implementation request extends the exact-reference homepage into real reading. Keep the homepage composition, mark, artwork and coming-soon status. Its existing “The stories”, “Enter the story” and “Read the opening” invitations now lead to the bookshelf or reader; story dialogs gain a source-preserving “Read in the book” link. The old phone demonstration remains available through “Take a first look”.
+
+Chosen over enlarging the six-preview carousel: a small static bookshelf and a complete book reader, using the existing framework-free build. This supports sustained reading and future editorial growth without hiding content behind a JavaScript shell. Public `/books/` and `/hi/books/` reuse the exact ten reviewed retellings and six owner-selected published shorts. No source prose is rewritten, no new story or art approval is invented, and old routes/storage remain unchanged.
+
+- Warm paper, forest ink, original mark and paintings. Fraunces for headings; Georgia/Tiro Hindi for quieter sustained prose. No new font dependency.
+- Desktop: illustrated frontispiece and readable facing leaf. Tablet/phone: compact cover header before full-width prose. Page height grows naturally; text is never clipped to mimic paper.
+- Semantic scenes become stable folios, shared across English/Hindi. Historical-source folios are separately labelled reading pages, never canonical verse numbering.
+- Page controls and table of contents update content/history/focus immediately. A bounded 220ms opacity/8px transition adds continuity. Rapid input cancels earlier motion. Reduced motion is instant.
+- Appearance is visit-only. Exact-place bookmarks are explicit, browser-local, schema-validated and separate from legacy saved data; failures never claim success. All prose remains readable with JavaScript disabled.
+- Historical corpus output lives only in ignored `artifacts/book-research`, blocked in CI/Vercel. Scope and evidence live in `docs/project/BOOK_LIBRARY_20261020.md`; downloading or importing an edition is not publication approval.
+
+## Paper motion — 25 October 2026
+
+Book entry uses a 640ms illustrated cover hinge; next/previous use a directional 480ms paper fold with a soft shadow. Native Web Animations transform/opacity effects replace the old 220ms fade. Content, focus and URL update immediately; only one inert, ID-free decorative sheet exists at a time. Resize, page hide, dialogs and reduced motion cancel it. Saved-page deep links skip entry motion. Horizontal touch swipes turn pages; vertical scroll, zoom and text selection remain available.
+
+The welcome retains one deity at a time, then unfolds two halves of the already decoded hero book in 500ms. This reuses the existing image and timing budget. Reduced motion stays static; essential reading does not depend on animation. Do not add animation dependencies or render-loop layout reads for these effects.
+
+## Full-screen book entrance — 25 October 2026
+
+The welcome book is now an independent full-viewport scene, not a small illustration above the greeting. Eight single-deity beats remain. At 3360ms the paired leaves unfold for 650ms; a 1550ms shared-timeline camera transform grows the spread beyond both viewport dimensions. At 4600ms the greeting appears over an archival-paper veil. The 300ms website reveal starts at 5400ms. Total 5.7 seconds, with immediate skip/Escape/scroll. Reduced motion bypasses automatically and manual replay is static. Existing 1536px artwork supplies the zoom; decoded homepage art remains as its loading/error fallback. No new dependency, branding, content or commerce.
+
+## Shorter welcome handoff — 25 October 2026
+
+Supersedes the previous 5.7s opening: 3.4s total, with eight non-overlapping 260ms portrait beats. The book starts at 2080ms, opens in 400ms and makes one continuous 900ms move toward the viewer. Zoom is capped at 2.4x to avoid extreme mobile enlargement. Artwork fades to 8% as the greeting arrives at 2600ms in 280ms, without scale overshoot or a separate pale overlay. Website reveal starts at 3180ms and lasts 220ms. Keep skip, cold-start deadline, cancellation and reduced-motion semantics unchanged.
+
+## Welcome-to-homepage handoff — 25 October 2026
+
+Keep total duration 3.4s. The final 420ms begins at 2980ms: greeting lifts 14px and fades, actual homepage copy settles 14px and its book 20px/0.975 scale. Welcome controls fade in the first 100ms before the real header appears; the enlarged welcome art disappears in 120ms, preventing doubled controls/art. All effects share one timeline and remain tracked until teardown, including finished effects outside the dialog. Skip, navigation, reduced motion and hidden-page cancellation leave the actual homepage fully usable. No filters, new images, dependencies or blank interstitial.

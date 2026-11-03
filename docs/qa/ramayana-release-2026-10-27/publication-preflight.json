@@ -1,0 +1,629 @@
+{
+  "checkedAt": "2026-10-27T17:31:25.060Z",
+  "revision": "7d2503c2eca5f1d2",
+  "fingerprint": "9c9c73e72b1e1552c5ef1c300122cd4605a380b87a308c4ea19a5111fadd9380",
+  "assets": [
+    {
+      "file": "assets/illustrated/01-scene-narada-answer-640.jpg",
+      "sha256": "3dd9ca7a7551feacb3afaf6c5584de6ac0a2a8a078fb2e855e858b5069cc90f8",
+      "bytes": 91376
+    },
+    {
+      "file": "assets/illustrated/01-scene-narada-answer-960.jpg",
+      "sha256": "2003f6af436cab88936d7cc8ea1dfbc97965517a8c895729f668873a2ac35aa8",
+      "bytes": 199189
+    },
+    {
+      "file": "assets/illustrated/01-scene-narada-answer-1280.jpg",
+      "sha256": "2591e3203aeaffabb3634f8416019a5058b0dad5633686319e7398e4824d0f2d",
+      "bytes": 338006
+    },
+    {
+      "file": "assets/illustrated/01-scene-story-begins-640.jpg",
+      "sha256": "d26db4e2b2b6dd528581ff205d8af2838a6bc82feaebb07ada99623741012cdd",
+      "bytes": 86736
+    },
+    {
+      "file": "assets/illustrated/01-scene-story-begins-960.jpg",
+      "sha256": "34343fc966c64e9be124c36071f337b0e4e809f682b5987cc58a6a343f83563d",
+      "bytes": 189067
+    },
+    {
+      "file": "assets/illustrated/01-scene-story-begins-1280.jpg",
+      "sha256": "683663ad40edbb5a256b20456a7d18c51868a9f35e74da75b315028fd10a6a7e",
+      "bytes": 321777
+    },
+    {
+      "file": "assets/illustrated/01-valmiki-question-640.jpg",
+      "sha256": "6754f69cb2f25eb7c5e086400178593db4e956d50bdd705f0846c14b38f89488",
+      "bytes": 91461
+    },
+    {
+      "file": "assets/illustrated/01-valmiki-question-960.jpg",
+      "sha256": "c72423becc20635a95826321e2365c53e0906c9cc573b5c3dc10d41d168552eb",
+      "bytes": 196294
+    },
+    {
+      "file": "assets/illustrated/01-valmiki-question-1280.jpg",
+      "sha256": "efcd6e828ceb73a3c51da9c89161bcce6b8074e4f1fc49074db12253f770e176",
+      "bytes": 329731
+    },
+    {
+      "file": "assets/illustrated/02-knowing-when-to-stop-640.jpg",
+      "sha256": "53844e48cde3fc523789bf3514a14870972cd8fbdcb5cacf970c0f56098fbc82",
+      "bytes": 83733
+    },
+    {
+      "file": "assets/illustrated/02-knowing-when-to-stop-960.jpg",
+      "sha256": "2785f7f997a2c2965027ac1701a542eb30ccf522bb0d35f92d85b44f35658d9f",
+      "bytes": 175028
+    },
+    {
+      "file": "assets/illustrated/02-knowing-when-to-stop-1280.jpg",
+      "sha256": "965182513e51c562f00d4c74a41a38884e250f4d6782d5cb64dac920807e085a",
+      "bytes": 288474
+    },
+    {
+      "file": "assets/illustrated/02-scene-withdrawal-640.jpg",
+      "sha256": "ac0339078633733e975bffaeef250a9da31c447c283785c8d5896b7770bc2018",
+      "bytes": 91599
+    },
+    {
+      "file": "assets/illustrated/02-scene-withdrawal-960.jpg",
+      "sha256": "ffb2d85f670a05173be3fec30e83df9c25e46ef0cf7efbafba8da9c81e759a98",
+      "bytes": 189032
+    },
+    {
+      "file": "assets/illustrated/02-scene-withdrawal-1280.jpg",
+      "sha256": "068f2ab78212987ad7a4e8f6b4dd9957bf0529a30eb03e7c9a9e9ee88419aacc",
+      "bytes": 306642
+    },
+    {
+      "file": "assets/illustrated/03-bow-at-mithila-640.jpg",
+      "sha256": "5ec737b7b119bc6ff70aa1ec9933eb27d22663c18de6cd174197c47ca4c64f8d",
+      "bytes": 83198
+    },
+    {
+      "file": "assets/illustrated/03-bow-at-mithila-960.jpg",
+      "sha256": "91a0a8024a13fac2dff4d1d3927f44aec347503ae7e7e90a0fd7a6d8029e3bf9",
+      "bytes": 173775
+    },
+    {
+      "file": "assets/illustrated/03-bow-at-mithila-1280.jpg",
+      "sha256": "b32c1ef068a4668ea7155227adc0de081431d2661979f3db07406f3abf2d1685",
+      "bytes": 285894
+    },
+    {
+      "file": "assets/illustrated/03-scene-after-bow-640.jpg",
+      "sha256": "3ab656d56b1a3ca1a0acdd093a417c6fb6824d21460cc6cbf681b20557f91af7",
+      "bytes": 87927
+    },
+    {
+      "file": "assets/illustrated/03-scene-after-bow-960.jpg",
+      "sha256": "101fa3e01c610ce2cae98dfeb3d175535ede711e031945abf9ce6ef15cfa3e38",
+      "bytes": 181746
+    },
+    {
+      "file": "assets/illustrated/03-scene-after-bow-1280.jpg",
+      "sha256": "df65dbee567a37a28e7e2f3df94f292a273ec0ebf388b370898454a801a89ee7",
+      "bytes": 295173
+    },
+    {
+      "file": "assets/illustrated/04-friend-beside-ganga-640.jpg",
+      "sha256": "bd7234c31a99734ee1ec2e5e9f9627c48c1b4e60fd60c471866f6f5bd4764c00",
+      "bytes": 88719
+    },
+    {
+      "file": "assets/illustrated/04-friend-beside-ganga-960.jpg",
+      "sha256": "3c1409a93321b8198211f80ce0da7fd98d1f53425e7fe20dba0df6e6d07e3f48",
+      "bytes": 192735
+    },
+    {
+      "file": "assets/illustrated/04-friend-beside-ganga-1280.jpg",
+      "sha256": "8e4bd70c8a143973e4bab2e5f9a797588c6b0d08052c0ef1790f1da7bf1ef0e7",
+      "bytes": 325928
+    },
+    {
+      "file": "assets/illustrated/04-scene-river-crossing-640.jpg",
+      "sha256": "3923bd678aaa0635b2d4dde4760fde7684392e2b0b6ab3f8a23f84019c43c6d8",
+      "bytes": 100202
+    },
+    {
+      "file": "assets/illustrated/04-scene-river-crossing-960.jpg",
+      "sha256": "b3f201e27f43eee69592fcd7c6bd7aeaadff0531d29464db7512388bd2d40621",
+      "bytes": 215825
+    },
+    {
+      "file": "assets/illustrated/04-scene-river-crossing-1280.jpg",
+      "sha256": "fd24257ed59d51ab6a45af94d753240860d5f5ea6b8bf3d714691a6aa1de336f",
+      "bytes": 359982
+    },
+    {
+      "file": "assets/illustrated/05-bharata-and-sandals-640.jpg",
+      "sha256": "4167df4c6d97ba49a7fbf1f8fd9fa5722f7f73517a99f20cd675b66a7e90cfc6",
+      "bytes": 88291
+    },
+    {
+      "file": "assets/illustrated/05-bharata-and-sandals-960.jpg",
+      "sha256": "ca8532641547786be830ecb28dc1bd1a0f757f975af8e8650eaa3e373cd87759",
+      "bytes": 183039
+    },
+    {
+      "file": "assets/illustrated/05-bharata-and-sandals-1280.jpg",
+      "sha256": "c4096383b5e77c40f27602a259d20186b6173f4d0481d21f36477f9d6d274352",
+      "bytes": 298559
+    },
+    {
+      "file": "assets/illustrated/05-scene-nandigrama-trust-640.jpg",
+      "sha256": "9e00063fce9dbd26bc525510983ce4e1d1765e1f25826fe9296b4e6e62d057fb",
+      "bytes": 87166
+    },
+    {
+      "file": "assets/illustrated/05-scene-nandigrama-trust-960.jpg",
+      "sha256": "960aff3f267e0bb769450dabe9ac5a79180edeb916e20511a5d07114a8ff913f",
+      "bytes": 178361
+    },
+    {
+      "file": "assets/illustrated/05-scene-nandigrama-trust-1280.jpg",
+      "sha256": "78f7f26b04a1fdd2b914b5348066f89e14a142337e6ba852abf5d497d8391385",
+      "bytes": 286214
+    },
+    {
+      "file": "assets/illustrated/06-scene-direction-ahead-640.jpg",
+      "sha256": "81a7b35499b65b08ec9eadffd557056da0a22fbfadf850aaee489999975f189b",
+      "bytes": 105703
+    },
+    {
+      "file": "assets/illustrated/06-scene-direction-ahead-960.jpg",
+      "sha256": "60156c32ae2c9200581a2f62fa6fc8c7fff2fe0bd2733d99185d97a3cf984ab9",
+      "bytes": 224819
+    },
+    {
+      "file": "assets/illustrated/06-scene-direction-ahead-1280.jpg",
+      "sha256": "456591f65bdbdb8b05229590764b21f7dc962daaacb5fde479bc06eb31d0cd81",
+      "bytes": 373071
+    },
+    {
+      "file": "assets/illustrated/06-shabari-welcome-640.jpg",
+      "sha256": "f9ca3468ed19daaa6c81892311113aff1951791bdae1958752842d10a780ea22",
+      "bytes": 94379
+    },
+    {
+      "file": "assets/illustrated/06-shabari-welcome-960.jpg",
+      "sha256": "92ac5a92059e8f32f6ca3ccebd5320c62510d22463b5b62c257525e398398433",
+      "bytes": 202945
+    },
+    {
+      "file": "assets/illustrated/06-shabari-welcome-1280.jpg",
+      "sha256": "3eca6bebdd963629934da278546f39ae728cb9e75c819d4f6517955e060cd6da",
+      "bytes": 341251
+    },
+    {
+      "file": "assets/illustrated/07-hanuman-first-conversation-640.jpg",
+      "sha256": "da9b1dc693b182e3178206f23975875f3b3c7292f1aa4d2e01960ea51d064c8a",
+      "bytes": 88217
+    },
+    {
+      "file": "assets/illustrated/07-hanuman-first-conversation-960.jpg",
+      "sha256": "f93679a08d87cc12d72e3e36f558e6d68d8d124a3b75ea6c11a18eed44b82747",
+      "bytes": 188714
+    },
+    {
+      "file": "assets/illustrated/07-hanuman-first-conversation-1280.jpg",
+      "sha256": "6233aa499cf5d8e710604809416462be79e6d0df33a4c2552bfa68a506bc12d1",
+      "bytes": 317560
+    },
+    {
+      "file": "assets/illustrated/07-scene-toward-alliance-640.jpg",
+      "sha256": "2e27c79897fb5771a9bf2c44b03aa5e9cf6369c0f64d8e351599ed51b8a419c4",
+      "bytes": 101634
+    },
+    {
+      "file": "assets/illustrated/07-scene-toward-alliance-960.jpg",
+      "sha256": "736c81a276b9da4730661b654b45c5b1adad0d8a9073d34b29420b0376e82e25",
+      "bytes": 217271
+    },
+    {
+      "file": "assets/illustrated/07-scene-toward-alliance-1280.jpg",
+      "sha256": "43d7b85ff0d23b6c8d15925ac9926d6297948d71d10c3af91c56a0d26cbb8678",
+      "bytes": 359836
+    },
+    {
+      "file": "assets/illustrated/08-across-ocean-640.jpg",
+      "sha256": "ca5edfc874dbd7ee5c499813d678d564d7c9b86ba43bbc1dae8ed14831b102c9",
+      "bytes": 85866
+    },
+    {
+      "file": "assets/illustrated/08-across-ocean-960.jpg",
+      "sha256": "ffc6ba0dce6bb8a524a9967df632dc523711cb9c3cd15a829918d36a7d00092f",
+      "bytes": 186675
+    },
+    {
+      "file": "assets/illustrated/08-across-ocean-1280.jpg",
+      "sha256": "124211e904d0feb4e7b8c73b55be88b902e5e92cc2b63077edc606e95f5a11c1",
+      "bytes": 314935
+    },
+    {
+      "file": "assets/illustrated/08-scene-mainaka-offer-640.jpg",
+      "sha256": "4d8e9d0fcceb7f77f51a0aa7165000b6dab9dff29788eb6309830993b47f2548",
+      "bytes": 87507
+    },
+    {
+      "file": "assets/illustrated/08-scene-mainaka-offer-960.jpg",
+      "sha256": "d12a7e0498a9f7e6a767ac4e0c64e41663bbff20203402fc383ceadf9f3b014b",
+      "bytes": 193819
+    },
+    {
+      "file": "assets/illustrated/08-scene-mainaka-offer-1280.jpg",
+      "sha256": "1127abbc52cc1c2e6aa839c6ac63af420b3f388f67db7a2328db7667aea2208c",
+      "bytes": 335217
+    },
+    {
+      "file": "assets/illustrated/09-ring-brings-hope-640.jpg",
+      "sha256": "ed6182ae7e8f4cfad5f60bee8e38995419557c917bbb74049819f8e850e48d67",
+      "bytes": 79459
+    },
+    {
+      "file": "assets/illustrated/09-ring-brings-hope-960.jpg",
+      "sha256": "2a74088e769d64cc38bcf3c97601c5989a58f52e9e684202f830b1d32c44dbe0",
+      "bytes": 168215
+    },
+    {
+      "file": "assets/illustrated/09-ring-brings-hope-1280.jpg",
+      "sha256": "bb0f8156878e0651b5793329d21532f9c336a73e45aaef6dfe5afbb900d4b928",
+      "bytes": 280764
+    },
+    {
+      "file": "assets/illustrated/09-scene-offer-and-answer-640.jpg",
+      "sha256": "fa45d22dd332b35bdab4214d756b9ea60bab53f994580ebae0d3978cd074c730",
+      "bytes": 85342
+    },
+    {
+      "file": "assets/illustrated/09-scene-offer-and-answer-960.jpg",
+      "sha256": "b9f0e5eb1b37996d79771369224e0c541920e3801450f3c168c7302bb8addf77",
+      "bytes": 187267
+    },
+    {
+      "file": "assets/illustrated/09-scene-offer-and-answer-1280.jpg",
+      "sha256": "502bb357890415273e1a7b20448cae3369b25e141edb97bd9dd025e32e6d102c",
+      "bytes": 319670
+    },
+    {
+      "file": "assets/illustrated/09-scene-token-message-640.jpg",
+      "sha256": "6896b16d7d746f3c9569a0f36f99de072c5e61dc91cc05b03e0885ca5948c94c",
+      "bytes": 85188
+    },
+    {
+      "file": "assets/illustrated/09-scene-token-message-960.jpg",
+      "sha256": "bef1048534ea403f69706842fceeee063243df30b2d92b7b36177bd6e11070e0",
+      "bytes": 185348
+    },
+    {
+      "file": "assets/illustrated/09-scene-token-message-1280.jpg",
+      "sha256": "7af999dce525c3dce90947fa53025b2701912600ac60e3a364d20c62df2dec7d",
+      "bytes": 314558
+    },
+    {
+      "file": "assets/illustrated/10-returning-responsibility-v3-640.jpg",
+      "sha256": "65e685e5a5c8435db11e3d955eec7897aa4807735d54f15aec49b65b181f7ff1",
+      "bytes": 91654
+    },
+    {
+      "file": "assets/illustrated/10-returning-responsibility-v3-960.jpg",
+      "sha256": "679b8323fab0a1e3b2f9c718e7858f26404cd455a53f02892d87a8b1bb4c49be",
+      "bytes": 185415
+    },
+    {
+      "file": "assets/illustrated/10-returning-responsibility-v3-1280.jpg",
+      "sha256": "432b37fadf481d72f729531f099c40add148ce6acf696fd03434bb7641c2de87",
+      "bytes": 298613
+    },
+    {
+      "file": "assets/illustrated/11-princes-and-teacher-640.jpg",
+      "sha256": "6b60fc50515b3c8ec2ccc1195dba89ad7ef5179961d010e7e861f730f56a5957",
+      "bytes": 85126
+    },
+    {
+      "file": "assets/illustrated/11-princes-and-teacher-960.jpg",
+      "sha256": "bc5cf27b3f2b1397c158a306d96fb3083e4f8902bddb8aba47fff2cccefdea57",
+      "bytes": 176855
+    },
+    {
+      "file": "assets/illustrated/11-princes-and-teacher-1280.jpg",
+      "sha256": "d16e74a2306a967caa2657a766c58ccc3254fc272dc2bb7bbc7379b0cc004ead",
+      "bytes": 291062
+    },
+    {
+      "file": "assets/illustrated/12-road-to-mithila-640.jpg",
+      "sha256": "ebb6f415979030d40f6df64ea929faf8523293ba4eea0d9447be08e26a79a778",
+      "bytes": 90245
+    },
+    {
+      "file": "assets/illustrated/12-road-to-mithila-960.jpg",
+      "sha256": "a421b6e8238aec7cda1c9c7b2a2ee17b05c12ec032a4020b5b4058111c48ccd7",
+      "bytes": 192914
+    },
+    {
+      "file": "assets/illustrated/12-road-to-mithila-1280.jpg",
+      "sha256": "01889f8f7b47d2fb9e193d0737c74e03ec09c90fb422389e87da5847514bbcf9",
+      "bytes": 321217
+    },
+    {
+      "file": "assets/illustrated/13-promise-of-exile-640.jpg",
+      "sha256": "a336d298f29badf87df537148051f7b46148a42c9d5e21309ea5047d700ef36b",
+      "bytes": 92015
+    },
+    {
+      "file": "assets/illustrated/13-promise-of-exile-960.jpg",
+      "sha256": "3e07f79238df9fae78cd6e5054e179b227499156695f157d23bee6a1b43e3116",
+      "bytes": 198556
+    },
+    {
+      "file": "assets/illustrated/13-promise-of-exile-1280.jpg",
+      "sha256": "d9d3bd99321e57479af9e12d7cf64449acc37b76c679fa426f03de37a5f0d073",
+      "bytes": 332100
+    },
+    {
+      "file": "assets/illustrated/15-alliance-and-vali-640.jpg",
+      "sha256": "63ba289bf73f37ca7c9d02f88eb237f66d1e9a5b3e6c5b7de4c2cf90f086dda3",
+      "bytes": 94975
+    },
+    {
+      "file": "assets/illustrated/15-alliance-and-vali-960.jpg",
+      "sha256": "a0fbaa4f6da935ef7672ab7ef8c85a9d194d7b4a399226eb4545af2e4945c57a",
+      "bytes": 204271
+    },
+    {
+      "file": "assets/illustrated/15-alliance-and-vali-1280.jpg",
+      "sha256": "340f43a4defcfe611d9164edada01220c482365863fc74dab16f3e4d62970542",
+      "bytes": 342392
+    },
+    {
+      "file": "assets/illustrated/16-search-southern-sea-640.jpg",
+      "sha256": "91d9fda5a4894869408b105f440f8346af8014ed097662c429936290072b2a77",
+      "bytes": 93928
+    },
+    {
+      "file": "assets/illustrated/16-search-southern-sea-960.jpg",
+      "sha256": "83b303024589766bd2ba158a4f50c43b6fb359348d524bdf9a933e4200e4394a",
+      "bytes": 202540
+    },
+    {
+      "file": "assets/illustrated/16-search-southern-sea-1280.jpg",
+      "sha256": "74a19a2a07ad9b15f558c2f058527d325fbd6a0860fe22080873709c603a3f10",
+      "bytes": 339186
+    },
+    {
+      "file": "assets/illustrated/17-lanka-at-night-640.jpg",
+      "sha256": "4b8abdb385caf1ba83a027bb549081363c4988d5c7dfb6e909650aec17d93e5b",
+      "bytes": 77858
+    },
+    {
+      "file": "assets/illustrated/17-lanka-at-night-960.jpg",
+      "sha256": "a451acab936fb1ba91c851a635393cb9c0a041ab11f8f7a8503cbeaafdfab2da",
+      "bytes": 163105
+    },
+    {
+      "file": "assets/illustrated/17-lanka-at-night-1280.jpg",
+      "sha256": "a88f8089250d0d6a88da726ccfa1b49e20f65a285891b060eb9b518ea6a2dfcd",
+      "bytes": 270929
+    },
+    {
+      "file": "assets/illustrated/18-witness-returns-640.jpg",
+      "sha256": "1b6b37dc9dced791456fcd650dd74c7c54e58fc5fb0a2c353e544d177a2d5034",
+      "bytes": 89959
+    },
+    {
+      "file": "assets/illustrated/18-witness-returns-960.jpg",
+      "sha256": "35083e4f8ec428905b00804756ad60c3e64be197dbf62dc22d3acf666edb64e0",
+      "bytes": 192749
+    },
+    {
+      "file": "assets/illustrated/18-witness-returns-1280.jpg",
+      "sha256": "4e76aba07b4540da37fdd5043dcdc7b2e45bcf706aab6af4e1468aae68b03f69",
+      "bytes": 322014
+    },
+    {
+      "file": "assets/illustrated/19-refuge-and-crossing-640.jpg",
+      "sha256": "2fd8f70791b35000818c54e9d239c4d510564df54b13737385d3da27b61fd062",
+      "bytes": 95968
+    },
+    {
+      "file": "assets/illustrated/19-refuge-and-crossing-960.jpg",
+      "sha256": "7f3abe2a6a311383445e164ed25c453832b3b991aae3a1fd3cc9fcb2ffbf6909",
+      "bytes": 205465
+    },
+    {
+      "file": "assets/illustrated/19-refuge-and-crossing-1280.jpg",
+      "sha256": "a3a5e183d838c98f3cd27b4b69642ddf290d85c08ded7522866dafa066b49c65",
+      "bytes": 340741
+    },
+    {
+      "file": "assets/illustrated/20-war-and-its-cost-640.jpg",
+      "sha256": "cf6f7f92201fac88852b0e084e312179472b439deb7d5bf37e0861fb903269ef",
+      "bytes": 83651
+    },
+    {
+      "file": "assets/illustrated/20-war-and-its-cost-960.jpg",
+      "sha256": "c9ee9e893c04a868d3ee7a4232c4e2a161a437d14a61f4ce171fd6b4a61b9d2d",
+      "bytes": 169529
+    },
+    {
+      "file": "assets/illustrated/20-war-and-its-cost-1280.jpg",
+      "sha256": "03700ecce25f27b4f64ca73f7d52dda255cc5831fd4d77053ddf213ac5dd7b99",
+      "bytes": 272341
+    },
+    {
+      "file": "assets/illustrated/21-sita-speaks-640.jpg",
+      "sha256": "1ad7aa8fbbb210d95fb4b9dbbac618b2037549cf7ca6d273c331654d584ae207",
+      "bytes": 87251
+    },
+    {
+      "file": "assets/illustrated/21-sita-speaks-960.jpg",
+      "sha256": "3f1c6853aafd77ebe8cd9a2f99b7b58399d9537e0635e99aa234735f73525be3",
+      "bytes": 191400
+    },
+    {
+      "file": "assets/illustrated/21-sita-speaks-1280.jpg",
+      "sha256": "71c45714f4bf907c9f4d2ea1dd0ca5b5fde96fd89bab142c9ea39b7501d2a921",
+      "bytes": 325020
+    },
+    {
+      "file": "assets/illustrated/22-northward-home-640.jpg",
+      "sha256": "b300aa04edf949f56963e5ce779a59c5919bbe65278787a7db249d3b5aad5986",
+      "bytes": 95133
+    },
+    {
+      "file": "assets/illustrated/22-northward-home-960.jpg",
+      "sha256": "67850ab56854485f7872013c87fb37beeef441464c28abdaa16e8ab1fc7cb4ce",
+      "bytes": 200324
+    },
+    {
+      "file": "assets/illustrated/22-northward-home-1280.jpg",
+      "sha256": "5b681c11a9c02fed33dbc7a97f4ed4ee716a354427071d329f42c14777c751de",
+      "bytes": 331610
+    },
+    {
+      "file": "assets/illustrated/23-empty-hermitage-640.jpg",
+      "sha256": "eb7fe592ff8872a71b667d212f49ad866057a2481944ca98f0c67c0ad8ff2614",
+      "bytes": 94567
+    },
+    {
+      "file": "assets/illustrated/23-empty-hermitage-960.jpg",
+      "sha256": "39c1a2b7f02bc868916cddb4e4d3c1544a63eacc40957ec6d3412bf71fa5d5a8",
+      "bytes": 203402
+    },
+    {
+      "file": "assets/illustrated/23-empty-hermitage-1280.jpg",
+      "sha256": "c8f9c0465ff775e52321353fd6cdc4a1bf7606741421d38344528f1e7272d45b",
+      "bytes": 338726
+    },
+    {
+      "file": "assets/illustrated/24-surasa-test-640.jpg",
+      "sha256": "3732a473b58994d5be115baec3d0c16f1789dcff1d5c9c63aa6be1528f0c998c",
+      "bytes": 76917
+    },
+    {
+      "file": "assets/illustrated/24-surasa-test-960.jpg",
+      "sha256": "252a3c37f3e1fe1cff7405b10c31d65949bbe7c632387b6259cc89f3adbcbaf0",
+      "bytes": 162869
+    },
+    {
+      "file": "assets/illustrated/24-surasa-test-1280.jpg",
+      "sha256": "0d68f59ed02617e01d8418610d37de9f7bb46bff3256da87ae9affdbca3d868e",
+      "bytes": 276637
+    },
+    {
+      "file": "assets/illustrated/25-second-bow-640.jpg",
+      "sha256": "acfc8fa5476c12e7d29b4a0ae3a352faf4c95db7b097b4854ab94824be4b758b",
+      "bytes": 85893
+    },
+    {
+      "file": "assets/illustrated/25-second-bow-960.jpg",
+      "sha256": "f3bae7c53ea0ec6273074c273a803d3b931292679daa6a781b8a0051b0105adf",
+      "bytes": 185394
+    },
+    {
+      "file": "assets/illustrated/25-second-bow-1280.jpg",
+      "sha256": "fc914bc450d12199e499b8277e3c808cc1791f65bca256048bf9288c31ce4944",
+      "bytes": 312722
+    },
+    {
+      "file": "assets/illustrated/26-kings-last-night-640.jpg",
+      "sha256": "c8fcfa44d1ef57023d9cab6b60f11ef663574107210bd600b0914bafae193db6",
+      "bytes": 70350
+    },
+    {
+      "file": "assets/illustrated/26-kings-last-night-960.jpg",
+      "sha256": "7a14525769935a756d35c9f9979c9ee18fd15550be096050482077d2c00fb645",
+      "bytes": 150689
+    },
+    {
+      "file": "assets/illustrated/26-kings-last-night-1280.jpg",
+      "sha256": "e2ce7f877a1ff9e56054db3505bd8112b2a060744f7114a92968ce409d08efcb",
+      "bytes": 255359
+    },
+    {
+      "file": "assets/illustrated/27-panchavati-640.jpg",
+      "sha256": "38a827092535b9f5b8cede46356ca71d7248227a142a4ab5448a1d5436be7670",
+      "bytes": 98745
+    },
+    {
+      "file": "assets/illustrated/27-panchavati-960.jpg",
+      "sha256": "9551bb92d669683eac43da50693e38bc99cd3bf4ec7fc7b747a2642b012b8b79",
+      "bytes": 215838
+    },
+    {
+      "file": "assets/illustrated/27-panchavati-1280.jpg",
+      "sha256": "f470241efca2985efae5d21d2f39613034e8c1fe917831c6da67eb6a27ffe53f",
+      "bytes": 365844
+    },
+    {
+      "file": "assets/illustrated/28-monsoon-640.jpg",
+      "sha256": "5f2a443a88815a1ebc088a64bab7538205fc6229e092671b7a0989bc7e78808c",
+      "bytes": 87991
+    },
+    {
+      "file": "assets/illustrated/28-monsoon-960.jpg",
+      "sha256": "8a753d8ff34655caa56a9ba027db3a2fef621b7467f2a941384938fc2c9ac353",
+      "bytes": 192056
+    },
+    {
+      "file": "assets/illustrated/28-monsoon-1280.jpg",
+      "sha256": "44447c63908221e27ec1c40f1c9030b0325c62dc15127d711b26bb11408fdb89",
+      "bytes": 326315
+    },
+    {
+      "file": "assets/illustrated/29-angada-envoy-640.jpg",
+      "sha256": "af5d49abccb60fc5fcabdac5ab2108fb3edd009985e012afc409c5e518f631f7",
+      "bytes": 80835
+    },
+    {
+      "file": "assets/illustrated/29-angada-envoy-960.jpg",
+      "sha256": "659fbb24eddfa0c237e6c33b6254a9af57fa8cc7c8484cb3662ab03d9827f686",
+      "bytes": 177053
+    },
+    {
+      "file": "assets/illustrated/29-angada-envoy-1280.jpg",
+      "sha256": "e368176f164608d920f921e4a900977af7b7308e3cf358299ec16dfe377a19ae",
+      "bytes": 301206
+    },
+    {
+      "file": "assets/illustrated/30-medicine-mountain-640.jpg",
+      "sha256": "2e1ca30289e3dd966d583f0dcf45f3a0f8e2586bc740025ee5f566d4cd968269",
+      "bytes": 70889
+    },
+    {
+      "file": "assets/illustrated/30-medicine-mountain-960.jpg",
+      "sha256": "03430de6a88f94a90120a1cefa10bf35643e313353debfb7236272caf3dec8cd",
+      "bytes": 151996
+    },
+    {
+      "file": "assets/illustrated/30-medicine-mountain-1280.jpg",
+      "sha256": "624e56c8de91512a49eb4d02f7af6351307381393d5c2c3a00db0e99632b3dca",
+      "bytes": 258883
+    },
+    {
+      "file": "stories-app/assets/forest-journey.webp",
+      "sha256": "af90887f5afa6d7a7c75d9580f3b502b010b3e02fb33619084456b0d78f488c2",
+      "bytes": 481364
+    }
+  ],
+  "chapterCount": 28,
+  "sceneCount": 112,
+  "status": "blocked",
+  "blockers": [
+    "source: named, dated exact-version review and evidence are required.",
+    "hindi: named, dated exact-version review and evidence are required.",
+    "sensitivePassages: named, dated exact-version review and evidence are required.",
+    "artwork: named, dated exact-version review and evidence are required.",
+    "rights: named, dated exact-version review and evidence are required.",
+    "ownerRelease: named, dated exact-version review and evidence are required.",
+    "Rights reviewer must identify the intended distribution markets and applicable basis."
+  ],
+  "limits": [
+    "Recorded human evidence must be independently verified; a JSON record is not legal clearance.",
+    "This command neither publishes content nor changes the local-only build guard.",
+    "Native app distribution, paid access and physical-device certification are outside this review."
+  ]
+}

@@ -1,0 +1,116 @@
+[
+  {
+    "mode": "desktop",
+    "heroReadyMs": 42,
+    "lcpMs": 196,
+    "cls": 0,
+    "longTasks": [
+      68
+    ],
+    "introPlayed": true,
+    "bytes": 3654478,
+    "images": [
+      {
+        "url": "/stories-app/assets/forest-journey.webp",
+        "bytes": 481664,
+        "ms": 6
+      },
+      {
+        "url": "/stories-app/assets/forest-sages.webp",
+        "bytes": 415848,
+        "ms": 6
+      },
+      {
+        "url": "/stories-app/assets/rama-bow-mithila.webp",
+        "bytes": 286608,
+        "ms": 2
+      },
+      {
+        "url": "/stories-app/assets/sita-the-furrow.webp",
+        "bytes": 343508,
+        "ms": 2
+      },
+      {
+        "url": "/stories-app/assets/hanuman-ocean-leap.webp",
+        "bytes": 274814,
+        "ms": 2
+      },
+      {
+        "url": "/stories-app/assets/shiva-ganga-descent.webp",
+        "bytes": 310546,
+        "ms": 2
+      },
+      {
+        "url": "/stories-app/assets/krishna-govardhana.webp",
+        "bytes": 364952,
+        "ms": 2
+      },
+      {
+        "url": "/stories-app/assets/dhruva-under-stars.webp",
+        "bytes": 373712,
+        "ms": 3
+      },
+      {
+        "url": "/stories-app/welcome/portraits/rama-840.webp",
+        "bytes": 120986,
+        "ms": 1
+      },
+      {
+        "url": "/stories-app/welcome/portraits/shiva-840.webp",
+        "bytes": 119936,
+        "ms": 2
+      },
+      {
+        "url": "/stories-app/welcome/portraits/krishna-840.webp",
+        "bytes": 104450,
+        "ms": 1
+      },
+      {
+        "url": "/stories-app/welcome/portraits/hanuman-840.webp",
+        "bytes": 113758,
+        "ms": 1
+      }
+    ]
+  },
+  {
+    "mode": "mobile-constrained",
+    "heroReadyMs": 14741,
+    "lcpMs": 14764,
+    "cls": 0.00031047632232325973,
+    "longTasks": [],
+    "introPlayed": false,
+    "bytes": 2481248,
+    "images": [
+      {
+        "url": "/stories-app/assets/forest-journey.webp",
+        "bytes": 481664,
+        "ms": 14617
+      },
+      {
+        "url": "/stories-app/assets/forest-sages.webp",
+        "bytes": 415848,
+        "ms": 13383
+      },
+      {
+        "url": "/stories-app/assets/rama-bow-mithila.webp",
+        "bytes": 286608,
+        "ms": 10484
+      },
+      {
+        "url": "/stories-app/assets/sita-the-furrow.webp",
+        "bytes": 343508,
+        "ms": 12364
+      },
+      {
+        "url": "/stories-app/assets/krishna-govardhana.webp",
+        "bytes": 364952,
+        "ms": 13076
+      },
+      {
+        "url": "/stories-app/welcome/portraits/rama-1280.webp",
+        "bytes": 245552,
+        "ms": 10172
+      }
+    ]
+  }
+]

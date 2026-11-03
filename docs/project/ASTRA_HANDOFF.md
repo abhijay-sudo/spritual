@@ -1,4 +1,54 @@
+## Latest — 30 October 2026: Apple design refinement of the canonical website
+
+The current application is `website/content/` and the canonical 276-route build. The illustrated manuscript identity now shares a refined editorial system, accessible mobile bottom navigation, quieter discovery, fluid page turns and native dialog sheets, exact scene continuity, and recoverable Saved removal. See [the release record](APPLE_DESIGN_RELEASE_2026-10-30.md) for scope, verification boundaries and the checks required to confirm production. Older alpha and alternative-route entries below are historical.
+
+## Latest — 28 October 2026: collection-first homepage and restored bookshelf welcome
+
+Reworked `/` and `/books/` into distinct illustrated Ramayana, Krishna, Shiva and Dhruva collections. Ramayana selection goes directly to ordered chapter contents; a small All collections/language toolbar keeps that anchored landing navigable. Other collections have compact contents pages, with honest one-chapter counts. Existing reader prose, sources, saved-page schema and URLs survive; `/books/stories/` retains all 16 originals. Reader endings stay within their own collection. The existing fullscreen single-portrait/book welcome now also runs on English/Hindi bookshelf entry pages, with native skip, reduced-motion/deep-link recovery and no reader interruptions.
+
+Verified locally: both builds, 109 Node checks, 65 website browser checks, 25 Ramayana checks and 33 unique welcome checks (31 initial passes + 2 corrected-assertion reruns), plus zero failures in both generated-link audits. Captured and inspected 320/390/768/1440 layouts and real browser playback. Evidence: `docs/qa/collection-home-2026-10-27/README.md`. Reuse 4194. Unreviewed 28-chapter prose/art remain excluded from the public build and the publication fingerprint is unchanged. No deployment or native/backend/billing change.
+
+## Latest — 27 October 2026: publication evidence and cross-browser book QA
+
+The 28-chapter bilingual Ramayana remains a local review edition, revision `7d2503c2eca5f1d2`. Read `website/collections/ramayana/REVIEW_REQUIRED.md` for exact editorial/Hindi/art/rights decisions. All 123 source URLs, 120 JPEG hashes and eight newer masters were checked; 32 inherited plates still lack complete generation/input records. The pending publication preflight binds exact text, scene mappings and 121 delivered asset files and cannot enable production output. No approvals were fabricated.
+
+Fixed 193 native English navigation links, misleading blocked-storage feedback, and a visually reproduced WebKit mirrored-backface defect in forward/backward paper turns. The native 580ms hinge now explicitly culls the faces on the same animation clock. Both build modes, 100 Node checks and 69 browser cases passed; three CDP-only cases were inapplicable to other engines. Local/public route and asset audits found no broken references, and all required book routes are reachable. Evidence and screenshots: `docs/qa/ramayana-release-2026-10-27/README.md`.
+
+Browser coverage includes iPhone WebKit/Pixel Chrome emulation and desktop Chrome/WebKit on macOS, not physical phones or Windows. The Android OS emulator attempt stopped at Chrome's first-run legal terms, without accepting or bypassing them; the temporary emulator and reverse mapping were cleaned up. Full Xcode is absent. Keep port 4194 and the local-only content guard; no publication, payment, native release or production configuration changed.
+
 # Astra takeover: Spiritual.co.in
+
+## Latest — 27 October 2026: 28 chapters and continuous paper reader
+
+Expanded the local Ramayana abridgement to 28 English/Hindi chapters, 112 scenes and 40 plates, with six new original illustrations. Revision `7d2503c2eca5f1d2`; 11,541 English narrative words. Full contents, native adjacent chapter navigation, two legacy war-page recoveries and session appearance preferences now connect the entire book. The duplex paper turn retains typography and uses a matching reverse leaf; visual QA found and fixed mirrored text from flattened 3D layers.
+
+Verified: both build modes, 90 Node checks, 25 final Chrome collection checks, 19 existing book/motion regressions (six paper cases rerun after the final fix). Actual screenshots at 320/390/768/1440 and intermediate sizes were inspected. Evidence: `docs/qa/ramayana-collection-2026-10-27/README.md`. Reuse port 4194 with the local collection flag. Existing public retellings, bookmarks, logo and homepage remain intact. Exact-version editorial/Hindi/rights/art review is pending; no publication, billing or native release occurred.
+
+## Latest — 26 October 2026: complete local semi-animated Ramayana collection
+
+`website/collections/ramayana/` now implements a connected 22-chapter English/Hindi abridgement through Yuddha's return, with 88 scenes, 34 responsive plates, finite scene motion, shared paper turns, source notes and explicit kept-page return. Existing sixteen public retellings remain intact. Reuse `http://127.0.0.1:4194/books/ramayana/` after `node website/build.mjs --welcome-preview --collection-preview`; the normal production build excludes the draft. Text revision `466e7b922eec89f7`, 8,674 English narrative words. No claim of a complete verse edition or Uttara Kanda.
+
+Verified: 90 Node checks, 11 new Chrome collection tests, 19 existing book/motion regressions and both build modes. Mobile/desktop screenshots and motion recordings are under `docs/qa/ramayana-collection-2026-10-26/`. Two new paintings replace ambiguous composite scenes. See the collection README and research ledgers for the exact human source/Hindi/sensitive-content/rights/iconography review still needed. This is local implementation; no new content publication, native package, billing or production configuration change.
+
+## Latest — 24 October 2026: every-visit welcome and synchronized motion
+
+The owner requested playback on every visit. The opening now ignores old session markers and plays on eligible homepage refresh, navigation and history restoration, preserving section links, reduced motion, immediate exit and media recovery. All fifteen native effects share one animation origin; later scene timers no longer construct visual effects. A brief entry fade and the existing 3.4-second sequence preserve the approved appearance. Current local evidence is in `docs/qa/welcome-every-visit-2026-10-24/README.md`; deployment will be recorded separately. No new artwork, app, content or backend release.
+
+## Latest — 24 October 2026: unframed, detailed portrait refinement
+
+The owner rejected the circular framing and image softness. The arch and curved horizon are removed, and four separate forest/gold generated portraits replace the shared sprite. Actual masters are 941×1672 each, not native 4K: the generator returned this size despite the larger request. Responsive WebP delivery is capped at 1,420,744 bytes for all four largest variants; PNG masters do not enter public output. The fullscreen sequence settles in 3.4 seconds, with immediate Enter/Escape/scroll/swipe exit and existing reduced-motion/return/session behavior preserved.
+
+The isolated release starts from production `7c9cf12`, not the app branch. Both website builds, 75 Node checks, 22 installed-Chrome welcome tests and 13 homepage/introduction cases passed. Actual Chrome desktop/phone playback, screenshot comparisons, DPR3 asset selection, 3840px layout and late-portrait failure paths were checked. See `docs/qa/welcome-portraits-2026-10-24/README.md`; the authorized refinement is now deployed as `5abfacc`, with matching live asset hashes and 22 live Chrome / 13 homepage checks. See the adjacent `DEPLOYMENT.md` for exact evidence and CI status. No app, content, payment or backend change. Preserve unrelated Android and older QA edits.
+
+## Latest — 24 October 2026: fullscreen welcome ready for authorized publication
+
+The owner requested Chrome mobile/desktop inspection, a full-viewport lively opening, QA and live publication. The larger artwork/Devanagari/arch composition keeps the existing identity, finishes its configured choreography in 2.94s, and supports immediate Enter/Escape/scroll/swipe exit. Reduced motion and failed-media paths remain usable. The same artwork is now 72% smaller as WebP, with an exact release hash. Chrome was actually used this turn; the earlier browser-access limitation below is historical.
+
+The isolated public release is based on `a21ddfa` in `/tmp/spritual-welcome-release-20261024`, not the app development HEAD. Both website builds, 72 Node checks, 19 installed-Chrome cases and all 156 website regression cases passed; actual desktop/mobile motion and the Hindi book journey were inspected. Current evidence: `docs/qa/welcome-2026-10-24/README.md`. Verify the deployment record before calling this live. No app, backend, content, subscription or store release is included. Preserve the unrelated Android wrapper and older QA artifacts.
+
+## Latest — 23 October 2026: premium public website
+
+The homepage now uses a warm editorial painting/page invitation, a story gallery, an interactive forest reading room and a riverfront closing. Source import and existing reader content remain intact; no app/backend changes. `DESIGN.md` records the selected direction. The isolated public build, 59 Node/output tests and 32 focused browser cases passed (development branch: 63/33) after contrast, intermediate-width and JavaScript-free entrance fixes. Evidence and exact release status: `docs/qa/premium-home-2026-10-23/README.md`. Preserve the unrelated Android wrapper change and older QA artifacts.
 
 ## Connected story return — 29 September 2026
 

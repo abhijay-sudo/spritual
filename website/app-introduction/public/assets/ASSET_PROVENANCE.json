@@ -1,0 +1,37 @@
+{
+  "source_repository": "https://github.com/abhijay-sudo/spritual",
+  "source_commit": "52d2e430a486a1e48a3956f4aefa2fa9b1c506cb",
+  "copied_on": "2026-10-19",
+  "assets": [
+    {
+      "file": "brand-icon.svg",
+      "source": "web/public/favicon.svg",
+      "git_blob_sha": "7d5f5a0f521d8d3b534a02f7a7f5445bfc0b6f83",
+      "unchanged": true
+    },
+    {
+      "file": "fonts/fraunces-latin.woff2",
+      "source": "web/public/fonts/fraunces-latin.woff2",
+      "git_blob_sha": "4c7b557f06062d123a1f2184469c032914ce228a",
+      "font_family": "Fraunces",
+      "license": "fonts/OFL-Fraunces.txt",
+      "unchanged": true,
+      "font_style": "normal",
+      "declared_font_weight_range": "400 600",
+      "subset": "Latin",
+      "mapping_source": "web/src/styles.css"
+    },
+    {
+      "file": "fonts/tiro-devanagari-sanskrit.woff2",
+      "source": "web/public/fonts/v2/71db21efa3e6bd.woff2",
+      "git_blob_sha": "ff92469da722424625b1261d02d7f70c27b92810",
+      "font_family": "Tiro Devanagari Sanskrit",
+      "font_style": "normal",
+      "font_weight": 400,
+      "subset": "Devanagari",
+      "mapping_source": "web/src/design/fonts.css",
+      "license": "fonts/OFL-tirodevanagarisanskrit.txt",
+      "unchanged": true
+    }
+  ]
+}

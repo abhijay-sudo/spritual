@@ -65,8 +65,10 @@ test("a source visit returns to the in-memory question without retaining it afte
   await expect(page.getByLabel("What is happening in your life?")).toHaveValue("");
 
   await page.getByRole("button", { name: /I keep worrying about the result of my work/ }).click();
+  await page.goto("/alpha/settings");
   await page.locator(".alpha-footer details").evaluate((details: HTMLDetailsElement) => { details.open = true; });
   await page.locator(".alpha-footer select").selectOption({ index: 1 });
+  await page.goto("/alpha/life");
   await expect(page.getByLabel("What is happening in your life?")).toHaveValue("");
   await expect(page.getByRole("heading", { name: "Start with the source." })).toHaveCount(0);
 });

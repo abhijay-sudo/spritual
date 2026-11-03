@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "revision": "7d2503c2eca5f1d2",
+  "fingerprint": "9c9c73e72b1e1552c5ef1c300122cd4605a380b87a308c4ea19a5111fadd9380",
+  "distribution": "spritual.co.in bilingual website",
+  "paidAccess": false,
+  "rightsMarkets": [],
+  "reviews": {
+    "source": {
+      "status": "pending",
+      "reviewer": null,
+      "date": null,
+      "evidence": null
+    },
+    "hindi": {
+      "status": "pending",
+      "reviewer": null,
+      "date": null,
+      "evidence": null
+    },
+    "sensitivePassages": {
+      "status": "pending",
+      "reviewer": null,
+      "date": null,
+      "evidence": null
+    },
+    "artwork": {
+      "status": "pending",
+      "reviewer": null,
+      "date": null,
+      "evidence": null
+    },
+    "rights": {
+      "status": "pending",
+      "reviewer": null,
+      "date": null,
+      "evidence": null
+    },
+    "ownerRelease": {
+      "status": "pending",
+      "reviewer": null,
+      "date": null,
+      "evidence": null
+    }
+  },
+  "instructions": "Record only actual named human review of this exact revision and artwork fingerprint. Read REVIEW_REQUIRED.md first. This record cannot enable deployment or paid access."
+}

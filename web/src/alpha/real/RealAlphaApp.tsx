@@ -491,6 +491,9 @@ function RealReadingRoute({ client, language }: { client: SupabaseClient; langua
 
 export default function RealAlphaApp() {
   const [language, setLanguage] = useState<RealLanguage>(initialLanguage);
+  const previousDocumentLanguage = useRef(document.documentElement.lang || "en");
+  useEffect(() => { document.documentElement.lang = language; }, [language]);
+  useEffect(() => () => { document.documentElement.lang = previousDocumentLanguage.current; }, []);
   function changeLanguage(value: RealLanguage) { setLanguage(value); rememberLanguage(value); }
   const [connection] = useState(() => {
     try {

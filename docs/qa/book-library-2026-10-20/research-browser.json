@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "12 episode entry points and 25 book contents",
+    "episode reading, touch page turn, explicit save and resume",
+    "contents and next source section",
+    "original source file and licence reachable",
+    "largest imported unit separates volume notes from narrative",
+    "largest imported unit renders without horizontal overflow at 320,390,768,1440",
+    "no page JavaScript errors"
+  ],
+  "longest": {
+    "route": "/books/source/mahabharata/shanti/363/",
+    "sourceId": 15476,
+    "heading": "SECTION CCCLXV",
+    "bodySha256": "1d8575bcd9238249bfb73c6fd4fbca37f167842e73885965a1570cf0dd6f0727",
+    "folios": 341
+  },
+  "errors": [],
+  "limits": "Chromium desktop and touch emulation. Not physical-device, scan collation or editorial approval."
+}

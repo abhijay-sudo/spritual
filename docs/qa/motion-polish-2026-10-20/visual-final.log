@@ -1,0 +1,13 @@
+
+Running 6 tests using 1 worker
+
+(node:35062) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 website/tests/app-motion.spec.ts:5:1 › crossfades keep current meaning immediate and retire inert outgoing layers (3.1s)
+  ✓  2 website/tests/app-motion.spec.ts:18:1 › rapid repeated input, Escape, resize and reduced-motion changes cancel every layer (3.6s)
+  ✓  3 website/tests/app-motion.spec.ts:29:1 › native dialog exits animate without deferring close or focus restoration (2.6s)
+  ✓  4 website/tests/app-motion.spec.ts:36:1 › no-JavaScript and reduced motion retain the entire invitation and story controls (525ms)
+  ✓  5 website/tests/app-motion.spec.ts:40:1 › motion evidence and responsive reading retain the approved composition (8.0s)
+  ✓  6 website/tests/app-motion.spec.ts:49:1 › outgoing language stays invisible during the incoming fade and never flashes back (2.8s)
+
+  6 passed (21.5s)

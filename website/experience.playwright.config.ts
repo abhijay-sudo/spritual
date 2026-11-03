@@ -1,0 +1,2 @@
+import {defineConfig} from '@playwright/test';
+export default defineConfig({testDir:'./tests',testMatch:'unified-experience.spec.ts',workers:1,retries:0,reporter:'list',outputDir:'../test-results/unified-experience',use:{baseURL:'http://127.0.0.1:4190',headless:true,serviceWorkers:'block',trace:'retain-on-failure'},projects:[{name:'chromium',use:{browserName:'chromium'}},{name:'webkit',use:{browserName:'webkit'}}]});

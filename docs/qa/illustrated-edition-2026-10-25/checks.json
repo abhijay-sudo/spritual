@@ -1,0 +1,38 @@
+[
+  {
+    "width": 320,
+    "errors": [],
+    "overflow": false,
+    "hero": {
+      "source": "http://127.0.0.1:4194/stories-app/edition/open-book-640.webp",
+      "loaded": true
+    }
+  },
+  {
+    "width": 390,
+    "errors": [],
+    "overflow": false,
+    "hero": {
+      "source": "http://127.0.0.1:4194/stories-app/edition/open-book-640.webp",
+      "loaded": true
+    }
+  },
+  {
+    "width": 768,
+    "errors": [],
+    "overflow": false,
+    "hero": {
+      "source": "http://127.0.0.1:4194/stories-app/edition/open-book-640.webp",
+      "loaded": true
+    }
+  },
+  {
+    "width": 1440,
+    "errors": [],
+    "overflow": false,
+    "hero": {
+      "source": "http://127.0.0.1:4194/stories-app/edition/open-book-1024.webp",
+      "loaded": true
+    }
+  }
+]

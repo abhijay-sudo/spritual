@@ -89,3 +89,9 @@
 .alpha[data-large=true] .life-wisdom :is(.life-intro>p,.life-question textarea,.life-interpretation p,.life-practice p) { font-size:20px; }
 .life-story-companion { margin: 25px 0; padding: 20px 0; border-top: 1px solid currentColor; }
 .life-story-companion p { max-width: 60ch; font-size: 14px; line-height: 1.6; }
+.life-next-steps { margin:32px 0 22px; padding:24px; border:1px solid #c2d0c0; border-left:3px solid #9b672f; border-radius:7px; background:#edf0e6; }
+.alpha .life-next-steps h3 { margin:7px 0 8px; color:#214432; font:450 clamp(23px,4vw,31px)/1.2 Fraunces,Georgia,serif; }
+.life-next-steps>p { max-width:58ch; margin:0; color:#4d6654; font-size:14px; line-height:1.6; }
+.life-next-steps>div { display:flex; flex-wrap:wrap; gap:7px 18px; margin-top:14px; }
+.life-next-steps a { display:inline-flex; align-items:center; gap:7px; min-height:44px; color:#28563c; font-size:13px; font-weight:750; text-underline-offset:4px; }
+@media (max-width: 420px) { .life-next-steps { padding:19px; } .life-next-steps>div { display:grid; } }

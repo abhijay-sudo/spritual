@@ -1,0 +1,58 @@
+{
+  "commit": "ee03d3359912e6935e28d2c222b95c8b05f22c65",
+  "checkedAt": "2026-10-19T19:31:10.089Z",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "sha256": "a1cde1d4195c41c73602e47ed2988ce7a2c0674737a11d92e1b80c1d7e3505e4"
+    },
+    {
+      "path": "/books/",
+      "status": 200,
+      "sha256": "0d1418c0545c5a9f6fbc52ac5a8010cebd0213b2581f87854f9459b0dcfa927c"
+    },
+    {
+      "path": "/hi/books/",
+      "status": 200,
+      "sha256": "482d074da23533c39529d8b63d8e4bf65ec5c8e001aee1c81442dc6186d2058d"
+    },
+    {
+      "path": "/books/read/what-makes-a-person-admirable/",
+      "status": 200,
+      "sha256": "8c4d09dbcffcad58f4fa1263bc910f327221aa55d67f67b616d5d37d1352df39"
+    },
+    {
+      "path": "/books/book.css",
+      "status": 200,
+      "sha256": "359dc1c56ad819e963c6e5488710c55c97d937bc710fb0246507e1567e91dc60"
+    },
+    {
+      "path": "/books/book.js",
+      "status": 200,
+      "sha256": "46a6e0709169412638e3ba288a04bdb9fc771b2a44afdf96ce7173788a156c61"
+    },
+    {
+      "path": "/books/state.js",
+      "status": 200,
+      "sha256": "9ecf97a55ecea5e7e5af0a0e02be5ff4f0859248aaf0ffea6e7c3491a0c2509e"
+    },
+    {
+      "path": "/stories-app/home-bridge.js",
+      "status": 200,
+      "sha256": "96394e9959be45dfb1b42ff8148e81b2e37bca7a52b5e09ab46c4cd9cde79ae7"
+    },
+    {
+      "path": "/books/sources/",
+      "status": 404
+    },
+    {
+      "path": "/books/source/mahabharata/vana/53/",
+      "status": 404
+    },
+    {
+      "path": "/books/editions/pg15474.txt",
+      "status": 404
+    }
+  ]
+}

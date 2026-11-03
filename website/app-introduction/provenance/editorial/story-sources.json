@@ -1,0 +1,111 @@
+{
+  "checkedOn": "2026-10-19",
+  "purpose": "Editorial provenance for six original bilingual website reading previews. Internal research data; do not render these notes in the public reader.",
+  "method": "The episodes are anchored to the ancient primary works using editions that display the text, verse numbering and English renderings. The previews are original retellings, not quotations or copied translations. Commentary and endnotes are not treated as primary narrative evidence.",
+  "entries": [
+    {
+      "id": "rama-bow",
+      "source": "Valmiki Ramayana, Bala Kanda, Sarga 67",
+      "url": "https://www.valmikiramayan.net/utf8/baala/sarga67/balaitrans67.htm",
+      "webRefs": ["turn15view0", "turn18view4", "turn19view3"],
+      "support": [
+        {"passage": "1.67.1–5", "facts": "Vishvamitra asks to see the bow; the king summons it; it arrives in an iron coffer on eight wheels."},
+        {"passage": "1.67.8–16", "facts": "Earlier rulers could not master it; with permission Rama opens the chest, handles the bow and strings it."},
+        {"passage": "1.67.17–23", "facts": "The drawn bow breaks at its centre with thunderlike noise; the earth shakes; Janaka says his promise has been fulfilled and proposes Sita's marriage to Rama."}
+      ],
+      "fidelityNotes": [
+        "The wedding is later; this preview ends with Janaka's proposal.",
+        "Do not introduce Ravana attending, Sita placing a garland, or an invented list of rival kings in this scene."
+      ]
+    },
+    {
+      "id": "sita-earth",
+      "source": "Valmiki Ramayana, Bala Kanda, Sarga 66",
+      "url": "https://www.valmikiramayan.net/utf8/baala/sarga66/balaitrans66.htm",
+      "webRefs": ["turn15view1", "turn16view5"],
+      "support": [
+        {"passage": "1.66.13b–14a", "facts": "Janaka says he found a girl raised from a furrow while consecrating/ploughing the sacrificial field and named her Sita."},
+        {"passage": "1.66.14b–16a", "facts": "He describes her as earth-born, raised as his own daughter; as she grew up kings sought her hand."}
+      ],
+      "fidelityNotes": [
+        "The source gives a brief recollection by Janaka, not a detailed scene. A sunrise palette and modest swaddling are artistic choices, not textual assertions.",
+        "Do not add a jewel box, a visible goddess in the field, a whispered prophecy, or the Vedavati narrative from endnotes.",
+        "The furrow/name connection is explicit in the passage."
+      ]
+    },
+    {
+      "id": "krishna-mountain",
+      "source": "Bhagavata Purana, Skandha 10, Chapter 25",
+      "url": "https://vedabase.io/en/library/sb/10/25/",
+      "webRefs": ["turn15view3", "turn16view7"],
+      "support": [
+        {"passage": "10.25.8–15", "facts": "Violent wind, hail and rain afflict Vraja; cattle and cowherd people approach Krishna; the storm is associated with Indra's anger."},
+        {"passage": "10.25.19–23", "facts": "Krishna lifts Govardhana with one hand, gathers people and cattle beneath it, and holds it for seven days; families, animals and wagons find room."},
+        {"passage": "10.25.24–30", "facts": "Indra withdraws the clouds, the sky clears, people emerge, Krishna returns the hill, and the villagers lovingly welcome and embrace him."}
+      ],
+      "fidelityNotes": [
+        "Verse 10.25.19 states one hand. A particular finger or left hand should not be attributed to this selected passage.",
+        "Do not add villagers propping the hill with sticks unless another explicit source is added.",
+        "The events are presented as narrative, without protection or healing claims for readers."
+      ]
+    },
+    {
+      "id": "hanuman-leap",
+      "source": "Valmiki Ramayana, Kishkindha Kanda, Sargas 66–67; Sundara Kanda, Sarga 1",
+      "urls": [
+        "https://www.valmikiramayan.net/utf8/kish/sarga66/kishkindhaitrans66.htm",
+        "https://www.valmikiramayan.net/utf8/kish/sarga67/kishkindhaitrans67.htm",
+        "https://www.valmikiramayan.net/utf8/sundara/sarga1/sundaraitrans1.htm"
+      ],
+      "webRefs": ["turn18view0", "turn18view1", "turn19view0", "turn20view0"],
+      "support": [
+        {"passage": "4.66.1–7", "facts": "Jambavan sees the dispirited vanaras and asks the quiet, withdrawn Hanuman why he has not readied himself despite his strength and capability."},
+        {"passage": "4.66.20–22", "facts": "Jambavan recalls Hanuman's birth and childhood leap toward the rising sun."},
+        {"passage": "4.67.1–5, 35b–41", "facts": "Encouraged Hanuman expands his form; the company rejoices; he chooses and climbs Mahendra for his leap."},
+        {"passage": "5.1, including 29–32 and 68–71", "facts": "Hanuman commits to the crossing and travels through the sky above the ocean in the search for Sita."}
+      ],
+      "fidelityNotes": [
+        "Remembered strength describes Jambavan's encouragement and recollection. Do not add a curse causing magical amnesia from other tellings.",
+        "This is the ocean crossing, not the later Sanjivani mountain episode.",
+        "Do not call this his first-ever leap or convert yojanas into a precise modern distance."
+      ]
+    },
+    {
+      "id": "shiva-river",
+      "source": "Valmiki Ramayana, Bala Kanda, Sarga 43",
+      "url": "https://www.valmikiramayan.net/utf8/baala/sarga43/balaitrans43.htm",
+      "webRefs": ["turn15view2", "turn16view6"],
+      "support": [
+        {"passage": "1.43.1–7a", "facts": "After Bhagiratha's devotion Shiva agrees to receive Ganga; she descends with great force and pride, intending to sweep him away."},
+        {"passage": "1.43.7b–11a", "facts": "Shiva confines Ganga in his matted hair; unable to find an outlet she remains there; Bhagiratha renews his devotion; Shiva releases her towards Bindu Lake."},
+        {"passage": "1.43.11b–16a", "facts": "Ganga divides into seven streams; one follows Bhagiratha's chariot; the narrative describes the descent from sky to Shiva's head and onward to earth."}
+      ],
+      "fidelityNotes": [
+        "Preserve the confinement and Bhagiratha's renewed devotion rather than compressing the descent into one immediate release.",
+        "The illustration may portray Shiva calmly receiving or releasing the river.",
+        "No claims about health, cures or promised spiritual results are attached to the water or the app."
+      ]
+    },
+    {
+      "id": "dhruva-star",
+      "source": "Bhagavata Purana, Skandha 4, Chapters 8–9",
+      "urls": [
+        "https://vedabase.io/en/library/sb/4/8/",
+        "https://vedabase.io/en/library/sb/4/9/"
+      ],
+      "webRefs": ["turn17view4", "turn18view3", "turn17view5", "turn20view1", "turn21view0", "turn21view1"],
+      "support": [
+        {"passage": "4.8.9–24", "facts": "Dhruva tries to sit on his father's lap, is rebuked by his stepmother, weeps with his mother Suniti, receives her counsel not to wish harm on others and to turn to the Lord, and leaves with resolve."},
+        {"passage": "4.8.25–54", "facts": "Narada first counsels patience, hears Dhruva's firm resolve, then guides him to Madhuvana beside the Yamuna and describes the divine form for meditation."},
+        {"passage": "4.9.1–3", "facts": "The Lord comes to Madhuvana; the form within Dhruva's meditation disappears; he opens his eyes and sees the Lord before him."}
+      ],
+      "fidelityNotes": [
+        "The internal ID dhruva-star follows the requested schema; the actual preview ends at Vishnu's appearance, before the later fulfilment of the Pole Star promise.",
+        "Do not insert the popular broken-glass/jewel quotation: it is not in these selected Bhagavata passages.",
+        "Do not describe starvation, breath-holding or extreme child austerities as practices to copy.",
+        "The conch-touch detail is omitted because the modern rendering and literal Sanskrit anatomy differ; it is not needed for this scene.",
+        "The story does not promise a vision or reward to the app reader."
+      ]
+    }
+  ]
+}

@@ -8,6 +8,9 @@
   ],
   "scripts": {
     "dev": "npm run dev -w web",
+    "ritual:dev": "npm run dev --prefix ritual",
+    "ritual:build": "npm run build --prefix ritual",
+    "ritual:typecheck": "npm run typecheck --prefix ritual",
     "build": "npm run content:audit && npm run media:audit && npm run build -w web",
     "content:audit": "node scripts/audit-bundled-content.mjs",
     "content:release-preflight": "node scripts/audit-bundled-content.mjs --release",
@@ -30,11 +33,14 @@
     "@capacitor/cli": "8.5.2",
     "@capacitor/ios": "8.5.2",
     "@playwright/test": "^1.63.0",
-    "sharp": "0.35.4"
+    "sharp": "^0.35.4"
   },
   "overrides": {
     "xcode": {
       "uuid": "11.1.1"
     }
+  },
+  "dependencies": {
+    "page-flip": "^2.0.7"
   }
 }

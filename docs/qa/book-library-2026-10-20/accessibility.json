@@ -1,0 +1,110 @@
+[
+  {
+    "path": "/books/",
+    "width": 390,
+    "mode": "paper",
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/hi/books/",
+    "width": 390,
+    "mode": "paper",
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/books/read/what-makes-a-person-admirable/",
+    "width": 390,
+    "mode": "paper",
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/books/read/what-makes-a-person-admirable/",
+    "width": 390,
+    "mode": "evening",
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/hi/books/read/what-makes-a-person-admirable/",
+    "width": 390,
+    "mode": "paper",
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/hi/books/read/what-makes-a-person-admirable/",
+    "width": 390,
+    "mode": "evening",
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/books/",
+    "width": 1440,
+    "mode": "paper",
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/hi/books/",
+    "width": 1440,
+    "mode": "paper",
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/books/read/what-makes-a-person-admirable/",
+    "width": 1440,
+    "mode": "paper",
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/books/read/what-makes-a-person-admirable/",
+    "width": 1440,
+    "mode": "evening",
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/hi/books/read/what-makes-a-person-admirable/",
+    "width": 1440,
+    "mode": "paper",
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "path": "/hi/books/read/what-makes-a-person-admirable/",
+    "width": 1440,
+    "mode": "evening",
+    "violations": [],
+    "incomplete": [
+      "color-contrast"
+    ]
+  }
+]

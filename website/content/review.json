@@ -1,0 +1,14 @@
+{
+  "status": "pending",
+  "reviewer": null,
+  "contentHash": "b0148cf408346986b313749d5797c5d94260d829effa4be4decfdc1825a996b2",
+  "artworkReview": "pending",
+  "artworkHash": "df5ce98695f921489f6dbbe7af00c72111fe0830e1210271cd0bb362be0af403",
+  "releaseAuthorization": {
+    "kind": "owner-directed-release",
+    "instruction": "Once you are done, push it live.",
+    "date": "2026-10-29",
+    "note": "Owner explicitly instructed publication after being informed review remained pending. Independent editorial and artwork review remain pending.",
+    "latestScope": "29 October interactive motion overhaul: existing illustrations assigned to scenes, focal points and narrative card hooks updated, citations deduplicated. Story prose unchanged. Owner-directed release; independent editorial and artwork review remain pending."
+  }
+}
