@@ -3,6 +3,8 @@
 (function () {
   var d = document.documentElement, me = document.currentScript;
   d.lang = (me && me.dataset.lang) || d.lang || 'en';
+  // the not-found page carries both languages; a missing address under /hi/ gets the Hindi one (see lost.js)
+  if (me && me.hasAttribute('data-lost') && /^\/hi(\/|$)/.test(location.pathname)) { d.lang = 'hi'; d.dataset.lostLang = 'hi'; }
   var calm = false;
   try {
     var p = JSON.parse(localStorage.getItem('spritual:prefs') || '{}');
@@ -11,7 +13,16 @@
     if (p.motion) d.dataset.motion = p.motion;
     calm = p.motion === 'reduce';
   } catch (e) {}
-  if (!calm && !matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('cx-js');
+  // the device's own "reduce motion" setting counts exactly like the site's switch, for every rule that asks
+  var mq = matchMedia('(prefers-reduced-motion: reduce)');
+  if (mq.matches) d.dataset.motion = 'reduce';
+  if (mq.addEventListener) mq.addEventListener('change', function () {
+    var mine; try { mine = JSON.parse(localStorage.getItem('spritual:prefs') || '{}').motion; } catch (e) {}
+    if (mq.matches || mine === 'reduce') d.dataset.motion = 'reduce'; else delete d.dataset.motion;
+  });
+  if (!calm && !mq.matches) d.classList.add('cx-js');
+  // the opening titles play once; a reader who has been here before gets the words and buttons at once
+  try { if (localStorage.getItem('spritual:seen')) d.classList.add('cx-seen'); else localStorage.setItem('spritual:seen', '1'); } catch (e) {}
   addEventListener('pagereveal', function (e) {
     if (!e.viewTransition) return;
     var w; try { w = sessionStorage.getItem('cx-vt'); sessionStorage.removeItem('cx-vt'); } catch (x) { return; }

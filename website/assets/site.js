@@ -11,10 +11,25 @@
     set(k, v) { try { localStorage.setItem('spritual:' + k, JSON.stringify(v)); } catch {} },
   };
   const reduced = () => root.dataset.motion === 'reduce' || matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // "Automatic" motion still honours the device's reduce-motion setting (boot.js sets this on load)
+  const osCalm = () => { if (matchMedia('(prefers-reduced-motion: reduce)').matches) root.dataset.motion = 'reduce'; };
   const pad = (n) => String(n).padStart(2, '0');
   const dayKey = (d = new Date()) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
   const dayIndex = (n) => { const d = new Date(); return Math.floor((d - d.getTimezoneOffset() * 6e4) / 864e5) % n; };
   const haptic = (ms = 8) => { try { if (store.get('sound', false)) navigator.vibrate?.(ms); } catch {} };
+  // a quiet word for screen readers (a visually hidden role=status on pages that have one)
+  const say = (txt) => { const sr = $('[data-sr]'); if (!sr) return; sr.textContent = ''; setTimeout(() => { sr.textContent = txt; }, 30); };
+
+  /* ---------- A pointer to the Hindi edition (English home), only when the browser itself asks for Hindi ---------- */
+  // Never a redirect: one quiet line the reader can follow or close; closing it is remembered on this device.
+  (() => {
+    const hint = $('[data-hi-hint]'); if (!hint || store.get('hiHint', false)) return;
+    const langs = navigator.languages?.length ? navigator.languages : [navigator.language || ''];
+    if (!langs.some((x) => /^hi\b/i.test(x))) return;
+    hint.hidden = false;
+    $('[data-hi-hint-close]', hint)?.addEventListener('click', () => { store.set('hiHint', true); hint.hidden = true; $('.cx-read')?.focus(); });
+    $('a', hint)?.addEventListener('click', () => store.set('hiHint', true));
+  })();
 
   /* ---------- Sound: synthesised, opt-in, remembered ---------- */
   const Sound = (() => {
@@ -221,7 +236,7 @@
     form.addEventListener('change', (e) => {
       const { name, value } = e.target;
       const p = store.get('prefs', {});
-      const apply = () => { if (value) { root.dataset[name] = value; p[name] = value; } else { delete root.dataset[name]; delete p[name]; } };
+      const apply = () => { if (value) { root.dataset[name] = value; p[name] = value; } else { delete root.dataset[name]; delete p[name]; } if (name === 'motion') osCalm(); };
       if (name === 'theme' && document.startViewTransition && !reduced()) document.startViewTransition(apply); else apply();
       store.set('prefs', p); haptic();
     });
@@ -273,11 +288,14 @@
   /* ---------- Greeting, plan, today's story, "what do you need" ---------- */
   const h = new Date().getHours();
   const greet = $('[data-greet]');
-  if (greet) {
+  {
+    // the reader's own "when will you read tomorrow" (kept on this device): inside that window, today's story greets them
     const plan = store.get('plan', null);
     const base = h < 12 ? UI.greetMorning : h < 17 ? UI.greetAfternoon : h < 21 ? UI.greetEvening : UI.greetNight;
     const when = plan === 'morning' && h < 12 ? UI.morning : plan === 'evening' && h >= 17 ? UI.evening : null;
-    greet.textContent = when ? `${base} ${fmt(UI.planReady, { when })}` : base;
+    if (greet) { greet.textContent = when ? `${base} ${fmt(UI.planReady, { when })}` : base; greet.hidden = false; }
+    const pg = $('[data-plan-greet]');
+    if (pg && when) { pg.replaceChildren(document.createTextNode(base + ' '), Object.assign(document.createElement('b'), { textContent: fmt(UI.planReady, { when }) })); pg.hidden = false; }
   }
   const slots = $$('[data-today]');
   const needForm = $('[data-need]');
@@ -327,15 +345,16 @@
   }
   if (slots.length) renderToday();
 
-  /* ---------- Streak: days with a story (last 7) ---------- */
+  /* ---------- Days with a story: only the days read are drawn, never the days not ---------- */
   const paintStreak = () => {
     const days = store.get('days', []);
+    const since = new Date(); since.setDate(since.getDate() - 29); const from = dayKey(since);
+    const recent = [...new Set(days)].filter((k) => k >= from).sort();
+    const n = recent.length;
     for (const el of $$('[data-streak]')) {
       const dots = el.querySelector('[data-dots]'); const line = el.querySelector('[data-streak-line]');
-      const last7 = Array.from({ length: 7 }, (_, i) => { const d = new Date(); d.setDate(d.getDate() - (6 - i)); return dayKey(d); });
-      const n = last7.filter((k) => days.includes(k)).length;
-      if (dots) dots.replaceChildren(...last7.map((k, i) => { const s = document.createElement('span'); s.className = 'dot' + (days.includes(k) ? ' on' : '') + (k === dayKey() ? ' is-today' : ''); s.style.setProperty('--i', i); s.title = k; return s; }));
-      if (line) line.textContent = days.length ? fmt(UI.streakLine, { n }) : UI.streakNone;
+      if (dots) { dots.hidden = !n; dots.replaceChildren(...recent.map((k, i) => { const s = document.createElement('span'); s.className = 'dot on' + (k === dayKey() ? ' is-today' : ''); s.style.setProperty('--i', Math.min(i, 10)); return s; })); }
+      if (line) line.textContent = n ? fmt(n === 1 ? UI.streakLine1 : UI.streakLine, { n }) : days.length ? UI.streakAgain : UI.streakNone;
     }
   };
   paintStreak();
@@ -354,15 +373,26 @@
   for (const row of $$('[data-fest-row]')) { if (row.dataset.festRow < dayKey()) row.classList.add('past'); }
 
   /* ---------- Continue reading ---------- */
-  const last = store.get('last', null);
-  if (last) {
-    for (const a of $$('[data-continue]')) {
-      const c = cardFor(last.slug); const link = c?.querySelector('.card-title a'); if (!link) continue;
-      a.href = link.getAttribute('href').split('#')[0] + '#page-' + last.scene;
-      if (link.target) { a.target = link.target; a.rel = 'noopener'; }
-      a.querySelector('[data-continue-title]').textContent = link.textContent;
-      a.querySelector('[data-continue-scene]').textContent = fmt(UI.sceneOf, { n: last.scene, t: last.total });
-      a.hidden = false; const block = a.closest('[data-continue-block]'); if (block) block.hidden = false;
+  // Built from the story index every page carries, so it never depends on cards being on the page.
+  // A finished story offers the one after it instead of its own last scene.
+  {
+    const IDX = UI.stories || {}; const last = store.get('last', null); const here = $('[data-reader]')?.dataset.slug;
+    const was = last && IDX[last.slug];
+    if (was && !(here && here === last.slug)) {
+      const total = Math.max(1, +last.total || 1); const n = Math.max(1, Math.min(total, +last.scene || 1));
+      const done = n >= total; const s = done ? IDX[was.x] : was;
+      if (s) for (const a of $$('[data-continue]')) {
+        a.href = done ? s.h : s.h.split('#')[0] + '#page-' + n;
+        a.querySelector('[data-continue-kicker]').textContent = done ? UI.upNext : UI.continue;
+        a.querySelector('[data-continue-title]').textContent = s.t;
+        a.querySelector('[data-continue-scene]').textContent = done ? fmt(UI.afterStory, { title: was.t }) : fmt(UI.sceneOf, { n, t: total });
+        const bar = a.querySelector('[data-continue-bar]'); if (bar) { bar.parentElement.hidden = done; bar.style.setProperty('--p', (n / total).toFixed(3)); }
+        const im = a.querySelector('[data-continue-pic]'); if (im && s.p) { im.src = s.p; im.hidden = false; } else if (im) im.parentElement.hidden = true;
+        a.classList.toggle('is-next', done);
+        a.hidden = false; const block = a.closest('[data-continue-block]'); if (block) block.hidden = false;
+        // on the home page the returning reader's place takes the slot of the rotating cards
+        const deck = a.closest('.cx-open-side')?.querySelector('[data-cards]'); if (deck) deck.hidden = true;
+      }
     }
   }
 
@@ -373,25 +403,96 @@
     grid.replaceChildren(...cards); $('[data-saved-empty]').hidden = cards.length > 0; paintSave();
   }
   renderSaved(); paintSave();
+  // Reflections: each can be removed (with an undo that waits for the reader, no timer); dates in the reader's language
   const journal = $('[data-journal]');
-  if (journal) {
+  const humanDay = (k) => { const [y, m, d] = String(k).split('-').map(Number); if (!y || !m || !d) return String(k); try { return new Date(y, m - 1, d).toLocaleDateString(UI.lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'long', year: 'numeric' }); } catch { return String(k); } };
+  const sameRefl = (a, b) => a.slug === b.slug && a.day === b.day;
+  let lastRemoved = null;
+  const renderJournal = (focusKey) => {
+    if (!journal) return;
     const items = store.get('reflections', []);
     $('[data-journal-empty]').hidden = items.length > 0;
     journal.replaceChildren(...items.map((r) => {
       const li = document.createElement('li'); li.className = 'journal-item';
       const c = cardFor(r.slug); const title = c?.querySelector('.card-title a');
-      li.innerHTML = `<p class="journal-text"></p><p class="note"><span></span> · <time></time></p>`;
+      li.innerHTML = `<p class="journal-text"></p><div class="journal-foot"><p class="note"><span></span> · <time></time></p><button type="button" class="journal-remove"></button></div>`;
       li.querySelector('.journal-text').textContent = r.text;
       const t = li.querySelector('span'); if (title) { const a = document.createElement('a'); a.href = title.getAttribute('href'); a.textContent = title.textContent; t.replaceChildren(a); } else t.textContent = r.slug;
-      li.querySelector('time').textContent = r.day;
+      const when = humanDay(r.day); const tm = li.querySelector('time'); tm.textContent = when; tm.dateTime = r.day;
+      const rm = li.querySelector('.journal-remove'); rm.textContent = UI.remove;
+      rm.setAttribute('aria-label', fmt(UI.removeRefl, { title: title ? title.textContent : r.slug, date: when }));
+      rm.dataset.key = r.slug + '|' + r.day;
       return li;
     }));
+    if (focusKey) [...journal.querySelectorAll('.journal-remove')].find((b) => b.dataset.key === focusKey)?.focus();
+  };
+  if (journal) {
+    renderJournal();
+    const msg = $('[data-journal-msg]'); const undo = $('[data-journal-undo]');
+    journal.addEventListener('click', (e) => {
+      const b = e.target.closest('.journal-remove'); if (!b) return;
+      const list = store.get('reflections', []); const [slug, day] = b.dataset.key.split('|');
+      const i = list.findIndex((r) => sameRefl(r, { slug, day })); if (i < 0) return;
+      lastRemoved = { item: list[i], at: i };
+      list.splice(i, 1); store.set('reflections', list); haptic();
+      renderJournal();
+      msg.textContent = UI.reflRemoved; undo.hidden = false; undo.focus();
+    });
+    undo.addEventListener('click', () => {
+      if (!lastRemoved) return;
+      const list = store.get('reflections', []).filter((r) => !sameRefl(r, lastRemoved.item));
+      list.splice(Math.min(lastRemoved.at, list.length), 0, lastRemoved.item); store.set('reflections', list.slice(0, 200));
+      const key = lastRemoved.item.slug + '|' + lastRemoved.item.day; lastRemoved = null;
+      undo.hidden = true; msg.textContent = UI.reflRestored; renderJournal(key);
+    });
+  }
+
+  /* ---------- Erase everything this site keeps in this browser ---------- */
+  // Storage for this site (including records from older versions), the offline copies and the service worker.
+  // It asks first, says plainly what goes, and then shows the page as a first-time reader would see it.
+  const eraseAll = async () => {
+    let ok = true;
+    try { localStorage.clear(); } catch { ok = false; }
+    try { sessionStorage.clear(); } catch {}
+    // the worker still serving this page is told to stop keeping copies first, so nothing is re-saved behind the reader
+    try { navigator.serviceWorker?.controller?.postMessage('spritual:erase'); const regs = (await navigator.serviceWorker?.getRegistrations?.()) || []; await Promise.all(regs.map((r) => r.unregister())); } catch {}
+    const sweep = async () => { if ('caches' in window) { const ks = await caches.keys(); await Promise.all(ks.map((k) => caches.delete(k))); } };
+    try { await sweep(); } catch { ok = false; }
+    setTimeout(() => sweep().catch(() => {}), 1500);   // a painting that was already on its way in
+    return ok;
+  };
+  const afterErase = () => {
+    for (const k of ['size', 'theme', 'motion']) delete root.dataset[k];
+    osCalm();
+    for (const r of $$('[data-comfort] input[value=""]')) r.checked = true;
+    Sound.droneStop(); Sound.riverStop(); paintSound();
+    lastRemoved = null; const undo = $('[data-journal-undo]'); if (undo) undo.hidden = true; const jm = $('[data-journal-msg]'); if (jm) jm.textContent = '';
+    renderSaved(); renderJournal(); paintStreak();
+    for (const a of $$('[data-continue]')) { a.hidden = true; const block = a.closest('[data-continue-block]'); if (block) block.hidden = true; const deck = a.closest('.cx-open-side')?.querySelector('[data-cards]'); if (deck) deck.hidden = false; }
+    for (const g of $$('[data-greet]')) g.hidden = true;
+  };
+  for (const box of $$('[data-erase]')) {
+    const ask = $('[data-erase-ask]', box); const conf = $('[data-erase-confirm]', box); const yes = $('[data-erase-yes]', box); const no = $('[data-erase-no]', box); const done = $('[data-erase-done]', box);
+    ask.hidden = false;
+    const close = (back = true) => { conf.hidden = true; ask.hidden = false; ask.setAttribute('aria-expanded', 'false'); if (back) ask.focus(); };
+    ask.addEventListener('click', () => { done.textContent = ''; conf.hidden = false; ask.hidden = true; ask.setAttribute('aria-expanded', 'true'); no.focus(); });
+    no.addEventListener('click', () => close());
+    conf.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); close(); } });
+    yes.addEventListener('click', async () => {
+      yes.disabled = no.disabled = true;
+      const ok = await eraseAll();
+      yes.disabled = no.disabled = false; close(false); afterErase();
+      for (const d of $$('[data-erase-done]')) d.textContent = '';
+      done.textContent = ok ? UI.eraseDone : UI.eraseFail; done.focus();
+    });
   }
 
   /* ---------- Library filters ---------- */
   const filters = $('[data-filters]');
   if (filters) {
     const grid = $('[data-grid]'); const cards = $$('.card', grid); const count = $('[data-count]'); const empty = $('[data-empty]');
+    // the visible number counts up; screen readers hear one settled result, after typing pauses
+    const countSr = $('[data-count-sr]'); let countRaf = 0, srTimer = 0;
     const apply = () => {
       const f = new FormData(filters);
       const q = String(f.get('q') || '').trim().toLowerCase(); const value = f.get('value') || ''; const coll = f.get('coll') || ''; const time = f.get('time') || '';
@@ -403,8 +504,11 @@
         c.hidden = !ok; if (ok) n++;
       }
       const prev = +(count.dataset.n ?? cards.length); count.dataset.n = n;
-      if (reduced() || prev === n) count.textContent = fmt(UI.results, { n, t: cards.length });
-      else { const t0 = performance.now(); const step = (now) => { const k = Math.min(1, (now - t0) / 300); const v = Math.round(prev + (n - prev) * (1 - Math.pow(1 - k, 3))); count.textContent = fmt(UI.results, { n: v, t: cards.length }); if (k < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
+      const res = (v) => fmt(v === 1 ? UI.results1 || UI.results : UI.results, { n: v, t: cards.length });
+      cancelAnimationFrame(countRaf);
+      if (reduced() || prev === n) count.textContent = res(n);
+      else { const t0 = performance.now(); const step = (now) => { const k = Math.min(1, (now - t0) / 300); const v = Math.round(prev + (n - prev) * (1 - Math.pow(1 - k, 3))); count.textContent = res(v); if (k < 1) countRaf = requestAnimationFrame(step); }; countRaf = requestAnimationFrame(step); }
+      if (countSr) { clearTimeout(srTimer); srTimer = setTimeout(() => { if (countSr.textContent !== res(n)) countSr.textContent = res(n); }, 400); }
       empty.hidden = n > 0;
     };
     filters.addEventListener('input', apply); filters.addEventListener('change', apply);
@@ -420,23 +524,54 @@
     const body = $('[data-gloss-body]', gloss); const head = $('[data-gloss-term]', gloss);
     const rail = $('[data-lens-rail]'); const sheet = $('#lens'); const railOn = () => rail && getComputedStyle(rail).display !== 'none';
     const lit = (id) => { $$('.lens-card').forEach((c) => c.classList.toggle('is-lit', c.dataset.lensCard === id)); $$('.term').forEach((t) => t.classList.toggle('is-lit', t.dataset.term === id)); };
-    const cardHtml = (d) => `<li class="lens-card"><p class="lens-term"><b></b>${d.deva && d.deva !== d.term ? ' <span class="lens-deva" lang="hi"></span>' : ''}${d.translit ? ' <i class="lens-translit"></i>' : ''}</p>${d.literal ? `<p class="lens-row"><span class="lens-k">${UI.lensLiteral}</span><span data-lit></span></p>` : ''}<p class="lens-row"><span class="lens-k">${d.context ? UI.lensContext : ''}</span><span data-ctx></span></p>${d.source ? `<p class="lens-src"><span class="lens-k">${UI.lensSource}</span><cite></cite>${d.source.verify ? ` <span class="verify" title="${UI.verify}">[VERIFY]</span>` : ''}</p>` : ''}</li>`;
+    const cardHtml = (d) => `<li class="lens-card"><p class="lens-term"><b></b>${d.deva && d.deva !== d.term ? ' <span class="lens-deva" lang="hi"></span>' : ''}${d.translit ? ' <i class="lens-translit"></i>' : ''}</p>${d.literal ? `<p class="lens-row"><span class="lens-k">${UI.lensLiteral}</span><span data-lit></span></p>` : ''}<p class="lens-row"><span class="lens-k">${UI.lensMeaning}</span><span data-def></span></p>${d.context ? '<p class="lens-row"><span class="lens-k" data-ctx-k></span><span data-ctx></span></p>' : ''}${d.source ? `<p class="lens-src"><span class="lens-k">${UI.lensSource}</span><cite></cite>${d.source.verify ? ` <span class="verify" title="${UI.verify}">[VERIFY]</span>` : ''}</p>` : ''}</li>`;
     const show = (btn) => {
       const id = btn.dataset.term; const d = defs[id]; if (!d) return;
       $$('.term[aria-expanded="true"]').forEach((t) => t.setAttribute('aria-expanded', 'false')); btn.setAttribute('aria-expanded', 'true');
-      if (railOn()) { lit(id); const card = $(`[data-lens-card="${id}"]`); if (card) { card.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'nearest' }); } return; }
-      if (sheet) {
-        const b = $('[data-lens-body]', sheet); b.innerHTML = `<ol class="lens-list">${cardHtml(d)}</ol>`;
-        b.querySelector('b').textContent = d.term; const dv = b.querySelector('.lens-deva'); if (dv) dv.textContent = d.deva; const tr = b.querySelector('.lens-translit'); if (tr) tr.textContent = d.translit;
-        const li = b.querySelector('[data-lit]'); if (li) li.textContent = d.literal; b.querySelector('[data-ctx]').textContent = d.context || d.def; const ci = b.querySelector('cite'); if (ci) ci.textContent = d.source.label;
-        sheet.showModal(); return;
+      if (railOn()) {
+        lit(id); const card = $(`[data-lens-card="${id}"]`);
+        if (card) {
+          btn.setAttribute('aria-controls', card.id); card.scrollIntoView({ behavior: 'auto', block: 'nearest' });
+          // a full-width painting can pass over the rail: keep the lit card in a clear stretch of it, or show the meaning by the word
+          if (!clearOfShots(card)) { pop(btn, d); return; }
+        }
+        // the rail is visual; say the meaning too, so "expanded" is never empty
+        say(`${d.term}: ${d.def}`);
+        return;
       }
+      if (sheet) { openSheet(d); return; }
+      pop(btn, d);
+    };
+    function pop(btn, d) {
       head.textContent = d.term; body.textContent = d.def;
       const r = btn.getBoundingClientRect();
       gloss.style.left = Math.max(8, Math.min(r.left, innerWidth - 300)) + 'px';
       gloss.style.top = (r.bottom + 8) + 'px';
       try { gloss.showPopover(); } catch { gloss.hidden = false; }
-    };
+    }
+    function openSheet(d) {
+        const b = $('[data-lens-body]', sheet); b.innerHTML = `<ol class="lens-list">${cardHtml(d)}</ol>`;
+        b.querySelector('b').textContent = d.term; const dv = b.querySelector('.lens-deva'); if (dv) dv.textContent = d.deva; const tr = b.querySelector('.lens-translit'); if (tr) tr.textContent = d.translit;
+        const li = b.querySelector('[data-lit]'); if (li) li.textContent = d.literal; b.querySelector('[data-def]').textContent = d.def; if (d.context) { b.querySelector('[data-ctx-k]').textContent = d.ctxLabel; b.querySelector('[data-ctx]').textContent = d.context; } const ci = b.querySelector('cite'); if (ci) ci.textContent = d.source.label;
+        sheet.showModal();
+    }
+    // is the card clear of every full-width painting on screen? If not, scroll the rail so it sits in a clear stretch.
+    function clearOfShots(card) {
+      const bands = () => $$('.shot:not(.shot--card)').map((x) => x.getBoundingClientRect()).filter((r) => r.bottom > 0 && r.top < innerHeight);
+      const hit = (top, bottom) => bands().some((r) => r.bottom > top + 4 && r.top < bottom - 4);
+      let c = card.getBoundingClientRect(); if (!hit(c.top, c.bottom)) return true;
+      const box = rail.getBoundingClientRect(); const lo = Math.max(box.top, 0); const hi = Math.min(box.bottom, innerHeight);
+      const cuts = bands().map((r) => [Math.max(lo, r.top), Math.min(hi, r.bottom)]).filter(([a, z]) => z > a).sort((x, y) => x[0] - y[0]);
+      const gaps = []; let at = lo; for (const [a, z] of cuts) { if (a > at) gaps.push([at, a]); at = Math.max(at, z); } if (hi > at) gaps.push([at, hi]);
+      const room = gaps.find(([a, z]) => z - a >= c.height + 16); if (!room) return false;
+      rail.scrollTop += c.top - (room[0] + 8); c = card.getBoundingClientRect();
+      return !hit(c.top, c.bottom) && c.top >= lo - 1 && c.bottom <= hi + 1;
+    }
+    // the lens rail fades at its foot while there is more to scroll
+    if (rail) {
+      const edge = () => rail.classList.toggle('is-end', rail.scrollTop + rail.clientHeight >= rail.scrollHeight - 4);
+      rail.addEventListener('scroll', edge, { passive: true }); addEventListener('resize', edge); edge();
+    }
     document.addEventListener('click', (e) => {
       const b = e.target.closest('.term');
       if (b) { show(b); haptic(); } else if (!e.target.closest('.lens-card')) { try { gloss.hidePopover(); } catch { gloss.hidden = true; } $$('.term[aria-expanded="true"]').forEach((t) => t.setAttribute('aria-expanded', 'false')); if (railOn()) lit(null); }
@@ -459,24 +594,34 @@
     const readBtns = $$('[data-read]');
     const setRead = (mode, save) => {
       const btn = readBtns.find((b) => b.dataset.read === mode); if (!btn || btn.disabled) mode = UI.lang;
-      const y = scrollY; root.dataset.read = mode;
+      // keep the reader's exact place: hold the current scene, and how far into it they were, steady across the change
+      const y = scrollY; const anchor = save ? scenes[current - 1] : null; const r0 = anchor?.getBoundingClientRect();
+      const f = r0 && r0.top < 0 ? Math.min(1, -r0.top / Math.max(1, r0.height)) : 0;
+      root.dataset.read = mode;
       readBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.read === mode)));
       const note = $('[data-draft-note]'); if (note) note.hidden = !((UI.draft || {})[readLang()] || (mode === 'both' && Object.values(UI.draft || {}).some(Boolean)));
       if (save) { const p = store.get('prefs', {}); p.read = mode; store.set('prefs', p); haptic(); }
-      requestAnimationFrame(() => scrollTo(0, y));
+      if (anchor) { const r1 = anchor.getBoundingClientRect(); const dy = (r1.top + f * r1.height) - (r0.top + f * r0.height); if (Math.abs(dy) > 1) scrollBy({ top: dy, behavior: 'instant' }); }
+      else requestAnimationFrame(() => scrollTo(0, y));
     };
     setRead(store.get('prefs', {}).read || UI.lang, false);
     readBtns.forEach((b) => b.addEventListener('click', () => setRead(b.dataset.read, true)));
     const nowLabel = $('[data-scene-now]'); const tocLinks = $$('#toc a'); const toast = $('[data-toast]'); const beads = $$('[data-bead]');
-    let current = 1; let maxSeen = 1;
+    let current = 1; let maxSeen = 1; let entered = false;
+    const langLinks = $$('[data-lang-switch]');
     const markDay = () => { const days = store.get('days', []); if (!days.includes(dayKey())) { days.push(dayKey()); store.set('days', days.slice(-120)); } };
-    const setCurrent = (n, scrollInto) => {
+    // real: the reader is actually in the scenes (not just looking at the title card), so their place is worth keeping
+    const setCurrent = (n, scrollInto, real = true) => {
       current = n; maxSeen = Math.max(maxSeen, n);
       if (nowLabel) nowLabel.textContent = fmt(UI.sceneOf, { n, t: total });
       tocLinks.forEach((a, i) => a.setAttribute('aria-current', String(i + 1 === n)));
       beads.forEach((b, i) => { b.classList.toggle('on', i + 1 <= n); b.classList.toggle('now', i + 1 === n); });
       const fill = $('[data-rail-fill]'); if (fill) fill.style.setProperty('--p', (n / total).toFixed(3));
       const left = $('[data-left-time]'); if (left) { const mins = Math.ceil(+reader.dataset.minutes * (1 - (n - 1) / total)); left.textContent = n === total ? UI.leftDone : fmt(UI.leftTime, { n: mins }); }
+      if (real) entered = true;
+      // the language switch carries the scene across (only when the other language has this story)
+      if (UI.samePath) langLinks.forEach((a) => { a.href = a.getAttribute('href').split('#')[0] + (entered ? '#page-' + n : ''); });
+      if (!real) return;
       store.set('last', { slug, scene: n, total, at: Date.now() });
       if (n >= Math.ceil(total / 2)) markDay();
       if (n === total && !reader.dataset.done) { reader.dataset.done = '1'; Sound.bell(523, 0.2); const d = $('[data-done-line]'); if (d) d.textContent = UI.doneLine; const f = $('[data-story-fig] .fig, [data-story-fig] .art'); if (f) { f.classList.add('is-bowing'); f.addEventListener('animationend', () => f.classList.remove('is-bowing'), { once: true }); } }
@@ -484,7 +629,10 @@
     };
     const io = new IntersectionObserver((entries) => { for (const en of entries) if (en.isIntersecting && root.dataset.mode !== 'leaf') setCurrent(scenes.indexOf(en.target) + 1); }, { rootMargin: '-35% 0px -60% 0px' });
     scenes.forEach((s) => io.observe(s));
-    tocLinks.forEach((a, i) => a.addEventListener('click', (e) => { a.closest('dialog')?.close(); if (root.dataset.mode === 'leaf') { e.preventDefault(); goTo(i + 1); } }));
+    // choosing a scene from Contents or the reel moves focus there too, so keyboard and screen-reader readers arrive with it
+    // (tabindex is added only here: a focusable section in the markup would stop the browser honouring #page-N on arrival)
+    const focusScene = (n) => requestAnimationFrame(() => { const s = scenes[n - 1]; if (!s) return; s.tabIndex = -1; s.focus({ preventScroll: true }); });
+    [tocLinks, beads].forEach((links) => links.forEach((a, i) => a.addEventListener('click', (e) => { a.closest('dialog')?.close(); if (root.dataset.mode === 'leaf') { e.preventDefault(); goTo(i + 1); } focusScene(i + 1); })));
 
     // Leaf mode: one scene at a time
     const goTo = (n, dir) => {
@@ -499,17 +647,20 @@
       const prev = $('[data-prev]'), next = $('[data-next]');
       if (prev) prev.disabled = n === 1; if (next) next.disabled = n === total;
       const fin = $('[data-finished]'); if (fin) fin.hidden = n !== total;
+      if (dir) say(`${fmt(UI.sceneOf, { n, t: total })}: ${$(`#page-${n}-h`)?.textContent || ''}`);
     };
     const setMode = (m) => {
       if (m === 'leaf') { root.dataset.mode = 'leaf'; goTo(current); } else { delete root.dataset.mode; scenes.forEach((s) => s.classList.remove('leaf-on', 'leaf-fwd', 'leaf-back')); scenes[current - 1].scrollIntoView({ block: 'start' }); }
       const p = store.get('prefs', {}); if (m === 'leaf') p.mode = 'leaf'; else delete p.mode; store.set('prefs', p);
-      $$('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === (m || 'scroll'))));
+      $$('button[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === (m || 'scroll'))));
     };
-    $$('[data-mode]').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.mode)));
+    $$('button[data-mode]').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.mode)));
     $('[data-prev]')?.addEventListener('click', () => goTo(current - 1, -1));
     $('[data-next]')?.addEventListener('click', () => goTo(current + 1, 1));
     addEventListener('keydown', (e) => {
-      if (root.dataset.mode !== 'leaf' || /input|textarea/i.test(document.activeElement?.tagName) || $('dialog[open]')) return;
+      if (root.dataset.mode !== 'leaf' || e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || $('dialog[open]')) return;
+      // keys belong to whatever control has focus: Space presses a button, arrows move in a radio group or a text field
+      if (e.target.closest?.('button, a[href], input, select, textarea, summary, label, [role="radio"], [role="tab"], [contenteditable]:not([contenteditable="false"]), [popover]')) return;
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1, 1); }
       if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); goTo(current - 1, -1); }
     });
@@ -521,7 +672,19 @@
       if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) goTo(current + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
     }, { passive: true });
     const startScene = Math.max(1, Math.min(total, parseInt((location.hash.match(/page-(\d+)/) || [])[1] || '1', 10)));
-    if (store.get('prefs', {}).mode === 'leaf') { current = startScene; setMode('leaf'); } else { setCurrent(startScene, false); $$('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === 'scroll'))); }
+    if (store.get('prefs', {}).mode === 'leaf') { current = startScene; setMode('leaf'); } else {
+      const hashed = /page-\d+/.test(location.hash);
+      setCurrent(startScene, false, hashed); $$('button[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === 'scroll')));
+      // arriving at #page-N (Continue reading, a language switch, a shared link): make sure the scene is really in view, even
+      // when the browser's own jump happened before pictures and fonts had settled; stop the moment the reader scrolls themselves
+      if (hashed) {
+        const target = scenes[startScene - 1]; let mine = false;
+        const jump = () => { if (!mine) target.scrollIntoView({ block: 'start', behavior: 'instant' }); };
+        for (const ev of ['wheel', 'touchstart', 'keydown', 'pointerdown']) addEventListener(ev, () => { mine = true; }, { once: true, passive: true });
+        jump(); (document.fonts?.ready || Promise.resolve()).then(jump);
+        if (document.readyState !== 'complete') addEventListener('load', () => setTimeout(jump, 60), { once: true });
+      }
+    }
 
     // Copy link / copy line
     const copyText = async (text, okMsg, btn) => { try { await navigator.clipboard.writeText(text); toast.textContent = okMsg; } catch { toast.textContent = text; } Sound.bell(988, 0.1); haptic(); if (btn) { btn.classList.add('is-done'); setTimeout(() => btn.classList.remove('is-done'), 1200); } setTimeout(() => { toast.textContent = ''; }, 4000); };
@@ -538,8 +701,9 @@
       const ta = $('textarea', refl); const kept = $('[data-reflect-kept]');
       const mine = store.get('reflections', []).find((r) => r.slug === slug && r.day === dayKey());
       if (mine) { ta.value = mine.text; kept.textContent = UI.reflectKept; }
+      ta.addEventListener('input', () => { if (kept.textContent === UI.reflectEmpty) kept.textContent = ''; });
       refl.addEventListener('submit', (e) => {
-        e.preventDefault(); const text = ta.value.trim(); if (!text) { ta.focus(); return; }
+        e.preventDefault(); const text = ta.value.trim(); if (!text) { kept.textContent = UI.reflectEmpty; ta.focus(); return; }
         const list = store.get('reflections', []).filter((r) => !(r.slug === slug && r.day === dayKey()));
         list.unshift({ slug, text, day: dayKey() }); store.set('reflections', list.slice(0, 200));
         kept.textContent = UI.reflectKept; Sound.bell(659, 0.18); haptic(12); markDay(); paintStreak();
@@ -547,13 +711,16 @@
     }
     // Plan
     for (const b of $$('[data-plan]')) {
-      b.addEventListener('click', () => { store.set('plan', b.dataset.plan); $$('[data-plan]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); const s = $('[data-plan-set]'); if (s) s.textContent = UI.planSet; Sound.bell(784, 0.12); haptic(); });
+      b.addEventListener('click', () => { store.set('plan', b.dataset.plan); $$('[data-plan]').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); const s = $('[data-plan-set]'); if (s) s.textContent = fmt(UI.planSet, { when: b.dataset.plan === 'morning' ? UI.morning : UI.evening }); Sound.bell(784, 0.12); haptic(); });
       if (store.get('plan', null) === b.dataset.plan) b.setAttribute('aria-pressed', 'true');
     }
 
     // Listen: the browser's own speech engine, scene by scene
     const listenBtns = $$('[data-listen]'); const synth = window.speechSynthesis; let state = 'idle';
-    const label = (txt) => listenBtns.forEach((b) => { b.querySelector('span').textContent = txt; b.setAttribute('aria-pressed', String(state === 'playing')); });
+    const label = (txt) => listenBtns.forEach((b) => {
+      b.querySelector('span').textContent = txt; b.setAttribute('aria-pressed', String(state === 'playing'));
+      const ic = b.querySelector('svg.ic'); const want = state === 'playing' ? UI.icPause : UI.icPlay; if (ic && want) ic.outerHTML = want;
+    });
     const voice = (L = readLang()) => { const want = L === 'hi' ? 'hi' : 'en'; const vs = synth.getVoices(); return vs.find((v) => v.lang.toLowerCase() === `${want}-in`) || vs.find((v) => v.lang.toLowerCase().startsWith(want)) || null; };
     const mark = (n) => scenes.forEach((s, i) => s.classList.toggle('is-speaking', i + 1 === n));
     const speakScene = (n) => {
@@ -570,11 +737,25 @@
     };
     listenBtns.forEach((b) => b.addEventListener('click', () => {
       if (!synth) { toast.textContent = UI.listenNA; return; } haptic();
-      if (state === 'idle') { state = 'playing'; label(UI.pauseListen); synth.cancel(); speakScene(current); }
+      if (state === 'idle') {
+        // say so plainly when this device has no voice for the language being read, instead of reading it wrongly or not at all
+        const L = readLang(); if (synth.getVoices().length && !voice(L)) { toast.textContent = fmt(UI.listenNoVoice, { lang: L === 'hi' ? UI.voiceHi : UI.voiceEn }); setTimeout(() => { toast.textContent = ''; }, 8000); return; }
+        state = 'playing'; label(UI.pauseListen); synth.cancel(); speakScene(current);
+      }
       else if (state === 'playing') { state = 'paused'; synth.pause(); label(UI.resume); }
       else { state = 'playing'; synth.resume(); label(UI.pauseListen); }
     }));
     addEventListener('pagehide', () => synth?.cancel());
+    // the floating reader dock steps aside once the story has ended, so it never sits over the reflection or the footer links
+    const dock = $('.reader-bar'); const ends = $$('.story-end, .cx-credits');
+    if (dock && ends.length && 'IntersectionObserver' in window) {
+      const seen = new Set();
+      const eio = new IntersectionObserver((es) => {
+        es.forEach((en) => (en.isIntersecting ? seen.add(en.target) : seen.delete(en.target)));
+        const away = seen.size > 0; dock.classList.toggle('is-away', away); dock.inert = away;
+      }, { rootMargin: '0px 0px -20% 0px' });
+      ends.forEach((el) => eio.observe(el));
+    }
     if (Sound.on()) Sound.droneStart();
     // Leaving for the quiet minute: remember where the reader was, so /pause/ can show this story's question and bring them back
     document.addEventListener('click', (e) => {
@@ -668,9 +849,11 @@
      Loaded only when the frame is near the viewport, at 720p on small screens or slow connections, never on
      data-saver or reduced motion. The still stays underneath; the clip fades in on its first real frame. */
   const clips = $$('video.frame-video[data-video]');
-  if (clips.length && !reduced() && !navigator.connection?.saveData) {
+  const lowData = !!navigator.connection?.saveData || matchMedia('(prefers-reduced-data: reduce)').matches;
+  if (clips.length && !reduced() && !lowData) {
     const slow = /\b(2g|3g)\b/.test(navigator.connection?.effectiveType || '');
-    const wantHD = !slow && Math.max(innerWidth, innerHeight) * Math.min(devicePixelRatio || 1, 2) >= 1400;
+    // 1080p only for a wide screen (CSS width, not pixel density) on a connection that is not cellular; phones get 720p
+    const wantHD = !slow && innerWidth >= 1000 && !/cellular/.test(navigator.connection?.type || '');
     const src = (v) => `${v.dataset.video}-${wantHD && (v.hasAttribute('data-hd') || v.closest('.act, .page-frame, .pause--framed')) ? 1080 : 720}.mp4`;
     const host = (v) => v.closest('[data-media]') || v.closest('.frame');
     const show = (v) => { host(v)?.classList.add('is-live'); };
@@ -692,7 +875,10 @@
       if (en.isIntersecting) start(v); else if (!v.paused) v.pause();
     }), { rootMargin: '40% 0px 40% 0px' });
     window.SpritualClips = { start: (v) => { if (v.dataset.near) start(v); }, stop: (v) => { if (!v.paused) v.pause(); } };
-    clips.forEach((v) => io.observe(v));
+    // the film waits until the page (poster, words, first pictures) has loaded, then for a quiet moment
+    const watch = () => clips.forEach((v) => io.observe(v));
+    const idle = () => ('requestIdleCallback' in window ? requestIdleCallback(watch, { timeout: 1500 }) : setTimeout(watch, 300));
+    if (document.readyState === 'complete') idle(); else addEventListener('load', idle, { once: true });
     document.addEventListener('visibilitychange', () => clips.forEach((v) => { if (document.hidden) { if (!v.paused) v.pause(); } else if (v.getAttribute('src') && !v.dataset.hold && host(v)?.classList.contains('is-live')) v.play().catch(() => {}); }));
   }
 

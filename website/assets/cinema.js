@@ -34,15 +34,33 @@
 
   /* ---------- Prologue: one painting per stretch of scroll; each pushes in slowly, then dissolves into the next ---------- */
   const reel = $('[data-reel]');
+  // the later paintings wait in data-src/data-srcset so the opening screen loads first; each is fetched as the reel nears it
+  const hydrate = (img) => {
+    if (!img || !img.dataset.srcset) return;
+    img.srcset = img.dataset.srcset; img.src = img.dataset.src;
+    img.removeAttribute('data-srcset'); img.removeAttribute('data-src');
+  };
+  const laterImgs = reel ? $$('img[data-later]', reel) : [];
+  if (reel && reduced()) laterImgs.forEach(hydrate);   // stacked, not pinned: the browser's own lazy loading takes over
   if (reel && !reduced()) {
     const frames = $$('[data-frame]', reel); const n = frames.length;
     const fill = $('[data-reel-fill]', reel); const label = $('[data-reel-n]', reel);
+    const imgOf = (k) => frames[k] && $('img[data-later]', frames[k]);
     let cur = 0;
+    // a keyboard user tabbing to a frame's "Read this story" is carried to the stretch of scroll where that frame shows
+    frames.forEach((fr, k) => fr.addEventListener('focusin', () => {
+      if (k === cur) return;
+      const top = scrollY + reel.getBoundingClientRect().top; const span = Math.max(1, reel.offsetHeight - innerHeight);
+      scrollTo({ top: top + span * ((k + .5) / n), behavior: 'instant' }); kick();
+    }));
     jobs.push(() => {
       const r = reel.getBoundingClientRect();
+      if (r.top < innerHeight * .5) hydrate(imgOf(1));
       if (r.bottom < 0 || r.top > innerHeight) return;
       const span = Math.max(1, r.height - innerHeight);
       const p = clamp(-r.top / span, 0, .9999); const f = p * n; const i = Math.floor(f);
+      // the frame on screen, any skipped over, and the one after it
+      for (let k = 1; k <= Math.min(n - 1, r.top < innerHeight * .5 ? i + 1 : i); k++) hydrate(imgOf(k));
       frames.forEach((fr, k) => fr.style.setProperty('--k', clamp(f - k).toFixed(4)));
       if (i !== cur) {
         frames[cur].classList.remove('is-on'); frames[i].classList.add('is-on'); cur = i;
@@ -56,7 +74,7 @@
   for (const rail of $$('[data-rail-x]')) {
     const scope = rail.parentElement;
     const prev = $('[data-rail-prev]', scope); const next = $('[data-rail-next]', scope);
-    const step = () => { const li = rail.querySelector('li'); return li ? li.getBoundingClientRect().width + parseFloat(getComputedStyle(rail).columnGap || 16) : 300; };
+    const step = () => { const li = rail.querySelector('li'); return li ? li.getBoundingClientRect().width + (parseFloat(getComputedStyle(li.parentElement).columnGap) || 16) : 300; };
     const sync = () => { if (prev) prev.disabled = rail.scrollLeft < 4; if (next) next.disabled = rail.scrollLeft + rail.clientWidth > rail.scrollWidth - 4; };
     prev?.addEventListener('click', () => rail.scrollBy({ left: -step() * (innerWidth > 1000 ? 2 : 1), behavior: reduced() ? 'auto' : 'smooth' }));
     next?.addEventListener('click', () => rail.scrollBy({ left: step() * (innerWidth > 1000 ? 2 : 1), behavior: reduced() ? 'auto' : 'smooth' }));

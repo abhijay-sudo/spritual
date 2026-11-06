@@ -32,6 +32,9 @@
     megaBtn.addEventListener('click', () => setMega(mega.hidden));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !mega.hidden) { setMega(false); megaBtn.focus(); } });
     document.addEventListener('click', (e) => { if (!mega.hidden && !e.target.closest('[data-ed-head]')) setMega(false); });
+    // keyboard: the panel follows its button in the tab order; it closes once focus moves on past both
+    const leave = (e) => { const to = e.relatedTarget; if (!mega.hidden && to && to !== megaBtn && !mega.contains(to)) setMega(false); };
+    mega.addEventListener('focusout', leave); megaBtn.addEventListener('focusout', leave);
   }
   // the full-screen menu closes when a link inside it is followed (same-page anchors included)
   $('#ed-menu')?.addEventListener('click', (e) => { if (e.target.closest('a')) e.currentTarget.close(); });
@@ -42,7 +45,8 @@
 
   /* ---------- Hero side cards: three ways in, turning every 6 s ---------- */
   const deck = $('[data-cards]');
-  if (deck) {
+  // a returning reader's "Continue reading" takes this slot (site.js hides the deck); then it never turns
+  if (deck && !deck.hidden) {
     const cards = $$('[data-card]', deck); const ticks = $$('[data-card-go]', deck); const pauseBtn = $('[data-cards-pause]', deck);
     const MS = 6000; let i = 0, timer = 0, held = false, stopped = reduced();
     deck.style.setProperty('--ed-card-ms', MS + 'ms');
@@ -50,7 +54,9 @@
       const prev = cards[i]; i = (n + cards.length) % cards.length;
       cards.forEach((c, k) => {
         const on = k === i; c.classList.toggle('is-on', on); c.classList.toggle('is-leaving', c === prev && !on);
-        if (on) { c.removeAttribute('aria-hidden'); c.removeAttribute('tabindex'); } else { c.setAttribute('aria-hidden', 'true'); c.setAttribute('tabindex', '-1'); }
+        // the slide (a labelled group) is hidden from assistive tech while off screen; its story link leaves the tab order
+        const link = c.querySelector('a') || c;
+        if (on) { c.removeAttribute('aria-hidden'); link.removeAttribute('tabindex'); } else { c.setAttribute('aria-hidden', 'true'); link.setAttribute('tabindex', '-1'); }
       });
       // restart the tick's fill so it measures this card's full turn
       ticks.forEach((t, k) => { t.setAttribute('aria-pressed', String(k === i)); });
@@ -63,6 +69,10 @@
     deck.addEventListener('mouseenter', () => hold(true)); deck.addEventListener('mouseleave', () => hold(false));
     deck.addEventListener('focusin', () => hold(true)); deck.addEventListener('focusout', (e) => { if (!deck.contains(e.relatedTarget)) hold(false); });
     document.addEventListener('visibilitychange', () => (document.hidden ? clearTimeout(timer) : schedule()));
+    // a finger on the deck: the card stays put under it, and once someone has touched the cards they stop turning by themselves
+    const stopForGood = () => { if (stopped) return; stopped = true; clearTimeout(timer); deck.classList.remove('is-auto'); pauseBtn?.setAttribute('aria-pressed', 'true'); if (pauseBtn) pauseBtn.setAttribute('aria-label', pauseBtn.dataset.lPlay); };
+    deck.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse' && !e.target.closest('[data-cards-pause]')) stopForGood(); }, { passive: true });
+    deck.addEventListener('touchstart', (e) => { if (!e.target.closest('[data-cards-pause]')) stopForGood(); }, { passive: true });
     pauseBtn?.addEventListener('click', () => {
       stopped = !stopped; pauseBtn.setAttribute('aria-pressed', String(stopped));
       pauseBtn.setAttribute('aria-label', stopped ? pauseBtn.dataset.lPlay : pauseBtn.dataset.lPause);
@@ -72,9 +82,9 @@
     let x0 = null;
     deck.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
     deck.addEventListener('touchend', (e) => { if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1), true); }, { passive: true });
-    if (stopped) pauseBtn?.setAttribute('aria-pressed', 'true');
-    // the first turn waits for the opening sequence to finish
-    setTimeout(() => { show(0); schedule(); }, reduced() ? 0 : 2200);
+    if (stopped) { pauseBtn?.setAttribute('aria-pressed', 'true'); pauseBtn?.setAttribute('aria-label', pauseBtn.dataset.lPlay); }
+    // the first turn waits for the opening titles (instant for a returning reader)
+    setTimeout(() => { show(0); schedule(); }, reduced() || root.classList.contains('cx-seen') ? 0 : 900);
   }
 
   /* ---------- Reveals ---------- */

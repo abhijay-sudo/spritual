@@ -111,9 +111,9 @@ html[lang="hi"] .cx-btn, html[lang="hi"] .ed-btn, html[lang="hi"] .btn { font-fa
 /* ---------- The bar ---------- */
 .ed-head { background: color-mix(in oklab, var(--cx-paper) 92%, transparent); backdrop-filter: blur(14px) saturate(1.1); -webkit-backdrop-filter: blur(14px) saturate(1.1); }
 .ed-brand { font: 500 1.6rem/1 var(--cx-title); letter-spacing: -.01em; }
-.ed-nav a, .ed-nav-btn, .ed-lang, .ed-saved, .ed-menu-btn { font-family: var(--cx-ui); font-size: .98rem; font-weight: 500; }
-html[lang="hi"] .ed-nav a, html[lang="hi"] .ed-nav-btn, html[lang="hi"] .ed-saved, html[lang="hi"] .ed-menu-btn { font-family: "Mukta", var(--cx-ui); font-size: 1.02rem; }
-.has-hero .ed-head { background: linear-gradient(to bottom, rgb(30 15 5 / .38), rgb(30 15 5 / 0)); backdrop-filter: none; -webkit-backdrop-filter: none; color: var(--cx-cream); border-color: transparent; text-shadow: 0 1px 10px rgb(30 15 5 / .35); }
+.ed-nav > a, .ed-nav-btn, .ed-lang, .ed-saved, .ed-menu-btn { font-family: var(--cx-ui); font-size: .98rem; font-weight: 500; }
+html[lang="hi"] .ed-nav > a, html[lang="hi"] .ed-nav-btn, html[lang="hi"] .ed-saved, html[lang="hi"] .ed-menu-btn { font-family: "Mukta", var(--cx-ui); font-size: 1.02rem; }
+.has-hero .ed-head { background: linear-gradient(to bottom, rgb(24 10 2 / .66), rgb(24 10 2 / .5) 55%, rgb(24 10 2 / .12) 92%, rgb(24 10 2 / 0)) border-box no-repeat; backdrop-filter: none; -webkit-backdrop-filter: none; color: var(--cx-cream); border-color: transparent; text-shadow: 0 0 2px rgb(20 8 0 / .8), 0 0 10px rgb(20 8 0 / .55); }
 .has-hero .ed-head.is-solid, .has-hero .ed-head.is-open { background: color-mix(in oklab, var(--cx-paper) 94%, transparent); backdrop-filter: blur(14px) saturate(1.1); -webkit-backdrop-filter: blur(14px) saturate(1.1); color: var(--cx-ink); border-color: var(--cx-line); text-shadow: none; }
 .ed-mega { background: var(--cx-paper); }
 .ed-mega-pic { aspect-ratio: 2 / 3; border-radius: 2px; }
@@ -163,11 +163,24 @@ html[lang="hi"] .cx-sound { font-family: "Mukta", var(--cx-ui); }
 .cx-sound[aria-pressed="true"] { background: rgb(232 145 58 / .35); border-color: var(--cx-gold); }
 .cx-cue { display: inline-flex; align-items: center; gap: .7rem; min-height: 44px; color: var(--cx-cream); text-decoration: none; font: 500 .95rem/1 var(--cx-ui); text-shadow: 0 1px 10px rgb(60 22 0 / .6); }
 html[lang="hi"] .cx-cue { font-family: "Mukta", var(--cx-ui); }
-.cx-cue i { position: relative; width: 1px; height: 2.2rem; background: rgb(255 240 220 / .35); overflow: hidden; }
-.cx-cue i::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 45%; background: var(--cx-cream); }
-:root:not([data-motion="reduce"]) .cx-cue i::after { animation: cx-cue 2.4s cubic-bezier(.6, 0, .3, 1) 3s infinite; }
-@keyframes cx-cue { 0% { translate: 0 -110%; } 60%, 100% { translate: 0 230%; } }
-@media (prefers-reduced-motion: reduce) { .cx-cue i::after, .story-fig .art, .art.is-live { animation: none !important; } }
+.cx-cue { padding-inline: .25rem; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .3em; text-decoration-color: rgb(255 240 220 / .45); }
+.cx-cue:hover { text-decoration-color: currentColor; }
+.cx-cue .ic { width: 1.1rem; height: 1.1rem; rotate: 90deg; }
+:root:not([data-motion="reduce"]) .cx-cue .ic { animation: cx-cue 2.6s ease-in-out 2s infinite; }
+@keyframes cx-cue { 0%, 70%, 100% { translate: 0 0; } 35% { translate: 0 4px; } }
+.cx-cue:focus-visible, .cx-read:focus-visible { outline: 2px solid var(--cx-cream); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .cx-cue .ic, .story-fig .art, .art.is-live { animation: none !important; } }
+/* the one obvious way in: straight to the first scene of the first story */
+.cx-read { min-height: 52px; padding: 0 1.35rem 0 1.15rem; gap: .6rem; font-size: 1.06rem; font-weight: 600; box-shadow: 0 10px 30px -12px rgb(30 12 0 / .65); }
+.cx-read .ic { width: 1.2rem; height: 1.2rem; }
+.cx-read small { font-size: .85rem; font-weight: 500; color: #5b4636; padding-left: .6rem; border-left: 1px solid rgb(42 30 21 / .25); }
+@media (max-width: 599px) {
+  .cx-open-left { gap: .6rem .5rem; justify-content: space-between; }
+  .cx-read { flex: 1 1 100%; }
+  .cx-open-left .cx-sound { min-height: 44px; padding: .3rem .9rem .3rem .7rem; gap: .5rem; font-size: .95rem; }
+  .cx-open-left .cx-cue { font-size: .92rem; gap: .45rem; }
+  .cx-open-left .cx-sound small { display: none; }
+}
 .cx-open-side { display: grid; gap: .5rem; width: min(100%, 19rem); }
 .cx-cards { border-radius: 4px; }
 .cx-cards .ed-card { grid-template-columns: 5.5rem minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: .8rem; row-gap: .25rem; align-items: start; }
@@ -176,7 +189,11 @@ html[lang="hi"] .cx-cue { font-family: "Mukta", var(--cx-ui); }
 .cx-cards .ed-card:hover .ed-card-pic img { scale: 1.06; }
 .cx-cards .ed-card-k { grid-column: 2; font: 500 .8rem/1.2 var(--cx-ui); color: var(--cx-gold); letter-spacing: 0; }
 html[lang="hi"] .cx-cards .ed-card-k { font-family: "Mukta", var(--cx-ui); font-size: .9rem; }
-.cx-cards .ed-card-t { grid-column: 2; font: 500 1.05rem/1.25 var(--cx-title); }
+.cx-cards .ed-card-t { grid-column: 2; font: 500 1.05rem/1.25 var(--cx-title); text-wrap: balance; }
+.cx-cards .ed-card { grid-template-rows: auto auto 1fr; }
+.cx-cards .ed-card-pic { grid-row: 1 / span 3; }
+.cx-cards .ed-card-go { grid-column: 2; align-self: end; min-height: 32px; font: 600 .92rem/1.2 var(--cx-ui); color: var(--cx-gold); text-decoration-color: rgb(243 196 126 / .55); }
+html[lang="hi"] .cx-cards .ed-card-go { font-family: "Mukta", var(--cx-ui); font-size: 1rem; }
 .cx-continue { border-radius: 4px; }
 @media (min-width: 900px) {
   .cx-open-foot { grid-template-columns: 1fr auto; }
@@ -185,22 +202,23 @@ html[lang="hi"] .cx-cards .ed-card-k { font-family: "Mukta", var(--cx-ui); font-
   .cx-open-side { width: 100%; max-width: 26rem; }
 }
 /* the opening sequence: the river settles (ed-dawn), "Welcome to" gathers, the name rises, a line of sunlight is drawn */
-:root:not([data-motion="reduce"]) .cx-welcome-k > span { opacity: 0; animation: cx-gather 1s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(.35s + var(--i) * 35ms); }
+:root:not([data-motion="reduce"]) .cx-welcome-k > span { opacity: 0; animation: cx-gather .7s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(.1s + var(--i) * 22ms); }
 @keyframes cx-gather { from { opacity: 0; transform: translateX(calc((var(--i) - 4) * .3em)); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
-:root:not([data-motion="reduce"]) .cx-wm-l > span { transform: translateY(105%); opacity: 0; animation: cx-letter 1.1s cubic-bezier(.16, 1, .3, 1) forwards; animation-delay: calc(.6s + var(--i) * 70ms); }
+:root:not([data-motion="reduce"]) .cx-wm-l > span { transform: translateY(105%); opacity: 0; animation: cx-letter .8s cubic-bezier(.16, 1, .3, 1) forwards; animation-delay: calc(.2s + var(--i) * 40ms); }
 @keyframes cx-letter { 40% { opacity: 1; } to { transform: none; opacity: 1; } }
-:root:not([data-motion="reduce"]) .cx-wm-line path { stroke-dasharray: 700; stroke-dashoffset: 700; animation: cx-draw 1.1s cubic-bezier(.65, 0, .35, 1) 1.45s forwards; }
-:root:not([data-motion="reduce"]) .cx-wm-line circle { opacity: 0; transform-box: fill-box; transform-origin: center; animation: cx-lamp .6s cubic-bezier(.2, .9, .3, 1.4) 2.35s forwards; }
+:root:not([data-motion="reduce"]) .cx-wm-line path { stroke-dasharray: 700; stroke-dashoffset: 700; animation: cx-draw .9s cubic-bezier(.65, 0, .35, 1) .6s forwards; }
+:root:not([data-motion="reduce"]) .cx-wm-line circle { opacity: 0; transform-box: fill-box; transform-origin: center; animation: cx-lamp .5s cubic-bezier(.2, .9, .3, 1.4) 1.4s forwards; }
 @keyframes cx-draw { to { stroke-dashoffset: 0; } }
 @keyframes cx-lamp { from { opacity: 0; transform: scale(.2); } to { opacity: 1; transform: scale(1); } }
-:root:not([data-motion="reduce"]) .cx-open-line { animation: cx-fade 1s var(--cx-ease) 1.7s both; }
-:root:not([data-motion="reduce"]) .cx-open-sub { animation: cx-fade 1s var(--cx-ease) 2s both; }
-:root:not([data-motion="reduce"]) .cx-open-foot > * { animation: cx-fade 1s var(--cx-ease) 2.2s both; }
+:root:not([data-motion="reduce"]) .cx-open-line { animation: cx-fade .6s var(--cx-ease) .45s both; }
+:root:not([data-motion="reduce"]) .cx-open-sub { animation: cx-fade .6s var(--cx-ease) .6s both; }
+:root:not([data-motion="reduce"]) :is(.cx-open-left, .cx-cards) { animation: cx-fade .6s var(--cx-ease) .75s both; }
 @keyframes cx-fade { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
-  .cx-welcome-k > span, .cx-wm-l > span, .cx-wm-line path, .cx-wm-line circle, .cx-open-line, .cx-open-sub, .cx-open-foot > * { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; stroke-dashoffset: 0 !important; }
+  .cx-welcome-k > span, .cx-wm-l > span, .cx-wm-line path, .cx-wm-line circle, .cx-open-line, .cx-open-sub, .cx-open-left, .cx-cards { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; stroke-dashoffset: 0 !important; }
 }
-:root[data-motion="reduce"] :is(.cx-welcome-k > span, .cx-wm-l > span, .cx-wm-line path, .cx-wm-line circle, .cx-open-line, .cx-open-sub, .cx-open-foot > *) { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; stroke-dashoffset: 0 !important; }
+/* reduced motion, and every visit after the first: the opening is simply there */
+:is(:root[data-motion="reduce"], :root.cx-seen) :is(.cx-welcome-k > span, .cx-wm-l > span, .cx-wm-line path, .cx-wm-line circle, .cx-open-line, .cx-open-sub, .cx-open-left, .cx-cards) { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; stroke-dashoffset: 0 !important; }
 
 /* ---------- Prologue: five paintings dissolve while the narrator speaks ---------- */
 .cx-reel { position: relative; background: var(--cx-dusk); color: var(--cx-cream); }
@@ -213,8 +231,21 @@ html[lang="hi"] .cx-cards .ed-card-k { font-family: "Mukta", var(--cx-ui); font-
 .cx-sub-t { max-width: 30ch; font: italic 400 clamp(1.3rem, .95rem + 1.7vw, 2.5rem)/1.25 var(--cx-text); color: #fff; text-shadow: 0 1px 18px rgb(40 16 0 / .7), 0 0 2px rgb(40 16 0 / .4); text-wrap: balance; }
 html[lang="hi"] .cx-sub-t { font-style: normal; font-family: "Tiro Devanagari Hindi", var(--cx-text); line-height: 1.5; max-width: 32ch; }
 .cx-reel-meta { display: none; }
+.cx-skip { justify-self: end; z-index: 4; display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; margin: .75rem var(--cx-gut-r) .75rem 0; padding: 0 1rem; border-radius: 999px; border: 1px solid rgb(255 240 220 / .5); background: rgb(30 15 5 / .4); color: var(--cx-cream); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font: 500 .92rem/1 var(--cx-ui); text-decoration: none; transition: background-color .25s, border-color .25s; }
+html[lang="hi"] .cx-skip { font-family: "Mukta", var(--cx-ui); font-size: 1rem; }
+.cx-skip:hover { background: rgb(30 15 5 / .6); border-color: var(--cx-cream); }
+.cx-skip .ic { width: 1rem; height: 1rem; rotate: 90deg; }
+.cx-skip:focus-visible, .cx-sub-go:focus-visible { outline: 2px solid var(--cx-cream); outline-offset: 3px; }
+.cx-js .cx-skip { position: absolute; top: calc(var(--ed-head-h) + .35rem); right: var(--cx-gut-r); margin: 0; }
+.cx-sub-go { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; padding: 0 1.1rem; border-radius: 999px; border: 1px solid rgb(255 240 220 / .5); background: rgb(30 15 5 / .5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff8ee; font: 600 1rem/1.2 var(--cx-ui); text-decoration: none; transition: background-color .25s, border-color .25s; }
+html[lang="hi"] .cx-sub-go { font-family: "Mukta", var(--cx-ui); font-size: 1.08rem; }
+.cx-sub-go:hover { background: rgb(30 15 5 / .7); border-color: #fff8ee; }
+.cx-sub-go .ic { width: 1rem; height: 1rem; }
+.cx-js .cx-sub-go { opacity: 0; transition: opacity .2s; }
+.cx-js .cx-frame.is-on .cx-sub-go, .cx-js .cx-sub-go:focus-visible { opacity: 1; transition: opacity .35s .2s; }
+.cx-js .cx-frame:not(.is-on) .cx-sub-go { pointer-events: none; }
 /* pinned while scripted motion is allowed */
-.cx-js .cx-reel { height: calc((var(--n) * 1.1 + 1) * 100svh); }
+.cx-js .cx-reel { height: calc((var(--n) * .8 + .5) * 100svh); }
 .cx-js .cx-reel-stick { position: sticky; top: 0; height: 100svh; display: block; overflow: hidden; }
 .cx-js .cx-frame { position: absolute; inset: 0; aspect-ratio: auto; max-height: none; opacity: 0; z-index: 1; transition: opacity 0s 1s; }
 .cx-js .cx-frame.is-on { opacity: 1; z-index: 2; transition: opacity .95s var(--cx-ease); }
@@ -223,13 +254,14 @@ html[lang="hi"] .cx-sub-t { font-style: normal; font-family: "Tiro Devanagari Hi
 .cx-js .cx-sub-n { display: none; }
 .cx-js .cx-sub-t { opacity: 0; transition: opacity .2s; }
 .cx-js .cx-frame.is-on .cx-sub-t { opacity: 1; transition: opacity .35s .12s; }
-.cx-js .cx-reel-meta { position: absolute; z-index: 3; top: calc(var(--ed-head-h) + 1rem); left: var(--cx-gut); right: var(--cx-gut-r); display: flex; align-items: center; gap: 1rem; font: 500 .9rem/1 var(--cx-ui); color: rgb(255 246 232 / .92); text-shadow: 0 1px 10px rgb(40 16 0 / .6); font-variant-numeric: tabular-nums; }
+.cx-js .cx-reel-meta { position: absolute; z-index: 3; top: calc(var(--ed-head-h) + 1rem); left: var(--cx-gut); right: calc(var(--cx-gut-r) + 11rem); display: flex; align-items: center; gap: 1rem; font: 500 .9rem/1 var(--cx-ui); color: rgb(255 246 232 / .92); text-shadow: 0 1px 10px rgb(40 16 0 / .6); font-variant-numeric: tabular-nums; }
 html[lang="hi"] .cx-js .cx-reel-meta { font-family: "Mukta", var(--cx-ui); }
 .cx-reel-bar { flex: 1; max-width: 12rem; height: 2px; background: rgb(255 240 220 / .3); border-radius: 2px; overflow: hidden; }
 .cx-reel-bar i { display: block; height: 100%; width: calc(var(--p, 0) * 100%); background: var(--cx-gold); }
 
 /* ---------- Now showing ---------- */
-.cx-now { padding-block: var(--cx-sec) calc(var(--cx-sec) * .75); background: var(--cx-paper); }
+.cx-now { padding-block: var(--cx-sec) calc(var(--cx-sec) * .75); background: var(--cx-paper); scroll-margin-top: var(--ed-head-h); }
+.cx-now:focus { outline: none; }
 .cx-now-grid { display: grid; gap: clamp(1.75rem, 1rem + 2vw, 3rem); align-items: center; }
 .cx-now-screen { position: relative; display: block; aspect-ratio: 2 / 1; overflow: hidden; border-radius: 2px; background: var(--cx-dusk); box-shadow: 0 30px 60px -30px rgb(60 30 10 / .45); }
 .cx-now-screen img { width: 100%; height: 100%; object-fit: cover; transition: scale 1.6s var(--cx-ease); }
@@ -238,21 +270,25 @@ html[lang="hi"] .cx-js .cx-reel-meta { font-family: "Mukta", var(--cx-ui); }
 .cx-now-body .cx-btn { margin-top: .4rem; }
 @media (min-width: 960px) { .cx-now-grid { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); } }
 .cx-strip-wrap { margin-top: clamp(3rem, 2rem + 3vw, 4.5rem); }
-.cx-strip, .cx-rail { list-style: none; margin: 0; padding: .25rem var(--cx-gut-r) 1.25rem var(--cx-gut); display: grid; grid-auto-flow: column; gap: 1rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--cx-gut); scrollbar-width: thin; scrollbar-color: var(--cx-sand) transparent; }
+.cx-scroll { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--cx-gut); scrollbar-width: thin; scrollbar-color: var(--cx-sand) transparent; }
+.cx-strip, .cx-rail { list-style: none; margin: 0; padding: .25rem var(--cx-gut-r) 1.25rem var(--cx-gut); display: grid; grid-auto-flow: column; gap: 1rem; width: max-content; }
 .cx-strip { grid-auto-columns: clamp(14rem, 62vw, 19rem); }
 .cx-strip > li, .cx-rail > li { scroll-snap-align: start; min-width: 0; }
-.cx-strip:focus-visible, .cx-rail:focus-visible { outline-offset: -2px; }
+.cx-scroll:focus-visible { outline-offset: -2px; }
 .cx-still { display: grid; gap: .45rem; text-decoration: none; color: var(--cx-ink); }
 .cx-still-pic { aspect-ratio: 16 / 9; overflow: hidden; border-radius: 2px; background: var(--cx-dusk); }
 .cx-still-pic img { width: 100%; height: 100%; object-fit: cover; transition: scale 1.2s var(--cx-ease); }
 .cx-still:hover .cx-still-pic img { scale: 1.05; }
-.cx-still-pic--card { display: grid; place-items: center; padding: 1rem; box-sizing: border-box; background: radial-gradient(ellipse at 50% 40%, var(--cx-dusk-2), var(--cx-dusk)); box-shadow: inset 0 0 0 6px var(--cx-dusk), inset 0 0 0 7px rgb(243 196 126 / .45); }
-.cx-intertitle-mini { font: 500 1.1rem/1.25 var(--cx-title); color: var(--cx-gold); text-align: center; text-wrap: balance; }
+.cx-still-pic--card { position: relative; isolation: isolate; display: grid; place-items: center; padding: 1rem; box-sizing: border-box; background: var(--cx-dusk); box-shadow: inset 0 0 0 6px rgb(18 10 4 / .55), inset 0 0 0 7px rgb(243 196 126 / .5); }
+.cx-still-pic img.cx-still-plate { position: absolute; inset: 0; z-index: -2; scale: 1.3; }
+.cx-still:hover .cx-still-pic img.cx-still-plate { scale: 1.36; }
+.cx-still-pic--card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 85% 95% at 50% 50%, rgb(27 15 7 / .78), rgb(18 10 4 / .9)); }
+.cx-intertitle-mini { font: 500 1.1rem/1.25 var(--cx-title); color: #fff1dc; text-align: center; text-wrap: balance; }
 .cx-still-n { font: 500 .85rem/1 var(--cx-ui); color: var(--cx-saffron); margin-top: .2rem; }
 html[lang="hi"] .cx-still-n { font-family: "Mukta", var(--cx-ui); font-size: .92rem; }
 .cx-still-t { font: 500 1.08rem/1.3 var(--cx-title); }
 .cx-still:hover .cx-still-t { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; }
-@media (min-width: 1200px) { .cx-strip, .cx-rail { padding-left: max(var(--cx-gut), calc((100vw - 88rem) / 2 + var(--cx-gut))); scroll-padding-inline: max(var(--cx-gut), calc((100vw - 88rem) / 2 + var(--cx-gut))); } }
+@media (min-width: 1200px) { .cx-strip, .cx-rail { padding-left: max(var(--cx-gut), calc((100vw - 88rem) / 2 + var(--cx-gut))); } .cx-scroll { scroll-padding-inline: max(var(--cx-gut), calc((100vw - 88rem) / 2 + var(--cx-gut))); } }
 
 /* ---------- Posters (worlds and stories): film posters, two by three ---------- */
 .cx-worlds { padding-block: var(--cx-sec); background: var(--cx-paper-2); }
@@ -320,6 +356,8 @@ html[lang="hi"] .cx-finale-body { font-family: "Tiro Devanagari Hindi", var(--cx
 .cx-credits a:focus-visible { outline: 2px solid var(--cx-gold); outline-offset: 3px; }
 .cx-credits-in { max-width: 80rem; margin-inline: auto; padding-left: var(--cx-gut); padding-right: var(--cx-gut-r); display: grid; justify-items: center; gap: 1.25rem; }
 .cx-credits-name { margin: 0; font: 500 clamp(3.2rem, 1.8rem + 6vw, 7.5rem)/1 var(--cx-title); letter-spacing: -.02em; color: #ffe6c4; text-shadow: 0 0 60px rgb(255 180 100 / .25); }
+.cx-credits-sub { margin: .35rem 0 0; font: 400 .9rem/1.5 var(--cx-ui); color: var(--cx-cream-2); opacity: .8; }
+html[lang="hi"] .cx-credits-sub { font-family: "Mukta", var(--cx-ui); }
 .cx-credits-line { margin: 0; max-width: 34rem; font: italic 400 1.15rem/1.5 var(--cx-text); color: var(--cx-cream-2); }
 html[lang="hi"] .cx-credits-line { font-style: normal; font-family: "Tiro Devanagari Hindi", var(--cx-text); }
 .cx-credits-list { width: 100%; display: grid; gap: 2.25rem 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: clamp(1.5rem, 1rem + 2vw, 3rem); padding-block: clamp(2rem, 1.5rem + 2vw, 3rem); border-block: 1px solid rgb(255 230 200 / .16); }
@@ -446,9 +484,15 @@ html[lang="hi"] .cx-film .scene h2, .cx-film .scene h2[lang="hi"] { font-family:
   .shot:not(.shot--card) { overflow: visible; background: none; aspect-ratio: auto; max-height: none; }
   .shot:not(.shot--card) .shot-card { padding: 1.25rem var(--cx-gut-r) 0 var(--cx-gut); }
 }
-/* a scene without its own painting gets an intertitle, as silent films did */
-.shot--card { display: grid; place-items: center; min-height: clamp(14rem, 34vw, 22rem); width: 100vw; margin-inline-start: calc(50% - 50vw); padding: 3rem var(--cx-gut-r) 3rem var(--cx-gut); box-sizing: border-box; background: radial-gradient(ellipse 70% 80% at 50% 45%, var(--cx-dusk-2), var(--cx-dusk)); text-align: center; }
-.shot--card .shot-card { justify-items: center; max-width: 40rem; padding: 2rem 2.5rem; border: 1px solid rgb(243 196 126 / .4); outline: 1px solid rgb(243 196 126 / .2); outline-offset: 6px; }
+/* a scene without its own painting yet gets a title plate, as silent films had intertitles: a compact band cut from the
+   story's own painting (each scene framed on a different part of it), deep-toned so the title reads, never a blank box */
+.shot--card { display: grid; place-items: center; position: relative; isolation: isolate; overflow: hidden; min-height: clamp(10rem, 22vw, 14rem); width: 100vw; margin-inline-start: calc(50% - 50vw); padding: 2.25rem var(--cx-gut-r) 2.25rem var(--cx-gut); box-sizing: border-box; background: var(--cx-dusk); text-align: center; }
+.shot--card > .shot-plate { position: absolute; inset: 0; z-index: -2; display: block; width: 100%; height: 100%; object-fit: cover; scale: 1.35; }
+.shot--card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 80% 95% at 50% 50%, rgb(27 15 7 / .8), rgb(18 10 4 / .9)); }
+.shot--card .shot-card { position: relative; justify-items: center; max-width: 40rem; padding: 1.4rem 2rem; border: 1px solid rgb(243 196 126 / .45); outline: 1px solid rgb(243 196 126 / .2); outline-offset: 6px; }
+@media (max-width: 759px) { .shot--card .shot-card { padding: 1.1rem 1.25rem; } }
+/* on wide screens the plate stays in the reading column, clear of the scene index and the glossary rails */
+@media (min-width: 1200px) { .cx-film .shot--card { width: auto; margin-inline: 0; border-radius: 4px; } }
 .shot--card .scene-no { color: var(--cx-gold); }
 .cx-film .shot--card h2 { color: #fff1dc; }
 :root[data-read="both"] .shot--card .pair { grid-template-columns: minmax(0, 1fr); }
@@ -466,7 +510,9 @@ html[lang="hi"] .cx-film .scene h2, .cx-film .scene h2[lang="hi"] { font-family:
 .rail--reel { display: none; }
 .reel-list { gap: .2rem; }
 .reel-list a { grid-template-columns: 3.4rem 1.2rem minmax(0, 1fr); align-items: center; padding: .3rem .35rem; border-radius: 4px; font-family: var(--cx-ui); font-size: .9rem; }
-.reel-thumb { width: 3.4rem; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 2px; background: var(--cx-dusk); opacity: .55; transition: opacity .3s; }
+.reel-thumb { position: relative; width: 3.4rem; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 2px; background: var(--cx-dusk); opacity: .55; transition: opacity .3s; }
+/* a scene with a title plate shows the same deep-toned crop in the index, framed in gold like the plate itself */
+.reel-thumb--plate::after { content: ""; position: absolute; inset: 0; background: rgb(20 11 5 / .5); box-shadow: inset 0 0 0 1px rgb(243 196 126 / .55); border-radius: inherit; }
 .reel-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .reel-list a.on .reel-thumb, .reel-list a:hover .reel-thumb { opacity: .85; }
 .reel-list a.now .reel-thumb { opacity: 1; box-shadow: 0 0 0 2px var(--cx-saffron); }
@@ -545,7 +591,6 @@ html[lang="hi"] .cx-film .rail-kicker { font-family: "Mukta", var(--cx-ui); font
 @media (max-width: 1199px) {
   :root .cx-film .reader-main, :root[data-read="both"] .cx-film .reader-main { grid-column: 1; }
 }
-.reel-thumb:empty { opacity: 1; background: radial-gradient(ellipse at 50% 40%, var(--cx-dusk-2), var(--cx-dusk)); box-shadow: inset 0 0 0 2px var(--cx-dusk), inset 0 0 0 3px rgb(243 196 126 / .5); }
 .cx-link { display: inline-flex; align-items: center; min-height: 44px; }
 @media (pointer: coarse) { .cx-credits-list dd a, .cx-credits-bar a { min-width: 44px; justify-content: center; } }
 @media (min-width: 1200px) { .cx-cast .cx-cast-row > li { flex: 0 1 8.75rem; min-width: 6.25rem; } }
@@ -561,4 +606,214 @@ html[lang="hi"] .cx-film .rail-kicker { font-family: "Mukta", var(--cx-ui); font
 html[lang="hi"] .cx-plain-text { font-family: "Tiro Devanagari Hindi", var(--cx-text); line-height: 1.85; }
 .cx-plain-text h2 { margin-top: 1rem; font: 500 1.5rem/1.2 var(--cx-title); color: var(--cx-ink); }
 .cx-plain-text p { margin: 0; }
+.cx-plain-text a:not(.cx-btn) { color: var(--cx-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .22em; text-decoration-color: var(--cx-line-2); }
+.cx-plain-text a:not(.cx-btn):hover { text-decoration-color: currentColor; }
+/* what this browser keeps: a plain list, each thing named first */
+.cx-keeps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--cx-line); }
+.cx-keeps li { padding: .85rem 0; border-bottom: 1px solid var(--cx-line); }
+.cx-keeps strong { color: var(--cx-ink); font-weight: 600; }
+
+/* ---------- Erase everything: ask, confirm in plain words, then say it is done ---------- */
+.erase { display: grid; gap: .9rem; justify-items: start; }
+.erase .btn { min-height: 48px; height: auto; padding-block: .6rem; text-align: center; line-height: 1.3; white-space: normal; }
+.erase-confirm { display: grid; gap: 1rem; width: 100%; box-sizing: border-box; padding: 1.15rem 1.25rem; border: 1px solid var(--cx-line-2); border-left: 3px solid var(--cx-btn); border-radius: 2px; background: var(--cx-surface); color: var(--cx-ink-2); font: 400 1.02rem/1.6 var(--cx-ui); }
+html[lang="hi"] .erase-confirm { font-family: "Mukta", var(--cx-ui); line-height: 1.75; }
+.erase-confirm p { margin: 0; }
+.erase-confirm strong { display: block; margin-bottom: .2rem; color: var(--cx-ink); font: 500 1.2rem/1.3 var(--cx-title); }
+.erase-row { display: flex; flex-wrap: wrap; gap: .6rem; }
+.erase-done { margin: 0; color: var(--cx-ink); font: 400 1rem/1.6 var(--cx-ui); }
+.erase-done:empty { display: none; }
+.erase-done:focus { outline: none; }
+.erase-done:focus-visible { outline: 2px solid var(--cx-btn); outline-offset: 4px; }
+html[lang="hi"] .erase-done { font-family: "Mukta", var(--cx-ui); }
+@media (max-width: 520px) { .erase-row .btn, .erase .erase-ask { width: 100%; } }
+
+/* ---------- Your reading: a reflection can be removed, and put back ---------- */
+.journal-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .25rem 1rem; }
+.journal-foot .note { margin: 0; }
+.journal-remove { min-height: 44px; min-width: 44px; padding: 0 .75rem; margin: 0 -.75rem; border: 0; background: transparent; color: var(--cx-ink-2); font: 500 .95rem/1 var(--cx-ui); text-decoration: underline; text-decoration-color: var(--cx-line-2); text-underline-offset: .25em; cursor: pointer; border-radius: 2px; }
+html[lang="hi"] .journal-remove { font-family: "Mukta", var(--cx-ui); font-size: 1rem; }
+.journal-remove:hover { color: var(--cx-ink); text-decoration-color: currentColor; }
+.journal-remove:focus-visible { outline: 2px solid var(--cx-btn); outline-offset: 2px; }
+.journal-undo { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; margin-top: .75rem; }
+.journal-undo .note { margin: 0; color: var(--cx-ink-2); font-size: 1rem; }
+.journal-undo .note:empty { display: none; }
+.data-block .data-note { max-width: 40rem; margin: -.75rem 0 1.25rem; color: var(--cx-ink-2); font-size: 1rem; line-height: 1.6; }
+.data-block .data-note a { color: var(--cx-ink); text-underline-offset: .22em; }
 .cx-lost .cx-finale { min-height: 100vh; min-height: 100svh; }
+
+/* ---------- The return journey: continue reading, up next, the greeting, the reader dock at the end ---------- */
+.continue[hidden], .continue [hidden], .cx-greet[hidden], .ed-cards[hidden] { display: none !important; }
+.continue { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: .85rem; min-height: 44px; text-decoration: none; }
+.continue-pic { width: 4.5rem; aspect-ratio: 1; overflow: hidden; border-radius: 3px; background: rgb(0 0 0 / .2); }
+.continue-pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.continue-txt { display: grid; gap: .2rem; min-width: 0; }
+.continue small { font: 600 .78rem/1.2 var(--cx-ui); letter-spacing: .02em; text-transform: none; }
+html[lang="hi"] .continue small { font-family: "Mukta", var(--cx-ui); font-size: .9rem; }
+.continue strong { font: 500 1.08rem/1.25 var(--cx-title); }
+.continue .continue-scene { font: 400 .9rem/1.3 var(--cx-ui); }
+html[lang="hi"] .continue .continue-scene { font-family: "Mukta", var(--cx-ui); }
+.continue-bar { display: block; height: 3px; margin-top: .3rem; border-radius: 3px; background: rgb(127 110 90 / .3); overflow: hidden; }
+.continue-bar i { display: block; height: 100%; width: calc(var(--p, 0) * 100%); border-radius: inherit; background: var(--cx-marigold); }
+.continue strong::after { content: "\00a0→"; color: var(--cx-marigold); }
+.cx-continue { justify-self: stretch; }
+/* home: the returning reader's place, in the slot the rotating cards would take */
+.cx-continue { padding: .8rem .9rem; color: var(--cx-cream); background: rgb(34 18 8 / .55); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); border: 1px solid rgb(255 236 210 / .22); border-radius: 4px; box-shadow: 0 18px 40px rgb(20 8 0 / .35); }
+.cx-continue small { color: var(--cx-gold); }
+.cx-continue .continue-scene { color: rgb(255 246 232 / .88); }
+.cx-continue .continue-bar { background: rgb(255 246 232 / .2); }
+.cx-continue:hover strong, .cx-continue:focus-visible strong { text-decoration: underline; text-underline-offset: 3px; }
+.cx-continue:focus-visible { outline: 2px solid var(--cx-gold); outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) { :root:not([data-motion="reduce"]) .cx-continue:not([hidden]) { animation: cx-fade .9s .3s var(--cx-ease) both; } }
+.cx-greet { display: block; padding: .55rem .8rem; min-height: 44px; box-sizing: border-box; color: var(--cx-cream); background: rgb(34 18 8 / .45); border-radius: 4px; font: 400 .92rem/1.35 var(--cx-ui); text-decoration: none; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.cx-greet b { font-weight: 600; color: var(--cx-gold); }
+.cx-greet b::after { content: "\00a0→"; }
+html[lang="hi"] .cx-greet { font-family: "Mukta", var(--cx-ui); }
+/* the menu: first thing a returning reader sees */
+.ed-menu-continue { padding: .75rem .85rem; margin-bottom: .25rem; color: inherit; background: color-mix(in oklab, var(--cx-marigold) 14%, transparent); border: 1px solid color-mix(in oklab, var(--cx-marigold) 45%, transparent); border-radius: 4px; }
+.ed-menu-continue small { color: inherit; }
+.ed-menu-continue .continue-scene { color: var(--ed-ink-2, currentColor); }
+/* Your reading page */
+.ritual .continue { padding: .8rem 1rem; }
+/* the greeting on painted page headers */
+.is-cx-head .ed-page-head .ed-greet { margin: 0; color: var(--cx-cream); text-shadow: 0 1px 10px rgb(40 16 0 / .6); text-transform: none; letter-spacing: 0; font: 500 1rem/1.3 var(--cx-ui); }
+.is-cx-head .ed-page-head .ed-greet::before { background: var(--cx-gold); }
+.ed-greet[hidden] { display: none; }
+/* days with a story: filled marks only, wrapping as the month fills */
+.dots { flex-wrap: wrap; }
+.dots[hidden] { display: none; }
+/* the floating reader dock steps aside at the end of a story */
+.reader-bar { transition: opacity .3s var(--cx-ease), translate .3s var(--cx-ease); }
+.reader-bar.is-away { opacity: 0; translate: -50% calc(100% + 1.5rem); pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .reader-bar { transition: none; } }
+:root[data-motion="reduce"] .reader-bar { transition: none; }
+@media (max-width: 1199px) { .is-reader .cx-credits { padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)); } }
+/* a scene reached from Contents takes focus without drawing a box around the whole page */
+.scene:focus { outline: none; }
+.continue .continue-txt, .continue .continue-pic, .continue .continue-bar { color: inherit; }
+.ed-menu-in:has(> .ed-menu-continue:not([hidden])) { grid-template-rows: auto auto 1fr auto; }
+:root:not([data-motion="reduce"]) .ed-menu-continue { animation: none; }
+
+/* ---------- A short laptop screen (1366x768, 1280x800): the whole opening fits, in both languages ---------- */
+@media (min-width: 900px) and (max-height: 860px) {
+  .cx-open { --cx-bar: clamp(2rem, 5svh, 3rem); }
+  .cx-open .cx-bar--top { height: calc(max(var(--cx-bar), var(--ed-head-h)) * var(--lb, 1)); }
+  .cx-open-card { padding-top: calc(var(--ed-head-h) + var(--cx-bar)); padding-bottom: .5rem; }
+  .cx-wm { font-size: min(clamp(4.2rem, 1.5rem + 12vw, 12.5rem), 22svh); }
+  .cx-open-line { margin-top: clamp(.6rem, .4rem + .8vw, 1.2rem); }
+  .cx-open-sub { margin-top: .5rem; }
+  .cx-open-foot { gap: .75rem; padding-bottom: calc(var(--cx-bar) * var(--lb, 1) + .75rem); }
+  .cx-open-left .cx-sound small { display: none; }
+  .cx-cards .ed-card-pic { aspect-ratio: auto; height: 5rem; }
+}
+html[lang="hi"] .cx-welcome-k { margin-bottom: .1em; }
+@media (min-width: 900px) and (max-height: 860px) {
+  html[lang="hi"] .cx-wm { font-size: min(clamp(4.2rem, 1.5rem + 12vw, 12.5rem), 19svh); }
+  html[lang="hi"] .cx-open-line { line-height: 1.3; }
+}
+
+/* ---------- Story: sharing lives at the end, page-turning lives in Reading comfort ---------- */
+.cx-film .story-actions { align-items: center; }
+.cx-film .story-actions .seg--read { flex: 1 1 auto; max-width: 26rem; }
+.cx-film .story-actions .seg--read button { flex: 1; min-height: 44px; }
+.story-share { display: grid; gap: .6rem; }
+.story-share .btn { min-height: 44px; }
+.comfort-mode .seg { display: flex; margin-top: .5rem; }
+.comfort-mode .seg button { flex: 1; min-height: 44px; }
+@media (max-width: 599px) { .cx-film .story-actions .seg--read { flex-basis: 100%; max-width: none; } .cx-film .story-actions .seg--read button { white-space: nowrap; padding-inline: .4rem; } }
+
+/* ---------- Words over paintings stay readable (WCAG AA on the rendered painting, sampled in light and dark) ----------
+   A soft veil sits behind each block of words, wherever it lands on the painting, and small labels ride on a
+   smoked-glass chip. The paintings keep their light everywhere else. */
+:root { --cx-halo: 0 0 2px rgb(20 8 0 / .9), 0 0 6px rgb(20 8 0 / .7), 0 0 14px rgb(24 10 2 / .6), 0 0 28px rgb(24 10 2 / .45); --cx-chip-bg: rgb(26 12 3 / .7); --cx-chip-ink: #ffe9c9; }
+/* home opening: a veil that follows the title block, strongest under the line and sub-line */
+.cx-open-card { position: relative; }
+.cx-open-card::before { content: ""; position: absolute; z-index: -1; left: 50%; top: calc(var(--ed-head-h) + var(--cx-bar) - 6rem); bottom: -3rem; width: min(70rem, 150%); translate: -50% 0; pointer-events: none; background: radial-gradient(closest-side, rgb(24 10 2 / .64), rgb(24 10 2 / .58) 62%, rgb(24 10 2 / .22) 85%, rgb(24 10 2 / 0)); }
+.cx-welcome-k, .cx-open-line, .cx-open-sub, .cx-cue { text-shadow: var(--cx-halo); }
+.cx-welcome-k { color: #fff6ea; }
+.cx-open-sub { color: #fff6ea; }
+/* the prologue link is a quiet pill, like the sound button beside it */
+.cx-cue { padding: 0 .95rem; border-radius: 999px; background: rgb(30 15 5 / .5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); text-decoration: none; text-shadow: none; }
+.cx-cue:hover { background: rgb(30 15 5 / .66); text-decoration: underline; text-decoration-color: currentColor; }
+@media (max-width: 599px) { .cx-open-left .cx-cue { padding: 0 .7rem; gap: .35rem; } .cx-open-left .cx-sound { padding-inline: .55rem .75rem; gap: .4rem; } .cx-open-card::before { bottom: -4.5rem; } }
+/* small labels on paintings: a smoked-glass chip */
+.cx-film-k, .is-cx-head .ed-page-head .ed-kicker, .cx-lost .cx-k, .cx-js .cx-reel-meta, .shot:not(.shot--card) .shot-card .scene-no {
+  justify-self: center; width: fit-content; padding: .32em .8em; border-radius: 999px; background: var(--cx-chip-bg); color: var(--cx-chip-ink); text-shadow: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+@media (max-width: 759px) { .shot:not(.shot--card) .shot-card .scene-no { padding: 0; background: none; color: var(--cx-saffron); backdrop-filter: none; -webkit-backdrop-filter: none; justify-self: start; } }
+.cx-js .cx-reel-meta { right: auto; max-width: calc(100% - var(--cx-gut) - var(--cx-gut-r) - 11rem); color: var(--cx-chip-ink); }
+.cx-js .cx-reel-meta .cx-reel-bar { flex: 0 1 8rem; width: 8rem; }
+.is-cx-head .ed-page-head .world-hi { color: var(--cx-chip-ink); text-shadow: var(--cx-halo); }
+/* page title cards, the story opening, the finale and the lost page: a deeper veil behind the words */
+.is-cx-head .ed-page-head-in, .cx-finale-card { position: relative; }
+.is-cx-head .ed-page-head-in::before, .cx-finale-card::before { content: ""; position: absolute; z-index: -1; inset: calc(var(--ed-head-h) + 1rem) -12% 1rem; pointer-events: none; background: radial-gradient(closest-side, rgb(24 10 2 / .62), rgb(24 10 2 / .42) 60%, rgb(24 10 2 / 0)); }
+.cx-finale-card::before { inset: 8% -14%; }
+.is-cx-head .ed-page-head .ed-lead, .cx-finale-body, .is-cx-head .ed-page-head .ed-greet { text-shadow: var(--cx-halo); }
+.is-cx-head .ed-page-head .ed-h1, .cx-finale .cx-title, .cx-film-title, .shot:not(.shot--card) .shot-card h2 { text-shadow: 0 0 2px rgb(20 8 0 / .6), 0 2px 24px rgb(24 10 2 / .7); }
+.cx-film-card { position: relative; }
+.cx-film-card::before { content: ""; position: absolute; z-index: -1; inset: 30% -10% 0; pointer-events: none; background: radial-gradient(closest-side, rgb(24 10 2 / .6), rgb(24 10 2 / .4) 60%, rgb(24 10 2 / 0)); }
+.cx-film-card > .cx-facts li { color: #f6e8d4; text-shadow: var(--cx-halo); }
+/* the rotating cards on the opening: a darker glass under small gold labels */
+.cx-cards .ed-card-k { color: #ffd9a3; }
+
+/* ---------- Focus you can always see: on paintings and glass, a cream ring between two dark rings ---------- */
+.cx-btn:focus-visible, .cx-btn--light:focus-visible { outline: 2px solid var(--cx-saffron); outline-offset: 3px; }
+:is(.cx-open, .cx-film-open, .is-cx-head .ed-page-head, .cx-finale, .cx-reel, .shot, .cx-credits, .pause-card, .title-card) :focus-visible,
+.has-hero .ed-head:not(.is-solid):not(.is-open) :focus-visible {
+  outline: 2px solid #fff8ee; outline-offset: 3px; box-shadow: 0 0 0 3px rgb(24 10 2 / .9), 0 0 0 7px rgb(24 10 2 / .9);
+}
+@media (forced-colors: active) { :focus-visible { outline: 2px solid CanvasText !important; box-shadow: none !important; } }
+
+/* ---------- Glass cards over paintings keep daylight ink in every theme (the card itself stays daylight glass) ---------- */
+.title-card {
+  color-scheme: light; --glass-accent: #87400b; --glass-ink: #181512; --glass-head: #181512; --glass-muted: #5f574e; --ed-sun: #a54d0d; --ed-sun-ink: #a54d0d;
+  --ink-primary: #181512; --ink-secondary: #4a433c; --ink-muted: #5f574e; --bg-canvas: #fbf8f3; --bg-elevated: #f3ede2; --bg-surface: #fffdf9; --border-hairline: rgb(24 21 18 / .14);
+  --accent-vermilion: #9e2a2b; --accent-gold: #b08227; --accent-moss: #4f6f52;
+  --ink: #181512; --muted: #5f574e; --accent: #181512; --moss: #3f5c42; --line: rgb(24 21 18 / .14); --surface: #fffdf9; --paper: #fbf8f3; --paper-2: #f3ede2;
+  --saffron: #9e2a2b; --saffron-2: #86201f; --on-saffron: #fbf8f3; --gold: #ecdcb0; --gold-2: #b08227;
+  --cx-ink: #2a1e15; --cx-ink-2: #5c4838; --cx-ink-3: #6f5a49; --cx-saffron: #a54d0d; --cx-saffron-2: #87400b; --cx-btn: #a54d0d; --cx-btn-2: #87400b; --cx-on-btn: #ffffff;
+  --cx-line: rgb(90 55 25 / .16); --cx-line-2: rgb(90 55 25 / .34);
+  --ed-ink: #2a1e15; --ed-ink-2: #5c4838; --ed-ink-3: #6f5a49; --ed-line: rgb(90 55 25 / .16); --ed-line-2: rgb(90 55 25 / .34); --ed-btn: #a54d0d; --ed-btn-2: #87400b; --ed-on-btn: #ffffff;
+  color: var(--glass-ink);
+}
+.title-card .eyebrow, .pause-card .eyebrow, .pause-card .lead { color: var(--glass-accent); }
+.pause-card .eyebrow-ic { background: #f1e2cf; color: #181512; }
+
+/* ---------- The not-found page in Hindi: hidden for the instant before lost.js swaps the Hindi page in ---------- */
+html[data-lost-lang="hi"] body { visibility: hidden; animation: lost-show 0s 1.5s forwards; }
+@keyframes lost-show { to { visibility: visible; } }
+
+/* ---------- Desktop reader: the lens rail says when there is more below ---------- */
+@media (min-width: 1200px) {
+  .cx-film .rail--lens { scrollbar-gutter: stable; -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 3.5rem), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 3.5rem), transparent); }
+  .cx-film .rail--lens.is-end { -webkit-mask-image: none; mask-image: none; }
+}
+/* the prologue: its skip pill and subtitles keep AA over the brightest frames */
+.cx-skip { background: rgb(26 12 3 / .66); }
+.cx-skip:hover { background: rgb(26 12 3 / .8); }
+.cx-sub-t { text-shadow: var(--cx-halo); }
+
+/* ---------- Offline page: what this device can open without a connection ---------- */
+.cx-offline .cx-text { margin: 0; color: var(--cx-ink-2); }
+.off-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+.off-list:empty { display: none; }
+.off-item { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 1rem; align-items: center; min-height: 44px; padding: .5rem; border: 1px solid var(--cx-line); border-radius: 6px; background: var(--cx-surface); color: var(--cx-ink); text-decoration: none; }
+.off-item:hover { border-color: var(--cx-line-2); }
+.off-pic { width: 4.5rem; aspect-ratio: 1; overflow: hidden; border-radius: 4px; background: radial-gradient(ellipse at 50% 40%, var(--cx-dusk-2), var(--cx-dusk)); }
+.off-pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.off-txt { display: grid; gap: .2rem; }
+.off-txt small { font: 500 .85rem/1.2 var(--cx-ui); color: var(--cx-saffron); }
+.off-txt strong { font: 500 1.15rem/1.3 var(--cx-title); }
+html[lang="hi"] .off-txt small { font-family: "Mukta", var(--cx-ui); font-size: .95rem; }
+.off-btns { display: flex; flex-wrap: wrap; gap: .75rem; margin: .5rem 0 0; }
+/* ---------- A quiet pointer to the Hindi edition, for browsers that ask for Hindi (English home only) ---------- */
+.cx-hi-hint { display: inline-flex; align-items: center; gap: .25rem; margin: 1.1rem 0 0; padding: 0 0 0 .35rem; border: 1px solid rgb(243 196 126 / .5); border-radius: 999px; background: rgb(24 10 2 / .5); font: 400 1.05rem/1.3 "Mukta", var(--cx-ui); color: #fff6e8; }
+.cx-hi-hint[hidden] { display: none; }
+.cx-hi-hint a { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; padding: 0 .6rem; color: inherit; text-decoration: none; }
+.cx-hi-hint a b { font-weight: 600; color: var(--cx-gold); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.cx-hi-hint button { display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 999px; background: none; color: inherit; font-size: 1.35rem; line-height: 1; cursor: pointer; }
+.cx-hi-hint button:hover { background: rgb(255 246 232 / .12); }
+/* the story-end labels in the title face use its one loaded weight */
+.cx-film .story-end h2.legend { font-weight: 500; }
+:root:not([data-motion="reduce"]):not(.cx-seen) .cx-hi-hint { animation: cx-fade .6s var(--cx-ease) .75s both; }
+@media (prefers-reduced-motion: reduce) { .cx-hi-hint { animation: none !important; } }
