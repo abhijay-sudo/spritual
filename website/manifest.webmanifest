@@ -1,0 +1,17 @@
+{
+  "name": "Spritual",
+  "short_name": "Spritual",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fcfbf8",
+  "theme_color": "#0e1d55",
+  "lang": "en-IN",
+  "description": "Illustrated stories from Itihasa and Purana, in English and Hindi.",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
