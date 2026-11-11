@@ -1158,7 +1158,7 @@ html[lang="hi"] .cast-echo { font-family: var(--cx-title); }
    takes the stage, its painting behind and its lead standing in front. Point, focus or tap to look; click, Enter or the
    button to begin. Left to itself the screen shows each story in turn (and has a pause). Without scripts it is simply
    the first story and twelve links. */
-.cx-select { --sel-gold: #f3c06e; position: relative; isolation: isolate; overflow: hidden; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-height: 100svh; box-sizing: border-box; padding-top: var(--ed-head-h); background: #0c0705; color: #fdf6ea; scroll-margin-top: 0; }
+.cx-select { --sel-gold: #f3c06e; position: relative; isolation: isolate; overflow: hidden; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-height: 100svh; box-sizing: border-box; padding-top: var(--ed-head-h); background: #0c0705; color: #fdf6ea; scroll-margin-top: -5rem; grid-template-columns: minmax(0, 1fr); overflow: clip; }  /* -5rem cancels html scroll-padding-top (site.css) so #select lands flush */
 .cx-select:focus { outline: none; }
 .cx-js .cx-stack > .cx-select { position: sticky; top: 0; z-index: 2; height: 100svh; min-height: 0; box-shadow: 0 -30px 70px rgb(0 0 0 / .55); }
 .cx-js .cx-stack > .cx-select::after { content: ""; position: absolute; inset: 0; z-index: 8; pointer-events: none; background: #0a0604; opacity: 0; }
@@ -1174,10 +1174,10 @@ html[lang="hi"] .cast-echo { font-family: var(--cx-title); }
   linear-gradient(to bottom, rgb(10 6 3 / .85) 0%, transparent 22%); }
 .cx-sel-flash { position: absolute; inset: 0; z-index: 7; pointer-events: none; opacity: 0; background: radial-gradient(ellipse 70% 60% at 50% 55%, rgb(255 236 196 / .95), rgb(255 190 110 / .5) 45%, transparent 75%); mix-blend-mode: screen; }
 .cx-sel-head { display: grid; justify-items: center; padding: clamp(.6rem, 2svh, 1.6rem) var(--cx-gut-r) 0 var(--cx-gut); }
-.cx-sel-h { margin: 0; display: flex; align-items: center; gap: clamp(.8rem, 2vw, 1.8rem); font: 500 clamp(.82rem, .7rem + .5vw, 1.15rem)/1 "Cinzel", var(--cx-title); letter-spacing: .34em; text-transform: uppercase; color: var(--sel-gold); white-space: nowrap; }
+.cx-sel-h { margin: 0; min-width: 0; max-width: 100%; display: flex; align-items: center; gap: clamp(.8rem, 2vw, 1.8rem); font: 500 clamp(.82rem, .7rem + .5vw, 1.15rem)/1 "Cinzel", var(--cx-title); letter-spacing: .34em; text-transform: uppercase; color: var(--sel-gold); white-space: nowrap; }
 .cx-sel-h span { margin-right: -.34em; }
 html[lang="hi"] .cx-sel-h { font-family: var(--cx-title); letter-spacing: .08em; font-size: clamp(1.05rem, .9rem + .6vw, 1.4rem); } html[lang="hi"] .cx-sel-h span { margin-right: 0; }
-.cx-sel-h::before, .cx-sel-h::after { content: ""; width: clamp(2rem, 10vw, 9rem); height: 1px; background: linear-gradient(to right, transparent, var(--sel-gold)); }
+.cx-sel-h::before, .cx-sel-h::after { min-width: 0; content: ""; width: clamp(2rem, 10vw, 9rem); height: 1px; background: linear-gradient(to right, transparent, var(--sel-gold)); }
 .cx-sel-h::after { background: linear-gradient(to left, transparent, var(--sel-gold)); }
 .cx-sel-stage { position: relative; min-height: 0; display: grid; align-content: end; justify-items: start; gap: clamp(.7rem, 1.6svh, 1.25rem); padding: 0 var(--cx-gut-r) clamp(.9rem, 2.6svh, 2rem) max(var(--cx-gut), calc((100vw - 88rem) / 2 + var(--cx-gut))); }
 .cx-sel-info { position: relative; z-index: 2; display: grid; gap: clamp(.35rem, 1svh, .75rem); max-width: min(46rem, 58vw); }
@@ -1270,3 +1270,16 @@ html[lang="hi"] .cx-sel-title { line-height: 1.22; letter-spacing: 0; }
   .cx-sel-hero::before { inset: 0 -10% 30%; }
 }
 @media (orientation: landscape) and (max-height: 520px) { .cx-sel-hero { right: 6vw; width: 30vw; } }
+
+/* review fixes: phone words get their own shade over the portrait; short landscape keeps the number beside the collection */
+@media (max-width: 699px) { .cx-sel-info::before { content: ""; position: absolute; z-index: -1; inset: -4.5rem -100vw -12rem; pointer-events: none; background: linear-gradient(to bottom, transparent 0, rgb(10 6 3 / .8) 4.5rem, rgb(10 6 3 / .88) 100%); } }
+@media (orientation: landscape) and (max-height: 520px) {
+  .cx-sel-info { grid-template-columns: auto minmax(0, 1fr); column-gap: .6rem; align-items: baseline; }
+  .cx-sel-info > :not(.cx-sel-count, .cx-sel-coll) { grid-column: 1 / -1; }
+  .cx-sel-count b { line-height: 1; } .cx-sel-facts { display: none; }
+}
+/* tablet landscape: the words keep clear of the lead */
+@media (min-width: 900px) and (max-width: 1199px) { .cx-sel-info { max-width: 50vw; } .cx-sel-hero { width: 36vw; } }
+/* a phone on its side has no room for the heading line: it stays for screen readers only */
+@media (orientation: landscape) and (max-height: 520px) { .cx-sel-head { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } }
+@media (orientation: landscape) and (max-height: 520px) { .cx-select { grid-template-rows: minmax(0, 1fr) auto; } }

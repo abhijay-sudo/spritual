@@ -67,19 +67,19 @@
       const big = new Image(); big.sizes = '100vw'; big.srcset = d.picset; big.src = d.pic;
       (big.decode ? big.decode() : Promise.resolve()).then(() => { if (my === token) { next.sizes = '100vw'; next.srcset = d.picset; next.src = d.pic; } }).catch(() => {});
       if (!reduced()) { sel.classList.remove('is-swap'); void sel.offsetWidth; sel.classList.add('is-swap'); }
-      // keep the chosen tile in view where the roster scrolls
-      if (byUser && grid.scrollWidth > grid.clientWidth + 4) t.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduced() ? 'auto' : 'smooth' });
     };
     // left alone, the screen shows each story in turn; any choice by hand stops it, and the button starts it again
     const showAuto = () => { if (auto) { auto.setAttribute('aria-pressed', String(stopped)); auto.setAttribute('aria-label', stopped ? auto.dataset.lPlay : auto.dataset.lPause); } };
     const halt = () => { if (!stopped) { stopped = true; showAuto(); } clearTimeout(timer); timer = 0; };
-    const turn = () => { timer = 0; if (stopped || !selOnScreen || document.hidden || leaving) return; pick(cur + 1, false); timer = setTimeout(turn, 4800); };
+    const turn = () => { timer = 0; if (reduced()) { halt(); return; } if (stopped || !selOnScreen || document.hidden || leaving) return; pick(cur + 1, false); timer = setTimeout(turn, 4800); };
     selWake = () => { if (!timer && !stopped && selOnScreen && !document.hidden) timer = setTimeout(turn, 4800); };
     auto?.addEventListener('click', () => { if (stopped) { stopped = reduced() ? true : false; showAuto(); selWake(); } else halt(); });
     document.addEventListener('visibilitychange', selWake); showAuto();
+    new MutationObserver(() => { if (reduced()) halt(); }).observe(root, { attributes: true, attributeFilter: ['data-motion'] });
+    matchMedia('(prefers-reduced-motion: reduce)').addEventListener?.('change', () => { if (reduced()) halt(); });
     // leaving for a story: a flare, the name steps forward, and the painting opens into the story's own first frame
     const begin = (e, href) => {
-      if (leaving) { e.preventDefault(); return; }
+      if (leaving) { e.preventDefault(); e.stopImmediatePropagation(); return; }
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button > 0 || reduced()) return;
       e.preventDefault(); leaving = true; halt(); sel.classList.add('is-go');
       let url; try { url = new URL(href, location.href); } catch { location.href = href; return; }
@@ -100,12 +100,17 @@
       });
       t.addEventListener('keydown', (e) => {
         const cols = tiles.filter((x) => x.offsetTop === tiles[0].offsetTop).length || n;
+        if (e.altKey || e.metaKey || e.ctrlKey || e.shiftKey) return;
         const to = { ArrowRight: i + 1, ArrowLeft: i - 1, ArrowDown: i + cols, ArrowUp: i - cols, Home: 0, End: n - 1 }[e.key];
-        if (to === undefined || to < 0 || to >= n) return;
-        e.preventDefault(); tiles[to].focus();
+        if (to === undefined) return;
+        e.preventDefault(); if (to >= 0 && to < n) tiles[to].focus();
       });
     });
     out.go.addEventListener('click', (e) => begin(e, out.go.href));
+    // resting on, focusing or pressing the way in is a choice too: the story must not change under it
+    out.go.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') halt(); });
+    out.go.addEventListener('focus', () => halt());
+    out.go.addEventListener('pointerdown', () => halt());
     // on a touch screen, a sideways swipe across the stage turns to the next or the previous story
     const stage = $('.cx-sel-stage', sel); let sx = 0, sy = 0;
     stage.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
@@ -130,7 +135,7 @@
     });
     // focus that lands on a scene hidden under the next one brings that scene back
     open?.addEventListener('focusin', () => { if (scrollY > innerHeight * .5) scrollTo({ top: 0, behavior: 'instant' }); });
-    sel?.addEventListener('focusin', () => { const top = scrollY + stack.getBoundingClientRect().top + innerHeight; if (Math.abs(scrollY - top) > innerHeight * .5) scrollTo({ top, behavior: 'instant' }); });
+    sel?.addEventListener('focusin', () => { const top = scrollY + stack.getBoundingClientRect().top + innerHeight; if (scrollY > top + 1 || scrollY < top - innerHeight * .5) scrollTo({ top, behavior: 'instant' }); });
   }
 
   /* ---------- Arrivals: tiles and titles come in once, in sequence, when they reach the screen, then stay put ---------- */
