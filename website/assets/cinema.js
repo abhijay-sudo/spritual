@@ -49,7 +49,7 @@
   if (sel) {
     const tiles = $$('.cx-sel-tile', sel); const n = tiles.length; const grid = $('[data-sel-grid]', sel);
     const T = (k) => $(`[data-sel-${k}]`, sel);
-    const out = { n: T('n'), coll: T('coll'), title: T('title'), sum: T('sum'), min: T('min'), scenes: T('scenes'), go: T('go'), hero: T('hero'), name: T('name'), who: T('who') };
+    const out = { n: T('n'), coll: T('coll'), title: T('title'), sum: T('sum'), min: T('min'), scenes: T('scenes'), go: T('go'), hero: T('hero'), name: T('name'), who: T('who'), chips: T('chips'), goT: $('[data-sel-go-t]', sel), story: T('story'), storyT: $('[data-sel-story-t]', sel) };
     const whoLabel = out.who ? out.who.textContent.replace(out.name ? out.name.textContent : '', '').trim() : '';
     const layers = $$('.cx-sel-bg img', sel); const auto = $('[data-sel-auto]', sel);
     let outT = 0;
@@ -60,9 +60,15 @@
       const t = tiles[i]; const d = t.dataset; cur = i;
       tiles.forEach((x, k) => { x.classList.toggle('is-on', k === i); if (k === i) x.setAttribute('aria-current', 'true'); else x.removeAttribute('aria-current'); });
       sel.style.setProperty('--sel-glow', d.glow); sel.style.setProperty('--sel-base', d.base);
-      if (out.name) { out.name.textContent = d.name; out.name.style.setProperty('--nl', [...d.name].length); } if (out.who) out.who.textContent = `${whoLabel} ${d.name}`;
-      out.n.textContent = String(i + 1).padStart(2, '0'); out.coll.textContent = d.coll; out.title.textContent = d.title; out.sum.textContent = d.sum; out.min.textContent = d.min; out.scenes.textContent = d.scenes;
-      out.go.href = t.href; out.go.setAttribute('aria-label', `${out.go.dataset.l}: ${d.title}`);
+      if (out.name) { out.name.textContent = d.name; out.name.style.setProperty('--nl', [...d.name].length); }
+      if (out.who) out.who.textContent = d.who || '';
+      out.n.textContent = String(i + 1).padStart(2, '0'); out.coll.textContent = d.coll; out.sum.textContent = d.sum;
+      // the name lands letter by letter
+      out.title.textContent = ''; (typeof Intl !== 'undefined' && Intl.Segmenter ? [...new Intl.Segmenter(root.lang || undefined, { granularity: 'grapheme' }).segment(d.title)].map((x) => x.segment) : [d.title]).forEach((ch, k) => { const sp = document.createElement('span'); sp.className = 'cx-sel-ch'; sp.style.setProperty('--k', k); sp.textContent = ch; out.title.append(sp); });
+      out.title.setAttribute('aria-label', d.title);
+      if (out.chips) out.chips.innerHTML = d.chips || '';   // built by the site's own generator (escaped there)
+      out.go.href = t.href; out.go.setAttribute('aria-label', d.meet || d.title); if (out.goT) out.goT.textContent = d.meet || d.title;
+      if (out.story && d.story) { out.story.href = d.story; out.story.setAttribute('aria-label', `${out.storyT ? out.storyT.textContent : ''}: ${d.storyT || ''}`); }
       out.hero.srcset = d.heroset; out.hero.src = d.hero;
       // the painting: the roster's small copy at once (it is already loaded), the full one as soon as it has decoded
       // the new world comes in over the old one behind a blade of light; the old one leaves when it is covered
@@ -117,6 +123,11 @@
       });
     });
     out.go.addEventListener('click', (e) => begin(e, out.go.href));
+    out.story?.addEventListener('click', (e) => begin(e, out.story.href));
+    // the lead stands between the heading and the roster, whatever the screen and the reader's text size
+    const roster = $('.cx-sel-roster', sel);
+    const setRoster = () => sel.style.setProperty('--sel-roster-h', `${Math.round(roster.getBoundingClientRect().height)}px`);
+    setRoster(); if ('ResizeObserver' in window) new ResizeObserver(setRoster).observe(roster); else addEventListener('resize', setRoster);
     // resting on, focusing or pressing the way in is a choice too: the story must not change under it
     out.go.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') halt(); });
     out.go.addEventListener('focus', () => halt());

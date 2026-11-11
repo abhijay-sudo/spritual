@@ -1467,3 +1467,55 @@ html[lang="hi"] .mx-src { font-family: "Mukta", var(--cx-ui); font-size: 1.05rem
 @media (max-width: 700px) { .cx-manas::before { background: linear-gradient(to top, rgb(10 6 3 / .95) 0%, rgb(10 6 3 / .7) 45%, transparent 80%); } .cx-manas { min-height: 36rem; } }
 @media (prefers-reduced-motion: reduce) { .cx-manas-pic img { animation: none !important; scale: none; } }
 :root[data-motion="reduce"] .cx-manas-pic img { animation: none !important; scale: none; }
+
+/* ---------- The character select ----------
+   The lead stands in the screen itself (anchored between the heading and the roster), so neither a small window nor a
+   large reading size can crop them; their name in the other script stands up behind them; their own name lands letter by
+   letter; a ring of their light breaks outward as they arrive. */
+.cx-select > .cx-sel-hero { position: absolute; z-index: 1; top: calc(var(--ed-head-h) + clamp(2.2rem, 5svh, 3.5rem)); bottom: var(--sel-roster-h, 9rem); right: max(var(--cx-gut-r), 5vw, calc((100vw - 88rem * var(--cx-k, 1)) / 2 + 2rem)); width: min(46vw, calc(40rem * var(--cx-k, 1))); height: auto; display: block; pointer-events: none; }
+.cx-select > .cx-sel-hero img { position: absolute; left: 50%; bottom: 0; height: 100%; width: auto; max-width: none; max-height: none; translate: -50% 0; object-fit: contain; object-position: 50% 100%; }
+.cx-select > .cx-sel-hero .cx-sel-floor { left: 8%; right: 8%; bottom: -3%; }
+.cx-sel-ring { position: absolute; left: 50%; top: 52%; width: 70%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; pointer-events: none; opacity: 0; box-shadow: 0 0 0 2px color-mix(in oklab, var(--sel-glow) 80%, transparent), 0 0 60px 10px color-mix(in oklab, var(--sel-glow) 45%, transparent), inset 0 0 50px 6px color-mix(in oklab, var(--sel-glow) 35%, transparent); }
+:root:not([data-motion="reduce"]) .cx-select.is-swap .cx-sel-ring { animation: sel-ring .9s cubic-bezier(.16, 1, .3, 1) both; }
+@keyframes sel-ring { 0% { opacity: .95; scale: .25; } 100% { opacity: 0; scale: 1.6; } }
+.cx-select > .cx-sel-name { position: absolute; z-index: 0; top: calc(var(--ed-head-h) + clamp(2.6rem, 6svh, 4.2rem)); right: max(var(--cx-gut-r), 3vw); font-size: min(clamp(5rem, 1rem + 13vw, 17rem), calc(70vw / (var(--nl, 4) * .9))); line-height: 1; letter-spacing: .02em; }
+.cx-select > .cx-sel-name:lang(hi) { font-family: "Tiro Devanagari Hindi", var(--font-hi); font-weight: 400; letter-spacing: 0; }
+.cx-sel-title { font-size: clamp(3rem, 1.4rem + 6vw, 7.5rem); line-height: .95; letter-spacing: -.02em; }
+.cx-sel-ch { display: inline-block; white-space: pre; }
+:root:not([data-motion="reduce"]) .cx-select.is-swap .cx-sel-ch { animation: sel-slam .6s cubic-bezier(.2, .9, .3, 1.25) both; animation-delay: calc(.1s + var(--k) * 45ms); }
+@keyframes sel-slam { 0% { opacity: 0; translate: 0 -.5em; scale: 1.4; filter: blur(6px); } 60% { opacity: 1; filter: blur(0); } 100% { opacity: 1; translate: 0 0; scale: 1; } }
+.cx-select :is(.cx-sel-title) { animation: none !important; clip-path: none !important; }
+.cx-sel-coll { font: 400 clamp(1.3rem, 1.1rem + .8vw, 1.9rem)/1.2 "Tiro Devanagari Hindi", var(--font-hi); letter-spacing: 0; text-transform: none; color: color-mix(in oklab, var(--sel-glow) 70%, #fff); }
+html[lang="hi"] .cx-sel-coll { font-family: "Cinzel", var(--cx-title); letter-spacing: .14em; text-transform: uppercase; font-size: clamp(.95rem, .85rem + .4vw, 1.2rem); }
+.cx-sel-sum { -webkit-line-clamp: 2; }
+.cx-sel-chips { list-style: none; margin: .2rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem; }
+.cx-sel-chips a { display: inline-flex; align-items: center; min-height: 34px; padding: 0 .8rem; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--sel-glow) 45%, transparent); background: rgb(10 6 3 / .45); color: #f3e7d7; font: 500 .85rem/1.2 var(--cx-ui); text-decoration: none; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: border-color .3s, background-color .3s; }
+.cx-sel-chips a:hover, .cx-sel-chips a:focus-visible { border-color: var(--sel-glow); background: color-mix(in oklab, var(--sel-glow) 22%, rgb(10 6 3 / .6)); }
+html[lang="hi"] .cx-sel-chips a { font-family: "Mukta", var(--cx-ui); font-size: .95rem; }
+.cx-select .cx-sel-info { pointer-events: auto; }
+.cx-sel-btns { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: .7rem; margin: 0; }
+.cx-sel-story { color: #fdf6ea; border-color: color-mix(in oklab, var(--sel-glow) 60%, transparent); }
+.cx-sel-tile-n { left: .4rem; right: .3rem; bottom: .3rem; font: 600 .66rem/1.1 "Cinzel", var(--cx-title); letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html[lang="hi"] .cx-sel-tile-n { font-family: "Mukta", var(--cx-ui); font-size: .78rem; letter-spacing: 0; }
+.cx-sel-grid { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+.cx-sel-tile.is-on { translate: 0 -.8rem; scale: 1.08; }
+@media (max-width: 1099px) { .cx-sel-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+@media (max-width: 699px) {
+  .cx-select > .cx-sel-hero { right: -4%; width: 72vw; top: calc(var(--ed-head-h) + 2.6rem); bottom: auto; height: calc(100svh - var(--ed-head-h) - var(--sel-roster-h, 9rem) - 2.6rem); }
+  .cx-select > .cx-sel-hero img { top: 0; bottom: auto; height: 100%; -webkit-mask-image: linear-gradient(to bottom, #000 48%, transparent 82%); mask-image: linear-gradient(to bottom, #000 48%, transparent 82%); }
+  .cx-select > .cx-sel-name { top: calc(var(--ed-head-h) + 2.4rem); font-size: min(30vw, calc(92vw / (var(--nl, 4) * .9))); }
+  .cx-sel-title { font-size: clamp(2.6rem, 1rem + 9vw, 3.6rem); }
+  .cx-sel-chips { display: none; }
+  .cx-sel-tile { aspect-ratio: 1 / 1.15; }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  .cx-select > .cx-sel-hero { width: 28vw; right: 6vw; top: calc(var(--ed-head-h) + .5rem); }
+  .cx-select > .cx-sel-name { display: none; }
+  .cx-sel-title { font-size: clamp(2rem, 1rem + 3vw, 2.8rem); }
+  .cx-sel-chips, .cx-sel-story { display: none; }
+  .cx-sel-grid { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+}
+:root.cx-js:not([data-motion="reduce"]) .cx-select.sel-wait :is(.cx-sel-btns) { opacity: 0; }
+:root.cx-js:not([data-motion="reduce"]) .cx-select.is-lit:not(.is-swap) .cx-sel-btns { animation: sel-up .9s cubic-bezier(.16, 1, .3, 1) .95s both; }
+:root[data-motion="reduce"] :is(.cx-sel-ring, .cx-sel-ch) { animation: none !important; }
+@media (prefers-reduced-motion: reduce) { .cx-sel-ring, .cx-sel-ch { animation: none !important; } }
