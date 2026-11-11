@@ -43,31 +43,73 @@
   const laterImgs = reel ? $$('img[data-later]', reel) : [];
   if (reel && reduced()) laterImgs.forEach(hydrate);   // stacked, not pinned: the browser's own lazy loading takes over
   if (reel && !reduced()) {
-    const frames = $$('[data-frame]', reel); const n = frames.length;
+    // The prologue plays itself, like a trailer: a painting holds for a few seconds with a slow drift, then dissolves to
+    // the next. It runs only while it is the scene on screen; pause, previous and next are real buttons.
+    const frames = $$('[data-frame]', reel); const n = frames.length; const HOLD = 6500;
     const fill = $('[data-reel-fill]', reel); const label = $('[data-reel-n]', reel);
+    const toggle = $('[data-reel-toggle]', reel); const stack = reel.closest('.cx-stack'); const open = stack && $('.cx-open', stack);
     const imgOf = (k) => frames[k] && $('img[data-later]', frames[k]);
-    let cur = 0;
-    // a keyboard user tabbing to a frame's "Read this story" is carried to the stretch of scroll where that frame shows
-    frames.forEach((fr, k) => fr.addEventListener('focusin', () => {
-      if (k === cur) return;
-      const top = scrollY + reel.getBoundingClientRect().top; const span = Math.max(1, reel.offsetHeight - innerHeight);
-      scrollTo({ top: top + span * ((k + .5) / n), behavior: 'instant' }); kick();
-    }));
+    let cur = 0, held = 0, last = 0, userPaused = false, onScreen = false, ticking2 = false;
+    const show = (k) => {
+      k = (k + n) % n; hydrate(imgOf(k)); hydrate(imgOf((k + 1) % n));
+      if (k !== cur) { frames[cur].classList.remove('is-on'); frames[k].classList.add('is-on'); cur = k; }
+      held = 0;
+      if (label) label.textContent = fmt(label.dataset.of || '{n} / {t}', { n: k + 1, t: n });
+      if (fill) fill.style.setProperty('--p', (k / n).toFixed(4));
+    };
+    const rolling = () => onScreen && !userPaused && !document.hidden;
+    const tick = (t) => {
+      if (!rolling()) { ticking2 = false; reel.classList.remove('is-rolling'); return; }
+      held += Math.min(100, t - last); last = t;
+      if (held >= HOLD) show(cur + 1);
+      if (fill) fill.style.setProperty('--p', ((cur + held / HOLD) / n).toFixed(4));
+      requestAnimationFrame(tick);
+    };
+    const wake = () => { if (rolling() && !ticking2) { ticking2 = true; last = performance.now(); reel.classList.add('is-rolling'); requestAnimationFrame(tick); } };
+    const setPaused = (v) => { userPaused = v; if (toggle) { toggle.setAttribute('aria-pressed', String(v)); toggle.setAttribute('aria-label', v ? toggle.dataset.lPlay : toggle.dataset.lPause); } wake(); };
+    toggle?.addEventListener('click', () => setPaused(!userPaused));
+    $('[data-reel-prev]', reel)?.addEventListener('click', () => show(cur - 1));
+    $('[data-reel-next]', reel)?.addEventListener('click', () => show(cur + 1));
+    // a keyboard user tabbing to a frame's "Read this story" is shown that frame, and the reel waits for them
+    frames.forEach((fr, k) => fr.addEventListener('focusin', () => { if (k !== cur) { show(k); setPaused(true); } }));
+    document.addEventListener('visibilitychange', wake);
+    // which scene is on screen: the opening (scroll 0..1 screens), the prologue (about .5..1.5), then the feature covers both.
+    // A covered scene is still "in the viewport" as far as the browser knows, so the film and the reel are told to rest.
+    const film = open && $('video.frame-video', open);
     jobs.push(() => {
-      const r = reel.getBoundingClientRect();
-      if (r.top < innerHeight * .5) hydrate(imgOf(1));
-      if (r.bottom < 0 || r.top > innerHeight) return;
-      const span = Math.max(1, r.height - innerHeight);
-      const p = clamp(-r.top / span, 0, .9999); const f = p * n; const i = Math.floor(f);
-      // the frame on screen, any skipped over, and the one after it
-      for (let k = 1; k <= Math.min(n - 1, r.top < innerHeight * .5 ? i + 1 : i); k++) hydrate(imgOf(k));
-      frames.forEach((fr, k) => fr.style.setProperty('--k', clamp(f - k).toFixed(4)));
-      if (i !== cur) {
-        frames[cur].classList.remove('is-on'); frames[i].classList.add('is-on'); cur = i;
-        if (label) label.textContent = fmt(label.dataset.of || '{n} / {t}', { n: i + 1, t: n });
+      const vh = innerHeight; const s = stack ? -stack.getBoundingClientRect().top : -reel.getBoundingClientRect().top + vh;
+      if (s > vh * .2) { hydrate(imgOf(1)); }
+      const now = stack ? (s > vh * .45 && s < vh * 1.6) : (s > vh * .45 && s < vh * 1.6);
+      if (now !== onScreen) { onScreen = now; wake(); }
+      if (film && window.SpritualClips) {
+        const covered = s > vh * .98;
+        if (covered && !film.dataset.hold) { film.dataset.hold = '1'; window.SpritualClips.stop(film); }
+        else if (!covered && film.dataset.hold) { delete film.dataset.hold; window.SpritualClips.start(film); }
       }
-      if (fill) fill.style.setProperty('--p', p.toFixed(4));
     });
+    // focus that lands on a scene hidden under the next one brings that scene back
+    open?.addEventListener('focusin', () => { if (scrollY > innerHeight * .5) scrollTo({ top: 0, behavior: 'instant' }); });
+    reel.addEventListener('focusin', () => { const top = scrollY + (stack || reel).getBoundingClientRect().top + (stack ? innerHeight : 0); if (Math.abs(scrollY - top) > innerHeight * .5) scrollTo({ top, behavior: 'instant' }); });
+  }
+
+  /* ---------- Arrivals: tiles and titles come in once, in sequence, when they reach the screen, then stay put ---------- */
+  if (!reduced() && 'IntersectionObserver' in window) {
+    const targets = $$('[data-room="theatre"] .grid > .card, .cx-posters > li, .cast-tiles > li, .cast-rows > li, .cx-ways-grid > li, .cx-cast-row > li, .cx-rail > li, .cx-strip > li, .cx-head, .cx-row-head, .cast-h, .cx-now-body > *');
+    const vh = innerHeight;
+    const fresh = targets.filter((el) => el.getBoundingClientRect().top > vh * .9);   // what is already on screen is left alone
+    fresh.forEach((el) => el.classList.add('th-rv'));
+    const io = new IntersectionObserver((es) => {
+      const inNow = es.filter((en) => en.isIntersecting).map((en) => en.target).sort((a, b) => (a.getBoundingClientRect().top - b.getBoundingClientRect().top) || (a.getBoundingClientRect().left - b.getBoundingClientRect().left));
+      inNow.forEach((el, k) => {
+        io.unobserve(el); el.style.setProperty('--th-i', Math.min(k, 8)); el.classList.add('th-in');
+        const done = () => { el.classList.remove('th-rv', 'th-in'); el.style.removeProperty('--th-i'); };
+        el.addEventListener('animationend', (e) => { if (e.target === el) done(); }, { once: false });
+        setTimeout(done, 2600);
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: .08 });
+    fresh.forEach((el) => io.observe(el));
+    // a library filter shows and hides cards: anything still waiting when the list changes is simply shown
+    $('[data-filters]')?.addEventListener('input', () => fresh.forEach((el) => { el.classList.remove('th-rv', 'th-in'); io.unobserve(el); }));
   }
 
   /* ---------- Rails: film strips that scroll sideways, with buttons on pointer screens ---------- */
