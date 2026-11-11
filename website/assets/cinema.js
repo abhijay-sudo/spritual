@@ -43,6 +43,13 @@
   const laterImgs = reel ? $$('img[data-later]', reel) : [];
   if (reel && reduced()) laterImgs.forEach(hydrate);   // stacked, not pinned: the browser's own lazy loading takes over
   let vtImg = null;   // the picture that opens into the next page (a poster, or the story select's stage)
+  /* ---------- The opening's scenery leans with the pointer (rays, mist, birds and lamps at different depths) ---------- */
+  const openEl = $('.cx-home .cx-open');
+  if (openEl && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let or = 0;
+    openEl.addEventListener('pointermove', (e) => { if (or || reduced()) return; or = requestAnimationFrame(() => { or = 0; openEl.style.setProperty('--ox', ((e.clientX / innerWidth) - .5).toFixed(3)); openEl.style.setProperty('--oy', ((e.clientY / innerHeight) - .5).toFixed(3)); }); });
+  }
+
   /* ---------- Choose your story: the roster along the bottom, the one in hand on the stage ---------- */
   const sel = $('[data-select]');
   let selOnScreen = false, selWake = () => {};
@@ -51,7 +58,12 @@
     const T = (k) => $(`[data-sel-${k}]`, sel);
     const out = { n: T('n'), coll: T('coll'), title: T('title'), sum: T('sum'), min: T('min'), scenes: T('scenes'), go: T('go'), hero: T('hero'), name: T('name'), who: T('who'), chips: T('chips'), goT: $('[data-sel-go-t]', sel), story: T('story'), storyT: $('[data-sel-story-t]', sel) };
     const whoLabel = out.who ? out.who.textContent.replace(out.name ? out.name.textContent : '', '').trim() : '';
-    const layers = $$('.cx-sel-bg img', sel); const auto = $('[data-sel-auto]', sel);
+    const layers = $$('.cx-sel-bg img', sel); const fig = $('[data-sel-fig]', sel); const auto = $('[data-sel-auto]', sel);
+    // a url() inside a custom property resolves against the stylesheet that uses it, not the page: give the sheen's mask an absolute address
+    const heroUrl = (u) => { if (fig && u) fig.style.setProperty('--hero-url', `url('${new URL(u, document.baseURI).href}')`); };
+    if (out.hero) heroUrl(out.hero.getAttribute('src'));
+    // on a phone the frame is tall and narrow: the camera goes to the character's face, not the middle of the figure
+    const narrow = matchMedia('(max-width: 699px)');
     let outT = 0;
     let cur = 0, front = 0, token = 0, stopped = reduced(), lastPointer = 'mouse', timer = 0, leaving = false;
     const pick = (i, byUser) => {
@@ -69,19 +81,24 @@
       if (out.chips) out.chips.innerHTML = d.chips || '';   // built by the site's own generator (escaped there)
       out.go.href = t.href; out.go.setAttribute('aria-label', d.meet || d.title); if (out.goT) out.goT.textContent = d.meet || d.title;
       if (out.story && d.story) { out.story.href = d.story; out.story.setAttribute('aria-label', `${out.storyT ? out.storyT.textContent : ''}: ${d.storyT || ''}`); }
-      out.hero.srcset = d.heroset; out.hero.src = d.hero;
+      // a character with a cut-out portrait steps in front of their world; one painted inside a scene is found by the
+      // camera instead: the world itself pushes in on them, and the words move to the other side
+      const scene = d.mode === 'scene';
+      sel.classList.toggle('is-scene', scene); sel.classList.toggle('is-left', d.side === 'left');
+      if (!scene && d.hero) { out.hero.srcset = d.heroset; out.hero.src = d.hero; heroUrl(d.hero); }
       // the painting: the roster's small copy at once (it is already loaded), the full one as soon as it has decoded
       // the new world comes in over the old one behind a blade of light; the old one leaves when it is covered
       const my = ++token; const next = layers[1 - front]; const prev = layers[front]; const thumb = $('img', t);
-      next.removeAttribute('srcset'); next.removeAttribute('sizes'); next.style.objectPosition = d.pos; next.src = thumb.currentSrc || thumb.src;
+      next.removeAttribute('srcset'); next.removeAttribute('sizes'); { const face = d.ffx && narrow.matches; next.style.setProperty('--fx', `${face ? d.ffx : d.fx}%`); next.style.setProperty('--fy', `${face ? d.ffy : d.fy}%`); } next.style.setProperty('--z', d.z || 1); next.src = thumb.currentSrc || thumb.src;
       layers.forEach((x) => x.classList.remove('is-out', 'is-in'));
       prev.classList.remove('is-on'); prev.classList.add('is-out'); next.classList.add('is-on');
       if (!reduced()) { void next.offsetWidth; next.classList.add('is-in'); }
       clearTimeout(outT); outT = setTimeout(() => { if (my === token) { prev.classList.remove('is-out'); next.classList.remove('is-in'); } }, 800);
       front = 1 - front;
-      const big = new Image(); big.sizes = '100vw'; big.srcset = d.picset; big.src = d.pic;
-      (big.decode ? big.decode() : Promise.resolve()).then(() => { if (my === token) { next.sizes = '100vw'; next.srcset = d.picset; next.src = d.pic; } }).catch(() => {});
+      const vw = `${Math.round(100 * (parseFloat(d.z) || 1))}vw`; const big = new Image(); big.sizes = vw; big.srcset = d.picset; big.src = d.pic;
+      (big.decode ? big.decode() : Promise.resolve()).then(() => { if (my === token) { next.sizes = vw; next.srcset = d.picset; next.src = d.pic; } }).catch(() => {});
       if (!reduced()) { sel.classList.remove('is-swap'); void sel.offsetWidth; sel.classList.add('is-swap'); }
+      if (grid.scrollWidth > grid.clientWidth + 4) { const li = t.parentElement; grid.scrollTo({ left: li.offsetLeft - (grid.clientWidth - li.offsetWidth) / 2, behavior: reduced() || byUser ? 'auto' : 'smooth' }); }
     };
     // left alone, the screen shows each story in turn; any choice by hand stops it, and the button starts it again
     // one fixed name ("Pause the showcase") with aria-pressed as its state: a toggle whose name also changes contradicts itself
