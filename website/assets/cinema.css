@@ -41,7 +41,7 @@
     color-scheme: dark;
   }
 }
-:root[data-theme="dark"], :root[data-theme="sanctum"] {
+:root[data-theme="dark"], :root[data-theme="sanctum"], :root[data-room="theatre"]:not([data-theme="light"]) {
   --cx-paper: #1b140f; --cx-paper-2: #231a13; --cx-sand: #33261c; --cx-surface: #211811;
   --cx-ink: #f3e7d7; --cx-ink-2: #cdb9a3; --cx-ink-3: #a8927d;
   --cx-saffron: #f0a456; --cx-saffron-2: #ffbb73; --cx-btn: #eb9a49; --cx-btn-2: #f5ad62; --cx-on-btn: #1d1007;
@@ -131,10 +131,10 @@ html[lang="hi"] .ed-nav > a, html[lang="hi"] .ed-nav-btn, html[lang="hi"] .ed-sa
 
 /* ---------- Opening ---------- */
 .cx-home { overflow-x: clip; }
-.cx-open { position: relative; min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: 1fr auto; color: var(--cx-cream); isolation: isolate; overflow: hidden; background: var(--cx-dusk); }
+.cx-open { --cx-open-pad: clamp(.5rem, 3svh, 2.5rem); position: relative; min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: 1fr auto; color: var(--cx-cream); isolation: isolate; overflow: hidden; background: var(--cx-dusk); }
 .cx-open-media { position: absolute; inset: 0; z-index: -2; }
 .cx-open-shade { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse 70% 55% at 50% 46%, rgb(40 18 4 / .34), rgb(40 18 4 / 0) 70%), linear-gradient(to top, rgb(30 14 4 / .62), rgb(30 14 4 / 0) 42%); }
-.cx-open-card { align-self: center; justify-self: center; display: grid; justify-items: center; gap: 0; padding: calc(var(--ed-head-h) + var(--cx-bar)) var(--cx-gut-r) 1rem var(--cx-gut); text-align: center; }
+.cx-open-card { align-self: center; justify-self: center; display: grid; justify-items: center; gap: 0; padding: calc(var(--ed-head-h) + env(safe-area-inset-top, 0px) + var(--cx-open-pad)) var(--cx-gut-r) 1rem var(--cx-gut); text-align: center; }
 .cx-welcome { margin: 0; display: grid; justify-items: center; gap: .15em; font: inherit; }
 .cx-welcome-k { display: block; font: 500 clamp(.95rem, .8rem + .5vw, 1.3rem)/1 var(--cx-ui); letter-spacing: .3em; color: rgb(255 244 228 / .95); text-shadow: 0 1px 14px rgb(60 22 0 / .6); margin-right: -.3em; }
 html[lang="hi"] .cx-welcome-k { letter-spacing: .08em; font-family: "Mukta", var(--cx-ui); font-size: clamp(1.15rem, 1rem + .6vw, 1.5rem); margin-right: 0; }
@@ -151,7 +151,7 @@ html[lang="hi"] .cx-welcome-k { letter-spacing: .08em; font-family: "Mukta", var
 html[lang="hi"] .cx-open-line { font-style: normal; font-family: "Tiro Devanagari Hindi", var(--cx-text); line-height: 1.4; }
 .cx-open-sub { margin: .8rem 0 0; max-width: 34rem; font: 400 clamp(.98rem, .92rem + .2vw, 1.1rem)/1.55 var(--cx-ui); color: rgb(255 246 232 / .92); text-shadow: 0 1px 12px rgb(60 22 0 / .7); text-wrap: balance; }
 html[lang="hi"] .cx-open-sub { font-family: "Mukta", var(--cx-ui); }
-.cx-open-foot { display: grid; gap: 1.25rem; align-items: end; padding: 0 var(--cx-gut-r) calc(var(--cx-bar) * var(--lb, 1) + 1.25rem) var(--cx-gut); }
+.cx-open-foot { display: grid; gap: 1.25rem; align-items: end; padding: 0 var(--cx-gut-r) calc(env(safe-area-inset-bottom, 0px) + clamp(1rem, 3.5svh, 2.75rem)) var(--cx-gut); }
 .cx-open-left { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem; }
 .cx-sound { display: inline-flex; align-items: center; gap: .7rem; min-height: 48px; padding: .4rem 1.1rem .4rem .8rem; border-radius: 999px; border: 1px solid rgb(255 240 220 / .5); background: rgb(30 15 5 / .3); color: var(--cx-cream); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); cursor: pointer; text-align: left; font: 500 .98rem/1.2 var(--cx-ui); transition: background-color .25s, border-color .25s; }
 html[lang="hi"] .cx-sound { font-family: "Mukta", var(--cx-ui); }
@@ -206,19 +206,49 @@ html[lang="hi"] .cx-cards .ed-card-go { font-family: "Mukta", var(--cx-ui); font
 @keyframes cx-gather { from { opacity: 0; transform: translateX(calc((var(--i) - 4) * .3em)); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
 :root:not([data-motion="reduce"]) .cx-wm-l > span { transform: translateY(105%); opacity: 0; animation: cx-letter .8s cubic-bezier(.16, 1, .3, 1) forwards; animation-delay: calc(.2s + var(--i) * 40ms); }
 @keyframes cx-letter { 40% { opacity: 1; } to { transform: none; opacity: 1; } }
-:root:not([data-motion="reduce"]) .cx-wm-line path { stroke-dasharray: 700; stroke-dashoffset: 700; animation: cx-draw .9s cubic-bezier(.65, 0, .35, 1) .6s forwards; }
+/* the line of sunlight is revealed left to right by a clip, which (unlike a dash length) is right at any width, 4K included */
+:root:not([data-motion="reduce"]) .cx-wm-line { clip-path: inset(-60% 100% -60% -2%); animation: cx-draw .9s cubic-bezier(.65, 0, .35, 1) .6s forwards; }
 :root:not([data-motion="reduce"]) .cx-wm-line circle { opacity: 0; transform-box: fill-box; transform-origin: center; animation: cx-lamp .5s cubic-bezier(.2, .9, .3, 1.4) 1.4s forwards; }
-@keyframes cx-draw { to { stroke-dashoffset: 0; } }
+@keyframes cx-draw { to { clip-path: inset(-60% -3% -60% -2%); } }
 @keyframes cx-lamp { from { opacity: 0; transform: scale(.2); } to { opacity: 1; transform: scale(1); } }
 :root:not([data-motion="reduce"]) .cx-open-line { animation: cx-fade .6s var(--cx-ease) .45s both; }
 :root:not([data-motion="reduce"]) .cx-open-sub { animation: cx-fade .6s var(--cx-ease) .6s both; }
 :root:not([data-motion="reduce"]) :is(.cx-open-left, .cx-cards) { animation: cx-fade .6s var(--cx-ease) .75s both; }
 @keyframes cx-fade { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) {
-  .cx-welcome-k > span, .cx-wm-l > span, .cx-wm-line path, .cx-wm-line circle, .cx-open-line, .cx-open-sub, .cx-open-left, .cx-cards { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; stroke-dashoffset: 0 !important; }
+  .cx-welcome-k > span, .cx-wm-l > span, .cx-wm-line, .cx-wm-line path, .cx-wm-line circle, .cx-open-line, .cx-open-sub, .cx-open-left, .cx-cards { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; stroke-dashoffset: 0 !important; clip-path: none !important; }
 }
 /* reduced motion, and every visit after the first: the opening is simply there */
-:is(:root[data-motion="reduce"], :root.cx-seen) :is(.cx-welcome-k > span, .cx-wm-l > span, .cx-wm-line path, .cx-wm-line circle, .cx-open-line, .cx-open-sub, .cx-open-left, .cx-cards) { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; stroke-dashoffset: 0 !important; }
+:is(:root[data-motion="reduce"], :root.cx-seen) :is(.cx-welcome-k > span, .cx-wm-l > span, .cx-wm-line, .cx-wm-line path, .cx-wm-line circle, .cx-open-line, .cx-open-sub, .cx-open-left, .cx-cards) { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; stroke-dashoffset: 0 !important; clip-path: none !important; }
+
+/* ---------- The opening, full screen on every screen ----------
+   The film runs edge to edge under a clear masthead: no resting bars, whatever the screen's shape. On a first visit the
+   frame opens like a cinema screen: two bars cut the picture to 2.39:1, then part as the name rises, and never return.
+   The poster and the film are cover-fitted from the same 4K frames (a 9:16 cut on tall screens, see openingFilm()). */
+.cx-open .cx-bar { height: max(0px, min(18svh, (100svh - 41.84vw) / 2)); transform: scaleY(0); will-change: transform; }
+.cx-open .cx-bar--top { transform-origin: top; } .cx-open .cx-bar--bottom { transform-origin: bottom; }
+:root.cx-js:not(.cx-seen) .cx-open .cx-bar { animation: cx-bars-open 1.7s cubic-bezier(.65, 0, .25, 1) .25s both; }
+@keyframes cx-bars-open { from { transform: scaleY(1); } to { transform: scaleY(0); } }
+:is(:root[data-motion="reduce"], :root.cx-seen) .cx-open .cx-bar { display: none; }
+.cx-open-media picture { display: contents; }
+.cx-open-media img.ed-still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--pos, 50% 50%); }
+@media (max-aspect-ratio: 3/5) { .cx-open-media img.ed-still, .cx-open-media > video { object-position: var(--ppos, 50% 50%); } }
+/* phones: the first screen is the film, the name and the way in; "Now showing" waits one scroll below (#now) */
+@media (max-width: 599px) {
+  .cx-open-side .cx-cards { display: none; }
+  .cx-open-left .cx-read { min-height: 50px; }
+}
+@media (max-width: 599px) and (max-height: 720px) {
+  .cx-welcome-k { font-size: .85rem; }
+  .cx-open-line { margin-top: .6rem; font-size: clamp(1.15rem, .9rem + 1.4vw, 1.4rem); }
+  .cx-open-sub { margin-top: .45rem; font-size: .95rem; line-height: 1.45; }
+  .cx-open-foot { gap: .6rem; }
+}
+/* big screens (a 4K monitor at 100%, a television): the opening's words and buttons keep the proportions they have at
+   1920x1080, scaled by --cx-k (boot.js: the smaller of width/1920 and height/1080, never below 1). Only the opening
+   composition grows; every page keeps rem sizes, so the reader's text size and browser zoom work as everywhere else. */
+.cx-open-card, .cx-open-foot { zoom: var(--cx-k, 1); }
+.cx-open-card { padding-top: calc((var(--ed-head-h) + env(safe-area-inset-top, 0px) + var(--cx-open-pad)) / var(--cx-k, 1)); }
 
 /* ---------- Prologue: five paintings dissolve while the narrator speaks ---------- */
 .cx-reel { position: relative; background: var(--cx-dusk); color: var(--cx-cream); }
@@ -567,8 +597,8 @@ html[lang="hi"] .cx-film .scene h2, .cx-film .scene h2[lang="hi"] { font-family:
 
 /* ---------- Phones ---------- */
 @media (max-width: 759px) {
-  .cx-open-card { padding-top: calc(var(--ed-head-h) + var(--cx-bar) + 1rem); }
-  .cx-wm { font-size: clamp(3.6rem, 1rem + 19vw, 6.5rem); }
+  .cx-open-card { padding-top: calc(var(--ed-head-h) + env(safe-area-inset-top, 0px) + var(--cx-open-pad)); }
+  .cx-wm { font-size: min(clamp(3.6rem, 1rem + 19vw, 6.5rem), 14svh); }
   .cx-sound small { display: none; }
   .cx-now-screen { aspect-ratio: 16 / 10; }
   .cx-posters { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 64vw; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; scrollbar-width: thin; }
@@ -696,13 +726,12 @@ html[lang="hi"] .cx-greet { font-family: "Mukta", var(--cx-ui); }
 
 /* ---------- A short laptop screen (1366x768, 1280x800): the whole opening fits, in both languages ---------- */
 @media (min-width: 900px) and (max-height: 860px) {
-  .cx-open { --cx-bar: clamp(2rem, 5svh, 3rem); }
-  .cx-open .cx-bar--top { height: calc(max(var(--cx-bar), var(--ed-head-h)) * var(--lb, 1)); }
-  .cx-open-card { padding-top: calc(var(--ed-head-h) + var(--cx-bar)); padding-bottom: .5rem; }
+  .cx-open { --cx-open-pad: clamp(.5rem, 2.5svh, 1.5rem); }
+  .cx-open-card { padding-bottom: .5rem; }
   .cx-wm { font-size: min(clamp(4.2rem, 1.5rem + 12vw, 12.5rem), 22svh); }
   .cx-open-line { margin-top: clamp(.6rem, .4rem + .8vw, 1.2rem); }
   .cx-open-sub { margin-top: .5rem; }
-  .cx-open-foot { gap: .75rem; padding-bottom: calc(var(--cx-bar) * var(--lb, 1) + .75rem); }
+  .cx-open-foot { gap: .75rem; }
   .cx-open-left .cx-sound small { display: none; }
   .cx-cards .ed-card-pic { aspect-ratio: auto; height: 5rem; }
 }
@@ -728,14 +757,20 @@ html[lang="hi"] .cx-welcome-k { margin-bottom: .1em; }
 :root { --cx-halo: 0 0 2px rgb(20 8 0 / .9), 0 0 6px rgb(20 8 0 / .7), 0 0 14px rgb(24 10 2 / .6), 0 0 28px rgb(24 10 2 / .45); --cx-chip-bg: rgb(26 12 3 / .7); --cx-chip-ink: #ffe9c9; }
 /* home opening: a veil that follows the title block, strongest under the line and sub-line */
 .cx-open-card { position: relative; }
-.cx-open-card::before { content: ""; position: absolute; z-index: -1; left: 50%; top: calc(var(--ed-head-h) + var(--cx-bar) - 6rem); bottom: -3rem; width: min(70rem, 150%); translate: -50% 0; pointer-events: none; background: radial-gradient(closest-side, rgb(24 10 2 / .64), rgb(24 10 2 / .58) 62%, rgb(24 10 2 / .22) 85%, rgb(24 10 2 / 0)); }
+/* an eased falloff (no visible rim, even full screen on a 4K monitor): dusk gathers behind the words and thins into the light */
+.cx-open-card::before { content: ""; position: absolute; z-index: -1; left: 50%; top: calc(var(--ed-head-h) + env(safe-area-inset-top, 0px) + var(--cx-open-pad) - 8rem); bottom: -7rem; width: min(100rem, 180%); translate: -50% 0; pointer-events: none;
+  background: radial-gradient(closest-side, rgb(24 10 2 / .546), rgb(24 10 2 / .541) 22%, rgb(24 10 2 / .510) 36%, rgb(24 10 2 / .440) 48%, rgb(24 10 2 / .343) 59%, rgb(24 10 2 / .238) 69%, rgb(24 10 2 / .136) 79%, rgb(24 10 2 / .062) 88%, rgb(24 10 2 / .016) 95%, rgb(24 10 2 / 0)); }
+/* the small line under the title sits where the sun burns brightest: a little more dusk just there */
+.cx-open-sub, .cx-welcome-k { position: relative; }
+.cx-welcome-k::before { content: ""; position: absolute; z-index: -1; inset: -1.3em -30%; pointer-events: none; background: radial-gradient(closest-side, rgb(24 10 2 / .42), rgb(24 10 2 / .37) 40%, rgb(24 10 2 / .22) 66%, rgb(24 10 2 / .07) 86%, rgb(24 10 2 / 0)); }
+.cx-open-sub::before { content: ""; position: absolute; z-index: -1; inset: -1.6em -18%; pointer-events: none; background: radial-gradient(closest-side, rgb(24 10 2 / .6), rgb(24 10 2 / .57) 38%, rgb(24 10 2 / .41) 60%, rgb(24 10 2 / .2) 80%, rgb(24 10 2 / .05) 93%, rgb(24 10 2 / 0)); }
 .cx-welcome-k, .cx-open-line, .cx-open-sub, .cx-cue { text-shadow: var(--cx-halo); }
 .cx-welcome-k { color: #fff6ea; }
 .cx-open-sub { color: #fff6ea; }
 /* the prologue link is a quiet pill, like the sound button beside it */
 .cx-cue { padding: 0 .95rem; border-radius: 999px; background: rgb(30 15 5 / .5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); text-decoration: none; text-shadow: none; }
 .cx-cue:hover { background: rgb(30 15 5 / .66); text-decoration: underline; text-decoration-color: currentColor; }
-@media (max-width: 599px) { .cx-open-left .cx-cue { padding: 0 .7rem; gap: .35rem; } .cx-open-left .cx-sound { padding-inline: .55rem .75rem; gap: .4rem; } .cx-open-card::before { bottom: -4.5rem; } }
+@media (max-width: 599px) { .cx-open-left .cx-cue { padding: 0 .7rem; gap: .35rem; } .cx-open-left .cx-sound { padding-inline: .55rem .75rem; gap: .4rem; } .cx-open-card::before { bottom: -7.5rem; } }
 /* small labels on paintings: a smoked-glass chip */
 .cx-film-k, .is-cx-head .ed-page-head .ed-kicker, .cx-lost .cx-k, .cx-js .cx-reel-meta, .shot:not(.shot--card) .shot-card .scene-no {
   justify-self: center; width: fit-content; padding: .32em .8em; border-radius: 999px; background: var(--cx-chip-bg); color: var(--cx-chip-ink); text-shadow: none; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
@@ -817,3 +852,286 @@ html[lang="hi"] .off-txt small { font-family: "Mukta", var(--cx-ui); font-size: 
 .cx-film .story-end h2.legend { font-weight: 500; }
 :root:not([data-motion="reduce"]):not(.cx-seen) .cx-hi-hint { animation: cx-fade .6s var(--cx-ease) .75s both; }
 @media (prefers-reduced-motion: reduce) { .cx-hi-hint { animation: none !important; } }
+
+/* a phone on its side: one line of words over the river, the way in beneath (last in the file: it must beat the phone and
+   short-laptop rules above, which also match a landscape phone) */
+@media (orientation: landscape) and (max-height: 520px) {
+  .cx-open { --cx-open-pad: .25rem; }
+  .cx-open-card { padding-top: calc(var(--ed-head-h) + env(safe-area-inset-top, 0px) + .25rem); padding-bottom: .25rem; }
+  .cx-welcome-k { font-size: .8rem; }
+  .cx-wm { font-size: min(clamp(3rem, 1rem + 9vw, 6rem), 21svh); }
+  html[lang="hi"] .cx-wm { font-size: min(clamp(3rem, 1rem + 9vw, 6rem), 17svh); }
+  .cx-open-line { margin-top: .35rem; font-size: max(24px, 1.42rem); }   /* 24px: large text, so the 3:1 contrast floor applies */
+  html[lang="hi"] .cx-open-line { line-height: 1.25; }
+  .cx-open-sub, .cx-hi-hint { display: none; }
+  .cx-open-foot { grid-template-columns: 1fr; gap: .5rem; padding-bottom: calc(env(safe-area-inset-bottom, 0px) + .6rem); }
+  .cx-open-left { flex-wrap: nowrap; justify-content: center; gap: .5rem; }
+  .cx-open-left > * { white-space: nowrap; }
+  .cx-open-left .cx-read { flex: 0 1 auto; min-height: 44px; padding-inline: 1rem .9rem; }
+  .cx-open-left .cx-sound small { display: none; }
+  .cx-open-side { display: none; }
+  .cx-open-card::before { top: calc(var(--ed-head-h) - 2rem); bottom: -1.5rem; }
+}
+/* a small phone on its side (iPhone SE, 640-760 wide): the minutes and the arrow go, so each button is one line */
+@media (orientation: landscape) and (max-height: 520px) and (max-width: 779px) {
+  .cx-open-left .cx-read small, .cx-open-left .cx-cue .ic { display: none; }
+  .cx-open-left .cx-read, .cx-open-left .cx-sound, .cx-open-left .cx-cue { font-size: .92rem; }
+}
+/* a returning reader on a phone: their place stays in the opening as one compact line, so the first screen still fits */
+@media (max-width: 599px) {
+  .cx-open .cx-continue { padding: .55rem .8rem; grid-template-columns: minmax(0, 1fr); }
+  .cx-open .cx-continue .continue-pic, .cx-open .cx-continue .continue-bar, .cx-open .cx-continue .continue-scene { display: none; }
+  .cx-open .cx-continue .continue-txt { display: flex; align-items: baseline; gap: .5rem; min-width: 0; }
+  .cx-open .cx-continue strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+/* a short phone screen (an iPhone SE with Safari's bars showing, 320x568): the descriptive sub-line steps aside so the
+   name, the way in and a returning reader's place still fit in one screen; "Now showing" below says the same */
+@media (max-width: 599px) and (max-height: 640px) {
+  .cx-open-sub { display: none; }
+  .cx-open-line { margin-top: .5rem; }
+  .cx-open-foot { gap: .5rem; padding-bottom: calc(env(safe-area-inset-bottom, 0px) + .75rem); }
+}
+
+/* ---------- Theatre: the feature presentation ----------
+   "Now showing" is the film on the screen, not a card beside a paragraph: the painting runs edge to edge, the title sits
+   in its lower left the way a feature is billed, and the scene stills rise over its bottom edge like a strip of frames. */
+.cx-now { padding-top: 0; background: var(--cx-dusk); }
+.cx-now-grid { position: relative; display: block; max-width: none; padding: 0; min-height: clamp(30rem, 56vw, 88svh); isolation: isolate; }
+.cx-now-screen { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; box-shadow: none; z-index: -1; }
+.cx-now-screen img { object-position: 45% 30%; }
+.cx-now-screen::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to top, var(--cx-dusk) 0%, rgb(18 12 8 / .86) 14%, rgb(18 12 8 / .35) 38%, transparent 62%),
+    linear-gradient(to right, rgb(18 12 8 / .82) 0%, rgb(18 12 8 / .5) 28%, transparent 58%),
+    linear-gradient(to bottom, var(--cx-dusk) 0%, transparent 16%); }
+.cx-now-body { position: relative; box-sizing: border-box; min-height: inherit; align-content: end; max-width: 44rem; gap: 1rem;
+  padding: 7rem var(--cx-gut-r) clamp(6.5rem, 4rem + 7vw, 10.5rem) max(var(--cx-gut), calc((100vw - 88rem) / 2 + var(--cx-gut))); }
+.cx-now-body .cx-k { color: #f6c98c; letter-spacing: .18em; text-transform: uppercase; font-size: .8rem; display: inline-flex; align-items: center; gap: .8rem; }
+.cx-now-body .cx-k::before { content: ""; width: 2.2rem; height: 1px; background: currentColor; opacity: .8; }
+html[lang="hi"] .cx-now-body .cx-k { letter-spacing: .04em; text-transform: none; font-size: 1rem; }
+.cx-now-body .cx-h2 { color: #fdf6ea; font-size: clamp(2.5rem, 1.4rem + 4.4vw, 5.25rem); line-height: 1; text-shadow: 0 2px 30px rgb(10 6 3 / .6); }
+html[lang="hi"] .cx-now-body .cx-h2 { line-height: 1.22; }
+.cx-now-body .cx-text { color: #eadbc6; max-width: 34rem; text-shadow: 0 1px 14px rgb(10 6 3 / .7); }
+.cx-now-body .cx-facts { color: #d9c6ad; }
+.cx-now .cx-strip-wrap { position: relative; margin-top: clamp(-6.5rem, -2.5rem - 4vw, -3.5rem); }
+.cx-now .cx-strip-wrap .cx-h3, .cx-now .cx-still { color: #f3e7d7; }
+.cx-now .cx-still-n { color: #f0a456; }
+.cx-now .cx-still-pic { box-shadow: 0 18px 40px -18px rgb(0 0 0 / .8), 0 0 0 1px rgb(243 231 215 / .12); transition: box-shadow .5s var(--cx-ease), translate .5s var(--cx-ease); }
+.cx-now .cx-still:hover .cx-still-pic, .cx-now .cx-still:focus-visible .cx-still-pic { translate: 0 -4px; box-shadow: 0 26px 50px -18px rgb(0 0 0 / .9), 0 0 0 1px rgb(246 201 140 / .65); }
+.cx-now .cx-round { color: #f3e7d7; border-color: rgb(243 231 215 / .3); }
+@media (max-width: 700px) {
+  .cx-now-grid { min-height: min(40rem, 92svh); }
+  .cx-now-screen img { object-position: 42% 20%; }
+  .cx-now-screen::after { background: linear-gradient(to top, var(--cx-dusk) 0%, rgb(18 12 8 / .92) 26%, rgb(18 12 8 / .45) 52%, transparent 74%), linear-gradient(to bottom, var(--cx-dusk) 0%, transparent 14%); }
+  .cx-now-body { padding-top: 14rem; padding-bottom: 5.5rem; }
+  .cx-now .cx-strip-wrap { margin-top: -3rem; }
+}
+@media (prefers-reduced-motion: reduce) { .cx-now .cx-still-pic { transition: none; } }
+
+/* ---------- Theatre: the cast ----------
+   People is a cast wall, not a directory: each painted principal stands in their own pool of light; everyone else is a
+   compact roll underneath. A person's own page opens on their portrait, with the dossier beside it. */
+.cast-h { margin: 0 0 clamp(1.5rem, 1rem + 1.5vw, 2.5rem); font: 500 clamp(1.7rem, 1.2rem + 1.8vw, 2.75rem)/1.1 var(--cx-title); letter-spacing: -.015em; color: var(--cx-ink); display: flex; align-items: center; gap: 1.2rem; }
+.cast-h::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--cx-line-2), transparent); }
+html[lang="hi"] .cast-h { letter-spacing: 0; line-height: 1.3; }
+.cast-wall { padding-block: clamp(3rem, 2rem + 4vw, 6rem) clamp(2rem, 1rem + 3vw, 4rem); }
+.cast-more { padding-block: clamp(2rem, 1rem + 3vw, 4rem) clamp(4rem, 2rem + 6vw, 8rem); }
+.cast-tiles { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(.75rem, .4rem + 1vw, 1.25rem); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 700px) { .cast-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .cast-tiles { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.cast-tiles > li { scroll-margin-top: calc(var(--ed-head-h) + 1rem); min-width: 0; }
+.cast-tile { position: relative; display: block; aspect-ratio: 3 / 4.4; overflow: hidden; border-radius: 3px; text-decoration: none; color: #fdf6ea; isolation: isolate;
+  background: radial-gradient(ellipse 80% 55% at 50% 38%, rgb(240 164 86 / .34), rgb(120 62 22 / .16) 55%, transparent 78%), linear-gradient(180deg, #2b1a10, #150d08);
+  box-shadow: inset 0 0 0 1px rgb(243 231 215 / .1); transition: box-shadow .5s var(--cx-ease), translate .5s var(--cx-ease); }
+.cast-tile-pic { position: absolute; inset: 4% 4% 20%; display: grid; place-items: end center; }
+.cast-tile-pic .art { width: auto; max-width: 100%; height: 100%; object-fit: contain; object-position: 50% 100%; padding: 0; background: none; border-radius: 0; filter: drop-shadow(0 18px 22px rgb(0 0 0 / .55)); transition: scale .9s var(--cx-ease); transform-origin: 50% 100%; animation: none !important; }
+.cast-tile::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgb(14 8 4 / .96) 0%, rgb(14 8 4 / .8) 22%, transparent 48%); }
+.cast-tile-txt { position: absolute; z-index: 2; inset: auto 0 0; display: grid; gap: .2rem; padding: 1rem 1.1rem 1.1rem; }
+.cast-tile-n { font: 500 clamp(1.35rem, 1rem + 1.1vw, 1.9rem)/1.1 var(--cx-title); letter-spacing: -.01em; }
+.cast-tile-o { font: 400 1rem/1.3 var(--font-hi); color: #f6c98c; }
+html[lang="hi"] .cast-tile-o { font-family: var(--cx-title); }
+.cast-tile-l { font: 400 .88rem/1.45 var(--cx-ui); color: #e3d2bb; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.cast-tile-m { margin-top: .25rem; font: 500 .74rem/1 var(--cx-ui); letter-spacing: .14em; text-transform: uppercase; color: #cdb9a3; }
+html[lang="hi"] .cast-tile-l, html[lang="hi"] .cast-tile-m { font-family: "Mukta", var(--cx-ui); letter-spacing: 0; text-transform: none; font-size: .95rem; }
+.cast-tile:hover, .cast-tile:focus-visible { translate: 0 -5px; box-shadow: inset 0 0 0 1px rgb(246 201 140 / .7), 0 30px 50px -24px rgb(0 0 0 / .85); }
+.cast-tile:hover .art, .cast-tile:focus-visible .art { scale: 1.045; }
+@media (max-width: 480px) { .cast-tile-l { display: none; } .cast-tile { aspect-ratio: 3 / 4.6; } .cast-tile-txt { padding: .8rem .85rem .9rem; } }
+.cast-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 0 2.5rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr)); }
+.cast-rows > li { scroll-margin-top: calc(var(--ed-head-h) + 1rem); border-top: 1px solid var(--cx-line); }
+.cast-row { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); gap: 1rem; align-items: center; padding: .9rem .25rem; text-decoration: none; color: var(--cx-ink); min-height: 4.5rem; }
+.cast-row-pic { width: 3.5rem; height: 3.5rem; border-radius: 50%; overflow: hidden; display: grid; place-items: start center; background: radial-gradient(circle at 50% 35%, rgb(240 164 86 / .3), rgb(60 34 16 / .5)); box-shadow: inset 0 0 0 1px var(--cx-line-2); }
+.cast-row-pic .fig { width: 135%; height: auto; margin-top: 4%; }
+.cast-row-txt { display: grid; gap: .15rem; }
+.cast-row-n { font: 500 1.2rem/1.25 var(--cx-title); }
+.cast-row-o { font: 400 .95rem/1 var(--font-hi); color: var(--cx-saffron); margin-left: .35rem; }
+.cast-row-l { font: 400 .9rem/1.45 var(--cx-ui); color: var(--cx-ink-2); }
+html[lang="hi"] .cast-row-l { font-family: "Mukta", var(--cx-ui); font-size: .98rem; }
+.cast-row:hover .cast-row-n, .cast-row:focus-visible .cast-row-n { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .15em; }
+.cast-row:hover .cast-row-pic { box-shadow: inset 0 0 0 1px rgb(246 201 140 / .8); }
+
+.cast-hero { position: relative; padding-top: calc(var(--ed-head-h) + clamp(1.5rem, 1rem + 3vw, 4rem)); padding-bottom: clamp(2.5rem, 1.5rem + 4vw, 5rem); overflow: hidden;
+  background: radial-gradient(ellipse 46% 60% at 24% 46%, rgb(240 164 86 / .26), rgb(120 62 22 / .1) 55%, transparent 75%), var(--cx-paper); }
+.cast-hero-in { display: grid; gap: clamp(1.5rem, 1rem + 3vw, 4rem); align-items: start; }
+@media (min-width: 860px) { .cast-hero-in { grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); } .cast-hero-pic { position: sticky; top: calc(var(--ed-head-h) + 1.5rem); } }
+.cast-hero-pic { display: grid; place-items: center; }
+.cast-hero-pic .art, .cast-hero-pic .fig { width: auto; max-width: 100%; height: clamp(18rem, 62svh, 38rem); object-fit: contain; padding: 0; background: none; filter: drop-shadow(0 30px 34px rgb(0 0 0 / .55)); }
+.cast-hero-pic .fig { height: clamp(14rem, 46svh, 26rem); }
+.cast-hero-txt { display: grid; gap: .6rem; align-content: start; max-width: 40rem; }
+.cast-hero-txt .crumbs { margin-bottom: .75rem; }
+.cast-name { margin: 0; font: 500 clamp(3rem, 1.6rem + 6vw, 6.5rem)/.95 var(--cx-title); letter-spacing: -.025em; color: var(--cx-ink); }
+html[lang="hi"] .cast-name { line-height: 1.2; letter-spacing: 0; }
+.cast-echo { margin: 0; font: 400 clamp(1.4rem, 1.1rem + 1vw, 2rem)/1.3 var(--font-hi); color: var(--cx-saffron); }
+html[lang="hi"] .cast-echo { font-family: var(--cx-title); }
+.cast-line { margin: .4rem 0 .8rem; font: 400 clamp(1.1rem, 1rem + .5vw, 1.35rem)/1.55 var(--cx-read, var(--ed-read)); color: var(--cx-ink-2); max-width: 34rem; }
+.cast-hero .dossier { border-top-color: var(--cx-line-2); }
+.cast-hero .dossier-in { font-size: 1rem; }
+.cast-stories { padding-block: clamp(2.5rem, 1.5rem + 4vw, 5rem) clamp(4rem, 2rem + 6vw, 7rem); }
+:root:not([data-motion="reduce"]) .cast-tiles > li { animation: cx-fade .9s var(--cx-ease) both; animation-delay: calc(var(--i) * 60ms); }
+:root:not([data-motion="reduce"]) .cast-hero-pic { animation: cx-fade 1.2s var(--cx-ease) both; }
+@media (prefers-reduced-motion: reduce) { .cast-tiles > li, .cast-hero-pic { animation: none !important; } .cast-tile, .cast-tile-pic .art { transition: none; } }
+/* the portraits are painted to the knee or shin: let the cut edge fall away into the dark instead of ending on a line */
+.cast-hero-pic .art { -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 99%); mask-image: linear-gradient(to bottom, #000 80%, transparent 99%); }
+
+/* ---------- Theatre: story posters ----------
+   Wherever stories are listed (library, a collection, today, a person's page, saved) each one is a poster: the painting
+   fills the tile and the billing sits in its foot. With a mouse the summary rises on hover; on touch it is always there. */
+[data-room="theatre"] .grid { gap: clamp(.8rem, .5rem + 1vw, 1.4rem); grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr)); }
+[data-room="theatre"] .grid .card, [data-room="theatre"] .card { position: relative; display: block; aspect-ratio: 4 / 5.3; overflow: hidden; border-radius: 3px; background: #150d08; isolation: isolate; color: #fdf6ea; border: 0; box-shadow: inset 0 0 0 1px rgb(243 231 215 / .1) !important; grid-template-columns: none; }
+[data-room="theatre"] .card .card-art { position: absolute; inset: 0; z-index: -2; aspect-ratio: auto; height: auto; min-height: 0; border-radius: 0; background: #150d08; }
+[data-room="theatre"] .card .card-art img { width: 100%; height: 100%; object-fit: cover; }
+[data-room="theatre"] .card::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(to top, rgb(14 8 4 / .97) 0%, rgb(14 8 4 / .82) 26%, rgb(14 8 4 / .3) 52%, transparent 70%); transition: opacity .5s var(--cx-ease); }
+[data-room="theatre"] .card .card-body { position: absolute; inset: auto 0 0; display: grid; gap: .4rem; padding: 1.1rem 1.15rem 1.2rem; }
+[data-room="theatre"] .card .kicker b { color: #f6c98c; } [data-room="theatre"] .card .kicker span { color: #d9c6ad; }
+[data-room="theatre"] .card .card-title { font: 500 clamp(1.4rem, 1.15rem + .7vw, 1.75rem)/1.1 var(--cx-title); color: #fdf6ea; text-wrap: balance; text-shadow: 0 1px 14px rgb(10 6 3 / .6); }
+[data-room="theatre"] .card .card-title a { color: inherit; }
+[data-room="theatre"] .card .card-sum { color: #e6d6bf; font-size: .95rem; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+[data-room="theatre"] .card .meta li { background: rgb(243 231 215 / .12); color: #f0e2cd; border-color: transparent; }
+[data-room="theatre"] .card .save { position: absolute !important; top: .7rem !important; right: .7rem !important; bottom: auto !important; left: auto !important; margin: 0; z-index: 2; background: rgb(20 12 7 / .6); color: #fdf6ea; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: inset 0 0 0 1px rgb(243 231 215 / .22); }
+[data-room="theatre"] .card .cta-fake, [data-room="theatre"] .card blockquote { display: none; }
+[data-room="theatre"] .card:focus-within { outline: 2px solid var(--cx-saffron); outline-offset: 3px; }
+@media (hover: hover) and (min-width: 700px) {
+  [data-room="theatre"] .card .card-sum, [data-room="theatre"] .card .meta { max-height: 0; opacity: 0; margin: 0; overflow: hidden; transition: max-height .6s var(--cx-ease), opacity .45s var(--cx-ease); }
+  [data-room="theatre"] .card:is(:hover, :focus-within) .card-sum { max-height: 6.5rem; opacity: 1; }
+  [data-room="theatre"] .card:is(:hover, :focus-within) .meta { max-height: 4rem; opacity: 1; }
+  [data-room="theatre"] .card:is(:hover, :focus-within) { box-shadow: inset 0 0 0 1px rgb(246 201 140 / .7), 0 34px 60px -28px rgb(0 0 0 / .9) !important; }
+}
+@media (max-width: 699px) { [data-room="theatre"] .card { aspect-ratio: 4 / 4.6; } [data-room="theatre"] .card .card-sum { -webkit-line-clamp: 2; } }
+[data-room="theatre"] .today .card--feature { aspect-ratio: auto; min-height: clamp(24rem, 46vw, 34rem); }
+
+/* ---------- Theatre: motion ----------
+   One language for the whole site: things arrive the way a camera finds them. Paintings push in and drift as they cross
+   the screen, tiles rise in sequence, the one under your hand leans toward you while its neighbours fall back, and pages
+   cut through black. Everything here is switched off by the device's or the site's reduce-motion setting. */
+/* the one under the pointer holds the light; the rest of the row falls back */
+@media (hover: hover) {
+  :is(.grid, .cx-posters, .cx-rail, .cast-tiles) > * { transition: opacity .5s var(--cx-ease), filter .5s var(--cx-ease); }
+  :is(.grid, .cx-posters, .cx-rail, .cast-tiles):has(> :is(:hover, :focus-within)) > :not(:hover, :focus-within) { opacity: .55; filter: saturate(.7); }
+}
+/* lean: cinema.js follows the pointer and writes --rx/--ry (tilt) and --gx/--gy (where the light falls) */
+.tilt { transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) !important; transition: transform .7s var(--cx-ease), translate .5s var(--cx-ease), box-shadow .5s var(--cx-ease); transform-style: preserve-3d; will-change: transform; }
+.tilt.is-lean { transition: transform .12s linear, translate .5s var(--cx-ease), box-shadow .5s var(--cx-ease); }
+.tilt > .sheen { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity .5s var(--cx-ease); mix-blend-mode: soft-light;
+  background: radial-gradient(60% 50% at var(--gx, 50%) var(--gy, 0%), rgb(255 236 200 / .55), rgb(255 236 200 / .12) 45%, transparent 70%); }
+.tilt.is-lean > .sheen { opacity: 1; }
+/* a slow light crosses a button under the pointer */
+.cx-btn { position: relative; overflow: hidden; }
+.cx-btn::after { content: ""; position: absolute; inset: -20% auto -20% -60%; width: 45%; transform: skewX(-20deg); background: linear-gradient(to right, transparent, rgb(255 255 255 / .38), transparent); opacity: 0; pointer-events: none; }
+:root:not([data-motion="reduce"]) .cx-btn:hover::after { animation: th-sweep .9s var(--cx-ease); }
+@keyframes th-sweep { 0% { left: -60%; opacity: 0; } 20% { opacity: 1; } 100% { left: 130%; opacity: 0; } }
+/* pages cut through black, the new one settling forward */
+@keyframes cx-vt-out { to { opacity: 0; scale: 1.02; filter: brightness(.55); } }
+@keyframes cx-vt-in { from { opacity: 0; scale: .985; filter: brightness(.7); } }
+/* dust in the projector's light, and a lamp that follows the hand (both drawn by cinema.js; theatre pages only) */
+.th-embers { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none; mix-blend-mode: screen; opacity: .9; }
+.th-lamp { position: fixed; inset: 0; z-index: 4; pointer-events: none; mix-blend-mode: screen; opacity: 0; transition: opacity .8s var(--cx-ease);
+  background: radial-gradient(26rem circle at var(--px, 50%) var(--py, 50%), rgb(240 164 86 / .1), rgb(240 164 86 / .04) 45%, transparent 68%); }
+.th-lamp.is-on { opacity: 1; }
+:root[data-theme="light"] :is(.th-embers, .th-lamp), :root[data-motion="reduce"] :is(.th-embers, .th-lamp) { display: none; }
+@media print { .th-embers, .th-lamp { display: none; } }
+
+@supports (animation-timeline: view()) {
+  /* tiles rise as the scroll reaches them, each row arriving left to right */
+  :root:not([data-motion="reduce"]) :is([data-room="theatre"] .grid > .card, .cx-posters > li, .cast-tiles > li, .cast-rows > li, .cx-ways-grid > li, .cx-cast-row > li, .cx-strip > li) { animation: th-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+  @keyframes th-rise { from { opacity: 0; translate: 0 3.5rem; scale: .95; } }
+  /* section titles track in */
+  :root:not([data-motion="reduce"]) :is(.cx-head .cx-h2, .cx-row-head .cx-h2, .cast-h, .cx-head .cx-text) { animation: th-title linear both; animation-timeline: view(); animation-range: entry 10% entry 90%; }
+  @keyframes th-title { from { opacity: 0; translate: -2.5rem 0; letter-spacing: .04em; } }
+  /* the feature painting pushes in and drifts while it is on screen */
+  :root:not([data-motion="reduce"]) .cx-now-screen img { animation: th-push linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+  @keyframes th-push { from { scale: 1.16; translate: 0 -3%; } to { scale: 1.02; translate: 0 3%; } }
+  /* every poster's painting drifts a little inside its frame (a held camera, not a still) */
+  :root:not([data-motion="reduce"]) :is(.cx-poster-pic img, [data-room="theatre"] .card .card-art img) { scale: 1.12; animation: th-drift linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+  :root:not([data-motion="reduce"]) :is(.cx-poster:hover .cx-poster-pic img, [data-room="theatre"] .card:hover .card-art img) { scale: 1.18; }
+  @keyframes th-drift { from { translate: 0 -4%; } to { translate: 0 4%; } }
+  /* in a story each scene's painting pushes in as you read toward it, and the words under it rise */
+  :root:not([data-motion="reduce"]) .shot:not(.shot--card) > img { animation: th-scene linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+  @keyframes th-scene { from { scale: 1.14; translate: 0 -2.5%; } to { scale: 1; translate: 0 2.5%; } }
+  :root:not([data-motion="reduce"]) .cast-hero-pic { animation: th-cast linear both; animation-timeline: scroll(root); animation-range: 0 60vh; }
+  @keyframes th-cast { to { translate: 0 2.5rem; scale: 1.04; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tilt { transform: none !important; } .tilt > .sheen, .th-embers, .th-lamp { display: none; }
+  :is([data-room="theatre"] .grid > .card, .cx-posters > li, .cast-tiles > li, .cast-rows > li, .cx-ways-grid > li, .cx-cast-row > li, .cx-strip > li, .cx-h2, .cast-h, .cx-now-screen img, .cx-poster-pic img, .card-art img, .shot > img, .cast-hero-pic) { animation: none !important; translate: none !important; }
+}
+:root[data-motion="reduce"] .tilt { transform: none !important; }
+/* the opening never shows an empty black screen: until the painting has decoded, the sky's own colours hold its place */
+.cx-open-media { background: linear-gradient(180deg, #7f86bd 0%, #c9a3b4 22%, #f0b98a 38%, #f4cf8a 50%, #b58fa6 64%, #7d6a8c 100%); }
+
+/* ---------- The title sequence ----------
+   Each time the site is opened: black. A point of light appears and draws itself into a horizon. SPRITUAL comes up out
+   of the dark above it, letter by letter, and the black parts like a curtain to the width of a cinema screen, then away,
+   leaving the name standing over the river at dawn. The rest of the page arrives after the name. About five seconds;
+   any key, click, tap or scroll skips it; reduced motion never sees it. */
+@font-face { font-family: "Cinzel"; src: url("fonts/cinzel-latin.woff2") format("woff2"); font-weight: 400 900; font-style: normal; font-display: block; }
+.cx-home .cx-open-card { position: relative; z-index: 4; }
+.cx-home .cx-open .cx-wm { font: 500 min(14.5vw, 13rem, 19svh)/1 "Cinzel", var(--cx-title); letter-spacing: .14em; margin-right: -.14em; text-transform: uppercase; padding-bottom: .24em; }
+.cx-home .cx-open .cx-wm-letters { filter: drop-shadow(0 6px 26px rgb(40 16 0 / .6)) drop-shadow(0 0 2px rgb(40 16 0 / .5)); }
+.cx-home .cx-open .cx-wm-l { overflow: visible; padding: 0; margin: 0; }
+.cx-home .cx-open .cx-wm-line { left: 2%; right: 2%; width: 96%; bottom: .02em; }
+@media (orientation: landscape) and (max-height: 520px) { .cx-home .cx-open .cx-wm { font-size: min(11vw, 20svh); } }
+.cx-spark { display: none; }
+
+:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-bar { display: block; height: 50.5svh; animation: cx-curtain 2.9s cubic-bezier(.7, 0, .2, 1) 2.3s both; }
+@keyframes cx-curtain { 0% { transform: scaleY(1); } 52% { transform: scaleY(.23); } 70% { transform: scaleY(.23); } 100% { transform: scaleY(0); } }
+:root.cx-js:not(.cx-seen) .cx-home .cx-spark { display: block; position: absolute; z-index: 5; left: 50%; top: 50%; width: min(70vw, calc(54rem * var(--cx-k, 1))); height: calc(2px * var(--cx-k, 1)); margin-top: -1px; translate: -50% 0; pointer-events: none; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #f3b566 14%, #fff1d2 50%, #f3b566 86%, transparent); box-shadow: 0 0 22px 3px rgb(255 186 104 / .75), 0 0 80px 10px rgb(255 160 70 / .35);
+  animation: cx-spark 2.7s cubic-bezier(.6, 0, .2, 1) .3s both; }
+@keyframes cx-spark { 0% { opacity: 0; transform: scaleX(.006); } 10% { opacity: 1; transform: scaleX(.006); } 20% { opacity: 1; transform: scaleX(.006); } 62% { opacity: 1; transform: scaleX(1); } 82% { opacity: .9; transform: scaleX(1); } 100% { opacity: 0; transform: scaleX(1.25); } }
+/* the name: each letter resolves out of the dark, the whole word easing back from a slow push-in, lit warm as it lands */
+:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-wm { animation: cx-title-settle 4.6s cubic-bezier(.2, .6, .2, 1) 1.1s both; }
+@keyframes cx-title-settle { from { scale: 1.16; } to { scale: 1; } }
+:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-wm-l > span { transform: none; opacity: 0; animation: cx-title-in 1.5s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(1.25s + var(--i) * 95ms); }
+@keyframes cx-title-in { 0% { opacity: 0; filter: blur(16px); transform: translateY(.22em) scale(1.18); } 60% { opacity: 1; } 100% { opacity: 1; filter: blur(0); transform: none; } }
+:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-wm-letters { animation: cx-title-glow 3.6s ease-out 1.25s both; }
+@keyframes cx-title-glow { 0% { filter: drop-shadow(0 0 0 rgb(255 196 120 / 0)); } 35% { filter: drop-shadow(0 0 34px rgb(255 196 120 / .95)) drop-shadow(0 0 8px rgb(255 226 170 / .9)); } 100% { filter: drop-shadow(0 6px 26px rgb(40 16 0 / .6)) drop-shadow(0 0 2px rgb(40 16 0 / .5)); } }
+/* everything else waits for the name */
+:root.cx-js:not(.cx-seen) .cx-home .cx-welcome-k > span { animation-delay: calc(3.5s + var(--i) * 22ms); }
+:root.cx-js:not(.cx-seen) .cx-home .cx-wm-line { animation-delay: 3.4s; animation-duration: 1.2s; }
+:root.cx-js:not(.cx-seen) .cx-home .cx-wm-line circle { animation-delay: 4.5s; }
+:root.cx-js:not(.cx-seen) .cx-home .cx-open-line { animation: cx-rise-in 1s var(--cx-ease) 3.8s both; }
+:root.cx-js:not(.cx-seen) .cx-home .cx-open-sub { animation: cx-rise-in 1s var(--cx-ease) 4.05s both; }
+:root.cx-js:not(.cx-seen) .cx-home :is(.cx-open-left, .cx-cards, .cx-hi-hint) { animation: cx-rise-in 1s var(--cx-ease) 4.4s both; }
+@keyframes cx-rise-in { from { opacity: 0; translate: 0 1.2rem; } }
+:root.cx-js:not(.cx-seen) body:has(.cx-home) .ed-head { animation: cx-fade 1s var(--cx-ease) 4.4s both; }
+/* the card's own dark veil would show as a grey smudge on the black curtain: it arrives with the curtain's opening */
+:root.cx-js:not(.cx-seen) .cx-home .cx-open-card::before { animation: cx-fade 1.4s var(--cx-ease) 3s both; }
+
+/* ---------- Leaving the opening: the camera pushes into the river as the name lifts away ---------- */
+@supports (animation-timeline: scroll()) {
+  :root:not([data-motion="reduce"]) .cx-home .cx-open-card { animation: cx-out-card linear both; animation-timeline: scroll(root); animation-range: 0 80svh; }
+  @keyframes cx-out-card { to { translate: 0 -24svh; opacity: 0; } }
+  :root:not([data-motion="reduce"]) .cx-home .cx-open-foot { animation: cx-out-foot linear both; animation-timeline: scroll(root); animation-range: 0 40svh; }
+  @keyframes cx-out-foot { to { translate: 0 2.5rem; opacity: 0; } }
+  :root:not([data-motion="reduce"]) .cx-home .cx-open-media :is(.ed-still, .ed-video) { animation: cx-out-media linear both; animation-timeline: scroll(root); animation-range: 0 100svh; transform-origin: 50% 60%; }
+  @keyframes cx-out-media { to { scale: 1.22; } }
+  :root:not([data-motion="reduce"]) .cx-home .cx-open-shade { animation: cx-out-shade linear both; animation-timeline: scroll(root); animation-range: 20svh 100svh; }
+  @keyframes cx-out-shade { to { background-color: rgb(14 8 4 / .7); } }
+}
+@media (prefers-reduced-motion: reduce) { .cx-spark { display: none !important; } .cx-home .cx-open-card, .cx-home .cx-open-foot, .cx-home .cx-open-media :is(.ed-still, .ed-video), .cx-home .cx-open-shade, .cx-home .cx-open .cx-wm, .cx-home .cx-open .cx-wm-letters { animation: none !important; } }
+:root[data-motion="reduce"] :is(.cx-spark) { display: none !important; }
+:is(:root[data-motion="reduce"], :root.cx-seen) .cx-home .cx-open :is(.cx-wm, .cx-wm-letters) { animation: none !important; }
+/* the wider name reaches past the card's veil into bright cloud: it carries its own soft shade (measured, AA large text) */
+@media (min-width: 1000px) { .cx-home .cx-open .cx-wm::before { content: ""; position: absolute; z-index: -1; inset: -42% -14% -30%; pointer-events: none; background: radial-gradient(closest-side, rgb(24 10 2 / .44), rgb(24 10 2 / .4) 42%, rgb(24 10 2 / .24) 70%, rgb(24 10 2 / .08) 88%, rgb(24 10 2 / 0)); } }
+/* on a phone the name nearly fills the width: a gentler push-in, so no letter leaves the screen */
+@media (max-width: 999px) { @keyframes cx-title-settle { from { scale: 1.05; } to { scale: 1; } } }
+@media (orientation: landscape) and (max-height: 520px) { html[lang="hi"] .cx-home .cx-open .cx-wm { font-size: min(11vw, 15svh); } }

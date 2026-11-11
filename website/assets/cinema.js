@@ -116,6 +116,72 @@
     shots.forEach((el) => io.observe(el));
   }
 
+  /* ---------- The title sequence can be skipped: any key, click, tap or scroll during it puts everything in place ---------- */
+  if ($('.cx-home .cx-spark') && root.classList.contains('cx-js') && !root.classList.contains('cx-seen')) {
+    const evs = ['pointerdown', 'keydown', 'wheel', 'touchstart'];
+    const done = () => { root.classList.add('cx-seen'); evs.forEach((n) => removeEventListener(n, done)); };
+    evs.forEach((n) => addEventListener(n, done, { passive: true }));
+    setTimeout(() => evs.forEach((n) => removeEventListener(n, done)), 5600);
+  }
+
+  /* ---------- Theatre: the poster under the pointer leans toward it and catches the light ---------- */
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (fine && !reduced()) {
+    for (const el of $$('[data-room="theatre"] .card, .cx-poster, .cast-tile')) {
+      el.classList.add('tilt');
+      const sheen = document.createElement('span'); sheen.className = 'sheen'; sheen.setAttribute('aria-hidden', 'true'); el.append(sheen);
+      let raf = 0;
+      el.addEventListener('pointermove', (e) => {
+        if (raf || reduced()) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0; const r = el.getBoundingClientRect(); const x = clamp((e.clientX - r.left) / r.width); const y = clamp((e.clientY - r.top) / r.height);
+          el.classList.add('is-lean');
+          el.style.setProperty('--ry', ((x - .5) * 9).toFixed(2) + 'deg'); el.style.setProperty('--rx', ((.5 - y) * 7).toFixed(2) + 'deg');
+          el.style.setProperty('--gx', (x * 100).toFixed(1) + '%'); el.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+        });
+      });
+      el.addEventListener('pointerleave', () => { el.classList.remove('is-lean'); el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+    }
+  }
+
+  /* ---------- Theatre: dust in the projector's light, and a lamp that follows the hand ----------
+     Forty-odd warm motes rising slowly behind everything, on the dark pages only. Stops when the tab is hidden, when
+     motion is reduced, or when the reader chooses the light theme. */
+  if (root.dataset.room === 'theatre' && !reduced()) {
+    const cv = document.createElement('canvas'); cv.className = 'th-embers'; cv.setAttribute('aria-hidden', 'true');
+    const g = cv.getContext('2d');
+    if (g) {
+      document.body.append(cv);
+      let W = 0, H = 0, motes = [], last = 0, on = false; const dpr = Math.min(devicePixelRatio || 1, 1.5);
+      const make = (anyY) => ({ x: Math.random() * W, y: anyY ? Math.random() * H : H + 10, r: .5 + Math.random() * 1.5, vy: 5 + Math.random() * 16, sway: 6 + Math.random() * 16, ph: Math.random() * 6.28, sp: .2 + Math.random() * .6, a: .12 + Math.random() * .4 });
+      const size = () => { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0); const n = Math.round(Math.min(46, Math.max(14, W / 30))); motes = Array.from({ length: n }, () => make(true)); };
+      const quiet = () => document.hidden || reduced() || root.dataset.theme === 'light';
+      const frame = (t) => {
+        if (quiet()) { on = false; g.clearRect(0, 0, W, H); return; }
+        const dt = Math.min(.05, (t - last) / 1000 || 0); last = t; g.clearRect(0, 0, W, H);
+        for (let i = 0; i < motes.length; i++) {
+          const m = motes[i]; m.y -= m.vy * dt; m.ph += m.sp * dt; const x = m.x + Math.sin(m.ph) * m.sway;
+          if (m.y < -12) motes[i] = make(false);
+          const a = m.a * (.6 + .4 * Math.sin(m.ph * 2.3));
+          g.fillStyle = `rgba(255,190,110,${(a * .18).toFixed(3)})`; g.beginPath(); g.arc(x, m.y, m.r * 3.4, 0, 6.283); g.fill();
+          g.fillStyle = `rgba(255,214,160,${a.toFixed(3)})`; g.beginPath(); g.arc(x, m.y, m.r, 0, 6.283); g.fill();
+        }
+        requestAnimationFrame(frame);
+      };
+      const wake = () => { if (!on && !quiet()) { on = true; last = performance.now(); requestAnimationFrame(frame); } };
+      size(); wake();
+      addEventListener('resize', size);
+      document.addEventListener('visibilitychange', wake);
+      new MutationObserver(wake).observe(root, { attributes: true, attributeFilter: ['data-theme', 'data-motion'] });
+    }
+    if (fine) {
+      const lamp = document.createElement('div'); lamp.className = 'th-lamp'; lamp.setAttribute('aria-hidden', 'true'); document.body.append(lamp);
+      let lr = 0;
+      addEventListener('pointermove', (e) => { if (lr) return; lr = requestAnimationFrame(() => { lr = 0; lamp.style.setProperty('--px', e.clientX + 'px'); lamp.style.setProperty('--py', e.clientY + 'px'); lamp.classList.add('is-on'); }); }, { passive: true });
+      document.addEventListener('pointerleave', () => lamp.classList.remove('is-on'));
+    }
+  }
+
   kick();
   addEventListener('load', kick);
 })();

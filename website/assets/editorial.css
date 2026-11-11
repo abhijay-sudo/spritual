@@ -39,7 +39,7 @@
     color-scheme: dark;
   }
 }
-:root[data-theme="dark"], :root[data-theme="sanctum"] {
+:root[data-theme="dark"], :root[data-theme="sanctum"], :root[data-room="theatre"]:not([data-theme="light"]) {
   --ed-bg: #16100b; --ed-surface: #1d150f; --ed-tint: #24190f;
   --ed-ink: #f6eadb; --ed-ink-2: #d4c2ad; --ed-ink-3: #ad9a85;
   --ed-line: rgb(246 234 219 / .15); --ed-line-2: rgb(246 234 219 / .3);

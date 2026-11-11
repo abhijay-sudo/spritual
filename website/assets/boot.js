@@ -21,8 +21,18 @@
     if (mq.matches || mine === 'reduce') d.dataset.motion = 'reduce'; else delete d.dataset.motion;
   });
   if (!calm && !mq.matches) d.classList.add('cx-js');
+  // the home opening is composed at 1920x1080; on bigger screens (a 4K monitor at 100%, a television) the composition
+  // grows with the screen, by the smaller of its width and height ratios (so a 32:9 screen still fits it in one screen).
+  // Only the opening's words and buttons use it (cinema.css, zoom); the rest of the site keeps the reader's text size.
+  var setK = function () { d.style.setProperty('--cx-k', Math.max(1, Math.min(innerWidth / 1920, innerHeight / 1080)).toFixed(4)); };
+  setK(); addEventListener('resize', setK);
   // the opening titles play once; a reader who has been here before gets the words and buttons at once
-  try { if (localStorage.getItem('spritual:seen')) d.classList.add('cx-seen'); else localStorage.setItem('spritual:seen', '1'); } catch (e) {}
+  // The home page's title sequence plays once each time the site is opened (a new tab or window), not on every return to
+  // the home page within that visit. Other pages keep their own first-visit-only entrances.
+  try {
+    if (me && me.hasAttribute('data-titles')) { if (sessionStorage.getItem('spritual:titles')) d.classList.add('cx-seen'); else sessionStorage.setItem('spritual:titles', '1'); localStorage.setItem('spritual:seen', '1'); }
+    else if (localStorage.getItem('spritual:seen')) d.classList.add('cx-seen'); else localStorage.setItem('spritual:seen', '1');
+  } catch (e) {}
   addEventListener('pagereveal', function (e) {
     if (!e.viewTransition) return;
     var w; try { w = sessionStorage.getItem('cx-vt'); sessionStorage.removeItem('cx-vt'); } catch (x) { return; }

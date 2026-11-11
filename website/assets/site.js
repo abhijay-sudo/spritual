@@ -854,20 +854,96 @@
     const slow = /\b(2g|3g)\b/.test(navigator.connection?.effectiveType || '');
     // 1080p only for a wide screen (CSS width, not pixel density) on a connection that is not cellular; phones get 720p
     const wantHD = !slow && innerWidth >= 1000 && !/cellular/.test(navigator.connection?.type || '');
-    const src = (v) => `${v.dataset.video}-${wantHD && (v.hasAttribute('data-hd') || v.closest('.act, .page-frame, .pause--framed')) ? 1080 : 720}.mp4`;
+    // The opening film carries a ladder of sizes (data-ladder; data-portrait for phone-shaped screens). How much to send:
+    // - a slow (2g/3g) or mobile-data connection, or a low-memory device: the smallest cut;
+    // - otherwise the smallest cut that covers the screen at its own pixel density;
+    // - a phone whose connection the browser does not report (Safari never does) gets the 2160 cut only in HEVC or AV1
+    //   (about 2-3 MB for 12 s, less than the old 1080p H.264), else at most the 1280/1080 cut.
+    // For the codec, ask the browser (Media Capabilities) instead of guessing from names: HEVC or AV1 where it decodes them
+    // smoothly (power-efficiently if it can say), else H.264; if no cut of a size would play smoothly, step down a size.
+    // A cut that fails to load is remembered and never asked for again on this page.
+    const conn = navigator.connection;
+    const smallest = slow || /cellular/.test(conn?.type || '') || (navigator.deviceMemory || 8) < 4;
+    const phoneSized = () => Math.min(innerWidth, innerHeight) < 600;
+    const tall = () => matchMedia('(max-aspect-ratio: 3/5)').matches;   // the same test as the poster's <source> (build.mjs OPEN_PORTRAIT)
+    const CODEC = { hevc: 'hvc1.1.6.L153.B0', av1: 'av01.0.12M.08', h264: 'avc1.640033' };
+    const failed = new Set();
+    const decodes = async (codec, w, h) => {
+      const type = `video/mp4; codecs="${CODEC[codec]}"`;
+      try {
+        if (navigator.mediaCapabilities?.decodingInfo) {
+          const r = await navigator.mediaCapabilities.decodingInfo({ type: 'file', video: { contentType: type, width: w, height: h, bitrate: w * h * 2, framerate: 24 } });
+          return r.supported ? (r.smooth ? (r.powerEfficient ? 3 : 2) : 1) : 0;
+        }
+        return document.createElement('video').canPlayType(type) ? 2 : 0;
+      } catch (e) { return codec === 'h264' ? 2 : 0; }
+    };
+    const fileOf = (v, port, size, codec) => `${v.dataset.video}${port ? '-portrait' : ''}-${size}${codec === 'h264' ? '' : '-' + codec}.mp4`;
+    const ladder = async (v) => {
+      const dpr = Math.min(devicePixelRatio || 1, 3); const w = innerWidth, h = innerHeight;
+      const port = !!(tall() && v.dataset.portrait);
+      const all = (port ? v.dataset.portrait : v.dataset.ladder).split(',').map(Number).sort((a, b) => a - b);
+      // a cover-fitted 16:9 film is as tall as the screen or taller (a screen wider than 16:9); a 9:16 one likewise
+      const need = (port ? Math.max(h, w * 16 / 9) : Math.max(h, w * 9 / 16)) * dpr * .98;
+      const fit = all.find((x) => x >= need) || all[all.length - 1];
+      const tryList = smallest ? [all[0]] : all.filter((x) => x <= fit).reverse();
+      for (const size of tryList) {
+        const key = port ? `p${size}` : String(size); const fw = port ? Math.round(size * 9 / 16) : Math.round(size * 16 / 9);
+        const has = (c) => (v.dataset[c] || '').split(',').includes(key);
+        // an unreported connection on a phone: the big cut only in an efficient codec
+        const bigOnPhone = !conn && phoneSized() && size >= 2160;
+        const options = [...['hevc', 'av1'].filter(has), ...(bigOnPhone ? [] : ['h264'])].filter((c) => !failed.has(fileOf(v, port, size, c).split('/').pop()));
+        if (!options.length) continue;
+        const scores = await Promise.all(options.map((c) => decodes(c, fw, size)));
+        const best = Math.max(...scores);
+        if (best >= 2 || size === tryList[tryList.length - 1]) {
+          const codec = best > 0 ? options[scores.indexOf(best)] : 'h264';
+          return { key, url: fileOf(v, port, size, codec) };
+        }
+      }
+      return { key: String(all[0]), url: fileOf(v, false, (v.dataset.ladder || '1080').split(',')[0], 'h264') };
+    };
+    const src = async (v) => {
+      if (v.dataset.ladder) { const pick = await ladder(v); v.dataset.rung = pick.key; v.dataset.shape = pick.key[0] === 'p' ? 'p' : 'l'; return pick.url; }
+      return `${v.dataset.video}-${wantHD && (v.hasAttribute('data-hd') || v.closest('.act, .page-frame, .pause--framed')) ? 1080 : 720}.mp4`;
+    };
+    // a phone turned on its side (or a window dragged from tall to wide) changes which cut fits: swap it at the same moment
+    let turnT = 0;
+    addEventListener('resize', () => { clearTimeout(turnT); turnT = setTimeout(() => clips.forEach(async (v) => {
+      if (!v.dataset.ladder || !v.getAttribute('src') || v.dataset.dead || v.dataset.picking || v.dataset.fellBack) return;
+      const shapeNow = tall() && v.dataset.portrait ? 'p' : 'l'; if (shapeNow === v.dataset.shape) return;
+      const t = v.currentTime; const was = !v.paused; hide(v);
+      v.dataset.picking = '1'; const u = await src(v); delete v.dataset.picking;
+      v.src = u; v.load();
+      v.addEventListener('loadedmetadata', () => { try { v.currentTime = t % (v.duration || 1); } catch (e) {} if (was) v.play().catch(() => {}); }, { once: true });
+    }), 250); });
     const host = (v) => v.closest('[data-media]') || v.closest('.frame');
     const show = (v) => { host(v)?.classList.add('is-live'); };
     const hide = (v) => { host(v)?.classList.remove('is-live'); };
     const start = (v) => {
       if (v.dataset.dead || v.dataset.hold) return;   // a clip held back by its section (e.g. the featured strip) waits its turn
-      if (!v.getAttribute('src')) { v.src = src(v); v.load(); }
+      if (!v.getAttribute('src')) {
+        if (v.dataset.picking) return;   // the size and codec are being chosen; play() follows
+        v.dataset.picking = '1';
+        src(v).then((u) => { delete v.dataset.picking; if (v.dataset.dead || v.getAttribute('src')) return; v.src = u; v.load(); if (v.dataset.near) start(v); });
+        return;
+      }
       const p = v.play();
       if (p && p.catch) p.catch(() => hide(v));   // autoplay refused (battery saver, policy): the still remains
     };
     clips.forEach((v) => {
       v.addEventListener('playing', () => show(v));
       v.addEventListener('waiting', () => {});
-      v.addEventListener('error', () => { hide(v); v.removeAttribute('src'); v.dataset.dead = '1'; });
+      v.addEventListener('error', () => {
+        hide(v);
+        // a 4K, portrait, HEVC or AV1 cut that will not load or decode is remembered, and the film falls back once to the
+        // plain 1080p H.264 cut (decided by the file that failed, not by its size label)
+        const bad = v.currentSrc || v.getAttribute('src') || ''; const plain = `${v.dataset.video}-1080.mp4`;
+        const base = (u) => u.split('?')[0].split('/').pop();
+        if (v.dataset.ladder && bad) failed.add(base(bad));
+        if (v.dataset.ladder && !v.dataset.fellBack && base(bad) !== base(plain)) { v.dataset.fellBack = '1'; v.dataset.rung = '1080'; v.dataset.shape = 'l'; v.src = plain; v.load(); if (v.dataset.near) v.play().catch(() => {}); return; }
+        v.removeAttribute('src'); v.dataset.dead = '1';
+      });
     });
     const io = new IntersectionObserver((es) => es.forEach((en) => {
       const v = en.target; if (v.dataset.dead) return;
