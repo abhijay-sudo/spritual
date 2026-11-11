@@ -42,45 +42,86 @@
   };
   const laterImgs = reel ? $$('img[data-later]', reel) : [];
   if (reel && reduced()) laterImgs.forEach(hydrate);   // stacked, not pinned: the browser's own lazy loading takes over
-  if (reel && !reduced()) {
-    // The prologue plays itself, like a trailer: a painting holds for a few seconds with a slow drift, then dissolves to
-    // the next. It runs only while it is the scene on screen; pause, previous and next are real buttons.
-    const frames = $$('[data-frame]', reel); const n = frames.length; const HOLD = 6500;
-    const fill = $('[data-reel-fill]', reel); const label = $('[data-reel-n]', reel);
-    const toggle = $('[data-reel-toggle]', reel); const stack = reel.closest('.cx-stack'); const open = stack && $('.cx-open', stack);
-    const imgOf = (k) => frames[k] && $('img[data-later]', frames[k]);
-    let cur = 0, held = 0, last = 0, userPaused = false, onScreen = false, ticking2 = false;
-    const show = (k) => {
-      k = (k + n) % n; hydrate(imgOf(k)); hydrate(imgOf((k + 1) % n));
-      if (k !== cur) { frames[cur].classList.remove('is-on'); frames[k].classList.add('is-on'); cur = k; }
-      held = 0;
-      if (label) label.textContent = fmt(label.dataset.of || '{n} / {t}', { n: k + 1, t: n });
-      if (fill) fill.style.setProperty('--p', (k / n).toFixed(4));
+  let vtImg = null;   // the picture that opens into the next page (a poster, or the story select's stage)
+  /* ---------- Choose your story: the roster along the bottom, the one in hand on the stage ---------- */
+  const sel = $('[data-select]'); const stack = $('.cx-stack'); const open = stack && $('.cx-open', stack);
+  let selOnScreen = false, selWake = () => {};
+  if (sel) {
+    const tiles = $$('.cx-sel-tile', sel); const n = tiles.length; const grid = $('[data-sel-grid]', sel);
+    const T = (k) => $(`[data-sel-${k}]`, sel);
+    const out = { n: T('n'), coll: T('coll'), title: T('title'), sum: T('sum'), min: T('min'), scenes: T('scenes'), go: T('go'), hero: T('hero') };
+    const layers = $$('.cx-sel-bg img', sel); const auto = $('[data-sel-auto]', sel);
+    let cur = 0, front = 0, token = 0, stopped = reduced(), lastPointer = 'mouse', timer = 0, leaving = false;
+    const pick = (i, byUser) => {
+      i = (i + n) % n; if (byUser) halt();
+      if (i === cur) return;
+      const t = tiles[i]; const d = t.dataset; cur = i;
+      tiles.forEach((x, k) => { x.classList.toggle('is-on', k === i); if (k === i) x.setAttribute('aria-current', 'true'); else x.removeAttribute('aria-current'); });
+      out.n.textContent = String(i + 1).padStart(2, '0'); out.coll.textContent = d.coll; out.title.textContent = d.title; out.sum.textContent = d.sum; out.min.textContent = d.min; out.scenes.textContent = d.scenes;
+      out.go.href = t.href; out.go.setAttribute('aria-label', `${out.go.dataset.l}: ${d.title}`);
+      out.hero.srcset = d.heroset; out.hero.src = d.hero;
+      // the painting: the roster's small copy at once (it is already loaded), the full one as soon as it has decoded
+      const my = ++token; const next = layers[1 - front]; const thumb = $('img', t);
+      next.removeAttribute('srcset'); next.removeAttribute('sizes'); next.style.objectPosition = d.pos; next.src = thumb.currentSrc || thumb.src;
+      layers[front].classList.remove('is-on'); next.classList.add('is-on'); front = 1 - front;
+      const big = new Image(); big.sizes = '100vw'; big.srcset = d.picset; big.src = d.pic;
+      (big.decode ? big.decode() : Promise.resolve()).then(() => { if (my === token) { next.sizes = '100vw'; next.srcset = d.picset; next.src = d.pic; } }).catch(() => {});
+      if (!reduced()) { sel.classList.remove('is-swap'); void sel.offsetWidth; sel.classList.add('is-swap'); }
+      // keep the chosen tile in view where the roster scrolls
+      if (byUser && grid.scrollWidth > grid.clientWidth + 4) t.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduced() ? 'auto' : 'smooth' });
     };
-    const rolling = () => onScreen && !userPaused && !document.hidden;
-    const tick = (t) => {
-      if (!rolling()) { ticking2 = false; reel.classList.remove('is-rolling'); return; }
-      held += Math.min(100, t - last); last = t;
-      if (held >= HOLD) show(cur + 1);
-      if (fill) fill.style.setProperty('--p', ((cur + held / HOLD) / n).toFixed(4));
-      requestAnimationFrame(tick);
+    // left alone, the screen shows each story in turn; any choice by hand stops it, and the button starts it again
+    const showAuto = () => { if (auto) { auto.setAttribute('aria-pressed', String(stopped)); auto.setAttribute('aria-label', stopped ? auto.dataset.lPlay : auto.dataset.lPause); } };
+    const halt = () => { if (!stopped) { stopped = true; showAuto(); } clearTimeout(timer); timer = 0; };
+    const turn = () => { timer = 0; if (stopped || !selOnScreen || document.hidden || leaving) return; pick(cur + 1, false); timer = setTimeout(turn, 4800); };
+    selWake = () => { if (!timer && !stopped && selOnScreen && !document.hidden) timer = setTimeout(turn, 4800); };
+    auto?.addEventListener('click', () => { if (stopped) { stopped = reduced() ? true : false; showAuto(); selWake(); } else halt(); });
+    document.addEventListener('visibilitychange', selWake); showAuto();
+    // leaving for a story: a flare, the name steps forward, and the painting opens into the story's own first frame
+    const begin = (e, href) => {
+      if (leaving) { e.preventDefault(); return; }
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button > 0 || reduced()) return;
+      e.preventDefault(); leaving = true; halt(); sel.classList.add('is-go');
+      let url; try { url = new URL(href, location.href); } catch { location.href = href; return; }
+      vtImg = layers[front]; try { sessionStorage.setItem('cx-vt', url.pathname); } catch {}
+      setTimeout(() => { location.href = url.href; }, 430);
     };
-    const wake = () => { if (rolling() && !ticking2) { ticking2 = true; last = performance.now(); reel.classList.add('is-rolling'); requestAnimationFrame(tick); } };
-    const setPaused = (v) => { userPaused = v; if (toggle) { toggle.setAttribute('aria-pressed', String(v)); toggle.setAttribute('aria-label', v ? toggle.dataset.lPlay : toggle.dataset.lPause); } wake(); };
-    toggle?.addEventListener('click', () => setPaused(!userPaused));
-    $('[data-reel-prev]', reel)?.addEventListener('click', () => show(cur - 1));
-    $('[data-reel-next]', reel)?.addEventListener('click', () => show(cur + 1));
-    // a keyboard user tabbing to a frame's "Read this story" is shown that frame, and the reel waits for them
-    frames.forEach((fr, k) => fr.addEventListener('focusin', () => { if (k !== cur) { show(k); setPaused(true); } }));
-    document.addEventListener('visibilitychange', wake);
-    // which scene is on screen: the opening (scroll 0..1 screens), the prologue (about .5..1.5), then the feature covers both.
-    // A covered scene is still "in the viewport" as far as the browser knows, so the film and the reel are told to rest.
+    addEventListener('pageshow', (e) => { if (e.persisted) { leaving = false; sel.classList.remove('is-go'); } });
+    let downCur = 0;   // what was in hand when the finger came down (the tap's own focus changes it before the click arrives)
+    sel.addEventListener('pointerdown', (e) => { lastPointer = e.pointerType || 'mouse'; downCur = cur; }, true);
+    tiles.forEach((t, i) => {
+      t.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') pick(i, true); });
+      t.addEventListener('focus', () => pick(i, true));
+      t.addEventListener('click', (e) => {
+        // by touch, the first tap looks and the second begins; a mouse or the keyboard is already looking
+        if (lastPointer !== 'mouse' && e.detail > 0 && i !== downCur) { e.preventDefault(); pick(i, true); return; }
+        if (i !== cur) pick(i, true);
+        begin(e, t.href);
+      });
+      t.addEventListener('keydown', (e) => {
+        const cols = tiles.filter((x) => x.offsetTop === tiles[0].offsetTop).length || n;
+        const to = { ArrowRight: i + 1, ArrowLeft: i - 1, ArrowDown: i + cols, ArrowUp: i - cols, Home: 0, End: n - 1 }[e.key];
+        if (to === undefined || to < 0 || to >= n) return;
+        e.preventDefault(); tiles[to].focus();
+      });
+    });
+    out.go.addEventListener('click', (e) => begin(e, out.go.href));
+    // on a touch screen, a sideways swipe across the stage turns to the next or the previous story
+    const stage = $('.cx-sel-stage', sel); let sx = 0, sy = 0;
+    stage.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    stage.addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - sx; const dy = e.changedTouches[0].clientY - sy; if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.5) pick(cur + (dx < 0 ? 1 : -1), true); }, { passive: true });
+    if (!stack && 'IntersectionObserver' in window) new IntersectionObserver((es) => { selOnScreen = es[0].isIntersecting; selWake(); }, { threshold: .5 }).observe(sel);
+  }
+
+  /* ---------- The stacked scenes: which one is on screen, and what a covered one does ----------
+     The opening holds while the story select rises over it; the select holds while the feature rises over that. A
+     covered scene is still "in the viewport" as far as the browser knows, so the film is told to rest. */
+  if (stack && root.classList.contains('cx-js')) {
     const film = open && $('video.frame-video', open);
     jobs.push(() => {
-      const vh = innerHeight; const s = stack ? -stack.getBoundingClientRect().top : -reel.getBoundingClientRect().top + vh;
-      if (s > vh * .2) { hydrate(imgOf(1)); }
-      const now = stack ? (s > vh * .45 && s < vh * 1.6) : (s > vh * .45 && s < vh * 1.6);
-      if (now !== onScreen) { onScreen = now; wake(); }
+      const vh = innerHeight; const s = -stack.getBoundingClientRect().top;
+      const now = s > vh * .45 && s < vh * 1.6;
+      if (now !== selOnScreen) { selOnScreen = now; selWake(); }
       if (film && window.SpritualClips) {
         const covered = s > vh * .98;
         if (covered && !film.dataset.hold) { film.dataset.hold = '1'; window.SpritualClips.stop(film); }
@@ -89,7 +130,7 @@
     });
     // focus that lands on a scene hidden under the next one brings that scene back
     open?.addEventListener('focusin', () => { if (scrollY > innerHeight * .5) scrollTo({ top: 0, behavior: 'instant' }); });
-    reel.addEventListener('focusin', () => { const top = scrollY + (stack || reel).getBoundingClientRect().top + (stack ? innerHeight : 0); if (Math.abs(scrollY - top) > innerHeight * .5) scrollTo({ top, behavior: 'instant' }); });
+    sel?.addEventListener('focusin', () => { const top = scrollY + stack.getBoundingClientRect().top + innerHeight; if (Math.abs(scrollY - top) > innerHeight * .5) scrollTo({ top, behavior: 'instant' }); });
   }
 
   /* ---------- Arrivals: tiles and titles come in once, in sequence, when they reach the screen, then stay put ---------- */
@@ -134,7 +175,6 @@
   }
 
   /* ---------- A story poster opens into its story (cross-document view transition; the page also dissolves without it) ---------- */
-  let vtImg = null;
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[href]'); vtImg = null;
     if (!a || a.target === '_blank' || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey) return;
