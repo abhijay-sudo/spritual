@@ -44,32 +44,42 @@
   if (reel && reduced()) laterImgs.forEach(hydrate);   // stacked, not pinned: the browser's own lazy loading takes over
   let vtImg = null;   // the picture that opens into the next page (a poster, or the story select's stage)
   /* ---------- Choose your story: the roster along the bottom, the one in hand on the stage ---------- */
-  const sel = $('[data-select]'); const stack = $('.cx-stack'); const open = stack && $('.cx-open', stack);
+  const sel = $('[data-select]');
   let selOnScreen = false, selWake = () => {};
   if (sel) {
     const tiles = $$('.cx-sel-tile', sel); const n = tiles.length; const grid = $('[data-sel-grid]', sel);
     const T = (k) => $(`[data-sel-${k}]`, sel);
-    const out = { n: T('n'), coll: T('coll'), title: T('title'), sum: T('sum'), min: T('min'), scenes: T('scenes'), go: T('go'), hero: T('hero') };
+    const out = { n: T('n'), coll: T('coll'), title: T('title'), sum: T('sum'), min: T('min'), scenes: T('scenes'), go: T('go'), hero: T('hero'), name: T('name'), who: T('who') };
+    const whoLabel = out.who ? out.who.textContent.replace(out.name ? out.name.textContent : '', '').trim() : '';
     const layers = $$('.cx-sel-bg img', sel); const auto = $('[data-sel-auto]', sel);
+    let outT = 0;
     let cur = 0, front = 0, token = 0, stopped = reduced(), lastPointer = 'mouse', timer = 0, leaving = false;
     const pick = (i, byUser) => {
       i = (i + n) % n; if (byUser) halt();
       if (i === cur) return;
       const t = tiles[i]; const d = t.dataset; cur = i;
       tiles.forEach((x, k) => { x.classList.toggle('is-on', k === i); if (k === i) x.setAttribute('aria-current', 'true'); else x.removeAttribute('aria-current'); });
+      sel.style.setProperty('--sel-glow', d.glow); sel.style.setProperty('--sel-base', d.base);
+      if (out.name) { out.name.textContent = d.name; out.name.style.setProperty('--nl', [...d.name].length); } if (out.who) out.who.textContent = `${whoLabel} ${d.name}`;
       out.n.textContent = String(i + 1).padStart(2, '0'); out.coll.textContent = d.coll; out.title.textContent = d.title; out.sum.textContent = d.sum; out.min.textContent = d.min; out.scenes.textContent = d.scenes;
       out.go.href = t.href; out.go.setAttribute('aria-label', `${out.go.dataset.l}: ${d.title}`);
       out.hero.srcset = d.heroset; out.hero.src = d.hero;
       // the painting: the roster's small copy at once (it is already loaded), the full one as soon as it has decoded
-      const my = ++token; const next = layers[1 - front]; const thumb = $('img', t);
+      // the new world comes in over the old one behind a blade of light; the old one leaves when it is covered
+      const my = ++token; const next = layers[1 - front]; const prev = layers[front]; const thumb = $('img', t);
       next.removeAttribute('srcset'); next.removeAttribute('sizes'); next.style.objectPosition = d.pos; next.src = thumb.currentSrc || thumb.src;
-      layers[front].classList.remove('is-on'); next.classList.add('is-on'); front = 1 - front;
+      layers.forEach((x) => x.classList.remove('is-out', 'is-in'));
+      prev.classList.remove('is-on'); prev.classList.add('is-out'); next.classList.add('is-on');
+      if (!reduced()) { void next.offsetWidth; next.classList.add('is-in'); }
+      clearTimeout(outT); outT = setTimeout(() => { if (my === token) { prev.classList.remove('is-out'); next.classList.remove('is-in'); } }, 800);
+      front = 1 - front;
       const big = new Image(); big.sizes = '100vw'; big.srcset = d.picset; big.src = d.pic;
       (big.decode ? big.decode() : Promise.resolve()).then(() => { if (my === token) { next.sizes = '100vw'; next.srcset = d.picset; next.src = d.pic; } }).catch(() => {});
       if (!reduced()) { sel.classList.remove('is-swap'); void sel.offsetWidth; sel.classList.add('is-swap'); }
     };
     // left alone, the screen shows each story in turn; any choice by hand stops it, and the button starts it again
-    const showAuto = () => { if (auto) { auto.setAttribute('aria-pressed', String(stopped)); auto.setAttribute('aria-label', stopped ? auto.dataset.lPlay : auto.dataset.lPause); } };
+    // one fixed name ("Pause the showcase") with aria-pressed as its state: a toggle whose name also changes contradicts itself
+    const showAuto = () => { if (auto) auto.setAttribute('aria-pressed', String(stopped)); };
     const halt = () => { if (!stopped) { stopped = true; showAuto(); } clearTimeout(timer); timer = 0; };
     const turn = () => { timer = 0; if (reduced()) { halt(); return; } if (stopped || !selOnScreen || document.hidden || leaving) return; pick(cur + 1, false); timer = setTimeout(turn, 4800); };
     selWake = () => { if (!timer && !stopped && selOnScreen && !document.hidden) timer = setTimeout(turn, 4800); };
@@ -115,27 +125,18 @@
     const stage = $('.cx-sel-stage', sel); let sx = 0, sy = 0;
     stage.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
     stage.addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - sx; const dy = e.changedTouches[0].clientY - sy; if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.5) pick(cur + (dx < 0 ? 1 : -1), true); }, { passive: true });
-    if (!stack && 'IntersectionObserver' in window) new IntersectionObserver((es) => { selOnScreen = es[0].isIntersecting; selWake(); }, { threshold: .5 }).observe(sel);
-  }
-
-  /* ---------- The stacked scenes: which one is on screen, and what a covered one does ----------
-     The opening holds while the story select rises over it; the select holds while the feature rises over that. A
-     covered scene is still "in the viewport" as far as the browser knows, so the film is told to rest. */
-  if (stack && root.classList.contains('cx-js')) {
-    const film = open && $('video.frame-video', open);
-    jobs.push(() => {
-      const vh = innerHeight; const s = -stack.getBoundingClientRect().top;
-      const now = s > vh * .45 && s < vh * 1.6;
-      if (now !== selOnScreen) { selOnScreen = now; selWake(); }
-      if (film && window.SpritualClips) {
-        const covered = s > vh * .98;
-        if (covered && !film.dataset.hold) { film.dataset.hold = '1'; window.SpritualClips.stop(film); }
-        else if (!covered && film.dataset.hold) { delete film.dataset.hold; window.SpritualClips.start(film); }
-      }
-    });
-    // focus that lands on a scene hidden under the next one brings that scene back
-    open?.addEventListener('focusin', () => { if (scrollY > innerHeight * .5) scrollTo({ top: 0, behavior: 'instant' }); });
-    sel?.addEventListener('focusin', () => { const top = scrollY + stack.getBoundingClientRect().top + innerHeight; if (scrollY > top + 1 || scrollY < top - innerHeight * .5) scrollTo({ top, behavior: 'instant' }); });
+    $$('.cx-sel-grid > li', sel).forEach((li, k) => li.style.setProperty('--k', k));
+    // a keyboard user arriving in the select gets all of it on screen, not a half-scrolled slice under the header
+    sel.addEventListener('focusin', (e) => { const r = sel.getBoundingClientRect(); if (e.target.matches(':focus-visible') && Math.abs(r.top) > 2 && r.height <= innerHeight + 2) scrollTo({ top: scrollY + r.top, behavior: 'instant' }); });
+    if ('IntersectionObserver' in window) {
+      // the select waits in the dark until it is reached, then its world fades up and its lead steps in, once
+      if (!reduced() && sel.getBoundingClientRect().top > innerHeight * .5) sel.classList.add('sel-wait');
+      new IntersectionObserver((es) => {
+        const en = es[0]; selOnScreen = en.intersectionRatio >= .5;
+        if (en.intersectionRatio >= .35 && sel.classList.contains('sel-wait')) { sel.classList.replace('sel-wait', 'is-lit'); }
+        selWake();
+      }, { threshold: [0, .35, .5, .75] }).observe(sel);
+    } else selOnScreen = true;
   }
 
   /* ---------- Arrivals: tiles and titles come in once, in sequence, when they reach the screen, then stay put ---------- */
