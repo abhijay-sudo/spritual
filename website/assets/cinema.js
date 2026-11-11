@@ -139,9 +139,21 @@
     } else selOnScreen = true;
   }
 
+  /* ---------- Ramcharitmanas: the transliteration under each line can be hidden; the choice is remembered ---------- */
+  const mx = $('[data-manas]'); const trBtn = $('[data-mx-tr]');
+  if (mx && trBtn) {
+    const KEY = 'spritual:manas-tr';
+    const apply = (on) => { mx.classList.toggle('no-tr', !on); trBtn.setAttribute('aria-pressed', String(on)); };
+    let on = true; try { on = localStorage.getItem(KEY) !== '0'; } catch {}
+    apply(on);
+    trBtn.addEventListener('click', () => { on = !on; apply(on); try { localStorage.setItem(KEY, on ? '1' : '0'); } catch {} });
+  }
+  // the doha list closes once a doha is chosen
+  $$('.mx-jump a').forEach((a) => a.addEventListener('click', () => a.closest('details')?.removeAttribute('open')));
+
   /* ---------- Arrivals: tiles and titles come in once, in sequence, when they reach the screen, then stay put ---------- */
   if (!reduced() && 'IntersectionObserver' in window) {
-    const targets = $$('[data-room="theatre"] .grid > .card, .cx-posters > li, .cast-tiles > li, .cast-rows > li, .cx-ways-grid > li, .cx-cast-row > li, .cx-rail > li, .cx-strip > li, .cx-head, .cx-row-head, .cast-h, .cx-now-body > *');
+    const targets = $$('[data-room="theatre"] .grid > .card, .cx-posters > li, .cast-tiles > li, .cast-rows > li, .cx-ways-grid > li, .cx-cast-row > li, .cx-rail > li, .cx-strip > li, .cx-head, .cx-row-head, .cast-h, .cx-now-body > *, .mx-opener, .mx-kand-grid > li');
     const vh = innerHeight;
     const fresh = targets.filter((el) => el.getBoundingClientRect().top > vh * .9);   // what is already on screen is left alone
     fresh.forEach((el) => el.classList.add('th-rv'));
