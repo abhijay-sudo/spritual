@@ -1519,3 +1519,22 @@ html[lang="hi"] .cx-sel-tile-n { font-family: "Mukta", var(--cx-ui); font-size: 
 :root.cx-js:not([data-motion="reduce"]) .cx-select.is-lit:not(.is-swap) .cx-sel-btns { animation: sel-up .9s cubic-bezier(.16, 1, .3, 1) .95s both; }
 :root[data-motion="reduce"] :is(.cx-sel-ring, .cx-sel-ch) { animation: none !important; }
 @media (prefers-reduced-motion: reduce) { .cx-sel-ring, .cx-sel-ch { animation: none !important; } }
+/* depth on pointer: the world farthest (moves least, opposite way), the name behind the lead, the lead nearest */
+.cx-select { --px: 0; --py: 0; }
+.cx-sel-bg { translate: calc(var(--px) * -1.6%) calc(var(--py) * -1.2%); transition: translate 1.2s cubic-bezier(.16, 1, .3, 1); }
+.cx-select > .cx-sel-name { translate: calc(var(--px) * -3.5rem) calc(var(--py) * -1.4rem); transition: translate 1s cubic-bezier(.16, 1, .3, 1); }
+.cx-select > .cx-sel-hero { translate: calc(var(--px) * 1.6rem) calc(var(--py) * .7rem); transition: translate .9s cubic-bezier(.16, 1, .3, 1); }
+.cx-sel-rays { translate: calc(var(--px) * -2.4rem) 0; }
+/* sparks */
+.cx-sel-sparks { position: absolute; left: 50%; top: 55%; width: 0; height: 0; pointer-events: none; }
+.cx-sel-sparks i { position: absolute; left: 0; top: 0; width: 5px; height: 5px; margin: -2.5px; border-radius: 50%; background: #fff6e0; box-shadow: 0 0 10px 3px var(--sel-glow), 0 0 22px 6px color-mix(in oklab, var(--sel-glow) 50%, transparent); opacity: 0; }
+:root:not([data-motion="reduce"]) .cx-select.is-swap .cx-sel-sparks i { animation: sel-spark .9s cubic-bezier(.16, 1, .3, 1) both; animation-delay: calc(.08s + var(--t)); }
+@keyframes sel-spark { 0% { opacity: 1; transform: rotate(var(--a)) translateX(0) scale(1.4); } 100% { opacity: 0; transform: rotate(var(--a)) translateX(var(--d)) scale(.3); } }
+/* choosing: the camera pushes in on the lead while the world brightens, then the flare takes the frame */
+:root:not([data-motion="reduce"]) .cx-select.is-go .cx-sel-bg { animation: sel-pushbg .5s cubic-bezier(.6, 0, .2, 1) both; }
+@keyframes sel-pushbg { to { scale: 1.12; filter: brightness(1.25); } }
+:root:not([data-motion="reduce"]) .cx-select.is-go > .cx-sel-hero { animation: sel-pushhero .5s cubic-bezier(.6, 0, .2, 1) both; }
+@keyframes sel-pushhero { to { scale: 1.14; translate: -6% 2%; } }
+@media (prefers-reduced-motion: reduce) { .cx-sel-bg, .cx-select > .cx-sel-name, .cx-select > .cx-sel-hero, .cx-sel-rays { translate: none !important; transition: none; } .cx-sel-sparks { display: none; } }
+:root[data-motion="reduce"] :is(.cx-sel-bg, .cx-select > .cx-sel-name, .cx-select > .cx-sel-hero, .cx-sel-rays) { translate: none !important; }
+:root[data-motion="reduce"] .cx-sel-sparks { display: none; }

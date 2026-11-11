@@ -124,6 +124,15 @@
     });
     out.go.addEventListener('click', (e) => begin(e, out.go.href));
     out.story?.addEventListener('click', (e) => begin(e, out.story.href));
+    // depth: the world, the lead and their name sit at different distances, and drift apart as the pointer moves
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      let pr = 0;
+      sel.addEventListener('pointermove', (e) => { if (pr || reduced()) return; pr = requestAnimationFrame(() => { pr = 0; const r = sel.getBoundingClientRect(); sel.style.setProperty('--px', (((e.clientX - r.left) / r.width) - .5).toFixed(3)); sel.style.setProperty('--py', (((e.clientY - r.top) / r.height) - .5).toFixed(3)); }); });
+      sel.addEventListener('pointerleave', () => { sel.style.setProperty('--px', 0); sel.style.setProperty('--py', 0); });
+    }
+    // sparks: a burst of the lead's own light as they arrive
+    const heroBox = $('.cx-select > .cx-sel-hero', sel);
+    if (heroBox && !reduced()) { const burst = document.createElement('span'); burst.className = 'cx-sel-sparks'; burst.setAttribute('aria-hidden', 'true'); for (let k = 0; k < 14; k++) { const sp = document.createElement('i'); sp.style.setProperty('--a', `${(k / 14) * 360 + (k % 2) * 9}deg`); sp.style.setProperty('--d', `${7 + (k % 4) * 3}rem`); sp.style.setProperty('--t', `${(k % 5) * 40}ms`); burst.append(sp); } heroBox.append(burst); }
     // the lead stands between the heading and the roster, whatever the screen and the reader's text size
     const roster = $('.cx-sel-roster', sel);
     const setRoster = () => sel.style.setProperty('--sel-roster-h', `${Math.round(roster.getBoundingClientRect().height)}px`);
