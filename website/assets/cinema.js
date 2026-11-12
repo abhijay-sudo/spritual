@@ -156,6 +156,14 @@
   let selOnScreen = false, selWake = () => {};
   if (sel) {
     const tiles = $$('.cx-sel-tile', sel); const n = tiles.length; const grid = $('[data-sel-grid]', sel);
+    // the three realms (Ramayana, Mahabharata, the gods): the roster shows one realm's characters at a time
+    const realms = $('[data-sel-realms]', sel); const rBtns = realms ? $$('.cx-sel-realm', realms) : []; let grp = null;
+    const inGrp = () => tiles.map((t, k) => k).filter((k) => !grp || tiles[k].parentElement.dataset.g === grp);
+    const step = (d) => { const v = inGrp(); return v[(Math.max(0, v.indexOf(cur)) + d + v.length) % v.length]; };
+    // When the roster changes under a mouse that is lying still, the browser reports it as "entering" whatever is now
+    // beneath it. That is not a choice: only a pointer that has really moved since its last report picks anything.
+    let lastX = -1, lastY = -1; const moved = (e) => e.clientX !== lastX || e.clientY !== lastY;
+    addEventListener('pointermove', (e) => { lastX = e.clientX; lastY = e.clientY; }, { passive: true });
     const T = (k) => $(`[data-sel-${k}]`, sel);
     const out = { n: T('n'), coll: T('coll'), title: T('title'), sum: T('sum'), min: T('min'), scenes: T('scenes'), go: T('go'), hero: T('hero'), name: T('name'), who: T('who'), chips: T('chips'), goT: $('[data-sel-go-t]', sel), story: T('story'), storyT: $('[data-sel-story-t]', sel) };
     const whoLabel = out.who ? out.who.textContent.replace(out.name ? out.name.textContent : '', '').trim() : '';
@@ -175,7 +183,7 @@
       sel.style.setProperty('--sel-glow', d.glow); sel.style.setProperty('--sel-base', d.base);
       if (out.name) { out.name.textContent = d.name; out.name.style.setProperty('--nl', [...d.name].length); }
       if (out.who) out.who.textContent = d.who || '';
-      out.n.textContent = String(i + 1).padStart(2, '0'); out.coll.textContent = d.coll; out.sum.textContent = d.sum;
+      out.n.textContent = String(inGrp().indexOf(i) + 1).padStart(2, '0'); out.coll.textContent = d.coll; out.sum.textContent = d.sum;
       // the name lands letter by letter
       out.title.textContent = ''; (typeof Intl !== 'undefined' && Intl.Segmenter ? [...new Intl.Segmenter(root.lang || undefined, { granularity: 'grapheme' }).segment(d.title)].map((x) => x.segment) : [d.title]).forEach((ch, k) => { const sp = document.createElement('span'); sp.className = 'cx-sel-ch'; sp.style.setProperty('--k', k); sp.textContent = ch; out.title.append(sp); });
       out.title.setAttribute('aria-label', d.title);
@@ -205,7 +213,7 @@
     // one fixed name ("Pause the showcase") with aria-pressed as its state: a toggle whose name also changes contradicts itself
     const showAuto = () => { if (auto) auto.setAttribute('aria-pressed', String(stopped)); };
     const halt = () => { if (!stopped) { stopped = true; showAuto(); } clearTimeout(timer); timer = 0; };
-    const turn = () => { timer = 0; if (reduced()) { halt(); return; } if (stopped || !selOnScreen || document.hidden || leaving) return; pick(cur + 1, false); timer = setTimeout(turn, 4800); };
+    const turn = () => { timer = 0; if (reduced()) { halt(); return; } if (stopped || !selOnScreen || document.hidden || leaving) return; pick(step(1), false); timer = setTimeout(turn, 4800); };
     selWake = () => { if (!timer && !stopped && selOnScreen && !document.hidden) timer = setTimeout(turn, 4800); };
     auto?.addEventListener('click', () => { if (stopped) { stopped = reduced() ? true : false; showAuto(); selWake(); } else halt(); });
     document.addEventListener('visibilitychange', selWake); showAuto();
@@ -224,7 +232,7 @@
     let downCur = 0;   // what was in hand when the finger came down (the tap's own focus changes it before the click arrives)
     sel.addEventListener('pointerdown', (e) => { lastPointer = e.pointerType || 'mouse'; downCur = cur; }, true);
     tiles.forEach((t, i) => {
-      t.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') pick(i, true); });
+      t.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse' && moved(e)) pick(i, true); });
       t.addEventListener('focus', () => pick(i, true));
       t.addEventListener('click', (e) => {
         // by touch, the first tap looks and the second begins; a mouse or the keyboard is already looking
@@ -233,13 +241,45 @@
         begin(e, t.href);
       });
       t.addEventListener('keydown', (e) => {
-        const cols = tiles.filter((x) => x.offsetTop === tiles[0].offsetTop).length || n;
         if (e.altKey || e.metaKey || e.ctrlKey || e.shiftKey) return;
-        const to = { ArrowRight: i + 1, ArrowLeft: i - 1, ArrowDown: i + cols, ArrowUp: i - cols, Home: 0, End: n - 1 }[e.key];
+        // the arrows move among the characters of the realm on show
+        const v = inGrp(); const at = v.indexOf(i); const cols = v.filter((k) => tiles[k].offsetTop === tiles[v[0]].offsetTop).length || v.length;
+        const to = { ArrowRight: at + 1, ArrowLeft: at - 1, ArrowDown: at + cols, ArrowUp: at - cols, Home: 0, End: v.length - 1 }[e.key];
         if (to === undefined) return;
-        e.preventDefault(); if (to >= 0 && to < n) tiles[to].focus();
+        e.preventDefault(); if (to >= 0 && to < v.length) tiles[v[to]].focus();
       });
     });
+    // choosing a realm: its characters take the roster, and its first one takes the stage (unless the one in hand is already of it)
+    const total = T('total');
+    const setGroup = (g, byUser) => {
+      if (g === grp) return; grp = g;
+      rBtns.forEach((b) => { const on = b.dataset.realm === g; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', String(on)); });
+      // a tile that holds the keyboard's focus may be about to leave the roster: the focus goes to the realm's own name
+      const held = grid.contains(document.activeElement) && document.activeElement.closest('li')?.dataset.g !== g;
+      let k = 0; tiles.forEach((t) => { const li = t.parentElement; const on = li.dataset.g === g; li.hidden = !on; if (on) li.style.setProperty('--gk', k++); });
+      if (held) rBtns.find((b) => b.dataset.realm === g)?.focus({ preventScroll: true });
+      if (total) total.textContent = String(k).padStart(2, '0');
+      const v = inGrp(); grid.scrollLeft = 0;
+      if (v.includes(cur)) { out.n.textContent = String(v.indexOf(cur) + 1).padStart(2, '0'); if (byUser) halt(); } else pick(v[0], byUser);
+      if (byUser && !reduced() && !sel.classList.contains('sel-wait')) { grid.classList.remove('is-regroup'); void grid.offsetWidth; grid.classList.add('is-regroup'); }
+    };
+    if (realms && rBtns.length > 1) {
+      realms.hidden = false; setGroup(tiles[cur].parentElement.dataset.g, false);
+      let hoverT = 0;
+      rBtns.forEach((b, k) => {
+        // resting the pointer on a realm opens it (a short pause, so passing over one on the way elsewhere does not)
+        // the pause is measured from the pointer's last movement, so a pointer on its way to a button above never opens one
+        const arm = (e) => { if (e.pointerType !== 'mouse' || e.buttons || !moved(e)) return; clearTimeout(hoverT); hoverT = setTimeout(() => setGroup(b.dataset.realm, true), 220); };
+        b.addEventListener('pointerenter', arm); b.addEventListener('pointermove', arm);
+        b.addEventListener('pointerleave', () => clearTimeout(hoverT));
+        b.addEventListener('click', () => { clearTimeout(hoverT); setGroup(b.dataset.realm, true); });
+        b.addEventListener('keydown', (e) => {
+          if (e.altKey || e.metaKey || e.ctrlKey || e.shiftKey) return;
+          const to = { ArrowRight: k + 1, ArrowLeft: k - 1, Home: 0, End: rBtns.length - 1 }[e.key]; if (to === undefined) return;
+          e.preventDefault(); const nb = rBtns[(to + rBtns.length) % rBtns.length]; nb.focus(); setGroup(nb.dataset.realm, true);
+        });
+      });
+    }
     out.go.addEventListener('click', (e) => begin(e, out.go.href));
     out.story?.addEventListener('click', (e) => begin(e, out.story.href));
     // depth: the world, the lead and their name sit at different distances, and drift apart as the pointer moves
@@ -262,7 +302,7 @@
     // on a touch screen, a sideways swipe across the stage turns to the next or the previous story
     const stage = $('.cx-sel-stage', sel); let sx = 0, sy = 0;
     stage.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
-    stage.addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - sx; const dy = e.changedTouches[0].clientY - sy; if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.5) pick(cur + (dx < 0 ? 1 : -1), true); }, { passive: true });
+    stage.addEventListener('touchend', (e) => { const dx = e.changedTouches[0].clientX - sx; const dy = e.changedTouches[0].clientY - sy; if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.5) pick(step(dx < 0 ? 1 : -1), true); }, { passive: true });
     $$('.cx-sel-grid > li', sel).forEach((li, k) => li.style.setProperty('--k', k));
     // a keyboard user arriving in the select gets all of it on screen, not a half-scrolled slice under the header
     sel.addEventListener('focusin', (e) => { const r = sel.getBoundingClientRect(); if (e.target.matches(':focus-visible') && Math.abs(r.top) > 2 && r.height <= innerHeight + 2) scrollTo({ top: scrollY + r.top, behavior: 'instant' }); });

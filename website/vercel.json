@@ -1072,11 +1072,6 @@
       "statusCode": 302
     },
     {
-      "source": "/characters/dharma{/}?",
-      "destination": "/characters/",
-      "statusCode": 302
-    },
-    {
       "source": "/characters/kartikeya{/}?",
       "destination": "/characters/",
       "statusCode": 302
@@ -1093,11 +1088,6 @@
     },
     {
       "source": "/characters/suniti{/}?",
-      "destination": "/characters/",
-      "statusCode": 302
-    },
-    {
-      "source": "/characters/vishnu{/}?",
       "destination": "/characters/",
       "statusCode": 302
     },
@@ -1192,11 +1182,6 @@
       "statusCode": 302
     },
     {
-      "source": "/hi/characters/dharma{/}?",
-      "destination": "/hi/characters/",
-      "statusCode": 302
-    },
-    {
       "source": "/hi/characters/kartikeya{/}?",
       "destination": "/hi/characters/",
       "statusCode": 302
@@ -1213,11 +1198,6 @@
     },
     {
       "source": "/hi/characters/suniti{/}?",
-      "destination": "/hi/characters/",
-      "statusCode": 302
-    },
-    {
-      "source": "/hi/characters/vishnu{/}?",
       "destination": "/hi/characters/",
       "statusCode": 302
     },

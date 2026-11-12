@@ -1689,3 +1689,89 @@ html[lang="hi"] .cx-sel-tile-n { font-family: "Mukta", var(--cx-ui); font-size: 
 }
 /* a small, short window with the three-row roster: the story chips keep to one row (whole chips only) */
 @media (min-width: 700px) and (max-width: 1099px) and (max-height: 800px) { .cx-sel-chips { max-height: 32px; overflow: hidden; } }
+
+/* ---------- The three realms: Ramayana, Mahabharata, the gods ----------
+   A row of three names above the roster. The one in hand is lit by a line of the lead's own light; resting the pointer
+   on another (or tapping it, or the arrow keys) brings that realm's characters into the roster. Without scripts the row
+   is absent and every character is listed. */
+.cx-sel-roster { flex-wrap: wrap; row-gap: 0; }
+.cx-sel-realms { flex: 0 0 100%; display: flex; justify-content: center; align-items: stretch; gap: clamp(.2rem, 1.6vw, 1.6rem); margin: -.2rem 0 -.5rem; }
+.cx-sel-realms[hidden] { display: none; }
+.cx-sel-realm { position: relative; appearance: none; -webkit-appearance: none; border: 0; background: none; cursor: pointer; min-height: 44px; margin: 0; padding: .3rem clamp(.6rem, 1.5vw, 1.4rem) .55rem; display: inline-flex; align-items: center; gap: .6em; color: #d8ccbc; font: 500 clamp(.74rem, .64rem + .4vw, 1rem)/1 "Cinzel", var(--cx-title); letter-spacing: .26em; text-transform: uppercase; white-space: nowrap; transition: color .35s, text-shadow .35s; -webkit-tap-highlight-color: transparent; }
+.cx-sel-realm-t { margin-right: -.26em; }
+html[lang="hi"] .cx-sel-realm { font-family: var(--cx-title); letter-spacing: .04em; text-transform: none; font-size: clamp(.95rem, .84rem + .45vw, 1.2rem); }
+html[lang="hi"] .cx-sel-realm-t { margin-right: 0; }
+.cx-sel-realm-n { font: 500 .68em/1 var(--cx-ui); letter-spacing: .06em; color: inherit; opacity: .75; padding: .2em .45em; border: 1px solid currentColor; border-radius: 99px; }
+.cx-sel-realm::after { content: ""; position: absolute; left: 10%; right: 10%; bottom: .1rem; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, var(--sel-glow) 22%, #fff8ea 50%, var(--sel-glow) 78%, transparent); box-shadow: 0 0 14px 2px color-mix(in oklab, var(--sel-glow) 65%, transparent); transform: scaleX(0); opacity: 0; transition: transform .55s cubic-bezier(.16, 1, .3, 1), opacity .35s; }
+.cx-sel-realm:hover { color: #fff; }
+.cx-sel-realm.is-on { color: #fff; text-shadow: 0 0 18px color-mix(in oklab, var(--sel-glow) 75%, transparent); }
+.cx-sel-realm.is-on::after { transform: scaleX(1); opacity: 1; }
+.cx-sel-realm:focus-visible { outline: 2px solid #fff; outline-offset: -4px; border-radius: 4px; color: #fff; }
+.cx-select.is-go .cx-sel-realms { opacity: .2; transition: opacity .4s; }
+:root.cx-js:not([data-motion="reduce"]) .cx-select.sel-wait .cx-sel-realms { opacity: 0; }
+:root.cx-js:not([data-motion="reduce"]) .cx-select.is-lit .cx-sel-realms { animation: sel-up .9s cubic-bezier(.16, 1, .3, 1) .35s both; }
+@media (prefers-reduced-motion: reduce) { .cx-sel-realm, .cx-sel-realm::after { transition: none; } }
+:root[data-motion="reduce"] :is(.cx-sel-realm, .cx-sel-realm::after) { transition: none; }
+.cx-sel-grid > li[hidden] { display: none; }
+/* a realm has at most eleven characters: one row, centred, each tile the same size whatever the realm's count */
+@media (min-width: 700px) and (min-height: 521px) {
+  .cx-sel-grid { display: flex; flex-wrap: nowrap; justify-content: center; }
+  .cx-sel-grid > li { flex: 0 1 calc((100% - (var(--cols, 11) - 1) * clamp(.3rem, .7vw, .6rem)) / var(--cols, 11)); }
+  .cx-sel-realms[hidden] ~ .cx-sel-grid { flex-wrap: wrap; }
+  .cx-sel-tile-face img { width: 78%; }
+}
+/* the realm's characters arrive one after another, each catching the light as it lands */
+:root.cx-js:not([data-motion="reduce"]) .cx-select .cx-sel-grid.is-regroup > li { animation: sel-regroup .6s cubic-bezier(.16, 1, .3, 1) both; animation-delay: calc(var(--gk, 0) * 34ms); }
+@keyframes sel-regroup { from { opacity: 0; translate: 0 1.1rem; filter: brightness(2.4); } }
+@media (max-width: 699px) {
+  .cx-sel-realms { gap: 0; justify-content: space-between; margin: -.3rem 0 -.6rem; padding: 0 .2rem; }
+  .cx-sel-realm { padding: .3rem .45rem .5rem; font-size: .7rem; letter-spacing: .1em; min-height: 40px; }
+  .cx-sel-realm-t { margin-right: -.1em; }
+  html[lang="hi"] .cx-sel-realm { font-size: .95rem; }
+  .cx-sel-realm-n { display: none; }
+}
+/* a phone on its side: the three names sit beside the roster, not above it */
+@media (orientation: landscape) and (max-height: 520px) {
+  .cx-sel-roster { flex-wrap: nowrap; }
+  .cx-sel-realms { flex: none; flex-direction: column; justify-content: center; gap: 0; margin: 0; }
+  .cx-sel-realm { min-height: 24px; padding: .1rem .5rem; font-size: .6rem; letter-spacing: .12em; justify-content: flex-start; }
+  html[lang="hi"] .cx-sel-realm { font-size: .78rem; }
+  .cx-sel-realm-n { display: none; }
+  .cx-sel-realm::after { left: 0; right: auto; top: 18%; bottom: 18%; width: 2px; height: auto; transform: scaleY(0); }
+  .cx-sel-realm.is-on::after { transform: scaleY(1); }
+}
+@media (min-width: 700px) and (min-height: 521px) { .cx-sel-tile { min-height: 44px; } }
+/* the narrowest phones: the three names still fit on one line */
+@media (max-width: 379px) {
+  .cx-sel-realm { font-size: .6rem; letter-spacing: .02em; padding-inline: .25rem; }
+  .cx-sel-realm-t { margin-right: 0; }
+  html[lang="hi"] .cx-sel-realm { font-size: .86rem; }
+}
+/* the realm row stays above the lit tile, which rises a little toward it */
+.cx-sel-realms { position: relative; z-index: 2; }
+/* tablets and small laptops: two centred rows of six, so every name can be read */
+@media (min-width: 700px) and (max-width: 1099px) and (min-height: 521px) {
+  .cx-sel-grid { flex-wrap: wrap; row-gap: .5rem; }
+  .cx-sel-grid > li { flex-basis: calc((100% - 5 * clamp(.3rem, .7vw, .6rem)) / 6); }
+  .cx-sel-tile-face img { width: 60%; }
+}
+/* without scripts every character is listed: two even rows, as before the realms */
+@media (min-width: 700px) and (min-height: 521px) {
+  .cx-sel-realms[hidden] ~ .cx-sel-grid { display: grid; grid-template-columns: repeat(var(--cols-all, 12), minmax(0, 1fr)); }
+}
+@media (min-width: 700px) and (max-width: 1099px) and (min-height: 521px) {
+  .cx-sel-realms[hidden] ~ .cx-sel-grid { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+}
+/* very large screens: the realm names grow with the rest of the select */
+@media (min-width: 2200px) {
+  .cx-sel-realm { font-size: calc(1rem * var(--cx-k, 1)); min-height: calc(44px * var(--cx-k, 1)); }
+  html[lang="hi"] .cx-sel-realm { font-size: calc(1.2rem * var(--cx-k, 1)); }
+}
+/* a long name (Yudhishthira, Vishvamitra) is set a little smaller so it is shown whole on its tile; the tile is the
+   measure (container units), and where those are not understood the name is cut with an ellipsis as before */
+.cx-sel-tile { container-type: inline-size; }
+@supports (font-size: 1cqw) {
+  .cx-sel-tile-n { font-size: clamp(.5rem, calc((100cqw - .9rem) / (var(--nl, 8) * .8)), .66rem); }
+  html[lang="hi"] .cx-sel-tile-n { font-size: clamp(.6rem, calc((100cqw - .9rem) / (var(--nl, 5) * .82)), .78rem); }
+}
+@media (min-width: 2200px) { @supports (font-size: 1cqw) { .cx-sel-tile-n { font-size: clamp(.5rem, calc((100cqw - .9rem) / (var(--nl, 8) * .8)), calc(.74rem * var(--cx-k, 1))); } } }
