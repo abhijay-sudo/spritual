@@ -142,6 +142,8 @@ html[lang="hi"] .cx-welcome-k { letter-spacing: .08em; font-family: "Mukta", var
 .cx-wm { position: relative; display: block; width: max-content; max-width: 100%; font: 500 clamp(4.2rem, 1.5rem + 12vw, 12.5rem)/.95 var(--cx-title); letter-spacing: -.02em; color: #fff8ee; padding-bottom: .1em; }
 .cx-wm-letters { filter: drop-shadow(0 8px 30px rgb(60 25 0 / .45)); }
 .cx-wm-letters { display: block; white-space: nowrap; }
+/* site.css gives every element of a Hindi page a 1.75 line (:lang(hi)); the name is one tight line in both languages */
+.cx-wm :is(.cx-wm-letters, .cx-wm-l, .cx-wm-l > span) { line-height: inherit; }
 .cx-wm-l { display: inline-block; overflow: hidden; vertical-align: top; padding: .04em .01em .1em; margin: 0 -.01em -.1em; }
 .cx-wm-l > span { display: inline-block; }
 .cx-wm-line { position: absolute; left: 6%; right: 6%; bottom: -.04em; width: 88%; height: .1em; overflow: visible; }
@@ -1069,19 +1071,34 @@ html[lang="hi"] .cast-echo { font-family: var(--cx-title); }
 .cx-home .cx-open .cx-wm-line { left: 2%; right: 2%; width: 96%; bottom: .02em; }
 @media (orientation: landscape) and (max-height: 520px) { .cx-home .cx-open .cx-wm { font-size: min(11vw, 20svh); } }
 .cx-spark { display: none; }
+/* gold dust in the lamplight (cinema.js): above the curtain and the picture, under the words */
+.cx-dust { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; pointer-events: none; }
+:root:not(.cx-js) .cx-dust, :root[data-motion="reduce"] .cx-dust { display: none; }
+@media (prefers-reduced-motion: reduce) { .cx-dust { display: none; } }
+@media print { .cx-dust { display: none; } }
+/* the buttons at the foot sit above the dust, like the words; during the title sequence they wait for the curtain */
+.cx-home .cx-open-foot { position: relative; z-index: 4; }
+:root.cx-js:not(.cx-seen) .cx-home .cx-open-foot { animation: cx-fade .9s var(--cx-ease) 4.4s both; }
 
-:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-bar { display: block; height: 50.5svh; animation: cx-curtain 2.4s cubic-bezier(.76, 0, .18, 1) 2.5s both; }
+/* The seam of the curtain is the line of light under the name, wherever the name sits on this screen: boot.js measures
+   it before the first paint and keeps --seam (px from the top of the opening) current. Without it, the middle. */
+:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-bar { display: block; animation: cx-curtain 2.4s cubic-bezier(.76, 0, .18, 1) 2.5s both; }
+:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-bar--top { height: calc(var(--seam, 50%) + 2px); }
+:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-bar--bottom { height: calc(100% - var(--seam, 50%) + 2px); }
+/* each half of the curtain ends in a soft edge, so the picture arrives as light rather than as a hard cut across the name */
+:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-bar::after { content: ""; position: absolute; left: 0; right: 0; height: 9svh; pointer-events: none; }
+:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-bar--top::after { top: calc(100% - 1px); background: linear-gradient(to bottom, var(--cx-dusk), transparent); }
+:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-bar--bottom::after { bottom: calc(100% - 1px); background: linear-gradient(to top, var(--cx-dusk), transparent); }
 @keyframes cx-curtain { from { transform: scaleY(1); } to { transform: scaleY(0); } }
-:root.cx-js:not(.cx-seen) .cx-home .cx-spark { display: block; position: absolute; z-index: 5; left: 50%; top: 50%; width: min(70vw, calc(54rem * var(--cx-k, 1))); height: calc(2px * var(--cx-k, 1)); margin-top: -1px; translate: -50% 0; pointer-events: none; border-radius: 2px;
+:root.cx-js:not(.cx-seen) .cx-home .cx-spark { display: block; position: absolute; z-index: 5; left: 50%; top: var(--seam, 50%); width: min(70vw, calc(54rem * var(--cx-k, 1))); height: calc(2px * var(--cx-k, 1)); margin-top: -1px; translate: -50% 0; pointer-events: none; border-radius: 2px;
   background: linear-gradient(90deg, transparent, #f3b566 14%, #fff1d2 50%, #f3b566 86%, transparent); box-shadow: 0 0 22px 3px rgb(255 186 104 / .75), 0 0 80px 10px rgb(255 160 70 / .35);
   animation: cx-spark 2.7s cubic-bezier(.6, 0, .2, 1) .3s both; }
 @keyframes cx-spark { 0% { opacity: 0; transform: scaleX(.006); } 10% { opacity: 1; transform: scaleX(.006); } 20% { opacity: 1; transform: scaleX(.006); } 62% { opacity: 1; transform: scaleX(1); } 82% { opacity: .9; transform: scaleX(1); } 100% { opacity: 0; transform: scaleX(1.25); } }
 /* the name: each letter resolves out of the dark, the whole word easing back from a slow push-in, lit warm as it lands */
-:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-wm { animation: cx-title-settle 4.6s cubic-bezier(.2, .6, .2, 1) 1.1s both; }
 @keyframes cx-title-settle { from { scale: 1.16; } to { scale: 1; } }
 :root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-wm-l > span { transform: none; opacity: 0; animation: cx-title-in 1.5s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(1.25s + var(--i) * 95ms); }
 @keyframes cx-title-in { 0% { opacity: 0; filter: blur(16px); transform: translateY(.22em) scale(1.18); } 60% { opacity: 1; } 100% { opacity: 1; filter: blur(0); transform: none; } }
-:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-wm-letters { animation: cx-title-glow 3.6s ease-out 1.25s both; }
+:root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-wm-letters { animation: cx-title-glow 3.6s ease-out 1.25s both, cx-title-settle 4.6s cubic-bezier(.2, .6, .2, 1) 1.1s both; }
 @keyframes cx-title-glow { 0% { filter: drop-shadow(0 0 0 rgb(255 196 120 / 0)); } 35% { filter: drop-shadow(0 0 34px rgb(255 196 120 / .95)) drop-shadow(0 0 8px rgb(255 226 170 / .9)); } 100% { filter: drop-shadow(0 6px 26px rgb(40 16 0 / .6)) drop-shadow(0 0 2px rgb(40 16 0 / .5)); } }
 /* everything else waits for the name */
 :root.cx-js:not(.cx-seen) .cx-home .cx-welcome-k > span { animation-delay: calc(3.5s + var(--i) * 22ms); }
@@ -1160,12 +1177,13 @@ html[lang="hi"] .cx-ol-b { font-family: "Tiro Devanagari Hindi", var(--cx-text);
 :root.cx-js:not(.cx-seen) .cx-home .cx-w { opacity: 0; animation: cx-word 1.2s cubic-bezier(.2, .7, .2, 1) both; animation-delay: calc(3.7s + var(--i) * 130ms); }
 @keyframes cx-word { from { opacity: 0; filter: blur(8px); translate: 0 .35em; } to { opacity: 1; filter: blur(0); translate: 0 0; } }
 :root.cx-js:not(.cx-seen) .cx-home .cx-ol-b { animation: cx-bloom 1.8s cubic-bezier(.2, .7, .2, 1) 5s both; }
-@keyframes cx-bloom { 0% { opacity: 0; letter-spacing: .3em; text-shadow: 0 0 0 rgb(255 170 80 / 0); } 50% { opacity: 1; text-shadow: 0 0 40px rgb(255 190 110 / .95), var(--cx-halo); } 100% { opacity: 1; } }
+/* no letter-spacing here: animating it re-wrapped the line, and the whole centred card (the name included) jumped when it ended */
+@keyframes cx-bloom { 0% { opacity: 0; scale: 1.1; filter: blur(8px); text-shadow: 0 0 0 rgb(255 170 80 / 0); } 50% { opacity: 1; filter: blur(0); text-shadow: 0 0 40px rgb(255 190 110 / .95), var(--cx-halo); } 100% { opacity: 1; scale: 1; filter: blur(0); } }
 html[lang="hi"]:root.cx-js:not(.cx-seen) .cx-home .cx-ol-b { animation-name: cx-fade; }
 :root.cx-js:not(.cx-seen) .cx-home .cx-open-sub { animation: cx-rise-in 1s var(--cx-ease) 5.6s both; }
 :root.cx-js:not(.cx-seen) .cx-home :is(.cx-open-left, .cx-hi-hint) { animation: cx-rise-in 1s var(--cx-ease) 5.9s both; }
 :root.cx-js:not(.cx-seen) body:has(.cx-home) .ed-head { animation: cx-fade 1s var(--cx-ease) 5.9s both; }
-:is(:root[data-motion="reduce"], :root.cx-seen) .cx-home :is(.cx-w, .cx-ol-b) { animation: none !important; opacity: 1 !important; filter: none !important; translate: none !important; }
+:is(:root[data-motion="reduce"], :root.cx-seen) .cx-home :is(.cx-w, .cx-ol-b) { animation: none !important; opacity: 1 !important; filter: none !important; translate: none !important; scale: none !important; }
 @media (prefers-reduced-motion: reduce) { .cx-home :is(.cx-w, .cx-ol-b) { animation: none !important; opacity: 1 !important; filter: none !important; } }
 /* a dip to black as the opening is left behind, then the select lights up */
 .cx-home .cx-open::after { content: ""; position: absolute; inset: 0; z-index: 6; pointer-events: none; background: #050302; opacity: 0; }

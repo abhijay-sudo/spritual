@@ -33,6 +33,36 @@
     if (me && me.hasAttribute('data-titles')) { if (sessionStorage.getItem('spritual:titles')) d.classList.add('cx-seen'); else sessionStorage.setItem('spritual:titles', '1'); localStorage.setItem('spritual:seen', '1'); }
     else if (localStorage.getItem('spritual:seen')) d.classList.add('cx-seen'); else localStorage.setItem('spritual:seen', '1');
   } catch (e) {}
+  // The title sequence's curtain parts along the line of light under the name, and where that line sits depends on the
+  // screen and the language. It is measured here, in the frame before each paint, from before the first one until the
+  // sequence is over (fonts arriving can move it), and handed to the stylesheet as --seam (cinema.css).
+  if (me && me.hasAttribute('data-titles') && d.classList.contains('cx-js') && !d.classList.contains('cx-seen') && window.requestAnimationFrame) {
+    var seamFrom = 0, seamAt = -1, zf = 0;
+    // The name sits in a part of the page that is zoomed on screens larger than 1920x1080 (--cx-k). Newer engines report
+    // such an element's rectangle as it is seen; older ones (Safari, Chrome before 128) report it divided by the zoom.
+    // A probe tells which, once: a box 50px down inside a twice-zoomed parent is seen at 100px.
+    var zoomFix = function () {
+      if (!zf) {
+        var o = document.createElement('div'), i = document.createElement('div');
+        o.style.cssText = 'position:absolute;left:0;top:0;width:0;height:0;zoom:2;visibility:hidden;pointer-events:none';
+        i.style.cssText = 'position:absolute;left:0;top:50px;width:1px;height:1px';
+        o.appendChild(i); document.body.appendChild(o);
+        zf = (i.getBoundingClientRect().top - o.getBoundingClientRect().top) < 75 ? 2 : 1;   // 2: divided by the zoom
+        document.body.removeChild(o);
+      }
+      return zf === 2 ? (parseFloat(d.style.getPropertyValue('--cx-k')) || 1) : 1;
+    };
+    var seam = function () {
+      var line = document.querySelector('.cx-home .cx-open .cx-wm-line'), open = line && line.closest('.cx-open');
+      if (open) {
+        if (!seamFrom) seamFrom = Date.now();   // the seven seconds run from the first frame that has the name in it
+        var z = zoomFix(), r = line.getBoundingClientRect(), y = Math.round((r.top + r.height / 2) * z - open.getBoundingClientRect().top);
+        if (y > 0 && y !== seamAt) { seamAt = y; d.style.setProperty('--seam', y + 'px'); }
+      }
+      if ((!seamFrom || Date.now() - seamFrom < 7000) && !d.classList.contains('cx-seen')) requestAnimationFrame(seam);
+    };
+    requestAnimationFrame(seam);
+  }
   addEventListener('pagereveal', function (e) {
     if (!e.viewTransition) return;
     var w; try { w = sessionStorage.getItem('cx-vt'); sessionStorage.removeItem('cx-vt'); } catch (x) { return; }

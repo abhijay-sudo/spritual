@@ -44,10 +44,111 @@
   if (reel && reduced()) laterImgs.forEach(hydrate);   // stacked, not pinned: the browser's own lazy loading takes over
   let vtImg = null;   // the picture that opens into the next page (a poster, or the story select's stage)
   /* ---------- The opening's scenery leans with the pointer (rays, mist, birds and lamps at different depths) ---------- */
-  const openEl = $('.cx-home .cx-open');
+  const openEl = $('.cx-home .cx-open'); const lean = { x: 0, y: 0 };
   if (openEl && matchMedia('(hover: hover) and (pointer: fine)').matches) {
     let or = 0;
-    openEl.addEventListener('pointermove', (e) => { if (or || reduced()) return; or = requestAnimationFrame(() => { or = 0; openEl.style.setProperty('--ox', ((e.clientX / innerWidth) - .5).toFixed(3)); openEl.style.setProperty('--oy', ((e.clientY / innerHeight) - .5).toFixed(3)); }); });
+    openEl.addEventListener('pointermove', (e) => { if (or || reduced()) return; or = requestAnimationFrame(() => { or = 0; lean.x = (e.clientX / innerWidth) - .5; lean.y = (e.clientY / innerHeight) - .5; openEl.style.setProperty('--ox', lean.x.toFixed(3)); openEl.style.setProperty('--oy', lean.y.toFixed(3)); }); });
+  }
+
+  /* ---------- Gold dust in the lamplight: motes rise through the dark behind the name, sparks lift off the line of light
+     as it is drawn, and a few keep drifting in the sunrise once the curtain has opened. One small canvas, drawn only
+     while the opening is on screen and the tab is visible; never under reduced motion. ---------- */
+  const dust = $('.cx-home .cx-dust');
+  if (dust && openEl && dust.getContext && !reduced()) {
+    const g = dust.getContext('2d');
+    const titles = root.classList.contains('cx-js') && !root.classList.contains('cx-seen');   // the title sequence is playing
+    const spark = $('.cx-spark', openEl); const letters = $('.cx-wm-letters', openEl);
+    const light = (navigator.deviceMemory || 8) < 4 || (navigator.hardwareConcurrency || 8) <= 2;
+    // one soft mote, drawn once and stamped many times
+    const mote = document.createElement('canvas'); mote.width = mote.height = 64;
+    { const m = mote.getContext('2d'); const gr = m.createRadialGradient(32, 32, 0, 32, 32, 32);
+      gr.addColorStop(0, 'rgba(255,246,214,1)'); gr.addColorStop(.18, 'rgba(255,214,140,.85)'); gr.addColorStop(.45, 'rgba(255,170,80,.28)'); gr.addColorStop(1, 'rgba(255,150,60,0)');
+      m.fillStyle = gr; m.fillRect(0, 0, 64, 64); }
+    const sparkAnim = titles && spark && spark.getAnimations ? spark.getAnimations()[0] : null;
+    // rectangles inside the zoomed card (screens above 1920x1080): older engines report them divided by the zoom (see boot.js)
+    let zf = 0; const zoomFix = () => {
+      if (!zf) { const o = document.createElement('div'), i = document.createElement('div');
+        o.style.cssText = 'position:absolute;left:0;top:0;width:0;height:0;zoom:2;visibility:hidden;pointer-events:none'; i.style.cssText = 'position:absolute;left:0;top:50px;width:1px;height:1px';
+        o.appendChild(i); document.body.appendChild(o); zf = (i.getBoundingClientRect().top - o.getBoundingClientRect().top) < 75 ? 2 : 1; o.remove(); }
+      return zf === 2 ? (parseFloat(root.style.getPropertyValue('--cx-k')) || 1) : 1; };
+    let W = 0, H = 0, motes = [], sparks = [], raf = 0, seen = true, last = 0, born = performance.now(), lamp = null, lampAt = 0, carry = 0;
+    // a small repeatable generator: the field looks the same on every visit, and nothing here needs real randomness
+    let seed = 20261112; const rnd = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+    const make = (anywhere) => { const z = .25 + .75 * rnd() * rnd(); return { x: rnd() * W, y: anywhere ? rnd() * H : H + 12 + rnd() * 30, z, r: 1 + 2.6 * z * z, vy: 5 + 20 * z, ph: rnd() * 6.283, f: .25 + rnd() * .5, tw: .6 + rnd() * 1.5, a: .22 + .6 * z }; };
+    const size = () => {
+      const k = Math.min(devicePixelRatio || 1, 2); const w = dust.clientWidth, h = dust.clientHeight;
+      if (!w || !h) return;   // hidden (reduced motion): keep the last size
+      W = w; H = h;
+      dust.width = Math.round(W * k); dust.height = Math.round(H * k); g.setTransform(k, 0, 0, k, 0, 0);
+      const n = Math.round(clamp(W * H / 15000, 30, 110) * (light ? .5 : 1));
+      while (motes.length < n) motes.push(make(true)); motes.length = n;
+    };
+    const frame = (now) => {
+      raf = 0;
+      if (reduced()) { g.clearRect(0, 0, W, H); return; }
+      // the sequence's own clock: the line of light's CSS animation says how far in we are (this script may start late)
+      if (sparkAnim && sparkAnim.playState === 'running' && typeof sparkAnim.currentTime === 'number') born = now - sparkAnim.currentTime;
+      const dt = Math.min(.05, (now - (last || now)) / 1000); last = now; const t = now / 1000; const age = (now - born) / 1000;
+      g.clearRect(0, 0, W, H);
+      // in the dark the dust is at its brightest; once the curtain has opened it thins, so the river stays the picture
+      const amb = !titles || root.classList.contains('cx-seen') ? .55 : 1 - .45 * clamp((age - 4.4) / 2.6);
+      // the lamp's glow behind the name, while the screen is dark
+      if (titles && letters && age < 6 && !root.classList.contains('cx-seen')) {
+        if (!lamp || now - lampAt > 400) { const z = zoomFix(), r = letters.getBoundingClientRect(), o = openEl.getBoundingClientRect(); lamp = { x: (r.left + r.width / 2) * z - o.left, y: (r.top + r.height / 2) * z - o.top, r: Math.max(r.width * z * .95, 180) }; lampAt = now; }
+        const la = clamp((age - 1.2) / 1.4) * (1 - clamp((age - 3.1) / 1.9)) * (.9 + .1 * Math.sin(t * 5.1) * Math.sin(t * 1.7));
+        if (la > .01) {
+          // a wide, low ellipse with a long soft falloff (many stops), so no edge of it can be seen on the dark
+          g.save(); g.translate(lamp.x, lamp.y); g.scale(1, .55);
+          const gr = g.createRadialGradient(0, 0, 0, 0, 0, lamp.r);
+          [[0, .2], [.12, .17], [.26, .12], [.42, .07], [.58, .035], [.74, .014], [.88, .004], [1, 0]].forEach(([at, a]) => gr.addColorStop(at, `rgba(255,${Math.round(176 - 30 * at)},${Math.round(96 - 30 * at)},${(a * la).toFixed(4)})`));
+          g.fillStyle = gr; g.fillRect(-lamp.r, -lamp.r, lamp.r * 2, lamp.r * 2);
+          // and the first rays of the morning behind it: thin, slowly turning, gone before the sunrise itself arrives
+          const R = lamp.r * 1.2 + 120; const rg = g.createRadialGradient(0, 0, lamp.r * .1, 0, 0, R);
+          rg.addColorStop(0, 'rgba(255,220,160,0)'); rg.addColorStop(.22, `rgba(255,208,140,${(.075 * la).toFixed(4)})`); rg.addColorStop(.6, `rgba(255,190,115,${(.03 * la).toFixed(4)})`); rg.addColorStop(1, 'rgba(255,180,100,0)');
+          g.fillStyle = rg;
+          // each ray is laid down three times, wide to narrow, so its sides are soft rather than ruled
+          for (const [wide, share] of [[1.9, .3], [1.15, .35], [.5, .35]]) {
+            g.globalAlpha = share; g.beginPath();
+            for (let i = 0; i < 18; i++) { const a0 = i / 18 * 6.2832 + t * .03 + Math.sin(i * 12.9898) * .09; const w = (.024 + .03 * ((i * 7) % 5) / 5) * wide; g.moveTo(0, 0); g.arc(0, 0, R, a0 - w, a0 + w); g.closePath(); }
+            g.fill();
+          }
+          g.globalAlpha = 1; g.restore();
+        }
+      }
+      // sparks lift off the line of light for as long as it is on screen, along exactly as much of it as has been drawn
+      if (titles && spark && age < 4) {
+        const r = spark.getBoundingClientRect();
+        if (r.width > 6 && r.height > 0 && +getComputedStyle(spark).opacity > .3) {
+          const o = openEl.getBoundingClientRect(); carry += dt * (light ? 26 : 60) * Math.min(1, r.width / 420);
+          while (carry >= 1 && sparks.length < 150) { carry -= 1; const z = .4 + .6 * rnd(); sparks.push({ x: r.left - o.left + rnd() * r.width, y: r.top - o.top, z, r: .8 + 1.6 * z, vx: (rnd() - .5) * 26, vy: 16 + 64 * rnd() * z, life: 0, max: 1.1 + 1.9 * rnd() }); }
+        }
+      }
+      g.globalCompositeOperation = 'lighter';
+      for (const p of motes) {
+        p.y -= p.vy * dt; p.x += (Math.sin(t * p.f + p.ph) * 7 * p.z + 2.5) * dt;
+        if (p.y < -14) Object.assign(p, make(false)); if (p.x > W + 14) p.x = -14;
+        const a = amb * p.a * (.62 + .38 * Math.sin(t * p.tw + p.ph)); const s = p.r * 5;
+        g.globalAlpha = a; g.drawImage(mote, p.x - s / 2 - lean.x * 26 * p.z, p.y - s / 2 - lean.y * 14 * p.z, s, s);
+      }
+      for (let i = sparks.length - 1; i >= 0; i--) {
+        const p = sparks[i]; p.life += dt; if (p.life >= p.max) { sparks.splice(i, 1); continue; }
+        p.y -= p.vy * dt; p.vy *= 1 - .35 * dt; p.x += (p.vx + Math.sin(t * 2 + p.y * .03) * 10) * dt;
+        const k = p.life / p.max; const s = p.r * 6 * (1 - .4 * k);
+        g.globalAlpha = Math.min(1, k * 8) * (1 - k) * (1 - k) * .95; g.drawImage(mote, p.x - s / 2, p.y - s / 2, s, s);
+      }
+      g.globalAlpha = 1; g.globalCompositeOperation = 'source-over';
+      go();
+    };
+    const go = () => { if (!raf && seen && !document.hidden && !reduced()) raf = requestAnimationFrame(frame); };
+    size(); go();
+    let sizeT = 0; addEventListener('resize', () => { clearTimeout(sizeT); sizeT = setTimeout(() => { size(); go(); }, 150); });
+    root.classList.add('cx-open-on');
+    if ('IntersectionObserver' in window) new IntersectionObserver((es) => { seen = es[es.length - 1].isIntersecting; root.classList.toggle('cx-open-on', seen); last = 0; go(); }).observe(openEl);
+    document.addEventListener('visibilitychange', () => { last = 0; go(); });
+    // the motion switch (and the device's own setting) can be turned back on: the canvas is shown again, so wake the loop
+    const wake = () => { last = 0; size(); go(); };
+    if ('MutationObserver' in window) new MutationObserver(wake).observe(root, { attributes: true, attributeFilter: ['data-motion'] });
+    matchMedia('(prefers-reduced-motion: reduce)').addEventListener?.('change', wake);
   }
 
   /* ---------- Choose your story: the roster along the bottom, the one in hand on the stage ---------- */
@@ -292,7 +393,8 @@
       let W = 0, H = 0, motes = [], last = 0, on = false; const dpr = Math.min(devicePixelRatio || 1, 1.5);
       const make = (anyY) => ({ x: Math.random() * W, y: anyY ? Math.random() * H : H + 10, r: .5 + Math.random() * 1.5, vy: 5 + Math.random() * 16, sway: 6 + Math.random() * 16, ph: Math.random() * 6.28, sp: .2 + Math.random() * .6, a: .12 + Math.random() * .4 });
       const size = () => { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0); const n = Math.round(Math.min(46, Math.max(14, W / 30))); motes = Array.from({ length: n }, () => make(true)); };
-      const quiet = () => document.hidden || reduced() || root.dataset.theme === 'light';
+      // the home opening has its own, richer dust (above): this layer rests while that one is on screen
+      const quiet = () => document.hidden || reduced() || root.dataset.theme === 'light' || root.classList.contains('cx-open-on');
       const frame = (t) => {
         if (quiet()) { on = false; g.clearRect(0, 0, W, H); return; }
         const dt = Math.min(.05, (t - last) / 1000 || 0); last = t; g.clearRect(0, 0, W, H);
@@ -309,7 +411,7 @@
       size(); wake();
       addEventListener('resize', size);
       document.addEventListener('visibilitychange', wake);
-      new MutationObserver(wake).observe(root, { attributes: true, attributeFilter: ['data-theme', 'data-motion'] });
+      new MutationObserver(wake).observe(root, { attributes: true, attributeFilter: ['data-theme', 'data-motion', 'class'] });
     }
     if (fine) {
       const lamp = document.createElement('div'); lamp.className = 'th-lamp'; lamp.setAttribute('aria-hidden', 'true'); document.body.append(lamp);
