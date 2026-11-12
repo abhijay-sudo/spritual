@@ -156,7 +156,7 @@
   let selOnScreen = false, selWake = () => {};
   if (sel) {
     const tiles = $$('.cx-sel-tile', sel); const n = tiles.length; const grid = $('[data-sel-grid]', sel);
-    // the three realms (Ramayana, Mahabharata, the gods): the roster shows one realm's characters at a time
+    // the four realms (Ramayana, Mahabharata, the gods, the antagonists): the roster shows one realm's characters at a time
     const realms = $('[data-sel-realms]', sel); const rBtns = realms ? $$('.cx-sel-realm', realms) : []; let grp = null;
     const inGrp = () => tiles.map((t, k) => k).filter((k) => !grp || tiles[k].parentElement.dataset.g === grp);
     const step = (d) => { const v = inGrp(); return v[(Math.max(0, v.indexOf(cur)) + d + v.length) % v.length]; };
@@ -183,6 +183,9 @@
       sel.style.setProperty('--sel-glow', d.glow); sel.style.setProperty('--sel-base', d.base);
       if (out.name) { out.name.textContent = d.name; out.name.style.setProperty('--nl', [...d.name].length); }
       if (out.who) out.who.textContent = d.who || '';
+      // the world they come from (Ramayana, Mahabharata, the gods; an antagonist says so) is named above their name
+      // (on short screens the same name sits in the counter's line instead: both copies are kept in step)
+      if (d.world) $$('[data-sel-world]', sel).forEach((el) => { const w = el.firstElementChild; const was = w.textContent; w.textContent = d.world; el.classList.toggle('is-foe', 'foe' in d); if (was !== d.world && !reduced()) { el.classList.remove('is-new'); void el.offsetWidth; el.classList.add('is-new'); } });
       out.n.textContent = String(inGrp().indexOf(i) + 1).padStart(2, '0'); out.coll.textContent = d.coll; out.sum.textContent = d.sum;
       // the name lands letter by letter
       out.title.textContent = ''; (typeof Intl !== 'undefined' && Intl.Segmenter ? [...new Intl.Segmenter(root.lang || undefined, { granularity: 'grapheme' }).segment(d.title)].map((x) => x.segment) : [d.title]).forEach((ch, k) => { const sp = document.createElement('span'); sp.className = 'cx-sel-ch'; sp.style.setProperty('--k', k); sp.textContent = ch; out.title.append(sp); });
@@ -259,6 +262,8 @@
       let k = 0; tiles.forEach((t) => { const li = t.parentElement; const on = li.dataset.g === g; li.hidden = !on; if (on) li.style.setProperty('--gk', k++); });
       if (held) rBtns.find((b) => b.dataset.realm === g)?.focus({ preventScroll: true });
       if (total) total.textContent = String(k).padStart(2, '0');
+      // a realm of more than twelve (the Ramayana, with its antagonists) takes two rows: the heroes, then the antagonists
+      grid.dataset.many = String(k > 12);
       const v = inGrp(); grid.scrollLeft = 0;
       if (v.includes(cur)) { out.n.textContent = String(v.indexOf(cur) + 1).padStart(2, '0'); if (byUser) halt(); } else pick(v[0], byUser);
       if (byUser && !reduced() && !sel.classList.contains('sel-wait')) { grid.classList.remove('is-regroup'); void grid.offsetWidth; grid.classList.add('is-regroup'); }
