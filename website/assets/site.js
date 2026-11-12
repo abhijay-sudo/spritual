@@ -370,7 +370,10 @@
     const when = $('[data-fest-when]', next);
     if (when) when.textContent = d === 0 ? UI.festToday : d === 1 ? UI.festTomorrow : fmt(UI.festIn, { n: d });
   }
-  for (const row of $$('[data-fest-row]')) { if (row.dataset.festRow < dayKey()) row.classList.add('past'); }
+  // the festivals page: what has passed steps aside, and the next one is marked as coming up
+  // (if every listed date has passed, nothing is hidden: the list stays readable until next year's dates are added)
+  { const rows = $$('[data-fest-row]'); const today = dayKey(); const anyAhead = rows.some((r) => r.dataset.festRow >= today); let marked = false;
+    for (const row of rows) { const past = anyAhead && row.dataset.festRow < today; row.classList.toggle('past', past); if (!past && !marked && row.dataset.festRow >= today) { row.classList.add('next'); row.classList.toggle('is-today', row.dataset.festRow === today); marked = true; } } }
 
   /* ---------- Continue reading ---------- */
   // Built from the story index every page carries, so it never depends on cards being on the page.
@@ -493,15 +496,41 @@
     const grid = $('[data-grid]'); const cards = $$('.card', grid); const count = $('[data-count]'); const empty = $('[data-empty]');
     // the visible number counts up; screen readers hear one settled result, after typing pauses
     const countSr = $('[data-count-sr]'); let countRaf = 0, srTimer = 0;
+    // Hindi is spelt both ways (सुन्दर / सुंदर, चाँद / चांद): a nasal consonant joined to the next one, or a chandrabindu,
+    // reads as the anusvara; roman diacritics fold away (Rāma finds Rama). Both the query and what it searches are folded.
+    const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').normalize('NFC').replace(/[ङञणनम]्(?=[क-ह])/g, 'ं').replace(/ँ/g, 'ं');
+    for (const el of [...cards, ...$$('[data-more] li')]) el.dataset.search = norm(el.dataset.search || '');
     const apply = () => {
       const f = new FormData(filters);
-      const q = String(f.get('q') || '').trim().toLowerCase(); const value = f.get('value') || ''; const coll = f.get('coll') || ''; const time = f.get('time') || '';
+      const rawQ = String(f.get('q') || '').trim(); const q = norm(rawQ.toLowerCase()); const value = f.get('value') || ''; const coll = f.get('coll') || ''; const time = f.get('time') || '';
       let n = 0;
-      for (const c of cards) {
-        const m = +c.dataset.minutes;
-        const ok = (!q || q.split(/\s+/).every((w) => c.dataset.search.includes(w))) && (!value || c.dataset.values.split(' ').includes(value)) && (!coll || c.dataset.c === coll)
-          && (!time || (time === '6' ? m <= 6 : time === '7' ? m === 7 : m >= 8));
-        c.hidden = !ok; if (ok) n++;
+      const words = q ? q.split(/\s+/).filter((w) => w.length > 1 || /[^\x00-\x7f]/.test(w)) : [];
+      const passes = (c, every) => { const m = +c.dataset.minutes; return (!words.length || words[every ? 'every' : 'some']((w) => c.dataset.search.includes(w))) && (!value || c.dataset.values.split(' ').includes(value)) && (!coll || c.dataset.c === coll)
+        && (!time || (time === '6' ? m <= 6 : time === '7' ? m === 7 : m >= 8)); };
+      for (const c of cards) { const ok = passes(c, true); c.hidden = !ok; if (ok) n++; }
+      // nothing matches every word: show the stories that match some, and say so
+      let some = false;
+      if (!n && words.length > 1) { for (const c of cards) { const ok = passes(c, false); c.hidden = !ok; if (ok) { n++; some = true; } } }
+      const someNote = $('[data-some]'); if (someNote) someNote.hidden = !some;
+      // the rest of Spritual (the Ramcharitmanas, the hymns, the characters, the festivals) answers the same search
+      const more = $('[data-more]'); let m2 = 0;
+      // only the best answers: those matching the most words ("Sundar Kand" finds the Sundar Kand, not every kand)
+      if (more) {
+        const lis = $$('li', more); const score = (li) => words.filter((w) => li.dataset.search.includes(w)).length;
+        const best = words.length ? Math.max(0, ...lis.map(score)) : 0;
+        for (const li of lis) { const ok = best > 0 && score(li) === best; li.hidden = !ok; if (ok) m2++; }
+        more.hidden = !m2;
+      }
+      // the empty box: "not on Spritual yet" only when nothing anywhere has the words; if the reader's own filters hid the
+      // matching stories it says to clear them; and the suggestions only show when there is nothing better below
+      const emptyMsg = $('[data-empty-msg]'); const filtered = !!(value || coll || time);
+      const anyText = !!words.length && cards.some((c) => words.some((w) => c.dataset.search.includes(w)));
+      if (emptyMsg) {
+        emptyMsg.dataset.base ??= emptyMsg.textContent;
+        const none = q && !n && !m2 && !(filtered && anyText);
+        emptyMsg.textContent = none ? (empty.dataset.none || '').replace('{q}', () => rawQ) : !filtered && q && m2 ? (empty.dataset.below || emptyMsg.dataset.base).replace('{q}', () => rawQ) : emptyMsg.dataset.base;
+        const tryRow = $$('.lib-try, .lib-try-links', empty); tryRow.forEach((x) => { x.hidden = !!m2; });
+        const reset = $('[data-reset]', empty); if (reset) reset.hidden = !filtered && !q;
       }
       const prev = +(count.dataset.n ?? cards.length); count.dataset.n = n;
       const res = (v) => fmt(v === 1 ? UI.results1 || UI.results : UI.results, { n: v, t: cards.length });
@@ -880,7 +909,9 @@
     };
     const fileOf = (v, port, size, codec) => `${v.dataset.video}${port ? '-portrait' : ''}-${size}${codec === 'h264' ? '' : '-' + codec}.mp4`;
     const ladder = async (v) => {
-      const dpr = Math.min(devicePixelRatio || 1, 3); const w = innerWidth, h = innerHeight;
+      // a soft, painted film needs far fewer pixels than text: density counts only up to 1.25, and the cut may be
+      // upscaled by up to a fifth, so a 1440x900 retina laptop gets the ~1 MB 1080p cut, not the 4.5 MB 2160p one
+      const dpr = Math.min(devicePixelRatio || 1, 1.25) * .82; const w = innerWidth, h = innerHeight;
       const port = !!(tall() && v.dataset.portrait);
       const all = (port ? v.dataset.portrait : v.dataset.ladder).split(',').map(Number).sort((a, b) => a - b);
       // a cover-fitted 16:9 film is as tall as the screen or taller (a screen wider than 16:9); a 9:16 one likewise

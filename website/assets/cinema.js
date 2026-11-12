@@ -343,12 +343,13 @@
     const io = new IntersectionObserver((es) => {
       const inNow = es.filter((en) => en.isIntersecting).map((en) => en.target).sort((a, b) => (a.getBoundingClientRect().top - b.getBoundingClientRect().top) || (a.getBoundingClientRect().left - b.getBoundingClientRect().left));
       inNow.forEach((el, k) => {
-        io.unobserve(el); el.style.setProperty('--th-i', Math.min(k, 8)); el.classList.add('th-in');
+        io.unobserve(el); el.style.setProperty('--th-i', Math.min(k, 6)); el.classList.add('th-in');
         const done = () => { el.classList.remove('th-rv', 'th-in'); el.style.removeProperty('--th-i'); };
         el.addEventListener('animationend', (e) => { if (e.target === el) done(); }, { once: false });
         setTimeout(done, 2600);
       });
-    }, { rootMargin: '0px 0px -6% 0px', threshold: .08 });
+      // things start arriving a quarter of a screen before they are reached, so a quick scroll never lands on an empty frame
+    }, { rootMargin: '0px 0px 25% 0px', threshold: 0 });
     fresh.forEach((el) => io.observe(el));
     // a library filter shows and hides cards: anything still waiting when the list changes is simply shown
     $('[data-filters]')?.addEventListener('input', () => fresh.forEach((el) => { el.classList.remove('th-rv', 'th-in'); io.unobserve(el); }));
