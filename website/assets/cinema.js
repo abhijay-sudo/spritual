@@ -280,7 +280,7 @@
       if (held) rBtns.find((b) => b.dataset.realm === g)?.focus({ preventScroll: true });
       if (total) total.textContent = String(k).padStart(2, '0');
       // a realm of more than twelve (the Ramayana, with its antagonists) takes two rows: the heroes, then the antagonists
-      grid.dataset.many = String(k > 12); grid.dataset.huge = String(k > 20);
+      grid.dataset.many = String(k > 12); grid.dataset.huge = String(k > 16);
       const v = inGrp(); grid.scrollLeft = 0;
       if (v.includes(cur)) { out.n.textContent = String(v.indexOf(cur) + 1).padStart(2, '0'); if (byUser) halt(); } else pick(v[0], byUser);
       // the one on stage is always in sight in a strip that scrolls (centred in it; the page itself does not move)

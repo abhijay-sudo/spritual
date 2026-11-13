@@ -1964,3 +1964,7 @@ html[lang="hi"] .fest-list li.next.is-today strong::after { content: "  ·  आ�
   .cx-sel-grid[data-huge="true"] .cx-sel-tile { aspect-ratio: 16 / 11; container-type: inline-size; }
   .cx-sel-grid[data-huge="true"] .cx-sel-tile-n { left: .3rem; font-size: min(.62rem, 10.5cqi); letter-spacing: .03em; }
 }
+/* long rosters (more than twelve) on every screen: each name scales to its tile, so "Dhritarashtra" and
+   "Bhishma (Devavrata)" stay whole however many share the row */
+.cx-sel-grid[data-many="true"] .cx-sel-tile { container-type: inline-size; }
+.cx-sel-grid[data-many="true"] .cx-sel-tile-n { font-size: min(.74rem, 9.5cqi); letter-spacing: .04em; }
