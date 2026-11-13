@@ -1072,22 +1072,7 @@
       "statusCode": 302
     },
     {
-      "source": "/characters/kartikeya{/}?",
-      "destination": "/characters/",
-      "statusCode": 302
-    },
-    {
       "source": "/characters/medhas{/}?",
-      "destination": "/characters/",
-      "statusCode": 302
-    },
-    {
-      "source": "/characters/nanda{/}?",
-      "destination": "/characters/",
-      "statusCode": 302
-    },
-    {
-      "source": "/characters/suniti{/}?",
       "destination": "/characters/",
       "statusCode": 302
     },
@@ -1182,22 +1167,7 @@
       "statusCode": 302
     },
     {
-      "source": "/hi/characters/kartikeya{/}?",
-      "destination": "/hi/characters/",
-      "statusCode": 302
-    },
-    {
       "source": "/hi/characters/medhas{/}?",
-      "destination": "/hi/characters/",
-      "statusCode": 302
-    },
-    {
-      "source": "/hi/characters/nanda{/}?",
-      "destination": "/hi/characters/",
-      "statusCode": 302
-    },
-    {
-      "source": "/hi/characters/suniti{/}?",
       "destination": "/hi/characters/",
       "statusCode": 302
     },

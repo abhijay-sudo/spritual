@@ -2007,3 +2007,15 @@ html[lang="hi"] .fest-list li.next.is-today strong::after { content: "  ·  आ�
 @media (min-width: 900px) and (max-width: 1099px) and (min-height: 521px) and (max-height: 800px) and (orientation: landscape) {
   .cx-sel-grid:not([data-many="true"]) .cx-sel-tile { aspect-ratio: 16 / 10; }
 }
+/* the long Ramayana roster (more than twenty) on tablets: landscape keeps two rows (twelve a row), portrait three
+   (eight a row); the tiles go low and wide, and each name scales to its tile so even "Vishvamitra" stays whole */
+@media (min-width: 900px) and (max-width: 1099px) and (min-height: 521px) {
+  .cx-sel-grid[data-many="true"][data-huge="true"] > li { flex-basis: calc((100% - 11 * clamp(.3rem, .7vw, .6rem)) / 12); }
+}
+@media (min-width: 700px) and (max-width: 899px) and (min-height: 521px) {
+  .cx-sel-grid[data-many="true"][data-huge="true"] > li { flex-basis: calc((100% - 7 * clamp(.3rem, .7vw, .6rem)) / 8); }
+}
+@media (min-width: 700px) and (max-width: 1099px) and (min-height: 521px) {
+  .cx-sel-grid[data-huge="true"] .cx-sel-tile { aspect-ratio: 16 / 11; container-type: inline-size; }
+  .cx-sel-grid[data-huge="true"] .cx-sel-tile-n { left: .3rem; font-size: min(.62rem, 10.5cqi); letter-spacing: .03em; }
+}

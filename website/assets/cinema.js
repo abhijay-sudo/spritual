@@ -263,7 +263,7 @@
       if (held) rBtns.find((b) => b.dataset.realm === g)?.focus({ preventScroll: true });
       if (total) total.textContent = String(k).padStart(2, '0');
       // a realm of more than twelve (the Ramayana, with its antagonists) takes two rows: the heroes, then the antagonists
-      grid.dataset.many = String(k > 12);
+      grid.dataset.many = String(k > 12); grid.dataset.huge = String(k > 20);
       const v = inGrp(); grid.scrollLeft = 0;
       if (v.includes(cur)) { out.n.textContent = String(v.indexOf(cur) + 1).padStart(2, '0'); if (byUser) halt(); } else pick(v[0], byUser);
       if (byUser && !reduced() && !sel.classList.contains('sel-wait')) { grid.classList.remove('is-regroup'); void grid.offsetWidth; grid.classList.add('is-regroup'); }
