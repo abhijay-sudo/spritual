@@ -1,0 +1,439 @@
+/* Spritual cinema edition: phones and short landscape screens.
+   One block, loaded after cinema.css. Phone rules sit under (max-width: 759px); a phone on its side (any width, at most
+   520px tall) under (orientation: landscape) and (max-height: 520px). Wider screens are untouched by this file except
+   where a rule says so (the Manas bar following the header, the plate framing variables).
+   Motion here obeys both the device setting (prefers-reduced-motion) and the site's own switch (:root[data-motion]). */
+
+/* ---------- 1. Scene title plates: the dark intertitle, cut from the story's own painting ---------- */
+@media (max-width: 759px) {
+  .shot--card { min-height: min(62svh, 30rem); padding: 2rem var(--cx-gut-r) 2rem var(--cx-gut); }
+  .shot--card > .shot-plate { object-position: var(--fx, 50%) var(--fy, 40%); scale: 1.25; filter: saturate(.85) brightness(.75); }
+  .shot--card .shot-card h2 { color: #f6ead8; text-wrap: balance; }
+  .shot--card .shot-card .scene-no { color: var(--cx-gold); }
+}
+
+/* ---------- 2. Scene paintings fill the screen, the title in the lower third over the painting ---------- */
+@media (max-width: 759px) {
+  .shot:not(.shot--card) { position: relative; overflow: hidden; aspect-ratio: auto; height: min(78svh, 40rem); max-height: none; width: 100vw; margin-inline-start: calc(50% - 50vw); background: var(--cx-dusk); }
+  .shot:not(.shot--card) > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--fx, 50%) var(--fy, 35%); aspect-ratio: auto; }
+  .shot:not(.shot--card)::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(18 9 3 / .88) 0%, rgb(18 9 3 / .55) 32%, transparent 60%); pointer-events: none; }
+  .shot:not(.shot--card) .shot-card { position: absolute; inset: auto 0 0 0; z-index: 1; padding: 0 var(--cx-gut-r) 1.75rem var(--cx-gut); color: #f6ead8; }
+  .shot:not(.shot--card) .shot-card h2 { color: #f6ead8; text-shadow: 0 1px 12px rgb(0 0 0 / .5); text-wrap: balance; }
+  .shot:not(.shot--card) .shot-card .scene-no { justify-self: start; padding: 0; background: none; color: var(--cx-gold); text-shadow: 0 1px 8px rgb(0 0 0 / .6); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  :root[data-read="both"] .shot:not(.shot--card) .shot-card .pair > .alt { color: #e9d9c3; border-left-color: rgb(243 196 126 / .5); margin-bottom: 0; }
+  /* the story's own title sits in the lower third too, and uses the full width (no orphaned last word) */
+  .cx-film-title, html[lang="hi"] .cx-film-title { max-width: none; }
+}
+/* on its side, one whole frame fits the screen */
+@media (orientation: landscape) and (max-height: 520px) {
+  .shot:not(.shot--card) { height: 100svh; max-height: none; aspect-ratio: auto; }
+}
+
+/* ---------- 3. The home title sequence: under two and a half seconds on a phone, with a visible way past it ----------
+   The same sequence as on a large screen, at a little under half the pace: the line of light at 0.1 s, the name from
+   0.5 s, the curtain opening from 0.9 s to 2.2 s, the header from 1 s and the buttons by 1.6 s. Until the curtain opens
+   the river is already there, dimmed (the curtain is translucent), so the first frame is never a black void. */
+.cx-intro-skip { display: none; }
+@media (max-width: 759px), (orientation: landscape) and (max-height: 520px) {
+  :root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-bar { opacity: .65; animation: cx-curtain 1.3s cubic-bezier(.76, 0, .18, 1) .9s both; }
+  :root.cx-js:not(.cx-seen) .cx-home .cx-spark { animation-duration: 1.15s; animation-delay: .1s; }
+  :root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-wm-l > span { animation-duration: .7s; animation-delay: calc(.5s + var(--i) * 40ms); }
+  :root.cx-js:not(.cx-seen) .cx-home .cx-open .cx-wm-letters { animation: cx-title-glow 1.5s ease-out .5s both, cx-title-settle 1.9s cubic-bezier(.2, .6, .2, 1) .45s both; }
+  :root.cx-js:not(.cx-seen) .cx-home .cx-welcome-k > span { animation-delay: calc(1.1s + var(--i) * 10ms); }
+  :root.cx-js:not(.cx-seen) .cx-home .cx-wm-line { animation-delay: 1s; animation-duration: .6s; }
+  :root.cx-js:not(.cx-seen) .cx-home .cx-wm-line circle { animation-delay: 1.5s; }
+  :root.cx-js:not(.cx-seen) .cx-home .cx-w { animation-duration: .7s; animation-delay: calc(1s + var(--i) * 55ms); }
+  :root.cx-js:not(.cx-seen) .cx-home .cx-ol-b { animation-duration: .9s; animation-delay: 1.4s; }
+  :root.cx-js:not(.cx-seen) .cx-home .cx-open-sub { animation: cx-rise-in .6s var(--cx-ease) 1.4s both; }
+  :root.cx-js:not(.cx-seen) .cx-home :is(.cx-open-left, .cx-cards, .cx-hi-hint) { animation: cx-rise-in .6s var(--cx-ease) 1s both; }
+  :root.cx-js:not(.cx-seen) .cx-home .cx-open-foot { animation: cx-fade .6s var(--cx-ease) 1s both; }
+  :root.cx-js:not(.cx-seen) body:has(.cx-home) .ed-head { animation: cx-fade .6s var(--cx-ease) 1s both; }
+  /* the soft shades behind the words would read as smudges through the translucent curtain: they arrive with the words */
+  :root.cx-js:not(.cx-seen) .cx-home :is(.cx-open-card, .cx-welcome-k, .cx-open-sub)::before { animation: cx-fade .8s var(--cx-ease) 1s both; }
+  /* "Skip intro": a pill from 0.4 s until the sequence is over (cinema.js) */
+  /* top right, under the header's row: at the foot it would sit over "Play with sound" on a narrow phone */
+  :root.cx-js:not(.cx-seen) .cx-home .cx-intro-skip:not([hidden]) { display: inline-flex; position: fixed; z-index: 60; top: calc(env(safe-area-inset-top, 0px) + var(--ed-head-h) + .5rem); bottom: auto; left: auto; right: var(--cx-gut-r); min-height: 44px; margin: 0; animation: cx-fade .3s var(--cx-ease) .4s both; }
+  .cx-intro-skip .ic { rotate: none; }
+}
+
+/* ---------- 4. The Manas verse bar rises into the header's place when the header tucks away ---------- */
+.mx-bar { transition: top .45s var(--ed-ease, cubic-bezier(.2, .7, .15, 1)); }
+:root.is-head-hidden .mx-bar { top: 0; }
+@media (prefers-reduced-motion: reduce) { .mx-bar { transition: none; } }
+:root[data-motion="reduce"] .mx-bar { transition: none; }
+@media (max-width: 759px) {
+  /* opaque on a phone: no strip of verse showing through, and no full-width blur over a very long page */
+  .mx-bar { background: var(--cx-paper); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+
+/* ---------- 5. The reading dock: out of the way of the opening, tucked while reading on, compact on its side ---------- */
+.reader-bar.is-tucked { translate: -50% calc(100% + 1rem + env(safe-area-inset-bottom, 0px)); }
+@media (max-width: 759px) {
+  /* the dock carries Listen on a phone; the opening's own copy goes */
+  .cx-film-btns [data-listen] { display: none; }
+  .cx-film .story-actions .seg--read { display: flex; flex: 1 1 100%; min-width: 0; max-width: 100%; }
+  .cx-film .story-actions .seg--read button, .seg--read button { flex: 1 1 0; min-width: 0; min-height: 44px; padding-inline: .5rem; white-space: nowrap; font-size: .9rem; }
+}
+@media (max-width: 759px), (orientation: landscape) and (max-height: 520px) {
+  /* the end of the story is never under the dock */
+  :root .cx-film .reader-main, :root[data-read] .cx-film .reader-main { padding-bottom: calc(58px + 1.6rem + env(safe-area-inset-bottom, 0px)); }
+  /* that clearance is the dock's room; main's own 7rem on top of it left ~200px of empty paper before the credits */
+  main.reader.cx-film { padding-bottom: 0; }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  :root { --ed-head-h: 47px; }   /* 48px with its rule: header and dock together stay within 92px */
+  .reader-bar { height: 44px; padding: 0 .25rem; align-items: center; bottom: calc(.4rem + env(safe-area-inset-bottom, 0px)); }
+  .reader-bar .btn { min-height: 44px; }
+  /* Listen keeps its name for screen readers, shown as its icon alone */
+  .reader-bar [data-listen] > span { position: absolute; width: 1px; height: 1px; overflow: visible; clip-path: inset(50%); white-space: nowrap; pointer-events: none; }
+}
+
+/* ---------- 10. Choose your character, on a phone and on its side ----------
+   (Phone rules here start below 700px, the width where the select's own tablet layout takes over.)
+   The worlds are a rail of tabs, each a full finger tall; the characters a strip that runs to the screen's edge, with the
+   next one peeking in; every name whole, under its face, at a size that can be read; both buttons always there. */
+@media (max-width: 699px), (orientation: landscape) and (max-height: 520px) {
+  .cx-sel-realms { display: flex; flex-wrap: nowrap; justify-content: flex-start; align-items: stretch; gap: .4rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scrollbar-width: none; margin: 0; padding: .1rem 0 .2rem; }
+  .cx-sel-realms::-webkit-scrollbar { display: none; }
+  .cx-sel-realm { flex: 0 0 auto; flex-direction: row; justify-content: flex-start; scroll-snap-align: start; gap: .5rem; min-height: 44px; padding: 0 1rem 0 .3rem; border: 1px solid rgba(255, 238, 214, .16); border-radius: 99px; background: rgb(12 7 4 / .72); -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none; font: 600 .875rem/1 var(--cx-ui); letter-spacing: .02em; text-transform: none; white-space: nowrap; line-height: 1; }
+  .cx-sel-realm.is-on { background: linear-gradient(180deg, color-mix(in oklab, var(--sel-glow) 30%, #120a05), color-mix(in oklab, var(--sel-base) 85%, #000)); }
+  .cx-sel-realm::after { display: none; }
+  .cx-sel-realm:hover { transform: none; }
+  .cx-sel-realm-w { align-items: flex-start; text-align: left; }
+  .cx-sel-realm-t { margin-right: 0; }
+  .cx-sel-realm-o, .cx-sel-realm-n { display: none; }
+  .cx-sel-realm-pic { display: block; width: 32px; height: 32px; }
+  html[lang="hi"] .cx-sel-realm { font: 500 15px/1 "Mukta", var(--cx-ui); letter-spacing: 0; }
+  .cx-sel-realm:focus-visible { border-radius: 99px; outline-offset: 2px; }
+
+  /* the strip of characters: to the screen's edge, one name under each face, the next tile peeking in */
+  .cx-sel-roster { flex-wrap: wrap; align-items: center; row-gap: .35rem; }
+  .cx-sel-grid { flex: 1 1 0; min-width: 0; display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 96px; gap: .5rem; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-padding-inline: var(--cx-gut); scrollbar-width: none; margin-inline-start: calc(-1 * var(--cx-gut)); padding: .9rem .9rem .3rem var(--cx-gut); -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+  .cx-sel-grid > li { scroll-snap-align: start; }
+  .cx-sel-tile, .cx-sel-grid[data-many="true"] .cx-sel-tile, .cx-sel-grid[data-huge="true"] .cx-sel-tile { aspect-ratio: auto; width: 96px; height: 124px; min-height: 44px; container-type: normal; }
+  .cx-sel-tile-bg, .cx-sel-tile-face { bottom: 32px; }
+  .cx-sel-tile-face img { width: 84%; top: 4%; }
+  .cx-sel-tile::after { background: linear-gradient(to top, rgb(5 3 2 / .96) 0 32px, transparent 60%); }
+  .cx-sel-tile-n, html[lang="hi"] .cx-sel-tile-n, .cx-sel-grid[data-huge="true"] .cx-sel-tile-n { left: 6px; right: 14px; bottom: 0; height: 32px; display: flex; align-items: center; justify-content: center; text-align: center; font: 600 13px/1.1 var(--cx-ui); letter-spacing: 0; text-transform: none; white-space: normal; overflow: hidden; text-overflow: clip; overflow-wrap: anywhere; }
+  html[lang="hi"] .cx-sel-tile-n { font-family: "Mukta", var(--cx-ui); font-size: 14px; }
+  .cx-sel-tile.is-on { translate: 0 -.45rem; scale: 1.04; }
+  .cx-sel-auto { width: 44px; height: 44px; }
+
+  /* what they are, in two lines; and both ways in, side by side, never wrapping into a second row */
+  .cx-sel-sum { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; font-size: .94rem; line-height: 1.45; max-width: 36rem; }
+  .cx-sel-btns { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .5rem; width: 100%; max-width: 30rem; }
+  .cx-sel-btns .cx-btn { min-width: 0; min-height: 44px; padding-inline: .7rem; justify-content: center; font-size: .94rem; }
+  .cx-sel-btns .cx-btn > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .cx-sel-story { display: inline-flex; }
+}
+/* a phone with the height for it shows the whole description (up to four lines); a short one keeps two */
+@media (max-width: 699px) and (min-height: 700px) { .cx-sel-sum { -webkit-line-clamp: 4; line-clamp: 4; } }
+@media (max-width: 699px) {
+  .cx-sel-head { position: relative; z-index: 3; }   /* above the words' own shade, which reaches up to it on short phones */
+  .cx-sel-h { letter-spacing: .2em; gap: .6rem; }
+  .cx-sel-h span { margin-right: -.2em; white-space: nowrap; }
+  .cx-sel-h::before, .cx-sel-h::after { width: 1.5rem; }
+  .cx-sel-realms { flex: 0 0 100%; -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); }
+}
+/* the narrowest phones: the heading keeps to the screen (the side rules give way to it) */
+@media (max-width: 379px) {
+  .cx-sel-h { letter-spacing: .12em; gap: .5rem; }
+  .cx-sel-h span { margin-right: -.12em; }
+  .cx-sel-h::before, .cx-sel-h::after { width: 1rem; }
+  html[lang="hi"] .cx-sel-h { letter-spacing: .04em; }
+  .cx-sel-btns .cx-btn { padding-inline: .5rem; font-size: .875rem; }
+}
+/* a phone on its side: the worlds and the strip share the bottom row; the words and both buttons on the left */
+@media (orientation: landscape) and (max-height: 520px) {
+  .cx-sel-roster { flex-wrap: nowrap; padding-block: .25rem .4rem; }
+  .cx-sel-realms { flex: 0 1 38%; min-width: 0; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+  .cx-sel-realm-pic { width: 28px; height: 28px; }
+  .cx-sel-grid { margin-inline-start: 0; padding: .55rem .9rem .2rem .2rem; grid-auto-columns: 92px; }
+  .cx-sel-tile, .cx-sel-grid[data-many="true"] .cx-sel-tile, .cx-sel-grid[data-huge="true"] .cx-sel-tile { width: 92px; height: 74px; }
+  .cx-sel-tile-bg, .cx-sel-tile-face { bottom: 24px; }
+  .cx-sel-tile-face img { width: 62%; top: 0; }
+  .cx-sel-tile::after { background: linear-gradient(to top, rgb(5 3 2 / .96) 0 24px, transparent 70%); }
+  .cx-sel-tile-n, html[lang="hi"] .cx-sel-tile-n, .cx-sel-grid[data-huge="true"] .cx-sel-tile-n { height: 24px; white-space: nowrap; }
+  .cx-sel-stage { max-width: 58%; gap: .3rem; }
+  .cx-sel-count { font-size: .8rem; } .cx-sel-count b { font-size: 1.15rem; line-height: 1; }
+  .cx-sel-title { font-size: clamp(1.7rem, 1rem + 2.4vw, 2.2rem); line-height: 1.05; }
+  .cx-sel-sum { -webkit-line-clamp: 1; line-clamp: 1; font-size: .875rem; }
+  .cx-sel-btns { max-width: 24rem; }
+}
+
+/* ---------- 11. Reading comfort: the sheet opens at its top; larger text never pushes the page sideways ---------- */
+@media (max-width: 759px) {
+  /* the header row keeps its size whatever the reader's text size (it is chrome, not reading): at Extra large on a 320px
+     phone it would otherwise run past the screen's edge */
+  .ed-brand { font-size: 27px; }
+  .ed-lang, .ed-menu-btn, html[lang="hi"] .ed-menu-btn { font-size: 16.5px; }
+  .ed-head-row { gap: 12px; }
+  .ed-tools { gap: 4px; min-width: 0; }
+  /* the reading dock: its labels give way (ellipsis) before the dock can outgrow the screen */
+  .reader-bar { min-width: 0; max-width: calc(100vw - 24px); }
+  .reader-bar .btn { min-width: 0; }
+  .reader-bar .btn > span:not(.visually-hidden) { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  /* the comfort sheet: a handle, no taller than most of the screen, text size and colour side by side */
+  dialog#comfort[open] { max-height: 85svh; overflow-y: auto; overscroll-behavior: contain; }
+  #comfort .sheet-in { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 1rem; row-gap: 1rem; padding: 1.1rem var(--cx-gut-r, 16px) 1.25rem var(--cx-gut, 16px); }
+  #comfort .sheet-in::before { content: ""; grid-column: 1 / -1; justify-self: center; width: 2.6rem; height: 4px; border-radius: 4px; background: var(--border-hairline, rgb(0 0 0 / .15)); margin: -.3rem 0 -.2rem; }
+  #comfort .sheet-in > * { grid-column: 1 / -1; min-width: 0; }
+  #comfort .sheet-in > fieldset:nth-of-type(1) { grid-column: 1; }
+  #comfort .sheet-in > fieldset:nth-of-type(2) { grid-column: 2; }
+  #comfort .sheet-in > fieldset:nth-of-type(1) .chips, #comfort .sheet-in > fieldset:nth-of-type(2) .chips { display: grid; grid-template-columns: minmax(0, 1fr); gap: .4rem; }
+  #comfort .chip span { min-height: 44px; box-sizing: border-box; }
+}
+
+/* ---------- 13. The footer and a story's sources fold away on a phone ----------
+   The groups and the sources are <details>, open in the markup; site.js keeps them open (and unfoldable) from 760px up and
+   folds them on a phone. On a large screen the summaries are not shown, so the footer looks as it always has. */
+details.cx-fgroup > summary, details.src-fold > summary { list-style: none; }
+details.cx-fgroup > summary::-webkit-details-marker, details.src-fold > summary::-webkit-details-marker { display: none; }
+@media (min-width: 760px) {
+  details.cx-fgroup > summary { display: none; }
+  details.src-fold > summary { cursor: default; }
+  details.src-fold .src-n { display: none; }
+}
+@media (max-width: 759px) {
+  .cx-credits { padding-top: 2.25rem; }
+  .cx-credits-in { gap: .8rem; }
+  .cx-credits-sub { display: none; }   /* the line above already says it; the phone footer keeps to one screen */
+  .cx-credits-name { font-size: clamp(2.6rem, 1.6rem + 6vw, 3.4rem); }
+  .cx-credits-list { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: .5rem; padding-block: .25rem; text-align: left; }
+  .cx-credits-list > * + * { border-top: 1px solid rgb(255 230 200 / .1); }
+  .cx-fgroup > summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 46px; cursor: pointer; font: 500 1rem/1.2 var(--cx-ui); color: var(--cx-gold); }
+  html[lang="hi"] .cx-fgroup > summary { font-family: "Mukta", var(--cx-ui); font-size: 1.05rem; }
+  .cx-fgroup > summary::after, .src-fold > summary::after { content: ""; flex: none; width: .55rem; height: .55rem; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; rotate: 45deg; translate: 0 -.15rem; transition: rotate .2s ease; }
+  .cx-fgroup[open] > summary::after, .src-fold[open] > summary::after { rotate: 225deg; translate: 0 .1rem; }
+  .cx-fgroup > summary:focus-visible, .src-fold > summary:focus-visible { outline: 2px solid var(--cx-gold); outline-offset: 2px; border-radius: 4px; }
+  .cx-fgroup dt { display: none; }
+  .cx-fgroup dl { padding-bottom: .6rem; }
+  .cx-credits-list dd { justify-content: flex-start; min-height: 44px; }
+  .cx-credits-list dd a { min-height: 44px; }
+  .cx-credits-btns { margin-top: .25rem; }
+  .cx-credits-bar { gap: 0 1rem; }
+  .cx-credits-bar a { min-height: 44px; }
+  /* sources: one line, folded, with the count; the list keeps its numbers inside the column and drops the underlines */
+  .src-fold > summary { display: flex; align-items: center; gap: .5rem; min-height: 48px; cursor: pointer; }
+  .src-fold > summary h2 { margin: 0; }
+  .src-fold > summary .src-n { color: var(--ink-muted, currentColor); font-variant-numeric: tabular-nums; margin-right: auto; }
+  .src-fold .sources { list-style-position: inside; padding-left: 0; }
+  .src-fold .sources a { text-decoration: none; display: inline; }
+}
+@media (prefers-reduced-motion: reduce) { .cx-fgroup > summary::after, .src-fold > summary::after { transition: none; } }
+:root[data-motion="reduce"] :is(.cx-fgroup, .src-fold) > summary::after { transition: none; }
+
+/* ---------- 16. Listening: a thin line on the dock shows how far the voice has come ---------- */
+.reader-bar.is-listening::after { content: ""; position: absolute; left: 1.25rem; right: 1.25rem; bottom: 3px; height: 2px; border-radius: 2px; background: var(--saffron, #e0782e); transform: scaleX(var(--listen-p, 0)); transform-origin: left center; transition: transform .4s ease; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .reader-bar.is-listening::after, .is-speaking:is(p, h2) { transition: none; } }
+:root[data-motion="reduce"] :is(.reader-bar.is-listening::after, .is-speaking:is(p, h2)) { transition: none; }
+
+/* ---------- 12. A word's meaning: a short sheet that leaves the sentence in view; words that are easy to tap ---------- */
+@media (max-width: 759px), (orientation: landscape) and (max-height: 520px) {
+  dialog#lens[open] { max-height: 42svh; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; }
+  #lens .sheet-in { gap: .75rem; padding: 1rem var(--cx-gut-r, 16px) 1.1rem var(--cx-gut, 16px); }
+  .reader-main .term { padding-block: .35em; margin-block: -.35em; }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  dialog#lens[open] { width: min(34rem, calc(100% - 32px)); margin: auto auto 0; border-radius: 20px 20px 0 0; }
+}
+
+/* ---------- 14. Words over bright paintings (home bands, "Now showing") sit on their own shade ---------- */
+@media (max-width: 759px) {
+  .cx-manas-card, .cx-now-body { position: relative; }
+  .cx-manas-card::before, .cx-now-body::before { content: ""; position: absolute; z-index: -1; inset: -1.5rem 0 0; pointer-events: none; background: linear-gradient(to top, rgb(12 6 2 / .82) 0, rgb(12 6 2 / .66) 50%, rgb(12 6 2 / .55) 82%, rgb(12 6 2 / .2) 100%); }
+}
+
+/* ---------- 15. A character's page: the name in the first screen, over the foot of the portrait ---------- */
+@media (max-width: 759px) {
+  .cast-hero { padding-top: calc(var(--ed-head-h) + .75rem); }
+  .cast-hero-in { gap: 0; }
+  .cast-hero-pic .art, .cast-hero-pic .fig { height: min(52svh, 32rem); }
+  .cast-hero-txt { position: relative; z-index: 1; margin-top: -4rem; padding-top: 2rem; }
+  .cast-hero-txt::before { content: ""; position: absolute; z-index: -1; inset: -1rem -2rem auto; height: 12rem; pointer-events: none; background: radial-gradient(ellipse 70% 55% at 35% 55%, rgb(18 12 8 / .78), rgb(18 12 8 / 0) 100%); }
+  .cast-hero .cast-name { text-shadow: 0 2px 18px rgb(10 6 3 / .7); }
+  .cast-hero-txt .crumbs { margin-bottom: .25rem; }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  .cast-hero { padding-top: calc(var(--ed-head-h) + .5rem); padding-bottom: 1.5rem; }
+  .cast-hero-in { grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); align-items: center; gap: 1.5rem; }
+  .cast-hero-pic .art, .cast-hero-pic .fig { height: calc(100svh - var(--ed-head-h) - 2rem); }
+  .cast-hero-txt { margin-top: 0; padding-top: 0; }
+  .cast-hero-txt::before { display: none; }
+}
+
+/* ---------- 20. The menu on a phone: dark, its head always in reach, rows a finger tall ---------- */
+@media (max-width: 759px), (orientation: landscape) and (max-height: 520px) {
+  .ed-menu { background: #160c05; color: #f6ead8; }
+  .ed-menu-in { gap: 1rem; padding-top: 0; }
+  .ed-menu-top { position: sticky; top: 0; z-index: 2; margin-inline: calc(-1 * var(--ed-gut)) calc(-1 * var(--ed-gut-r)); padding: env(safe-area-inset-top, 0px) var(--ed-gut-r) 0 var(--ed-gut); background: #160c05; border-bottom: 1px solid rgb(255 230 200 / .12); }
+  .ed-menu-close { min-height: 44px; color: inherit; }
+  .ed-menu-links, .ed-menu-colls { list-style: none; margin: 0; padding: 0; }
+  .ed-menu-links a, .ed-menu-colls a { display: flex; align-items: center; min-height: 48px; padding: 0; font-size: 1.45rem; line-height: 1.15; color: #f6ead8; border-bottom: 1px solid rgb(255 230 200 / .08); }
+  .ed-menu-colls a { font-size: 1.1rem; }
+  .ed-menu .ed-kicker { color: var(--cx-gold, #e8b45a); margin: .5rem 0 0; }
+  .ed-menu .ed-btn--line { color: #f6ead8; border-color: rgb(255 230 200 / .45); }
+  .ed-menu .continue { color: #f6ead8; }
+  :root:not([data-motion="reduce"]) .ed-menu[open] :is(.ed-menu-links, .ed-menu-colls) > li { animation: cx-rise-in .45s var(--cx-ease, ease) both; animation-delay: calc(var(--mi, 0) * 30ms); }
+  .ed-menu-links > li:nth-child(1) { --mi: 1; } .ed-menu-links > li:nth-child(2) { --mi: 2; } .ed-menu-links > li:nth-child(3) { --mi: 3; } .ed-menu-links > li:nth-child(4) { --mi: 4; } .ed-menu-links > li:nth-child(5) { --mi: 5; } .ed-menu-links > li:nth-child(6) { --mi: 6; } .ed-menu-links > li:nth-child(7) { --mi: 7; } .ed-menu-links > li:nth-child(n+8) { --mi: 8; }
+  .ed-menu-colls > li { --mi: 9; }
+}
+@media (orientation: landscape) and (max-height: 520px) {
+  .ed-menu-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 1.25rem; }
+  .ed-menu-colls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 1.25rem; }
+  .ed-menu-links a { font-size: 1.15rem; }
+}
+@media (prefers-reduced-motion: reduce) { .ed-menu[open] :is(.ed-menu-links, .ed-menu-colls) > li { animation: none !important; } }
+
+/* ---------- 21. A story's breadcrumb on a phone: one step back, never a lone "/" ---------- */
+@media (max-width: 759px) {
+  .story-head .crumbs li:not(:nth-child(2)) { display: none; }
+  .story-head .crumbs li:nth-child(2)::before { content: none; }
+  .story-head .crumbs li:nth-child(2) a::before { content: "\2190"; margin-inline-end: .45rem; }
+}
+
+/* ---------- 22. "Ways to read": a row of cards to swipe, the next one peeking in ---------- */
+@media (max-width: 639px) {
+  .cx-ways .cx-wrap:has(> .cx-ways-grid) { padding-inline: 0; }
+  .cx-ways-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78vw; gap: .75rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--cx-gut); padding: 0 var(--cx-gut-r) .5rem var(--cx-gut); background: none; border: 0; border-radius: 0; scrollbar-width: none; }
+  .cx-ways-grid::-webkit-scrollbar { display: none; }
+  .cx-ways-grid > li { scroll-snap-align: start; }
+  .cx-ways-grid a { border: 1px solid var(--cx-line); border-radius: 4px; }
+}
+
+/* ---------- 23. Less dead space between home sections ---------- */
+@media (max-width: 759px) {
+  .cx-home ~ * .cx-ways, .cx-ways, .cx-now { --cx-sec: clamp(2.25rem, 1.5rem + 3vw, 4.5rem); }
+  .cx-finale { --cx-bar: 1.25rem; }
+}
+
+/* ---------- 25. Contents: a chosen scene lands under the header, not low on the screen ---------- */
+.scene, .scene h2 { scroll-margin-top: calc(var(--ed-head-h) + 1rem); }
+
+/* ---------- 26. Both languages on a phone are read one after the other: the button says so ---------- */
+.rb-narrow { display: none; }
+@media (max-width: 699px) { .seg--read .rb-wide { display: none; } .seg--read .rb-narrow { display: inline; } }
+
+/* ---------- 27–28. Floors on a phone: no reading text under 14px, every target a finger wide ---------- */
+@media (max-width: 759px) {
+  .eyebrow, p.eyebrow, .cast-tile-m, .mx-ep-n, .cx-now-body .cx-k { font-size: 14px; }
+  .mx-k, .st-mean-k { font-size: max(14px, .85rem); }
+  .cx-sel-chips a, .people a, .mx-tr-btn { min-height: 44px; display: inline-flex; align-items: center; }
+  /* the padding makes the finger target; the equal negative margin keeps it out of the line box, so wrapped source lines keep their rhythm */
+  .sources a, .rail-sources a, .mx-sources a { display: inline-block; padding-block: .6rem; margin-block: -.6rem; }
+}
+
+/* ---------- 29. The people wall never leaves one tile alone on its last row (three across, on a phone on its side) ---------- */
+@media (min-width: 700px) and (max-width: 759px), (orientation: landscape) and (max-height: 520px) and (min-width: 700px) and (max-width: 1099px) {
+  .cast-tiles > li:last-child:nth-child(3n + 1) { grid-column: 2; }
+}
+
+/* ---------- 18. A kand on a phone: folded episodes (cinema.js), and verse controls a finger tall ---------- */
+.mx-ep-open { display: none; }
+@media (max-width: 759px) {
+  .mx-ep.is-folded .mx-ep-open { display: flex; width: max-content; max-width: calc(100% - 2rem); margin: 1rem auto 2.5rem; min-height: 44px; }
+  .mx-tr-btn, .mx-jump summary, .mx-jump-in a { min-height: 44px; }
+  .mx-sources a { padding-block: .7rem; margin-block: -.7rem; }
+}
+
+/* ---------- 13 (cont.). The story's end: the next story right after "The end" (an empty status line takes no room) ---------- */
+@media (max-width: 759px) {
+  .story-end .done-line:empty { position: absolute; }
+  .cx-film .story-end { padding-top: 1.5rem; gap: 2rem; }
+}
+
+/* the comfort sheet's heading takes the focus only so the sheet opens at its top: it is not a control, so no ring */
+#comfort h2[tabindex="-1"]:focus { outline: none; }
+
+/* ---------- The cinematic layer: phones and desktop alike ----------
+   Compositor-only motion (transform and opacity). cinema.js adds .cx-cine (not under Save-Data), marks a shot .is-seen once
+   it reaches the screen and .is-live while it is on it (two paintings at most); nothing here runs with reduced motion, by the
+   device setting or the site's own switch. Pictures move in their own time, never with the scroll, except the story's
+   opening painting, which falls back a little behind the page as it is left. */
+
+/* A. Ken Burns: the painting on screen drifts slowly toward its own subject (--fx/--fy), pulling back or pressing in by turns */
+@keyframes cx-kb-out { from { transform: scale(1.1) translate3d(1%, .8%, 0); } to { transform: none; } }
+@keyframes cx-kb-in { from { transform: none; } to { transform: scale(1.1) translate3d(-1%, -.6%, 0); } }
+/* B. A scene's title card: the scene number rises in, the title a beat after it, then a thread of gold is drawn under it */
+@keyframes cx-tc-up { from { opacity: 0; transform: translate3d(0, 12px, 0); } to { opacity: 1; transform: none; } }
+@keyframes cx-tc-rule { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: none; } }
+/* D. Lamplight behind a title plate or a kand's opener: a slow, small flicker */
+@keyframes cx-flicker { 0%, 100% { opacity: 1; } 22% { opacity: .8; } 43% { opacity: .95; } 68% { opacity: .84; } }
+/* C. A character's portrait breathes */
+@keyframes cx-breathe { from { scale: 1; } to { scale: 1.02; } }
+@keyframes cx-hero-fall { to { transform: translate3d(0, 15svh, 0); opacity: .6; } }
+@keyframes cx-portrait-fall { to { translate: 0 6%; } }
+
+/* the lamp itself is light, not motion: it stays (still) with reduced motion */
+.shot--card .shot-card::before, .mx-opener::before { content: ""; position: absolute; z-index: -1; inset: -40% -18%; pointer-events: none; background: radial-gradient(closest-side, rgb(243 196 126 / .15), rgb(243 196 126 / .05) 55%, rgb(243 196 126 / 0)); }
+.mx-opener { position: relative; isolation: isolate; }
+.mx-opener::before { inset: -12% 0; }   /* never wider than the page */
+.th-fire { opacity: 0; transition: opacity .8s var(--cx-ease); }
+.th-fire.is-on { opacity: .95; }
+:root[data-theme="light"] .th-embers.th-fire { display: block; }
+:root[data-motion="reduce"] .th-embers.th-fire { display: none; }
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  :root.cx-cine:not([data-motion="reduce"]) :is(.shot:not(.shot--card) > img, .shot--card > .shot-plate) { transform-origin: var(--fx, 50%) var(--fy, 40%); animation: cx-kb-out 18s cubic-bezier(.3, 0, .3, 1) both paused; }
+  :root.cx-cine:not([data-motion="reduce"]) .scene:nth-of-type(even) :is(.shot:not(.shot--card) > img, .shot--card > .shot-plate) { animation-name: cx-kb-in; }
+  :root.cx-cine:not([data-motion="reduce"]) .shot.is-live > :is(img, .shot-plate) { animation-play-state: running; will-change: transform; }
+
+  :root.cx-cine:not([data-motion="reduce"]) .shot-card::after { content: ""; display: block; width: 3.5rem; height: 1px; margin-top: .2rem; background: linear-gradient(90deg, rgb(243 196 126 / .2), var(--cx-gold), rgb(243 196 126 / .2)); }
+  :root.cx-cine:not([data-motion="reduce"]) .shot:not(.is-seen) .shot-card > :is(.scene-no, .pair), :root.cx-cine:not([data-motion="reduce"]) .shot:not(.is-seen) .shot-card::after { opacity: 0; }
+  :root.cx-cine:not([data-motion="reduce"]) .shot.is-seen .shot-card > .scene-no { animation: cx-tc-up .5s cubic-bezier(.2, .7, .2, 1) both; }
+  :root.cx-cine:not([data-motion="reduce"]) .shot.is-seen .shot-card > .pair { animation: cx-tc-up .65s cubic-bezier(.2, .7, .2, 1) .12s both; }
+  :root.cx-cine:not([data-motion="reduce"]) .shot.is-seen .shot-card::after { animation: cx-tc-rule .6s cubic-bezier(.65, 0, .35, 1) .36s both; }
+
+  :root.cx-cine:not([data-motion="reduce"]) :is(.shot--card.is-live .shot-card, .mx-opener.is-live)::before { animation: cx-flicker 6s ease-in-out infinite; }
+  :root.cx-cine:not([data-motion="reduce"]) .cast-hero-pic.is-live > .art { animation: cx-breathe 10s ease-in-out infinite alternate; }
+
+  @supports (animation-timeline: scroll()) {
+    :root.cx-cine:not([data-motion="reduce"]) .cx-film-open-pic { animation: cx-hero-fall linear both; animation-timeline: scroll(root); animation-range: 0 100svh; }
+  }
+  /* where the portrait scrolls with the page (not held beside the text): it falls back a little as it leaves */
+  @supports (animation-timeline: view()) {
+    @media (max-width: 859px) {
+      :root.cx-cine:not([data-motion="reduce"]) .cast-hero-pic > :is(.art, .fig, .sc-crop) { animation: cx-portrait-fall linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+      :root.cx-cine:not([data-motion="reduce"]) .cast-hero-pic.is-live > .art { animation: cx-breathe 10s ease-in-out infinite alternate, cx-portrait-fall linear both; animation-timeline: auto, view(); animation-range: normal, exit 0% exit 100%; }
+    }
+  }
+}
+
+/* ---------- 30. A kand's episode painting on a phone: the shade reaches up behind the whole caption ----------
+   The shot is only ~220px tall on a phone, so the episode line (and a two-line title) sat on bare, often bright, painting. */
+@media (max-width: 759px) {
+  .mx-shot::after { background: linear-gradient(to top, var(--cx-paper) 0%, rgb(12 7 4 / .84) 18%, rgb(12 7 4 / .74) 52%, rgb(12 7 4 / .4) 74%, transparent 100%); }
+  /* a two-line title lifts the episode line to mid-picture: there it sits on the painting's brightest band (Hanuman's glowing bonds, ep. 6) */
+}
+
+/* ---------- 31. "Choose your character" on a phone sits on the brightest part of the painting: a dark halo under its glow ---------- */
+@media (max-width: 759px) {
+  .cx-sel-h { text-shadow: var(--cx-halo), 0 0 18px color-mix(in oklab, var(--sel-glow) 45%, transparent); }
+}
+@media (max-width: 759px) {
+  /* a phone card's text block (kicker, title, line, tags) climbs past the desktop scrim's 52% stop; over a bright
+     painting (snow on Kailasa, open sky) the kicker sat on near-bare art. The veil rises with the text. */
+  [data-room="theatre"] .card::after { background: linear-gradient(to top, rgb(14 8 4 / .97) 0%, rgb(14 8 4 / .86) 34%, rgb(14 8 4 / .55) 60%, transparent 84%); }
+}
+
+/* ---------- 32. Festivals on a phone: the "Coming up" mark wrapped mid-phrase after a long name ("Dev Deepawali · COMING / UP");
+   it gets its own line under the name, without the joining dot ---------- */
+@media (max-width: 759px) {
+  .fest-list li.next strong::after { display: block; margin-top: .4rem; white-space: nowrap; line-height: 1.2; }
+  html[lang="en"] .fest-list li.next strong::after { content: "Coming up"; font-size: 12px; }
+  html[lang="hi"] .fest-list li.next strong::after { content: "आने वाला पर्व"; }
+  html[lang="en"] .fest-list li.next.is-today strong::after { content: "Today"; }
+  html[lang="hi"] .fest-list li.next.is-today strong::after { content: "आज"; }
+}
+@media (max-width: 759px) {
+  /* the counter's numerals are Cinzel even on /hi/; the Devanagari line height (1.75) made the row 51px instead of 29
+     and, on a 568px-tall phone, pushed the words up under "अपना पात्र चुनें" */
+  html[lang="hi"] .cx-sel-count { line-height: 1.2; }
+  html[lang="hi"] .cx-sel-count b { line-height: 1; }
+}
+/* a short phone in Hindi (iPhone SE, 568px): the taller Devanagari heading and name need the stage's spare space, or
+   the counter rides up under the heading. Tighter gaps here only; English already fits. */
+@media (max-width: 699px) and (max-height: 620px) {
+  html[lang="hi"] .cx-sel-stage { gap: .4rem; padding-bottom: .5rem; }
+  html[lang="hi"] .cx-sel-title { line-height: 1.1; }
+}

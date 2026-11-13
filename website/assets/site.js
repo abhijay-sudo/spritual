@@ -211,10 +211,26 @@
     document.addEventListener('pointerout', (e) => { const el = e.target.closest('.card--feature, .coll'); if (el) { el.style.removeProperty('--tx'); el.style.removeProperty('--ty'); } });
   }
 
+  /* ---------- Folds: long lists (the footer's groups, a story's sources) are open on a large screen, folded on a phone ---------- */
+  // The markup has them open (so without this script nothing is hidden); on a large screen they cannot be folded at all.
+  const folds = $$('details[data-fold]');
+  if (folds.length) {
+    const phone = matchMedia('(max-width: 759px)');
+    const setFolds = () => folds.forEach((d) => { d.open = !phone.matches; });
+    setFolds(); phone.addEventListener?.('change', setFolds);
+    folds.forEach((d) => d.querySelector('summary')?.addEventListener('click', (e) => { if (!phone.matches) e.preventDefault(); }));
+  }
+
   /* ---------- Dialogs ---------- */
   document.addEventListener('click', (e) => {
     const b = e.target.closest('[data-open]');
-    if (b) { $('#' + b.dataset.open)?.showModal(); haptic(); }
+    if (b) {
+      const d = $('#' + b.dataset.open); if (!d) return;
+      d.showModal(); haptic();
+      // a sheet opens at its top, its heading holding the focus (so the first choices, not the last button, are in view)
+      const h = d.querySelector('h2[tabindex="-1"]');
+      if (h) { d.scrollTop = 0; h.focus({ preventScroll: true }); }
+    }
   });
   if (!('closedBy' in HTMLDialogElement.prototype)) {
     const outside = (e, d) => { const r = d.getBoundingClientRect(); return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom; };
@@ -568,7 +584,7 @@
         say(`${d.term}: ${d.def}`);
         return;
       }
-      if (sheet) { openSheet(d); return; }
+      if (sheet) { openSheet(d, btn); return; }
       pop(btn, d);
     };
     function pop(btn, d) {
@@ -578,11 +594,23 @@
       gloss.style.top = (r.bottom + 8) + 'px';
       try { gloss.showPopover(); } catch { gloss.hidden = false; }
     }
-    function openSheet(d) {
+    function openSheet(d, btn) {
         const b = $('[data-lens-body]', sheet); b.innerHTML = `<ol class="lens-list">${cardHtml(d)}</ol>`;
         b.querySelector('b').textContent = d.term; const dv = b.querySelector('.lens-deva'); if (dv) dv.textContent = d.deva; const tr = b.querySelector('.lens-translit'); if (tr) tr.textContent = d.translit;
         const li = b.querySelector('[data-lit]'); if (li) li.textContent = d.literal; b.querySelector('[data-def]').textContent = d.def; if (d.context) { b.querySelector('[data-ctx-k]').textContent = d.ctxLabel; b.querySelector('[data-ctx]').textContent = d.context; } const ci = b.querySelector('cite'); if (ci) ci.textContent = d.source.label;
         sheet.showModal();
+        // the word stays in sight, above the (short) sheet
+        if (btn) requestAnimationFrame(() => {
+          const r = btn.getBoundingClientRect(); const room = innerHeight - sheet.getBoundingClientRect().height;
+          const want = Math.max(80, room * .45); if (r.top > room - 24 || r.top < 60) scrollBy({ top: r.top - want, behavior: 'auto' });
+        });
+    }
+    // a downward swipe on the sheet puts it away (only from its top, so the meaning itself can still be scrolled)
+    if (sheet) {
+      let y0 = null;
+      sheet.addEventListener('pointerdown', (e) => { y0 = sheet.scrollTop <= 0 && e.pointerType !== 'mouse' ? e.clientY : null; });
+      sheet.addEventListener('pointermove', (e) => { if (y0 != null && e.clientY - y0 > 60) { y0 = null; sheet.close(); } });
+      sheet.addEventListener('pointerup', () => { y0 = null; }); sheet.addEventListener('pointercancel', () => { y0 = null; });
     }
     // is the card clear of every full-width painting on screen? If not, scroll the rail so it sits in a clear stretch.
     function clearOfShots(card) {
@@ -638,6 +666,18 @@
     const nowLabel = $('[data-scene-now]'); const tocLinks = $$('#toc a'); const toast = $('[data-toast]'); const beads = $$('[data-bead]');
     let current = 1; let maxSeen = 1; let entered = false;
     const langLinks = $$('[data-lang-switch]');
+    // Switching language switches the reading edition with it (a reader on the English edition who taps हिं gets the Hindi
+    // story, not Hindi menus around English text); side by side stays side by side. The scene carried across is the one at
+    // the reading line (30% down the screen), the same one the dock names.
+    langLinks.forEach((a) => a.addEventListener('click', () => {
+      const p = store.get('prefs', {}); const to = a.getAttribute('lang') === 'hi' ? 'hi' : 'en';
+      if (p.read && p.read !== 'both' && p.read !== to) { p.read = to; store.set('prefs', p); }
+      if (UI.samePath && entered && root.dataset.mode !== 'leaf') {
+        const line = innerHeight * .3; let n = current;
+        scenes.forEach((sc, i) => { if (sc.getBoundingClientRect().top <= line) n = i + 1; });
+        a.href = a.getAttribute('href').split('#')[0] + '#page-' + n;
+      }
+    }));
     const markDay = () => { const days = store.get('days', []); if (!days.includes(dayKey())) { days.push(dayKey()); store.set('days', days.slice(-120)); } };
     // real: the reader is actually in the scenes (not just looking at the title card), so their place is worth keeping
     const setCurrent = (n, scrollInto, real = true) => {
@@ -656,7 +696,7 @@
       if (n === total && !reader.dataset.done) { reader.dataset.done = '1'; Sound.bell(523, 0.2); const d = $('[data-done-line]'); if (d) d.textContent = UI.doneLine; const f = $('[data-story-fig] .fig, [data-story-fig] .art'); if (f) { f.classList.add('is-bowing'); f.addEventListener('animationend', () => f.classList.remove('is-bowing'), { once: true }); } }
       if (scrollInto) scenes[n - 1].scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' });
     };
-    const io = new IntersectionObserver((entries) => { for (const en of entries) if (en.isIntersecting && root.dataset.mode !== 'leaf') setCurrent(scenes.indexOf(en.target) + 1); }, { rootMargin: '-35% 0px -60% 0px' });
+    const io = new IntersectionObserver((entries) => { for (const en of entries) if (en.isIntersecting && root.dataset.mode !== 'leaf') setCurrent(scenes.indexOf(en.target) + 1); }, { rootMargin: '-30% 0px -60% 0px' });
     scenes.forEach((s) => io.observe(s));
     // choosing a scene from Contents or the reel moves focus there too, so keyboard and screen-reader readers arrive with it
     // (tabindex is added only here: a focusable section in the markup would stop the browser honouring #page-N on arrival)
@@ -751,17 +791,32 @@
       const ic = b.querySelector('svg.ic'); const want = state === 'playing' ? UI.icPause : UI.icPlay; if (ic && want) ic.outerHTML = want;
     });
     const voice = (L = readLang()) => { const want = L === 'hi' ? 'hi' : 'en'; const vs = synth.getVoices(); return vs.find((v) => v.lang.toLowerCase() === `${want}-in`) || vs.find((v) => v.lang.toLowerCase().startsWith(want)) || null; };
-    const mark = (n) => scenes.forEach((s, i) => s.classList.toggle('is-speaking', i + 1 === n));
+    // Only the paragraph being read is marked (a warm rule and tint), and it is kept in view; a thin line on the dock shows
+    // how far through the story the voice has come. Doubled stops ("ice..") are made single before they are spoken.
+    const dockBar = $('.reader-bar');
+    let speakingEl = null;
+    const mark = (el) => { if (speakingEl && speakingEl !== el) speakingEl.classList.remove('is-speaking'); speakingEl = el || null; if (el) el.classList.add('is-speaking'); };
+    const progress = (v) => dockBar?.style.setProperty('--listen-p', v.toFixed(4));
+    const clean = (t) => t.replace(/\s+/g, ' ').replace(/\.{2,}/g, '.').replace(/([.!?।])\s*\./g, '$1').trim();
     const speakScene = (n) => {
-      if (n > total) { state = 'idle'; mark(0); label(UI.listen); return; }
-      const s = scenes[n - 1]; mark(n);
-      if (root.dataset.mode === 'leaf') goTo(n, 1); else s.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' });
-      const L = readLang(); const text = [s.querySelector(`h2[lang="${L}"]`)?.textContent || '', ...visibleParas(s).map((p) => p.textContent)].join('. ');
-      const parts = text.match(/[^.!?।]+[.!?।]+["”’]?|\S[^.!?।]*$/g) || [text]; const v = voice(L);
-      parts.forEach((part, i) => {
-        const u = new SpeechSynthesisUtterance(part.trim()); u.lang = L === 'hi' ? 'hi-IN' : 'en-IN'; if (v) u.voice = v; u.rate = 0.95;
-        if (i === parts.length - 1) u.onend = () => { if (state === 'playing') speakScene(n + 1); };
-        synth.speak(u);
+      if (n > total) { state = 'idle'; mark(null); progress(0); dockBar?.classList.remove('is-listening'); label(UI.listen); return; }
+      const s = scenes[n - 1];
+      if (root.dataset.mode === 'leaf') goTo(n, 1);
+      const L = readLang(); const h = s.querySelector(`h2[lang="${L}"]`);
+      const items = [...(h ? [h] : []), ...visibleParas(s)].filter((el) => el.textContent.trim());
+      if (!items.length) { speakScene(n + 1); return; }
+      const v = voice(L);
+      items.forEach((el, k) => {
+        const text = clean(el.textContent); const parts = text.match(/[^.!?।]+[.!?।]+["”’]?|\S[^.!?।]*$/g) || [text];
+        parts.forEach((part, i) => {
+          const u = new SpeechSynthesisUtterance(part.trim()); u.lang = L === 'hi' ? 'hi-IN' : 'en-IN'; if (v) u.voice = v; u.rate = 0.95;
+          if (i === 0) u.onstart = () => {
+            mark(el); progress((n - 1 + k / items.length) / total);
+            if (root.dataset.mode !== 'leaf') el.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'center' });
+          };
+          if (k === items.length - 1 && i === parts.length - 1) u.onend = () => { if (state === 'playing') speakScene(n + 1); };
+          synth.speak(u);
+        });
       });
     };
     listenBtns.forEach((b) => b.addEventListener('click', () => {
@@ -769,21 +824,36 @@
       if (state === 'idle') {
         // say so plainly when this device has no voice for the language being read, instead of reading it wrongly or not at all
         const L = readLang(); if (synth.getVoices().length && !voice(L)) { toast.textContent = fmt(UI.listenNoVoice, { lang: L === 'hi' ? UI.voiceHi : UI.voiceEn }); setTimeout(() => { toast.textContent = ''; }, 8000); return; }
-        state = 'playing'; label(UI.pauseListen); synth.cancel(); speakScene(current);
+        state = 'playing'; label(UI.pauseListen); synth.cancel(); dockBar?.classList.add('is-listening'); progress((current - 1) / total); speakScene(current);
       }
       else if (state === 'playing') { state = 'paused'; synth.pause(); label(UI.resume); }
       else { state = 'playing'; synth.resume(); label(UI.pauseListen); }
     }));
     addEventListener('pagehide', () => synth?.cancel());
     // the floating reader dock steps aside once the story has ended, so it never sits over the reflection or the footer links
-    const dock = $('.reader-bar'); const ends = $$('.story-end, .cx-credits');
-    if (dock && ends.length && 'IntersectionObserver' in window) {
-      const seen = new Set();
-      const eio = new IntersectionObserver((es) => {
-        es.forEach((en) => (en.isIntersecting ? seen.add(en.target) : seen.delete(en.target)));
-        const away = seen.size > 0; dock.classList.toggle('is-away', away); dock.inert = away;
-      }, { rootMargin: '0px 0px -20% 0px' });
+    // It also stays out of the way while the story's opening is on screen (the opening has its own Begin and Listen).
+    const dock = $('.reader-bar'); const ends = $$('.story-end, .cx-credits'); const hero = $('.cx-film-open');
+    if (dock && 'IntersectionObserver' in window) {
+      const seen = new Set(); let heroOn = false;
+      const place = () => { const away = seen.size > 0 || heroOn; dock.classList.toggle('is-away', away); dock.inert = away; };
+      const eio = new IntersectionObserver((es) => { es.forEach((en) => (en.isIntersecting ? seen.add(en.target) : seen.delete(en.target))); place(); }, { rootMargin: '0px 0px -20% 0px' });
       ends.forEach((el) => eio.observe(el));
+      if (hero) new IntersectionObserver((es) => { heroOn = es[es.length - 1].intersectionRatio >= .15; place(); }, { threshold: [0, .15, .3, .6, 1] }).observe(hero);
+    }
+    // on a phone (or a phone on its side) the dock tucks away while the reader scrolls on into the story, and comes back
+    // the moment they scroll up, in the same rhythm as the header
+    const pocket = matchMedia('(max-width: 759px), (orientation: landscape) and (max-height: 520px)');
+    if (dock) {
+      let lastY = scrollY, tick = false;
+      const tuck = () => {
+        tick = false; const y = scrollY;
+        if (!pocket.matches || dock.contains(document.activeElement)) dock.classList.remove('is-tucked');
+        else if (y > lastY + 6) dock.classList.add('is-tucked');
+        else if (y < lastY - 6) dock.classList.remove('is-tucked');
+        if (Math.abs(y - lastY) > 6) lastY = y;
+      };
+      addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(tuck); } }, { passive: true });
+      dock.addEventListener('focusin', () => dock.classList.remove('is-tucked'));
     }
     if (Sound.on()) Sound.droneStart();
     // Leaving for the quiet minute: remember where the reader was, so /pause/ can show this story's question and bring them back
@@ -983,7 +1053,18 @@
     }), { rootMargin: '40% 0px 40% 0px' });
     window.SpritualClips = { start: (v) => { if (v.dataset.near) start(v); }, stop: (v) => { if (!v.paused) v.pause(); } };
     // the film waits until the page (poster, words, first pictures) has loaded, then for a quiet moment
-    const watch = () => clips.forEach((v) => io.observe(v));
+    // On a phone the opening film waits until the title sequence's curtain has opened (mobile.css: about 2.2 s in), and
+    // a 2g/3g connection keeps the poster alone: the film is a nicety, never worth the reader's data on a slow line.
+    const pocket = matchMedia('(max-width: 759px), (orientation: landscape) and (max-height: 520px)').matches;
+    const titlesOn = !!document.querySelector('.cx-home .cx-spark') && root.classList.contains('cx-js') && !root.classList.contains('cx-seen');
+    const watch = () => clips.forEach((v) => {
+      if (pocket && v.closest('.cx-open')) {
+        if (slow) return;
+        const wait = titlesOn ? 2300 - performance.now() : 0;
+        if (wait > 0) { setTimeout(() => io.observe(v), wait); return; }
+      }
+      io.observe(v);
+    });
     const idle = () => ('requestIdleCallback' in window ? requestIdleCallback(watch, { timeout: 1500 }) : setTimeout(watch, 300));
     if (document.readyState === 'complete') idle(); else addEventListener('load', idle, { once: true });
     document.addEventListener('visibilitychange', () => clips.forEach((v) => { if (document.hidden) { if (!v.paused) v.pause(); } else if (v.getAttribute('src') && !v.dataset.hold && host(v)?.classList.contains('is-live')) v.play().catch(() => {}); }));

@@ -390,7 +390,7 @@ html[lang="hi"] .scene-no { text-transform: none; letter-spacing: 0; font-size: 
 .scene p { font-family: var(--font-display); font-weight: 400; font-variation-settings: "opsz" 16; font-size: clamp(1.08rem, 1rem + .35vw, 1.28rem); line-height: 1.75; letter-spacing: -.005em; hanging-punctuation: first; }
 .scene p:lang(hi), html[lang="hi"] .scene p { font-family: var(--font-hi); font-size: clamp(1.12rem, 1.04rem + .4vw, 1.34rem); line-height: 1.95; letter-spacing: 0; }
 .scene:first-child h2 + p:lang(en)::first-letter { float: left; font-size: 3.8em; line-height: .8; padding: .1em .12em 0 0; color: var(--saffron-2); font-weight: 600; }
-.scene.is-speaking { border-radius: 12px; background: color-mix(in oklab, var(--gold) 28%, var(--paper)); box-shadow: 0 0 0 .9rem color-mix(in oklab, var(--gold) 28%, var(--paper)); }
+.is-speaking:is(p, h2) { border-radius: 4px; background: color-mix(in oklab, var(--gold) 16%, transparent); box-shadow: -10px 0 0 -7px var(--saffron, #c8641e); transition: background-color .2s ease, box-shadow .2s ease; }
 .scene-tools { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; justify-content: space-between; padding: .6rem 0 0; }
 .seg { display: inline-flex; border: 1.5px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--surface); padding: 3px; gap: 2px; }
 .seg button { min-height: 38px; padding: 0 1rem; border: 0; border-radius: 999px; background: none; font: inherit; font-weight: 600; color: var(--muted); cursor: pointer; transition: background-color .2s, color .2s; }
@@ -876,7 +876,6 @@ html[lang="hi"] .rail-kicker { text-transform: none; letter-spacing: .02em; font
 :root[data-read="both"] .pair-gap { display: block; }
 :root[data-read="both"] .reader-main { max-width: none; }
 @media (max-width: 760px) { :root[data-read="both"] .pair { grid-template-columns: minmax(0, 1fr); gap: .35rem; } :root[data-read="both"] .pair > .alt { padding-left: .9rem; border-left: 2px solid var(--accent-gold-tint); margin-bottom: .6rem; } }
-.scene:first-child .pair:nth-child(3) > p[lang="en"]::first-letter { float: left; font-size: 3.8em; line-height: .8; padding: .1em .12em 0 0; color: var(--accent-vermilion); font-weight: 600; }
 .scene:first-child h2 + p:lang(en)::first-letter { float: none; font-size: inherit; }
 .scene h2 { font-variation-settings: "opsz" 48; }
 .scene h2[lang="hi"] { font-family: var(--font-hi); }
@@ -901,6 +900,7 @@ html[lang="hi"] .lens-k { text-transform: none; letter-spacing: .02em; font-size
 .rail-sources { margin: 0; padding-left: 1.1rem; display: grid; gap: .35rem; font-size: .84rem; color: var(--ink-secondary); }
 .term { background: none; border: 0; padding: 0; margin: 0; font: inherit; color: inherit; cursor: help; text-decoration: underline dotted var(--accent-vermilion) 2px; text-underline-offset: .22em; border-radius: 3px; }
 .term:hover, .term[aria-expanded="true"], .term.is-lit { background: color-mix(in oklab, var(--accent-gold-tint) 70%, transparent); }
+.term-w { white-space: nowrap; }   /* a term and the punctuation touching it never part at a line end */
 /* bottom sheet for the lens on phones */
 dialog.sheet--bottom[open] { margin: auto auto 0; width: 100%; max-width: 100%; border-radius: 24px 24px 0 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
 dialog.sheet--bottom .sheet-in::before { content: ""; width: 2.6rem; height: 4px; border-radius: 4px; background: var(--border-hairline); margin: -.4rem auto .2rem; }

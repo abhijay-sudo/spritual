@@ -27,10 +27,16 @@
   var setK = function () { d.style.setProperty('--cx-k', Math.max(1, Math.min(innerWidth / 1920, innerHeight / 1080)).toFixed(4)); };
   setK(); addEventListener('resize', setK);
   // the opening titles play once; a reader who has been here before gets the words and buttons at once
-  // The home page's title sequence plays once each time the site is opened (a new tab or window), not on every return to
-  // the home page within that visit. Other pages keep their own first-visit-only entrances.
+  // The home page's title sequence plays at most once a week on this device: a link opened into a new tab (from a chat,
+  // a feed or a search) does not replay it. Only the time it last played is kept, here on the device. A tab that has
+  // already seen it (the older per-tab flag) counts as seen too. Other pages keep their own first-visit-only entrances.
   try {
-    if (me && me.hasAttribute('data-titles')) { if (sessionStorage.getItem('spritual:titles')) d.classList.add('cx-seen'); else sessionStorage.setItem('spritual:titles', '1'); localStorage.setItem('spritual:seen', '1'); }
+    if (me && me.hasAttribute('data-titles')) {
+      var titlesAt = +localStorage.getItem('spritual:titlesAt') || 0;
+      if (sessionStorage.getItem('spritual:titles') || Date.now() - titlesAt < 6048e5) d.classList.add('cx-seen');
+      else { localStorage.setItem('spritual:titlesAt', String(Date.now())); sessionStorage.setItem('spritual:titles', '1'); }
+      localStorage.setItem('spritual:seen', '1');
+    }
     else if (localStorage.getItem('spritual:seen')) d.classList.add('cx-seen'); else localStorage.setItem('spritual:seen', '1');
   } catch (e) {}
   // The title sequence's curtain parts along the line of light under the name, and where that line sits depends on the
@@ -63,7 +69,17 @@
     };
     requestAnimationFrame(seam);
   }
+  // A page that opens dark (the home titles, a story's or a kand's painted opening) is dark from its very first frame: the
+  // canvas under the page is set to the opening's dusk until the page has been revealed, so the dissolve from one dark page
+  // into another never passes through the paper colour.
+  var dark = me && me.hasAttribute('data-dark');
+  var undark = function () { d.style.backgroundColor = ''; };
+  if (dark) {
+    d.style.backgroundColor = '#160c05';
+    if (!('onpagereveal' in window)) addEventListener('load', undark);
+  }
   addEventListener('pagereveal', function (e) {
+    if (dark) { if (e.viewTransition) e.viewTransition.finished.then(undark, undark); else undark(); }
     if (!e.viewTransition) return;
     var w; try { w = sessionStorage.getItem('cx-vt'); sessionStorage.removeItem('cx-vt'); } catch (x) { return; }
     if (!w || w !== location.pathname) return;

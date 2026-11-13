@@ -8,6 +8,9 @@
   const fmt = (s, o) => s.replace(/\{(\w+)\}/g, (_, k) => (o[k] ?? ''));
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   if (!reduced()) root.classList.add('cx-js'); else root.classList.remove('cx-js');
+  // phones and short landscape screens play a shorter title sequence (mobile.css): its clock runs at this pace here too
+  const pocket = matchMedia('(max-width: 759px), (orientation: landscape) and (max-height: 520px)').matches;
+  const titlePace = pocket ? .42 : 1;
 
   /* ---------- One scroll loop for everything that follows the scroll ---------- */
   const jobs = [];
@@ -26,8 +29,8 @@
         const r = el.getBoundingClientRect(); const vh = innerHeight;
         if (r.bottom < -50 || r.top > vh + 50) return;
         const v = closing ? clamp((vh - r.top) / (vh * .9)) : clamp(1 - Math.max(0, -r.top) / (vh * .45));
-        if (Math.abs(v - last) < .002) return;
-        last = v; el.style.setProperty('--lb', v.toFixed(3));
+        const q = Math.round(v * 100) / 100; if (q === last) return;   // a hundredth is finer than a pixel of bar
+        last = q; el.style.setProperty('--lb', q.toFixed(2));
       });
     }
   }
@@ -88,7 +91,7 @@
       if (reduced()) { g.clearRect(0, 0, W, H); return; }
       // the sequence's own clock: the line of light's CSS animation says how far in we are (this script may start late)
       if (sparkAnim && sparkAnim.playState === 'running' && typeof sparkAnim.currentTime === 'number') born = now - sparkAnim.currentTime;
-      const dt = Math.min(.05, (now - (last || now)) / 1000); last = now; const t = now / 1000; const age = (now - born) / 1000;
+      const dt = Math.min(.05, (now - (last || now)) / 1000); last = now; const t = now / 1000; const age = (now - born) / 1000 / titlePace;
       g.clearRect(0, 0, W, H);
       // in the dark the dust is at its brightest; once the curtain has opened it thins, so the river stays the picture
       const amb = !titles || root.classList.contains('cx-seen') ? .55 : 1 - .45 * clamp((age - 4.4) / 2.6);
@@ -175,6 +178,8 @@
     const narrow = matchMedia('(max-width: 699px)');
     let outT = 0;
     let cur = 0, front = 0, token = 0, stopped = reduced(), lastPointer = 'mouse', timer = 0, leaving = false;
+    // where the strip must scroll to bring a tile to its middle (measured on screen: the strip is not the tile's offsetParent)
+    const centreOf = (li) => { const g = grid.getBoundingClientRect(), r = li.getBoundingClientRect(); return grid.scrollLeft + (r.left - g.left) - (grid.clientWidth - r.width) / 2; };
     const pick = (i, byUser) => {
       i = (i + n) % n; if (byUser) halt();
       if (i === cur) return;
@@ -210,14 +215,18 @@
       const vw = `${Math.round(100 * (parseFloat(d.z) || 1))}vw`; const big = new Image(); big.sizes = vw; big.srcset = d.picset; big.src = d.pic;
       (big.decode ? big.decode() : Promise.resolve()).then(() => { if (my === token) { next.sizes = vw; next.srcset = d.picset; next.src = d.pic; } }).catch(() => {});
       if (!reduced()) { sel.classList.remove('is-swap'); void sel.offsetWidth; sel.classList.add('is-swap'); }
-      if (grid.scrollWidth > grid.clientWidth + 4) { const li = t.parentElement; grid.scrollTo({ left: li.offsetLeft - (grid.clientWidth - li.offsetWidth) / 2, behavior: reduced() || byUser ? 'auto' : 'smooth' }); }
+      if (grid.scrollWidth > grid.clientWidth + 4) grid.scrollTo({ left: centreOf(t.parentElement), behavior: reduced() || byUser ? 'auto' : 'smooth' });
     };
     // left alone, the screen shows each story in turn; any choice by hand stops it, and the button starts it again
     // one fixed name ("Pause the showcase") with aria-pressed as its state: a toggle whose name also changes contradicts itself
     const showAuto = () => { if (auto) auto.setAttribute('aria-pressed', String(stopped)); };
     const halt = () => { if (!stopped) { stopped = true; showAuto(); } clearTimeout(timer); timer = 0; };
     const turn = () => { timer = 0; if (reduced()) { halt(); return; } if (stopped || !selOnScreen || document.hidden || leaving) return; pick(step(1), false); timer = setTimeout(turn, 4800); };
-    selWake = () => { if (!timer && !stopped && selOnScreen && !document.hidden) timer = setTimeout(turn, 4800); };
+    // On a touch screen the showcase waits longer before its first turn (eight seconds), so a reader still taking in the
+    // first character is not moved on; and a touch, a key or a wheel anywhere in the section stops it for good.
+    const touchy = matchMedia('(hover: none)').matches; let firstTurn = true;
+    selWake = () => { if (!timer && !stopped && selOnScreen && !document.hidden) { timer = setTimeout(turn, touchy && firstTurn ? 8000 : 4800); firstTurn = false; } };
+    ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach((ev) => sel.addEventListener(ev, (e) => { if (!auto || !auto.contains(e.target)) halt(); }, { passive: true }));
     auto?.addEventListener('click', () => { if (stopped) { stopped = reduced() ? true : false; showAuto(); selWake(); } else halt(); });
     document.addEventListener('visibilitychange', selWake); showAuto();
     new MutationObserver(() => { if (reduced()) halt(); }).observe(root, { attributes: true, attributeFilter: ['data-motion'] });
@@ -254,9 +263,17 @@
     });
     // choosing a realm: its characters take the roster, and its first one takes the stage (unless the one in hand is already of it)
     const total = T('total');
+    // on a phone the realms are a rail that scrolls sideways: the one chosen (or focused) is brought wholly into it
+    const showRealm = (b) => {
+      if (!realms || realms.scrollWidth <= realms.clientWidth + 2) return;
+      const box = realms.getBoundingClientRect(), r = b.getBoundingClientRect(); const pad = 12;
+      if (r.left < box.left + pad) realms.scrollLeft += r.left - box.left - pad;
+      else if (r.right > box.right - pad * 3) realms.scrollLeft += r.right - box.right + pad * 3;
+    };
+    rBtns.forEach((b) => b.addEventListener('focus', () => showRealm(b)));
     const setGroup = (g, byUser) => {
       if (g === grp) return; grp = g;
-      rBtns.forEach((b) => { const on = b.dataset.realm === g; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', String(on)); });
+      rBtns.forEach((b) => { const on = b.dataset.realm === g; b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', String(on)); if (on) showRealm(b); });
       // a tile that holds the keyboard's focus may be about to leave the roster: the focus goes to the realm's own name
       const held = grid.contains(document.activeElement) && document.activeElement.closest('li')?.dataset.g !== g;
       let k = 0; tiles.forEach((t) => { const li = t.parentElement; const on = li.dataset.g === g; li.hidden = !on; if (on) li.style.setProperty('--gk', k++); });
@@ -266,10 +283,15 @@
       grid.dataset.many = String(k > 12); grid.dataset.huge = String(k > 20);
       const v = inGrp(); grid.scrollLeft = 0;
       if (v.includes(cur)) { out.n.textContent = String(v.indexOf(cur) + 1).padStart(2, '0'); if (byUser) halt(); } else pick(v[0], byUser);
+      // the one on stage is always in sight in a strip that scrolls (centred in it; the page itself does not move)
+      if (grid.scrollWidth > grid.clientWidth + 4) grid.scrollLeft = centreOf(tiles[cur].parentElement);
       if (byUser && !reduced() && !sel.classList.contains('sel-wait')) { grid.classList.remove('is-regroup'); void grid.offsetWidth; grid.classList.add('is-regroup'); }
     };
     if (realms && rBtns.length > 1) {
       realms.hidden = false; setGroup(tiles[cur].parentElement.dataset.g, false);
+      // the medallions are cut from larger pictures placed far outside their small round frames, which a browser's lazy
+      // loading can take for "never on screen" (notably inside the phone's scrolling rail): they are asked for outright
+      $$('.cx-sel-realm-pic img', realms).forEach((im) => { im.loading = 'eager'; });
       let hoverT = 0;
       rBtns.forEach((b, k) => {
         // resting the pointer on a realm opens it (a short pause, so passing over one on the way elsewhere does not)
@@ -334,6 +356,37 @@
   // the doha list closes once a doha is chosen
   $$('.mx-jump a').forEach((a) => a.addEventListener('click', () => a.closest('details')?.removeAttribute('open')));
 
+  /* ---------- A kand on a phone: one episode open at a time ----------
+     The page is a whole kand (sixty dohas and more): on a phone each episode after the first shows its painting, title and
+     summary, and its verses wait behind "Read this episode". Nothing is removed: the address of every episode and doha still
+     works (the episode it is in opens, and the page goes there), and the browser's find-in-page still searches the verses
+     (hidden="until-found", which opens the episode it finds them in). Wider screens keep the whole kand open. */
+  const eps = $$('section.mx-ep[id^="ep-"]');
+  if (eps.length > 2 && matchMedia('(max-width: 759px)').matches) {
+    const hiL = root.lang === 'hi';
+    const unfold = (ep) => {
+      const tx = $('.mx-text', ep); if (!tx || !ep.classList.contains('is-folded')) return;
+      tx.removeAttribute('hidden'); ep.classList.remove('is-folded');
+      const b = $('.mx-ep-open', ep); if (b) b.remove();
+    };
+    const target = () => { let id = ''; try { id = decodeURIComponent(location.hash.slice(1)); } catch {} return id ? document.getElementById(id) : null; };
+    const here = target(); const keep = here?.closest('section.mx-ep') || eps[0];
+    eps.forEach((ep) => {
+      if (ep === keep || ep === eps[0]) return;
+      const tx = $('.mx-text', ep); if (!tx) return;
+      ep.classList.add('is-folded'); tx.setAttribute('hidden', 'until-found'); if (!tx.id) tx.id = `${ep.id}-text`;
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'cx-btn cx-btn--line mx-ep-open'; b.setAttribute('aria-controls', tx.id); b.setAttribute('aria-expanded', 'false');
+      b.textContent = hiL ? 'यह प्रसंग पढ़ें' : 'Read this episode';
+      b.addEventListener('click', () => { unfold(ep); tx.querySelector('a, button, [tabindex]')?.focus({ preventScroll: true }); });
+      tx.before(b);
+      tx.addEventListener('beforematch', () => unfold(ep));
+    });
+    const go = () => { const t = target(); const ep = t?.closest('section.mx-ep'); if (ep && ep.classList.contains('is-folded')) { unfold(ep); requestAnimationFrame(() => t.scrollIntoView({ block: 'start' })); } };
+    addEventListener('hashchange', go);
+    // a link to the episode or doha already in the address (opened from a share): that episode was left open above
+    if (here && keep !== eps[0]) requestAnimationFrame(() => here.scrollIntoView({ block: 'start' }));
+  }
+
   /* ---------- Arrivals: tiles and titles come in once, in sequence, when they reach the screen, then stay put ---------- */
   if (!reduced() && 'IntersectionObserver' in window) {
     const targets = $$('[data-room="theatre"] .grid > .card, .cx-posters > li, .cast-tiles > li, .cast-rows > li, .cx-ways-grid > li, .cx-cast-row > li, .cx-rail > li, .cx-strip > li, .cx-head, .cx-row-head, .cast-h, .cx-now-body > *, .mx-opener, .mx-kand-grid > li');
@@ -393,19 +446,39 @@
     e.viewTransition.finished?.finally?.(() => { if (vtImg) vtImg.style.viewTransitionName = ''; });
   });
 
-  /* ---------- A scene's title card arrives a moment before its painting is fully on screen ---------- */
-  const shots = $$('.shot[data-media]');
-  if (shots.length && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting || en.boundingClientRect.bottom < 0) { en.target.classList.add('is-seen'); io.unobserve(en.target); } }), { rootMargin: '0px 0px 12% 0px' });
-    shots.forEach((el) => io.observe(el));
+  /* ---------- The cinematic layer (mobile.css): each scene's title card plays in, the painting on screen drifts slowly,
+     openers are lamp-lit, and fire scenes send up embers. One observer for all of it; with reduced motion the CSS keeps
+     everything still, and with Save-Data none of it starts. ---------- */
+  const lowData = !!navigator.connection?.saveData || matchMedia('(prefers-reduced-data: reduce)').matches;
+  if (!lowData) root.classList.add('cx-cine');
+  const shots = $$('.shot'); const live = new Set(); let fireAt = 0, fire = null;
+  const fireOn = () => [...live].some((el) => el.dataset.fx === 'embers');
+  const lit = $$('.shot, .mx-opener, .cast-hero-pic');
+  if (lit.length && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => {
+      for (const en of es) {
+        const el = en.target;
+        if (en.isIntersecting || en.boundingClientRect.bottom < 0) el.classList.add('is-seen');
+        if (en.isIntersecting) live.add(el); else live.delete(el);
+        if (!el.matches('.shot')) el.classList.toggle('is-live', en.isIntersecting);
+      }
+      // at most two paintings drift at once (the first two on screen)
+      let k = 0; for (const el of shots) { const on = live.has(el) && k < 2; if (on) k++; el.classList.toggle('is-live', on); }
+      if (fireOn()) fireAt = 0; else if (!fireAt) fireAt = performance.now();
+      fire?.();
+    }, { rootMargin: '0px 0px 12% 0px' });
+    lit.forEach((el) => io.observe(el));
   }
 
   /* ---------- The title sequence can be skipped: any key, click, tap or scroll during it puts everything in place ---------- */
   if ($('.cx-home .cx-spark') && root.classList.contains('cx-js') && !root.classList.contains('cx-seen')) {
     const evs = ['pointerdown', 'keydown', 'wheel', 'touchstart'];
+    const skip = $('[data-intro-skip]');
     const done = () => { root.classList.add('cx-seen'); evs.forEach((n) => removeEventListener(n, done)); };
     evs.forEach((n) => addEventListener(n, done, { passive: true }));
-    setTimeout(() => evs.forEach((n) => removeEventListener(n, done)), 5600);
+    // the visible "Skip intro" pill (phones) does the same, and leaves once the sequence is over
+    skip?.addEventListener('click', done);
+    setTimeout(() => { evs.forEach((n) => removeEventListener(n, done)); if (skip) skip.hidden = true; }, pocket ? Math.max(0, 2400 - performance.now()) : 5600);
   }
 
   /* ---------- Theatre: the poster under the pointer leans toward it and catches the light ---------- */
@@ -431,34 +504,43 @@
   /* ---------- Theatre: dust in the projector's light, and a lamp that follows the hand ----------
      Forty-odd warm motes rising slowly behind everything, on the dark pages only. Stops when the tab is hidden, when
      motion is reduced, or when the reader chooses the light theme. */
-  if (root.dataset.room === 'theatre' && !reduced()) {
-    const cv = document.createElement('canvas'); cv.className = 'th-embers'; cv.setAttribute('aria-hidden', 'true');
+  // one engine for both: warm motes (theatre) and embers (fire scenes); phones draw at 1x and 30 fps
+  const motes = (cls, [glow, core], n, vy, ok, rk = 1) => {
+    const cv = document.createElement('canvas'); cv.className = cls; cv.setAttribute('aria-hidden', 'true');
     const g = cv.getContext('2d');
-    if (g) {
-      document.body.append(cv);
-      let W = 0, H = 0, motes = [], last = 0, on = false; const dpr = Math.min(devicePixelRatio || 1, 1.5);
-      const make = (anyY) => ({ x: Math.random() * W, y: anyY ? Math.random() * H : H + 10, r: .5 + Math.random() * 1.5, vy: 5 + Math.random() * 16, sway: 6 + Math.random() * 16, ph: Math.random() * 6.28, sp: .2 + Math.random() * .6, a: .12 + Math.random() * .4 });
-      const size = () => { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0); const n = Math.round(Math.min(46, Math.max(14, W / 30))); motes = Array.from({ length: n }, () => make(true)); };
-      // the home opening has its own, richer dust (above): this layer rests while that one is on screen
-      const quiet = () => document.hidden || reduced() || root.dataset.theme === 'light' || root.classList.contains('cx-open-on');
-      const frame = (t) => {
-        if (quiet()) { on = false; g.clearRect(0, 0, W, H); return; }
-        const dt = Math.min(.05, (t - last) / 1000 || 0); last = t; g.clearRect(0, 0, W, H);
-        for (let i = 0; i < motes.length; i++) {
-          const m = motes[i]; m.y -= m.vy * dt; m.ph += m.sp * dt; const x = m.x + Math.sin(m.ph) * m.sway;
-          if (m.y < -12) motes[i] = make(false);
-          const a = m.a * (.6 + .4 * Math.sin(m.ph * 2.3));
-          g.fillStyle = `rgba(255,190,110,${(a * .18).toFixed(3)})`; g.beginPath(); g.arc(x, m.y, m.r * 3.4, 0, 6.283); g.fill();
-          g.fillStyle = `rgba(255,214,160,${a.toFixed(3)})`; g.beginPath(); g.arc(x, m.y, m.r, 0, 6.283); g.fill();
-        }
-        requestAnimationFrame(frame);
-      };
-      const wake = () => { if (!on && !quiet()) { on = true; last = performance.now(); requestAnimationFrame(frame); } };
-      size(); wake();
-      addEventListener('resize', size);
-      document.addEventListener('visibilitychange', wake);
-      new MutationObserver(wake).observe(root, { attributes: true, attributeFilter: ['data-theme', 'data-motion', 'class'] });
-    }
+    if (!g) return null;
+    document.body.append(cv);
+    let W = 0, H = 0, ms = [], last = 0, on = false; const dpr = pocket ? 1 : Math.min(devicePixelRatio || 1, 1.5);
+    const make = (anyY) => ({ x: Math.random() * W, y: anyY ? Math.random() * H : H + 10, r: (.5 + Math.random() * 1.5) * rk, vy: vy[0] + Math.random() * vy[1], sway: 6 + Math.random() * 16, ph: Math.random() * 6.28, sp: .2 + Math.random() * .6, a: .12 + Math.random() * .4 });
+    // a phone's toolbar sliding away changes the height mid-scroll: that alone does not rebuild the canvas
+    const size = () => { if (W === innerWidth && (pocket ? Math.abs(H - innerHeight) < 160 : H === innerHeight)) return; W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0); ms = Array.from({ length: n(W) }, () => make(true)); };
+    const quiet = () => document.hidden || reduced() || !ok();
+    const frame = (t) => {
+      if (quiet()) { on = false; g.clearRect(0, 0, W, H); return; }
+      requestAnimationFrame(frame);
+      if (pocket && t - last < 30) return;
+      const dt = Math.min(.05, (t - last) / 1000 || 0); last = t; g.clearRect(0, 0, W, H);
+      for (let i = 0; i < ms.length; i++) {
+        const m = ms[i]; m.y -= m.vy * dt; m.ph += m.sp * dt; const x = m.x + Math.sin(m.ph) * m.sway;
+        if (m.y < -12) ms[i] = make(false);
+        const a = m.a * (.6 + .4 * Math.sin(m.ph * 2.3));
+        g.fillStyle = `rgba(${glow},${(a * .18).toFixed(3)})`; g.beginPath(); g.arc(x, m.y, m.r * 3.4, 0, 6.283); g.fill();
+        g.fillStyle = `rgba(${core},${a.toFixed(3)})`; g.beginPath(); g.arc(x, m.y, m.r, 0, 6.283); g.fill();
+      }
+    };
+    const wake = () => { if (!on && !quiet()) { on = true; last = performance.now(); requestAnimationFrame(frame); } };
+    size(); wake();
+    addEventListener('resize', size);
+    document.addEventListener('visibilitychange', wake);
+    new MutationObserver(wake).observe(root, { attributes: true, attributeFilter: ['data-theme', 'data-motion', 'class'] });
+    return { cv, wake };
+  };
+  // embers over a burning scene: they rise while it is on screen, and fade out (CSS) for a moment after it has gone
+  const ember = !lowData && shots.some((el) => el.dataset.fx === 'embers') && motes('th-embers th-fire', ['255,110,30', '255,196,110'], (w) => (w < 760 ? 24 : Math.min(60, Math.round(w / 24))), [18, 40], () => fireOn() || (fireAt && performance.now() - fireAt < 900), 1.6);
+  if (ember) { fire = () => { ember.cv.classList.toggle('is-on', fireOn()); ember.wake(); }; fire(); }
+  if (root.dataset.room === 'theatre' && !reduced()) {
+    // the home opening has its own, richer dust (above): this layer rests while that one is on screen
+    motes('th-embers', ['255,190,110', '255,214,160'], (w) => Math.round(Math.min(46, Math.max(14, w / 30))), [5, 16], () => root.dataset.theme !== 'light' && !root.classList.contains('cx-open-on'));
     if (fine) {
       const lamp = document.createElement('div'); lamp.className = 'th-lamp'; lamp.setAttribute('aria-hidden', 'true'); document.body.append(lamp);
       let lr = 0;

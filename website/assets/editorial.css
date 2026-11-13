@@ -445,6 +445,9 @@ img.art { aspect-ratio: 4 / 5; height: auto; object-fit: contain; object-positio
 @keyframes ed-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -4px; } }
 .js-fade img.art { transition: opacity .7s var(--ed-ease); }
 .js-fade img.art:not(.is-in) { opacity: 0; }
+/* asking for less motion leaves only a short plain fade as a painting arrives */
+@media (prefers-reduced-motion: reduce) { .js-fade img.art { transition-duration: .2s; } }
+:root[data-motion="reduce"].js-fade img.art { transition-duration: .2s; }
 @media (hover: hover) { .char:hover { transform: none; box-shadow: none; border-color: var(--ed-line-2); } }
 .char { border-radius: 2px; transition: border-color .3s; }
 

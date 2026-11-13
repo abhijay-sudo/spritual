@@ -21,11 +21,14 @@
       const down = y > lastY + 4, up = y < lastY - 4;
       if (down && y > 420 && !head.classList.contains('is-open') && !head.contains(document.activeElement)) head.classList.add('is-hidden');
       else if (up || y < 120) head.classList.remove('is-hidden');
+      mirror();
       if (down && mega && !mega.hidden && y > 200) setMega(false);
       lastY = y; ticking = false;
     };
+    // the page knows when the bar is tucked away, so bars that stick under it (the Manas verse bar) can rise into its place
+    const mirror = () => root.classList.toggle('is-head-hidden', head.classList.contains('is-hidden') && !head.classList.contains('is-open'));
     addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
-    head.addEventListener('focusin', () => head.classList.remove('is-hidden'));
+    head.addEventListener('focusin', () => { head.classList.remove('is-hidden'); mirror(); });
     onScroll();
   }
   if (megaBtn && mega) {
