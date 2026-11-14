@@ -33,7 +33,7 @@
 
   /* ---------- Sound: synthesised, opt-in, remembered ---------- */
   const Sound = (() => {
-    let ctx, master, drone;
+    let ctx, master, drone, want = 1;   // want: how loud the drone sits (Watch lowers it under the narration)
     const on = () => store.get('sound', false);
     const ensure = () => {
       if (!ctx) { ctx = new (window.AudioContext || window.webkitAudioContext)(); master = ctx.createGain(); master.gain.value = 0.6; master.connect(ctx.destination); }
@@ -84,14 +84,14 @@
         if (drone !== mine) return;
         if (!buf) { drone = null; synthDrone(); return; }
         const src = c.createBufferSource(); src.buffer = buf; src.loop = true; src.loopStart = 1; src.loopEnd = 1 + 22.4;
-        const g = c.createGain(); const t = c.currentTime; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.55, t + 3);
+        const g = c.createGain(); const t = c.currentTime; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.55 * want, t + 3);
         src.connect(g).connect(master); src.start(0, 1);
         drone = { g, src, sample: true, level: 0.55 };
       });
     };
     const synthDrone = () => {
       if (!on() || drone) return; const c = ensure();
-      const g = c.createGain(); g.gain.value = 0; g.gain.linearRampToValueAtTime(0.07, c.currentTime + 2.5);
+      const g = c.createGain(); g.gain.value = 0; g.gain.linearRampToValueAtTime(0.07 * want, c.currentTime + 2.5);
       const f = c.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 520;
       const lfo = c.createOscillator(); const lg = c.createGain(); lfo.frequency.value = 0.11; lg.gain.value = 0.02; lfo.connect(lg).connect(g.gain); lfo.start();
       const oscs = [98, 130.81, 130.81, 65.41].map((hz, i) => { const o = c.createOscillator(); o.type = 'triangle'; o.frequency.value = hz; o.detune.value = i === 2 ? 4 : 0; o.connect(f); o.start(); return o; });
@@ -118,7 +118,8 @@
     };
     const riverStop = () => { if (!river || !ctx) return; const r = river; river = null; r.g.gain.linearRampToValueAtTime(0, ctx.currentTime + 1.5); setTimeout(() => { r.src.stop(); r.lfo.stop(); }, 1700); };
     const swell = () => { if (!drone || drone.pending || !ctx) return; const g = drone.g.gain; const t = ctx.currentTime; const lv = drone.level || 0.07; g.cancelScheduledValues(t); g.setValueAtTime(g.value, t); g.linearRampToValueAtTime(lv * 1.6, t + 1.2); g.linearRampToValueAtTime(lv, t + 4); };
-    return { on, bell, whisper, breath, droneStart, droneStop, swell, river: riverStart, riverStop };
+    const duck = (v) => { want = v; if (!drone || drone.pending || !ctx) return; const g = drone.g.gain; const t = ctx.currentTime; g.cancelScheduledValues(t); g.setValueAtTime(g.value, t); g.linearRampToValueAtTime((drone.level || 0.07) * v, t + 1.5); };
+    return { on, bell, whisper, breath, droneStart, droneStop, swell, duck, river: riverStart, riverStop };
   })();
   const paintSound = () => {
     const on = Sound.on();
@@ -472,6 +473,7 @@
   const eraseAll = async () => {
     let ok = true;
     try { localStorage.clear(); } catch { ok = false; }
+    document.dispatchEvent(new CustomEvent('spritual:erase'));   // consent.js: analytics off, its cookies removed
     try { sessionStorage.clear(); } catch {}
     // the worker still serving this page is told to stop keeping copies first, so nothing is re-saved behind the reader
     try { navigator.serviceWorker?.controller?.postMessage('spritual:erase'); const regs = (await navigator.serviceWorker?.getRegistrations?.()) || []; await Promise.all(regs.map((r) => r.unregister())); } catch {}
@@ -687,13 +689,15 @@
       beads.forEach((b, i) => { b.classList.toggle('on', i + 1 <= n); b.classList.toggle('now', i + 1 === n); });
       const fill = $('[data-rail-fill]'); if (fill) fill.style.setProperty('--p', (n / total).toFixed(3));
       const left = $('[data-left-time]'); if (left) { const mins = Math.ceil(+reader.dataset.minutes * (1 - (n - 1) / total)); left.textContent = n === total ? UI.leftDone : fmt(UI.leftTime, { n: mins }); }
+      // consent.js counts a story's start and end (story slug and language only), and only if the reader allowed analytics
+      if (real && !entered) document.dispatchEvent(new CustomEvent('spritual:story', { detail: { kind: 'start', slug } }));
       if (real) entered = true;
       // the language switch carries the scene across (only when the other language has this story)
       if (UI.samePath) langLinks.forEach((a) => { a.href = a.getAttribute('href').split('#')[0] + (entered ? '#page-' + n : ''); });
       if (!real) return;
       store.set('last', { slug, scene: n, total, at: Date.now() });
       if (n >= Math.ceil(total / 2)) markDay();
-      if (n === total && !reader.dataset.done) { reader.dataset.done = '1'; Sound.bell(523, 0.2); const d = $('[data-done-line]'); if (d) d.textContent = UI.doneLine; const f = $('[data-story-fig] .fig, [data-story-fig] .art'); if (f) { f.classList.add('is-bowing'); f.addEventListener('animationend', () => f.classList.remove('is-bowing'), { once: true }); } }
+      if (n === total && !reader.dataset.done) { reader.dataset.done = '1'; document.dispatchEvent(new CustomEvent('spritual:story', { detail: { kind: 'complete', slug } })); Sound.bell(523, 0.2); const d = $('[data-done-line]'); if (d) d.textContent = UI.doneLine; const f = $('[data-story-fig] .fig, [data-story-fig] .art'); if (f) { f.classList.add('is-bowing'); f.addEventListener('animationend', () => f.classList.remove('is-bowing'), { once: true }); } }
       if (scrollInto) scenes[n - 1].scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' });
     };
     const io = new IntersectionObserver((entries) => { for (const en of entries) if (en.isIntersecting && root.dataset.mode !== 'leaf') setCurrent(scenes.indexOf(en.target) + 1); }, { rootMargin: '-30% 0px -60% 0px' });
@@ -830,6 +834,41 @@
       else { state = 'playing'; synth.resume(); label(UI.pauseListen); }
     }));
     addEventListener('pagehide', () => synth?.cancel());
+    /* Watch: the story as a film. Its script and styles (watch.js, watch.css) are fetched only when it is opened; it borrows
+       this page's speech engine, sound, reading-progress store and scenes rather than carrying its own. */
+    const wBtns = $$('[data-watch]');
+    if (UI.watchJs && wBtns.length) {
+      let loading = null;
+      const load = () => loading || (loading = new Promise((res, rej) => {
+        let n = 0; const ok = () => { if (++n === 2) res(window.SpritualWatch); };
+        const fail = () => { loading = null; rej(); };
+        const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = UI.watchCss; css.onload = ok; css.onerror = fail;
+        const js = document.createElement('script'); js.src = UI.watchJs; js.async = true; js.onload = ok; js.onerror = fail;
+        document.head.append(css, js);
+      }));
+      const ctx = {
+        UI, store, reduced, haptic, slug, total, scenes,
+        speak: (text, onend, onerr, onstart) => {
+          if (!synth) return false; const L = UI.lang; const v = voice(L);
+          const u = new SpeechSynthesisUtterance(clean(text)); u.lang = L === 'hi' ? 'hi-IN' : 'en-IN'; if (v) u.voice = v; u.rate = 0.95;
+          u.onend = onend; u.onerror = onerr; u.onstart = onstart; synth.speak(u); return true;
+        },
+        hush: () => synth?.cancel(),
+        // no voice for the page's language on this device (once the device has said which voices it has)
+        mute: () => !synth || (synth.getVoices().length > 0 && !voice(UI.lang)),
+        noVoice: () => fmt(UI.listenNoVoice, { lang: UI.lang === 'hi' ? UI.voiceHi : UI.voiceEn }),
+        sound: { on: Sound.on, set: (v) => { store.set('sound', v); paintSound(); if (v) Sound.droneStart(); else Sound.droneStop(); }, duck: Sound.duck },
+        reached: (n) => setCurrent(n, false),
+        // closing the film leaves the reader at the scene it reached
+        land: (n) => { if (!n) return false; if (root.dataset.mode === 'leaf') goTo(n); else scenes[n - 1].scrollIntoView({ block: 'start', behavior: 'instant' }); focusScene(n); return true; },
+      };
+      const open = (btn) => {
+        if (state !== 'idle') { state = 'idle'; synth?.cancel(); mark(null); progress(0); dockBar?.classList.remove('is-listening'); label(UI.listen); }
+        load().then((W) => W(ctx, btn)).catch(() => {});
+      };
+      wBtns.forEach((b) => b.addEventListener('click', () => open(b)));
+      if (location.hash === '#watch') open(null);
+    }
     // the floating reader dock steps aside once the story has ended, so it never sits over the reflection or the footer links
     // It also stays out of the way while the story's opening is on screen (the opening has its own Begin and Listen).
     const dock = $('.reader-bar'); const ends = $$('.story-end, .cx-credits'); const hero = $('.cx-film-open');

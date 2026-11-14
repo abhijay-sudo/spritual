@@ -505,16 +505,17 @@
      Forty-odd warm motes rising slowly behind everything, on the dark pages only. Stops when the tab is hidden, when
      motion is reduced, or when the reader chooses the light theme. */
   // one engine for both: warm motes (theatre) and embers (fire scenes); phones draw at 1x and 30 fps
-  const motes = (cls, [glow, core], n, vy, ok, rk = 1) => {
+  const motes = (cls, [glow, core], n, vy, ok, rk = 1, host = null) => {
     const cv = document.createElement('canvas'); cv.className = cls; cv.setAttribute('aria-hidden', 'true');
     const g = cv.getContext('2d');
     if (!g) return null;
-    document.body.append(cv);
+    (host || document.body).append(cv);
     let W = 0, H = 0, ms = [], last = 0, on = false; const dpr = pocket ? 1 : Math.min(devicePixelRatio || 1, 1.5);
     const make = (anyY) => ({ x: Math.random() * W, y: anyY ? Math.random() * H : H + 10, r: (.5 + Math.random() * 1.5) * rk, vy: vy[0] + Math.random() * vy[1], sway: 6 + Math.random() * 16, ph: Math.random() * 6.28, sp: .2 + Math.random() * .6, a: .12 + Math.random() * .4 });
     // a phone's toolbar sliding away changes the height mid-scroll: that alone does not rebuild the canvas
     const size = () => { if (W === innerWidth && (pocket ? Math.abs(H - innerHeight) < 160 : H === innerHeight)) return; W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0); ms = Array.from({ length: n(W) }, () => make(true)); };
-    const quiet = () => document.hidden || reduced() || !ok();
+    // the page's own layers rest while the Watch theatre covers the page (watch.js); the theatre's layer is hosted inside it
+    const quiet = () => document.hidden || reduced() || !ok() || (!host && root.classList.contains('wt-on'));
     const frame = (t) => {
       if (quiet()) { on = false; g.clearRect(0, 0, W, H); return; }
       requestAnimationFrame(frame);
@@ -538,6 +539,8 @@
   // embers over a burning scene: they rise while it is on screen, and fade out (CSS) for a moment after it has gone
   const ember = !lowData && shots.some((el) => el.dataset.fx === 'embers') && motes('th-embers th-fire', ['255,110,30', '255,196,110'], (w) => (w < 760 ? 24 : Math.min(60, Math.round(w / 24))), [18, 40], () => fireOn() || (fireAt && performance.now() - fireAt < 900), 1.6);
   if (ember) { fire = () => { ember.cv.classList.toggle('is-on', fireOn()); ember.wake(); }; fire(); }
+  // the same embers for the Watch theatre (watch.js): drawn inside it, while ok() says a fire scene is on screen
+  window.SpritualFx = { embers: (host, ok) => (lowData ? null : motes('th-embers wt-embers', ['255,110,30', '255,196,110'], (w) => (w < 760 ? 24 : Math.min(60, Math.round(w / 24))), [18, 40], ok, 1.6, host)) };
   if (root.dataset.room === 'theatre' && !reduced()) {
     // the home opening has its own, richer dust (above): this layer rests while that one is on screen
     motes('th-embers', ['255,190,110', '255,214,160'], (w) => Math.round(Math.min(46, Math.max(14, w / 30))), [5, 16], () => root.dataset.theme !== 'light' && !root.classList.contains('cx-open-on'));

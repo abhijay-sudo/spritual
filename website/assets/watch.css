@@ -1,0 +1,165 @@
+/* Spritual Watch: the story as a film (watch.js). Fetched only when the theatre opens. A black stage, each scene's painting
+   full-bleed under a slow directed camera, a title card per scene, the words as subtitles, a dissolve between scenes.
+   Opacity and transform only, so the compositor plays every move. Motion obeys the device setting and the site's switch. */
+.wt { position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: #070403; color: #f6ead8; overflow: hidden; overscroll-behavior: contain; touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; color-scheme: dark; outline: 0; }
+.wt[open] { display: block; }
+.wt:focus { outline: 0; }
+.wt::backdrop { background: #070403; }
+:root.wt-on { overflow: hidden; }
+/* (not keyed to .is-vt: dropping that class when the hero's View Transition ends must not replay the fade from black) */
+:root:not([data-motion="reduce"]) .wt[open] { animation: wt-in .4s ease both; }
+/* while the hero painting grows into the theatre, the shade, title card and controls wait beneath it (they would only be
+   revealed half-faded, in a jump, when the transition hands over); they fade in from the finished picture instead */
+.wt.is-vt :is(.wt-dim, .wt-shade, .wt-title, .wt-ui) { opacity: 0 !important; transition: none !important; }
+.wt-shade { transition: opacity .8s ease; }
+.wt.is-closing { animation: wt-out .32s ease both; }
+@keyframes wt-in { from { opacity: 0; } }
+@keyframes wt-out { to { opacity: 0; } }
+::view-transition-group(wt-hero) { animation-duration: .7s; animation-timing-function: cubic-bezier(.22, .8, .2, 1); }
+
+/* ---------- The stage ---------- */
+.wt-stage { position: absolute; inset: 0; isolation: isolate; overflow: hidden; background: #070403; }
+.wt-layer { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+.wt-layer.is-on { opacity: 1; transition: opacity .9s cubic-bezier(.4, 0, .2, 1); }
+.wt-cam { position: absolute; inset: 0; transform-origin: var(--fx, 50%) var(--fy, 45%); will-change: transform; }
+.wt-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: var(--fx, 50%) var(--fy, 45%); }
+.wt-fill { display: none; }
+/* a very wide screen sees the whole painting, over a blurred fill of itself */
+@media (min-aspect-ratio: 21/9) {
+  .wt-img { object-fit: contain; }
+  .wt-fill { display: block; position: absolute; inset: -6%; width: 112%; height: 112%; object-fit: cover; filter: blur(36px) brightness(.45); }
+}
+/* a scene without a painting of its own: a deep-toned part of the story's painting, as on the page */
+.wt-layer.is-plate::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 90% 80% at 50% 45%, rgb(20 10 4 / .35), rgb(10 5 2 / .72)); }
+.wt-dim, .wt-shade { position: absolute; inset: 0; z-index: 9000; pointer-events: none; }
+.wt-dim { background: radial-gradient(ellipse 70% 50% at 50% 50%, rgb(8 4 2 / .62), rgb(8 4 2 / .34)); opacity: 0; transition: opacity 1.2s ease; }
+.wt.is-titling .wt-dim { opacity: 1; }
+.wt-shade { background: linear-gradient(to top, rgb(8 4 2 / .85) 0%, rgb(8 4 2 / .5) 20%, rgb(8 4 2 / 0) 46%), linear-gradient(to bottom, rgb(8 4 2 / .45), rgb(8 4 2 / 0) 16%), radial-gradient(ellipse 120% 95% at 50% 50%, transparent 62%, rgb(0 0 0 / .4)); }
+:root .wt .wt-embers { display: block; position: absolute; z-index: 9001; opacity: 0; transition: opacity 1.2s ease; }
+.wt .wt-embers.is-on { opacity: .95; }
+
+/* ---------- Title cards ---------- */
+.wt-title { position: absolute; inset: 0; z-index: 9002; display: grid; place-content: center; justify-items: center; text-align: center; padding: 4rem max(var(--cx-gut-r), 1.25rem) 6rem max(var(--cx-gut), 1.25rem); pointer-events: none; opacity: 0; transition: opacity .9s ease; }
+/* a title card comes up once the scene's dissolve (0.9 s) is half done, so its words never sit over the last scene's picture */
+.wt-title.is-in { opacity: 1; transition-duration: 1.4s; transition-delay: .45s; }
+.wt-title > * { margin: 0; translate: 0 .6rem; transition: translate 1.4s var(--cx-ease, ease); }
+.wt-title.is-in > * { translate: none; transition-delay: .45s; }
+.wt-k { display: flex; max-width: 100%; align-items: center; justify-content: center; gap: .9rem; font: 500 clamp(.86rem, .7rem + .3vw, 1.1rem)/1.4 var(--cx-ui, Georgia, serif); letter-spacing: .22em; text-transform: uppercase; color: #f6cf90; text-shadow: 0 1px 2px rgb(0 0 0 / .9), 0 1px 3px rgb(0 0 0 / .8), 0 0 18px rgb(0 0 0 / .7); }
+.wt-k::before, .wt-k::after { content: ""; width: 2.4rem; height: 1px; background: currentColor; opacity: .55; }
+.wt-k:lang(hi) { font-family: "Mukta", sans-serif; font-size: clamp(1.08rem, .9rem + .35vw, 1.35rem); letter-spacing: .02em; text-transform: none; }
+.wt-h { margin-top: .8rem !important; max-width: 17ch; font: 500 clamp(1.9rem, 1.05rem + 3.4vw, 3.8rem)/1.12 var(--cx-title, Georgia, serif); color: #fbf1e2; text-wrap: balance; text-shadow: 0 2px 30px rgb(0 0 0 / .6); letter-spacing: -.01em; }
+.wt-h:lang(hi) { line-height: 1.38; max-width: 15em; letter-spacing: 0; }
+.wt-title.is-open .wt-h { font-size: clamp(2.4rem, 1.2rem + 5vw, 5.6rem); max-width: 14ch; }
+.wt-title.is-open .wt-h:lang(hi) { max-width: 12em; }
+.wt-sub { margin-top: 1rem !important; font: italic 400 1.1rem/1.4 var(--cx-text, Georgia, serif); color: #e9d9c3; text-shadow: 0 1px 12px rgb(0 0 0 / .6); }
+.wt-sub:empty { display: none; }
+
+/* ---------- Captions ---------- */
+.wt-cap { --wt-lift: 7.6rem; position: absolute; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(1.4rem, 5vh, 3.4rem)); z-index: 9002; display: flex; justify-content: center; padding: 0 max(var(--cx-gut-r), 1.25rem) 0 max(var(--cx-gut), 1.25rem); pointer-events: none; transition: translate .5s var(--cx-ease, ease); }
+.wt:not(.is-idle) .wt-cap { translate: 0 calc(-1 * var(--wt-lift)); }
+.wt-cap p { position: relative; isolation: isolate; margin: 0; max-width: 32em; font: 400 clamp(1.15rem, .92rem + 1.05vw, 1.95rem)/1.45 var(--cx-text, Georgia, serif); text-align: center; text-wrap: balance; color: #fbf3e6; text-shadow: 0 1px 2px rgb(0 0 0 / .75), 0 0 26px rgb(0 0 0 / .6); transition: opacity .4s ease, translate .4s ease; }
+/* a soft pool of shade under the words, so a bright part of a painting never washes them out (no box, no edge) */
+.wt-cap p::before { content: ""; position: absolute; z-index: -1; inset: -1em -2.4em; border-radius: 50%; background: radial-gradient(closest-side, rgb(6 3 1 / .58), rgb(6 3 1 / .4) 55%, rgb(6 3 1 / 0)); pointer-events: none; }
+.wt-cap p:empty::before { display: none; }
+.wt-cap:lang(hi) p { font-family: "Tiro Devanagari Hindi", Georgia, serif; line-height: 1.65; max-width: 28em; }
+.wt-cap.is-out p { opacity: 0; translate: 0 .35rem; }
+.wt.no-caps .wt-cap { visibility: hidden; }
+
+/* ---------- Controls: fade after 2.5 s without input ---------- */
+.wt-ui { position: absolute; inset: 0; z-index: 9003; pointer-events: none; transition: opacity .6s ease; }
+.wt.is-idle { cursor: none; }
+.wt.is-idle .wt-ui { opacity: 0; }
+.wt.is-idle .wt-ui * { pointer-events: none !important; }
+.wt-top { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: .75rem; padding: max(.5rem, env(safe-area-inset-top, 0px)) max(var(--cx-gut-r), 1rem) 1.6rem max(var(--cx-gut), 1rem); background: linear-gradient(to bottom, rgb(6 3 1 / .6), rgb(6 3 1 / 0)); }
+.wt-name { flex: 1; min-width: 0; margin: 0; font: 500 1rem/1.25 var(--cx-title, Georgia, serif); color: #f6ead8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wt-note { margin: 0; max-width: 50%; font: .85rem/1.3 var(--cx-ui, Georgia, serif); color: #f3c47e; text-align: right; }
+.wt-bot { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.2rem max(var(--cx-gut-r), 1rem) max(.4rem, env(safe-area-inset-bottom, 0px)) max(var(--cx-gut), 1rem); background: linear-gradient(to top, rgb(6 3 1 / .72), rgb(6 3 1 / 0)); }
+.wt-prog { display: flex; gap: 4px; margin-bottom: -8px; }
+.wt-seg { position: relative; flex: 1 1 0; min-width: 0; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto; }
+.wt-seg::before, .wt-seg i { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 3px; margin-top: -1.5px; border-radius: 2px; }
+.wt-seg::before { background: rgb(255 240 220 / .26); transition: background .2s; }
+.wt-seg i { background: #f3c47e; transform-origin: 0 50%; transform: scaleX(0); }
+.wt-seg:hover::before { background: rgb(255 240 220 / .5); }
+/* the ring hugs the bar it names, not the whole 44 px target */
+.wt .wt-seg:focus-visible { outline: 0; }
+.wt-seg:focus-visible::after { content: ""; position: absolute; left: -3px; right: -3px; top: 50%; height: 15px; margin-top: -7.5px; border: 2px solid #f3c47e; border-radius: 6px; }
+.wt-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: .5rem; }
+.wt-now { margin: 0; min-width: 0; font: .9rem/1.2 var(--cx-ui, Georgia, serif); color: #e9d9c3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wt-now:lang(hi) { font-family: "Mukta", sans-serif; }
+@media (max-width: 479px) {
+  .wt-now { visibility: hidden; }
+  .wt-k::before, .wt-k::after { width: 1.2rem; }
+  /* the story's collection and book on a phone: no rules beside it, so a line that has to wrap wraps evenly, centred */
+  .wt-title.is-open .wt-k { display: block; text-wrap: balance; }
+  .wt-title.is-open .wt-k:not(:lang(hi)) { letter-spacing: .16em; }
+  .wt-title.is-open .wt-k::before, .wt-title.is-open .wt-k::after { display: none; }
+}
+.wt-mid { display: flex; align-items: center; gap: .35rem; }
+.wt-opt { display: flex; justify-content: flex-end; gap: .15rem; }
+.wt-b { pointer-events: auto; display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: #f6ead8; cursor: pointer; transition: background-color .2s, opacity .2s; }
+.wt-b:hover { background: rgb(255 240 220 / .12); }
+.wt-b .ic { width: 24px; height: 24px; }
+.wt-b .ic .ic-fill, .wt-flash .ic .ic-fill { fill: currentColor; }
+.wt-play { width: 56px; height: 56px; background: rgb(255 246 232 / .14); border: 1px solid rgb(255 240 220 / .38); }
+.wt-play .ic { width: 26px; height: 26px; }
+.wt-b[aria-pressed="false"] { opacity: .62; }
+.wt-snd .wt-off-ic, .wt-snd[aria-pressed="false"] .wt-on-ic { display: none; }
+.wt-snd[aria-pressed="false"] .wt-off-ic { display: inline; }
+.wt :focus-visible { outline: 2px solid #f3c47e; outline-offset: 2px; }
+.wt-flash { position: absolute; left: 50%; top: 50%; z-index: 9004; display: grid; place-items: center; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%; background: rgb(10 5 2 / .5); color: #fff6e8; opacity: 0; pointer-events: none; }
+.wt-flash .ic { width: 34px; height: 34px; }
+.wt-flash.is-on { animation: wt-flash .7s ease-out; }
+@keyframes wt-flash { from { opacity: .95; scale: .85; } to { opacity: 0; scale: 1.25; } }
+
+/* ---------- The end card: the next story's painting behind it ---------- */
+.wt-end { position: absolute; inset: 0; z-index: 9005; display: grid; place-items: center; overflow: hidden; padding: 4.5rem max(var(--cx-gut-r), 1.25rem) max(2rem, env(safe-area-inset-bottom, 0px)) max(var(--cx-gut), 1.25rem); text-align: center; background: #070403; animation: wt-in 1.2s ease both; }
+.wt-end[hidden] { display: none; }
+.wt.is-ended .wt-ui { z-index: 9006; opacity: 1; }
+.wt.is-ended .wt-bot, .wt.is-ended .wt-cap, .wt.is-ended .wt-title { display: none; }
+.wt-end-pic { position: absolute; inset: 0; }
+.wt-end-pic img { width: 100%; height: 100%; object-fit: cover; opacity: .4; }
+:root:not([data-motion="reduce"]) .wt-end-pic img { animation: wt-push 40s linear both; }
+@keyframes wt-push { from { scale: 1.02; } to { scale: 1.14; } }
+.wt-end-pic::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 50%, rgb(7 4 3 / .2), rgb(7 4 3 / .85)); }
+.wt-end-in { position: relative; display: grid; justify-items: center; gap: .9rem; width: min(100%, 40rem); }
+.wt-end-t { margin: 0; font: 500 clamp(2rem, 1.2rem + 3.6vw, 4.2rem)/1.1 var(--cx-title, Georgia, serif); color: #fbf1e2; text-wrap: balance; text-shadow: 0 2px 30px rgb(0 0 0 / .6); }
+.wt-end-t:lang(hi) { line-height: 1.35; }
+.wt-end-row { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: .3rem; }
+.wt-next { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 1rem; width: min(100%, 26rem); margin-top: 1.4rem; padding-top: 1.1rem; border-top: 1px solid rgb(255 240 220 / .24); color: #f6ead8; text-align: left; text-decoration: none; }
+.wt-next small { font: 500 .74rem/1.3 var(--cx-ui, Georgia, serif); letter-spacing: .2em; text-transform: uppercase; color: #f3c47e; }
+.wt-next small:lang(hi), :lang(hi) > .wt-next small { font-family: "Mukta", sans-serif; font-size: .9rem; letter-spacing: .02em; text-transform: none; }
+.wt-next strong { grid-column: 1; text-wrap: balance; font: 500 clamp(1.25rem, 1rem + 1.3vw, 1.9rem)/1.2 var(--cx-title, Georgia, serif); }
+.wt-next-go { grid-column: 2; grid-row: 1 / span 2; display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid rgb(255 240 220 / .45); border-radius: 50%; transition: background-color .2s; }
+.wt-next-go .ic .ic-fill { fill: currentColor; }
+.wt-next:hover .wt-next-go { background: rgb(255 240 220 / .14); }
+
+/* ---------- Phones on their side: a tighter frame ---------- */
+@media (orientation: landscape) and (max-height: 520px) {
+  .wt-cap { --wt-lift: 5.6rem; bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem); }
+  .wt-cap p { font-size: clamp(1.125rem, .8rem + 1.6vh, 1.4rem); max-width: 38em; }
+  .wt-top { padding-bottom: 1rem; }
+  .wt-bot { padding-top: 1rem; }
+  .wt-row { margin-top: -6px; }
+  .wt-play { width: 48px; height: 48px; }
+  .wt-title { padding-block: 2.5rem 3.5rem; }
+  .wt-h { font-size: clamp(1.6rem, 1rem + 2.6vw, 2.6rem); }
+  .wt-title.is-open .wt-h { font-size: clamp(2rem, 1rem + 3.6vw, 3.4rem); }
+  .wt-end { padding-top: 3.5rem; }
+  .wt-end-in { gap: .5rem; }
+  .wt-end-t { font-size: clamp(1.6rem, 1rem + 2.6vw, 2.6rem); }
+  .wt-next { margin-top: .6rem; padding-top: .7rem; }
+}
+@media (max-width: 380px) { .wt-mid { gap: 0; } .wt-b { width: 44px; height: 44px; } .wt-play { width: 52px; height: 52px; } }
+
+/* ---------- Reduced motion: no camera, no embers; fades only ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .wt-title > *, .wt-cap p { translate: none !important; }
+  .wt-cap { transition: none; }
+  .wt-flash.is-on { animation: none; }
+  :root .wt .wt-embers { display: none; }
+}
+:root[data-motion="reduce"] :is(.wt-title > *, .wt-cap p) { translate: none !important; }
+:root[data-motion="reduce"] .wt-cap { transition: none; }
+:root[data-motion="reduce"] .wt-flash.is-on { animation: none; }
+:root[data-motion="reduce"] .wt .wt-embers { display: none; }
+@media print { .wt { display: none !important; } }
