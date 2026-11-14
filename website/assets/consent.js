@@ -111,6 +111,7 @@
     status = el('p', { class: 'visually-hidden', role: 'status', 'data-consent-status': '' });
     bar = el('section', { class: 'cx-consent', 'aria-labelledby': 'cx-consent-h', 'data-consent': '', hidden: '' });
     var h = el('h2', { id: 'cx-consent-h', class: 'cx-consent-h', tabindex: '-1' }, T.title);
+    if (T.short) h.setAttribute('data-short', T.short);   // phones show this one-line form (cinema.css)
     var p = el('p', { class: 'cx-consent-text' }, T.text + ' ');
     var href = privacyHref(); if (href) p.appendChild(el('a', { href: href }, T.more));
     var row = el('div', { class: 'cx-consent-btns' });
@@ -132,6 +133,9 @@
     var on = dock && !dock.classList.contains('is-away') && !dock.classList.contains('is-tucked') && dock.offsetHeight > 0;
     var px = on ? dock.offsetHeight + (parseFloat(getComputedStyle(dock).bottom) || 0) : 0;
     bar.style.setProperty('--cx-dock-clear', px + 'px');
+    // while the reader scrolls down the page the dock tucks away, and the question goes with it (never from under a finger or focus)
+    var tuck = !!dock && dock.classList.contains('is-tucked') && !bar.contains(d.activeElement) && !bar.hasAttribute('data-reopened');
+    bar.classList.toggle('is-tucked', tuck); bar.inert = tuck || bar.classList.contains('is-aside');
     // the room the bar takes at the foot of the screen, which the openings and the footer keep free (cinema.css)
     // (kept while the bar steps aside: changing it would shift the page above the reader and jolt the scroll)
     root.style.setProperty('--cx-consent-room', Math.ceil(bar.offsetHeight + (parseFloat(getComputedStyle(bar).bottom) || 0) + 8) + 'px');
