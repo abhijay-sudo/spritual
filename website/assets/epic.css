@@ -1,0 +1,177 @@
+/* Spritual, epic layer. Loaded after cinema.css and mobile.css; epic.js adds every class used here (ep-*), so without
+   scripts nothing changes. Three parts:
+   1. the leads (Rama, Sita, Hanuman, Krishna, Shiva ...): their page opens on their own world, a halo of light behind
+      them, their name set large and their title under it; wherever else they appear they carry their own light.
+   2. arrivals for everything the cinema layer left still: plain pages, festival rows, verses, the dossier, the credits.
+   3. small living touches: the cast row drifts, the wordmark catches the light.
+   Motion is transform, opacity and filter only, and all of it stops with the device's or the site's reduce-motion switch. */
+
+/* ---------- 1. The leads: their page ---------- */
+.ep-hero { --ep-a: #f3c47e; --ep-px: 0; --ep-py: 0; isolation: isolate; }
+
+/* their world: the painting of their first story, behind everything, falling away into the page */
+.ep-back { position: absolute; z-index: -1; inset: 0 0 auto; height: min(100%, 118svh); overflow: hidden; pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 100%); mask-image: linear-gradient(to bottom, #000 58%, transparent 100%); }
+.ep-back img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; opacity: .92; scale: 1.1;
+  translate: calc(var(--ep-px) * -12px) calc(var(--ep-py) * -7px); }
+/* the words stay on the page's own colour (dark in the theatre, paper by daylight): the world shows around the lead */
+.ep-back::after { content: ""; position: absolute; inset: 0; background:
+  radial-gradient(ellipse 46% 60% at 24% 40%, color-mix(in srgb, var(--cx-paper) 30%, transparent) 0, transparent 70%),
+  linear-gradient(90deg, color-mix(in srgb, var(--cx-paper) 22%, transparent) 0%, color-mix(in srgb, var(--cx-paper) 52%, transparent) 30%, color-mix(in srgb, var(--cx-paper) 88%, transparent) 50%, color-mix(in srgb, var(--cx-paper) 95%, transparent) 100%); }
+@media (max-width: 859px) {
+  .ep-back { height: min(100%, 92svh); }
+  .ep-back img { object-position: 50% 20%; opacity: .8; }
+  .ep-back::after { background: linear-gradient(180deg, color-mix(in srgb, var(--cx-paper) 34%, transparent) 0%, color-mix(in srgb, var(--cx-paper) 52%, transparent) 38%, color-mix(in srgb, var(--cx-paper) 94%, transparent) 72%); }
+}
+
+/* the halo: a glow, a slow wheel of rays, and two fine rings */
+.ep-hero .cast-hero-pic { isolation: isolate; }
+@media (max-width: 859px) { .ep-hero .cast-hero-pic { position: relative; } }
+.ep-halo { position: absolute; z-index: -1; left: 50%; top: 38%; width: min(48rem, 150%); aspect-ratio: 1; pointer-events: none;
+  translate: calc(-50% + var(--ep-px) * -9px) calc(-50% + var(--ep-py) * -6px); }
+.ep-halo > i { position: absolute; inset: 0; border-radius: 50%; }
+.ep-aura { background: radial-gradient(closest-side, color-mix(in srgb, var(--ep-a) 58%, transparent) 0, color-mix(in srgb, var(--ep-a) 20%, transparent) 40%, transparent 70%); }
+.ep-rays { opacity: .5; background: repeating-conic-gradient(from 0deg, color-mix(in srgb, var(--ep-a) 38%, transparent) 0deg 2.5deg, transparent 2.5deg 15deg);
+  -webkit-mask-image: radial-gradient(closest-side, transparent 20%, #000 33%, transparent 80%); mask-image: radial-gradient(closest-side, transparent 20%, #000 33%, transparent 80%); }
+.ep-halo > .ep-ring { inset: 20%; border: 1px solid color-mix(in srgb, var(--ep-a) 62%, transparent);
+  box-shadow: 0 0 46px color-mix(in srgb, var(--ep-a) 26%, transparent), inset 0 0 46px color-mix(in srgb, var(--ep-a) 16%, transparent); }
+.ep-ring::before, .ep-ring::after { content: ""; position: absolute; border-radius: 50%; }
+.ep-ring::before { inset: -8%; border: 1px dashed color-mix(in srgb, var(--ep-a) 46%, transparent); }
+.ep-ring::after { inset: 7%; border: 1px solid color-mix(in srgb, var(--ep-a) 22%, transparent); }
+.ep-halo > .ep-flash { inset: 24%; opacity: 0; background: radial-gradient(closest-side, #fff7e6 0, color-mix(in srgb, var(--ep-a) 70%, transparent) 38%, transparent 72%); }
+:root[data-theme="light"] .ep-rays { opacity: .34; }
+
+/* sparks rising around the lead */
+.ep-motes { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.ep-motes > i { position: absolute; left: var(--x); bottom: var(--b); width: var(--s); height: var(--s); border-radius: 50%; opacity: 0;
+  background: color-mix(in srgb, var(--ep-a) 70%, #fff); box-shadow: 0 0 8px 1px color-mix(in srgb, var(--ep-a) 70%, transparent); }
+
+/* the lead leans toward the hand (wide screens with a mouse only: on a phone the portrait already moves with the page) */
+@media (min-width: 860px) and (hover: hover) and (pointer: fine) {
+  .ep-hero .cast-hero-pic > :is(.art, .sc-crop, .fig) { translate: calc(var(--ep-px) * 14px) calc(var(--ep-py) * 8px); }
+}
+.ep-hero .cast-hero-pic .art { filter: drop-shadow(0 30px 34px rgb(0 0 0 / .55)) drop-shadow(0 0 26px color-mix(in srgb, var(--ep-a) 34%, transparent)); }
+.ep-hero .cast-hero-pic--scene .sc-crop { box-shadow: 0 0 0 1px color-mix(in srgb, var(--ep-a) 70%, transparent), 0 0 0 8px rgb(20 12 7 / .6), 0 0 0 9px color-mix(in srgb, var(--ep-a) 34%, transparent), 0 0 70px color-mix(in srgb, var(--ep-a) 30%, transparent), 0 40px 60px -30px rgb(0 0 0 / .8); }
+
+/* the name: larger, lit from above, each letter its own piece of gold */
+.ep-hero .cast-name { font-size: min(clamp(3.4rem, 1.6rem + 7.4vw, 8.25rem), calc(84vw / (var(--ep-nl, 6) * .5))); line-height: .92; padding-bottom: .06em;
+  text-shadow: 0 2px 30px color-mix(in srgb, var(--cx-paper) 80%, transparent); }
+@media (min-width: 860px) { .ep-hero .cast-name { font-size: min(clamp(3.4rem, 1.6rem + 7.4vw, 8.25rem), calc(44vw / (var(--ep-nl, 6) * .5))); } }
+html[lang="hi"] .ep-hero .cast-name { line-height: 1.25; padding-bottom: 0; }
+.ep-l, .ep-w { display: inline-block; background: linear-gradient(180deg, var(--cx-ink) 30%, color-mix(in srgb, var(--ep-a) 80%, #fff) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+.ep-w { padding: .12em .08em .2em; margin: -.12em -.08em -.2em; }   /* room for the matras above and below the line */
+.ep-l { transform-origin: 50% 85%; }
+@media (forced-colors: active) { .ep-l, .ep-w { background: none; color: inherit; -webkit-text-fill-color: currentColor; } }
+
+/* their title: a traditional name for them, between two drawn lines */
+.ep-title { margin: .1rem 0 0; display: flex; align-items: center; gap: .8rem; font: 600 .82rem/1.3 var(--cx-ui); letter-spacing: .22em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--ep-a) 72%, var(--cx-ink)); }
+html[lang="hi"] .ep-title { font: 500 1.15rem/1.5 "Mukta", var(--cx-ui); letter-spacing: 0; text-transform: none; }
+.ep-title::before, .ep-title::after { content: ""; flex: 0 0 2.25rem; height: 1px; background: linear-gradient(90deg, transparent, currentColor); transform-origin: 100% 50%; }
+.ep-title::after { flex: 1 1 2.25rem; max-width: 9rem; background: linear-gradient(90deg, currentColor, transparent); transform-origin: 0 50%; }
+:root[data-theme="light"] :is(.ep-l, .ep-w) { background-image: linear-gradient(180deg, var(--cx-ink) 30%, color-mix(in srgb, var(--ep-a) 42%, var(--cx-ink)) 100%); }
+:root[data-theme="light"] .ep-title { color: color-mix(in srgb, var(--ep-a) 30%, var(--cx-saffron-2)); }
+
+/* how much of the library they walk through */
+.ep-stats { list-style: none; margin: .35rem 0 .2rem; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem 2rem; }
+.ep-stats > li { display: grid; gap: .1rem; min-width: 4.5rem; }
+.ep-stats b { font: 500 clamp(1.9rem, 1.4rem + 1.4vw, 2.75rem)/1 var(--cx-title); font-variant-numeric: lining-nums tabular-nums; color: var(--cx-ink); }
+.ep-stats span { font: 500 .78rem/1.3 var(--cx-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--cx-ink-3); }
+html[lang="hi"] .ep-stats span { font: 400 1rem/1.4 "Mukta", var(--cx-ui); letter-spacing: 0; text-transform: none; }
+.ep-stats > li + li { padding-left: 2rem; border-left: 1px solid var(--cx-line-2, rgb(246 201 140 / .25)); }
+
+/* the heading over their stories, and the stories themselves, in their colour */
+.ep-major .cast-h { color: color-mix(in srgb, var(--ep-a) 34%, var(--cx-ink)); }
+.ep-major .cast-stories .card { transition: box-shadow .5s var(--cx-ease, ease), translate .5s var(--cx-ease, ease); }
+.ep-major .cast-stories .card:is(:hover, :focus-within) { box-shadow: 0 0 0 1px color-mix(in srgb, var(--ep-a) 60%, transparent), 0 24px 60px -28px color-mix(in srgb, var(--ep-a) 60%, transparent); }
+
+/* ---------- 1b. The leads, wherever else they stand ---------- */
+.ep-star { --ep-a: #f3c47e; }
+/* the people page: a tile lit in the lead's colour */
+.ep-star > .cast-tile { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ep-a) 55%, transparent), 0 0 44px -14px color-mix(in srgb, var(--ep-a) 70%, transparent); }
+.ep-star > .cast-tile::before { content: ""; position: absolute; z-index: -1; left: 50%; top: 34%; width: 150%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--ep-a) 46%, transparent), color-mix(in srgb, var(--ep-a) 12%, transparent) 46%, transparent 70%); }
+.ep-star > .cast-tile .cast-tile-n { color: color-mix(in srgb, var(--ep-a) 38%, #fff8ee); }
+.ep-star > .cast-tile:is(:hover, :focus-visible) { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ep-a) 90%, transparent), 0 0 60px -10px color-mix(in srgb, var(--ep-a) 80%, transparent), 0 30px 50px -24px rgb(0 0 0 / .85); }
+/* the long list: a lit ring round the lead's face */
+.ep-star > .cast-row .cast-row-pic { box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ep-a) 80%, transparent), 0 0 0 3px color-mix(in srgb, var(--ep-a) 22%, transparent), 0 0 22px color-mix(in srgb, var(--ep-a) 50%, transparent); }
+.ep-star > .cast-row .cast-row-n { color: color-mix(in srgb, var(--ep-a) 40%, var(--cx-ink)); }
+/* home: the cast row */
+.ep-star .cx-cast-pic { background: radial-gradient(ellipse 85% 70% at 50% 62%, color-mix(in srgb, var(--ep-a) 52%, transparent), color-mix(in srgb, var(--ep-a) 12%, var(--cx-paper-2, #2a1d13)) 62%, var(--cx-paper-2, #2a1d13) 100%);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ep-a) 42%, transparent), 0 0 34px -8px color-mix(in srgb, var(--ep-a) 70%, transparent); }
+.ep-star .cx-cast-name { color: color-mix(in srgb, var(--ep-a) 34%, var(--cx-ink)); }
+
+/* ---------- 2. Arrivals for what stood still ---------- */
+/* waiting things are faint, never invisible: a fast scroll never lands on an empty frame (the cinema layer's own rule) */
+.ep-rv { opacity: .32; }
+.ep-rv.ep-rv--soft { opacity: .45; }
+
+/* ---------- Motion (none of it with reduce-motion, by the device or by the site's own switch) ---------- */
+@media screen and (prefers-reduced-motion: no-preference) {
+  /* the lead's entrance: their world fades up, the light blooms, they step out of it, the name is struck letter by letter */
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-back { animation: ep-fade 1.8s ease-out both; }
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-back img { animation: ep-drift 46s ease-in-out infinite alternate; }
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-halo { animation: ep-bloom 1.9s cubic-bezier(.16, 1, .3, 1) .15s both; }
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-aura { animation: ep-pulse 7s ease-in-out 2s infinite alternate; }
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-rays { animation: ep-turn 140s linear infinite; }
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-ring::before { animation: ep-turn 90s linear infinite reverse; }
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-flash { animation: ep-flash 1.5s ease-out .55s both; }
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .cast-hero-pic { animation: ep-rise 1.5s cubic-bezier(.16, 1, .3, 1) .2s both; }
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-motes > i { animation: ep-mote var(--t) linear var(--dl) infinite; }
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-l { animation: ep-letter .9s cubic-bezier(.16, 1, .3, 1) calc(.7s + var(--i) * 60ms) both, ep-glint 9s ease-in-out calc(3.4s + var(--i) * 90ms) infinite; }
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-w { animation: ep-word 1.1s cubic-bezier(.16, 1, .3, 1) .7s both, ep-glint 9s ease-in-out 3.4s infinite; }
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-k { animation: ep-up .8s cubic-bezier(.16, 1, .3, 1) calc(1s + var(--ep-k, 0) * 110ms) both; }
+  :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-title::before, :root:not([data-motion="reduce"]) .ep-hero.ep-on .ep-title::after { animation: ep-draw .9s cubic-bezier(.65, 0, .35, 1) 1.7s both; }
+  /* out of sight, the endless parts rest */
+  :root:not([data-motion="reduce"]) .ep-hero.ep-off :is(.ep-back img, .ep-aura, .ep-rays, .ep-ring::before, .ep-motes > i, .ep-l, .ep-w) { animation-play-state: paused; }
+
+  /* the leads elsewhere: their light breathes */
+  :root:not([data-motion="reduce"]) .ep-star > .cast-tile::before { animation: ep-pulse 6s ease-in-out infinite alternate; }
+  :root:not([data-motion="reduce"]) .ep-star > .cast-row .cast-row-pic { animation: ep-ring-breathe 5s ease-in-out infinite alternate; }
+  /* home: the cast row drifts, each figure in its own time */
+  :root:not([data-motion="reduce"]) .ep-float .cx-cast-pic img.art { animation: ep-float 6.5s ease-in-out calc(var(--ep-n, 0) * -1.3s) infinite alternate; }
+  :root:not([data-motion="reduce"]) .ep-float a:is(:hover, :focus-visible) .cx-cast-pic { box-shadow: 0 0 0 1px color-mix(in srgb, var(--ep-a, #f3c47e) 70%, transparent), 0 0 44px -6px color-mix(in srgb, var(--ep-a, #f3c47e) 80%, transparent); }
+  .cx-cast-pic { transition: box-shadow .6s var(--cx-ease, ease); }
+
+  /* arrivals */
+  :root:not([data-motion="reduce"]) .ep-rv.ep-in { animation: ep-arrive .75s cubic-bezier(.16, 1, .3, 1) calc(var(--ep-i, 0) * 60ms) both; }
+  :root:not([data-motion="reduce"]) .ep-rv--soft.ep-in { animation-name: ep-arrive-soft; animation-duration: .9s; }
+  :root:not([data-motion="reduce"]) .ep-rv--side.ep-in { animation-name: ep-arrive-side; }
+  :root:not([data-motion="reduce"]) .ep-rv--grow.ep-in { animation-name: ep-arrive-grow; animation-duration: 1.1s; }
+
+  /* the credits: the name catches a passing light */
+  :root:not([data-motion="reduce"]) .ep-shine { background: linear-gradient(100deg, #ffe6c4 0%, #ffe6c4 42%, #fffaf0 50%, #ffe6c4 58%, #ffe6c4 100%) 0 0 / 300% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; animation: ep-shine 9s ease-in-out infinite; }
+  /* a festival's figure nods as its row is reached; the next festival holds a small light */
+  :root:not([data-motion="reduce"]) .ep-rv.ep-in .fest-fig { animation: ep-nod 1.1s cubic-bezier(.16, 1, .3, 1) calc(var(--ep-i, 0) * 60ms + .1s) both; }
+  /* a verse's meaning opens like a page being lit */
+  :root:not([data-motion="reduce"]) :is(.mx-mean, .st-mean).ep-in { animation-name: ep-arrive-lit; animation-duration: 1.1s; }
+}
+:root[data-motion="reduce"] .ep-rv { opacity: 1 !important; animation: none !important; }
+@media (prefers-reduced-motion: reduce) { .ep-rv { opacity: 1 !important; animation: none !important; } .ep-motes { display: none; } }
+:root[data-motion="reduce"] .ep-motes { display: none; }
+@media print { .ep-rv { opacity: 1 !important; } .ep-back, .ep-halo, .ep-motes { display: none; } .ep-l, .ep-w { color: inherit; -webkit-text-fill-color: currentColor; background: none; } }
+
+@keyframes ep-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ep-drift { from { scale: 1.1; transform: translate3d(-1.2%, 0, 0); } to { scale: 1.2; transform: translate3d(1.2%, -1.5%, 0); } }
+@keyframes ep-bloom { from { opacity: 0; scale: .5; } 55% { opacity: 1; } to { opacity: 1; scale: 1; } }
+@keyframes ep-pulse { from { opacity: .72; scale: .96; } to { opacity: 1; scale: 1.06; } }
+@keyframes ep-turn { to { rotate: 1turn; } }
+@keyframes ep-flash { 0% { opacity: 0; scale: .3; } 22% { opacity: .95; } 100% { opacity: 0; scale: 2.4; } }
+@keyframes ep-rise { from { opacity: 0; transform: translate3d(0, 38px, 0) scale(1.06); filter: blur(12px) brightness(1.9); } 55% { opacity: 1; filter: blur(0) brightness(1.22); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes ep-mote { 0% { opacity: 0; transform: translate3d(0, 0, 0); } 12% { opacity: .9; } 70% { opacity: .5; } 100% { opacity: 0; transform: translate3d(var(--dx), -24rem, 0); } }
+@keyframes ep-letter { from { opacity: 0; transform: translate3d(0, .55em, 0) rotateX(-75deg); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes ep-word { from { opacity: 0; transform: translate3d(0, .35em, 0) scale(1.04); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes ep-glint { 0%, 7%, 100% { filter: none; } 3.5% { filter: brightness(1.55) drop-shadow(0 0 14px color-mix(in srgb, var(--ep-a) 80%, transparent)); } }
+@keyframes ep-up { from { opacity: 0; transform: translate3d(0, 18px, 0); } to { opacity: 1; transform: none; } }
+@keyframes ep-draw { from { transform: scaleX(0); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes ep-ring-breathe { from { filter: brightness(1); } to { filter: brightness(1.18); } }
+@keyframes ep-float { from { translate: 0 0; } to { translate: 0 -5px; } }
+@keyframes ep-arrive { from { opacity: .32; transform: translate3d(0, 1.1rem, 0); } to { opacity: 1; transform: none; } }
+@keyframes ep-arrive-soft { from { opacity: .45; } to { opacity: 1; } }
+@keyframes ep-arrive-side { from { opacity: .32; transform: translate3d(-1.25rem, 0, 0); } to { opacity: 1; transform: none; } }
+@keyframes ep-arrive-grow { from { opacity: .32; transform: scale(.94); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes ep-arrive-lit { from { opacity: .45; filter: brightness(.8); transform: translate3d(0, .6rem, 0); } to { opacity: 1; filter: none; transform: none; } }
+@keyframes ep-shine { 0%, 62% { background-position: 100% 0; } 100% { background-position: 0 0; } }
+@keyframes ep-nod { from { transform: scale(.7) rotate(-8deg); } 60% { transform: scale(1.08) rotate(3deg); } to { transform: none; } }
